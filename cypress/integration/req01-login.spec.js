@@ -12,7 +12,7 @@ import {
   
 describe('1 - Crie uma página de login', () => {
   before(() => {
-    createAndInsertsDataBase();
+     createAndInsertsDataBase();
   });
 
   after(() => {
