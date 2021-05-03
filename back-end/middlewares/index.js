@@ -3,5 +3,5 @@ const ErrorMiddleware = require('./ErrorMiddleware');
 
 module.exports = {
   AuthMiddleware,
-  ErrorMiddleware
-}
+  ErrorMiddleware,
+};

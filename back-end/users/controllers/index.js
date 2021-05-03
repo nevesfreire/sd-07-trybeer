@@ -1,5 +1,5 @@
-const { getAll } = require('../models')
 const { StatusCodes } = require('http-status-codes');
+const { getAll } = require('../models');
 
 const getAllUsers = async (req, res, next) => {
   try {
@@ -10,11 +10,11 @@ const getAllUsers = async (req, res, next) => {
     console.error(error);
     next({ 
       status: StatusCodes.INTERNAL_SERVER_ERROR,
-      message: error.message
-    })
+      message: error.message,
+    });
   }
-}
+};
 
 module.exports = {
-  getAllUsers
-}
+  getAllUsers,
+};

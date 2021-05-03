@@ -9,8 +9,7 @@ const errorMiddleware = (err, _req, res, _next) => {
   }
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     erro: 'Algo deu errado',
-    }
-    );
+    });
 };
 
 module.exports = errorMiddleware; 

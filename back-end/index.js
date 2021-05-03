@@ -17,4 +17,4 @@ app.use(ErrorMiddleware);
 
 app.listen(PORT, () => {
   console.log(`Grupo 09 na porta ${PORT}`);
-})
+});
