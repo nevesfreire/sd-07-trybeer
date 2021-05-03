@@ -10,10 +10,10 @@ const jwtConfig = {
 
 const getUser = async (data) => {
   const { error } = validateLogin(data);
-  const dataUser = await loginModel.getUserInfo(data);
+  const [dataUser] = await loginModel.getUserInfo(data);
   if (error) throw error;
   await validUser(data);
-  const { email, password } = dataUser;
+  const { email, password } = dataUser[0];
   const token = jwt.sign({ email, password }, process.env.JWT_SECRET, jwtConfig);
   return token;
 };
