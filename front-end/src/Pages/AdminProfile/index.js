@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const AdminProfile = () => {
   return (
@@ -9,6 +9,6 @@ const AdminProfile = () => {
   );
 };
 
-AdminProfile.propTypes = {};
+// AdminProfile.propTypes = {};
 
 export default AdminProfile;

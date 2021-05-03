@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const Checkout = () => {
   return (
@@ -9,6 +9,6 @@ const Checkout = () => {
   );
 };
 
-Checkout.propTypes = {};
+// Checkout.propTypes = {};
 
 export default Checkout;
