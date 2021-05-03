@@ -154,7 +154,7 @@ Data de entrega para avaliação final do projeto: `21/05/2021 - 14:00h`.
 
 1. Clone o repositório
 
-- `git clone https://github.com/betrybe/sd-07-trybeer.git`.
+- `git clone https://github.com/tryber/sd-07-trybeer.git`.
 - Entre na pasta do repositório que você acabou de clonar:
   - `cd sd-07-trybeer`
 
