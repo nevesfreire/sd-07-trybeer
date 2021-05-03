@@ -1,9 +1,10 @@
 const express = require('express');
-const login = require('./routes/Login');
+const { login } = require('./routes');
 
 require('dotenv').config();
 
 const app = express();
+app.use(express.json());
 
 const { PORT } = process.env;
 

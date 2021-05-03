@@ -5,6 +5,6 @@ const { loginController } = require('../controllers');
 const router = express.Router();
 
 router.route('/login')
-  .get(cors(), loginController.getUser);
+  .post(cors(), loginController.getUser);
 
 module.exports = router;
