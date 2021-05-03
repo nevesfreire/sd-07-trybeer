@@ -4,9 +4,9 @@ const productsServices = require('../services');
 
 const productRoute = Router();
 
-productRoute.get('/', (req, res) => {
+productRoute.get('/', async (req, res) => {
   try {
-    const result = productsServices.getProducts();
+    const result = await productsServices.getProducts();
     return res.status(StatusCodes.OK).json(result);
   } catch (error) {
     next(error);
