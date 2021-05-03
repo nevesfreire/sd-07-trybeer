@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const AdminOrders = () => {
   return (
@@ -9,6 +9,6 @@ const AdminOrders = () => {
   );
 };
 
-AdminOrders.propTypes = {};
+// AdminOrders.propTypes = {};
 
 export default AdminOrders;

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const ClientOrders = () => {
   return (
@@ -9,6 +9,6 @@ const ClientOrders = () => {
   );
 };
 
-ClientOrders.propTypes = {};
+// ClientOrders.propTypes = {};
 
 export default ClientOrders;

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const Products = () => {
   return (
@@ -9,6 +9,6 @@ const Products = () => {
   );
 };
 
-Products.propTypes = {};
+// Products.propTypes = {};
 
 export default Products;
