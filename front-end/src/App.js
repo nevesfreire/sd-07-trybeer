@@ -1,27 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
+import Provider from './context/Provider';
+import {
+  Login,
+  Register,
+  ClientProfile,
+  Products,
+  Checkout,
+  ClientOrders,
+  ClientOrderDetail,
+  AdminProfile,
+  AdminOrders,
+  AdminOrderDetail,
+} from './Pages';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          Edit
-          <code>src/App.js</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Provider>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
+          <Route path="/login" component={Login}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/profile" component={ClientProfile}/>
+          <Route path="/products" component={Products} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/orders" component={ClientOrders} />
+          <Route path="/orders/:id" component={ClientOrderDetail}/>
+          <Route path="/admin/profile" component={AdminProfile}/>
+          <Route path="/admin/orders" component={AdminOrders}/>
+          <Route path="/admin/orders/:id" component={AdminOrderDetail}/>
+        </Switch>
+      </Provider>
+    </BrowserRouter>
   );
 }
 
