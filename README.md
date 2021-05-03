@@ -146,7 +146,7 @@ Para que seu projeto seja corretamente avaliado, siga as orientações a seguir:
 
 ### Data de Entrega
 
-Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+Data de entrega para avaliação final do projeto: `21/05/2021 - 14:00h`.
 
 # Instruções para entregar seu projeto
 
@@ -278,7 +278,7 @@ Haverá um arquivo no caminho: `sd-07-trybeer/cypress/plugins/index.js`. Neste a
 
 **Faça essas configurações também para as variáveis de ambiente usadas nesses arquivos:**
 
-`sd-0x-cookmaster/config/config.js`
+`sd-07-cookmaster/config/config.js`
 
 ```
 module.exports = {
