@@ -32,8 +32,8 @@ const validations = async (email, password) => {
   validateEmail(email);
   validatePassword(password);
   await checkingEmailExists(email);
-  const result = await loginModel.getByEmail(email);
-  return result;
+  const user = await loginModel.getByEmail(email);
+  return user;
 };
 
 module.exports = {
