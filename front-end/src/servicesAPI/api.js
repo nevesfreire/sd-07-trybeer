@@ -9,6 +9,12 @@ function getUser(userLogin) {
     .then(({ data }) => data);
 }
 
-export default {
+const registerUser = (userData) => {
+  api.post('/users/signup', userData)
+    .then(({ data }) => data);
+};
+
+export {
   getUser,
+  registerUser,
 };
