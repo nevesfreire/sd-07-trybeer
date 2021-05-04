@@ -1,4 +1,5 @@
 const express = require('express');
+const { userRoutes } = require('./routes');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
@@ -9,6 +10,8 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
+app.use(userRoutes);
+
 app.listen(PORT, () => {
-  console.log('Ok!');
+  console.log('Trybeer API listen on ' + PORT);
 });

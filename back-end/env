@@ -1,4 +1,6 @@
 PORT=3001
 HOSTNAME=localhost
 MYSQL_USER=root
-MYSQL_PASSWORD=1245
+# Não esquecer de alterar para a senha do BD local
+MYSQL_PASSWORD=qwe123asd
+DATABASE=Trybeer
