@@ -4,7 +4,6 @@ const createUser = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
     const newUser = await userService.createUser(name, email, password, role);
-    console.log(newUser)
     res.status(201).json(newUser);
   } catch (error) {
     const { message, code } = error;
@@ -23,7 +22,6 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await userService.login(email, password);
-    console.log(user)
     res.status(200).json(user);
   } catch (error) {
     const { message, code } = error;
