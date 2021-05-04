@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import Validator from 'email-validator';
-import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import loginUser from '../services/user';
+import { Link, useHistory } from 'react-router-dom';
+import { loginUser } from '../services/user';
 
-const LoginForm = (props) => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { history: { push } } = props;
+  const history = useHistory();
 
   const validateLogin = () => {
     const passwordLength = 6;
@@ -15,13 +14,28 @@ const LoginForm = (props) => {
   };
 
   const login = async () => {
-    const result = await loginUser(email, password);
-    localStorage.setItem('token', JSON.stringify(result));
-    if (result.role === 'admin') {
-      push('/admin');
+    const {
+      token,
+      name,
+      role,
+      email: emailResponse,
+      message,
+    } = await loginUser(email, password);
+
+    // console.log(result);
+    if (message) {
+      console.log(message);
     }
 
-    return result;
+    localStorage.setItem('token', JSON.stringify(token));
+    localStorage.setItem('name', JSON.stringify(name));
+    localStorage.setItem('role', JSON.stringify(role));
+    localStorage.setItem('email', JSON.stringify(emailResponse));
+
+    if (role === 'admin') {
+      history.push('/admin/profile');
+      // console.log('push');
+    }
   };
 
   return (
@@ -48,7 +62,7 @@ const LoginForm = (props) => {
         data-testid="signin-btn"
         type="submit"
         disabled={ !validateLogin() }
-        onClick={ login() }
+        onClick={ () => login() }
       >
         Entrar
       </button>
@@ -56,8 +70,4 @@ const LoginForm = (props) => {
     </form>);
 };
 
-LoginForm.propTypes = {
-  history: PropTypes.objectOf().isRequired,
-};
-
-export default withRouter(LoginForm);
+export default LoginForm;

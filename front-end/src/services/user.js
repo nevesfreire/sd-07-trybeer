@@ -7,10 +7,10 @@ const registerUser = async (name, email, role, password) => {
 
 const loginUser = async (email, password) => {
   const result = await instance.post('login', { email, password });
-  return result;
+  return result.data;
 };
 
-export default {
+module.exports = {
   registerUser,
   loginUser,
 };
