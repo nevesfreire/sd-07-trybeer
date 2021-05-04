@@ -1,6 +1,7 @@
 const userPasswordMessage = {
-  message: 'Incorrect username or password',
+  message: 'Incorrect email or password',
 };
+
 
 
 module.exports = {
