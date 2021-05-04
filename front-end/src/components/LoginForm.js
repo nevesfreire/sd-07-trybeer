@@ -24,30 +24,38 @@ function LoginForm() {
       const { role } = user;
       localStorage.setItem('user', JSON.stringify(user));
       if (role === 'client') history.push('/products');
-      history.push('/admin/orders');
+      if (role === 'administrator') history.push('/admin/orders');
+      // history.push('/admin/orders');
     }
   };
 
   return (
     <form className="form">
-      <input
-        className="form-input"
-        data-testid="email-input"
-        type="email"
-        name="email"
-        id="email"
-        placeholder="E-mail"
-        onChange={ (event) => setEmail(event.target.value) }
-      />
-      <input
-        className="form-input"
-        data-testid="password-input"
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Password"
-        onChange={ (event) => setPassword(event.target.value) }
-      />
+      <label htmlFor="email">
+        Email
+        <input
+          className="form-input"
+          data-testid="email-input"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          onChange={ (event) => setEmail(event.target.value) }
+        />
+      </label>
+
+      <label htmlFor="password">
+        Senha
+        <input
+          className="form-input"
+          data-testid="password-input"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          onChange={ (event) => setPassword(event.target.value) }
+        />
+      </label>
       <button
         className="form-button"
         data-testid="signin-btn"

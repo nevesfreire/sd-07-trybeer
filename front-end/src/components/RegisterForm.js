@@ -14,7 +14,7 @@ function RegisterForm() {
     const nameMinLength = 11;
     const passwordMinLength = 5;
     const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    const regLetters = /[A-Za-z]/;
+    const regLetters = /^[A-Z a-z]+$/;
     const validName = regLetters.test(name);
     const validEmail = reg.test(email) && name.length > nameMinLength;
     const validPassword = password.length > passwordMinLength;
@@ -26,7 +26,7 @@ function RegisterForm() {
 
   const handleSubmit = async () => {
     const conflictStatus = 409;
-    const role = checkbox ? 'admin' : 'client';
+    const role = checkbox ? 'administrator' : 'client';
     const response = await fetchRegisterNewUser({
       name, password, email, role,
     });
@@ -35,7 +35,7 @@ function RegisterForm() {
     localStorage.setItem('user', JSON.stringify(user));
     if (status !== conflictStatus) {
       if (role === 'client') history.push('/products');
-      history.push('/admin/orders');
+      if (role === 'administrator') history.push('/admin/orders');
     } else {
       setEmailTaken(false);
     }
@@ -43,33 +43,45 @@ function RegisterForm() {
 
   return (
     <form className="form">
-      <input
-        className="name-input"
-        data-testid="signup-name"
-        type="text"
-        name="name"
-        id="name-register"
-        placeholder="Nome"
-        onChange={ (event) => setName(event.target.value) }
-      />
-      <input
-        className="form-input"
-        data-testid="signup-email"
-        type="email"
-        name="email"
-        id="email-register"
-        placeholder="E-mail"
-        onChange={ (event) => setEmail(event.target.value) }
-      />
-      <input
-        className="form-input"
-        data-testid="signup-password"
-        type="password"
-        name="password"
-        id="password-register"
-        placeholder="Password"
-        onChange={ (event) => setPassword(event.target.value) }
-      />
+      <label htmlFor="name">
+        Nome
+        <input
+          className="name-input"
+          data-testid="signup-name"
+          type="text"
+          name="name"
+          id="name-register"
+          placeholder="Nome"
+          onChange={ (event) => setName(event.target.value) }
+        />
+      </label>
+
+      <label htmlFor="email-register">
+        Email
+        <input
+          className="form-input"
+          data-testid="signup-email"
+          type="email"
+          name="email"
+          id="email-register"
+          placeholder="E-mail"
+          onChange={ (event) => setEmail(event.target.value) }
+        />
+      </label>
+
+      <label htmlFor="password-register">
+        Senha
+        <input
+          className="form-input"
+          data-testid="signup-password"
+          type="password"
+          name="password"
+          id="password-register"
+          placeholder="Password"
+          onChange={ (event) => setPassword(event.target.value) }
+        />
+      </label>
+
       <label htmlFor="checkbox-register">
         <input
           type="checkbox"
@@ -81,7 +93,7 @@ function RegisterForm() {
           // checked="false"
         />
         {' '}
-        Quero Vender
+        Quero vender
       </label>
       <button
         className="form-button"
