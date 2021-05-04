@@ -6,9 +6,9 @@ import Registro from './pages/Registro';
 function App() {
   return (
     <Switch>
-      <Route exact path='/' component={Login} />
-      <Route path='/login' component={Login} />
-      <Route path='/register' component={Registro} />
+      <Route exact path="/" component={ Login } />
+      <Route path="/login" component={ Login } />
+      <Route path="/register" component={ Registro } />
     </Switch>
   );
 }
