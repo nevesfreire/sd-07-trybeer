@@ -1,11 +1,17 @@
 const express = require('express');
-const route = require('./controllers');
+const cors = require('cors');
+const route = require('./routes');
+const { errorMiddleware } = require('./middlewares');
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
+app.use('/login', route.loginRoute);
 app.use('/products', route.productRoute);
+
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 3001;
 

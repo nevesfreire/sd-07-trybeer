@@ -1,16 +1,26 @@
-const { Router } = require('express');
 const { StatusCodes } = require('http-status-codes');
-const productsServices = require('../services');
+const { productsServices } = require('../services');
 
-const productRoute = Router();
-
-productRoute.get('/', async (req, res, next) => {
+const getProductListController = async (_req, res, next) => {
+  console.log(productsServices);
   try {
-    const result = await productsServices.getProducts();
+    const result = await productsServices.getProductsList();
     return res.status(StatusCodes.OK).json(result);
   } catch (error) {
     next(error);
   }
-});
+};
 
-module.exports = productRoute;
+const getProductsById = async (req, res, next) => {
+  try {
+    const result = await productsServices.getProductsById();
+    return res.status(StatusCodes.OK).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  getProductListController,
+  getProductsById,
+};
