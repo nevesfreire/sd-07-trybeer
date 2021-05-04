@@ -3,7 +3,7 @@ const { loginModel } = require('../models');
 
 require('dotenv').config();
 
-const error = { err: 'Invalid token' };
+const error = { message: 'Invalid token' };
 const validateTokenMiddleware = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
@@ -16,7 +16,7 @@ const validateTokenMiddleware = async (req, res, next) => {
     
     next();
   } catch (err) {
-    return res.status(401).json({ err: err.message });
+    return res.status(401).json({ err });
   }
 };
 
