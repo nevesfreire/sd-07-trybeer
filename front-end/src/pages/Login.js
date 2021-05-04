@@ -29,7 +29,9 @@ function Login() {
       },
       body: JSON.stringify({ email, password }),
     }).then((response) => response.json())
-      .then((data) => localStorage.setItem('user', JSON.stringify(data)));
+      .then((data) => localStorage.setItem('user', JSON.stringify(data)))
+      .then(email === 'tryber@trybe.com.br'
+        ? history.push('/admin/orders') : history.push('/products'));
   };
 
   return (
