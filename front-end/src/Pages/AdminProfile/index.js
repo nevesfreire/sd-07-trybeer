@@ -1,13 +1,11 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-const AdminProfile = () => {
-  return (
-    <div>
-      TELA DE PERFIL DO ADMINISTRADOR
-    </div>
-  );
-};
+const AdminProfile = () => (
+  <div>
+    TELA DE PERFIL DO ADMINISTRADOR
+  </div>
+);
 
 // AdminProfile.propTypes = {};
 
