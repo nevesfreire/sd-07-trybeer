@@ -6,14 +6,15 @@ import { loginUser } from '../services/user';
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
+  const { push } = useHistory();
 
   const validateLogin = () => {
     const passwordLength = 6;
     return (Validator.validate(email) && password.length >= passwordLength);
   };
 
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
     const {
       token,
       name,
@@ -32,10 +33,7 @@ const LoginForm = () => {
     localStorage.setItem('role', JSON.stringify(role));
     localStorage.setItem('email', JSON.stringify(emailResponse));
 
-    if (role === 'admin') {
-      history.push('/admin/profile');
-      // console.log('push');
-    }
+    push(`/${role}/profile`);
   };
 
   return (
@@ -62,7 +60,7 @@ const LoginForm = () => {
         data-testid="signin-btn"
         type="submit"
         disabled={ !validateLogin() }
-        onClick={ () => login() }
+        onClick={ (e) => login(e) }
       >
         Entrar
       </button>
