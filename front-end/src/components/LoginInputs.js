@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import MyContext from '../context/Context';
 
 function LoginInputs() {
-  // const [email, setEmail] = setState('');
-  // const [password, setPassword] = setState('');
+  const { email, setEmail, password, setPassword } = useContext(MyContext);
+
   return (
     <>
       <label htmlFor="email-input">
@@ -11,8 +12,8 @@ function LoginInputs() {
           id="email-input"
           data-testid="email-input"
           type="email"
-          // value={email}
-          // onChange={setEmail}
+          value={ email }
+          onChange={ (e) => setEmail(e.target.value) }
         />
       </label>
       <label htmlFor="password-input">
@@ -21,12 +22,12 @@ function LoginInputs() {
           id="password-input"
           data-testid="password-input"
           type="password"
-          // value={password}
-          // onChange={setPassword}
+          value={ password }
+          onChange={ (e) => setPassword(e.target.value) }
         />
       </label>
     </>
-  )
+  );
 }
 
 export default LoginInputs;
