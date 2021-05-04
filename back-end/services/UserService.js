@@ -41,23 +41,11 @@ const User = require('../models/UserModel');
 //     return EmailAlreadyExists;  
 //   } 
 // };
-const registerUser = async (name, email, password, wantToSell) => {
-  let role = 'client';
-  // const message = await validateFields(name, email, password);
-  // if (message) return message;
-
-  if (wantToSell) role = 'admin';
-
-  const { insertedId } = await User.registerUser(name, email, password, role);
-
-  return {
-    user: {
-      name,
-      email,
-      role,
-      _id: insertedId,
-    },
-  };
+const registerUser = async (name, email, password, role) => {
+  const user = await User.getByEmail(email);
+  if (user !== undefined) return { status: 401, message: 'Já existe um usuário com esse e-mail.' };
+  await User.registerUser(name, email, password, role);
+  return { status: 200, message: 'Usuário cadastrado com sucesso' };
 };
 
 module.exports = {

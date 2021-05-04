@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import MyContext from '../context/Context';
 
@@ -13,18 +13,26 @@ function Register() {
     role,
     setRole } = useContext(MyContext);
 
+  const [errorEmail, setErrorEmail] = useState(false);
+
   const history = useHistory();
+
+  const userExists = 'Já existe um usuário com esse e-mail.';
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:3001/users', {
+    fetch('http://localhost:3001/register', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({ name, email, password, role }),
-    }).then(role === 'client'
-      ? history.push('/products') : history.push('/admin/orders'));
+    }).then((response) => response.json())
+      .then((data) => {
+        if (data === userExists) return setErrorEmail(true);
+        return role === 'client'
+          ? history.push('/products') : history.push('/admin/orders');
+      });
   };
 
   const minName = 12;
@@ -34,7 +42,7 @@ function Register() {
   };
 
   const validateEmail = () => {
-    const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+    const regexEmail = /[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i;
     return email && regexEmail.test(email);
   };
 
@@ -89,6 +97,7 @@ function Register() {
       >
         Cadastrar
       </button>
+      { errorEmail && <span>{userExists}</span> }
     </form>
   );
 }
