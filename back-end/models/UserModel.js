@@ -12,14 +12,19 @@ connect.execute(
   WHERE email = "${email}"`,
 ).catch((error) => console.log(error));
 
-const updateUser = async ({ name, email }) => {
+const updateUser = async (name, email) =>
   connect.execute(
     `UPDATE Trybeer.users SET name = '${name}' WHERE email = '${email}'`,
   );
-};
+
+const deleteUser = async ({ email }) =>
+  connect.execute(
+    `DELETE FROM Trybeer.users WHERE email = '${email}'`,
+  );
 
 module.exports = {
   registerUser,
   getUserEmail,
   updateUser,
+  deleteUser,
 };

@@ -8,6 +8,12 @@ const validateUserData = (data) =>
     role: Joi.string().valid('client', 'administrator').required(),
   }).validate(data);
 
+const validadeUserName = (data) =>
+  Joi.object({
+    name: Joi.string().regex(/^[a-z ,.'-]+$/i).min(12).required(),
+  }).validate(data);
+
 module.exports = {
   validateUserData,
+  validadeUserName,
 };
