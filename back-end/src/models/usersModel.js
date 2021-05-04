@@ -7,12 +7,19 @@ const getAllUsers = async () => {
 };
 
 const getUserByEmail = async (email) => {
-  const [[user]] = await connection.execute(
-    'SELECT * FROM users WHERE email =?',
-    [email],
-  );
+  const [
+    [user],
+  ] = await connection.execute('SELECT * FROM users WHERE email =?', [email]);
 
   return user;
 };
 
-module.exports = { getUserByEmail, getAllUsers };
+const createUser = async (name, email, password, role) => {
+  await connection.execute(
+    'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
+    [name, email, password, role],
+  );
+  return { name, email, role };
+};
+
+module.exports = { getUserByEmail, getAllUsers, createUser };
