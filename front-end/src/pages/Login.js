@@ -65,7 +65,7 @@ function Login() {
       >
         Ainda nao tenho conta
       </button>
-      {/* { redirect && <Redirect to="/outratela" />} */}
+      {/* { redirect && <Redirect to="/umaoutratela" />} */}
     </div>
   );
 }
