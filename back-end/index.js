@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { loginRoute } = require('./routes');
 
 const port = process.env.PORT || 3001;
 
@@ -7,6 +8,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use('/login', loginRoute);
 
 app.listen(port, () => {
   console.log(`Server inicializado na porta ${port}`);
