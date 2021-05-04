@@ -1,5 +1,9 @@
-// const { instance } = require('./apiInstance');
+const { instance } = require('./apiInstance');
 
-// // const getUser = async (email, password) => {
-// //   const response = await instance.get('users');
-// // };
+const registerUser = async (name, email, role, password) => {
+  const result = await instance.post('register', { name, email, role, password }) 
+  return result
+};
+
+
+export default registerUser;

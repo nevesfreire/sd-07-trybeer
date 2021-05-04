@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import Validator from 'email-validator';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import registerUser from '../services/user';
 
-const LoginForm = () => {
+  const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [seller, setSeller] = useState(false);
 
+  const cadastrar = async () => {
+    const role = seller ? 'admin' : 'user';
+    const user = await registerUser(name, email, role, password );
+    console.log(user)
+    return user;
+  };
   const validateLogin = () => {
     const passwordLength = 6;
     const nameLength = 12;
@@ -59,8 +66,9 @@ const LoginForm = () => {
         data-testid="signin-btn"
         type="submit"
         disabled={ !validateLogin() }
+        onClick={ () => cadastrar() }
       >
-        Entrar
+        Cadastrar
       </button>
     </form>);
 };
