@@ -1,12 +1,12 @@
 import React from 'react';
-import { getToken } from '../services/Login'
+/* import { getToken } from '../services/Login'; */
 
 export default function Login() {
-  const handleChange = () => {
-  };
+  const handleChange = () => null;
 
   const handleClick = (event) => {
-    event.preventDefault;
+    event.preventDefault();
+    return null;
   };
 
   return (
