@@ -1,8 +1,23 @@
 import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import FormLogin from '../../component/FormLogin';
+import LoginWrapper from './styles';
 
-function Login() {
+function Login() {  
+  const history = useHistory;
+
   return (
-    <h1>Login :D</h1>
+    <LoginWrapper>
+      <FormLogin />
+      <button 
+        id="btn_new_user"
+        type="button" 
+        onClick={() => { history.push('/teste')}}
+        data-testid="no-account-btn"
+      >
+        Ainda não tenho conta
+      </button>
+    </LoginWrapper>
   );
 }
 
