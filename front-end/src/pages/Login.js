@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LoginInputs from '../components/LoginInputs';
 
 function Login(props) {
@@ -23,5 +24,11 @@ function Login(props) {
     </>
   );
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default Login;
