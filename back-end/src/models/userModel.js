@@ -7,4 +7,14 @@ const create = async () => {
   return user;
 };
 
-module.exports = { create };
+const getByEmail = async (emailInput) => {
+  const [[user]] = await conn.execute(
+    `SELECT * FROM users WHERE email LIKE('${emailInput}') LIMIT 1;`,
+  );
+  return user;
+};
+
+module.exports = { 
+  create,
+  getByEmail,
+ };
