@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const { StatusCodes } = require('http-status-codes')
+const { StatusCodes } = require('http-status-codes');
 const productsServices = require('../services');
 
 const productRoute = Router();
 
-productRoute.get('/', async (req, res) => {
+productRoute.get('/', async (req, res, next) => {
   try {
     const result = await productsServices.getProducts();
     return res.status(StatusCodes.OK).json(result);
