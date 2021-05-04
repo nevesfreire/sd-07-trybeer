@@ -22,7 +22,7 @@ function Login({ history, sendClientInfoToStore }) {
   const handleButton = () => {
     // setStorage('token', xxx)
     sendClientInfoToStore({ email });
-    history.push('/profile');
+    history.push('/products');
     // history.push('/admin/profile');
   };
 
