@@ -5,12 +5,18 @@ const findByEmail = async (email) => {
     'SELECT name, email, role FROM users WHERE email=?',
     [email],
   );
-
-  if (!user) return null;
-
+  if (user.length === 0) return false;
   return user;
+};
+
+const addUser = async (name, email, password, role) => {
+  await connection.execute(
+    'INSERT INTO users(name, email, password, role) VALUES (?, ?, ?, ?)',
+    [name, email, password, role],
+  );
 };
 
 module.exports = {
   findByEmail,
+  addUser,
 };
