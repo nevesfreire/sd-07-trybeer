@@ -1,18 +1,16 @@
-// https://reactrouter.com/web/example/auth-workflow
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-const ProtectedRoute = ({ redirect, ...rest }) => {
-  const isAuth = () => true;
-
-  return isAuth()
-    ? <Route {...rest} />
-    : <Redirect to={redirect} />
-};
+import { RegisterPage } from './pages';
 
 function App() {
-  return <h1>Hello world</h1>;
-};
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/register" component={ RegisterPage } />
+      </Switch>
+    </BrowserRouter>
+  );
+}
 
 export default App;
