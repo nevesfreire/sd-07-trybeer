@@ -1,42 +1,29 @@
-import axios from 'axios';
-import { saveToken } from '../helpers/localStorage';
+import axios from "axios";
+import { saveToken } from "../helpers/localStorage";
 
 export default async function fetchToken(email, password) {
-  const requestTokenUrl = 'https://localhost:3001/login';
+  const requestTokenUrl = "http://localhost:3001/login";
   // const { REACT_APP_CLIENT_SECRET } = process.env;
   // console.log(REACT_APP_CLIENT_SECRET);
 
   const requestHeader = {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   };
 
   const requestBody = {
-    email: 'user@test.com',
-    password: 'test123',
+    email: email,
+    password: password,
   };
 
   try {
-    const res = await axios({
-      method: 'post',
-      url: requestTokenUrl,
-      data: {
-        email,
-        password,
-      },
-    });
-
-    // axios.post(requestTokenUrl, requestBody, requestHeader);
-
-    // const response = await fetch(requestTokenUrl, request);
-    console.log(res);
-    const { acessToken } = await res.json();
-    if (acessToken) {
-      saveToken(acessToken);
-      return acessToken;
+    const res = await axios.post(requestTokenUrl, requestBody, requestHeader);
+    const { data } = res;
+    console.log(data)
+    if (data) {
+      saveToken(data);
+      return data;
     }
   } catch (error) {
     console.error(error);
   }
 }
-
-// x-www-form-urlencoded

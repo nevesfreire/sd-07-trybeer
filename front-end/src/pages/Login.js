@@ -26,7 +26,7 @@ function Login() {
   const handleSubmit = async () => {
     const email = formData.get('email');
     const password = formData.get('password');
-    const loginResponse = await fetchToken(password, email);
+    const loginResponse = await fetchToken(email, password);
 
     history.push('/login');
   };
