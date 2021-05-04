@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Register } from '../pages';
+import { Login, Register, Products } from '../pages';
 
 function Router() {
   return (
@@ -9,7 +9,7 @@ function Router() {
       <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ Register }/>
       <Route exact path="/profile" />
-      <Route exact path="/products" />
+      <Route exact path="/products" component={ Products }/>
       <Route exact path="/checkout" />
       <Route exact path="/orders" />
       <Route exact path="/orders/:numero-do-pedido" />
