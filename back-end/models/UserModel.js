@@ -1,4 +1,4 @@
-const connection = require('../config/connection');
+const connection = require('./connection');
 
 const getByEmail = async (email) => { 
   const [[user]] = await connection.execute('SELECT * FROM Trybeer.users WHERE email=?', [email]);
