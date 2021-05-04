@@ -8,7 +8,7 @@ const getUserInfo = async ({ email, password }) =>
     `SELECT * FROM Trybeer.users
     WHERE email = "${email}" AND password = "${password}"`,
   ).catch((error) => console.log(error));
- 
+
 module.exports = {
   getUser,
   getUserInfo,
