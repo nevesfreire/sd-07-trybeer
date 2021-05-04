@@ -29,7 +29,7 @@ function Login() {
     const loginResponse = await fetchToken(password, email);
 
     history.push('/login');
-  }; 
+  };
 
   return (
     <Grid

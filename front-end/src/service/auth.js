@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { saveToken } from '../helpers/localStorage';
 
 export default async function fetchToken(email, password) {
@@ -5,22 +6,30 @@ export default async function fetchToken(email, password) {
   // const { REACT_APP_CLIENT_SECRET } = process.env;
   // console.log(REACT_APP_CLIENT_SECRET);
 
-  const request = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: 'secret123',
-    },
-    body: {
-      email,
-      password,
-    },
+  const requestHeader = {
+    'Content-Type': 'application/json',
+  };
+
+  const requestBody = {
+    email: 'user@test.com',
+    password: 'test123',
   };
 
   try {
-    const response = await fetch(requestTokenUrl, request);
-    console.log(response);
-    const { acessToken } = await response.json();
+    const res = await axios({
+      method: 'post',
+      url: requestTokenUrl,
+      data: {
+        email,
+        password,
+      },
+    });
+
+    // axios.post(requestTokenUrl, requestBody, requestHeader);
+
+    // const response = await fetch(requestTokenUrl, request);
+    console.log(res);
+    const { acessToken } = await res.json();
     if (acessToken) {
       saveToken(acessToken);
       return acessToken;
