@@ -5,6 +5,6 @@ const { logUser, getUser, createUser } = require('../controllers/userController'
 
 route.post('/login', logUser);
 route.post('/signup', createUser);
-route.get('/', getUser);
+route.get('/:id', getUser);
 
 module.exports = route;
