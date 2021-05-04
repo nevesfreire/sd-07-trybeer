@@ -1,18 +1,18 @@
-const loginService = require('../services/loginService');
 const jwt = require('jsonwebtoken');
+const loginService = require('../services/loginService');
 
-const secret = 'segredo';
+const secret = 'secret123';
 
 const generateToken = (result, jwtConfig) => {
   const { email, role, id } = result;
-  const token = jwt.sign({ email, role, id }, jwtConfig, secret);
+  const token = jwt.sign({ email, role, id }, secret, jwtConfig);
   return token;
 };
 
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const result = await loginService.validations(email, password);
+    const [result] = await loginService.validations(email, password);
     if (result) {
       const jwtConfig = {
         expiresIn: 60 * 60,

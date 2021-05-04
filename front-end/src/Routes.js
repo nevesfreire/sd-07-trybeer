@@ -5,10 +5,10 @@ import Login from './pages/Login';
 
 const Routes = () => (
   <Switch>
-    <Route exact path="/register" component={SignUpForm} />
-    <Route  path="/" component={Login} />
+    <Route exact path="/register" component={ SignUpForm } />
+    <Route path="/login" component={ Login } />
+    <Route path="/" component={ Login } />
   </Switch>
 );
 
 export default Routes;
-

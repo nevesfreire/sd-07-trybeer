@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 function SignUp() {
   const history = useHistory();
   const [formData, setFormData] = useState(new Map());
+
   const handleSubmit = async () => {
     const name = formData.get('name');
     console.log(name)

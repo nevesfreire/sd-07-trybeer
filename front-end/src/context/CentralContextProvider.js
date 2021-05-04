@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Context from './Context';
 
 function CentralContextProvider({ children }) {
- 
+
   const [isFetching, setIsFetching] = useState(true);
-  
+
   return (
     <Context.Provider
       value={ {

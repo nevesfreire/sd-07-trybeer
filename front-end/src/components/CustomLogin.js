@@ -38,8 +38,8 @@ const CustomLogin = ({
         color="orange"
         fluid
         size="large"
-        onClick={async () => await onHandleSubmit()}
-        disabled={ isValid ? 'false' : 'true' }
+        onClick={ async () => await onHandleSubmit()}
+        // disabled={ isValid ? 'false' : 'true' }
       >
         Login
       </Button>
@@ -48,7 +48,7 @@ const CustomLogin = ({
       data-testid="signin-btn"
       inverted
       color="orange"
-      onClick={async () => await goRegister()}
+      onClick={ async () => await goRegister()}
       animated="fade"
     >
       <Button.Content visible>Ainda não tenho conta</Button.Content>
