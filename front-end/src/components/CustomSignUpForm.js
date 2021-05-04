@@ -13,39 +13,39 @@ const SignUpForm = ({
         data-testid="signup-name"
         fluid
         placeholder="Name"
-        value={name}
+        value={ name }
         name="name"
-        onChange={(e) => onInputChange(e)}
+        onChange={ (e) => onInputChange(e) }
       />
       <Form.Input
         data-testid="signup-email"
         fluid
         placeholder="E-mail address"
-        value={email}
+        value={ email }
         name="email"
-        onChange={(e) => onInputChange(e)}
+        onChange={ (e) => onInputChange(e) }
       />
       <Form.Input
         data-testid="signup-password"
         fluid
         placeholder="Password"
-        value={password}
+        value={ password }
         type="password"
         name="password"
-        onChange={(e) => onInputChange(e)}
+        onChange={ (e) => onInputChange(e) }
       />
-      <Divider ></Divider>
+      <Divider />
       <Checkbox
         data-testid="signup-seller"
         label="Quero vender"
       />
-      <Divider ></Divider>
+      <Divider />
       <Button
         data-testid="signup-btn"
         color="orange"
         fluid
         size="large"
-        onClick={async () => await onHandleSubmit()}
+        onClick={ async () => onHandleSubmit() }
       >
         Cadastrar
       </Button>

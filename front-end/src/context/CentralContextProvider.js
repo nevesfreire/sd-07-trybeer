@@ -1,10 +1,8 @@
-
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState /* useEffect */ } from 'react';
 import Context from './Context';
 
 function CentralContextProvider({ children }) {
-
   const [isFetching, setIsFetching] = useState(true);
 
   return (
