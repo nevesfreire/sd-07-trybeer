@@ -1,3 +1,4 @@
+// const { INSERT } = require('sequelize/types/lib/query-types');
 const connection = require('./connection');
 
 const getByEmail = async (email) => { 
@@ -5,11 +6,12 @@ const getByEmail = async (email) => {
   return user;
 };
 
-const registerUser = async (name,email,password,role) =>
-  connection()
-    .then((db) =>
-      db.collection('users').insertOne({name,email,password,role })).then((result) => result);
+const registerUser = async (name, email, password, role) => connection.execute(
+  'INSERT INTO Trybeer.users(name, email, password, role) VALUES (?,?,?,?)',
+  [name, email, password, role],
+);
+  
 module.exports = {
   getByEmail,
-  registerUser
+  registerUser,
 };
