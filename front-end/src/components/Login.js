@@ -14,7 +14,8 @@ const ComponentLogin = () => {
     console.log(`Input validation passwordLabel ${passwordLabel}`);
     const regexEmail = /\S+@\S+\.\S+/;
     const passwordMinLength = 6;
-    const result = regexEmail.test(emailLabel) && passwordLabel.length >= passwordMinLength;
+    const result = regexEmail.test(emailLabel)
+      && passwordLabel.length >= passwordMinLength;
     setLabelLogin(!result);
   };
   return (
@@ -43,6 +44,7 @@ const ComponentLogin = () => {
             />
           </label>
           <button
+            type="button"
             disabled={ labelLogin }
           >
             Login
