@@ -34,7 +34,7 @@ const LoginForm = () => {
     localStorage.setItem('email', JSON.stringify(emailResponse));
 
     console.log(role);
-    if (role === 'admin') {
+    if (role === 'administrator') {
       push('/admin/orders');
     } else {
       push('/products');
