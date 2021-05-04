@@ -3,7 +3,7 @@ import Validator from 'email-validator';
 // import { Link } from 'react-router-dom';
 import registerUser from '../services/user';
 
-  const LoginForm = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -11,10 +11,16 @@ import registerUser from '../services/user';
 
   const cadastrar = async () => {
     const role = seller ? 'admin' : 'user';
-    const user = await registerUser(name, email, role, password );
-    console.log(user)
+    const user = await registerUser(name, email, role, password);
+
+    console.log(user);
     return user;
   };
+
+  // const redirect = async () => {
+
+  // };
+
   const validateLogin = () => {
     const passwordLength = 6;
     const nameLength = 12;
@@ -23,47 +29,54 @@ import registerUser from '../services/user';
       Validator.validate(email)
       && password.length >= passwordLength
       && name.length >= nameLength
-      );
+    );
   };
+
   return (
     <form>
-      <label htmlFor>
+      <label htmlFor="name">
         Nome
         <input
-          data-testid="name-input"
+          id="name"
+          data-testid="signup-name"
           type="text"
           value={ name }
           onChange={ ({ target: { value } }) => setName(value) }
         />
       </label>
-      <label htmlFor>
+      <label htmlFor="email">
         Email
         <input
-          data-testid="email-input"
+          id="email"
+          data-testid="signup-email"
           type="email"
           value={ email }
           onChange={ ({ target: { value } }) => setEmail(value) }
         />
       </label>
-      <label htmlFor>
+      <label htmlFor="password">
         Senha
         <input
-          data-testid="password-input"
+          id="password"
+          data-testid="signup-password"
           type="password"
           value={ password }
           onChange={ ({ target: { value } }) => setPassword(value) }
         />
       </label>
-      <label>
-          quero vender
-          <input
-            name="querVender"
-            type="checkbox"
-            checked={seller}
-            onClick={() => setSeller(!seller)} />
-        </label>
+      <label htmlFor="checkbox">
+        quero vender
+        <input
+          id="checkbox"
+          name="querVender"
+          data-testid="signup-seller"
+          type="checkbox"
+          checked={ seller }
+          onClick={ () => setSeller(!seller) }
+        />
+      </label>
       <button
-        data-testid="signin-btn"
+        data-testid="signup-btn"
         type="submit"
         disabled={ !validateLogin() }
         onClick={ () => cadastrar() }
