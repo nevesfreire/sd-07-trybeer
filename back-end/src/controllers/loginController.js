@@ -11,7 +11,7 @@ const loginUser = async (req, res) => {
   if (result === 'All fields must be filled' || result === 'Incorrect username or password') {
     res.status(STATUS_UNAUTHORIZED).json({ message: result });
   } else {
-    res.status(STATUS_OK).json({ token: result });
+    res.status(STATUS_OK).json({ token: result[0], role: result[1].role });
   }
 };
 

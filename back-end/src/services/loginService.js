@@ -27,7 +27,7 @@ const secret = 'secret';
 const loginUser = async (email, password) => {
   const user = await usersModel.getUserByEmail(email);
   const allUsers = await usersModel.getAllUsers();
-
+  
   try {
     verifyEntries(email, password, allUsers);
 
@@ -37,7 +37,7 @@ const loginUser = async (email, password) => {
     };
 
     const token = jwt.sign({ data: user }, secret, jwtConfig);
-    return token;
+    return [token, user];
   } catch (error) {
     return error.message;
   }
