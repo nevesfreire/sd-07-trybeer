@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Provider from './Context/Provider';
+import { Route, Switch } from 'react-router-dom';
+import Login from './Pages/client/Login';
+import Register from './Pages/client/Register';
+import Profile from './Pages/client/Profile';
+import Products from './Pages/client/Products';
+import Checkout from './Pages/client/Checkout';
+import Orders from './Pages/client/Orders';
+import OrderDetail from './Pages/client/OrderDetail';
+import AdmProfile from './Pages/adm/AdmProfile';
+import AdmOrders from './Pages/adm/AdmOrders';
+import AdmOrderDetail from './Pages/adm/AdmOrderDetail';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          Edit
-          <code>src/App.js</code>
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider>
+        <Switch>
+          <Route exact path="/" component={ Login } />
+          <Route exact path="/register" component={ Register } />
+          <Route exact path="/profile" component={ Profile } />
+          <Route exact path="/products" component={ Products } />
+          <Route exact path="/checkout" component={ Checkout } />
+          <Route exact path="/orders" component={ Orders } />
+          <Route exact path="/orders/:numero-do-pedido" component={ OrderDetail } />
+          <Route exact path="/admin/profile" component={ AdmProfile } />
+          <Route exact path="/admin/orders" component={ AdmOrders } />
+          <Route exact path="/admin/orders/:id" component={ AdmOrderDetail} />
+        </Switch>
+      </Provider>
     </div>
   );
 }
