@@ -8,7 +8,7 @@ const login = async (email, password) => {
 
   if (!user) return { status: 401, msg: 'user not found' };
 
-  console.log(user.password);
+  console.log(user);
   console.log(password);
   if (password !== user.password) return { status: 401, msg: 'wrong password' };
 
