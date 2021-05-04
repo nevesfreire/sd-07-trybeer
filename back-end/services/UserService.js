@@ -1,5 +1,5 @@
 const { userModel } = require('../models');
-const { validateUserData, validadeUserName } = require('./UserValidations');
+const { validateUserData, validadeUserName } = require('./validations/UserValidations');
 
 const emailCadastrado = { message: 'Já existe um usuário com esse e-mail.' };
 const mesmoNomeDeUsuario = { message: 'Usuário não atualizado' };

@@ -1,5 +1,5 @@
 const express = require('express');
-const { login, user } = require('./routes');
+const { login, user, image } = require('./routes');
 
 require('dotenv').config();
 
@@ -10,5 +10,6 @@ const { PORT } = process.env;
 
 app.use(login);
 app.use(user);
+app.use(image);
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}!`));
