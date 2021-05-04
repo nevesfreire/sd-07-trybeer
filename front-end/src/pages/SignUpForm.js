@@ -17,7 +17,7 @@ function SignUp() {
     const userName = formData.get('userName');
     const email = formData.get('email');
     const password = formData.get('password');
-    history.push('/login'); 
+    history.push('/register'); 
   };
 
   const handleInputChange = useCallback(({ target: { name, value } }) => {

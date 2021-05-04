@@ -8,6 +8,8 @@ const Routes = () => (
     <Route exact path="/register" component={ SignUpForm } />
     <Route path="/login" component={ Login } />
     <Route path="/" component={ Login } />
+    <Route path="/products" />
+    <Route path="/admin/orders" />
   </Switch>
 );
 

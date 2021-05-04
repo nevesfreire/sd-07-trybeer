@@ -18,7 +18,6 @@ export default async function fetchToken(email, password) {
   try {
     const res = await axios.post(requestTokenUrl, requestBody, requestHeader);
     const { data } = res;
-    console.log(data)
     if (data) {
       saveToken(data);
       return data;

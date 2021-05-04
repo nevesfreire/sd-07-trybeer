@@ -1,6 +1,6 @@
-import 'semantic-ui-css/semantic.min.css';
-import React from 'react';
-import { Button, Form, Segment } from 'semantic-ui-react';
+import "semantic-ui-css/semantic.min.css";
+import React from "react";
+import { Button, Form, Segment } from "semantic-ui-react";
 
 const CustomLogin = ({
   formData: { email, password },
@@ -16,6 +16,7 @@ const CustomLogin = ({
         fluid
         icon="user"
         iconPosition="left"
+        label="Email"
         placeholder="Email"
         name="email"
         value={email}
@@ -26,29 +27,31 @@ const CustomLogin = ({
         fluid
         icon="lock"
         iconPosition="left"
-        placeholder="Password"
+        label="Senha"
+        placeholder="Senha"
         type="password"
         name="password"
         value={password}
         onChange={(e) => onInputChange(e)}
       />
 
+      {console.log(isValid())}
       <Button
         data-testid="signin-btn"
         color="orange"
         fluid
         size="large"
-        onClick={ async () => await onHandleSubmit()}
-        // disabled={ isValid ? 'false' : 'true' }
+        onClick={async () => await onHandleSubmit()}
+        disabled={isValid()}
       >
-        Login
+        Entrar
       </Button>
     </Segment>
     <Button
-      data-testid="signin-btn"
+      data-testid="no-account-btn"
       inverted
       color="orange"
-      onClick={ async () => await goRegister()}
+      onClick={async () => await goRegister()}
       animated="fade"
     >
       <Button.Content visible>Ainda não tenho conta</Button.Content>
