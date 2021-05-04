@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
+import MyContext from '../context/Context';
 
 function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('client');
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    name,
+    setName,
+    role,
+    setRole } = useContext(MyContext);
 
   const history = useHistory();
   const handleSubmit = (e) => {
