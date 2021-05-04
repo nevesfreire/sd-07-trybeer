@@ -14,7 +14,7 @@ const validateEmail = (email) => {
 };
 
 const validatePassword = (password) => {
-  if (!password) {
+  if (!password || password.length <= 5) {
     ERR_MESSAGE = 'All fields must be filled';
     throw new Error(ERR_MESSAGE);
   }

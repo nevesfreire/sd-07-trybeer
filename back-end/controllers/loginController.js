@@ -1,7 +1,7 @@
-const loginService = require('../services/loginService');
 const jwt = require('jsonwebtoken');
+const loginService = require('../services/loginService');
 
-const secret = 'segredo';
+const secret = 'secret123';
 
 const generateToken = (result, jwtConfig) => {
   const { email, role, id } = result;
