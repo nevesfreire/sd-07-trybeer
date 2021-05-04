@@ -1,0 +1,67 @@
+import React, { useState } from 'react';
+import Validator from 'email-validator';
+import { Link } from 'react-router-dom';
+
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [seller, setSeller] = useState(false);
+
+  const validateLogin = () => {
+    const passwordLength = 6;
+    const nameLength = 12;
+
+    return (
+      Validator.validate(email)
+      && password.length >= passwordLength
+      && name.length >= nameLength
+      );
+  };
+  return (
+    <form>
+      <label htmlFor>
+        Nome
+        <input
+          data-testid="name-input"
+          type="text"
+          value={ name }
+          onChange={ ({ target: { value } }) => setName(value) }
+        />
+      </label>
+      <label htmlFor>
+        Email
+        <input
+          data-testid="email-input"
+          type="email"
+          value={ email }
+          onChange={ ({ target: { value } }) => setEmail(value) }
+        />
+      </label>
+      <label htmlFor>
+        Senha
+        <input
+          data-testid="password-input"
+          type="password"
+          value={ password }
+          onChange={ ({ target: { value } }) => setPassword(value) }
+        />
+      </label>
+      <label>
+          quero vender
+          <input
+            name="querVender"
+            type="checkbox"
+            checked={seller}
+            onClick={() => setSeller(!seller)} />
+        </label>
+      <button
+        data-testid="signin-btn"
+        type="submit"
+        disabled={ !validateLogin() }
+      >
+        Entrar
+      </button>
+    </form>);
+};
+export default LoginForm;
