@@ -9,12 +9,13 @@ function Login(props) {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const isButtonDisabled = () => {
-    if (!email.includes('.com') || password === ' ' || password.length < 6) {
+    const MIN_LENGTH = 6;
+    if (!email.includes('.com') || password === ' ' || password.length < MIN_LENGTH) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
     }
-  }
+  };
 
   useEffect(() => {
     isButtonDisabled();
@@ -24,9 +25,8 @@ function Login(props) {
     if (email === 'tryber@trybe.com.br') {
       return history.push('/admin/order');
     }
-    
-    return history.push('/products')
-  }
+    return history.push('/products');
+  };
 
   return (
     <>
