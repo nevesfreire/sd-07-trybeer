@@ -1,10 +1,14 @@
 const conn = require('../config/conn');
 
-const create = async () => {
-  const user = await conn.execute(
-    'INSERT INTO ',
+const createUser = async (name, email, password, role) => {
+  const newUser = await conn.execute(
+    `
+    INSERT INTO users(name, email, password, role) 
+    VALUES ('${name}', '${email}', '${password}', '${role}');
+    `,
   );
-  return user;
+  console.log(newUser);
+  return { email, password };
 };
 
 const getByEmail = async (emailInput) => {
@@ -15,6 +19,6 @@ const getByEmail = async (emailInput) => {
 };
 
 module.exports = { 
-  create,
+  createUser,
   getByEmail,
  };

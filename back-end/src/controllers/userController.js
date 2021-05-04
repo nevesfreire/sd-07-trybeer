@@ -1,7 +1,21 @@
 const userService = require('../services/userService');
 
-const create = async (_req, _res) => {
-
+const createUser = async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
+    const newUser = await userService.createUser(name, email, password, role);
+    res.status(201).json(newUser);
+  } catch (error) {
+    const { message, code } = error;
+    if (code) {
+      return res.status(code).json({
+        message,
+      });
+    }
+    return res.status(500).json({
+      message,
+    });
+  }
 };
 
 const login = async (req, res) => {
@@ -23,6 +37,6 @@ const login = async (req, res) => {
 };
 
 module.exports = { 
-  create,
+  createUser,
   login,
 };

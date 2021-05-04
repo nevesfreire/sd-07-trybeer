@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
   .route('/user')
-  .post(userController.create);
+  .post(userController.createUser);
 
 router.post('/login', userController.login);
 // router.post('/users/admin', validateJWT, validateAdmin, usersController.createAdmin); 
