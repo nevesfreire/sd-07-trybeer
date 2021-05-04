@@ -13,5 +13,5 @@ app.get('/', (_request, response) => {
 app.use(userRoutes);
 
 app.listen(PORT, () => {
-  console.log('Trybeer API listen on ' + PORT);
+  console.log(`Trybeer API listen on ${PORT}`);
 });
