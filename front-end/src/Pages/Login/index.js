@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import getUser from '../../servicesAPI/api';
+import { getUser } from '../../servicesAPI/api';
 // import PropTypes from 'prop-types';
+import { validateFields } from '../../util/validations';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setisValid] = useState(false);
   const [isClicked, setisClicked] = useState(false);
-  const [message, setMessage] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const history = useHistory();
   useEffect(() => {
-    const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.com$/;
-    const MIN_NUMBER = 6;
-    if (
-      regexEmail.test(String(email).toLowerCase())
-      && password.length >= MIN_NUMBER
-    ) {
+    if (validateFields(email, password) === true) {
       setisValid(true);
       if (isClicked) {
         const user = getUser(email, password);
@@ -26,7 +22,7 @@ export default function Login() {
           if (user.role === 'administrator') history.push('/admin/orders');
           history.push('/products');
         }
-        setMessage(true);
+        setShowMessage(true);
       }
     } else {
       setisValid(false);
@@ -59,7 +55,7 @@ export default function Login() {
         >
           ENTRAR
         </button>
-        { message && <p>Usuário ou senha inválido!</p> }
+        { showMessage && <p>Usuário ou senha inválido!</p> }
       </form>
       <Link
         data-testid="no-account-btn"
