@@ -1,60 +1,65 @@
 const User = require('../models/UserModel');
 
-const validateFields = async(name,email, password)=>{
-
-  if(validateName(name))return res.status(BAD_REQUEST).json(validateName);
-
-  if(!validateEmail(email))return res.status(BAD_REQUEST).json(validateEmail);
-
-  if(validatePassword(password))return res.status(BAD_REQUEST).json(validatePassword);
-
-  if(await validateIfEmailExist(email))return res.status(BAD_REQUEST).json(validateIfEmailExist);
-}
-const  validateName= (name)=>{
-  const reg = /[^a-zA-Z0-9]/;
-  if (!name) return { message: 'O campo "name" é obrigatório' };
+const EmailAlreadyExists = {
+  message: 'Já existe um usuário com esse e-mail.',
+};
+const validateName = (name) => {
+  const reg = /^[a-z\s]+$/i;
+  if (!name) return { message: 'O campo name é obrigatório' };
   if (name.length < 12) {
-    return { message: 'O "name" deve ter pelo menos 12 caracteres' }; 
+    return { message: 'O name deve ter pelo menos 12 caracteres' }; 
   }
-  if (!reg.test(name)) return { message: 'O nome nao deve ter números ou caracteres especiais' };
-} 
+  if (!reg.test(name)) {
+    return { message: 'O nome nao deve ter números ou caracteres especiais' };
+  } 
+}; 
 
-const  validateEmail = (email) =>{
+const validateEmail = (email) => {
   const reg = /\S+@\S+\.\S+/;
-  if(!reg.test(email)) return { message: 'Email inválido' };
-} 
-const  validateIfEmailExist = async(email) =>{
-  const result = await user.getByEmail(email);
-  if(result) return { message: 'Já existe um usuário com esse e-mail.' };
-} 
-const  validatePassword = (password) => {
-  const passwordParsed = password.toString();  
+  if (!reg.test(email)) return { message: 'Email inválido' };
+}; 
+const validateIfEmailExist = async (email) => {
+  const result = await User.getByEmail(email);
+  if (result !== null) return EmailAlreadyExists;
+}; 
+const validatePassword = (password) => {
+  const passwordParsed = password.toString();    
   const arrayPassword = passwordParsed.split('');
-  if (arrayPassword.length < 6 ) return { message: 'Senha deve ter no mínimo 6 caracters' };  
-}  
+  if (arrayPassword.length < 6) return { message: 'Senha deve ter no mínimo 6 caracters' };  
+};  
+const validateFields = async (name, email, password) => {
+  const result = await validateIfEmailExist(email);
+  if (validateName(name)) {
+    return validateName(name);
+  } 
 
+  if (!validateEmail(email)) return validateEmail(email);
 
-const registerUser = async(name, email, password, wantToSell)=>{
+  if (validatePassword(password)) return validatePassword(password);
+
+  if (result.message) {
+    return EmailAlreadyExists;  
+  } 
+};
+const registerUser = async (name, email, password, wantToSell) => {
   let role = 'client';
-  const message = validateFields(name, email, password);
+  const message = await validateFields(name, email, password);
+  if (message) return message;
 
-  if(message) return message;
+  if (wantToSell) role = 'admin';
 
-  if(wantToSell) role = 'admin';
+  const { insertedId } = await User.registerUser(name, email, password, role);
 
-  const { insertedId } = await User.registerUser(name,email,password,role);
-
-  return{
-    user:{
+  return {
+    user: {
       name,
       email,
       role,
-      _id:insertedId
-    }
-  }
-
-}
+      _id: insertedId,
+    },
+  };
+};
 
 module.exports = {
-  registerUser
+  registerUser,
 };
