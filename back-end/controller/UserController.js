@@ -11,7 +11,13 @@ const create = async (req, res) => {
 
 const login = async (req, res) => {
   const { email: emailBody, password } = req.body;
-  const { token, message, status, email, name, role } = await UserService.login(emailBody, password);
+  const { 
+    token, 
+    message, 
+    status, 
+    email, 
+    name, 
+    role } = await UserService.login(emailBody, password);
 
   if (message) { return res.status(status).send({ message }); }
   return res.status(200).send({ token, message, email, name, role });
