@@ -4,11 +4,11 @@ import Login from '../pages/Login';
 import RegisterPage from '../pages/RegisterPage';
 
 const Routes = () => (
-    <BrowserRouter>
-        <Redirect from="/" to="/login" />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={RegisterPage} />
-    </BrowserRouter>
+  <BrowserRouter>
+    <Redirect from="/" to="/login" />
+    <Route exact path="/login" component={ Login } />
+    <Route exact path="/register" component={ RegisterPage } />
+  </BrowserRouter>
 );
 
 export default Routes;
