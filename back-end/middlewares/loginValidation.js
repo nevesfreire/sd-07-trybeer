@@ -1,3 +1,5 @@
+const express = require('express');
+const router = express.Router();
 const { StatusCodes: { OK, UNAUTHORIZED } } = require('http-status-codes');
 const { userPasswordMessage } = require('../messages');
 
@@ -9,8 +11,8 @@ const loginValidationMiddleware = (req, res, next) => {
     return res.status(UNAUTHORIZED).json(userPasswordMessage)
   }
   next();
-}
+};
 
 module.exports = {
-  loginValidationMiddleware
+  loginValidationMiddleware,
 }
