@@ -1,6 +1,6 @@
 const userService = require('../services/userService');
 
-const create = (req, res) => {
+const create = async (req, res) => {
 
 };
 

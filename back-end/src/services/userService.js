@@ -1,6 +1,6 @@
 const userModel = require('../models/userModel');
 
-const create = () => {
+const create = async () => {
   
 };
 
