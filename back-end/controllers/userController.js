@@ -5,12 +5,12 @@ const createUser = async (req, res) => {
     try {
         const data = await userService.createUser(name, email, password, role);
         res.status(201).json({
-            data
-        })
+            data,
+        });
     } catch (error) {
         res.status(500).json({
-            message: "We found an error"
-        })
+            message: 'We found an error',
+        });
     }
 };
 
@@ -29,8 +29,8 @@ const logUser = async (req, res) => {
     } catch (error) {
         res.status(401).json(
             {
-                message: "Incorrect email or password"
-            }
+                message: 'Incorrect email or password',
+            },
         );
     }
 };
