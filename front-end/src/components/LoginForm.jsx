@@ -33,7 +33,12 @@ const LoginForm = () => {
     localStorage.setItem('role', JSON.stringify(role));
     localStorage.setItem('email', JSON.stringify(emailResponse));
 
-    push(`/${role}/profile`);
+    console.log(role);
+    if (role === 'admin') {
+      push('/admin/orders');
+    } else {
+      push('/products');
+    }
   };
 
   return (
