@@ -9,16 +9,15 @@ function Login() {
   const { email, setEmail, password, setPassword } = useContext(MyContext);
   const [isDisabled, setIsDisabled] = useState(true);
 
-  const isButtonDisabled = () => {
-    const MIN_LENGTH = 6;
-    if (!email.includes('.com') || password === ' ' || password.length < MIN_LENGTH) {
-      setIsDisabled(true);
-    } else {
-      setIsDisabled(false);
-    }
-  };
-
   useEffect(() => {
+    const isButtonDisabled = () => {
+      const MIN_LENGTH = 6;
+      if (!email.includes('.com') || password === ' ' || password.length < MIN_LENGTH) {
+        setIsDisabled(true);
+      } else {
+        setIsDisabled(false);
+      }
+    };
     isButtonDisabled();
   }, [email, password]);
 
@@ -30,7 +29,7 @@ function Login() {
       },
       body: JSON.stringify({ email, password }),
     }).then((response) => response.json())
-      .then((data) => localStorage.setItem(user, data));
+      .then((data) => localStorage.setItem('user', JSON.stringify(data)));
   };
 
   return (
