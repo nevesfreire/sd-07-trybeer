@@ -25,7 +25,7 @@ export default function Login() {
         <button
           data-testid="login-submit-btn"
           type="button"
-/*           disabled={ disabled } */
+          /*           disabled={ disabled } */
           onClick={ handleClick }
         >
           Entrar

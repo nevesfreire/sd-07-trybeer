@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Routes from '../Routes';
 import { Redirect } from 'react-router-dom';
-import { useState } from 'react';
+import Routes from '../Routes';
 
 export default function App() {
   const [shouldRedirect] = useState(true);
