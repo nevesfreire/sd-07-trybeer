@@ -1,15 +1,17 @@
 import React from 'react';
+import { getToken } from '../services/Login'
 
 export default function Login() {
   const handleChange = () => {
   };
 
-  const handleClick = () => {
+  const handleClick = (event) => {
+    event.preventDefault;
   };
 
   return (
     <div>
-      <form>
+      <form onSubmit={ (event) => handleClick(event) }>
         <input
           name="email"
           data-testid="email-input"
@@ -24,9 +26,8 @@ export default function Login() {
         />
         <button
           data-testid="login-submit-btn"
-          type="button"
-          /*           disabled={ disabled } */
-          onClick={ handleClick }
+          type="submit"
+          /* disabled={ disabled } */
         >
           Entrar
         </button>
