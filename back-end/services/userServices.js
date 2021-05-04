@@ -54,12 +54,20 @@ const userLogin = async (emailFromRequest, password) => {
   return token;
 };
 
+const userEmail = async (email) => {
+  const result = await userModels.findUserByEmail(email);
+  checksIfUserHasBeenReturned(result);
+
+  return STATUS_MESSAGE.USER_FOUND;
+};
+
 const userRegistration = () => {
   const result = userModels.userRegistration();
   return result;
 };
 
 module.exports = {
-  userRegistration,
   userLogin,
+  userEmail,
+  userRegistration,
 };
