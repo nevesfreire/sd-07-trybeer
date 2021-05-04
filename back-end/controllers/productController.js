@@ -1,9 +1,9 @@
 const createProduct = async (req, res) => {
-    res.send('Ok')
+    res.send('Ok');
 };
 
 const getProduct = async (req, res) => {
-    res.send('Ok')
+    res.send('Ok');
 };
 
 module.exports = {

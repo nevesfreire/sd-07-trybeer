@@ -1,9 +1,9 @@
 const createSale = async (req, res) => {
-    res.send('Ok')
+    res.send('Ok');
 };
 
 const getSale = async (req, res) => {
-    res.send('Ok')
+    res.send('Ok');
 };
 
 module.exports = {
