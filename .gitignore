@@ -188,6 +188,7 @@ typings/
 # Optional npm cache directory
 .npm
 
+.prettierrc 
 # Optional eslint cache
 .eslintcache
 
