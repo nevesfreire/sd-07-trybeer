@@ -34,6 +34,7 @@ function LoginForm() {
           placeholder="Email address"
           type="email"
           name="email"
+          data-testid="email-input"
           required
         />
       </Label>
@@ -45,6 +46,7 @@ function LoginForm() {
           placeholder="Password"
           type="password"
           name="password"
+          data-testid="password-input"
           required
         />
       </Label>
