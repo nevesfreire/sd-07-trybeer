@@ -65,7 +65,7 @@ const LoginForm = () => {
         />
       </label>
       <label htmlFor="checkbox">
-        quero vender
+        Quero vender
         <input
           id="checkbox"
           name="querVender"
