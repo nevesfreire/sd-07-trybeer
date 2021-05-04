@@ -6,6 +6,7 @@ import './App.css';
 function App() {
   return (
     <Switch>
+      <Route path="/register" />
       <Route path="/login" component={ Login } />
       <Redirect from="/" to="/login" />
     </Switch>
