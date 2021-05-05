@@ -6,6 +6,6 @@ const checkUser = require('../middlewares/checkUser');
 
 const router = express.Router();
 
-router.post('/register', checkUser, rescue(registerCtrl));
+router.post('/', checkUser, rescue(registerCtrl));
 
 module.exports = router;
