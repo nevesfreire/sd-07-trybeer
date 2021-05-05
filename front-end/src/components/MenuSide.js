@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-function MenuSide() {
-  const [isAdmin, setIsAdmin] = useState(false);
+function MenuSide({ isAdmin }) {
   const history = useHistory();
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.role === 'admin') setIsAdmin(true);
-  }, []);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -52,5 +47,9 @@ function MenuSide() {
     </div>
   );
 }
+
+MenuSide.propTypes = {
+  isAdmin: PropTypes.string.isRequired,
+};
 
 export default MenuSide;
