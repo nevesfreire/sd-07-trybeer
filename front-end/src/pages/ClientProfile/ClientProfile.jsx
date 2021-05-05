@@ -6,23 +6,29 @@ function ClientProfile () {
   const [userData, setUserData] = useState({});
   const [name, setName] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [updateUser, setUpdateUser] = useState(false);
+
   useEffect(() => {
     const user = getStorage('user');
     if (user) setUserData(user);
     setName(user.name);
   }, []);
+
   useEffect(() => {
     setDisabled(name === userData.name);
   }, [name, userData]);
-  function handleSubmit() {
+
+  function handleSubmit(e) {
+    e.preventDefault();
     const newUserData = { ...userData, name };
     setUserData(newUserData);
     setStorage('user', newUserData);
+    setUpdateUser(true);
   }
+
   return (
     <div>
       <Header headerTitle="Meu perfil" />
-      <h2 data-testid="top-title">Cliente - Meu Perfil</h2>
       <form>
         <label htmlFor="name-input">
           <h6>Nome</h6>
@@ -52,8 +58,10 @@ function ClientProfile () {
         >
             Salvar
         </button>
+        { updateUser && <p>Atualização concluída com sucesso</p>}
         </form>
     </div>
   )
 }
+
 export default ClientProfile;

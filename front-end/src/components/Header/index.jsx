@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './styles.css';
 
-const Header = () => {
+const Header = ({ headerTitle = 'TryBeer' }) => {
   const history = useHistory();
   const [sideMenu, setSideMenu] = useState(true);
 
@@ -53,9 +54,13 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <h2 data-testid="top-title">TryBeer</h2>
+      <h2 data-testid="top-title">{ headerTitle }</h2>
     </header>
   );
 };
 
 export default Header;
+
+Header.propTypes = {
+  headerTitle: PropTypes.string.isRequired,
+}
