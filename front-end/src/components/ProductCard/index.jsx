@@ -5,5 +5,5 @@ export default function ProductCard() {
     <div>
       aqui
     </div>
-  )
+  );
 }
