@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const secret = process.env.JWTSECRET;
+// Não use process.env pra secret, o env não existe no remoto, só declare env pros lances do mysql do readme - Berilo
+const secret = 'batata';
 
 const jwtConfig = {
   expiresIn: '7d',
