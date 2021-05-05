@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TopBar from '../../Components/TopBar';
 import { useHistory } from 'react-router';
 import verifyUserLocalStorage from '../../util/changeLocalStorage';
 import { updateNameUser } from '../../servicesAPI/api';
@@ -40,6 +41,7 @@ const ClientProfile = () => {
 
   return (
     <div>
+      <TopBar />
       <form>
         <label htmlFor="name">
           Nome

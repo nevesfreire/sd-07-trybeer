@@ -1,11 +1,16 @@
 import React from 'react';
+import SideBar from '../../Components/SideBar';
 // import PropTypes from 'prop-types';
 
-const AdminOrderDetail = () => (
-  <div>
-    TELA DE DETALHES DO PEDIDO DO ADMINISTRADOR
-  </div>
-);
+const AdminOrderDetail = () => {
+  const role = 'administrator';
+  return (
+    <div>
+      <SideBar role={ role } />
+      TELA DE DETALHES DO PEDIDO DO ADMINISTRADOR
+    </div>
+  );
+};
 
 // AdminOrderDetail.propTypes = {};
 
