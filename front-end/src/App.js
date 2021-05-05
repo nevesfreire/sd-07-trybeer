@@ -11,11 +11,10 @@ function App() {
   return (
     <Switch>
       <Route path="/products" component={ Products } />
-      <Route path="/admin" />
+      <Route exact path="/admin/orders" component={ Orders } />
       <Route path="/login" component={ Login } />
       <Route path="/register" />
       <Route exact path="/profile" component={ Profile } />
-      <Route exact path="/orders" component={ Orders } />
       <Redirect from="/" to="/login" />
     </Switch>
   );

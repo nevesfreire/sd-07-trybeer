@@ -73,7 +73,7 @@ function Login() {
       <h5>{errorMessage}</h5>
       <button
         type="button"
-        data-testRedirectid="no-account-btn"
+        data-testid="no-account-btn"
         onClick={ () => history.push('/register') }
       >
         Ainda não tenho conta
