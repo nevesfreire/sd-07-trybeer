@@ -4,7 +4,7 @@ import { login } from '../../actions';
 // import * as api from '../services/api';
 // import { setStorage } from '../services/localSorage';
 
-function Login({ history, sendClientInfoToStore }) {
+function Login({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
@@ -16,7 +16,8 @@ function Login({ history, sendClientInfoToStore }) {
     const MIN_LENGTH = 6;
     if (password.length >= MIN_LENGTH && regex.test(email)) {
       setDisabled(false);
-    } else { setDisabled(true);
+    } else {
+      setDisabled(true);
     }
   }, [email, password]);
 

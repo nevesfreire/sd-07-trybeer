@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, Header } from '../../components';
 import * as API from '../../services/api';
@@ -19,7 +18,7 @@ function Products() {
     <div>
       <Header />
     </div>
-  )
+  );
 }
 
 export default Products;
