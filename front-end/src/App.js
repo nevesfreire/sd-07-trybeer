@@ -11,6 +11,7 @@ function App() {
   return (
     <Switch>
       <Route path="/products" component={ Products } />
+      <Route path="/admin" />
       <Route path="/login" component={ Login } />
       <Route path="/register" />
       <Route exact path="/profile" component={ Profile } />

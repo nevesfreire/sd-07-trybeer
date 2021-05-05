@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import loginRequest from '../services/usersApi';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-  const [redirect, setRedirect] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [role, setRole] = useState('');
 
   const verifyUserData = () => {
     const minLength = 6;
@@ -23,7 +25,9 @@ function Login() {
     if (status === ok) {
       const { token } = response.data;
       localStorage.setItem('token', token);
-      return setRedirect(true);
+      const payload = jwtDecode(token);
+      setRole(payload.role);
+      return setIsLogged(true);
     }
     setErrorMessage(response.data.message);
   };
@@ -69,12 +73,15 @@ function Login() {
       <h5>{errorMessage}</h5>
       <button
         type="button"
-        data-testid="no-account-btn"
+        data-testRedirectid="no-account-btn"
         onClick={ () => history.push('/register') }
       >
-        Ainda nao tenho conta
+        Ainda não tenho conta
       </button>
-      { redirect && <Redirect to="/products" /> }
+      {/* { redirect && <Redirect to="/products" /> } */}
+      { (isLogged && role === 'client') && <Redirect to="/products" /> }
+      { (isLogged && role === 'administrator') && <Redirect to="/admin/orders" /> }
+
     </div>
   );
 }
