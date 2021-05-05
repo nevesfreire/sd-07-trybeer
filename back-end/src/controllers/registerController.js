@@ -2,9 +2,9 @@ const registerService = require('../services/register');
 
 const registerController = async (req, res) => {
    try {
-        const { name, email, password, checked} = req.body;
+        const { name, email, password, checked } = req.body;
         let role = 'admin';
-        if (!checked) role = 'cliente'
+        if (!checked) role = 'cliente';
 
         const user = await registerService.register(name, email, password, checked);
         console.log(user); 
@@ -16,4 +16,4 @@ const registerController = async (req, res) => {
 
 module.exports = {
     registerController,
-}
+};

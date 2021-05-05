@@ -6,12 +6,12 @@ const app = express();
 const { loginMiddleware } = require('./src/middlewares/index');
 const { loginController } = require('./src/controllers/index');
 const { registerController } = require('./src/controllers');
-const { fieldValidator } =  require('./src/middlewares');
+const { fieldValidator } = require('./src/middlewares');
 
 app.post('/login', loginMiddleware, loginController);
 
-app.post('/',body('name').isString().isLength({ min: 12 }),
+app.post('/', body('name').isString().isLength({ min: 12 }),
              body('email').isEmail(),
-             body('password').isLength({ min: 6 }),fieldValidator,  registerController);
+             body('password').isLength({ min: 6 }), fieldValidator, registerController);
 
 module.exports = app;

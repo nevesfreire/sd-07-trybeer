@@ -3,5 +3,5 @@ const { fieldValidator } = require('./fieldValidator');
 
 module.exports = {
     loginMiddleware,
-    fieldValidator
+    fieldValidator,
 };
