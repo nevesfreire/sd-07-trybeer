@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from '../../actions';
 // import * as api from '../services/api';
 // import { setStorage } from '../services/localSorage';
@@ -8,6 +8,8 @@ function Login({ history, sendClientInfoToStore }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -18,10 +20,9 @@ function Login({ history, sendClientInfoToStore }) {
     }
   }, [email, password]);
 
-
   const handleButton = () => {
-    // setStorage('token', xxx)
-    sendClientInfoToStore({ email });
+    // setStorage('toke()n', xxx)
+    dispatch(login({ email }));
     history.push('/products');
     // history.push('/admin/profile');
   };
@@ -69,7 +70,4 @@ function Login({ history, sendClientInfoToStore }) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  sendClientInfoToStore: (clientInfo) => dispatch(login(clientInfo)) });
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

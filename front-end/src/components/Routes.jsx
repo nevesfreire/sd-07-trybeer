@@ -1,16 +1,13 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import {
-  Login,
-  RegisterUser,
-} from '../pages';
+import { Login, Register } from '../pages';
 
 function Router() {
   return (
     <Switch>
       <Route exact path="/" component={ () => <Redirect to="/login" /> } />
       <Route exact path="/login" component={ Login } />
-      <Route exact path="/register" component={ RegisterUser } />
+      <Route exact path="/register" component={ Register }/>
       <Route exact path="/profile" />
       <Route exact path="/products" />
       <Route exact path="/checkout" />

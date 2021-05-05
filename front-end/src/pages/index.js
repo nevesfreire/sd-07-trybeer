@@ -1,7 +1,7 @@
 import Login from './Login/Login.jsx';
-import RegisterUser from './RegisterUser/RegisterUser.jsx';
+import Register from './Register/Register.jsx';
 
 export {
   Login,
-  RegisterUser,
+  Register
 };
