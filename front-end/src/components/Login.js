@@ -51,7 +51,7 @@ const ComponentLogin = () => {
             type="button"
             disabled={ labelLogin }
           >
-            Login
+            Entrar
           </button>
         </form>
       </div>
