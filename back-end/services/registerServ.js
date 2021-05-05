@@ -1,13 +1,17 @@
-require('dotenv').config();
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const userModel = require('../models/userModel');
-const statusMsgMap = require('./dictionaries/statusMsgMap');
+const { created } = require('./dictionaries/statusMsgMap');
 
 const registerServ = async (body) => {
   const { name, email, password, isSeller } = body;
 
-  // if ()
+  const salt = bcrypt.genSaltSync(5);
+  const cryptedPassword = bcrypt.hashSync(password, salt);
+
+  const role = isSeller ? 'administrator' : 'client';
+  await userModel.create({ name, email, password: cryptedPassword, role });
+
+  return created;
 };
 
 module.exports = registerServ;
