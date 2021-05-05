@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
 
   if (result === 'Invalid entries. Try again.') {
     res.status(STATUS_BAD_REQUEST).json({ message: result });
-  } else if (result === 'Email already registered') {
+  } else if (result === 'Já existe um usuário com esse e-mail.') {
     res.status(STATUS_CONFLICT).json({ message: result });
   } else {
     res.status(STATUS_CREATED).json({ user: result });
