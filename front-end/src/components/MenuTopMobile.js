@@ -17,7 +17,7 @@ function MenuTop() {
         <span className="span-menu-hamburger" />
       </button>
       <div>
-        <h2 className="page-title" data-testid="top-title">{ pageTitle }</h2>
+        <h1 className="page-title" data-testid="top-title">{ pageTitle }</h1>
       </div>
     </div>
   );

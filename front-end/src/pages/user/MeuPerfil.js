@@ -7,7 +7,7 @@ function MeuPerfil() {
   const { sideIsActive, setPageTitle } = useContext(MyContext);
 
   useEffect(() => {
-    setPageTitle('Meu Perfil');
+    setPageTitle('Meu perfil');
   }, []);
 
   return (
