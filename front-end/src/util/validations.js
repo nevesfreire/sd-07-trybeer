@@ -1,4 +1,4 @@
-const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.com$/;
+const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.com/;
 const MIN_NUMBER = 6;
 const MIN_NAME_LENGTH = 12;
 

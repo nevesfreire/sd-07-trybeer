@@ -9,32 +9,32 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setisValid] = useState(false);
-  const [isClicked, setisClicked] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const history = useHistory();
+
   useEffect(() => {
     if (validateFields(email, password) === true) {
       setisValid(true);
-      if (isClicked) {
-        const user = getUser({ email, password });
-        if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          if (user.role === 'administrator') history.push('/admin/orders');
-          history.push('/products');
-        }
-        setShowMessage(true);
-      }
-    } else {
-      setisValid(false);
     }
-  }, [email, password, isClicked, history]);
+  }, [email, password, history]);
+
+  const handleSubmit = async () => {
+    const user = await getUser({ email, password });
+    if (user.data) {
+      localStorage.setItem('user', JSON.stringify(user));
+      if (user.data.role === 'administrator') return history.push('/admin/orders');
+      return history.push('/products');
+    }
+    setShowMessage(true);
+  };
 
   return (
     <div className="form-wrapper">
       <form className="form-login">
-        <label>
+        <label htmlFor="email">
           Email
           <input
+            id="email"
             onChange={ (e) => setEmail(e.target.value) }
             type="email"
             data-testid="email-input"
@@ -42,13 +42,14 @@ export default function Login() {
             className="form-input"
           />
         </label>
-        <label>
+        <label htmlFor="password">
           Senha
           <input
+            id="password"
             onChange={ (e) => setPassword(e.target.value) }
             type="password"
             data-testid="password-input"
-            placeholder="Password"
+            placeholder="Senha"
             className="form-input"
           />
         </label>
@@ -56,7 +57,7 @@ export default function Login() {
           type="button"
           data-testid="signin-btn"
           disabled={ !isValid }
-          onClick={ () => setisClicked(true) }
+          onClick={ handleSubmit }
           className="form-button"
         >
           Entrar

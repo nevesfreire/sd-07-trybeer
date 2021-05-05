@@ -19,10 +19,19 @@ const logUser = async (email, password) => {
     return data;
 };
 
-const getUser = (data) => data;
+const getUser = async (email) => {
+    const data = await userModel.getUser(email);
+    return data;
+};
+
+const editUser = async (name, email) => {
+    const data = await userModel.editUser(name, email);
+    return data;
+};
 
 module.exports = {
     createUser,
     logUser,
     getUser,
+    editUser,
 };
