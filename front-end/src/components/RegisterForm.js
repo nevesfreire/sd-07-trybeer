@@ -90,7 +90,6 @@ function RegisterForm() {
           name="checkbox-register"
           id="checkbox-register"
           onChange={ () => setCheckbox(!checkbox) }
-          // checked="false"
         />
         {' '}
         Quero vender
