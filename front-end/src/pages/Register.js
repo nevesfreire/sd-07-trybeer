@@ -16,7 +16,6 @@ function Register() {
   const [errorEmail, setErrorEmail] = useState(false);
 
   const history = useHistory();
-
   const UNAUTHORIZED = 401;
 
   const userExistsMsg = 'Já existe um usuário com esse e-mail.';
