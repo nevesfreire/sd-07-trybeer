@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Card from '../../components/Card';
 import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
@@ -34,14 +33,17 @@ function Products() {
         : (
           <div>
             {products.map((product) => (
-              <Card
-                key={ product.id }
-                name={ product.name }
-                urlImage={ product.url_image.replace(/\s/g, '') }
-                price={ Number(product.price)
-                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-                quantity="quantity"
-              />
+              <div key={ product.id }>
+                <img src={ product.url_image.replace(/\s/g, '') } alt={ product.name } />
+                <span>{ product.name }</span>
+                <span>
+                  { Number(product.price)
+                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+                </span>
+                <span>quantity</span>
+                <button type="button">- 1</button>
+                <button type="button">+ 1</button>
+              </div>
             ))}
           </div>
         )}
