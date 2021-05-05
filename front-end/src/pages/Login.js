@@ -9,6 +9,7 @@ export default function Login() {
     password: '',
   });
   const [roleType, setRoleType] = useState('');
+  const [newUser, setNewUser] = useState(false);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -17,7 +18,7 @@ export default function Login() {
     });
   };
 
-  const handleClick = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const userToken = await getToken();
     const userInfo = await getUser(userLogin.email);
@@ -30,6 +31,11 @@ export default function Login() {
     localStorage.setItem('user', JSON.stringify(userData));
     setRoleType(userInfo.role);
   };
+
+  const handleClick = async (event) => {
+    setNewUser(true);
+  };
+
 
   useEffect(() => {
     const { email, password } = userLogin
@@ -52,7 +58,8 @@ export default function Login() {
   return (
     <div>
       { roleType === 'administrador' ? <Redirect to="/admin/orders" /> : <Redirect to="/products" /> }
-      <form onSubmit={ (event) => handleClick(event) }>
+      { newUser &&  <Redirect to="/register" /> }
+      <form onSubmit={ (event) => handleSubmit(event) }>
         <input
           name="email"
           data-testid="email-input"
@@ -66,11 +73,18 @@ export default function Login() {
           onChange={ (event) => handleChange(event) }
         />
         <button
-          data-testid="login-submit-btn"
+          data-testid="signin-btn"
           type="submit"
           disabled={ disabled }
         >
           Entrar
+        </button>
+        <button
+          data-testid="no-account-btn"
+          type="button"
+          onClick={ () => handleClick() }
+        >
+          Ainda não tenho conta
         </button>
       </form>
     </div>
