@@ -31,12 +31,13 @@ const generateToken = ({ name, email, role }) => {
   return jwt.sign(payload, secret);
 };
 
-const login = async (email, password) => {
-  const { error, message, user } = await validateLogin(email, password);
+const login = async (userEmail, password) => {
+  const { error, message, user } = await validateLogin(userEmail, password);
   if (error) return { error, message };
   const token = generateToken(user);
 
-  return { error: false, token };
+  const { email, name, role } = user;
+  return { error: false, payload: { token, name, email, role } };
 };
 
 module.exports = { login };

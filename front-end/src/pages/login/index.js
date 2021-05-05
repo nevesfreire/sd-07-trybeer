@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import login from '../../service/trybeerApi';
 
 export default function Login() {
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState('');
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
@@ -25,11 +26,15 @@ export default function Login() {
   };
 
   const handleClick = () => {
-    setShouldRedirect(true);
+    const { email, password } = loginInfo;
+    const result = login(email, password);
+    setShouldRedirect(result.role);
   };
 
   if (shouldRedirect) {
-    return <Redirect to="/home" />;
+    return (<Redirect
+      to={ `/${shouldRedirect === 'administrator' ? 'home' : 'produtos'}` }
+    />);
   }
 
   return (
@@ -59,7 +64,7 @@ export default function Login() {
 
       <button
         type="button"
-        data-testId="signin-btn"
+        data-testid="signin-btn"
         disabled={ !verifyInput() }
         onClick={ handleClick }
       >
@@ -68,7 +73,7 @@ export default function Login() {
 
       <Link
         to="/register"
-        data-testId="no-account-btn"
+        data-testid="no-account-btn"
       >
         Ainda não tenho conta
       </Link>
