@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import trybeerContext from './TrybeerContext';
 
-function Provider ({children}) {
-
+function Provider({ children }) {
   const valueProvider = {
   };
 
@@ -11,6 +10,6 @@ function Provider ({children}) {
       {children}
     </trybeerContext.Provider>
   );
-};
+}
 
 export default Provider;
