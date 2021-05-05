@@ -37,7 +37,7 @@ const ComponentLogin = () => {
             />
           </label>
           <label htmlFor="password">
-            Password
+            Senha
             <input
               data-testid="password-input"
               id="password"
