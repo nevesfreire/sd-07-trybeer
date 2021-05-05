@@ -27,7 +27,7 @@ const userRegistration = async (request, response) => {
     const result = await userServices.userRegistration(name, email, password, seller);
     response.status(STATUS_CODE.CREATED).json(result);
   } catch (error) {
-    response.status(error.status).json({ message: error.message });
+    response.status(200).json({ message: error.message });
   }
 };
 
