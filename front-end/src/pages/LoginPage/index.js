@@ -26,7 +26,7 @@ function LoginPage() {
         if (response.error) {
           setMessageError(response.message);
         } else {
-          localStorage.setItem('user', JSON.stringify(response));
+          localStorage.setItem('user', JSON.stringify(response.message));
           const route = response.message.role === 'administrator'
             ? '/admin/orders' : '/products';
           history.push(route);
