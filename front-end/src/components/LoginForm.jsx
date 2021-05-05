@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Validator from 'email-validator';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { loginUser } from '../services/user';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [redirect, setRedirect] = useState('');
-  // const { push } = useHistory();
+  // const [redirect, setRedirect] = useState('');
+  const { push } = useHistory();
 
   const validateLogin = () => {
     const passwordLength = 6;
@@ -32,15 +32,15 @@ const LoginForm = () => {
         console.log(message);
       }
       if (role === 'administrator') {
-        setRedirect('/admin/orders');
+        push('/admin/orders');
       } else {
-        setRedirect('/products');
+        push('/products');
       }
     });
   };
-  if (redirect !== '') {
-    return <Redirect to={ redirect } />;
-  }
+  // if (redirect !== '') {
+  //   return <Redirect to={ redirect } />;
+  // }
 
   return (
     <form>

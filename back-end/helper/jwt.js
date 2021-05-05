@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const secret = process.env.JWTSECRET;
+const secret = 'batata';
 
 const jwtConfig = {
   expiresIn: '7d',
