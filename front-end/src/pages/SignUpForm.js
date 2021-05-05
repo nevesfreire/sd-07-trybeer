@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import  CustomMessage from '../components/CustomMessage';
 import  CustomHeader from '../components/CustomHeader';
@@ -7,12 +7,21 @@ import fetchUser from '../service/user';
 
 import { Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import CentralContext from '../context/Context';
 
 
 function SignUp() {
   const history = useHistory();
   const [formData, setFormData] = useState(new Map());
-  const [isExistEmail, setExistEmail] = useState(false);
+  const { setIsExistEmail } = useContext(CentralContext);
+
+  const searchEmail = (user) => {
+    console.log(user)
+    if(user === 'Request failed with status code 409') {
+      setIsExistEmail(true)
+      return true
+    };
+  }
 
   const validate = () => {
     const name = formData.get('name');
@@ -52,7 +61,9 @@ function SignUp() {
     validate()
     const resultSell = iWantToSell === undefined ? false : true;
     const user = await fetchUser(name, email, password, resultSell);
-
+    console.log(user)
+    if (searchEmail(user)) return;
+    console.log('chegou aqui')
     if (!resultSell) return history.push("/products");
     history.push("/admin/orders"); 
   };
