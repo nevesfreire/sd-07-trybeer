@@ -1,17 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Card({ name, urlImage, price, id, quantity }) {
+function Card({ name, urlImage, price, id, quantity, index }) {
   return (
     <div key={ id }>
-      <img src={ urlImage } alt={ name } />
-      <span>{ name }</span>
-      <span>{ price }</span>
-      <span>{ quantity }</span>
-      <button type="button">- 1</button>
-      <button type="button">+ 1</button>
+      <img src={ urlImage } alt={ name } data-testid={`${index}-product-img`} />
+      <span data-testid={`${index}-product-name`}>{ name }</span>
+      <span data-testid={`${index}-product-price`}>{ price }</span>
+      <span data-testid={`${index}-product-qtd`}>{ quantity }</span>
+      <button
+        type="button"
+        data-testid={`${index}-product-minus`}
+      >
+        -
+      </button>
+      <button
+        type="button"
+        data-testid={`${index}-product-plus`}
+      >
+        +
+      </button>
     </div>
-
   );
 }
 

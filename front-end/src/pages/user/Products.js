@@ -11,7 +11,6 @@ function Products() {
     setPageTitle('TryBeer');
   }, [setPageTitle]);
 
-  // const { } = useContext(MyContext);
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
@@ -33,7 +32,7 @@ function Products() {
         ? <span>Carregando...</span>
         : (
           <div>
-            {products.map((product) => (
+            {products.map((product, index) => (
               <Card
                 key={ product.id }
                 name={ product.name }
@@ -41,6 +40,7 @@ function Products() {
                 price={ Number(product.price)
                   .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
                 quantity="quantity"
+                index={ index }
               />
             ))}
           </div>
