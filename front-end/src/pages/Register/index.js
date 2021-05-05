@@ -1,19 +1,17 @@
 import React from 'react';
-import LoginForm from '../../components/LoginForm';
-import MenuBurger from '../../components/Menu'
+import CreateUserForm from '../../components/CreateUserForm';
 // import CreateUserForm from '../../components/CreateUserForm';
 import { MainDiv, FormWrapper, H1 } from './styles';
 
-const Login = () => {
+const Register = () => {
   return (
     <MainDiv>
-      <MenuBurger />
-      <H1>Login</H1>
+      <H1>Registro</H1>
       <FormWrapper>
-        <LoginForm />
+        <CreateUserForm />
       </FormWrapper>
     </MainDiv>
   );
 };
 
-export default Login;
+export default Register;

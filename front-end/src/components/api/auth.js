@@ -1,6 +1,6 @@
 import api from './config';
 
-const auth = () => {
+export default function auth () {
 
   const userLogin = async () => {
     // try {
@@ -10,7 +10,11 @@ const auth = () => {
     // }
   }
 
-  return {
+  const userRegister = async () => {
 
+  }
+
+  return {
+    userLogin
   }
 }

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Form = styled.form`
   display: flex;
@@ -46,4 +47,13 @@ export const Button = styled.button`
 
 export const Span = styled.span`
   justify-self: flex-start;
+`;
+
+export const RegisterButton = styled(Link)`
+  background-color: transparent;
+  text-decoration: underline;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 `;

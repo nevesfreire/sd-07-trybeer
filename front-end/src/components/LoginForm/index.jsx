@@ -1,6 +1,14 @@
 import React, { useContext, useState } from "react";
 import ApiContext from "../../context/apiContext";
-import { Form, Label, Input, Button, Span } from './styles'
+import {
+  Form,
+  Label,
+  Input,
+  Button,
+  Span,
+  RegisterButton,
+} from './styles'
+
 
 // import "./styles.css";
 
@@ -16,7 +24,8 @@ function LoginForm() {
 
   console.log({user})
 
-  const onSubmitHandler = async () => {
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
     const user = {
       email,
       password,
@@ -25,7 +34,7 @@ function LoginForm() {
   };
 
   return (
-    <Form >
+    <Form onSubmit={ onSubmitHandler }>
       <Label>
         Email
         <Input
@@ -34,6 +43,7 @@ function LoginForm() {
           placeholder="Email address"
           type="email"
           name="email"
+          data-testid="email-input"
           required
         />
       </Label>
@@ -45,10 +55,22 @@ function LoginForm() {
           placeholder="Password"
           type="password"
           name="password"
+          data-testid="password-input"
           required
         />
       </Label>
-      <Button type="submit">Entrar</Button>
+      <Button
+        type="submit"
+        data-testid="signin-btn"
+      >
+        Entrar
+      </Button> 
+      <RegisterButton
+        to="/register"
+        data-testid="no-account-btn"
+      >
+        ou registre-se
+      </RegisterButton>
     </Form>
   );
 }
