@@ -9,25 +9,24 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValid, setisValid] = useState(false);
-  const [isClicked, setisClicked] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const history = useHistory();
+
   useEffect(() => {
     if (validateFields(email, password) === true) {
       setisValid(true);
-      if (isClicked) {
-        const user = getUser(email, password);
-        if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          if (user.role === 'administrator') history.push('/admin/orders');
-          history.push('/products');
-        }
-        setShowMessage(true);
-      }
-    } else {
-      setisValid(false);
     }
-  }, [email, password, isClicked, history]);
+  }, [email, password, history]);
+
+  const handleSubmit = async () => {
+    const user = await getUser({ email, password });
+    if (user.data) {
+      localStorage.setItem('user', JSON.stringify(user));
+      if (user.data.role === 'administrator') return history.push('/admin/orders');
+      return history.push('/products');
+    }
+    setShowMessage(true);
+  };
 
   return (
     <div className="form-wrapper">
@@ -50,7 +49,7 @@ export default function Login() {
           type="button"
           data-testid="signin-btn"
           disabled={ !isValid }
-          onClick={ () => setisClicked(true) }
+          onClick={ handleSubmit }
           className="form-button"
         >
           ENTRAR
@@ -61,7 +60,7 @@ export default function Login() {
         data-testid="no-account-btn"
         to="/register"
       >
-        Ainda nao tenho conta
+        Ainda não tenho conta
       </Link>
     </div>
   );

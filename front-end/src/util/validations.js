@@ -1,4 +1,4 @@
-const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.com$/;
+const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.com/;
 const MIN_NUMBER = 6;
 const MIN_NAME_LENGTH = 12;
 
@@ -11,7 +11,7 @@ const validateFields = (email, password) => {
 };
 
 const validateName = (name) => {
-  const onlyLetters = /^[A-Za-z]+$/;
+  const onlyLetters = /^[A-Za-z\s]+$/;
   if (name.length >= MIN_NAME_LENGTH && onlyLetters.test(name)) return true;
   return false;
 };
