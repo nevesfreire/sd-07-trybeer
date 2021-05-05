@@ -7,22 +7,25 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
   const [redirect, setRedirect] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('')
 
   const verifyUserData = () => {
     const six = 6;
     const regex = /\S+@\S+\.\S+/;
-    if (regex.test(email) && password.length > six) setIsDisable(false);
+    if (regex.test(email) && password.length >= six) setIsDisable(false);
     else setIsDisable(true);
   };
 
   const handleClick = async () => {
     const response = await loginRequest(email, password);
-    const { status, data } = response;
-    if (status === 200) {
-      localStorage.setItem('token', data.token);
-      setRedirect(true);
+    const { status } = response;
+    console.log(response);
+    if (status == 200) {
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      return setRedirect(true); 
     }
-    alert(data.message);
+    setErrorMessage(response.data.message);
   };
 
   const history = useHistory();
@@ -31,7 +34,6 @@ function Login() {
     verifyUserData();
   }, [email, password, verifyUserData]);
 
-  console.log(redirect);
   return (
     <div>
       <label htmlFor="email-input">
@@ -64,6 +66,7 @@ function Login() {
       >
         Entrar
       </button>
+      <h5>{errorMessage}</h5>
       <button
         type="button"
         data-testid="no-account-btn"
@@ -71,7 +74,7 @@ function Login() {
       >
         Ainda nao tenho conta
       </button>
-      { redirect && <Redirect to="/products" />}
+      { redirect && <Redirect to="/products" /> }
     </div>
   );
 }

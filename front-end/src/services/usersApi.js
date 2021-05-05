@@ -1,6 +1,6 @@
 import axios from 'axios'; 
 
-const PORT = process.env.PORT;
+const PORT = 3002;
 
 async function loginRequest (email, password) {
   const endpoint = `http://localhost:${PORT}/login`;
@@ -10,8 +10,7 @@ async function loginRequest (email, password) {
     response = await axios.post(endpoint, {
       email,
       password,
-    });
-    console.log(response);
+    })
     return response;
   } catch (error) {
     return error.response;
