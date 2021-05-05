@@ -1,6 +1,9 @@
 const getImage = async (req, res) => {
   try {
-    res.sendFile(req.url, { root: './' });
+    const { url } = req;
+    const newUrl = url.replace('%20', ' ');
+    console.log(newUrl);
+    res.sendFile(newUrl, { root: './' });
   } catch (error) {
     res.status(500).json(error.message);
   }
@@ -9,3 +12,7 @@ const getImage = async (req, res) => {
 module.exports = {
   getImage,
 };
+
+// var re = /(\w+)\s(\w+)/;
+// var str = 'John Smith';
+// var newstr = str.replace(re, '$2, $1');
