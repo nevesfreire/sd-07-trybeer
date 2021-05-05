@@ -8,8 +8,8 @@ const tokenIsValid = (token) => {
     jwt.verify(token, key);
     return true;
   } catch (error) {
-    return false
+    return false;
   }
-}
+};
 
 module.exports = { tokenIsValid };

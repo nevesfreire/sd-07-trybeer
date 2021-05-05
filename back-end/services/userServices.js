@@ -121,17 +121,14 @@ const checkIfEmailAndNameExist = (name, email) => {
   }
 };
 
-
-
 const checkIfUserIsOwner = (emailFromBody, emailFromToken) => {
-  if(emailFromBody !== emailFromToken) {
-    
+  if (emailFromBody !== emailFromToken) {
     throw new CustomError({
       status: STATUS_CODE.UNAUTHORIZED,
       message: STATUS_MESSAGE.EMAIL_NOT_EQUAL,
     });
   }
-}
+};
 
 const userProfile = async (name, email, authorization) => {
   const decodedToken = decodeToken.decode(authorization);
@@ -140,13 +137,12 @@ const userProfile = async (name, email, authorization) => {
   checkIfNameIsValid(name);
   checkIfEmailIsValid(email);
   await userModels.userProfile(name, email);
-  return { message: STATUS_MESSAGE.NAME_UPDATED }
-
-}
+  return { message: STATUS_MESSAGE.NAME_UPDATED };
+};
 
 module.exports = {
   userLogin,
   userEmail,
   userRegistration,
-  userProfile
+  userProfile,
 };

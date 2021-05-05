@@ -40,7 +40,7 @@ const userProfile = async (request, response) => {
   } catch (error) {
     response.status(STATUS_CODE.BAD_REQUEST).json({ message: error.message });
   }
-}
+};
 
 module.exports = {
   userLogin,

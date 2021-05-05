@@ -17,7 +17,8 @@ const userProfile = async (name, email) => {
     'UPDATE users SET name=? WHERE email=?', [name, email],
   );
   return result;
-}
+};
+
 module.exports = {
   findUserByEmail,
   userRegistration,
