@@ -14,7 +14,7 @@ export default function Login() {
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setUserLogin({
-      [name]: value,
+      ...userLogin, [name]: value,
     });
   };
 
@@ -32,46 +32,47 @@ export default function Login() {
     setRoleType(userInfo.role);
   };
 
-  const handleClick = async (event) => {
+  const handleClick = () => {
     setNewUser(true);
   };
 
-
   useEffect(() => {
     const { email, password } = userLogin
-    console.log(email, password);
- 
-      const regexForEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      const length = 5;
-      const passwordIsValid = password.length > length;
-      console.log(passwordIsValid);
-      const emailIsValid = regexForEmail.test(email);
-      console.log(emailIsValid);
-      if (passwordIsValid && emailIsValid === true) {
-        setDisabled(false);
-      } else {
-        setDisabled(true);
-      }
-    
+    const regexForEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const length = 5;
+    const passwordIsValid = password.length > length;
+    const emailIsValid = regexForEmail.test(email);
+    if (passwordIsValid && emailIsValid === true) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
   }, [userLogin]);
 
   return (
-    <div>
-      { roleType === 'administrador' ? <Redirect to="/admin/orders" /> : <Redirect to="/products" /> }
+    <>
+      { roleType === 'administrador' && <Redirect to="/admin/orders" /> }
+      { roleType === 'cliente' && <Redirect to="/products" /> }
       { newUser &&  <Redirect to="/register" /> }
       <form onSubmit={ (event) => handleSubmit(event) }>
-        <input
-          name="email"
-          data-testid="email-input"
-          type="email"
-          onChange={ (event) => handleChange(event) }
-        />
-        <input
-          name="password"
-          data-testid="password-input"
-          type="password"
-          onChange={ (event) => handleChange(event) }
-        />
+        <label htmlFor="id">Email
+          <input
+            name="email"
+            id="email"
+            data-testid="email-input"
+            type="email"
+            onChange={ (event) => handleChange(event) }
+          />
+        </label>
+        <label htmlFor="password">Senha
+          <input
+            name="password"
+            id="password"
+            data-testid="password-input"
+            type="password"
+            onChange={ (event) => handleChange(event) }
+          />
+        </label>
         <button
           data-testid="signin-btn"
           type="submit"
@@ -87,6 +88,6 @@ export default function Login() {
           Ainda não tenho conta
         </button>
       </form>
-    </div>
+    </>
   );
 }
