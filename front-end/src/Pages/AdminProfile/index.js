@@ -1,11 +1,16 @@
 import React from 'react';
+import SideBar from '../../Components/SideBar';
 // import PropTypes from 'prop-types';
 
-const AdminProfile = () => (
-  <div>
-    TELA DE PERFIL DO ADMINISTRADOR
-  </div>
-);
+const AdminProfile = () => {
+  const role = 'administrator';
+  return (
+    <div>
+      <SideBar role={ role } />
+      TELA DE PERFIL DO ADMINISTRADOR
+    </div>
+  );
+};
 
 // AdminProfile.propTypes = {};
 
