@@ -12,7 +12,15 @@ const userRegistration = async (name, email, password, role) => {
   return result;
 };
 
+const data = async () => {
+  const [result] = await connection.execute(
+    'SELECT * FROM products',
+  );
+  return result;
+};
+
 module.exports = {
   findUserByEmail,
   userRegistration,
+  data,
 };
