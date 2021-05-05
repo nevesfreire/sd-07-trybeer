@@ -11,7 +11,7 @@ const LoginForm = () => {
 
   const cadastrar = async (e) => {
     e.preventDefault();
-    const role = seller ? 'admin' : 'user';
+    const role = seller ? 'administrator' : 'client';
     const user = await registerUser(name, email, role, password);
 
     console.log(user);

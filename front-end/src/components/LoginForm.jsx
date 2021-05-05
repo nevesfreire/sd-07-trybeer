@@ -15,15 +15,16 @@ const LoginForm = () => {
 
   const login = async (e) => {
     e.preventDefault();
+    const result = await loginUser(email, password);
     const {
       token,
       name,
       role,
       email: emailResponse,
       message,
-    } = await loginUser(email, password);
+    } = result;
 
-    // console.log(result);
+    console.log(result);
     if (message) {
       console.log(message);
     }
