@@ -1,30 +1,35 @@
 import React, { useState } from 'react';
+import api from '../services/api';
+
+const regexEmail = /\S+@\S+\.\S+/;
+const passwordMinLength = 6;
 
 const ComponentLogin = () => {
   const [labelLogin, setLabelLogin] = useState(true);
   const [emailLabel, setEmailLabel] = useState('');
   const [passwordLabel, setPasswordLabel] = useState('');
-  console.log(`emailLabel ${emailLabel}`);
-  console.log(`passwordLabel ${passwordLabel}`);
 
   const inputValidation = (password) => {
-    console.log(`Input validation password ${password}`);
-    console.log(`Input validation emailLabel ${emailLabel}`);
     setPasswordLabel(password);
-    console.log(`Input validation passwordLabel ${passwordLabel}`);
-    const regexEmail = /\S+@\S+\.\S+/;
-    const passwordMinLength = 6;
     const result = regexEmail.test(emailLabel)
-      && passwordLabel.length >= passwordMinLength;
+    && passwordLabel.length
+    >= passwordMinLength;
     setLabelLogin(!result);
   };
+  const params = { email: emailLabel, password: passwordLabel };
+  const toLogin = async () => {
+    api.post('/login', params)
+      .then((token) => localStorage.setItem('token', token.data.token))
+      .catch((err) => console.log(`Error in login process: ${err}`));
+  };
+
   return (
     <div>
       <div>
         <h3>Login</h3>
       </div>
       <div>
-        <form>
+        <form onSubmit={ () => toLogin() }>
           <label htmlFor="email">
             Email
             <input
@@ -43,10 +48,7 @@ const ComponentLogin = () => {
               onChange={ (event) => inputValidation(event.target.value) }
             />
           </label>
-          <button
-            type="button"
-            disabled={ labelLogin }
-          >
+          <button type="submit" disabled={ labelLogin }>
             Login
           </button>
         </form>
