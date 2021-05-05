@@ -48,8 +48,7 @@ function Products() {
                 <button
                   type="button"
                   data-testid={ `${index}-product-minus` }
-                  disabled={ quantity === 0 }
-                  onClick={ () => setQuantity(quantity - 1) }
+                  onClick={ () => setQuantity(quantity < 1 ? quantity : quantity - 1) }
                 >
                   -
                 </button>
