@@ -3,11 +3,11 @@ import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 
-function Checkout() {
+function DetalhesPedido() {
   const { sideIsActive, setPageTitle } = useContext(MyContext);
 
   useEffect(() => {
-    setPageTitle('Finalizar Pedido');
+    setPageTitle('Detalhes de Pedido');
   }, [setPageTitle]);
 
   return (
@@ -18,4 +18,4 @@ function Checkout() {
   );
 }
 
-export default Checkout;
+export default DetalhesPedido;
