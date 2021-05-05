@@ -5,7 +5,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 background: #EFFFFA;
-transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
+transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
 height: 100vh;
 text-align: left;
 padding: 2rem;
@@ -37,7 +37,7 @@ a {
     color: #343078;
   }
 }
-`
+`;
 export const StyledBurger = styled.button`
 position: absolute;
 top: 5%;
@@ -60,23 +60,23 @@ z-index: 10;
 div {
   width: 2rem;
   height: 0.25rem;
-  background: ${({ open }) => open ? '#0D0C1D' : 'black'};
+  background: ${({ open }) => (open ? '#0D0C1D' : 'black')};
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
   transform-origin: 1px;
 
   :first-child {
-    transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+    transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
   }
 
   :nth-child(2) {
-    opacity: ${({ open }) => open ? '0' : '1'};
-    transform: ${({ open }) => open ? 'translateX(20px)' : 'translateX(0)'};
+    opacity: ${({ open }) => (open ? '0' : '1')};
+    transform: ${({ open }) => (open ? 'translateX(20px)' : 'translateX(0)')};
   }
 
   :nth-child(3) {
-    transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+    transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
   }
 }
 `;

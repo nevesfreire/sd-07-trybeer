@@ -2,14 +2,14 @@ import { createContext, useState } from 'react';
 
 export default ApiContext = createContext();
 
-export const ApiProvider = ({children }) => {
+export const ApiProvider = ({ children }) => {
   const [user, setUser] = useState('hahay');
 
-  const data = { user, setUser }
+  const data = { user, setUser };
 
   return (
-    <ApiContext.Provider value={data}>
+    <ApiContext.Provider value={ data }>
       { children }
     </ApiContext.Provider>
   );
-}
+};

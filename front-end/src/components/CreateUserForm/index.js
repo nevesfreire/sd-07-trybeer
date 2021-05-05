@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Form, Label, Input, Button, Span } from './styles'
+import React, { useState } from 'react';
+import { Form, Label, Input, Button, Span } from './styles';
 
 // const handleSubmit = (evt) => {
 //   evt.preventDefault();
@@ -7,30 +7,31 @@ import { Form, Label, Input, Button, Span } from './styles'
 
 function CreateUserForm() {
   // Estados de campos
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [iWantToSell, setiWantToSell] = useState(false);
 
   const validateRegister = (name, email, password) => {
-    const specialCharReg = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/
+    const specialCharReg = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
-    if(!name || name.length < 12 || specialCharReg.test(name)) {
-      console.log('problema em name')
+    const NAME_MIN_LENGTH = 12;
+    const PASSWORD_MIN_LENGTH = 6;
+
+    if (!name || name.length < NAME_MIN_LENGTH || specialCharReg.test(name)) {
+      console.log('problema em name');
       return true;
-    };
-    if(!password || password.length < 6 ) {
-      console.log('problema em password')
+    }
+    if (!password || password.length < PASSWORD_MIN_LENGTH) {
+      console.log('problema em password');
       return true;
-    };
-    if(!email) {
+    }
+    if (!email) {
       return true;
-    };
+    }
     return false;
-  }
-
-
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -39,20 +40,20 @@ function CreateUserForm() {
       name,
       email,
       password,
-    }
+    };
 
     validateRegister(user);
-  }
+  };
 
-  console.log({ validate: validateRegister(name, email, password) })
+  console.log({ validate: validateRegister(name, email, password) });
 
   return (
-    <Form onSubmit={onSubmitHandler}>
+    <Form onSubmit={ onSubmitHandler }>
       <Label>
         Nome
         <Input
-          value={name}
-          onChange={e => setName(e.target.value)}
+          value={ name }
+          onChange={ (e) => setName(e.target.value) }
           placeholder="name"
           type="text"
           name="name"
@@ -60,12 +61,12 @@ function CreateUserForm() {
           required
         />
       </Label>
-     
+
       <Label>
         Email
         <Input
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          value={ email }
+          onChange={ (e) => setEmail(e.target.value) }
           placeholder="Email address"
           type="email"
           name="email"
@@ -77,8 +78,8 @@ function CreateUserForm() {
       <Label>
         Senha
         <Input
-          value={password}
-          onChange={e => setPassword(e.target.value)}
+          value={ password }
+          onChange={ (e) => setPassword(e.target.value) }
           placeholder="Password"
           type="password"
           name="password"
@@ -87,18 +88,22 @@ function CreateUserForm() {
         />
       </Label>
 
-      <Label>Quero vender
+      <Label>
+        Quero vender
         <Input
-          checked={iWantToSell}
-          onChange={() => setiWantToSell(!iWantToSell)}
+          checked={ iWantToSell }
+          onChange={ () => setiWantToSell(!iWantToSell) }
           type="checkbox"
           data-testid="iWantToSell-input"
         />
       </Label>
 
-      <button type="submit"
-      disabled={ validateRegister(name, email, password) }
-      >Cadastrar</button>
+      <button
+        type="submit"
+        disabled={ validateRegister(name, email, password) }
+      >
+        Cadastrar
+      </button>
     </Form>
   );
 }

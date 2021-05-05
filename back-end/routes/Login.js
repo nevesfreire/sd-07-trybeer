@@ -6,6 +6,8 @@ const { loginController } = require('../controllers');
 
 const router = express.Router();
 
+router.use(cors());
+
 router.route('/login')
   .post(cors(), loginController.getUser);
 
