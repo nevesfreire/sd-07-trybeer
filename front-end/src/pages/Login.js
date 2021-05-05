@@ -35,23 +35,25 @@ function Login() {
   };
 
   return (
-    <>
-      <label htmlFor="email-input">
+    <div className="main-container">
+      <label htmlFor="email-input" className="email-input-label">
         Email
         <input
           id="email-input"
           data-testid="email-input"
           type="email"
+          className="email-input"
           value={ email }
           onChange={ (e) => setEmail(e.target.value) }
         />
       </label>
-      <label htmlFor="password-input">
+      <label htmlFor="password-input" className="password-input-label">
         Senha
         <input
           id="password-input"
           data-testid="password-input"
           type="password"
+          className="password-input"
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
         />
@@ -59,6 +61,7 @@ function Login() {
       <button
         data-testid="signin-btn"
         type="button"
+        className="signin-btn"
         onClick={ handleClick }
         disabled={ isDisabled }
       >
@@ -67,11 +70,12 @@ function Login() {
       <button
         data-testid="no-account-btn"
         type="button"
+        className="no-account-btn"
         onClick={ () => history.push('/register') }
       >
         Ainda não tenho conta
       </button>
-    </>
+    </div>
   );
 }
 

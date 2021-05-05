@@ -1,13 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import MenuTopMobile from '../../components/MenuTopMobile';
+import SideBarMobile from '../../components/SideBarMobile';
+import MyContext from '../../context/Context';
 
 function Profile() {
+  const { sideIsActive, setPageTitle } = useContext(MyContext);
+
+  useEffect(() => {
+    setPageTitle('Meu perfil');
+  }, [setPageTitle]);
+
   const [newName, setNewName] = useState('');
   const [success, setSuccess] = useState(false);
   const [user, setUser] = useState({});
 
   const history = useHistory();
-  const CREATED = 201;
+  const OK = 200;
 
   useEffect(() => {
     const getUser = () => {
@@ -31,12 +40,15 @@ function Profile() {
       },
       body: JSON.stringify({ newName, email }),
     }).then((response) => response.status)
-      .then((data) => { if (data === CREATED) setSuccess(true); });
+      .then((data) => {
+        if (data === OK) setSuccess(true);
+      });
   };
 
   return (
-    <>
-      <h1 data-testid="top-title">Meu perfil</h1>
+    <div>
+      <MenuTopMobile />
+      { sideIsActive && <SideBarMobile /> }
       <form onSubmit={ handleSubmit }>
         <label htmlFor="profile-email-input">
           Email
@@ -67,7 +79,7 @@ function Profile() {
         </button>
       </form>
       { success && <span>{successMsg}</span> }
-    </>
+    </div>
   );
 }
 

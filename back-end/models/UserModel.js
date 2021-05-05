@@ -17,7 +17,9 @@ const registerOrder = async ({ userId, total, address, addressNumber, saleDate, 
     [userId, total, address, addressNumber, saleDate, status]);
 };
 const updateUserName = async (newName, email) => {
-  await connection.execute('UPDATE Trybeer.users SET name=? WHERE email=?', [newName, email]);
+  await connection
+    .execute('UPDATE Trybeer.users SET name=? WHERE email=?',
+    [newName, email]);
 };
 
 module.exports = {
