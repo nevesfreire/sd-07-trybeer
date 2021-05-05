@@ -12,5 +12,4 @@ const LoginWrapper = styled.main`
   }
 `;
 
-
 export default LoginWrapper;
