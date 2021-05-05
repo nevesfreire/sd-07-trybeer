@@ -24,11 +24,13 @@ const LoginForm = () => {
   const validateLogin = () => {
     const passwordLength = 6;
     const nameLength = 12;
+    const regexNameValidation = /^[a-z ,.'-]+$/i;
 
     return (
       Validator.validate(email)
       && password.length >= passwordLength
       && name.length >= nameLength
+      && regexNameValidation.test(name)
     );
   };
 
