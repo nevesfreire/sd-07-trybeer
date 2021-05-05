@@ -1,4 +1,5 @@
 const UserService = require('../services/UserService');
+const UserModel = require('../models/UserModel');
 
 const registerUser = async (req, res) => {
   try {
@@ -11,6 +12,18 @@ const registerUser = async (req, res) => {
   }
 };
 
+const updateUserName = async (req, res) => {
+  try {
+  const { newName, email } = req.body;
+  const updatedUser = await UserModel.updateUserName(newName, email);
+  return res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'server error' });
+  }  
+};
+
 module.exports = {
   registerUser,
+  updateUserName,
 };
