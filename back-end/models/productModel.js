@@ -1,10 +1,13 @@
-// const connection = require('../connection');
+const connection = require('../connection');
 
 const createProduct = (data) => data;
 
-const getProduct = (data) => data;
+const getProducts = async () => {
+    const [rows] = await connection.execute('SELECT * FROM Trybeer.products');
+    return rows;
+};
 
 module.exports = {
     createProduct,
-    getProduct,
+    getProducts,
 };

@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/product', products);
+app.use('/products', products);
 app.use('/sale', sales);
 app.use('/user', users);
 
