@@ -1,16 +1,15 @@
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { getUser } from '../helpers/localStorageHelper';
-import Client from '../components/Client';
-import Admin from '../components/Admin';
 
 function Home() {
   const history = useHistory();
-  if (getUser() !== undefied) {
+  if (getUser() !== null) {
     const user = getUser();
-    return user.role === 'client' ? <Client /> : <Admin />;
+    if (user.role === 'client') return history.push('/products');
+    return history.push('/admin/orders');
   }
-  return history.push('/login');
+  history.push('/login');
+  return null;
 }
 
 export default Home;
