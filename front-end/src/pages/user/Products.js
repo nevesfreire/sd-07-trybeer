@@ -64,7 +64,12 @@ function Products() {
             ))}
           </div>
         )}
-
+        {/* <button
+          type="button"
+          data-testid="checkout-bottom-btn"
+        >
+          Ver Carrinho R${}
+        </button> */}
     </div>
   );
 }
