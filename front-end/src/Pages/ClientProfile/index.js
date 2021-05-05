@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import TopBar from '../../Components/TopBar';
 import { useHistory } from 'react-router';
+import TopBar from '../../Components/TopBar';
 import verifyUserLocalStorage from '../../util/changeLocalStorage';
 import { updateNameUser } from '../../servicesAPI/api';
 // import PropTypes from 'prop-types';
