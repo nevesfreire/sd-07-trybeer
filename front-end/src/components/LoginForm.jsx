@@ -13,33 +13,29 @@ const LoginForm = () => {
     return (Validator.validate(email) && password.length >= passwordLength);
   };
 
-  const login = async (e) => {
+  const login = (e) => {
     e.preventDefault();
-    const result = await loginUser(email, password);
-    const {
-      token,
-      name,
-      role,
-      email: emailResponse,
-      message,
-    } = result;
-
-    console.log(result);
-    if (message) {
-      console.log(message);
-    }
-
-    localStorage.setItem('token', JSON.stringify(token));
-    localStorage.setItem('name', JSON.stringify(name));
-    localStorage.setItem('role', JSON.stringify(role));
-    localStorage.setItem('email', JSON.stringify(emailResponse));
-
-    console.log(role);
-    if (role === 'administrator') {
-      push('/admin/orders');
-    } else {
-      push('/products');
-    }
+    loginUser(email, password).then((result) => {
+      const {
+        token,
+        name,
+        role,
+        email: emailResponse,
+        message,
+      } = result;
+      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem('name', JSON.stringify(name));
+      localStorage.setItem('role', JSON.stringify(role));
+      localStorage.setItem('email', JSON.stringify(emailResponse));
+      if (message) {
+        console.log(message);
+      }
+      if (role === 'administrator') {
+        push('/admin/orders');
+      } else {
+        push('/products');
+      }
+    });
   };
 
   return (
