@@ -7,23 +7,23 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
   const [redirect, setRedirect] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('');
 
   const verifyUserData = () => {
-    const six = 6;
+    const minLength = 6;
     const regex = /\S+@\S+\.\S+/;
-    if (regex.test(email) && password.length >= six) setIsDisable(false);
+    if (regex.test(email) && password.length >= minLength) setIsDisable(false);
     else setIsDisable(true);
   };
 
   const handleClick = async () => {
     const response = await loginRequest(email, password);
     const { status } = response;
-    console.log(response);
-    if (status == 200) {
+    const ok = 200;
+    if (status === ok) {
       const { token } = response.data;
       localStorage.setItem('token', token);
-      return setRedirect(true); 
+      return setRedirect(true);
     }
     setErrorMessage(response.data.message);
   };
