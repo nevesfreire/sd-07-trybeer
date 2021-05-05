@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Redirect } from 'react-router-dom';
 import ApiContext from "../../context/apiContext";
 import {
   Form,
@@ -20,10 +21,9 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { user, setUser } = useContext(ApiContext)
+  const { userLogin } = useContext(ApiContext)
 
-  console.log({user})
-
+  
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     const user = {
@@ -31,6 +31,15 @@ function LoginForm() {
       password,
     }
     //req da api enviando:
+    const response = await userLogin(user);
+    localStorage.setItem('user', JSON.stringify(response));
+    if(response) {
+      const { role } = response;
+      if (role === 'administrator') {
+        return <Redirect to="/admin/orders" /> 
+      } 
+      return <Redirect to="/products" />
+    }
   };
 
   return (
