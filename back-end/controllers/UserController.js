@@ -6,8 +6,8 @@ const registerUser = async (req, res) => {
     const { name, email, password, role } = req.body;
     const result = await UserService.registerUser(name, email, password, role);
     return res.status(CREATED).json(result);
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     return res.status(500).json({ message: 'server error' });
   }
 };
@@ -15,11 +15,16 @@ const registerUser = async (req, res) => {
 const OK = 200;
 
 const updateUserName = async (req, res) => {
-  const { name, email } = req.body;
+  try {
+    const { name, email } = req.body;
   
   const result = await UserService.updateUserName(name, email);
 
   return res.status(OK).json(result);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'server error' });
+  }  
 };
 
 module.exports = {
