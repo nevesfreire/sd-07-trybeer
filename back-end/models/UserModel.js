@@ -1,4 +1,3 @@
-// const { INSERT } = require('sequelize/types/lib/query-types');
 const connection = require('./connection');
 
 const getByEmail = async (email) => { 
@@ -11,8 +10,13 @@ const registerUser = async (name, email, password, role) => {
     .execute('INSERT INTO Trybeer.users (name, email, password, role) VALUES (?,?,?,?)',
     [name, email, password, role]);
 };
-  
+
+const updateUserName = async (newName, email) => {
+  await connection.execute('UPDATE Trybeer.users SET name=? WHERE email=?', [newName, email]);
+};
+
 module.exports = {
   getByEmail,
   registerUser,
+  updateUserName,
 };

@@ -11,6 +11,18 @@ const registerUser = async (req, res) => {
   }
 };
 
+const updateUserName = async (req, res) => {
+  try {
+  const { newName, email } = req.body;
+  const result = await UserService.updateUserName(newName, email);
+  return res.status(result.status).json(result.message);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'server error' });
+  }  
+};
+
 module.exports = {
   registerUser,
+  updateUserName,
 };
