@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
 import Validator from 'email-validator';
+import { useHistory } from 'react-router';
 // import { Link } from 'react-router-dom';
-import { registerUser } from '../services/user';
+import { registerUser } from '../services/Api/user';
+import LoginAuth from '../services/Auth/Login';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [seller, setSeller] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const { push } = useHistory();
 
   const cadastrar = async (e) => {
     e.preventDefault();
     const role = seller ? 'administrator' : 'client';
     const user = await registerUser(name, email, role, password);
+    if (user.error) {
+      setShowError(true);
+    } else {
+      LoginAuth(e, email, password, push);
+    }
 
-    console.log(user);
     return user;
   };
-
-  // const redirect = async () => {
-
-  // };
 
   const validateLogin = () => {
     const passwordLength = 6;
@@ -86,6 +90,7 @@ const LoginForm = () => {
       >
         Cadastrar
       </button>
+      {showError && <p>Já existe um usuário com esse e-mail.</p>}
     </form>);
 };
 export default LoginForm;
