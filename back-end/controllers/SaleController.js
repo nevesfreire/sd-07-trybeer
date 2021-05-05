@@ -1,3 +1,3 @@
-const { saleModel } = require('../models');
+// const { saleModel } = require('../models');
 
 // createSale, getProductById

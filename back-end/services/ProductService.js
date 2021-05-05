@@ -1,10 +1,9 @@
-const { } = require('../models/ProductModel');
+// const { } = require('../models/ProductModel');
 
+// const updateProduct = async (data) => {
 
-const updateProduct = async (data) => {
+// };
 
-};
-
-module.exports = {
-  updateProduct,
-};
+// module.exports = {
+//   updateProduct,
+// };
