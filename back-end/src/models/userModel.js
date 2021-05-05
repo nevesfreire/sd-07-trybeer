@@ -18,7 +18,18 @@ const getByEmail = async (emailInput) => {
   return user;
 };
 
+const editUser = async (name, id) => {
+  await conn.execute(
+    `
+    UPDATE users
+    SET name = '${name}'
+    WHERE id = ${id};
+    `
+  )
+};
+
 module.exports = { 
   createUser,
   getByEmail,
+  editUser,
  };

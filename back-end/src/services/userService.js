@@ -51,7 +51,20 @@ const createUser = async (name, email, password, role) => {
   return ({ ...newUserLoged });
 };
 
+const validateNewName = async (name, id) => {
+  const schema = joi.object({
+    name: joi.string().required()
+  });
+  const { error } = schema.validate({ name });
+  if (error) {
+    throw new CustomError('Invalid entries. Try again.', 400);
+  }
+  await userModel.editUser(name, id);
+  return ('Editado com sucesso');
+}
+
 module.exports = { 
   createUser,
   login,
+  validateNewName,
  };
