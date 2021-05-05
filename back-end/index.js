@@ -19,5 +19,4 @@ app.get('/products', ProductController.getAllProducts);
 app.get('/images/:filename', ProductController.getImages);
 app.post('/checkout', UserController.registerOrder);
 
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
