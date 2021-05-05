@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import loginRequest from '../services/usersApi';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -14,9 +15,14 @@ function Login() {
     else setIsDisable(true);
   };
 
-  const handleClick = () => {
-    // Setar as coisas do local storage aqui
-    setRedirect(true);
+  const handleClick = async () => {
+    const response = await loginRequest(email, password);
+    const { status, data } = response;
+    if (status === 200) {
+      localStorage.setItem('token', data.token);
+      setRedirect(true);
+    }
+    alert(data.message);
   };
 
   const history = useHistory();
@@ -65,7 +71,7 @@ function Login() {
       >
         Ainda nao tenho conta
       </button>
-      {/* { redirect && <Redirect to="/outratela" />} */}
+      { redirect && <Redirect to="/products" />}
     </div>
   );
 }
