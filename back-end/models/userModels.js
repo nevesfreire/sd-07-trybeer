@@ -5,12 +5,22 @@ const findUserByEmail = async (email) => {
   return result;
 };
 
-const userRegistration = () => {
-  console.log('asdasd');
-  return 'deu bom no model';
+const userRegistration = async (name, email, password, role) => {
+  const [result] = await connection.execute(
+    'INSERT INTO users(name, email, password, role) VALUE(?,?,?,?)', [name, email, password, role],
+  );
+  return result;
+};
+
+const data = async () => {
+  const [result] = await connection.execute(
+    'SELECT * FROM products',
+  );
+  return result;
 };
 
 module.exports = {
   findUserByEmail,
   userRegistration,
+  data,
 };
