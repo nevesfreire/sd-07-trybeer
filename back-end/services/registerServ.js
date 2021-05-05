@@ -1,15 +1,14 @@
-const bcrypt = require('bcrypt');
-const userModel = require('../models/userModel');
-const { created } = require('./dictionaries/statusMsgMap');
+const userModel = require('../models/userModels');
+const { created, emailInDatabase } = require('./dictionaries/statusMsgMap');
 
 const registerServ = async (body) => {
   const { name, email, password, isSeller } = body;
 
-  const salt = bcrypt.genSaltSync(5);
-  const cryptedPassword = bcrypt.hashSync(password, salt);
+  const alreadyExists = await userModel.getUserByEmail(email);
+  if (alreadyExists) return emailInDatabase;
 
   const role = isSeller ? 'administrator' : 'client';
-  await userModel.create({ name, email, password: cryptedPassword, role });
+  await userModel.create({ name, email, password, role });
 
   return created;
 };

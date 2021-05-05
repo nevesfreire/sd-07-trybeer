@@ -5,8 +5,8 @@ const registerCtrl = async (req, res, next) => {
     const { body } = req;
     const loginRes = await registerServ(body);
     if (loginRes.err) return next(loginRes);
-    const { message, status } = loginRes;
-    return res.status(status).json(message || {});
+    const { status, ...rest } = loginRes;
+    return res.status(status).json({ ...rest });
   } catch (err) {
     console.log(err);
     return next({ err, status: 'Internal server error' });
