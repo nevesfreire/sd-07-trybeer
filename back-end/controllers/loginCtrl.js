@@ -8,8 +8,8 @@ loginCtrl.post('/', async (req, res, next) => {
     const { body } = req;
     const loginRes = await loginServ(body);
     if (loginRes.err) return next(loginRes);
-    const { message, status } = loginRes;
-    return res.status(status).json(message || { });
+    const { error, message, status } = loginRes;
+    return res.status(status).json({ message, error } || { });
   } catch (err) {
     console.log(err);
     return next({ err, status: 'internal server error' });

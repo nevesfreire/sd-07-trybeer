@@ -26,8 +26,9 @@ function LoginPage() {
                 if (response.error) {
                     setMessageError(response.message);
                 } else {
+                    console.log(response)
                     localStorage.setItem('user', JSON.stringify(response));
-                    const route = response.role === 'admin' ? '/admin/orders' : '/products';
+                    const route = response.message.role === 'admin' ? '/admin/orders' : '/products';
                     history.push(route)
                 }
             });
