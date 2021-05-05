@@ -1,4 +1,4 @@
-const { StatusCodes: { INTERNAL_SERVER_ERROR }, OK } = require('http-status-codes');
+const { StatusCodes: { INTERNAL_SERVER_ERROR, OK } } = require('http-status-codes');
 const userServices = require('../services/usersService');
 const { userRegisterSuccess } = require('../messages');
 
