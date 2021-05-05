@@ -35,23 +35,15 @@ const createUser = async (name, email, password, queroVender) => {
   const allUsers = await usersModel.getAllUsers();
   let role;
 
-  if (queroVender === true) {
-    role = 'administrator';
-  } else {
-    role = 'client';
-  }
+  if (queroVender === true) role = 'administrator';
+  else role = 'client';
 
   try {
     verifyName(name);
     verifyEmail(email, allUsers);
     verifyPassword(password);
 
-    const newUser = await usersModel.createUser(
-      name,
-      email,
-      password,
-      role,
-    );
+    const newUser = await usersModel.createUser(name, email, password, role);
     return newUser;
   } catch (error) {
     return error.message;

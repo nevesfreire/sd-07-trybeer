@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(loginRoute);
 app.use(usersRoute);
 
-
 // const usersModel = require('./src/models/usersModel');
 // app.get('/', async (req,res)=>{
 //     const allUsers = await usersModel.getAllUsers();
