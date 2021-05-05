@@ -14,7 +14,6 @@ function Card(product) {
   const { url_image, name, price } = product;
 
   const setCart = () => {
-    if (!getStorage('cart')) setStorage('cart', []);
     const cart = getStorage('cart');
     const totalProductPrice = price * quantity;
     cart.forEach(product => {
