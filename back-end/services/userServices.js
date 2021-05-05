@@ -51,7 +51,14 @@ const userLogin = async (emailFromRequest, password) => {
 
   const { name, email, role } = result[0];
   const token = generateToken.create(name, email, role);
-  return token;
+  const obj = {
+    name,
+    email,
+    token,
+    role,
+  };
+
+  return obj;
 };
 
 const userEmail = async (email) => {
