@@ -63,7 +63,7 @@ function Login() {
         data-testid="no-account-btn"
         onClick={ () => history.push('/register') }
       >
-        Ainda não tenho conta
+        Ainda nao tenho conta
       </button>
       {/* { redirect && <Redirect to="/outratela" />} */}
     </div>
