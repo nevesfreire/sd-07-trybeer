@@ -32,11 +32,11 @@ const getByUserId = async (req, res, next) => {
 
 const createLoginUser = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email } = req.body;
     const token = await middleware.validateCreateLoginToken(email);
-    res.status(StatusCodes.OK).json({
+    res.status(StatusCodes.OK).json(
       token,
-    });
+    );
   } catch (error) {
     console.error(error);
     next({

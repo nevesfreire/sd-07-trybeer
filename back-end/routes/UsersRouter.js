@@ -7,6 +7,6 @@ UsersRouter.get('/users', getAllUsers);
 
 UsersRouter.get('/users/:id', getByUserId);
 
-UsersRouter.post('/login', createLoginUser);
+UsersRouter.post('/users/login', createLoginUser);
 
 module.exports = UsersRouter;
