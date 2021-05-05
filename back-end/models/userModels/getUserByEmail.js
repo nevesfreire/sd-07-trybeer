@@ -1,10 +1,14 @@
 const connection = require('../connection');
 
 const getUserByEmail = async (email) => {
-  const conn = await connection;
-  const [[user]] = await conn.execute('SELECT id, name, password, role FROM users WHERE email=?',
-    [email]);
-  return user;
+  try {
+    const [[user]] = await connection
+      .execute('SELECT id, name, password, role FROM users WHERE email=?', [email]);
+    return user;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
 };
 
 module.exports = getUserByEmail;

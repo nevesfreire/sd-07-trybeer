@@ -43,6 +43,9 @@ message: 'Invalid entries. Try again.',
   'wrong password': {
     status: 401, message: 'Incorrect username or password', error: true,
   },
+  'error in db': {
+    status: 500, message: 'Bad db connection || query', error: true,
+  },
 };
 
 module.exports = statusMsgMap;

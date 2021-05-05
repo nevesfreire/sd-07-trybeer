@@ -4,15 +4,21 @@ const jwt = require('jsonwebtoken');
 const statusMsgMap = require('./dictionaries/statusMsgMap');
 const { getUserByEmail } = require('../models');
 
+const checkUser = async (email) => {
+  const userInDb = await getUserByEmail(email);
+  if (userInDb.err) return statusMsgMap['error in db'];
+  if (!userInDb) return statusMsgMap['db search returned empty'];
+  return userInDb;
+};
+
 const loginServ = async (body) => {
   try {
   const { email, password } = body;
-  const userInDb = await getUserByEmail(email);
-  if (!userInDb) return statusMsgMap['db search returned empty'];
-  const { id, name, role } = userInDb;
+  const checkUserRes = await checkUser(email);
+  const { id, name, role } = checkUserRes;
  
-  // if (!bcrypt.compareSync(password, userInDb.password)) return statusMsgMap['wrong password'];
-  if (password !== userInDb.password) return statusMsgMap['wrong password'];
+  // if (!bcrypt.compareSync(password, checkUserRes.password)) return statusMsgMap['wrong password'];
+  if (password !== checkUserRes.password) return statusMsgMap['wrong password'];
   
   const payload = { id, role };
   const token = jwt.sign(payload, process.env.SECRET || '12345');
