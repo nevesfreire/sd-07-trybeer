@@ -1,13 +1,14 @@
 const service = require('./service');
 
+const SUCESS = 200;
 const FAIL = 500;
 
 const getAll = async (req, res) => {
   try {
     const users = await service.getAll();
-    return res.status(200).json(users);
+    res.status(SUCESS).json(users);
   } catch (error) {
-    return res.status(FAIL);
+    res.status(FAIL);
   }
 };
 
