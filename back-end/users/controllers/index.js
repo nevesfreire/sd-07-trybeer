@@ -34,9 +34,9 @@ const createLoginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const token = await middleware.validateCreateLoginToken(email);
-    res.status(StatusCodes.OK).json({
-      token,
-    });
+    res.status(StatusCodes.OK).json(
+      token
+    );
   } catch (error) {
     console.error(error);
     next({

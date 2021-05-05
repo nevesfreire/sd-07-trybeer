@@ -4,8 +4,12 @@ const SECRET = process.env.SECRET;
 
 const validateCreateLoginToken = async (userEmail) => {
   const user = await model.getByEmail(userEmail);
+  if(!user){
+    throw new Error('User not found');
+  }
   const userCopy = {...user};
   delete userCopy.password;
+  delete userCopy.id;
   // const { _id, email, role } = user;
   console.log('userCopy', userCopy);
 
@@ -16,7 +20,8 @@ const validateCreateLoginToken = async (userEmail) => {
 
   // id, email e role
   const token = JWT.sign({ ...userCopy }, SECRET, jwtConfig);
-  return token;
+  console.log(userCopy);
+  return { ...userCopy, token };
 };
 
 

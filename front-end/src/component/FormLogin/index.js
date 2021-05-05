@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import FormWrapper from './styles';
+import { useHistory } from 'react-router-dom';
+import requestLoginAPI from '../../services';
+import {setToLocalStorage} from '../../utils/localStorage.js';
 
 const defaultForm = {
-  email: '',
-  password: ''
+  email: 'tryber@trybe.com.br',
+  password: '123456'
 }
 
 function FormLogin() {
   const [formLogin, setFormLogin] = useState(defaultForm);
   const [buttonState, setButtonState] = useState(true);
+  const history = useHistory();
 
   const handleInputChange = (event, name) => {    
     const {value} = event.target;
@@ -31,6 +35,26 @@ function FormLogin() {
 
   }
 
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const user = await requestLoginAPI(formLogin);    
+    // console.log(token);
+    if(user.data){
+      const {data} = user;
+      const { role } = data;
+      setToLocalStorage(data);
+      
+      if(role === 'administrator') {
+        history.push('/admin/orders');
+      } else {
+        history.push('/products');      
+      }
+      
+    }
+    
+  }
+
   useEffect(()=> {
     handleButtonState();
   },[formLogin.email, formLogin.password])
@@ -43,7 +67,7 @@ function FormLogin() {
           id="email"
           type="email"
           data-testid="email-input"
-          value={formLogin.name}
+          value={formLogin.email}
           onChange={(event) => handleInputChange(event, 'email')}
         />
       </label>
@@ -61,6 +85,7 @@ function FormLogin() {
         type="submit"
         data-testid="signin-btn"
         disabled={buttonState}
+        onClick={(event) =>  handleSubmit(event)}
       >Entrar</button>
     </FormWrapper>
   )

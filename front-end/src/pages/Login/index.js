@@ -4,7 +4,7 @@ import FormLogin from '../../component/FormLogin';
 import LoginWrapper from './styles';
 
 function Login() {  
-  const history = useHistory;
+  const history = useHistory();
 
   return (
     <LoginWrapper>
@@ -12,7 +12,7 @@ function Login() {
       <button 
         id="btn_new_user"
         type="button" 
-        onClick={() => { history.push('/teste')}}
+        onClick={() => { history.push('/register')}}
         data-testid="no-account-btn"
       >
         Ainda não tenho conta
