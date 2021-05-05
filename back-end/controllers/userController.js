@@ -41,4 +41,5 @@ module.exports = {
   userLogin,
   userRegistration,
   userEmail,
+  data,
 };
