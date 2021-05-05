@@ -2,8 +2,8 @@ const router = require('express').Router();
 const Login = require('../controllers/loginController');
 
 router.route('/')
-  .get(Login)
-  .post()
+  .get()
+  .post(Login)
   .put()
   .delete();
 
