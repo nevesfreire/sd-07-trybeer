@@ -7,7 +7,7 @@ const generateToken = (objectUser) => {
     expiresIn: '7d',
     algorithm: 'HS256',
   };
-  const token = jwt.sign({data: objectUser}, process.env.SECRET, configJWT);
+  const token = jwt.sign({ data: objectUser }, process.env.SECRET, configJWT);
   return token;
 };
 
