@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../../actions';
-// import * as api from '../services/api';
-// import { setStorage } from '../services/localSorage';
+import * as api from '../../services/api';
+import { login }  from '../../actions'
+import { setStorage } from '../services/localSorage';
 
 function Login({ history, sendClientInfoToStore }) {
   const [email, setEmail] = useState('');
@@ -20,11 +20,13 @@ function Login({ history, sendClientInfoToStore }) {
     }
   }, [email, password]);
 
-  const handleButton = () => {
-    // setStorage('toke()n', xxx)
-    dispatch(login({ email }));
-    history.push('/products');
-    // history.push('/admin/profile');
+  const handleButton = async () => {
+    const userData = await api.x({email, password});
+    setStorage('user', userData);
+    dispatch(login());
+
+    if (userData.role === 'client') return history.push('/products');
+    history.push('/admin/profile');
   };
 
   return (
