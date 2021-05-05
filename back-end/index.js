@@ -9,6 +9,7 @@ const { PORT } = process.env;
 app.use(express.json());
 app.use('/', routes);
 app.use('/login', routes);
+app.use('/register', routes);
 
 app.listen(Number(PORT), () =>
   console.log(`Server run in port ${PORT}`));
