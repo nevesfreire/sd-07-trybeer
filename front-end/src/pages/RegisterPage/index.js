@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -18,28 +18,31 @@ function RegisterPage() {
     const nameRegex = /^[a-zA-Z ]+$/g;
     const minName = 12;
     const minPass = 6;
-    if (!name || name.length < minName || !nameRegex.test(name) ||
-      !password || password.length < minPass ||
-      !emailRegex.test(email)) {
+    if (!name || name.length < minName || !nameRegex.test(name)
+      || !password || password.length < minPass
+      || !emailRegex.test(email)) {
       setIsValid(false);
     } else {
       setIsValid(true);
     }
   }, [name, email, password]);
 
+  function redirectTo() {
+    if (isSeller) history.push('/admin/orders');
+    else history.push('/products');
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       const res = await api.registerUser({ name, email, password, isSeller });
-      console.log(res);
 
       if (res.error) {
-        if (res.message === 'Email already registered')
-          setError('Já existe um usuário com esse e-mail.');
+        const userExists = 'Email already registered';
+        if (res.message === userExists) setError('Já existe um usuário com esse e-mail.');
       } else {
-        isSeller ? history.push('/admin/orders') : history.push('/products');
+        redirectTo();
       }
-
     } catch (err) {
       setError('Alguma coisa deu errado');
     }

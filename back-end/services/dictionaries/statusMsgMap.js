@@ -41,6 +41,10 @@ const statusMsgMap = {
   wrongPassword: {
     status: 401, message: 'Incorrect username or password', error: true,
   },
+  
+rorInDb: {
+    status: 500, message: 'Bad db connection || query', error: true,
+  },
 };
 
 module.exports = statusMsgMap;

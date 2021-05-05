@@ -6,7 +6,7 @@ import {
   RegisterPage,
   LoginPage,
   AdminHome,
-  Products
+  Products,
 } from './pages';
 
 function App() {
