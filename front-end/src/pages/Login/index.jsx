@@ -15,20 +15,26 @@ export default function Login() {
   };
 
   const history = useHistory();
-  const handleSubmit = () => {
-    // fetch para login no back
-    // salvar o token no localSotrage
-    const user = {
-      name: 'Taylor Swift',
-      email: 'taylorswift@email.com',
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
-      role: 'admin',
-    };
-
-    if (user.role === 'client') history.push('/products');
-    if (user.role === 'admin') history.push('/admin');
-    localStorage.setItem('user', user);
-    console.log('submit');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let newUser;
+    fetch('http://localhost:3001/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    }).then((response) => response.json())
+      .then((responseJSON) => {
+        newUser = responseJSON;
+        localStorage.setItem('user', JSON.stringify(newUser));
+        console.log('submit');
+        if (newUser.role === 'client') history.push('/products');
+        if (newUser.role === 'administrator') history.push('/admin/orders');
+      });
   };
   const handleRegister = () => {
     history.push('/register');
@@ -47,7 +53,7 @@ export default function Login() {
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Senha</Form.Label>
           <Form.Control
             data-testid="password-input"
             type="password"
@@ -60,7 +66,7 @@ export default function Login() {
           variant="primary"
           type="button"
           className="form__login__btn"
-          onClick={ handleSubmit }
+          onClick={ (event) => handleSubmit(event) }
           disabled={ !inputValidation() }
         >
           Entrar
@@ -72,7 +78,7 @@ export default function Login() {
           className="form__login__btn"
           onClick={ handleRegister }
         >
-          Ainda nao tenho conta
+          Ainda não tenho conta
         </Button>
       </Form>
     </main>
