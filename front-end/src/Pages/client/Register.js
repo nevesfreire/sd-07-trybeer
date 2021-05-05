@@ -2,11 +2,11 @@ import React from 'react';
 
 // Falta concluir, está apenas com a estrutura base
 
-function Register () {
-  return(
+function Register() {
+  return (
     <div>
       <h1>aqui é o register</h1>
-    {/*  <input
+      {/*  <input
         type="text"
         data-testid="signup-name"
         name="name"
@@ -41,16 +41,16 @@ function Register () {
           // onChange={ ({ target }) => setSeller(target.value) }
         />
       </label>
-      <button 
+      <button
         type="button"
         data-testid="signup-btn"
         disabled={ isDisable }
       >
         Entrar
       </button>
-      <button data-testid="no-account-btn">Ainda não tenho conta</button>*/}
+      <button data-testid="no-account-btn">Ainda não tenho conta</button> */}
     </div>
-  )
-};
+  );
+}
 
 export default Register;
