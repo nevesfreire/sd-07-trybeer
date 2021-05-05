@@ -1,7 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import MenuTopMobile from '../../components/MenuTopMobile';
+import SideBarMobile from '../../components/SideBarMobile';
+import MyContext from '../../context/Context';
 
-function Profile() {
+function MeuPerfil() {
+  const { sideIsActive, setPageTitle } = useContext(MyContext);
+
+  useEffect(() => {
+    setPageTitle('Meu perfil');
+  }, []);
+
   const [newName, setNewName] = useState('');
   const [success, setSuccess] = useState(false);
   const [user, setUser] = useState({});
@@ -35,8 +44,9 @@ function Profile() {
   };
 
   return (
-    <>
-      <h1 data-testid="top-title">Meu perfil</h1>
+    <div>
+      <MenuTopMobile />
+      { sideIsActive && <SideBarMobile /> }
       <form onSubmit={ handleSubmit }>
         <label htmlFor="profile-email-input">
           Email
@@ -67,8 +77,8 @@ function Profile() {
         </button>
       </form>
       { success && <span>{successMsg}</span> }
-    </>
+    </div>
   );
 }
 
-export default Profile;
+export default MeuPerfil;

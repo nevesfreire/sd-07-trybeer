@@ -7,6 +7,9 @@ function Provider({ children }) {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [role, setRole] = useState('client');
+  const [pageTitle, setPageTitle] = useState('TryBeer');
+  const [sideIsActive, setSideIsActive] = useState(false);
+
   const valuesProvided = {
     email,
     setEmail,
@@ -16,6 +19,10 @@ function Provider({ children }) {
     setName,
     role,
     setRole,
+    pageTitle,
+    setPageTitle,
+    sideIsActive,
+    setSideIsActive,
   };
 
   return (
