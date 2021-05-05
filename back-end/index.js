@@ -1,5 +1,6 @@
 const express = require('express');
-const login = require('./src/routes/loginRoute');
+const products = require('./src/routes/productsRoute');
+const sales = require('./src/routes/salesRoute');
 
 const PORT = 3001;
 
@@ -10,6 +11,7 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-app.use(login);
+app.use(products);
+app.use(sales);
 
 app.listen(PORT, () => { console.log('API rodando na porta 3001'); });
