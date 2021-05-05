@@ -31,20 +31,28 @@ export default function Login() {
   return (
     <div className="form-wrapper">
       <form className="form-login">
-        <input
-          onChange={ (e) => setEmail(e.target.value) }
-          type="email"
-          data-testid="email-input"
-          placeholder="Email"
-          className="form-input"
-        />
-        <input
-          onChange={ (e) => setPassword(e.target.value) }
-          type="password"
-          data-testid="password-input"
-          placeholder="Password"
-          className="form-input"
-        />
+        <label htmlFor="email">
+          Email
+          <input
+            id="email"
+            onChange={ (e) => setEmail(e.target.value) }
+            type="email"
+            data-testid="email-input"
+            placeholder="Email"
+            className="form-input"
+          />
+        </label>
+        <label htmlFor="password">
+          Senha
+          <input
+            id="password"
+            onChange={ (e) => setPassword(e.target.value) }
+            type="password"
+            data-testid="password-input"
+            placeholder="Senha"
+            className="form-input"
+          />
+        </label>
         <button
           type="button"
           data-testid="signin-btn"
@@ -52,7 +60,7 @@ export default function Login() {
           onClick={ handleSubmit }
           className="form-button"
         >
-          ENTRAR
+          Entrar
         </button>
         { showMessage && <p>Usuário ou senha inválido!</p> }
       </form>
