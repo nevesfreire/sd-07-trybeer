@@ -1,7 +1,10 @@
 import axios from 'axios';
+
 require('dotenv').config();
 
-const PORT = process.env.REACT_APP_PORT_BACKEND || 3001;
+const defaultPort = 3001
+
+const PORT = process.env.REACT_APP_PORT_BACKEND || defaultPort;
 
 async function loginRequest(email, password) {
   const endpoint = `http://localhost:${PORT}/login`;
