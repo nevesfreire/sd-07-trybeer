@@ -1,26 +1,21 @@
 const UserService = require('../services/UserService');
 
-const CREATED = 201;
 const registerUser = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
     const result = await UserService.registerUser(name, email, password, role);
-    return res.status(CREATED).json(result);
-  } catch (error) {
-    console.error(error);
+    return res.status(result.status).json(result.message);
+  } catch (err) {
+    console.error(err);
     return res.status(500).json({ message: 'server error' });
   }
 };
 
-const OK = 200;
-
 const updateUserName = async (req, res) => {
   try {
-    const { name, email } = req.body;
-  
-  const result = await UserService.updateUserName(name, email);
-
-  return res.status(OK).json(result);
+  const { newName, email } = req.body;
+  const result = await UserService.updateUserName(newName, email);
+  return res.status(result.status).json(result.msg);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'server error' });

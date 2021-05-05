@@ -5,16 +5,14 @@ const getByEmail = async (email) => {
   return user;
 };
 
-const registerUser = async (name, email, password, role) => connection.execute(
-  'INSERT INTO Trybeer.users(name, email, password, role) VALUES (?,?,?,?)',
-  [name, email, password, role],
-);
+const registerUser = async (name, email, password, role) => {
+  await connection
+    .execute('INSERT INTO Trybeer.users (name, email, password, role) VALUES (?,?,?,?)',
+    [name, email, password, role]);
+};
 
-const updateUserName = async (name, email) => {
-  const result = await connection.execute(
-    'UPDATE Trybeer.users SET name = ? WHERE email = ?', [name, email],
-  );
-  return result;
+const updateUserName = async (newName, email) => {
+  await connection.execute('UPDATE Trybeer.users SET name=? WHERE email=?', [newName, email]);
 };
 
 module.exports = {
