@@ -6,13 +6,17 @@ function Profile() {
   const [success, setSuccess] = useState(false);
   const [user, setUser] = useState({});
 
-  const userStorage = JSON.parse(localStorage.getItem('user'));
   const history = useHistory();
+  const CREATED = 201;
 
   useEffect(() => {
-    if (!userStorage) return history.push('/login');
-    return setUser(userStorage);
-  }, [history, user, userStorage]);
+    const getUser = () => {
+      const userStorage = JSON.parse(localStorage.getItem('user'));
+      if (!userStorage) return history.push('/login');
+      return setUser(userStorage);
+    };
+    getUser();
+  }, [history]);
 
   const { name, email } = user;
 
@@ -26,10 +30,8 @@ function Profile() {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({ newName, email }),
-    }).then((response) => response.json())
-      .then((data) => {
-        if (data === successMsg) return setSuccess(true);
-      });
+    }).then((response) => response.status)
+      .then((data) => { if (data === CREATED) setSuccess(true); });
   };
 
   return (
@@ -42,7 +44,7 @@ function Profile() {
             id="profile-email-input"
             data-testid="profile-email-input"
             type="email"
-            value={ email }
+            placeholder={ email }
             readOnly
           />
         </label>

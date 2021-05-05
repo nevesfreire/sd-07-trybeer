@@ -16,8 +16,9 @@ function Register() {
   const [errorEmail, setErrorEmail] = useState(false);
 
   const history = useHistory();
+  const UNAUTHORIZED = 401;
 
-  const userExists = 'Já existe um usuário com esse e-mail.';
+  const userExistsMsg = 'Já existe um usuário com esse e-mail.';
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -27,9 +28,9 @@ function Register() {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({ name, email, password, role }),
-    }).then((response) => response.json())
+    }).then((response) => response.status)
       .then((data) => {
-        if (data === userExists) return setErrorEmail(true);
+        if (data === UNAUTHORIZED) return setErrorEmail(true);
         return role === 'client'
           ? history.push('/products') : history.push('/admin/orders');
       });
@@ -97,7 +98,7 @@ function Register() {
       >
         Cadastrar
       </button>
-      { errorEmail && <span>{userExists}</span> }
+      { errorEmail && <span>{userExistsMsg}</span> }
     </form>
   );
 }
