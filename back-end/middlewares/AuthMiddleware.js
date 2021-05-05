@@ -1,13 +1,14 @@
 const JWT = require('jsonwebtoken');
 const model = require('../users/models');
-const SECRET = process.env.SECRET;
+
+const { SECRET } = process.env;
 
 const validateCreateLoginToken = async (userEmail) => {
   const user = await model.getByEmail(userEmail);
-  if(!user){
+  if (!user) {
     throw new Error('User not found');
   }
-  const userCopy = {...user};
+  const userCopy = { ...user };
   delete userCopy.password;
   delete userCopy.id;
 
@@ -21,7 +22,6 @@ const validateCreateLoginToken = async (userEmail) => {
   return { ...userCopy, token };
 };
 
-
 module.exports = {
   validateCreateLoginToken,
-}
+};
