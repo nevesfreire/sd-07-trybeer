@@ -9,4 +9,4 @@ database: 'Trybeer',
 port: 3306,
 });
 
-module.exports = connection; 
+module.exports = connection;
