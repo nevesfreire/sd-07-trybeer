@@ -12,7 +12,7 @@ export default function Routes() {
       <Switch>
         <Route exact path="/login" component={ Views.Login } />
         <Route exact path="/register" component={ Views.Register } />
-        <Route exact path="/SideBar" component={ SideBar } />
+        <Route exact path="/SideBar" component={ <SideBar title="Trybeer" /> } />
         <Route exact path="/" component={ () => <Redirect to="/login" /> } />
       </Switch>
     </BrowserRouter>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function PasswordInput({ dataTestid, onChange, className }) {
+export default function EmailInput({ dataTestid, onChange, className }) {
   return (
     <label htmlFor="email">
       Email
@@ -16,11 +16,11 @@ export default function PasswordInput({ dataTestid, onChange, className }) {
   );
 }
 
-PasswordInput.defaultProps = {
+EmailInput.defaultProps = {
   className: 'emailClass',
 };
 
-PasswordInput.propTypes = {
+EmailInput.propTypes = {
   dataTestid: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
