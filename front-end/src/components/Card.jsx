@@ -14,10 +14,14 @@ function Card(product) {
   const { url_image, name, price } = product;
 
   const setCart = () => {
-    if (!getStorage('cart')) setStorage('cart', {});
+    if (!getStorage('cart')) setStorage('cart', []);
     const cart = getStorage('cart');
     const totalProductPrice = price * quantity;
-    cart[`${name}`] = { quantity, totalProductPrice };
+    cart.forEach(product => {
+       if(product.name === name) {
+         product.quantity = quantity;
+       }
+    });
     cart.totalPrice += totalProductPrice;
     dispatch(changeTotalPrice(cart.totalPrice));
     setStorage('cart', cart);

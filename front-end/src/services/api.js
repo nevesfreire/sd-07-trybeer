@@ -1,4 +1,4 @@
-import { getStorage } from './localSorage'
+import { getStorage } from './localStorage'
 
 const URL = process.env.REACT_APP_ENDPOINT;
 
