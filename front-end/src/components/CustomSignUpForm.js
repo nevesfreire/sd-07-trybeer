@@ -7,6 +7,7 @@ const SignUpForm = ({
   onInputChange,
   onHandleSubmit,
   isValid,
+  // existEmail,
 }) => (
   <Form size="large">
     <Segment stacked>
@@ -39,12 +40,14 @@ const SignUpForm = ({
         onChange={(e) => onInputChange(e)}
       />
       <Divider ></Divider>
-      <Checkbox
+      <label htmlFor="signup-seller">Quero vender</label>
+      <input
         data-testid="signup-seller"
         type="checkbox"
         label="Quero vender"
         name="iWantToSell"
         value={iWantToSell}
+        onChange={(e) => onInputChange(e)}
       />
       <Divider ></Divider>
       <Button
@@ -57,6 +60,9 @@ const SignUpForm = ({
       >
         Cadastrar
       </Button>
+
+      {/* { existEmail() ? null : <span>Já existe um usuário com esse e-mail.</span>} */}
+      
     </Segment>
   </Form>
 );
