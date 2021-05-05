@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // import { useEffect, useState, useCallback } from 'react';
 import Global from './index';
 

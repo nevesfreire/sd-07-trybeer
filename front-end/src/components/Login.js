@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ComponentLogin = () => {
   const [labelLogin, setLabelLogin] = useState(true);
@@ -28,6 +29,7 @@ const ComponentLogin = () => {
           <label htmlFor="email">
             Email
             <input
+              data-testid="email-input"
               id="email"
               type="email"
               name="email"
@@ -35,8 +37,9 @@ const ComponentLogin = () => {
             />
           </label>
           <label htmlFor="password">
-            Password
+            Senha
             <input
+              data-testid="password-input"
               id="password"
               type="password"
               name="password"
@@ -44,12 +47,20 @@ const ComponentLogin = () => {
             />
           </label>
           <button
+            data-testid="signin-btn"
             type="button"
             disabled={ labelLogin }
           >
-            Login
+            Entrar
           </button>
         </form>
+      </div>
+      <div>
+        <button type="button" data-testid="no-account-btn">
+          <Link to="/register">
+            Ainda não tenho conta
+          </Link>
+        </button>
       </div>
       <div>
         <div>Terms of use</div>
