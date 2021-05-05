@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Validator from 'email-validator';
 // import { Link } from 'react-router-dom';
-import registerUser from '../services/user';
+import {registerUser} from '../services/user';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -9,7 +9,8 @@ const LoginForm = () => {
   const [name, setName] = useState('');
   const [seller, setSeller] = useState(false);
 
-  const cadastrar = async () => {
+  const cadastrar = async (e) => {
+    e.preventDefault()
     const role = seller ? 'admin' : 'user';
     const user = await registerUser(name, email, role, password);
 
@@ -81,7 +82,7 @@ const LoginForm = () => {
         data-testid="signup-btn"
         type="submit"
         disabled={ !validateLogin() }
-        onClick={ () => cadastrar() }
+        onClick={ (e) => cadastrar(e) }
       >
         Cadastrar
       </button>
