@@ -1,10 +1,13 @@
 import React from 'react';
-import ListProducts from './pages/ListProducts';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './routes';
 
 function App() {
   return (
     <div>
-      <ListProducts />
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </div>
   );
 }
