@@ -17,7 +17,6 @@ const logUser = async (email, password) => {
     .execute(`SELECT name, email, password, role 
     FROM Trybeer.users 
     WHERE email = ? AND password = ?`, [email, password]);
-    console.log("AQUI!!!!", data);
     if (!data) return null;
  return {
         name: data[0].name,
