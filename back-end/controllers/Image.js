@@ -2,7 +2,6 @@ const getImage = async (req, res) => {
   try {
     const { url } = req;
     const newUrl = url.replace('%20', ' ');
-    console.log(newUrl);
     res.sendFile(newUrl, { root: './' });
   } catch (error) {
     res.status(500).json(error.message);

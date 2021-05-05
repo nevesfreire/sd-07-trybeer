@@ -1,11 +1,19 @@
 const connect = require('./connection');
 
-const createProduct = async ({ name, price, image }) =>
+const createSale = async ({ userId, total, address, number, date, status }) =>
   connect.execute(
-    `INSERT INTO Trybeer.products(name, price, url_image),
-    VALUES ('${name}', '${price}', '${image}')`,
+    `INSERT INTO Trybeer.sales,
+    VALUES ('${userId}', '${total}', '${address}', '${number}', '${date}', '${status}')`,
   );
 
+const getProductById = async ({ id, price }) =>
+    connect.execute(
+      `SELECT id, price FROM Trybeer.products WHERE id = ${id} AND price = ${price}`,
+    );
+  
 module.exports = {
-  createProduct,
+  createSale,
+  getProductById,
 };
+
+// sale_id, product_id, quantity
