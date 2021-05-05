@@ -13,10 +13,10 @@ const signInLogin = async (data) => {
   validEmail(email);
   validPassword(password);
   const user = await loginModel.getUserByEmail(email);
-  console.log(user);
   if(!user) throw errors.invalidData;
-  const token = tokenServices.generateToken(email);
-  return token;
+  delete user.password;
+  const token = tokenServices.generateToken({data: user});
+  return {token: token};
 };
 
 const signUpLogin = async (data) => {
@@ -24,9 +24,8 @@ const signUpLogin = async (data) => {
   validEmail(email);
   validPassword(password);
   validName(name);
-  console.log(role);
   const userAlreadyExistis = await loginModel.getUserByEmail(email);
-  if (userAlreadyExistis) return null;
+  if (userAlreadyExistis) throw errors.userAlredyExists;
 
   const result = await loginModel.createUser(data);
   return result;

@@ -6,6 +6,20 @@ const invalidData = {
   message: 'Errou!',
 };
 
+const userAlredyExists = {
+  isError: true,
+  status: StatusCodes.UNAUTHORIZED,
+  message: 'Usuario ja cadastrado!',
+}
+
+const invalidToken = {
+  isError: true,
+  status: StatusCodes.UNAUTHORIZED,
+  message: 'Token invalido',
+}
+
 module.exports = {
   invalidData,
+  userAlredyExists,
+  invalidToken,
 };
