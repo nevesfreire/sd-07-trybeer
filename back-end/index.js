@@ -1,5 +1,5 @@
 const express = require('express');
-const { login } = require('./routes');
+const { login, user, image, product } = require('./routes');
 
 require('dotenv').config();
 
@@ -9,5 +9,8 @@ app.use(express.json());
 const { PORT } = process.env;
 
 app.use(login);
+app.use(user);
+app.use(image);
+app.use(product);
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}!`));

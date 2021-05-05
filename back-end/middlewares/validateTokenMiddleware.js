@@ -13,7 +13,7 @@ const validateTokenMiddleware = async (req, res, next) => {
 
     if (await user[0].password !== password) throw error;
     req.user = user;
-    
+
     next();
   } catch (err) {
     return res.status(401).json({ err });

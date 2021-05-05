@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { loginModel } = require('../models');
+const { loginModel } = require('../../models');
 
 const error = { message: 'Usuario invalido' };
 
