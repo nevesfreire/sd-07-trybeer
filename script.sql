@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS sales_products (
 );
 
 INSERT INTO users (id, name, email, password, role) VALUES
-    ('1', 'Tryber Admin', 'tryber@trybe.com.br', '$2b$05$BMhjHniR3swCwxRECE8a5e1QSKgGmdu35r0pN9hdt88h2zvfrfDya', 'administrator'),
-    ('2', 'testuser', 'user@test.com', '$2b$05$fByJWsYnj0lslUDOO1e0cOMMZMzULsUXh0Gl5uNOAstZuMpFCo7Ba', 'client');
+    ('1', 'Tryber Admin', 'tryber@trybe.com.br', '123456', 'administrator'),
+    ('2', 'testuser', 'user@test.com', 'test123', 'client');
 
 INSERT INTO products (id, name, price, url_image) VALUES
 	('1','Skol Lata 250ml',2.20, 'http://localhost:3001/images/Skol Lata 350ml.jpg'),
