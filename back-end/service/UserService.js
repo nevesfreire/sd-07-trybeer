@@ -13,7 +13,7 @@ const create = async (name, email, role, password) => {
 
 const login = async (email, password) => {
   const user = await UserModel.findByEmail(email, password);
-
+  // teste
   if (!user || password !== user.password) {
     return { message: 'email ou senha inválidos.', status: 400 };
   }
