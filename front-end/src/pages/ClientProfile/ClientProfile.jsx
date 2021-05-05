@@ -1,37 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import { getStorage, setStorage } from '../../services/localStorage';
 import { Header } from '../../components';
-import { getStorage, setStorage } from '../../services/localStorage'
 
-function ClientProfile () {
+function ClientProfile() {
   const [userData, setUserData] = useState({});
-  const [, setName] = useState('');
+  const [name, setName] = useState('');
   const [disabled, setDisabled] = useState(true);
-  
+  const [updateUser, setUpdateUser] = useState(false);
+
   useEffect(() => {
     const user = getStorage('user');
-    setUserData(user);
+    if (user) setUserData(user);
     setName(user.name);
   }, []);
 
   useEffect(() => {
     setDisabled(name === userData.name);
   }, [name, userData]);
-  
-  
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     const newUserData = { ...userData, name };
     setUserData(newUserData);
     setStorage('user', newUserData);
+    setUpdateUser(true);
   }
-  
+
   return (
     <div>
-      <Header headerTitle="Meu Perfil" />
-      <h2 data-testid="top-title">Cliente - Meu Perfil</h2>
+      <Header headerTitle="Meu perfil" />
       <form>
         <label htmlFor="name-input">
           <h6>Nome</h6>
-          <input 
+          <input
             type="text"
             id="name-input"
             data-testid="profile-name-input"
@@ -49,17 +49,18 @@ function ClientProfile () {
             readOnly
           />
         </label>
-        <button 
-            type="submit"
-            data-testid="profile-save-btn"
-            disabled={ disabled }
-            onClick={ handleSubmit }
+        <button
+          type="submit"
+          data-testid="profile-save-btn"
+          disabled={ disabled }
+          onClick={ handleSubmit }
         >
-            Salvar
+          Salvar
         </button>
-        </form>
+        { updateUser && <p>Atualização concluída com sucesso</p>}
+      </form>
     </div>
-  )
+  );
 }
 
 export default ClientProfile;

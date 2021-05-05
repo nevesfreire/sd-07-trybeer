@@ -1,29 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import * as api from '../../services/api';
 import { login } from '../../actions';
-// import * as api from '../services/api';
-// import { setStorage } from '../services/localSorage';
+import { setStorage } from '../../services/localStorage';
 
-function Login({ history, sendClientInfoToStore }) {
+function Login() {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const MIN_LENGTH = 6;
     if (password.length >= MIN_LENGTH && regex.test(email)) {
       setDisabled(false);
-    } else { setDisabled(true);
+    } else {
+      setDisabled(true);
     }
   }, [email, password]);
 
+  const handleButton = async () => {
+    const userData = await api.login({ email, password });
+    setStorage('user', userData);
+    dispatch(login());
 
-  const handleButton = () => {
-    // setStorage('token', xxx)
-    sendClientInfoToStore({ email });
-    history.push('/products');
-    // history.push('/admin/profile');
+    if (userData.role === 'client') return history.push('/products');
+    history.push('/admin/orders');
   };
 
   return (
@@ -69,7 +75,4 @@ function Login({ history, sendClientInfoToStore }) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  sendClientInfoToStore: (clientInfo) => dispatch(login(clientInfo)) });
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;

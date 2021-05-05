@@ -4,7 +4,10 @@ const setStorage = (key, value) => localStorage.setItem(
 
 const getStorage = (key) => JSON.parse(localStorage.getItem(key));
 
+const clearStorage = () => localStorage.clear();
+
 export {
   setStorage,
-  getStorage
-}
+  getStorage,
+  clearStorage,
+};

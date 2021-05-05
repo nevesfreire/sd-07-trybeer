@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { getStorage, setStorage } from '../services/localStorage';
 import { changeTotalPrice } from '../actions';
 
@@ -10,21 +10,21 @@ function Card(product) {
   const [quantity, setQuantity] = useState(ZERO);
 
   const dispatch = useDispatch();
-  
-  const { url_image, name, price } = product;
+
+  const { url_image: urlImage, name, price } = product;
 
   const setCart = () => {
     const cart = getStorage('cart');
     const totalProductPrice = price * quantity;
-    cart.forEach(product => {
-       if(product.name === name) {
-         product.quantity = quantity;
-       }
+    cart.forEach((element) => {
+      if (element.name === name) {
+        element.quantity = quantity;
+      }
     });
     cart.totalPrice += totalProductPrice;
     dispatch(changeTotalPrice(cart.totalPrice));
     setStorage('cart', cart);
-  }
+  };
 
   const changeQuantity = (operation) => {
     if (operation === 'minus' && quantity > ZERO) {
@@ -35,28 +35,29 @@ function Card(product) {
       setQuantity(quantity + ONE);
       setCart();
     }
-  }
+    return null;
+  };
 
   return (
     <div>
-      <img src={ url_image } />
+      <img alt={ name } src={ urlImage } />
       <h5>{ price }</h5>
       <h6>{ name }</h6>
       <button
         type="button"
-        onClick={ changeQuantity("plus") }
+        onClick={ changeQuantity('plus') }
       >
         -
       </button>
       <span>{ quantity }</span>
       <button
         type="button"
-        onClick={ changeQuantity("minus") }
+        onClick={ changeQuantity('minus') }
       >
         +
       </button>
     </div>
-  )
+  );
 }
 
 export default Card;

@@ -10,6 +10,6 @@ export function login(clientInfo) {
 export function changeTotalPrice(price) {
   return ({
     type: 'CHANGE_TOTAL_PRICE',
-    price
+    price,
   });
 }
