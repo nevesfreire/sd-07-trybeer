@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom";
 
 const ComponentLogin = () => {
   const [labelLogin, setLabelLogin] = useState(true);
@@ -50,6 +51,11 @@ const ComponentLogin = () => {
             Login
           </button>
         </form>
+      </div>
+      <div>
+        <Link to="/register">
+          <button type="button">Ainda não tenho conta</button>
+        </Link>
       </div>
       <div>
         <div>Terms of use</div>
