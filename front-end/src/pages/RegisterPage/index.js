@@ -1,0 +1,99 @@
+import React, { useEffect, useState } from 'react';
+// import { useHistory } from "react-router-dom";
+
+import api from '../../services/api';
+
+function RegisterPage() {
+  const [error, setError] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSeller, setIsSeller] = useState(false);
+  const [isValid, setIsValid] = useState(false);
+
+  // Código para a linha 32
+  // const history = useHistory();
+
+  useEffect(() => {
+    const emailRegex = /\w+@+\w+.com/;
+    if (!name || !emailRegex.test(email) || !password) {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+    }
+  }, [name, email, password]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await api.registerUser({ name, email, password, isSeller });
+
+      // TODO
+      // isSeller ? history.push('/admin') : history.push('/client');
+    } catch (err) {
+      // TODO
+      // Verificação de erros de input
+      setError('Alguma coisa deu errado');
+    }
+  }
+
+  return (
+    <section>
+      <form onSubmit={ handleSubmit }>
+        <label htmlFor="signup-name">
+          Nome
+          <input
+            required
+            autoComplete="off"
+            type="text"
+            id="signup-name"
+            data-testid="signup-name"
+            value={ name }
+            onChange={ ({ target }) => setName(target.value) }
+          />
+        </label>
+        <label htmlFor="signup-email">
+          E-mail
+          <input
+            required
+            autoComplete="off"
+            type="email"
+            id="signup-email"
+            data-testid="signup-email"
+            value={ email }
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+        </label>
+        <label htmlFor="signup-password">
+          Senha
+          <input
+            required
+            autoComplete="off"
+            type="password"
+            id="signup-password"
+            data-testid="signup-password"
+            value={ password }
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+        </label>
+        <label htmlFor="signup-seller">
+          <input
+            type="checkbox"
+            id="signup-seller"
+            data-testid="signup-seller"
+            name="isSeller"
+            value={ isSeller }
+            onChange={ () => setIsSeller((prev) => !prev) }
+          />
+          Quero vender
+        </label>
+        <button type="submit" disabled={ !isValid }>
+          Cadastrar
+        </button>
+        { error }
+      </form>
+    </section>
+  );
+}
+
+export default RegisterPage;
