@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
 function Login () {
   const [email, setEmail] = useState('');
@@ -39,7 +40,7 @@ function Login () {
           data-testid="signin-btn"
           disabled={ isDisable }
         >Entrar</button>
-        <button data-testid="no-account-btn">Ainda não tenho conta</button>
+        <button onClick={ <Redirect to={'/register'} />} data-testid="no-account-btn">Ainda não tenho conta</button>
       </div>
     )
 };
