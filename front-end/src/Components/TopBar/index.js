@@ -15,7 +15,7 @@ export default function () {
   const getTitle = () => {
     switch (path) {
     case '/profile':
-      setTitle('Meu Perfil');
+      setTitle('Meu perfil');
       break;
     case '/products':
       setTitle('TryBeer');
@@ -33,7 +33,7 @@ export default function () {
 
   useEffect(() => {
     getTitle();
-  }, []);
+  });
 
   return (
     <div>
