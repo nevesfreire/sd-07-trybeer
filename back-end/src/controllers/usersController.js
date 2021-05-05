@@ -33,7 +33,7 @@ const updateUser = async (req, res) => {
   if (result === 'Invalid entries. Try again.') {
     res.status(STATUS_BAD_REQUEST).json({ message: result });
   } else {
-    res.status(STATUS_OK).json({ name: result, message: 'Atualização concluída com sucesso' })
+    res.status(STATUS_OK).json({ newName: result, message: 'Atualização concluída com sucesso' })
   }
 };
 
