@@ -23,7 +23,8 @@ const userEmail = async (request, response) => {
 
 const userRegistration = async (request, response) => {
   try {
-    const result = await userServices.userRegistration();
+    const { name, email, password, seller } = request.body;
+    const result = await userServices.userRegistration(name, email, password, seller);
     response.status(STATUS_CODE.CREATED).json(result);
   } catch (error) {
     response.status(error.status).json({ message: error.message });
