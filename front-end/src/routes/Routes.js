@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Login from '../pages';
+import { Login, Register } from '../pages';
 
 function Routes() {
   return (
@@ -8,6 +8,7 @@ function Routes() {
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route path="/login" component={ Login } />
+        <Route path="/register" component={ Register } />
       </Switch>
     </BrowserRouter>
   );
