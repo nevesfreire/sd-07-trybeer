@@ -16,7 +16,7 @@ export default function Login() {
     if (validateFields(email, password) === true) {
       setisValid(true);
       if (isClicked) {
-        const user = getUser(email, password);
+        const user = getUser({ email, password });
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           if (user.role === 'administrator') history.push('/admin/orders');
@@ -32,20 +32,26 @@ export default function Login() {
   return (
     <div className="form-wrapper">
       <form className="form-login">
-        <input
-          onChange={ (e) => setEmail(e.target.value) }
-          type="email"
-          data-testid="email-input"
-          placeholder="Email"
-          className="form-input"
-        />
-        <input
-          onChange={ (e) => setPassword(e.target.value) }
-          type="password"
-          data-testid="password-input"
-          placeholder="Password"
-          className="form-input"
-        />
+        <label>
+          Email
+          <input
+            onChange={ (e) => setEmail(e.target.value) }
+            type="email"
+            data-testid="email-input"
+            placeholder="Email"
+            className="form-input"
+          />
+        </label>
+        <label>
+          Senha
+          <input
+            onChange={ (e) => setPassword(e.target.value) }
+            type="password"
+            data-testid="password-input"
+            placeholder="Password"
+            className="form-input"
+          />
+        </label>
         <button
           type="button"
           data-testid="signin-btn"
@@ -53,7 +59,7 @@ export default function Login() {
           onClick={ () => setisClicked(true) }
           className="form-button"
         >
-          ENTRAR
+          Entrar
         </button>
         { showMessage && <p>Usuário ou senha inválido!</p> }
       </form>
@@ -61,7 +67,7 @@ export default function Login() {
         data-testid="no-account-btn"
         to="/register"
       >
-        Ainda nao tenho conta
+        Ainda não tenho conta
       </Link>
     </div>
   );

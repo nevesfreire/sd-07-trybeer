@@ -5,12 +5,12 @@ const api = axios.create({
 });
 
 function getUser(userLogin) {
-  api.post('/login', userLogin)
+  api.post('/user/login', userLogin)
     .then(({ data }) => data);
 }
 
 const registerUser = (userData) => {
-  api.post('/users/signup', userData)
+  api.post('/user/signup', userData)
     .then(({ data }) => data);
 };
 

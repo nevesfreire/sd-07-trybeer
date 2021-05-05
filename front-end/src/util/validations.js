@@ -11,7 +11,7 @@ const validateFields = (email, password) => {
 };
 
 const validateName = (name) => {
-  const onlyLetters = /^[A-Za-z]+$/;
+  const onlyLetters = /^[a-zA-Z_ ]*$/;
   if (name.length >= MIN_NAME_LENGTH && onlyLetters.test(name)) return true;
   return false;
 };
