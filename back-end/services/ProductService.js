@@ -1,10 +1,10 @@
-const { } = require('../models/ProductModel');
+const { productModel } = require('../models');
 
-
-const updateProduct = async (data) => {
-
+const getAllProducts = async () => {
+  const [products] = await productModel.getAllProducts();
+  return products;
 };
 
 module.exports = {
-  updateProduct,
+  getAllProducts,
 };
