@@ -36,11 +36,36 @@ const logUser = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-    res.send('Ok');
+    const { email } = req.body;
+    try {
+        const data = await userService.getUser(email);
+        res.json({ 
+            data,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error getting user',
+        });
+    }
+};
+
+const editUser = async (req, res) => {
+    const { name, email } = req.body;
+    try {
+        const data = await userService.editUser(name, email);
+        res.json({ 
+            data,
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'We found an error',
+        });
+    }
 };
 
 module.exports = {
     createUser,
     logUser,
     getUser,
+    editUser,
 };

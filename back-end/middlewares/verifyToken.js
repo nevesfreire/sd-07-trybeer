@@ -4,7 +4,7 @@ const verifyToken = (req, res, next) => {
     const token = req.headers.authorization;
     if (!token) {
         return res.status(401).json({
-            message: 'jwt malformed',
+            message: 'missing auth token',
         }); 
 }
     const data = jwt.verify(token);
@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
         message: 'jwt malformed',
     }); 
 }
-    req.body = data;
+    req.body.email = data.email;
     next();
 };
 
