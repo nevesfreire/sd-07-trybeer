@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar';
 import './index.css';
+import burguerBtn from '../../images/menu-svgrepo-com.svg';
 
 export default function () {
   const history = useHistory();
@@ -39,12 +40,13 @@ export default function () {
       <nav>
         <button
           className="hamburger-btn"
+          data-testid="top-hamburguer"
           type="button"
           onClick={ () => setIsClicked(!isClicked) }
         >
-          <img className="hamburger-icon" src="../../images/burguer.png" alt="" />
+          <img className="hamburger-icon" src={ burguerBtn } alt="" />
         </button>
-        <h1>{ title }</h1>
+        <h1 data-testid="top-title">{ title }</h1>
       </nav>
       <div hidden={ !isClicked }>
         <SideBar role={ role } />

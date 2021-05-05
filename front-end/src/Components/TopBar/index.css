@@ -1,8 +1,9 @@
 .hamburger-btn {
-  width: 100px
+  width: 60px;
 }
 .hamburger-icon {
-  width: 100px
+  width: 100%;
+
 }
 .side-bar {
   visibility: hidden;
