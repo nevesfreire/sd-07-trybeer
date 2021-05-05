@@ -21,7 +21,7 @@ function SideBarMobile() {
         </Link>
         <Link
           to="/profile"
-          data-testid="side-menu-item-logout"
+          data-testid="side-menu-item-my-profile"
           className="sidebar-link"
         >
           Meu Perfil

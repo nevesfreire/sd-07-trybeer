@@ -10,6 +10,7 @@ import MeusPedidos from './pages/user/MeusPedidos';
 import MeuPerfil from './pages/user/MeuPerfil';
 import DetalhesPedido from './pages/user/DetalhesPedido';
 import FinalizarPedido from './pages/user/FinalizarPedido';
+import AdminProfile from './pages/admin/AdminProfile';
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
       <Route path="/orders/:id" component={ DetalhesPedido } />
       <Route path="/profile" component={ MeuPerfil } />
       <Route path="/checkout" component={ FinalizarPedido } />
-      <Route path="/admin/order" component={ AdminOrders } />
+      <Route path="/admin/orders" component={ AdminOrders } />
+      <Route path="/admin/profile" component={ AdminProfile } />
     </Switch>
   );
 }
