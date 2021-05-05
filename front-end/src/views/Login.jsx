@@ -1,38 +1,35 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useValideEmailAndPassword } from '../hooks';
+import { EmailInput, PasswordInput } from '../components';
+import { userDataValidation } from '../utils';
+
+const validation = ({ email, password }) => (
+  userDataValidation.email(email) && userDataValidation.password(password)
+);
 
 export default function Login() {
-  const [isEmailValid, setUser] = useValideEmailAndPassword();
-  console.log(isEmailValid);
+  const [user, setUser] = useState({});
+
+  const handleState = useCallback(({ target: { value, id } }) => {
+    setUser((state) => ({ ...state, [id]: value }));
+  }, []);
+
   return (
     <div>
-      <label htmlFor="email">
-        Email
-        <input
-          data-testid="email-input"
-          type="email"
-          id="email"
-          onChange={ (e) => setUser(e) }
-        />
-      </label>
-      <label htmlFor="password">
-        Senha
-        <input
-          data-testid="password-input"
-          type="password"
-          id="password"
-          onChange={ (e) => setUser(e) }
-        />
-      </label>
-
+      <EmailInput
+        dataTestid="email-input"
+        onChange={ handleState }
+      />
+      <PasswordInput
+        dataTestid="password-input"
+        onChange={ handleState }
+      />
       <button
         data-testid="signin-btn"
         type="button"
-        disabled={ !isEmailValid }
+        disabled={ !validation(user) }
       >
         Entrar
-
       </button>
 
       <Link data-testid="no-account-btn" to="/register">Ainda nao tenho conta</Link>

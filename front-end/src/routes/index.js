@@ -8,6 +8,7 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/login" component={ Views.Login } />
+        <Route exact path="/register" component={ Views.Register } />
         <Route exact path="/" component={ () => <Redirect to="/login" /> } />
       </Switch>
     </BrowserRouter>
