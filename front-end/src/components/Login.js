@@ -53,7 +53,7 @@ const ComponentLogin = () => {
         </form>
       </div>
       <div>
-        <Link to="/register">
+        <Link to="/register" data-testid="no-account-btn">
           <button type="button">Ainda não tenho conta</button>
         </Link>
       </div>

@@ -43,7 +43,7 @@ describe('1 - Crie uma página de login', () => {
     insertText('[data-testid="password-input"]', '12345678');
     verifyElementIsDisable('[data-testid="signin-btn"]');
   });
-
+i
   it('Será validado que não é possível fazer login com uma senha em branco', () => {
     insertText('[data-testid="email-input"]', 'bruno.batista@gmail.com');
     insertText('[data-testid="password-input"]', ' ');
