@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const login = require('./routes/loginRoute');
+const user = require('./routes/userRoute');
 
 require('dotenv').config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.use('/login', login);
+app.use('/user', user);
 
 app.listen(PORT, () => {
     console.log(`listening on ${PORT} `);
