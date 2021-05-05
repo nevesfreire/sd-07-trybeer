@@ -16,10 +16,10 @@ import AdmOrderDetail from './Pages/adm/AdmOrderDetail';
 function App() {
   return (
     <div className="App">
-      <Provider>
-        <Switch>
+       <Provider>
+       <Switch>
           <Route exact path="/" component={ Login } />
-          <Route exact path="/register" component={ Register } />
+         <Route exact path="/register" component={ Register } />
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/products" component={ Products } />
           <Route exact path="/checkout" component={ Checkout } />
@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/orders/:numero-do-pedido" component={ OrderDetail } />
           <Route exact path="/admin/profile" component={ AdmProfile } />
           <Route exact path="/admin/orders" component={ AdmOrders } />
-          <Route exact path="/admin/orders/:id" component={ AdmOrderDetail} />
+  <Route exact path="/admin/orders/:id" component={ AdmOrderDetail} />
         </Switch>
       </Provider>
     </div>
