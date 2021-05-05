@@ -7,6 +7,7 @@ const newRegister = async (req, res) => {
     const { name, email, password, role } = req.body;
     const user = await registerService.addNewUser(name, email, password, role);
     const token = userToken(user);
+    delete user[0].password;
 
     const userWithToken = { ...user, token };
     res.status(StatusCodes.CREATED).json(userWithToken);
