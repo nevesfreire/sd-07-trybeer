@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import MyContext from '../context/Context';
 
-function SideBarMobile() {
+function SideBarAdmin() {
   const { setEmail, setPassword } = useContext(MyContext);
   const history = useHistory();
 
@@ -12,32 +12,26 @@ function SideBarMobile() {
     localStorage.removeItem('user');
     history.push('/login');
   }
-
+  
   return (
-    <div className="side-menu-container">
-      <div className="side-menu-link">
+    <div className="side-menu-container-admin">
+      <h1 className="pageAdmin-title">TryBeer</h1>
+      <nav className="side-menu-link">
         <Link
-          to="/products"
-          data-testid="side-menu-item-products"
+          to="/admin/orders"
+          data-testid="side-menu-item-orders"
           className="sidebar-link"
         >
-          Produtos
+          Pedidos
         </Link>
         <Link
-          to="/orders"
-          data-testid="side-menu-item-my-orders"
+          to="/admin/profile"
+          data-testid="side-menu-item-profile"
           className="sidebar-link"
         >
-          Meus Pedidos
+          Perfil
         </Link>
-        <Link
-          to="/profile"
-          data-testid="side-menu-item-my-profile"
-          className="sidebar-link"
-        >
-          Meu Perfil
-        </Link>
-      </div>
+      </nav>
       <button
         type="button"
         data-testid="side-menu-item-logout"
@@ -50,4 +44,4 @@ function SideBarMobile() {
   );
 }
 
-export default SideBarMobile;
+export default SideBarAdmin;
