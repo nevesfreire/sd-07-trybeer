@@ -32,6 +32,13 @@ const loginUser = async (email, password) => {
   return customAnswer({ token }, OK);
 };
 
+const registerUser = async (name, email, password, role) => {
+  let priveleges = 'administrator';
+  if (!role) { priveleges = 'client'; }
+  await userModel.registerUser(name, email, password, priveleges);
+};
+
 module.exports = {
   loginUser,
+  registerUser,
 };
