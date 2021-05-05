@@ -8,7 +8,6 @@ const jwtConfig = {
 };
 
 const generateToken = (dataUser) => {
-
   let admin = false;
   if (dataUser.role === 'administrator') admin = true;
 
@@ -18,9 +17,8 @@ const generateToken = (dataUser) => {
   };
 
   return jwt.sign(payload, SECRET, jwtConfig);
-
 };
 
 module.exports = {
   generateToken,
-}
+};
