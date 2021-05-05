@@ -11,8 +11,6 @@ const create = async (name, email, role, password) => {
 };
 
 const findByEmail = async (email) => {
-  console.log(email);
-  console.log('------------------------------------');
   try {
     const user = await connection.execute(
       'SELECT * FROM users WHERE email = ?', [email],
