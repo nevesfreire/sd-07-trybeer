@@ -8,7 +8,18 @@ const create = async (req, res) => {
   
     return res.status(201).send(newUser);  
   } catch (error) {
-    return res.status(500).json({error: error.message});
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+const updateUserEmail = async (req, res) => {
+  const { email } = req.body;
+  const { authorization } = req.headers;
+  try {
+    const message = await UserService.updateUserEmail(email, authorization);
+    return res.status(201).send({ message });  
+  } catch (error) {
+    return res.status(401).json({ error: error.message });
   }
 };
 
@@ -23,8 +34,8 @@ const login = async (req, res) => {
       role } = await UserService.login(emailBody, password);
       return res.status(200).send({ token, message, email, name, role });
   } catch (error) {
-    return res.status(401).json({error: error.message});    
+    return res.status(401).json({ error: error.message });    
   }
 };
 
-module.exports = { create, login };
+module.exports = { create, login, updateUserEmail };

@@ -22,4 +22,15 @@ const findByEmail = async (email) => {
     throw new Error('Erro de conexão');
    }
 };
-module.exports = { create, findByEmail };
+
+const updateByEmail = async (oldEmail, newEmail) => {
+  try {
+    const user = await connection.execute(
+      'UPDATE users SET email = ? WHERe email = ?', [newEmail, oldEmail],
+    );
+    return user;
+  } catch (e) { 
+    throw new Error('Email já cadastrado.');
+   }
+};
+module.exports = { create, findByEmail, updateByEmail };
