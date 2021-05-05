@@ -13,7 +13,7 @@ function Login() {
   };
 
   const handleSubmit = () => {
-    console.log('oii');
+    console.log('Clicou')
     fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
@@ -22,8 +22,6 @@ function Login() {
       body: { email: `${email}`, password: `${password}` },
     }).then((response) => response.json())
       .then((data) => console.log(data));
-
-    return ('oi');
   };
 
   useEffect(() => {
@@ -52,7 +50,7 @@ function Login() {
         type="button"
         data-testid="signin-btn"
         disabled={ isDisable }
-        onClick={ handleSubmit() }
+        onClick={ handleSubmit }
       >
         Entrar
       </button>
