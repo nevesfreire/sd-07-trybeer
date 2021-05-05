@@ -3,7 +3,6 @@ const ProductModel = require('../models/ProductModel');
 const getAllProducts = async (req, res) => {
   try {
     const result = await ProductModel.getAll();
-    console.log(result);
     return res.status(200).json(result);
   } catch (err) {
     console.error(err);
