@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MenuSide from './MenuSide';
 import menuHamburger from '../assets/bars-solid.svg';
 
-function MenuTop({ title }) {
+function MenuTop({ title = 'TryBeer' }) {
   const [menuHidden, setMenuHidden] = useState(true);
 
   return (
