@@ -1,6 +1,8 @@
+const errors = require("./errors");
+
 const validEmail = (email) => {
   const REGEX = /\S+@\S+\.\S+/;
-  return REGEX.test(email);
+  if(!REGEX.test(email)) throw errors.invalidData;
 };
 
 module.exports = validEmail;

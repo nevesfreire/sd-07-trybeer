@@ -1,19 +1,22 @@
 const { loginModel } = require('../models');
+const tokenServices = require('./tokenServices');
 
 const {
   validEmail,
   validPassword,
   validName,
+  errors,
 } = require('../helpers');
 
 const signInLogin = async (data) => {
   const { email, password } = data;
   validEmail(email);
   validPassword(password);
-
   const user = await loginModel.getUserByEmail(email);
-
-  return user;
+  console.log(user);
+  if(!user) throw errors.invalidData;
+  const token = tokenServices.generateToken(email);
+  return token;
 };
 
 const signUpLogin = async (data) => {
