@@ -92,7 +92,7 @@ const checkIfEmailExist = (result) => {
   if (result.length) {
     throw new CustomError({
       status: STATUS_CODE.BAD_REQUEST,
-      message: STATUS_MESSAGE.INVALID_ENTIRES,
+      message: STATUS_MESSAGE.DUPLICATED_EMAIL,
     });
   }
 };
@@ -107,9 +107,9 @@ const userRegistration = async (name, email, password, seller) => {
   checkIfPasswordIsValid(password);
 
   const role = seller ? 'administrator' : 'client'; 
-  const result = await userModels.userRegistration(name, email, password, role);
-  console.log(result);
-  return result;
+  await userModels.userRegistration(name, email, password, role);
+
+  return { message: STATUS_MESSAGE.USER_CREATED };
 };
 
 module.exports = {

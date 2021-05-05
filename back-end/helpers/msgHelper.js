@@ -3,6 +3,8 @@ const STATUS_MESSAGE = {
   UNPROCESSABLE_ENTITY: 'Unprocessable Entity.',
   USER_NOT_FOUND: 'User not found',
   USER_FOUND: 'User found',
+  USER_CREATED: 'User successfully created',
+  DUPLICATED_EMAIL: 'There is already a registered user with this email',
 };
 
 module.exports = STATUS_MESSAGE;
