@@ -4,7 +4,7 @@ import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 
-function MeuPerfil() {
+function Profile() {
   const { sideIsActive, setPageTitle } = useContext(MyContext);
 
   useEffect(() => {
@@ -83,4 +83,4 @@ function MeuPerfil() {
   );
 }
 
-export default MeuPerfil;
+export default Profile;

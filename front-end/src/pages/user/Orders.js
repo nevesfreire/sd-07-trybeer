@@ -3,13 +3,11 @@ import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 
-function FinalizarPedido() {
+function Orders() {
   const { sideIsActive, setPageTitle } = useContext(MyContext);
-
   useEffect(() => {
-    setPageTitle('Finalizar Pedido');
+    setPageTitle('Meus Pedidos');
   }, []);
-
   return (
     <div>
       <MenuTopMobile />
@@ -18,4 +16,4 @@ function FinalizarPedido() {
   );
 }
 
-export default FinalizarPedido;
+export default Orders;
