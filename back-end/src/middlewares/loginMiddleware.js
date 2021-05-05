@@ -1,20 +1,32 @@
 const { StatusCodes } = require('http-status-codes'); 
-const { checkUserAndPass } = require('../services/loginService');
+const userModel = require('../models/usersModel');
 
-const validadeLogin = async (request, response, next) => {
-  try {
-    const { email, password } = request.body;    
-    if (!checkUserAndPass(email, password)) {
-      return response.status(StatusCodes.UNAUTHORIZED)
-        .json({ message: 'usuário ou senha incorreta' });
-    }
-    next();
-  } catch (error) {
-    response.status(StatusCodes.BAD_REQUEST)
-      .json({ message: error.message });
+
+const checkUserToLogin = (request, response, next) => {
+  const { email, password } = request.body;
+  if (!email || !password) {
+    return response.status(StatusCodes.UNAUTHORIZED)
+    .json({ message: 'todos os campos devem ser preenchidos' });
   }
+  next();
 };
 
+const checkUser = async (request, response, next) => {
+  const { email, password } = request.body;
+  const findByEmail = await userModel.findByEmail(email);
+  
+  if (!findByEmail) {
+    return response.status(StatusCodes.UNAUTHORIZED)
+    .json({ message: 'usuário ou senha incorreta' });
+  }
+
+  if (findByEmail.password !== password) {
+    return response.status(StatusCodes.UNAUTHORIZED)
+    .json({ message: 'usuário ou senha incorreta' });
+  }
+  next();
+};
 module.exports = {
-  validadeLogin,
+  checkUserToLogin,
+  checkUser
 };

@@ -5,7 +5,7 @@ const { userToken } = require('../utils/auth');
 const onLogin = async (request, response) => {
   try {
     const { email } = request.body;
-    const user = await userModel.findByEmail(email);
+    const {password,...user} = await userModel.findByEmail(email);
     const token = userToken(user);
 
     const userWithToken = { ...user, token };
