@@ -50,7 +50,7 @@ function Login() {
         type="button"
         data-testid="signin-btn"
         disabled={ isDisable }
-        onClick={ handleSubmit } // tirei ()
+        onClick={ handleSubmit } // tirei () do handleSubmit
       >
         Entrar
       </button>
