@@ -11,8 +11,8 @@ function SideBarAdmin() {
     setPassword('');
     localStorage.removeItem('user');
     history.push('/login');
-  }
-  
+  };
+ 
   return (
     <div className="side-menu-container-admin">
       <h1 className="pageAdmin-title">TryBeer</h1>
