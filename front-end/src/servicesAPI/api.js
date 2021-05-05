@@ -4,15 +4,13 @@ const api = axios.create({
   baseURL: 'http://localhost:3001/',
 });
 
-function getUser(userLogin) {
-  api.post('/login', userLogin)
-    .then(({ data }) => data);
-}
+const getUser = (userLogin) => api.post('/user/login', userLogin)
+  .then(({ data }) => data)
+  .catch((e) => e.message);
 
-const registerUser = (userData) => {
-  api.post('/users/signup', userData)
-    .then(({ data }) => data);
-};
+const registerUser = (userData) => api.post('/user/signup', userData)
+  .then(({ data }) => data)
+  .catch((e) => e.message);
 
 export {
   getUser,

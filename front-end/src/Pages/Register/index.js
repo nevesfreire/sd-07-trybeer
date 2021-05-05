@@ -19,13 +19,13 @@ const Register = () => {
     return setIsValid(false);
   }, [name, email, password]);
 
-  const createUser = () => {
+  const createUser = async () => {
     const role = isSeller ? 'administrator' : 'client';
-    const user = registerUser({ name, email, password, role });
-    if (user) {
+    const user = await registerUser({ name, email, password, role });
+    if (user.data) {
       localStorage.setItem('user', JSON.stringify(user));
-      if (user.role === 'administrator') history.push('/admin/orders');
-      history.push('/products');
+      if (user.data.role === 'administrator') return history.push('/admin/orders');
+      return history.push('/products');
     }
     setShowMessage(true);
   };
