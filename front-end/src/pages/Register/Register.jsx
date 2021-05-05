@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 
-// nome - deve conter, no mínimo, 12 letras, sem números ou caracteres especiais;
-
-// email - deve conter um email válido. Um email válido possui o formato <nome>@<domínio>. 
-// Não deve ser possível cadastrar mais de um usuário com o mesmo e-mail, nesse caso a aplicação deve exibir a mensagem Já existe um usuário com esse e-mail.;
-
-// senha - composta por, no mínimo, 6 caracteres;
-
-// quero vender - um checkbox opcional, desmarcado por padrão.
-
 function Register () {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
