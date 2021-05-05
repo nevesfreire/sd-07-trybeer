@@ -23,7 +23,6 @@ function Products() {
         setIsLoading(false);
       });
   }, []);
-  console.log("product", products);
 
   return (
     <div>
@@ -38,17 +37,17 @@ function Products() {
                 <img
                   src={ product.url_image.replace(/\s/g, '') }
                   alt={ product.name }
-                  data-testid={`${index}-product-img`}
+                  data-testid={ `${index}-product-img` }
                 />
-                <span data-testid={`${index}-product-name`}>{ product.name }</span>
-                <span data-testid={`${index}-product-price`}>
+                <span data-testid={ `${index}-product-name` }>{ product.name }</span>
+                <span data-testid={ `${index}-product-price` }>
                   { Number(product.price)
                     .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
                 </span>
-                <span data-testid={`${index}-product-qtd`}>{ quantity }</span>
+                <span data-testid={ `${index}-product-qtd` }>{ quantity }</span>
                 <button
                   type="button"
-                  data-testid={`${index}-product-minus`}
+                  data-testid={ `${index}-product-minus` }
                   disabled={ quantity === 0 }
                   onClick={ () => setQuantity(quantity - 1) }
                 >
@@ -56,7 +55,7 @@ function Products() {
                 </button>
                 <button
                   type="button"
-                  data-testid={`${index}-product-plus`}
+                  data-testid={ `${index}-product-plus` }
                   onClick={ () => setQuantity(quantity + 1) }
                 >
                   +
@@ -65,6 +64,7 @@ function Products() {
             ))}
           </div>
         )}
+
     </div>
   );
 }
