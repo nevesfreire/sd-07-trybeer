@@ -29,6 +29,7 @@ const ComponentLogin = () => {
           <label htmlFor="email">
             Email
             <input
+              data-testid="email-input"
               id="email"
               type="email"
               name="email"
@@ -38,6 +39,7 @@ const ComponentLogin = () => {
           <label htmlFor="password">
             Password
             <input
+              data-testid="password-input"
               id="password"
               type="password"
               name="password"
@@ -45,6 +47,7 @@ const ComponentLogin = () => {
             />
           </label>
           <button
+            data-testid="signin-btn"
             type="button"
             disabled={ labelLogin }
           >
