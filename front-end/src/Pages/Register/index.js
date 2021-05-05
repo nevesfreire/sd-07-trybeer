@@ -41,7 +41,7 @@ const Register = () => {
           />
         </label>
         <label htmlFor="email">
-          E-mail
+          Email
           <input
             data-testid="signup-email"
             type="email"
