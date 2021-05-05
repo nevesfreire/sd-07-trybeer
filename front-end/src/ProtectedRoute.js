@@ -6,7 +6,7 @@ function ProtectedRoute(props) {
 
   return isAuth()
     ? <Route { ...props } />
-    : <Redirect to={ redirect } />;
+    : <Redirect to="/" />;
 }
 
 export default ProtectedRoute;

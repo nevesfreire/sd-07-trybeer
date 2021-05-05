@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import api from '../../services/api';
 
@@ -11,12 +11,16 @@ function RegisterPage() {
   const [isSeller, setIsSeller] = useState(false);
   const [isValid, setIsValid] = useState(false);
 
-  // Código para a linha 32
-  // const history = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
-    const emailRegex = /\w+@+\w+.com/;
-    if (!name || !emailRegex.test(email) || !password) {
+    const emailRegex = /\w+@+\w+.com/g;
+    const nameRegex = /^[a-zA-Z ]+$/g;
+    const minName = 12;
+    const minPass = 6;
+    if (!name || name.length < minName || !nameRegex.test(name) ||
+      !password || password.length < minPass ||
+      !emailRegex.test(email)) {
       setIsValid(false);
     } else {
       setIsValid(true);
@@ -26,13 +30,17 @@ function RegisterPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await api.registerUser({ name, email, password, isSeller });
+      const res = await api.registerUser({ name, email, password, isSeller });
+      console.log(res);
 
-      // TODO
-      // isSeller ? history.push('/admin') : history.push('/client');
+      if (res.error) {
+        if (res.message === 'Email already registered')
+          setError('Já existe um usuário com esse e-mail.');
+      } else {
+        isSeller ? history.push('/admin/orders') : history.push('/products');
+      }
+
     } catch (err) {
-      // TODO
-      // Verificação de erros de input
       setError('Alguma coisa deu errado');
     }
   }
@@ -53,7 +61,7 @@ function RegisterPage() {
           />
         </label>
         <label htmlFor="signup-email">
-          E-mail
+          Email
           <input
             required
             autoComplete="off"
@@ -87,7 +95,7 @@ function RegisterPage() {
           />
           Quero vender
         </label>
-        <button type="submit" disabled={ !isValid }>
+        <button type="submit" data-testid="signup-btn" disabled={ !isValid }>
           Cadastrar
         </button>
         { error }
