@@ -8,7 +8,7 @@ function OrdersId() {
 
   useEffect(() => {
     setPageTitle('Detalhes de Pedido');
-  }, []);
+  }, [setPageTitle]);
 
   return (
     <div>

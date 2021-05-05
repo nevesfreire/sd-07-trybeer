@@ -8,7 +8,7 @@ function Products() {
 
   useEffect(() => {
     setPageTitle('TryBeer');
-  }, []);
+  }, [setPageTitle]);
 
   return (
     <div>

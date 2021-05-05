@@ -7,7 +7,8 @@ function Orders() {
   const { sideIsActive, setPageTitle } = useContext(MyContext);
   useEffect(() => {
     setPageTitle('Meus Pedidos');
-  }, []);
+  }, [setPageTitle]);
+
   return (
     <div>
       <MenuTopMobile />

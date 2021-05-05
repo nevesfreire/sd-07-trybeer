@@ -9,7 +9,7 @@ function Profile() {
 
   useEffect(() => {
     setPageTitle('Meu perfil');
-  }, []);
+  }, [setPageTitle]);
 
   const [newName, setNewName] = useState('');
   const [success, setSuccess] = useState(false);
