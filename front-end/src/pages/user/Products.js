@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
@@ -14,6 +15,8 @@ function Products() {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
+  const history = useHistory();
+
   useEffect(() => {
     setIsLoading(true);
     fetch('http://localhost:3001/products')
@@ -23,6 +26,14 @@ function Products() {
         setIsLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    const getUser = () => {
+      const userStorage = JSON.parse(localStorage.getItem('user'));
+      if (!userStorage) return history.push('/login');
+    };
+    getUser();
+  }, [history]);
 
   return (
     <div>
