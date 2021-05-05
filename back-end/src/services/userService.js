@@ -53,7 +53,7 @@ const createUser = async (name, email, password, role) => {
 
 const validateNewName = async (name, id) => {
   const schema = joi.object({
-    name: joi.string().required()
+    name: joi.string().required(),
   });
   const { error } = schema.validate({ name });
   if (error) {
@@ -61,7 +61,7 @@ const validateNewName = async (name, id) => {
   }
   await userModel.editUser(name, id);
   return ('Editado com sucesso');
-}
+};
 
 module.exports = { 
   createUser,

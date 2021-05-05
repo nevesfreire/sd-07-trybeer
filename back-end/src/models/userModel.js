@@ -24,8 +24,8 @@ const editUser = async (name, id) => {
     UPDATE users
     SET name = '${name}'
     WHERE id = ${id};
-    `
-  )
+    `,
+  );
 };
 
 module.exports = { 
