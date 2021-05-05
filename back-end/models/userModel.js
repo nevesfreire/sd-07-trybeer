@@ -1,12 +1,11 @@
 const connection = require('../connection');
 
 const createUser = async (name, email, password, role) => {
-    console.log(name);
     try {
     await connection
             .execute(`INSERT INTO 
             Trybeer.users (name, email, password, role) VALUES 
-            (?,?,?, ?)`, [name, email, password, role]);
+            (?,?,?,?)`, [name, email, password, role]);
     return {
         name,
         email,
