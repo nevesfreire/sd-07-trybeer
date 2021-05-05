@@ -11,8 +11,12 @@ const updateUserName = async (newName, email) => {
   const updatedUser = await UserModel.updateUserName(newName, email);
   return { status: 201, message: updatedUser };
 };
-
+const registerOrder = async (order) => {
+  const registeredOrder = await UserModel.registerOrder(order);
+  return { status: 200, message: registeredOrder };
+};
 module.exports = {
   registerUser,
   updateUserName,
+  registerOrder,
 };

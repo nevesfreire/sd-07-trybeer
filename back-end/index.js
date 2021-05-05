@@ -13,5 +13,6 @@ app.use(express.json());
 app.post('/login', LoginController.login);
 app.post('/register', UserController.registerUser);
 app.put('/profile', UserController.updateUserName);
+app.post('/checkout', UserController.registerOrder);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
