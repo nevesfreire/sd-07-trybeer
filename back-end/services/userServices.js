@@ -57,7 +57,6 @@ const userLogin = async (emailFromRequest, password) => {
     token,
     role,
   };
-
   return obj;
 };
 

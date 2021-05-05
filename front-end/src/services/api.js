@@ -1,8 +1,8 @@
-import { getStorage } from './localSorage'
+/* import { getStorage } from './localStorage' */
 
 const URL = process.env.REACT_APP_ENDPOINT;
 
-const tokenKeyStorage = 'token';
+// const tokenKeyStorage = 'token';
 
 const ENDPOINT = {
   login: '/login',
@@ -12,15 +12,23 @@ const ENDPOINT = {
   // token: '/oauth/token'
 }
 
-async function x (userData) {
+export async function login(userData) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData),
   }
-  const request = await fetch(URL + ENDPOINT.login, requestOptions);
+  const request = await fetch('http://localhost:3001' + ENDPOINT.login, requestOptions);
   const response = request.json();
   return response;
 }
 
-export { x };
+export async function getByEmail(email) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  }
+  const request = await fetch(`http://localhost:3001/login/${email}`, requestOptions);
+  const response = request.json();
+  return response;
+}

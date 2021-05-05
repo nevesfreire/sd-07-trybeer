@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
+import * as api from '../../services/api';
 
 function Register () {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [existUser, setExistUser] = useState(false);
   const [isSeller, setIsSeller] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const history = useHistory();
@@ -34,8 +36,11 @@ function Register () {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    const { message } = await api.getByEmail(email);
+    if (message === "User found") return setExistUser(true);
+    if (isSeller) return history.push('/admin/orders');
     return history.push('/products');
   }
 
@@ -91,6 +96,7 @@ function Register () {
         >
             Cadastrar
         </button>
+          { existUser && <p>Já existe um usuário com esse e-mail.</p> }
       </form>
     </div>
   )

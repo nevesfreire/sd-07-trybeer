@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as api from '../../services/api';
 import { login }  from '../../actions'
-import { setStorage } from '../services/localSorage';
+import { setStorage } from '../../services/localStorage';
+import { useHistory } from 'react-router-dom';
 
-function Login({ history, sendClientInfoToStore }) {
+function Login() {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
@@ -21,12 +23,12 @@ function Login({ history, sendClientInfoToStore }) {
   }, [email, password]);
 
   const handleButton = async () => {
-    const userData = await api.x({email, password});
+    const userData = await api.login({email, password});
     setStorage('user', userData);
     dispatch(login());
 
     if (userData.role === 'client') return history.push('/products');
-    history.push('/admin/profile');
+    history.push('/admin/orders');
   };
 
   return (

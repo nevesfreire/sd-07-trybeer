@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 };
 
 function clientReducer(state = INITIAL_STATE, action) {
-  const { client, type } = action;
+  const { type } = action;
   switch (type) {
   case 'LOGIN':
     return {
