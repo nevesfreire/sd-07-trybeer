@@ -16,7 +16,15 @@ const findByEmail = async (email) => {
   return user;
 };
 
+const createUserService = async (name, email, password, role) => {
+  await usersModel.createUser(name, email, password, role);
+  return {
+    message: 'Criando sucesso!',
+  };
+};
+
 module.exports = {
   findByEmail,
   generateToken,
+  createUserService,
 };

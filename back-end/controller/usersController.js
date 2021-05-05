@@ -21,6 +21,17 @@ const findUserByEmail = async (req, res) => {
   } catch (error) { return res.status(500).json(error.message); }
 };
 
+const createUserController = async (req, res) => {
+  const { name, email, password, role } = req.body;
+  try {
+    await usersService.createUserService(name, email, password, role);
+    res.status(201).json('Criando sucesso!!!');
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
 module.exports = {
   findUserByEmail,
+  createUserController,
 };
