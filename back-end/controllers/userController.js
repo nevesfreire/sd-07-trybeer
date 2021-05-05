@@ -7,7 +7,7 @@ const userLogin = async (request, response) => {
     const result = await userServices.userLogin(email, password);
     response.status(STATUS_CODE.SUCCESS).json(result);
   } catch (error) {
-    response.status(error.status).json({ message: error.message });
+    response.status(STATUS_CODE.BAD_REQUEST).json({ message: error.message });
   }
 };
 
@@ -27,12 +27,24 @@ const userRegistration = async (request, response) => {
     const result = await userServices.userRegistration(name, email, password, seller);
     response.status(STATUS_CODE.CREATED).json(result);
   } catch (error) {
-    response.status(200).json({ message: error.message });
+    response.status(STATUS_CODE.BAD_REQUEST).json({ message: error.message });
   }
 };
+
+const userProfile = async (request, response) => {
+  try {
+    const { name, email } = request.body;
+    const { authorization } = request.headers;
+    const result = await userServices.userProfile(name, email, authorization);
+    response.status(STATUS_CODE.SUCCESS).json(result);
+  } catch (error) {
+    response.status(STATUS_CODE.BAD_REQUEST).json({ message: error.message });
+  }
+}
 
 module.exports = {
   userLogin,
   userRegistration,
   userEmail,
+  userProfile,
 };

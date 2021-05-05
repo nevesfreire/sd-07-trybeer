@@ -12,7 +12,14 @@ const userRegistration = async (name, email, password, role) => {
   return result;
 };
 
+const userProfile = async (name, email) => {
+  const [result] = await connection.execute(
+    'UPDATE users SET name=? WHERE email=?', [name, email],
+  );
+  return result;
+}
 module.exports = {
   findUserByEmail,
   userRegistration,
+  userProfile,
 };
