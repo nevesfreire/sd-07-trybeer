@@ -1,8 +1,13 @@
+const productModel = require('../models/productModel');
+
 const createProduct = (data) => data;
 
-const getProduct = (data) => data;
+const getProducts = async () => {
+    const data = await productModel.getProducts();
+    return data;
+};
 
 module.exports = {
     createProduct,
-    getProduct,
+    getProducts,
 };
