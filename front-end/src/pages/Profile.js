@@ -4,15 +4,17 @@ import { useHistory } from 'react-router';
 function Profile() {
   const [newName, setNewName] = useState('');
   const [success, setSuccess] = useState(false);
+  const [user, setUser] = useState({});
 
-  const user = JSON.parse(localStorage.getItem('user'));
-  const { name, email } = user;
-
+  const userStorage = JSON.parse(localStorage.getItem('user'));
   const history = useHistory();
 
   useEffect(() => {
-    if (!user) return history.push('/login');
-  }, [history, user]);
+    if (!userStorage) return history.push('/login');
+    return setUser(userStorage);
+  }, [history, user, userStorage]);
+
+  const { name, email } = user;
 
   const successMsg = 'Atualização concluída com sucesso';
   const handleSubmit = (e) => {

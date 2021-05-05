@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 
 function AdminProfile() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const { name, email } = user;
+  const [user, setUser] = useState({});
 
+  const userStorage = JSON.parse(localStorage.getItem('user'));
   const history = useHistory();
+
   useEffect(() => {
-    if (!user) return history.push('/login');
-  }, [history, user]);
+    if (!userStorage) return history.push('/login');
+    return setUser(userStorage);
+  }, [history, user, userStorage]);
+
+  const { name, email } = user;
 
   return (
     <>
