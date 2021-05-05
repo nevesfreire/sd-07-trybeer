@@ -1,7 +1,7 @@
 import Login from './Login/Login.jsx';
-import RegisterUser from './RegisterUser/RegisterUser.jsx';
+import Products from './Products/Products.jsx';
 
 export {
   Login,
-  RegisterUser,
+  Products,
 };

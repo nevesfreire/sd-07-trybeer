@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import {
   Login,
-  RegisterUser,
+  Products,
 } from '../pages';
 
 function Router() {
@@ -10,9 +10,9 @@ function Router() {
     <Switch>
       <Route exact path="/" component={ () => <Redirect to="/login" /> } />
       <Route exact path="/login" component={ Login } />
-      <Route exact path="/register" component={ RegisterUser } />
+      <Route exact path="/register" />
       <Route exact path="/profile" />
-      <Route exact path="/products" />
+      <Route exact path="/products" component={ Products } />
       <Route exact path="/checkout" />
       <Route exact path="/orders" />
       <Route exact path="/orders/:numero-do-pedido" />

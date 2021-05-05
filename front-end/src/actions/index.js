@@ -6,3 +6,10 @@ export function login(clientInfo) {
     client: clientInfo,
   });
 }
+
+export function changeTotalPrice(price) {
+  return ({
+    type: 'CHANGE_TOTAL_PRICE',
+    price
+  });
+}

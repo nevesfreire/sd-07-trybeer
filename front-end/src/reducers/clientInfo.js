@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 };
 
 function clientReducer(state = INITIAL_STATE, action) {
-  const { client, type } = action;
+  const { client, type, price } = action;
   switch (type) {
   case 'LOGIN':
     return {
@@ -18,6 +18,11 @@ function clientReducer(state = INITIAL_STATE, action) {
       email: client.email,
       // type: client.type,
       logged: true,
+    };
+  case 'CHANGE_TOTAL_PRICE':
+    return {
+      ...state,
+      totalPrice: price,
     };
   default:
     return state;
