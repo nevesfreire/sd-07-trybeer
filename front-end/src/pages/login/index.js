@@ -1,35 +1,40 @@
 import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import login from '../../service/trybeerApi';
 
 export default function Login() {
-  const [shouldRedirect, setShouldRedirect] = useState(false);
-   const [loginInfo, setLoginInfo] = useState({
-     email: '',
-     password: '',
-   });
+  const [shouldRedirect, setShouldRedirect] = useState('');
+  const [loginInfo, setLoginInfo] = useState({
+    email: '',
+    password: '',
+  });
 
   const verifyInput = () => {
-    const { email, password  } = loginInfo;
-    const validEmail =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const { email, password } = loginInfo;
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const passwordMinLength = 6;
     const validPassword = password.length >= passwordMinLength;
     console.log(validEmail && validPassword);
     return validEmail && validPassword;
-  }
+  };
 
-  const handleChange = ({ target : { name, value } }) => {
+  const handleChange = ({ target: { name, value } }) => {
     setLoginInfo({
       ...loginInfo,
       [name]: value,
-    })
+    });
   };
 
   const handleClick = () => {
-    setShouldRedirect(true)
+    const { email, password } = loginInfo;
+    const result = login(email, password);
+    setShouldRedirect(result.role);
   };
 
   if (shouldRedirect) {
-    return <Redirect to="/home" />;
+    return (<Redirect
+      to={ `/${shouldRedirect === 'administrator' ? 'home' : 'produtos'}` }
+    />);
   }
 
   return (
@@ -59,8 +64,8 @@ export default function Login() {
 
       <button
         type="button"
-        data-testId="signin-btn"
-        disabled={!verifyInput()}
+        data-testid="signin-btn"
+        disabled={ !verifyInput() }
         onClick={ handleClick }
       >
         Entrar
@@ -68,7 +73,7 @@ export default function Login() {
 
       <Link
         to="/register"
-        data-testId="no-account-btn"
+        data-testid="no-account-btn"
       >
         Ainda não tenho conta
       </Link>
