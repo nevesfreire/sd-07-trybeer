@@ -12,7 +12,13 @@ const registerUser = (userData) => api.post('/user/signup', userData)
   .then(({ data }) => data)
   .catch((e) => e.message);
 
+const updateNameUser = (userData, token) => api
+  .put('/user', userData, { headers: { Authorization: token } })
+  .then(({ status }) => ({ status }))
+  .catch((e) => e.message);
+
 export {
   getUser,
   registerUser,
+  updateNameUser,
 };
