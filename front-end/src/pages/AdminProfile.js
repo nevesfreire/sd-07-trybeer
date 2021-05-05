@@ -7,14 +7,14 @@ function AdminProfile() {
 
   const history = useHistory();
   useEffect(() => {
-    if (!user) return history.push('login');
+    if (!user) return history.push('/login');
   }, [history, user]);
 
   return (
     <>
       <h1>Perfil</h1>
-      <spam data-testid="profile-name">{`Nome: ${name}`}</spam>
-      <spam data-testid="profile-email">{`Email: ${email}`}</spam>
+      <span data-testid="profile-name">{`Nome: ${name}`}</span>
+      <span data-testid="profile-email">{`Email: ${email}`}</span>
     </>
   );
 }

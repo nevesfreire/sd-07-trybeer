@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 
 function Profile() {
   const [newName, setNewName] = useState('');
-  const [message, setMessage] = useState('');
+  const [success, setSuccess] = useState(false);
 
   const user = JSON.parse(localStorage.getItem('user'));
   const { name, email } = user;
@@ -11,20 +11,23 @@ function Profile() {
   const history = useHistory();
 
   useEffect(() => {
-    if (!user) return history.push('login');
+    if (!user) return history.push('/login');
   }, [history, user]);
 
+  const successMsg = 'Atualização concluída com sucesso';
   const handleSubmit = (e) => {
     e.preventDefault();
 
     fetch('http://localhost:3001/profile', {
-      method: 'UPDATE',
+      method: 'PUT',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ email, newName }),
+      body: JSON.stringify({ newName, email }),
     }).then((response) => response.json())
-      .then((data) => setMessage(data));
+      .then((data) => {
+        if (data === successMsg) return setSuccess(true);
+      });
   };
 
   return (
@@ -59,7 +62,7 @@ function Profile() {
           Salvar
         </button>
       </form>
-      <span>{ message }</span>
+      { success && <span>{successMsg}</span> }
     </>
   );
 }
