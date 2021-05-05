@@ -50,4 +50,16 @@ const createUser = async (name, email, password, queroVender) => {
   }
 };
 
-module.exports = { createUser };
+const updateUser = async (id, name) => {
+  try {
+    verifyName(name);
+
+    const updatedName = await usersModel.updateUser(id, name);
+
+    return updatedName;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+module.exports = { createUser, updateUser };

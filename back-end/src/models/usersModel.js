@@ -22,4 +22,12 @@ const createUser = async (name, email, password, role) => {
   return { name, email, role };
 };
 
-module.exports = { getUserByEmail, getAllUsers, createUser };
+const updateUser = async (id, name) => {
+  await connection.execute(
+    'UPDATE users SET name=? where id=?',
+    [name, id],
+  );
+  return name;
+};
+
+module.exports = { getUserByEmail, getAllUsers, createUser, updateUser };
