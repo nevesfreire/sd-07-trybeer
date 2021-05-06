@@ -1,19 +1,27 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Context } from '../../context';
 import './styles.css';
 
-function ProductCard({
-  data: {
+function ProductCard({ data }) {
+  const [quantity, setQuantity] = useState(0);
+  const { cart, addToCart, removeFromCart } = useContext(Context);
+
+  const {
     id,
     name,
     price,
     url_image: urlImage,
-  },
-}) {
-  const [quantity, setQuantity] = useState(0);
-  const ctx = useContext(Context);
+  } = data;
+
+  const priceFormat = `R$ ${price.replace(/\./g, ',')}`;
+
+  useEffect(() => {
+    const currentProduct = cart.find((prod) => prod.id === id);
+    if (currentProduct) setQuantity(currentProduct.quantity);
+    else setQuantity(0);
+  }, [cart, id]);
 
   return (
     <article className="product-card">
@@ -21,25 +29,25 @@ function ProductCard({
         <img
           src={ urlImage }
           alt={ name }
-          data-testid={ `${id}-product-img` }
+          data-testid={ `${id - 1}-product-img` }
         />
       </header>
       <main>
-        <strong data-testid={ `${id}-product-name` }>{name}</strong>
-        <p data-testid={ `${id}-product-price` }>{price}</p>
+        <strong data-testid={ `${id - 1}-product-name` }>{name}</strong>
+        <p data-testid={ `${id - 1}-product-price` }>{priceFormat}</p>
         <div>
           <button
             type="button"
-            onClick={ () => {} }
-            data-testid={ `${id}-product-minus` }
+            onClick={ () => removeFromCart(data) }
+            data-testid={ `${id - 1}-product-minus` }
           >
             -
           </button>
-          <p data-testid={ `${id}-product-qtd` }>{quantity}</p>
+          <p data-testid={ `${id - 1}-product-qtd` }>{quantity}</p>
           <button
             type="button"
-            onClick={ () => {} }
-            data-testid={ `${id}-product-plus` }
+            onClick={ () => addToCart(data) }
+            data-testid={ `${id - 1}-product-plus` }
           >
             +
           </button>
