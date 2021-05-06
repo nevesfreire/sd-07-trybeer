@@ -5,14 +5,13 @@ const login = async (email, password) => {
     email,
     password,
   })
-  .then((response) => {
-    localStorage.setItem('user', JSON.stringify(response.data));
-    return response.data;
-  })
+    .then((response) => {
+      localStorage.setItem('user', JSON.stringify(response.data));
+      return response.data;
+    })
     .catch((error) => {
-      if (error.message) return  alert("Senha ou email inválido!");
+      if (error) return { error: error.message };
     });
-  
   return result;
 };
 

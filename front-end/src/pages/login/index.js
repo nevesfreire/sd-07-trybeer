@@ -27,9 +27,9 @@ export default function Login() {
   const handleClick = async () => {
     const { email, password } = loginInfo;
     const result = await login(email, password);
-    if (result&&result) {
+    if (result === undefined) {
       setShouldRedirect(result.role);
-    }    
+    }
   };
 
   if (shouldRedirect) {
