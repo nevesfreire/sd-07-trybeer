@@ -6,6 +6,7 @@ const { registerNameEmailValidation } = require('../middlewares/registerNameEmai
 const router = express.Router();
 
 router.post('/login', loginValidationMiddleware, userController.loginUser);
+router.put('/profile', userController.profileNameUpdate);
 
 router.post(
   '/register', loginValidationMiddleware, registerNameEmailValidation, userController.registerUser,
