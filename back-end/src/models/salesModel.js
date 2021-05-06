@@ -8,6 +8,7 @@ VALUES (?,?,?)`;
 
 const createSale = async (salesData) => {
   const {
+    userId,
     totalPrice,
     deliveryAddress,
     deliveryNumber,
@@ -16,6 +17,7 @@ const createSale = async (salesData) => {
   } = salesData;
 
   const [result] = await connection.execute(insertOne, [
+    userId,
     totalPrice,
     deliveryAddress,
     deliveryNumber,
@@ -24,7 +26,6 @@ const createSale = async (salesData) => {
   ]);
 
   const saleId = result.insertId;
-
   return { saleId, ...salesData };
 };
 
