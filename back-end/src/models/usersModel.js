@@ -16,6 +16,7 @@ const addUser = async (name, email, password, role) => {
   );
 };
 
+
 const updateName = async (name, email) => {
   await connection.execute(
     'UPDATE users SET name=? WHERE email=?',
