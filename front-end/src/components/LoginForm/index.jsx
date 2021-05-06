@@ -31,15 +31,15 @@ function LoginForm() {
       password,
     };
     // req da api enviando:
-    const response = userLogin(user)
-      .then((user) => {
-        localStorage.setItem('user', JSON.stringify(user));
+    return response = userLogin(user)
+      .then((apiResponse) => {
+        localStorage.setItem('user', JSON.stringify(apiResponse));
         if (response) {
-          const { role } = user;
+          const { role } = apiResponse;
           setRole(role);
           console.log('role', role);
         }
-      })
+      });
   };
 
   if (userRole && userRole === 'administrator') {
