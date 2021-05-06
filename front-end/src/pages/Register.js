@@ -20,7 +20,7 @@ function Register() {
     const queroVender = formData.get('queroVender');
     const registerResponse = await fetchRegister(name, email, password, queroVender);
     if (registerResponse === SUCCESS) return history.push('/');
-    setErrorMessage(registerResponse.message);
+    setErrorMessage(registerResponse);
   };
 
   const validateInputs = () => {
