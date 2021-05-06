@@ -11,12 +11,6 @@ const defaultForm = {
 function FormRegister() {
   const [formRegister, setFormRegister] = useState(defaultForm);
 
-  const handleRoleUser = checkbox => {
-    let role;
-    checkbox ? (role = 'admin') : (role = 'client');
-    return role;
-  };
-
   const handleImputChange = event => {
     const { value, name } = event.target;
     let checkbox = formRegister.checkbox;
@@ -29,6 +23,12 @@ function FormRegister() {
     } else {
       setFormRegister({ ...formRegister, [name]: value });
     }
+  };
+
+  const handleRoleUser = checkbox => {
+    let role;
+    checkbox ? (role = 'admin') : (role = 'client');
+    return role;
   };
 
   useEffect(() => {
