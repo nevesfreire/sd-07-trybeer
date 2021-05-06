@@ -1,0 +1,30 @@
+
+const jwt = require('jsonwebtoken');
+const { missingAuthToken } = require('../services/dictionaries/statusMsgMap');
+
+
+const secret = '12345';
+
+const auth = (req, res, next) => {
+    try {
+        const { authorization } = req.headers;
+        const token = authorization;
+        if (!token) return res.status(missingAuthToken.status).json({
+            message: missingAuthToken.message
+        });
+        const checkToken = jwt.verify(token, secret);
+        if (!checkToken) return res.status(missingAuthToken.status).json({
+            message: missingAuthToken.message
+        })
+        const { id, role } = checkToken
+        const user = { id, role };
+        req.user = user;
+        next()
+
+    } catch (err) {
+        console.log(err)
+        return err
+    }
+}
+
+module.exports = auth;
