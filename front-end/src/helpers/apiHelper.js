@@ -60,3 +60,11 @@ export async function fetchRegister(name, email, password, queroVender) {
     console.error(error);
   }
 }
+
+export async function fetchProducts() {
+  const endpoint = 'http://localhost:3001/products';
+  const response = await fetch(endpoint)
+    .then((data) => data.json())
+    .catch((err) => console.log(err.message));
+  return response;
+}
