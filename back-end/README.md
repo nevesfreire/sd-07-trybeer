@@ -11,7 +11,7 @@ JWT_SECRET=secret
 Rota: localhost:3001/user
 Metodo: POST
 
-Passar o seguinte objeto:
+Passar o seguinte json no body:
 
 {
  "name":"",
@@ -34,6 +34,10 @@ Em caso de sucesso, o retorno é o seguinte:
 Rota: localhost:3001/login
 Metodo: POST
 
+O header deve conter o seguinte:
+authorization: token
+
+Passar o seguinte json no body:
 {
  "email":"",
  "password":""
@@ -55,6 +59,11 @@ Exemplo de retorno em caso de sucesso:
 Rota: localhost:3001/user
 Metodo: PUT
 
+O header deve conter o seguinte:
+
+authorization: token
+
+Passar o seguinte json no body:
 {
   "name":"Novo nome de usuário"
 }
@@ -69,7 +78,7 @@ Em caso de sucesso, o retorno é o seguinte:
 
 ## Carregando imagem do banco
 
-Rota: <http://localhost:3001/images/nome> do arquivo.jpg
+Rota: localhost:3001/images/nome do arquivo.jpg
 Metodo: GET
 
 Essa rota retorna a imagem, o nome do arquivo pode ser passado com espaço.
@@ -78,8 +87,11 @@ Em caso de sucesso, é retornada a imagem.
 
 ## Carregando todos os produtos
 
-Rota: <http://localhost:3001/products>
+Rota: localhost:3001/products
 Metodo: GET
+
+O header deve conter o seguinte:
+authorization: token
 
 Caso sucesso:
 
@@ -106,3 +118,29 @@ Caso o token não seja passado ou esteja inválido, é retornado o seguinte erro
     "message": "jwt must be provided"
   }
 }
+
+## Criando venda
+
+Rota: localhost:3001/sale
+Metodo: POST
+
+O header deve conter o seguinte:
+authorization: token
+
+Passar o seguinte json no body:
+
+[
+  {
+  "productName":"",
+  "quantity":1,
+  "totalPrice":1,
+  "deliveryAddress":"",
+  "deliveryNumber":1,
+  }
+]
+
+Os campos quantity, totalPrice, deliveryNumber devem ser numeros.
+
+quantity e totalPrice devem ser maiores que 1.
+
+Apenas os campos status e deliveryNumber são opcionais.
