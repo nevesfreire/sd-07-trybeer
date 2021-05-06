@@ -1,16 +1,25 @@
 import React from 'react';
-import { Route, Redirect, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import Login from '../pages/Login';
 import RegisterPage from '../pages/RegisterPage';
-import ClientProfile from '../pages/ClientProfile';
+import ProductsPage from '../pages/ProductsPage';
 
-const Routes = () => (
-  <BrowserRouter>
-    <Redirect from="/" to="/login" />
-    <Route exact path="/login" component={ Login } />
-    <Route exact path="/register" component={ RegisterPage } />
-    <Route exact path="/profile" component={ ClientProfile } />
-  </BrowserRouter>
-);
+const Routes = () => {
+  let componentToRender = '/login';
+  const userLocalStorage = localStorage.getItem('user');
+  if (userLocalStorage) {
+    // const user = JSON.parse(userLocalStorage);
+    componentToRender = '/products';
+  }
+  return (
+    <BrowserRouter>
+      <Redirect exact from="/" to={ componentToRender } />
+      <Route exact path="/login" component={ Login } />
+      <Route exact path="/register" component={ RegisterPage } />
+      <Route exact path="/products" component={ ProductsPage } />
+
+    </BrowserRouter>
+  );
+};
 
 export default Routes;

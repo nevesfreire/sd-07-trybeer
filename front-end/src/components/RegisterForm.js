@@ -25,7 +25,7 @@ function RegisterForm() {
   };
 
   const handleSubmit = async () => {
-    const conflictStatus = 409;
+    const statusSuccess = 201;
     const role = checkbox ? 'administrator' : 'client';
     const response = await fetchRegisterNewUser({
       name, password, email, role,
@@ -33,7 +33,7 @@ function RegisterForm() {
     const { status } = response;
     const user = await response.json();
     localStorage.setItem('user', JSON.stringify(user));
-    if (status !== conflictStatus) {
+    if (status === statusSuccess) {
       if (role === 'client') history.push('/products');
       if (role === 'administrator') history.push('/admin/orders');
     } else {
