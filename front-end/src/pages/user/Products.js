@@ -29,21 +29,19 @@ function Products() {
     setQuantity(quantity < 1 ? quantity : quantity - 1)
   }
 
-  const addInCart = (id, name, price) => {
-    setQuantity(quantity + 1);
+  const addInCart = async (id, name, price) => {
+    await setQuantity(quantity + 1);
     setCart([...cart, { id, name, price, quantity }]);
-    console.log("add cart", cart);
 
     let productExists;
     if (cart.length > 1) {
-      productExists = cart.find((item) => item.id === id);
-    }
+      productExists = cart.find((item) => id === item.id);
+    } // encontre o repetido
     
     if (productExists) {
       setCart(cart.splice(cart.indexOf(productExists), 1));
-    } // encontre o repetido e remova ele
+    } // encontre o index do repetido e remova ele
 
-    console.log("remove cart", cart);
     console.log("productExists", productExists);
   }
 
