@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import menu from '../assets/images/menu.png';
 import close from '../assets/images/close.png';
 
@@ -21,7 +20,14 @@ function CustomTopMenu() {
   return (
     <div>
       <header>
-        <div className="menuToggle" onClick={ toggleMenu } data-testid="top-hamburguer">
+        <div
+          className="menuToggle"
+          onClick={ toggleMenu }
+          onKeyPress={ toggleMenu }
+          data-testid="top-hamburguer"
+          role="button"
+          tabIndex={ 0 }
+        >
           { topMenu
             ? <img src={ close } alt="menu" />
             : <img src={ menu } alt="menu" /> }
@@ -57,9 +63,5 @@ function CustomTopMenu() {
 
   );
 }
-
-CustomTopMenu.propTypes = {
-
-};
 
 export default CustomTopMenu;

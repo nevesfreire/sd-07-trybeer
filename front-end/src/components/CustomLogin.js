@@ -1,6 +1,8 @@
-import 'semantic-ui-css/semantic.min.css';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Form, Segment } from 'semantic-ui-react';
+
+import 'semantic-ui-css/semantic.min.css';
 
 const CustomLogin = ({
   formData: { email, password },
@@ -41,7 +43,7 @@ const CustomLogin = ({
         color="orange"
         fluid
         size="large"
-        onClick={ async () => await onHandleSubmit() }
+        onClick={ async () => onHandleSubmit() }
         disabled={ isValid() }
       >
         Entrar
@@ -51,7 +53,7 @@ const CustomLogin = ({
       data-testid="no-account-btn"
       inverted
       color="orange"
-      onClick={ async () => await goRegister() }
+      onClick={ async () => goRegister() }
       animated="fade"
     >
       <Button.Content visible>Ainda não tenho conta</Button.Content>
@@ -59,5 +61,15 @@ const CustomLogin = ({
     </Button>
   </Form>
 );
+
+CustomLogin.propTypes = {
+  formData: PropTypes.element.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onHandleSubmit: PropTypes.func.isRequired,
+  goRegister: PropTypes.func.isRequired,
+  isValid: PropTypes.bool.isRequired,
+};
 
 export default CustomLogin;
