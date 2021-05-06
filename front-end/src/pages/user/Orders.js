@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 import OrderCard from '../../components/OrderCard';
-import { useHistory } from 'react-router';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -16,7 +16,7 @@ function Orders() {
     };
     getUser();
   }, [history]);
-  
+
   useEffect(() => {
     const fetchOrders = async () => {
       const response = await fetch('http://localhost:3001/orders', {
@@ -24,7 +24,7 @@ function Orders() {
         headers: {
           'Content-type': 'application/json',
         },
-      })
+      });
       const ordersList = await response.json();
       setOrders(ordersList);
     };

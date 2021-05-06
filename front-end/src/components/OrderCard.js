@@ -4,19 +4,24 @@ import { useHistory } from 'react-router';
 
 function OrderCard(props) {
   const mystyle = {
-    padding: "10px",
-    fontFamily: "Arial"
+    padding: '10px',
+    fontFamily: 'Arial',
   };
   const { order, index } = props;
   const history = useHistory();
   const date = new Date(order.sale_date);
   const day = date.getUTCDate();
-  const month = date.getUTCMonth()+1;
-  const OrderDate = `${day}/${month}`
+  const month = date.getUTCMonth() + 1;
+  const OrderDate = `${day}/${month}`;
   return (
-    <div onClick={() => history.push('/orders/:id')}  
-    style={mystyle} 
-    data-testid={ `${index}-order-card-container` }>
+    <div
+      role="button"
+      tabIndex={ 0 }
+      onClick={ () => history.push('/orders/:id') }
+      onKeyDown={ () => history.push('/orders/:id') }
+      style={ mystyle }
+      data-testid={ `${index}-order-card-container` }
+    >
       <div>
         <div data-testid={ `${index}-order-number` }>{`Pedido ${order.id}`}</div>
         <div data-testid={ `${index}-order-date` }>{` ${OrderDate}`}</div>
