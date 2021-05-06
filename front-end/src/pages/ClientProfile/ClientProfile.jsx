@@ -57,7 +57,7 @@ function ClientProfile() {
         >
           Salvar
         </button>
-        { updateUser && <p>Atualização concluída com sucesso</p>}
+        { updateUser && <p>Atualização concluída com sucesso</p> }
       </form>
     </div>
   );

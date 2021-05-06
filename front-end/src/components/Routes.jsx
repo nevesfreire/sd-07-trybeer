@@ -1,6 +1,13 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Register, Products, ClientProfile } from '../pages';
+import {
+  Login,
+  Register,
+  Products,
+  ClientProfile,
+  AdmProfile,
+  AdmOrders,
+} from '../pages';
 
 function Router() {
   return (
@@ -13,8 +20,8 @@ function Router() {
       <Route exact path="/checkout" />
       <Route exact path="/orders" />
       <Route exact path="/orders/:numero-do-pedido" />
-      <Route exact path="/admin/profile" />
-      <Route exact path="/admin/orders" />
+      <Route exact path="/admin/profile" component={ AdmProfile } />
+      <Route exact path="/admin/orders" component={ AdmOrders } />
       <Route exact path="/admin/orders/:id" />
     </Switch>
   );
