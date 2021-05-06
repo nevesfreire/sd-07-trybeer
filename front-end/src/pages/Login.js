@@ -10,7 +10,6 @@ function Login() {
   const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [role, setRole] = useState('');
-  // Line 14:9:  The 'verifyUserData' function makes the dependencies of useEffect Hook (at line 39) change on every render. Move it inside the useEffect callback. Alternatively, wrap the 'verifyUserData' definition into its own useCallback() Hook  react-hooks/exhaustive-deps
   const handleClick = async () => {
     const response = await loginRequest(email, password);
     const { status } = response;
