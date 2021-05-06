@@ -9,6 +9,7 @@ function Provider({ children }) {
   const [role, setRole] = useState('client');
   const [pageTitle, setPageTitle] = useState('TryBeer');
   const [sideIsActive, setSideIsActive] = useState(false);
+  const [cart, setCart] = useState([]);
 
   const valuesProvided = {
     email,
@@ -23,6 +24,8 @@ function Provider({ children }) {
     setPageTitle,
     sideIsActive,
     setSideIsActive,
+    cart,
+    setCart,
   };
 
   return (
