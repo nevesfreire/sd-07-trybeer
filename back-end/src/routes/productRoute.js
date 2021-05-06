@@ -7,13 +7,9 @@ const router = express.Router();
 
 router
   .route('/products')
-  .get( productController.getAllProducts);
+  .get(productController.getAllProducts);
 
-router
-  .route('/images/:url')
-  .get(productController.sendProductImage);
-
-//router.post('/login', userController.login);
+// router.post('/login', userController.login);
 // router.post('/users/admin', validateJWT, validateAdmin, usersController.createAdmin); 
 
 module.exports = router;

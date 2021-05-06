@@ -17,19 +17,6 @@ const getAllProducts = async (_req, res) => {
   }
 };
 
-const sendProductImage = async (req, res) => {
-  try {
-  const { url } = req.params;
-  res.status(200).sendFile(path.join(`${__dirname}/images/${url}`));
-  } catch (error) {
-  const { message, code } = error;
-  res.status(code).json({
-  message,
-  });
-  }
-  }; 
-
 module.exports = { 
   getAllProducts,
-  sendProductImage
 };

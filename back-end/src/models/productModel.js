@@ -2,7 +2,7 @@ const conn = require('../config/conn');
 
 const getAllProducts = async () => {
   const [products] = await conn.execute(
-    `SELECT * FROM products;`,
+    'SELECT * FROM products;',
   );
   return products;
 };
