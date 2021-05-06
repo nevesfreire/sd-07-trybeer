@@ -51,9 +51,7 @@ const createUser = async (name, email, password, iWantToSell) => {
 
 const userUpdate = async (name, email) => {
   try {
-    console.log(name, email);
     validateName(name);
-    validateEmail(email);
     const [user] = await userModel.userUpdate(name, email);
     return user;
   } catch (error) {
