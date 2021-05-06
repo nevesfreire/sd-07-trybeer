@@ -1,23 +1,26 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { Grid } from 'semantic-ui-react';
 import { Link, useHistory } from 'react-router-dom';
 import MessageComponent from '../components/MessageComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import RegisterComponent from '../components/RegisterComponent';
 import { fetchRegister } from '../helpers/apiHelper';
+import BeerContext from '../context/BeerContext';
 
 function Register() {
   const [formData, setFormData] = useState(new Map());
   const history = useHistory();
   const SUCCESS = 200;
+  const { setErrorMessage } = useContext(BeerContext);
 
   const handleSubmit = async () => {
     const name = formData.get('name');
     const email = formData.get('email');
     const password = formData.get('password');
-    const registerResponse = await fetchRegister(name, email, password);
+    const queroVender = formData.get('queroVender');
+    const registerResponse = await fetchRegister(name, email, password, queroVender);
     if (registerResponse === SUCCESS) return history.push('/');
-    history.push('/register');
+    setErrorMessage(registerResponse.message);
   };
 
   const validateInputs = () => {
