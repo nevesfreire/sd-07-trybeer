@@ -27,9 +27,6 @@ function LoginForm() {
 
   return (
     <div>
-      <header>
-        <h1 data-testid="top-title">Perfil</h1>
-      </header>
       <label htmlFor="profile">
         Nome
         <input
