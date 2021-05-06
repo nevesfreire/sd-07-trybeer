@@ -11,7 +11,7 @@ loginCtrl.post('/', async (req, res, next) => {
     const { error, message, status } = loginRes;
     return res.status(status).json({ message, error } || { });
   } catch (err) {
-    console.log(err);
+    console.log('controller: ', err);
     return next({ err, status: 'internal server error' });
   }
 });
