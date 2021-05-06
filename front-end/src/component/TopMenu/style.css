@@ -1,0 +1,13 @@
+.header {
+  background-color: rgb(25, 25, 25);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 100%;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+}
