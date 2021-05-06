@@ -28,5 +28,3 @@ const createSale = async (data, token) => {
 module.exports = {
   createSale,
 };
-
-// createSale, getProductByName
