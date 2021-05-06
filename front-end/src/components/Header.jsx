@@ -23,7 +23,7 @@ const Header = () => {
         <h2 data-testid="top-title">TryBeer</h2>
       </div>
       {sideBar
-      && (
+        && (
           <div>
             <div className="side-menu-container">
               <div>
@@ -69,8 +69,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-        )
-      }
+        )}
     </div>
   );
 };
