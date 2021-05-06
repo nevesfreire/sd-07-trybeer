@@ -1,16 +1,23 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const Context = createContext();
 
-const Provider = ({ children }) => (
-  <Context.Provider value={ {} }>
-    {children}
-  </Context.Provider>
-);
+const Provider = ({ children }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const contextValue = {
+    menuOpen,
+    setMenuOpen,
+  };
+  return (
+    <Context.Provider value={ contextValue }>
+      {children}
+    </Context.Provider>
+  );
+};
 
 Provider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default { Context, Provider };
+export { Context, Provider };
