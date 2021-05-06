@@ -13,8 +13,9 @@ const updateUserName = async (newName, email) => {
 };
 
 const registerOrder = async (order) => {
-  const registeredOrder = await UserModel.registerOrder(order);
-  return { status: 200, message: registeredOrder };
+  const { id } = await UserModel.getByEmail(order.email);
+  const registeredOrder = await UserModel.registerOrder({ id, ...order });
+  return { status: 201, message: registeredOrder };
 };
 
 module.exports = {
