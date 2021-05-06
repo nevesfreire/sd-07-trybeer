@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const defaultForm = {
   name: '',
@@ -10,6 +10,22 @@ const defaultForm = {
 
 function FormRegister() {
   const [formRegister, setFormRegister] = useState(defaultForm);
+  const [buttonState, setButtonState] = useState(true);
+  const inputValidation = useCallback(() => {
+    const { email, name, password } = formRegister;
+    const emailRe = /\S+@\S+\.\S+/;
+    const nameRe = /^[a-zA-Z]{12,50}$/;
+    const passwordMinLength = 6;
+    return nameRe.test(name) && emailRe.test(email) && password.length >= passwordMinLength;
+  }, [formRegister]);
+
+  const handleButtonState = useCallback(() => {
+    if (inputValidation()) {
+      setButtonState(false);
+    } else {
+      setButtonState(true);
+    }
+  }, [inputValidation]);
 
   const handleImputChange = event => {
     const { value, name } = event.target;
@@ -38,6 +54,11 @@ function FormRegister() {
       role: handleRoleUser(checkbox),
     });
   }, [formRegister.checkbox]);
+
+  useEffect(() => {
+    handleButtonState();
+  }, [formRegister, handleButtonState]);
+
 
   return (
     <form>
@@ -83,7 +104,11 @@ function FormRegister() {
           Quero vender
         </label>
       </div>
-      <button type='submit' data-testid='signup-btn'>
+      <button 
+      type='submit' 
+      data-testid='signup-btn'
+      disabled={buttonState}
+      >        
         Cadastrar
       </button>
     </form>
