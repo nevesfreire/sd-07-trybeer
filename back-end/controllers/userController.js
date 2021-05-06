@@ -5,7 +5,10 @@ const create = async (req, res, next) => {
 
   try {
     const { statusCode, message } = await User.create(name, email, password, role);
-    res.status(statusCode).json({ statusCode, message });
+
+    const { user } = await User.findByEmailAndPassword(email, password);
+
+    res.status(statusCode).json({ statusCode, message, user });
   } catch (error) {
     next(error);
   }
