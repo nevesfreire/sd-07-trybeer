@@ -1,10 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 
 function Products() {
-  const { sideIsActive, setPageTitle, cart, setCart } = useContext(MyContext);
+  const {
+    sideIsActive,
+    setPageTitle,
+    cart,
+    setCart,
+    totalCart,
+    setTotalCart } = useContext(MyContext);
+
+  const history = useHistory();
+
+  // TESTA SE O USUÁRIO ESTÁ LOGADO
+
+  // useEffect(() => {
+  //   const getUser = () => {
+  //     const userStorage = JSON.parse(localStorage.getItem('user'));
+  //     if (!userStorage) return history.push('/login');
+  //   };
+  //   getUser();
+  // }, [history]);
 
   useEffect(() => {
     setPageTitle('TryBeer');
@@ -12,7 +31,6 @@ function Products() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
-  // const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
@@ -24,39 +42,53 @@ function Products() {
       });
   }, []);
 
+  useEffect(() => {
+    const getTotalCart = () => {
+      const sumCart = cart.reduce((total, atual) => atual.totalItem + total, 0);
+      return setTotalCart(sumCart);
+    };
+    getTotalCart();
+  }, [cart, setTotalCart]);
+
   const addInCart = (id, name, price) => {
     const productExists = cart.some((item) => item.name === name);
     const cartItem = cart.find((item) => item.name === name);
-    if (!productExists) return setCart([...cart, { id, name, price, quantity: 1 }]);
+    if (!productExists) {
+      return setCart([...cart, {
+        id,
+        name,
+        price,
+        quantity: 1,
+        totalItem: Number(price),
+      }]);
+    }
     const newQuantity = cartItem.quantity + 1;
-    const newCartItem = { ...cartItem, quantity: newQuantity };
+    const newTotalItem = cartItem.totalItem + Number(price);
+    const newCartItem = { ...cartItem, quantity: newQuantity, totalItem: newTotalItem };
     return setCart([...cart.filter((item) => item.name !== name), newCartItem]);
-
-    // console.log('add cart', cart);
-
-    // let productExists;
-    // if (cart.length > 1) {
-    //   productExists = cart.find((item) => item.id === id);
-    // }
-
-    // if (productExists) {
-    //   setCart(cart.splice(cart.indexOf(productExists), 1));
-    // } // encontre o repetido e remova ele
-
-    // console.log('remove cart', cart);
-    // console.log('productExists', productExists);
   };
 
   const getQuantity = (name) => {
     const cartItem = cart.find((item) => item.name === name);
-    return cartItem && cartItem.quantity;
+    return cartItem === undefined ? 0 : cartItem.quantity;
   };
 
-  const removeFromCart = (name) => {
-    // setQuantity(quantity < 1 ? quantity : quantity - 1);
+  const removeFromCart = (name, price) => {
     const cartItem = cart.find((item) => item.name === name);
-    const newQuantity = cartItem.quantity - 1;
-    setCart([...cart, { ...cartItem, quantity: newQuantity }]);
+    if (cartItem !== undefined) {
+      const newQuantity = cartItem.quantity < 1
+        ? cartItem.quantity : cartItem.quantity - 1;
+      const newTotalItem = cartItem && cartItem.totalItem - Number(price);
+      const newCartItem = { ...cartItem, quantity: newQuantity, totalItem: newTotalItem };
+      if (newQuantity < 1) return setCart(cart.filter((item) => item.name !== name));
+      return setCart([...cart.filter((item) => item.name !== name), newCartItem]);
+    }
+  };
+
+  const handleClick = () => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('totalCart', JSON.stringify(totalCart));
+    history.push('/checkout');
   };
 
   return (
@@ -82,11 +114,13 @@ function Products() {
                 <button
                   type="button"
                   data-testid={ `${index}-product-minus` }
-                  onClick={ () => removeFromCart(product.name) }
+                  onClick={ () => removeFromCart(product.name, product.price) }
                 >
                   -
                 </button>
-                <span data-testid={ `${index}-product-qtd` }>{ getQuantity(product.name) }</span>
+                <span data-testid={ `${index}-product-qtd` }>
+                  { getQuantity(product.name) }
+                </span>
                 <button
                   type="button"
                   data-testid={ `${index}-product-plus` }
@@ -96,14 +130,20 @@ function Products() {
                 </button>
               </div>
             ))}
+            <button
+              type="button"
+              data-testid="checkout-bottom-btn"
+              onClick={ () => handleClick() }
+              disabled={ totalCart === 0 }
+            >
+              Ver Carrinho
+              <span data-testid="checkout-bottom-btn-value">
+                { totalCart
+                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+              </span>
+            </button>
           </div>
         )}
-      {/* <button
-          type="button"
-          data-testid="checkout-bottom-btn"
-        >
-          Ver Carrinho R${}
-        </button> */}
     </div>
   );
 }

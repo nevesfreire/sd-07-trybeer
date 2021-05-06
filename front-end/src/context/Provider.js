@@ -10,6 +10,7 @@ function Provider({ children }) {
   const [pageTitle, setPageTitle] = useState('TryBeer');
   const [sideIsActive, setSideIsActive] = useState(false);
   const [cart, setCart] = useState([]);
+  const [totalCart, setTotalCart] = useState(0);
 
   const valuesProvided = {
     email,
@@ -26,6 +27,8 @@ function Provider({ children }) {
     setSideIsActive,
     cart,
     setCart,
+    totalCart,
+    setTotalCart,
   };
 
   return (
