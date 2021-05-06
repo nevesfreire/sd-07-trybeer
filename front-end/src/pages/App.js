@@ -5,11 +5,11 @@ import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
-  const [shouldRedirect] = useState(true);
+  // const [shouldRedirect] = useState(true);
 
   return (
     <div>
-      { shouldRedirect && <Redirect to="/login" /> }
+      {/* { shouldRedirect && <Redirect to="/login" /> } */}
       <Routes />
     </div>
   );
