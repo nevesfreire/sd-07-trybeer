@@ -6,7 +6,7 @@ const sales = async (request, response) => {
   try {
     const token = request.headers.authorization;
     const user = await checkToken(token);
-
+    
     const salesData = {
       userId: user.id,
       totalPrice: request.body.totalPrice,
