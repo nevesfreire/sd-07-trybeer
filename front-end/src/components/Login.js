@@ -3,6 +3,8 @@ import api from '../services/api';
 
 const regexEmail = /\S+@\S+\.\S+/;
 const passwordMinLength = 6;
+import { Link } from 'react-router-dom';
+
 
 const ComponentLogin = () => {
   const [labelLogin, setLabelLogin] = useState(true);
@@ -33,6 +35,7 @@ const ComponentLogin = () => {
           <label htmlFor="email" className="form-login">
             Email
             <input
+              data-testid="email-input"
               id="email"
               type="email"
               name="email"
@@ -40,9 +43,11 @@ const ComponentLogin = () => {
               onChange={ (event) => setEmailLabel(event.target.value) }
             />
           </label>
+
           <label htmlFor="password" className="form-login">
-            Password
+            Senha
             <input
+              data-testid="password-input"
               id="password"
               type="password"
               name="password"
@@ -50,6 +55,7 @@ const ComponentLogin = () => {
               onChange={ (event) => inputValidation(event.target.value) }
             />
           </label>
+
           <button type="submit" disabled={ labelLogin } className="btn-submit-login">
             Login
           </button>
@@ -58,6 +64,26 @@ const ComponentLogin = () => {
       <div className="container-link">
         <div className="link-login">Terms of use</div>
         <div className="link-login">Privacy Police</div>
+
+          <button
+            data-testid="signin-btn"
+            type="button"
+            disabled={ labelLogin }
+          >
+            Entrar
+          </button>
+        </form>
+      </div>
+      <div>
+        <button type="button" data-testid="no-account-btn">
+          <Link to="/register">
+            Ainda não tenho conta
+          </Link>
+        </button>
+      </div>
+      <div>
+        <div>Terms of use</div>
+        <div>Privacy Police</div>
       </div>
     </div>
   );
