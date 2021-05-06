@@ -31,7 +31,7 @@ function LoginForm() {
       password,
     };
     // req da api enviando:
-    return response = userLogin(user)
+    return userLogin(user)
       .then((apiResponse) => {
         localStorage.setItem('user', JSON.stringify(apiResponse));
         if (response) {
