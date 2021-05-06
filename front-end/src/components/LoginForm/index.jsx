@@ -34,7 +34,7 @@ function LoginForm() {
     return userLogin(user)
       .then((apiResponse) => {
         localStorage.setItem('user', JSON.stringify(apiResponse));
-        if (response) {
+        if (apiResponse) {
           const { role } = apiResponse;
           setRole(role);
           console.log('role', role);
