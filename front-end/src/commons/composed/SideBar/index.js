@@ -30,7 +30,7 @@ function SideBar({ history }) {
       <button
         type="button"
         data-testid="side-menu-item-logout"
-        onClick={ () => history.push('/products') }
+        onClick={ () => history.push('/login') }
       >
         Sair
       </button>

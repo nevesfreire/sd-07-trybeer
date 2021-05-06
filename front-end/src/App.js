@@ -10,11 +10,11 @@ import './App.css';
 function App() {
   return (
     <Switch>
-      <Route path="/register" />
-      <Route exact path="/products" component={ Products } />
-      <Route exact path="/profile" component={ Profile } />
-      <Route exact path="/orders" component={ Orders } />
+      <Route path="/products" component={ Products } />
+      <Route exact path="/admin/orders" component={ Orders } />
       <Route path="/login" component={ Login } />
+      <Route path="/register" />
+      <Route exact path="/profile" component={ Profile } />
       <Redirect from="/" to="/login" />
     </Switch>
   );

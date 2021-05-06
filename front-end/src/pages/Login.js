@@ -1,33 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
+import loginRequest from '../services/usersApi';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-  const [redirect, setRedirect] = useState(false);
-
-  const verifyUserData = () => {
-    const six = 6;
-    const regex = /\S+@\S+\.\S+/;
-    if (regex.test(email) && password.length > six) setIsDisable(false);
-    else setIsDisable(true);
-  };
-
-  const handleClick = () => {
-    // Setar as coisas do local storage aqui
-    setRedirect(true);
+  const [isLogged, setIsLogged] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [role, setRole] = useState('');
+  const handleClick = async () => {
+    const response = await loginRequest(email, password);
+    const { status } = response;
+    const ok = 200;
+    if (status === ok) {
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      const payload = jwtDecode(token);
+      setRole(payload.role);
+      return setIsLogged(true);
+    }
+    setErrorMessage(response.data.message);
   };
 
   const history = useHistory();
 
   useEffect(() => {
-    verifyUserData();
-  }, [email, password, verifyUserData]);
+    const verifyUserData = () => {
+      const minLength = 6;
+      const regex = /\S+@\S+\.\S+/;
+      if (regex.test(email) && password.length >= minLength) setIsDisable(false);
+      else setIsDisable(true);
+    };
 
-  console.log(redirect);
+    verifyUserData();
+  }, [email, password]);
+
   return (
-    <div>
+    <>
       <label htmlFor="email-input">
         Email
         <input
@@ -58,15 +69,19 @@ function Login() {
       >
         Entrar
       </button>
+      <h5>{errorMessage}</h5>
       <button
         type="button"
         data-testid="no-account-btn"
         onClick={ () => history.push('/register') }
       >
-        Ainda nao tenho conta
+        Ainda não tenho conta
       </button>
-      {/* { redirect && <Redirect to="/outratela" />} */}
-    </div>
+
+      { (isLogged && role === 'client') && <Redirect to="/products" /> }
+      { (isLogged && role === 'administrator') && <Redirect to="/admin/orders" /> }
+
+    </>
   );
 }
 
