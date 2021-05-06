@@ -4,6 +4,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
+  const [data, setData] = useState('');
 
   const verifyData = () => {
     const six = 6;
@@ -12,16 +13,19 @@ function Login() {
     else setIsDisable(true);
   };
 
-  const handleSubmit = () => {
-    console.log('Clicou')
+  const handleSubmit = async () => {
+    console.log({email, password})
     fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: { email: `${email}`, password: `${password}` },
+      body: JSON.stringify({ email, password }),
     }).then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setData(data)
+        console.log(data)
+      });
   };
 
   useEffect(() => {
@@ -50,7 +54,7 @@ function Login() {
         type="button"
         data-testid="signin-btn"
         disabled={ isDisable }
-        onClick={ handleSubmit } // tirei () do handleSubmit
+        onClick={ handleSubmit } // tirei () do handleSubmit 
       >
         Entrar
       </button>
