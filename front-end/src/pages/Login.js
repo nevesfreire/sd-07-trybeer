@@ -38,7 +38,7 @@ function Login() {
   }, [email, password]);
 
   return (
-    <div>
+    <>
       <label htmlFor="email-input">
         Email
         <input
@@ -77,11 +77,11 @@ function Login() {
       >
         Ainda não tenho conta
       </button>
-      {/* { redirect && <Redirect to="/products" /> } */}
+
       { (isLogged && role === 'client') && <Redirect to="/products" /> }
       { (isLogged && role === 'administrator') && <Redirect to="/admin/orders" /> }
 
-    </div>
+    </>
   );
 }
 
