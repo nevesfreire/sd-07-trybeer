@@ -69,7 +69,7 @@ Em caso de sucesso, o retorno é o seguinte:
 
 ## Carregando imagem do banco
 
-Rota: <http://localhost:3001/images/nome> do arquivo.jpg
+Rota: localhost:3001/images/nome do arquivo.jpg
 Metodo: GET
 
 Essa rota retorna a imagem, o nome do arquivo pode ser passado com espaço.
@@ -78,7 +78,7 @@ Em caso de sucesso, é retornada a imagem.
 
 ## Carregando todos os produtos
 
-Rota: <http://localhost:3001/products>
+Rota: localhost:3001/products
 Metodo: GET
 
 Caso sucesso:
