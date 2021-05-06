@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import FormRegister from "../../component/FormRegister";
-
+import React, { useState, useEffect } from 'react';
+import FormRegister from '../../component/FormRegister';
 
 function Register() {
   return (
-    <FormRegister/>
-  )
+    <FormRegister />
+  );
 }
 
 export default Register;
