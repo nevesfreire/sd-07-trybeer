@@ -12,11 +12,11 @@ const create = async (req, res) => {
   }
 };
 
-const updateUserEmail = async (req, res) => {
-  const { email } = req.body;
+const updateUserName = async (req, res) => {
+  const { name } = req.body;
   const { authorization } = req.headers;
   try {
-    const message = await UserService.updateUserEmail(email, authorization);
+    const message = await UserService.updateUserName(name, authorization);
     return res.status(201).send({ message });  
   } catch (error) {
     return res.status(401).json({ error: error.message });
@@ -38,4 +38,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { create, login, updateUserEmail };
+module.exports = { create, login, updateUserName };

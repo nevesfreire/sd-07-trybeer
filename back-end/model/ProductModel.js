@@ -3,10 +3,11 @@ const connection = require('./connection');
 const allProducts = async () => {
     try {
         const products = await connection.execute(
-            'SELECT * FROM trybeer.products;',
+            'SELECT * FROM products;',
         );
         return products;
     } catch (error) {
+        console.log(error);
         throw new Error('Erro de conexão');
     }
 };
