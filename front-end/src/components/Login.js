@@ -12,7 +12,9 @@ const ComponentLogin = () => {
 
   const inputValidation = (password) => {
     setPasswordLabel(password);
-    const result = regexEmail.test(emailLabel) && passwordLabel.length >= passwordMinLength;
+    const result = regexEmail.test(emailLabel)
+    && passwordLabel.length
+    >= passwordMinLength;
     setLabelLogin(!result);
   };
   const params = { email: emailLabel, password: passwordLabel };
