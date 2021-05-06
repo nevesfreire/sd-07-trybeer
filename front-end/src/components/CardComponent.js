@@ -32,9 +32,6 @@ function CardComponent({ product, sumTotal }) {
       setQuantity(0);
     }
     sumTotal();
-    // const products = JSON.parse(localStorage.getItem('cart')) || [];
-    // setState(products);
-    // totalPrice();
   };
 
   const handleClickRemove = () => {
@@ -48,9 +45,6 @@ function CardComponent({ product, sumTotal }) {
       setQuantity(0);
     }
     sumTotal();
-    // const products = JSON.parse(localStorage.getItem('cart')) || [];
-    // setState(products);
-    // totalPrice();
   };
 
   return (
