@@ -1,18 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useParams } from 'react-router';
 
-export default function AdminOrdersID({ match }) {
-  const { params } = match;
+export default function AdminOrdersID() {
+  const { id } = useParams;
   return (
     <div>
       <h1>
         Admin-pedido
-        {params.id}
+        {id}
       </h1>
     </div>
   );
 }
-
-AdminOrdersID.propTypes = {
-  match: PropTypes.isRequired,
-};

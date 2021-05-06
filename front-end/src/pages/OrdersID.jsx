@@ -1,18 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useParams } from 'react-router';
 
-export default function OrdersID({ match }) {
-  const { params } = match;
+export default function OrdersID() {
+  const { id } = useParams();
   return (
     <div>
       <h1>
         Cliente-pedido
-        {params.id}
+        {id}
       </h1>
     </div>
   );
 }
-
-OrdersID.propTypes = {
-  match: PropTypes.isRequired,
-};
