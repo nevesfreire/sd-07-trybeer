@@ -1,5 +1,6 @@
 const express = require('express');
 const { userController } = require('../controllers');
+const { authMiddleware } = require('../middlewares');
 
 const router = express.Router();
 
@@ -7,6 +8,6 @@ const router = express.Router();
 router.post('/login', userController.userLogin);
 router.post('/login/:email', userController.userEmail);
 router.post('/registration', userController.userRegistration);
-router.get('/data', userController.data);
+router.put('/profile', authMiddleware.checkIfUserIsAuthenticated, userController.userProfile);
 
 module.exports = router;

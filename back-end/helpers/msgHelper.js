@@ -5,6 +5,10 @@ const STATUS_MESSAGE = {
   USER_FOUND: 'User found',
   USER_CREATED: 'User successfully created',
   DUPLICATED_EMAIL: 'There is already a registered user with this email',
+  NAME_UPDATED: 'The name has been updated successfully',
+  MISSING_TOKEN: 'Missing token',
+  MALFORMED_TOKEN: 'JWT malformed',
+  EMAIL_NOT_EQUAL: 'Informed email is not valid',
 };
 
 module.exports = STATUS_MESSAGE;
