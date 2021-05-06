@@ -2,7 +2,6 @@ const userPasswordMessage = {
   message: 'Incorrect email or password',
 };
 
-
 const updateNameMessageSuccess = {
   message: 'Atualização concluída com sucesso',
 };

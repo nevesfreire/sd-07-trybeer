@@ -38,7 +38,6 @@ const loginUser = async (email, password) => {
   return customAnswer({ token }, OK);
 };
 
-
 const profileNameUpdate = async (name, email) => {
   const userUpdated = await userModel.profileNameUpdate(name, email);
   if (!userUpdated) {

@@ -14,7 +14,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-
 const profileNameUpdate = async (req, res) => {
   try {
     const { name, email } = req.body;
@@ -32,7 +31,6 @@ const registerUser = async (req, res) => {
     const { name, email, password, role } = req.body;
     userServices.registerUser(name, email, password, role);
     return res.status(OK).json(userRegisterSuccess);
-
   } catch (error) {
     console.log(error);
     return res.status(INTERNAL_SERVER_ERROR).json(error);
