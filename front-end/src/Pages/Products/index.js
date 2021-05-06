@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import verifyUserLocalStorage from '../../util/changeLocalStorage';
 import TryBeerContext from '../../context/TryBeerContext';
-import { Link } from 'react-router-dom';
 import TopBar from '../../Components/TopBar';
 import { getProducts } from '../../servicesAPI/api';
 import ProductCard from '../../Components/ProductCard';
@@ -22,9 +22,7 @@ const Products = () => {
   const getProductList = async () => {
     const { data } = await getProducts();
     if (!localStorage.getItem('cart')) {
-      const cart = data.map(product => {
-        return { ...product, quantity: 0 };
-      })
+      const cart = data.map((product) => ({ ...product, quantity: 0 }));
       setProducts(cart);
       localStorage.setItem('cart', JSON.stringify(cart));
       localStorage.setItem('totalCartPrice', JSON.stringify(0));
@@ -35,26 +33,30 @@ const Products = () => {
       setProducts(productsLS);
     }
     setIsLoading(false);
-  }
+  };
 
   useEffect(() => {
     getProductList();
   }, []);
 
   return (
-    <div> 
+    <div>
       <TopBar />
-      { isLoading ? <div>Carregando</div> : products?.map((product, index) => (
-        <ProductCard product={ product } index={ index } key={ index }/>
-      ))
-      }
+      { isLoading ? <div>Carregando</div> : products.map((product, index) => (
+        <ProductCard product={ product } index={ index } key={ index } />
+      ))}
       <Link to="/checkout">
-      <button type="button" disabled={ totalPrice === 0 } data-testid="checkout-bottom-btn">
+        <button
+          type="button"
+          disabled={ totalPrice === 0 }
+          data-testid="checkout-bottom-btn"
+        >
           Ver Carrinho
           <div data-testid="checkout-bottom-btn-value">
-            {totalPrice === 0 ? 'R$ 0,00' : `R$ ${Number(totalPrice).toFixed(2).replace('.',',')}`}
+            {totalPrice === 0 ? 'R$ 0,00'
+              : `R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`}
           </div>
-      </button>
+        </button>
       </Link>
     </div>
   );

@@ -16,8 +16,8 @@ function Provider({ children }) {
     localStorage.setItem('cart', JSON.stringify(products));
 
     setTotalPrice(Number(total));
-  }
-  
+  };
+
   const context = {
     cart,
     setCart,
