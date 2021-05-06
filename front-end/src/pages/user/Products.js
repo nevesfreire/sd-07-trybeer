@@ -4,7 +4,7 @@ import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 
 function Products() {
-  const { sideIsActive, setPageTitle } = useContext(MyContext);
+  const { sideIsActive, setPageTitle, cart, setCart } = useContext(MyContext);
 
   useEffect(() => {
     setPageTitle('TryBeer');
@@ -12,8 +12,7 @@ function Products() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
-  const [quantity, setQuantity] = useState(0);
-  const [cart, setCart] = useState([]);
+  // const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
@@ -25,27 +24,40 @@ function Products() {
       });
   }, []);
 
-  const removeFromCart = () => {
-    setQuantity(quantity < 1 ? quantity : quantity - 1)
-  }
-
   const addInCart = (id, name, price) => {
-    setQuantity(quantity + 1);
-    setCart([...cart, { id, name, price, quantity }]);
-    console.log("add cart", cart);
+    const productExists = cart.some((item) => item.name === name);
+    const cartItem = cart.find((item) => item.name === name);
+    if (!productExists) return setCart([...cart, { id, name, price, quantity: 1 }]);
+    const newQuantity = cartItem.quantity + 1;
+    const newCartItem = { ...cartItem, quantity: newQuantity };
+    return setCart([...cart.filter((item) => item.name !== name), newCartItem]);
 
-    let productExists;
-    if (cart.length > 1) {
-      productExists = cart.find((item) => item.id === id);
-    }
-    
-    if (productExists) {
-      setCart(cart.splice(cart.indexOf(productExists), 1));
-    } // encontre o repetido e remova ele
+    // console.log('add cart', cart);
 
-    console.log("remove cart", cart);
-    console.log("productExists", productExists);
-  }
+    // let productExists;
+    // if (cart.length > 1) {
+    //   productExists = cart.find((item) => item.id === id);
+    // }
+
+    // if (productExists) {
+    //   setCart(cart.splice(cart.indexOf(productExists), 1));
+    // } // encontre o repetido e remova ele
+
+    // console.log('remove cart', cart);
+    // console.log('productExists', productExists);
+  };
+
+  const getQuantity = (name) => {
+    const cartItem = cart.find((item) => item.name === name);
+    return cartItem && cartItem.quantity;
+  };
+
+  const removeFromCart = (name) => {
+    // setQuantity(quantity < 1 ? quantity : quantity - 1);
+    const cartItem = cart.find((item) => item.name === name);
+    const newQuantity = cartItem.quantity - 1;
+    setCart([...cart, { ...cartItem, quantity: newQuantity }]);
+  };
 
   return (
     <div>
@@ -70,15 +82,15 @@ function Products() {
                 <button
                   type="button"
                   data-testid={ `${index}-product-minus` }
-                  onClick={ () => removeFromCart() }
+                  onClick={ () => removeFromCart(product.name) }
                 >
                   -
                 </button>
-                <span data-testid={ `${index}-product-qtd` }>{ quantity }</span>
+                <span data-testid={ `${index}-product-qtd` }>{ getQuantity(product.name) }</span>
                 <button
                   type="button"
                   data-testid={ `${index}-product-plus` }
-                  onClick={ () => addInCart(product.id, product.name, product.price ) }
+                  onClick={ () => addInCart(product.id, product.name, product.price) }
                 >
                   +
                 </button>
@@ -86,7 +98,7 @@ function Products() {
             ))}
           </div>
         )}
-        {/* <button
+      {/* <button
           type="button"
           data-testid="checkout-bottom-btn"
         >
