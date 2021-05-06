@@ -14,7 +14,10 @@ const userLogin = async (req, res) => {
     const token = jwt.sign({ data: email }, secret, jwtConfig);
     const login = await loginService(email, password);
     console.log(login);
-    res.status(httpStatus.OK).json({ token });
+    const loginInfo = {
+      name: login.name, role: login.role, email: login.email,
+    };
+    res.status(httpStatus.OK).json({ ...loginInfo, token });
   } catch (error) {
     res.status(httpStatus.BAD_REQUEST).json({
       message: 'não deu certo',
