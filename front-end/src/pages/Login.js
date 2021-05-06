@@ -15,7 +15,6 @@ function Login() {
     const response = await loginRequest(email, password);
     const { status } = response;
     const ok = 200;
-
     if (status === ok) {
       const { token } = response.data;
       localStorage.setItem('token', token);
@@ -32,8 +31,8 @@ function Login() {
     const verifyUserData = () => {
       const minLength = 6;
       const regex = /\S+@\S+\.\S+/;
-      if (regex.test(email) && password.length >= minLength) return setIsDisable(false);
-      else return setIsDisable(true);
+      if (regex.test(email) && password.length >= minLength) setIsDisable(false);
+      else setIsDisable(true);
     };
 
     verifyUserData();
