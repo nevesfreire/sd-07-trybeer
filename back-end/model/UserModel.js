@@ -7,7 +7,9 @@ const create = async (name, email, role, password) => {
       [name, email, role, password],
     );
     return { id: newUser[0].insertId, name, email, role, password };
-  } catch (e) { return e; }
+  } catch (error) { 
+    throw new Error('Email já cadastrado');
+   }
 };
 
 const findByEmail = async (email) => {
@@ -16,6 +18,19 @@ const findByEmail = async (email) => {
       'SELECT * FROM users WHERE email = ?', [email],
     );
     return user[0][0];
-  } catch (e) { return e; }
+  } catch (e) { 
+    throw new Error('Erro de conexão');
+   }
 };
-module.exports = { create, findByEmail };
+
+const updateByEmail = async (oldEmail, newEmail) => {
+  try {
+    const user = await connection.execute(
+      'UPDATE users SET email = ? WHERe email = ?', [newEmail, oldEmail],
+    );
+    return user;
+  } catch (e) { 
+    throw new Error('Email já cadastrado.');
+   }
+};
+module.exports = { create, findByEmail, updateByEmail };
