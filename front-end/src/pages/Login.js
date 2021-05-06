@@ -10,14 +10,7 @@ function Login() {
   const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [role, setRole] = useState('');
-
-  const verifyUserData = () => {
-    const minLength = 6;
-    const regex = /\S+@\S+\.\S+/;
-    if (regex.test(email) && password.length >= minLength) setIsDisable(false);
-    else setIsDisable(true);
-  };
-
+  // Line 14:9:  The 'verifyUserData' function makes the dependencies of useEffect Hook (at line 39) change on every render. Move it inside the useEffect callback. Alternatively, wrap the 'verifyUserData' definition into its own useCallback() Hook  react-hooks/exhaustive-deps
   const handleClick = async () => {
     const response = await loginRequest(email, password);
     const { status } = response;
@@ -35,8 +28,15 @@ function Login() {
   const history = useHistory();
 
   useEffect(() => {
+    const verifyUserData = () => {
+      const minLength = 6;
+      const regex = /\S+@\S+\.\S+/;
+      if (regex.test(email) && password.length >= minLength) return setIsDisable(false);
+      else return setIsDisable(true);
+    };
+
     verifyUserData();
-  }, [email, password, verifyUserData]);
+  }, [email, password]);
 
   return (
     <div>
