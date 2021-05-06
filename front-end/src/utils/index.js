@@ -6,11 +6,11 @@ const emailAndPasswordValidation = (email, password) => {
 };
 
 const nameValidation = (name) => {
-  const nameRegex = /^[a-zA-Z\s\-\,]{11,}.\*?$/;
+  const nameRegex = /^[a-zA-Z\s\-,]{11,}.\*?$/;
   return nameRegex.test(name);
-}
+};
 
 export {
   emailAndPasswordValidation,
   nameValidation,
-}
+};

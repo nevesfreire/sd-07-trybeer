@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { emailAndPasswordValidation, nameValidation } from '../../utils';
+import { loginFetch, newUserRegister, pathRedirectByRole, searchUserByEmail }
+  from '../../services';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -9,49 +11,45 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [checkbox, setCheckbox] = useState(false);
   const [role, setRole] = useState('user');
+  const [userRegisterValid, setUserRegisterValid] = useState(true);
 
   const registerValid = () => {
     const result = nameValidation(name) && emailAndPasswordValidation(email, password);
     return result;
-  }
-
+  };
   useEffect(() => {
-    checkbox ? setRole('administrator') : setRole('user');
+    if (checkbox) setRole('administrator');
+    else setRole('client');
   }, [checkbox]);
 
   const history = useHistory();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    let newUser;
-    fetch('http://localhost:3001/user/register', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-        role,
-      }),
-    }).then((response) => response.json())
-      .then((responseJSON) => {
-        newUser = responseJSON;
-        localStorage.setItem('user', JSON.stringify(newUser));
-        console.log('submit');
-        if (newUser.role === 'client') history.push('/products');
-        if (newUser.role === 'administrator') history.push('/admin/orders');
-      });
     console.log('botão cadastrar');
+
     console.log('check', checkbox);
+    const newUserData = { name, email, password, role };
+    const userExist = await searchUserByEmail(email);
+    console.log('userExists', userExist.message);
+
+    if (userExist.message === 'usuário já existe') setUserRegisterValid(false);
+
+    if (userExist.message === 'usuário não encontrado') {
+      await newUserRegister(newUserData);
+
+      const user = await loginFetch({ email, password });
+
+      localStorage.setItem('user', JSON.stringify(user));
+      history.push(pathRedirectByRole(user.role));
+    }
   };
 
   return (
     <main>
       <Form className="form__login">
         <Form.Group>
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Nome</Form.Label>
           <Form.Control
             data-testid="signup-name"
             type="text"
@@ -84,10 +82,13 @@ export default function Register() {
             data-testid="signup-seller"
             type="checkbox"
             label="Quero vender"
-            onChange={() => setCheckbox(!checkbox)}
+            onChange={ () => setCheckbox(!checkbox) }
 
           />
         </Form.Group>
+        <Form.Text className="text-muted" hidden={ userRegisterValid }>
+          Já existe um usuário com esse e-mail.
+        </Form.Text>
         <Button
           data-testid="signup-btn"
           variant="primary"
@@ -100,5 +101,5 @@ export default function Register() {
         </Button>
       </Form>
     </main>
-  )
+  );
 }
