@@ -6,7 +6,7 @@ const validateTokenMiddleware = require('../middlewares/validateTokenMiddleware'
 const router = express.Router();
 router.use(cors());
 
-router.route('/sale')
-  .post(saleController.createSale);
+router.route('/sales')
+  .post(validateTokenMiddleware, saleController.createSale);
 
 module.exports = router;
