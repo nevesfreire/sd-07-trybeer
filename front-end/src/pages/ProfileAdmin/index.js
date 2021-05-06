@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 function ProfileAdmin() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user')) || { name: null, role: null };
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!user.name) history.push('/login');
+    if (user.role === 'administrator') history.push('/admin/profile');
+  }, [history, user, user.name]);
 
   return (
     <div>

@@ -6,13 +6,18 @@ function Profile() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user')) || { name: null, role: null };
+
   const history = useHistory();
 
   useEffect(() => {
+    if (!user.name) history.push('/login');
     if (user.role === 'administrator') history.push('/admin/profile');
+  }, [history, user, user.name]);
+
+  useEffect(() => {
     setName(user.name);
-  }, [history, user.name, user.role]);
+  }, [user.name]);
 
   const handleClick = () => {
     api.updateUser(name, user.token);
