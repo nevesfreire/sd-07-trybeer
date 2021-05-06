@@ -6,7 +6,7 @@ import { Card, Image, Button } from 'semantic-ui-react';
 
 import * as STORAGE from '../helpers/localStorageHelper';
 
-function CardComponent({ product }) {
+function CardComponent({ product, sumTotal }) {
   const { id, name, price, url_image: urlImage } = product;
 
   const [quantity, setQuantity] = useState(0);
@@ -31,7 +31,7 @@ function CardComponent({ product }) {
     } else {
       setQuantity(0);
     }
-
+    sumTotal();
     // const products = JSON.parse(localStorage.getItem('cart')) || [];
     // setState(products);
     // totalPrice();
@@ -47,6 +47,7 @@ function CardComponent({ product }) {
     } else {
       setQuantity(0);
     }
+    sumTotal();
     // const products = JSON.parse(localStorage.getItem('cart')) || [];
     // setState(products);
     // totalPrice();
@@ -65,7 +66,7 @@ function CardComponent({ product }) {
 
         <Card.Description data-testid={ `${id - 1}-product-price` }>
           <span>R$</span>
-          {price}
+          {price.replace('.', ',')}
         </Card.Description>
       </Card.Content>
 
@@ -92,6 +93,7 @@ CardComponent.propTypes = {
     price: PropTypes.string,
     url_image: PropTypes.string,
   }).isRequired,
+  sumTotal: PropTypes.func.isRequired,
 };
 
 export default CardComponent;
