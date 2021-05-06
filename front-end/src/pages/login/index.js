@@ -14,7 +14,6 @@ export default function Login() {
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const passwordMinLength = 6;
     const validPassword = password.length >= passwordMinLength;
-    console.log(validEmail && validPassword);
     return validEmail && validPassword;
   };
 
@@ -25,10 +24,12 @@ export default function Login() {
     });
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const { email, password } = loginInfo;
-    const result = login(email, password);
-    setShouldRedirect(result.role);
+    const result = await login(email, password);
+    if (result&&result) {
+      setShouldRedirect(result.role);
+    }    
   };
 
   if (shouldRedirect) {
