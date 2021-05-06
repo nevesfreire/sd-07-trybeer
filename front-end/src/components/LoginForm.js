@@ -25,7 +25,6 @@ function LoginForm() {
       localStorage.setItem('user', JSON.stringify(user));
       if (role === 'client') history.push('/products');
       if (role === 'administrator') history.push('/admin/orders');
-      // history.push('/admin/orders');
     }
   };
 

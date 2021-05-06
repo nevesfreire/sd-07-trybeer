@@ -36,7 +36,27 @@ const login = async (req, res) => {
   }
 };
 
+const editUser = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const { id } = req.user;
+    const result = await userService.validateNewName(name, id);
+    res.status(200).json({ message: result });
+  } catch (error) {
+    const { message, code } = error;
+    if (code) {
+      return res.status(code).json({
+        message,
+      });
+    }
+    return res.status(500).json({
+      message,
+    });
+  }
+};
+
 module.exports = { 
   createUser,
   login,
+  editUser,
 };
