@@ -12,4 +12,14 @@ const getAll = async (req, res) => {
   }
 };
 
-module.exports = { getAll };
+const create = async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
+    const user = await service.create(name, email, password, role);
+    res.status(SUCESS).json(user);
+  } catch (error) {
+    res.status(FAIL);
+  }
+};
+
+module.exports = { getAll, create };

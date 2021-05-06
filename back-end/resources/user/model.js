@@ -14,4 +14,13 @@ const getByEmail = async (email) => {
   return user;
 };
 
-module.exports = { getAll, getByEmail };
+const create = async (name, email, password, role) => {
+  const user = await conn.execute(
+    `INSERT INTO users (id, name, email, password, role) VALUES
+    ('?', '?', '?', '?')`, [name, email, password, role],
+    );
+    console.log(user);
+    return user;
+};
+
+module.exports = { getAll, getByEmail, create };

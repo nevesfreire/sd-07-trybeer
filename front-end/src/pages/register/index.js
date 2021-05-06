@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function Register() {
-  const [shouldRedirect, setShouldRedirect] = useState('');
+  // const [shouldRedirect, setShouldRedirect] = useState('');
   const [registerInfo, setRegisterInfo] = useState({
     name: '',
     email: '',
@@ -26,9 +26,10 @@ export default function Register() {
     });
   };
 
-  const handleClick = async () => {
+  /* const handleClick = async () => {
     setShouldRedirect(true);
   };
+  */
 
   return (
     <div>
@@ -81,7 +82,7 @@ export default function Register() {
         type="button"
         data-testid="signup-btn"
         disabled={ !verifyInput() }
-        onClick={ handleClick }
+        // onClick={ handleClick }
       >
         Cadastrar
       </button>
