@@ -31,7 +31,18 @@ const createUserController = async (req, res) => {
   }
 };
 
+const updateName = async (req, res) => {
+  const { name, email } = req.body;
+  try {
+    await usersService.updateName(name, email);
+    res.status(201).json({ message: 'atualizado com sucesso' });
+  } catch (error) {
+    return res.status(500).json(error.message);
+  }
+};
+
 module.exports = {
   findUserByEmail,
   createUserController,
+  updateName,
 };
