@@ -22,3 +22,13 @@ export async function fetchRegisterNewUser({ name, password, email, role }) {
   // 409 email usado;
   return response;
 }
+
+export async function fetchProductList() {
+  const response = await fetch('http://localhost:3001/products', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  const list = await response.json();
+  console.log(list);
+  return list;
+}
