@@ -6,10 +6,7 @@ const Header = () => {
   const [sideBar, setSideBar] = useState(false);
 
   const logout = () => {
-    localStorage.setItem('token', JSON.stringify(''));
-    localStorage.setItem('name', JSON.stringify(''));
-    localStorage.setItem('role', JSON.stringify(''));
-    localStorage.setItem('email', JSON.stringify(''));
+    localStorage.clear();
   };
 
   return (
@@ -26,51 +23,54 @@ const Header = () => {
         <h2 data-testid="top-title">TryBeer</h2>
       </div>
       {sideBar
-      && <div>
-        <div className="side-menu-container">
+      && (
           <div>
-            <Link
-              className="links"
-              to="/products"
-              data-testid="side-menu-item-products"
-            >
-              Produtos
-            </Link>
+            <div className="side-menu-container">
+              <div>
+                <Link
+                  className="links"
+                  to="/products"
+                  data-testid="side-menu-item-products"
+                >
+                  Produtos
+                </Link>
+              </div>
+              <div>
+                <Link
+                  className="links"
+                  to="/orders"
+                  data-testid="side-menu-item-my-orders"
+                >
+                  Meus Pedidos
+                </Link>
+              </div>
+              <div>
+                <Link
+                  className="links"
+                  to="/profile"
+                  data-testid="side-menu-item-my-profile"
+                >
+                  Meu Perfil
+                </Link>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  onClick={ () => logout() }
+                >
+                  <Link
+                    to="/login"
+                    data-testid="side-menu-item-logout"
+                    className="links"
+                  >
+                    Sair
+                  </Link>
+                </button>
+              </div>
+            </div>
           </div>
-          <div>
-            <Link
-              className="links"
-              to="/orders"
-              data-testid="side-menu-item-my-orders"
-            >
-              Meus Pedidos
-            </Link>
-          </div>
-          <div>
-            <Link
-              className="links"
-              to="/profile"
-              data-testid="side-menu-item-my-profile"
-            >
-              Meu Perfil
-            </Link>
-          </div>
-          <div>
-            <button
-              type="submit"
-              onClick={ () => logout() }
-            >
-              <Link
-                to="/login"
-                data-testid="side-menu-item-logout"
-                className="links"
-              >
-                Sair
-              </Link>
-            </button>
-          </div>
-        </div>
-      </div>}
+        )
+      }
     </div>
   );
 };
