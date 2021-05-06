@@ -6,7 +6,7 @@ const URL = process.env.REACT_APP_ENDPOINT || 'http://localhost:3001';
 
 const ENDPOINT = {
   login: '/login',
-  user: '/login/',
+  getUser: '/login/',
   // levels: '/level',
   // event: '/event',
   // user: '/user',
@@ -29,7 +29,7 @@ export async function getByEmail(email) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
   };
-  const request = await fetch(URL + ENDPOINT.user + email, requestOptions);
+  const request = await fetch(URL + ENDPOINT.getUser + email, requestOptions);
   const response = request.json();
   return response;
 }
