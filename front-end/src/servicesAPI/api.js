@@ -17,8 +17,13 @@ const updateNameUser = (userData, token) => api
   .then(({ status }) => ({ status }))
   .catch((e) => e.message);
 
+  const getProducts = () => api.get('/products')
+  .then(({ data }) => data)
+  .catch((e) => e.message);
+
 export {
   getUser,
   registerUser,
   updateNameUser,
+  getProducts,
 };
