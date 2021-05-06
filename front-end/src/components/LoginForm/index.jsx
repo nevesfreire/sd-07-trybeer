@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ApiContext from '../../context/apiContext';
+import validateLogin from './validationLogin';
 import {
   Form,
   Label,
@@ -19,6 +20,7 @@ import {
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userRole, setRole] = useState(null);
 
   const { userLogin } = useContext(ApiContext);
 
@@ -33,12 +35,18 @@ function LoginForm() {
     localStorage.setItem('user', JSON.stringify(response));
     if (response) {
       const { role } = response;
-      if (role === 'administrator') {
-        return <Redirect to="/admin/orders" />;
-      }
-      return <Redirect to="/products" />;
+      setRole(role);
+      console.log(role);
     }
   };
+
+  if (userRole && userRole === 'administrator') {
+    return <Redirect to={"/admin/orders"} />
+  }
+
+  if (userRole && userRole === 'client') {
+    return <Redirect to={"/products"} />
+  }
 
   return (
     <Form onSubmit={ onSubmitHandler }>
@@ -69,6 +77,7 @@ function LoginForm() {
       <Button
         type="submit"
         data-testid="signin-btn"
+        disabled={ validateLogin(email, password) }
       >
         Entrar
       </Button>
@@ -76,7 +85,7 @@ function LoginForm() {
         to="/register"
         data-testid="no-account-btn"
       >
-        ou registre-se
+        Ainda não tenho conta
       </RegisterButton>
     </Form>
   );

@@ -9,7 +9,7 @@ const ApiContext = createContext();
 export default ApiContext;
 
 export const ApiProvider = ({ children }) => {
-  // const [user, setUser] = useState('hahay');
+  // const [userRole, setUserRole] = useState(null);
 
   const userLogin = async ({ email, password }) => {
     const options = {
@@ -21,6 +21,7 @@ export const ApiProvider = ({ children }) => {
 
     return axios.request(options).then((response) => {
       const { data } = response;
+      console.log(data);
       return data;
     }).catch(({ err }) => {
       console.error(err);
