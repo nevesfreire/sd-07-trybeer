@@ -32,11 +32,12 @@ function LoginForm() {
     };
     // req da api enviando:
     const response = await userLogin(user);
+    console.log('user', response);
     localStorage.setItem('user', JSON.stringify(response));
     if (response) {
       const { role } = response;
       setRole(role);
-      console.log(role);
+      console.log('role', role);
     }
   };
 
