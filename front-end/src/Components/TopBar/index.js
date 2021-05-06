@@ -4,11 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar';
 import './index.css';
 import burguerBtn from '../../images/menu-svgrepo-com.svg';
+import verifyUserLocalStorage from '../../util/changeLocalStorage';
 
 export default function () {
   const history = useHistory();
   const path = history.location.pathname;
-  const { data: { role } } = JSON.parse(localStorage.getItem('user'));
+  const [userRole, setRole] = useState('');
   const [isClicked, setIsClicked] = useState(false);
   const [title, setTitle] = useState('TryBeer');
 
@@ -32,6 +33,10 @@ export default function () {
   };
 
   useEffect(() => {
+    const { data } = verifyUserLocalStorage();
+    if (!data) return history.push('/login');
+    const { data: { role } } = JSON.parse(localStorage.getItem('user'));
+    setRole(role);
     getTitle();
   });
 
@@ -49,7 +54,7 @@ export default function () {
         <h1 data-testid="top-title">{ title }</h1>
       </nav>
       <div hidden={ !isClicked }>
-        <SideBar role={ role } />
+        <SideBar role={ userRole } />
       </div>
     </div>
   );

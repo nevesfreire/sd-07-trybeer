@@ -1,4 +1,5 @@
 const userService = require('../services/userService');
+require('dotenv').config();
 
 const createUser = async (req, res) => {
     const { name, email, password, role } = req.body;

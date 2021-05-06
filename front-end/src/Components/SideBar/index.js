@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
+import verifyUserLocalStorage from '../../util/changeLocalStorage';
 
 export default function SideBar({ role }) {
+  const history = useHistory();
+
+  useEffect(() => {
+    const { data } = verifyUserLocalStorage();
+    if (!data) return history.push('/login');
+  }, [history]);
+
   if (role === 'administrator') {
     return (
       <div data-testid="side-bar-container" className="side-bar-container">
