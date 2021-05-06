@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import { updateUserName } from '../services/Api/user';
 
 function ClientProfileForm() {
@@ -6,6 +7,7 @@ function ClientProfileForm() {
   const name = JSON.parse(localStorage.getItem('name'));
   const token = JSON.parse(localStorage.getItem('token'));
   const [newName, setNewName] = useState('');
+  // const { push } = useHistory();
   // const [showError, setShowError] = useState(false);
 
   const validatename = () => {
@@ -24,14 +26,14 @@ function ClientProfileForm() {
     // }
     console.log(token);
     localStorage.setItem('name', JSON.stringify(newName, token));
-    const result = await updateUserName(newName, token);
-    console.log(result);
+    await updateUserName(newName, token);
+    // push('/products');
   };
 
   return (
     <div>
       <h1 data-testid="top-title">
-        Meu Perfil
+        Meu perfil
       </h1>
       <form>
         <label
@@ -48,13 +50,13 @@ function ClientProfileForm() {
         </label>
         <label
           htmlFor="email"
+          readOnly
           data-testid="profile-email-input"
         >
           Email
           <input
-            type="text"
+            type="email"
             id="email"
-            readOnly
             value={ email }
           />
         </label>
