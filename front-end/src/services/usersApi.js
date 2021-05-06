@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const PORT = 3002;
+const PORT = 3001;
 
 async function loginRequest(email, password) {
   const endpoint = `http://localhost:${PORT}/login`;
