@@ -5,7 +5,7 @@ const getAllProducts = () =>
 
 const getProductByName = async (name) =>
   connect.execute(
-    `SELECT id, price FROM Trybeer.products WHERE name = ${name}'`,
+    `SELECT id, price FROM Trybeer.products WHERE name = "${name}"`,
   );
 
 module.exports = {

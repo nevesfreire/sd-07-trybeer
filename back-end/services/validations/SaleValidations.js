@@ -7,7 +7,7 @@ const validateData = (data) =>
     totalPrice: Joi.number().min(1).precision(2).required(), 
     deliveryAddress: Joi.string().required(), 
     deliveryNumber: Joi.number(),
-    status: Joi.string(),
+    status: Joi.string().valid('Pendente', 'Entregue'),
   }).validate(data);
 
 module.exports = {
