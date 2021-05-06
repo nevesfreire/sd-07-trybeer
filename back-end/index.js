@@ -10,4 +10,6 @@ app.use(cors());
 
 app.use(routes);
 
+app.use('/images', express.static(`${__dirname}/images`));
+
 app.listen(process.env.PORT, () => console.log('Rodando...'));
