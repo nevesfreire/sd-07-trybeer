@@ -7,11 +7,10 @@ const create = async (name, email, role, password) => {
   return { newUser, status: 200 };
 };
 
-const updateUserEmail = async (email, authorization) => {
+const updateUserName = async (name, authorization) => {
   const decoded = jwt.decodeToken(authorization);
-  if (decoded.email === email) throw new Error('Email identico ao atual');
-  await UserModel.updateByEmail(decoded.email, email);
-  const success = `Email atualizado para ${email}.`;
+  await UserModel.updateByEmail(decoded.email, name);
+  const success = `Nome atualizado para ${name}.`;
   return success;
 };
 
@@ -30,4 +29,4 @@ const login = async (email, password) => {
   };
 };
 
-module.exports = { create, login, updateUserEmail };
+module.exports = { create, login, updateUserName };
