@@ -129,19 +129,18 @@ authorization: token
 
 Passar o seguinte json no body:
 
-{
- "productName":"",
- "quantity":1,
- "totalPrice":1,
- "deliveryAddress":"",
- "deliveryNumber":1,
- "status":""
-}
+[
+  {
+  "productName":"",
+  "quantity":1,
+  "totalPrice":1,
+  "deliveryAddress":"",
+  "deliveryNumber":1,
+  }
+]
 
 Os campos quantity, totalPrice, deliveryNumber devem ser numeros.
 
 quantity e totalPrice devem ser maiores que 1.
 
 Apenas os campos status e deliveryNumber são opcionais.
-
-status deve ser Pendente ou Entregue

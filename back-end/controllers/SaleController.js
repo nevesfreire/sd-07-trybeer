@@ -3,10 +3,10 @@ const { saleService } = require('../services');
 const createSale = async (req, res) => {
   try {
     const { body, user } = req;
-    const result = await saleService.createSale(body, user);
-    res.status(200).json(result);
+    await saleService.createSale(body, user);
+    res.status(200).json({ message: 'Compra realizada com sucesso!' });
   } catch (error) {
-    res.status(400).json(error);
+    res.status(400).json({ err: error.message });
   }
 };
 

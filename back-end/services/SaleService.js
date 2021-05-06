@@ -1,13 +1,12 @@
 const { saleModel, productModel, userModel } = require('../models');
 const { validateData } = require('./validations/SaleValidations');
 
-const errorProduct = { err: { message: 'Produto inexistente' } };
 const createSale = async (data, token) => {
   const validateArray = data.map((saleData) => validateData(saleData));
   const dataIsValid = validateArray.some((item) => item.error);
-  if (dataIsValid) throw errorProduct;
+  if (dataIsValid === true) throw validateArray[0].error.details[0];
 
-  const salePrice = await Promise.all(
+  const totalProductPrice = await Promise.all(
     data.map(async ({ productName, quantity }) => {
       const product = await productModel.getProductByName(productName);
       const price = (product[0].price * quantity);
@@ -16,17 +15,14 @@ const createSale = async (data, token) => {
   );
 
   const [userId] = await userModel.getUserEmail(token[0]);
-  console.log(userId[0].id);
-  const totalSalesValue = salePrice.reduce((acc, curr) => acc + curr);
+  const totalSalePrice = totalProductPrice.reduce((acc, curr) => acc + curr);
+  const [sale] = await saleModel.createSale(userId[0].id, totalSalePrice, data[0].deliveryAddress, 
+    data[0].deliveryNumber);
 
-  // const priceSale = product.price * productDb.quantity;
-
-  // const resultCreateSale = await saleModel.createSale(userId,
-  //   priceSale, data[0].deliveryAddress, data[0].deliveryNumber, data[0].status);
-
-  /*     productDB.map(async (product) => {
-    saleModel.createSaleProduct(, product.id)
-  }); */
+  data.map(async ({ productName, quantity }) => {
+  const [product] = await productModel.getProductByName(productName);
+  saleModel.createSaleProduct(sale.insertId, product.id, quantity);
+  });
 };
 
 module.exports = {
