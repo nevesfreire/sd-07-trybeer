@@ -8,7 +8,7 @@ const createSale = async (data, token) => {
   const [product] = await productModel.getProductByName(data.productName);
   if (product.length === 0) throw errorProduct;
   const totalPrice = (product.price * data.quantity);
-  const sale = saleModel.createSale()
+  const sale = saleModel.createSale();
   return product[0];
 };
 
