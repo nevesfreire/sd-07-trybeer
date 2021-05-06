@@ -1,4 +1,4 @@
 import React from 'react';
 
-const AdminProfile = () => <div><h1>Página admin profile</h1></div>;
+const AdminProfile = () => <div><h1>Tela admin</h1></div>;
 export default AdminProfile;
