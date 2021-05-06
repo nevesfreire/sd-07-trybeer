@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../services/api';
 
 const regexEmail = /\S+@\S+\.\S+/;
 const passwordMinLength = 6;
-import { Link } from 'react-router-dom';
-
 
 const ComponentLogin = () => {
   const [labelLogin, setLabelLogin] = useState(true);
@@ -13,14 +12,13 @@ const ComponentLogin = () => {
 
   const inputValidation = (password) => {
     setPasswordLabel(password);
-    const result = regexEmail.test(emailLabel)
-    && passwordLabel.length
-    >= passwordMinLength;
+    const result = regexEmail.test(emailLabel) && passwordLabel.length >= passwordMinLength;
     setLabelLogin(!result);
   };
   const params = { email: emailLabel, password: passwordLabel };
   const toLogin = async () => {
-    api.post('/login', params)
+    api
+      .post('/login', params)
       .then((token) => localStorage.setItem('token', token.data.token))
       .catch((err) => console.log(`Error in login process: ${err}`));
   };
@@ -56,23 +54,24 @@ const ComponentLogin = () => {
             />
           </label>
 
-          <button type="submit" 
-            disabled={ labelLogin } 
-            className="btn-submit-login"  
+          <button
+            type="submit"
+            disabled={ labelLogin }
+            className="btn-submit-login"
             data-testid="signin-btn"
           >
             Login
           </button>
         </form>
       </div>
-     <button type="button" data-testid="no-account-btn">
-        <Link to="/register">
-          Ainda não tenho conta
-        </Link>
-     </button>
+      <button type="button" data-testid="no-account-btn">
+        <Link to="/register">Ainda não tenho conta</Link>
+      </button>
       <div className="container-link">
         <div className="link-login">Terms of use</div>
         <div className="link-login">Privacy Police</div>
+      </div>
+    </div>
   );
 };
 
