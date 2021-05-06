@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { loginFetch, pathRedirectByRole } from '../../services';
 import './Login.css';
 
 export default function Login() {
@@ -15,26 +16,14 @@ export default function Login() {
   };
 
   const history = useHistory();
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    let newUser;
-    fetch('http://localhost:3001/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    }).then((response) => response.json())
-      .then((responseJSON) => {
-        newUser = responseJSON;
-        localStorage.setItem('user', JSON.stringify(newUser));
-        console.log('submit');
-        if (newUser.role === 'client') history.push('/products');
-        if (newUser.role === 'administrator') history.push('/admin/orders');
-      });
+    const userLoginData = { email, password };
+    const user = await loginFetch(userLoginData);
+
+    localStorage.setItem('user', JSON.stringify(user));
+    console.log('submit');
+    history.push(pathRedirectByRole(user.role));
   };
   const handleRegister = () => {
     history.push('/register');

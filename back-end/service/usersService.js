@@ -25,8 +25,14 @@ const createUserService = async (name, email, password, role) => {
   };
 };
 
+const updateName = async (name, email) => {
+  const user = await usersModel.updateName(name, email);
+  return user;
+};
+
 module.exports = {
   findByEmail,
   generateToken,
   createUserService,
+  updateName,
 };
