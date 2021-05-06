@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Validator from 'email-validator';
 import { Link, useHistory } from 'react-router-dom';
-import { loginUser } from '../services/user';
+import LoginAuth from '../services/Auth/Login';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -13,33 +13,9 @@ const LoginForm = () => {
     return (Validator.validate(email) && password.length >= passwordLength);
   };
 
-  const login = async (e) => {
-    e.preventDefault();
-    const {
-      token,
-      name,
-      role,
-      email: emailResponse,
-      message,
-    } = await loginUser(email, password);
-
-    // console.log(result);
-    if (message) {
-      console.log(message);
-    }
-
-    localStorage.setItem('token', JSON.stringify(token));
-    localStorage.setItem('name', JSON.stringify(name));
-    localStorage.setItem('role', JSON.stringify(role));
-    localStorage.setItem('email', JSON.stringify(emailResponse));
-
-    console.log(role);
-    if (role === 'administrator') {
-      push('/admin/orders');
-    } else {
-      push('/products');
-    }
-  };
+  // if (redirect !== '') {
+  //   return <Redirect to={ redirect } />;
+  // }
 
   return (
     <form>
@@ -65,7 +41,7 @@ const LoginForm = () => {
         data-testid="signin-btn"
         type="submit"
         disabled={ !validateLogin() }
-        onClick={ (e) => login(e) }
+        onClick={ (e) => LoginAuth(e, email, password, push) }
       >
         Entrar
       </button>
