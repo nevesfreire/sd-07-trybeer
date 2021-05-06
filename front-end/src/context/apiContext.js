@@ -8,7 +8,7 @@ const ApiContext = createContext();
 export default ApiContext;
 
 export const ApiProvider = ({ children }) => {
-  const userLogin = async ({ email, password }) => fetch('http://localhost:3001/login', {
+  const userLogin = ({ email, password }) => fetch('http://localhost:3001/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

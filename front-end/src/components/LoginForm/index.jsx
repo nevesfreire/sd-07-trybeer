@@ -24,21 +24,22 @@ function LoginForm() {
 
   const { userLogin } = useContext(ApiContext);
 
-  const onSubmitHandler = async (e) => {
+  const onSubmitHandler = (e) => {
     e.preventDefault();
     const user = {
       email,
       password,
     };
     // req da api enviando:
-    const response = await userLogin(user);
-    console.log('user', response);
-    localStorage.setItem('user', JSON.stringify(response));
-    if (response) {
-      const { role } = response;
-      setRole(role);
-      console.log('role', role);
-    }
+    const response = userLogin(user)
+      .then((user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        if (response) {
+          const { role } = user;
+          setRole(role);
+          console.log('role', role);
+        }
+      })
   };
 
   if (userRole && userRole === 'administrator') {

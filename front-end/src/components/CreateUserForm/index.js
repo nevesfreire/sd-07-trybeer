@@ -37,7 +37,7 @@ function CreateUserForm() {
           placeholder="name"
           type="text"
           name="name"
-          data-testid="name-input"
+          data-testid="signup-name"
           required
         />
       </Label>
@@ -50,7 +50,7 @@ function CreateUserForm() {
           placeholder="Email address"
           type="email"
           name="email"
-          data-testid="email-input"
+          data-testid="signup-email"
           required
         />
       </Label>
@@ -63,7 +63,7 @@ function CreateUserForm() {
           placeholder="Password"
           type="password"
           name="password"
-          data-testid="password-input"
+          data-testid="signup-password"
           required
         />
       </Label>
@@ -74,7 +74,6 @@ function CreateUserForm() {
           checked={ iWantToSell }
           onChange={ () => setiWantToSell(!iWantToSell) }
           type="checkbox"
-          data-testid="iWantToSell-input"
         />
       </Label>
 
