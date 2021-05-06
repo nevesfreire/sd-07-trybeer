@@ -23,11 +23,12 @@
   },
   "homepage": "https://github.com/betrybe/sd-0x-trybeer#readme",
   "dependencies": {
+    "lint": "^0.7.0",
     "mysql2": "2.1.0",
     "sequelize": "6.3.4"
   },
   "devDependencies": {
-    "cypress": "5.0.0",
+    "cypress": "^5.0.0",
     "cypress-multi-reporters": "1.2.3",
     "dotenv": "8.2.0",
     "faker": "4.1.0",

@@ -14,7 +14,7 @@ const customAnswer = (message, http = UNAUTHORIZED) => ({
   message,
 });
 
-const secret = process.env.SECRET_JWT;
+const secret = process.env.SECRET_JWT || 'trybeer';
 
 const jwtConfig = {
   expiresIn: 60 * 20,
@@ -38,6 +38,7 @@ const loginUser = async (email, password) => {
   return customAnswer({ token }, OK);
 };
 
+
 const profileNameUpdate = async (name, email) => {
   const userUpdated = await userModel.profileNameUpdate(name, email);
   if (!userUpdated) {
@@ -46,7 +47,14 @@ const profileNameUpdate = async (name, email) => {
   return customAnswer(updateNameMessageSuccess, OK);
 };
 
+const registerUser = async (name, email, password, role) => {
+  let priveleges = 'administrator';
+  if (!role) { priveleges = 'client'; }
+  await userModel.registerUser(name, email, password, priveleges);
+};
+
 module.exports = {
   loginUser,
   profileNameUpdate,
+  registerUser,
 };
