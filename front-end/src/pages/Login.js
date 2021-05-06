@@ -45,7 +45,7 @@ function Login() {
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 500 }}>
-        <CustomHeader message="TRYBEER" />
+        <CustomHeader message="TryBeer" />
         <CustomLogin
           formData={formData}
           onInputChange={handleInputChange}
