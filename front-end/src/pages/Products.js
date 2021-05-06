@@ -28,10 +28,11 @@ function Products() {
     <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
       <Grid.Column style={ { maxWidth: 500 } }>
         <HeaderComponent message="Trybeer" />
-        {isLoading ? renderLoading() : renderProductsList()}
-      </Grid.Column>
 
-      <Button>Ver carrinho</Button>
+        {isLoading ? renderLoading() : renderProductsList()}
+
+        <Button data-testid="checkout-bottom-btn">Ver carrinho</Button>
+      </Grid.Column>
     </Grid>
   );
 }
