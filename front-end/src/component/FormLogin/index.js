@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import FormWrapper from './styles';
-import requestLoginAPI from '../../services';
+import { requestLoginAPI } from '../../services';
 import { setToLocalStorage } from '../../utils/localStorage';
 
 const defaultForm = {
@@ -36,8 +36,10 @@ function FormLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const user = await requestLoginAPI(formLogin);
     // console.log(token);
+    
     if (user.data) {
       const { data } = user;
       const { role } = data;
