@@ -41,11 +41,11 @@ function LoginForm() {
   };
 
   if (userRole && userRole === 'administrator') {
-    return <Redirect to={"/admin/orders"} />
+    return <Redirect to="/admin/orders" />;
   }
 
   if (userRole && userRole === 'client') {
-    return <Redirect to={"/products"} />
+    return <Redirect to="/products" />;
   }
 
   return (
