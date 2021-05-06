@@ -7,6 +7,7 @@ import {
   LoginPage,
   AdminHome,
   Products,
+  Profile,
 } from './pages';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" component={ RegisterPage } />
         <ProtectedRoute path="/admin/orders" component={ AdminHome } />
         <ProtectedRoute path="/products" component={ Products } />
+        <ProtectedRoute path="/profile" component={ Profile } />
       </Switch>
     </BrowserRouter>
   );
