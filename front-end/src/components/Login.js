@@ -56,36 +56,23 @@ const ComponentLogin = () => {
             />
           </label>
 
-          <button type="submit" disabled={ labelLogin } className="btn-submit-login">
+          <button type="submit" 
+            disabled={ labelLogin } 
+            className="btn-submit-login"  
+            data-testid="signin-btn"
+          >
             Login
           </button>
         </form>
       </div>
+     <button type="button" data-testid="no-account-btn">
+        <Link to="/register">
+          Ainda não tenho conta
+        </Link>
+     </button>
       <div className="container-link">
         <div className="link-login">Terms of use</div>
         <div className="link-login">Privacy Police</div>
-
-          <button
-            data-testid="signin-btn"
-            type="button"
-            disabled={ labelLogin }
-          >
-            Entrar
-          </button>
-        </form>
-      </div>
-      <div>
-        <button type="button" data-testid="no-account-btn">
-          <Link to="/register">
-            Ainda não tenho conta
-          </Link>
-        </button>
-      </div>
-      <div>
-        <div>Terms of use</div>
-        <div>Privacy Police</div>
-      </div>
-    </div>
   );
 };
 
