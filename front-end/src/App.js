@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import './App.css';
 import Products from './pages/Products';
 import AdminProfile from './pages/Admin/Profile';
+import ClientProfile from './pages/Client/Profile';
 
 const App = () => (
   <BrowserRouter>
@@ -14,6 +15,7 @@ const App = () => (
     <Route exact path="/register" component={ Register } />
     <Route exact path="/products" component={ Products } />
     <Route exact path="/admin/orders" component={ AdminProfile } />
+    <Route exact path="/profile" component={ ClientProfile } />
   </BrowserRouter>
 );
 
