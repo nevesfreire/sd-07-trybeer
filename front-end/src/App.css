@@ -11,22 +11,14 @@
 }
 
 .side-menu-container {
+  align-items: center;
   display: flex;
   background-color: black;
   color: white;
-  float: left;
   flex-direction: column;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 30%;
-}
-
-.litest {
-  margin: 0; padding: 0px;
-	border-bottom: 1px solid #CCC;
-	text-align: left;
-	list-style-type: none;
+  height: 500px;
+  justify-content: space-around;
+  width: 25%;
 }
 
 .hameburgerButton {
@@ -35,12 +27,23 @@
   border: 0px;
 }
 
-.links {
+.itensHamburguer {
   background-color: black;
   margin: 10px;
-  text-decoration: none;
-  color: white;
   border-width: 1px;
   border-style: solid;
   border-color: white;
+  font-size: 30px;
+}
+
+.linksHamburguer {
+margin: 20px;
+text-decoration: none;
+color: white;
+}
+
+.buttonLogOut {
+  background-color: black;
+  font-size: 30px;
+  
 }

@@ -21,32 +21,33 @@ const Header = () => {
           <Hamburger easing="ease-in" />
         </button>
         <h2 data-testid="top-title">TryBeer</h2>
+        <div />
       </div>
       {sideBar
         && (
           <div>
             <div className="side-menu-container">
-              <div>
+              <div className="itensHamburguer">
                 <Link
-                  className="links"
+                  className="linksHamburguer"
                   to="/products"
                   data-testid="side-menu-item-products"
                 >
                   Produtos
                 </Link>
               </div>
-              <div>
+              <div className="itensHamburguer">
                 <Link
-                  className="links"
+                  className="linksHamburguer"
                   to="/orders"
                   data-testid="side-menu-item-my-orders"
                 >
                   Meus Pedidos
                 </Link>
               </div>
-              <div>
+              <div className="itensHamburguer">
                 <Link
-                  className="links"
+                  className="linksHamburguer"
                   to="/profile"
                   data-testid="side-menu-item-my-profile"
                 >
@@ -57,11 +58,12 @@ const Header = () => {
                 <button
                   type="submit"
                   onClick={ () => logout() }
+                  className="buttonLogOut"
                 >
                   <Link
                     to="/login"
                     data-testid="side-menu-item-logout"
-                    className="links"
+                    className="linksHamburguer"
                   >
                     Sair
                   </Link>

@@ -8,7 +8,6 @@ import Products from './pages/Products';
 import AdminProfile from './pages/Admin/Profile';
 import ClientProfile from './pages/Client/Profile';
 import Orders from './pages/Client/Orders';
-import Header from './components/Header';
 
 const App = () => (
   <BrowserRouter>
