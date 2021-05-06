@@ -31,7 +31,16 @@ const registerOrder = async (req, res) => {
   return res.status(result.status).json(result.message);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'server error' });
+    return res.status(500).json({ message: serverError });
+  }  
+};
+const getAllOrders = async (req, res) => {
+  try {  
+  const result = await UserService.getAllOrders();
+  return res.status(result.status).json(result.message);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: serverError });
   }  
 };
 
@@ -39,4 +48,5 @@ module.exports = {
   registerUser,
   updateUserName,
   registerOrder,
+  getAllOrders,
 };

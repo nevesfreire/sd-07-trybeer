@@ -15,8 +15,13 @@ const registerOrder = async (order) => {
   const registeredOrder = await UserModel.registerOrder(order);
   return { status: 200, message: registeredOrder };
 };
+const getAllOrders = async () => {
+  const allOrders = await UserModel.getAllOrders();
+  return { status: 200, message: allOrders };
+};
 module.exports = {
   registerUser,
   updateUserName,
   registerOrder,
+  getAllOrders,
 };

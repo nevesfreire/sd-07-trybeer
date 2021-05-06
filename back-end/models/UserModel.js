@@ -21,10 +21,16 @@ const updateUserName = async (newName, email) => {
     .execute('UPDATE Trybeer.users SET name=? WHERE email=?',
     [newName, email]);
 };
+const getAllOrders = async () => {
+  const [sales] = await connection
+    .execute('SELECT * FROM Trybeer.sales');
+  return sales;
+};
 
 module.exports = {
   getByEmail,
   registerUser,
   updateUserName,
   registerOrder,
+  getAllOrders,
 };
