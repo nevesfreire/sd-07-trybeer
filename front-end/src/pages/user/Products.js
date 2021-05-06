@@ -13,6 +13,7 @@ function Products() {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,6 +24,28 @@ function Products() {
         setIsLoading(false);
       });
   }, []);
+
+  const removeFromCart = () => {
+    setQuantity(quantity < 1 ? quantity : quantity - 1)
+  }
+
+  const addInCart = (id, name, price) => {
+    setQuantity(quantity + 1);
+    setCart([...cart, { id, name, price, quantity }]);
+    console.log("add cart", cart);
+
+    let productExists;
+    if (cart.length > 1) {
+      productExists = cart.find((item) => item.id === id);
+    }
+    
+    if (productExists) {
+      setCart(cart.splice(cart.indexOf(productExists), 1));
+    } // encontre o repetido e remova ele
+
+    console.log("remove cart", cart);
+    console.log("productExists", productExists);
+  }
 
   return (
     <div>
@@ -44,18 +67,18 @@ function Products() {
                   { Number(product.price)
                     .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
                 </span>
-                <span data-testid={ `${index}-product-qtd` }>{ quantity }</span>
                 <button
                   type="button"
                   data-testid={ `${index}-product-minus` }
-                  onClick={ () => setQuantity(quantity < 1 ? quantity : quantity - 1) }
+                  onClick={ () => removeFromCart() }
                 >
                   -
                 </button>
+                <span data-testid={ `${index}-product-qtd` }>{ quantity }</span>
                 <button
                   type="button"
                   data-testid={ `${index}-product-plus` }
-                  onClick={ () => setQuantity(quantity + 1) }
+                  onClick={ () => addInCart(product.id, product.name, product.price ) }
                 >
                   +
                 </button>
