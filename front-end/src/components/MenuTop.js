@@ -9,7 +9,7 @@ function MenuTop({ title = 'TryBeer' }) {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.role === 'admin') setIsAdmin(true);
+    if (user && user.role === 'administrator') setIsAdmin(true);
   }, []);
 
   const menuTopClass = (isAdmin) ? 'menu-top-adm' : 'menu-top';
