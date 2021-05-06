@@ -32,7 +32,7 @@ const loginUser = async (email, password) => {
     verifyEntries(email, password, allUsers);
 
     const jwtConfig = {
-      expiresIn: 60 * 5,
+      expiresIn: '7d',
       algorithm: 'HS256',
     };
 

@@ -3,7 +3,7 @@ const usersModel = require('../models/usersModel');
 // ----------------------------------------- Funções de verificação
 
 const INVALID_ENTRIES_MESSAGE = 'Invalid entries. Try again.';
-const ALREADY_EXISTS_MESSAGE = 'Email already registered';
+const ALREADY_EXISTS_MESSAGE = 'Já existe um usuário com esse e-mail.';
 
 const verifyName = (name) => {
   if (name === undefined) {
@@ -50,4 +50,16 @@ const createUser = async (name, email, password, queroVender) => {
   }
 };
 
-module.exports = { createUser };
+const updateUser = async (id, name) => {
+  try {
+    verifyName(name);
+
+    const updatedName = await usersModel.updateUser(id, name);
+
+    return updatedName;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+module.exports = { createUser, updateUser };
