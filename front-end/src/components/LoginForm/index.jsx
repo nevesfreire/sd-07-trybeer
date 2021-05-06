@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import ApiContext from "../../context/apiContext";
+import ApiContext from '../../context/apiContext';
 import {
   Form,
   Label,
@@ -8,8 +8,7 @@ import {
   Button,
   Span,
   RegisterButton,
-} from './styles'
-
+} from './styles';
 
 // import "./styles.css";
 
@@ -18,27 +17,26 @@ import {
 // }
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const { userLogin } = useContext(ApiContext)
+  const { userLogin } = useContext(ApiContext);
 
-  
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     const user = {
       email,
       password,
-    }
-    //req da api enviando:
+    };
+    // req da api enviando:
     const response = await userLogin(user);
     localStorage.setItem('user', JSON.stringify(response));
-    if(response) {
+    if (response) {
       const { role } = response;
       if (role === 'administrator') {
-        return <Redirect to="/admin/orders" /> 
-      } 
-      return <Redirect to="/products" />
+        return <Redirect to="/admin/orders" />;
+      }
+      return <Redirect to="/products" />;
     }
   };
 
@@ -47,8 +45,8 @@ function LoginForm() {
       <Label>
         Email
         <Input
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          value={ email }
+          onChange={ (e) => setEmail(e.target.value) }
           placeholder="Email address"
           type="email"
           name="email"
@@ -59,8 +57,8 @@ function LoginForm() {
       <Label>
         <Span>Senha</Span>
         <Input
-          value={password}
-          onChange={e => setPassword(e.target.value)}
+          value={ password }
+          onChange={ (e) => setPassword(e.target.value) }
           placeholder="Password"
           type="password"
           name="password"
@@ -73,7 +71,7 @@ function LoginForm() {
         data-testid="signin-btn"
       >
         Entrar
-      </Button> 
+      </Button>
       <RegisterButton
         to="/register"
         data-testid="no-account-btn"

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Form, Label, Input, Button, Span } from './styles';
+import { Form, Label, Input } from './styles';
+import validateRegister from './validation';
 
 // const handleSubmit = (evt) => {
 //   evt.preventDefault();
@@ -11,27 +12,6 @@ function CreateUserForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [iWantToSell, setiWantToSell] = useState(false);
-
-  const validateRegister = (name, email, password) => {
-    const specialCharReg = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
-    const NAME_MIN_LENGTH = 12;
-    const PASSWORD_MIN_LENGTH = 6;
-
-    if (!name || name.length < NAME_MIN_LENGTH || specialCharReg.test(name)) {
-      console.log('problema em name');
-      return true;
-    }
-    if (!password || password.length < PASSWORD_MIN_LENGTH) {
-      console.log('problema em password');
-      return true;
-    }
-    if (!email) {
-      return true;
-    }
-    return false;
-  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();

@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { createContext, useState } from 'react';
-import api from '../components/api/config';
+import React, { createContext } from 'react';
+import Proptypes from 'prop-types';
+// import api from '../components/api/config';
 // import auth from '../components/auth'
 
 const ApiContext = createContext();
@@ -8,7 +9,7 @@ const ApiContext = createContext();
 export default ApiContext;
 
 export const ApiProvider = ({ children }) => {
-  const [user, setUser] = useState('hahay');
+  // const [user, setUser] = useState('hahay');
 
   const userLogin = async ({ email, password }) => {
     const options = {
@@ -33,4 +34,8 @@ export const ApiProvider = ({ children }) => {
       { children }
     </ApiContext.Provider>
   );
+};
+
+ApiProvider.propTypes = {
+  children: Proptypes.node.isRequired,
 };
