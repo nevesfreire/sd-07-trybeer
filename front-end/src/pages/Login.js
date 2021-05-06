@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { getToken, getUser } from '../services/Login';
+import { getToken } from '../services/Login';
+import { getUser } from '../services/User';
 
 export default function Login() {
   const [disabled, setDisabled] = useState(true);
@@ -32,16 +33,12 @@ export default function Login() {
     setRoleType(userInfo.role);
   };
 
-  const handleClick = () => {
-    setNewUser(true);
-  };
-
   useEffect(() => {
-    const { email, password } = userLogin
-    const regexForEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const { email, password } = userLogin;
+    const rEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const length = 5;
     const passwordIsValid = password.length > length;
-    const emailIsValid = regexForEmail.test(email);
+    const emailIsValid = rEmail.test(email);
     if (passwordIsValid && emailIsValid === true) {
       setDisabled(false);
     } else {
@@ -53,9 +50,10 @@ export default function Login() {
     <>
       { roleType === 'administrador' && <Redirect to="/admin/orders" /> }
       { roleType === 'cliente' && <Redirect to="/products" /> }
-      { newUser &&  <Redirect to="/register" /> }
+      { newUser && <Redirect to="/register" /> }
       <form onSubmit={ (event) => handleSubmit(event) }>
-        <label htmlFor="id">Email
+        <label htmlFor="id">
+          Email
           <input
             name="email"
             id="email"
@@ -64,7 +62,8 @@ export default function Login() {
             onChange={ (event) => handleChange(event) }
           />
         </label>
-        <label htmlFor="password">Senha
+        <label htmlFor="password">
+          Senha
           <input
             name="password"
             id="password"
@@ -83,7 +82,7 @@ export default function Login() {
         <button
           data-testid="no-account-btn"
           type="button"
-          onClick={ () => handleClick() }
+          onClick={ () => setNewUser(!newUser) }
         >
           Ainda não tenho conta
         </button>
