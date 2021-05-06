@@ -7,6 +7,7 @@ const URL = process.env.REACT_APP_ENDPOINT || 'http://localhost:3001';
 const ENDPOINT = {
   login: '/login',
   getUser: '/login/',
+  getProducts: '/products',
   // levels: '/level',
   // event: '/event',
   // user: '/user',
@@ -30,6 +31,16 @@ export async function getByEmail(email) {
     headers: { 'Content-Type': 'application/json' },
   };
   const request = await fetch(URL + ENDPOINT.getUser + email, requestOptions);
+  const response = request.json();
+  return response;
+}
+
+export async function getProducts() {
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  };
+  const request = await fetch(URL + ENDPOINT.getProducts, requestOptions);
   const response = request.json();
   return response;
 }

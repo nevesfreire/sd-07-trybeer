@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as api from '../../services/api';
-import { login } from '../../actions';
 import { setStorage } from '../../services/localStorage';
 
 function Login() {
@@ -10,8 +8,6 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -26,7 +22,6 @@ function Login() {
   const handleButton = async () => {
     const userData = await api.login({ email, password });
     setStorage('user', userData);
-    dispatch(login());
 
     if (userData.role === 'client') return history.push('/products');
     history.push('/admin/orders');

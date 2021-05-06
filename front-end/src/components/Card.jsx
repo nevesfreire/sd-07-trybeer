@@ -1,58 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getStorage, setStorage } from '../services/localStorage';
-import { changeTotalPrice } from '../actions';
+import { getStorage,
+  setStorage,
+  calculateTotalProductsPrice } from '../services/localStorage';
+import { Creators } from '../store/ducks/reducers/clientInfo';
 
-function Card(product) {
-  const ZERO = 0;
-  const ONE = 1;
+function Card({ product }) {
+  const [productQuantity, setProductQuantity] = useState(0);
 
-  const [quantity, setQuantity] = useState(ZERO);
+  const { url_image: urlImage, name, price, id, quantity } = product;
+
+  useEffect(() => {
+    if (quantity) setProductQuantity(quantity);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const { changeTotalPrice } = Creators;
 
   const dispatch = useDispatch();
 
-  const { url_image: urlImage, name, price } = product;
-
-  const setCart = () => {
+  const setCart = (newQuantity) => {
     const cart = getStorage('cart');
-    const totalProductPrice = price * quantity;
-    cart.forEach((element) => {
-      if (element.name === name) {
-        element.quantity = quantity;
-      }
-    });
-    cart.totalPrice += totalProductPrice;
-    dispatch(changeTotalPrice(cart.totalPrice));
-    setStorage('cart', cart);
+    // const totalProductPrice = Math.round((Number(price) * 100) * newQuantity) / 100;
+    const newCart = cart.map((element) => (element.id === id
+      ? { ...element, quantity: newQuantity } : element));
+    const updateTotalPrice = calculateTotalProductsPrice(newCart);
+    dispatch(changeTotalPrice(updateTotalPrice));
+    setStorage('cart', newCart);
   };
 
   const changeQuantity = (operation) => {
-    if (operation === 'minus' && quantity > ZERO) {
-      setQuantity(quantity - ONE);
-      setCart();
+    if (operation === 'minus' && productQuantity > 0) {
+      const newQuantity = productQuantity - 1;
+      setProductQuantity(newQuantity);
+      setCart(newQuantity);
     }
     if (operation === 'plus') {
-      setQuantity(quantity + ONE);
-      setCart();
+      const newQuantity = productQuantity + 1;
+      setProductQuantity(newQuantity);
+      setCart(newQuantity);
     }
     return null;
   };
 
   return (
     <div>
-      <img alt={ name } src={ urlImage } />
-      <h5>{ price }</h5>
-      <h6>{ name }</h6>
+      <img
+        data-testid={ `${id - 1}-product-img` }
+        src={ urlImage }
+        alt={ name }
+      />
+      <h5
+        data-testid={ `${id - 1}-product-price` }
+      >
+        { `R$ ${price}` }
+      </h5>
+      <h6
+        data-testid={ `${id - 1}-product-name` }
+      >
+        { name }
+
+      </h6>
       <button
         type="button"
-        onClick={ changeQuantity('plus') }
+        data-testid={ `${id - 1}-product-minus` }
+        onClick={ () => changeQuantity('minus') }
       >
         -
       </button>
-      <span>{ quantity }</span>
+      <span
+        data-testid={ `${id - 1}-product-qtd` }
+      >
+        { productQuantity }
+
+      </span>
       <button
         type="button"
-        onClick={ changeQuantity('minus') }
+        data-testid={ `${id - 1}-product-plus` }
+        onClick={ () => changeQuantity('plus') }
       >
         +
       </button>
