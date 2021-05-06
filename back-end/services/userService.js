@@ -3,7 +3,7 @@ const userModel = require('../models/userModel');
 const ERR_MESSAGE = 'Invalid entries. Try again.';
 
 const validateName = (name) => {
-  if (!name) {
+  if (!name || name.length < 12) {
     throw new Error(ERR_MESSAGE);
   }
 };
@@ -49,6 +49,20 @@ const createUser = async (name, email, password, iWantToSell) => {
   return user;
 };
 
+const userUpdate = async (name, email) => {
+  try {
+    console.log(name, email);
+    validateName(name);
+    validateEmail(email);
+    const [user] = await userModel.userUpdate(name, email);
+    return user;
+  } catch (error) {
+    console.error(error);
+    return error.message;
+  }
+};
+
 module.exports = {
   createUser,
+  userUpdate,
 };

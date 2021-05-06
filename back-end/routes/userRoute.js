@@ -1,10 +1,10 @@
 const express = require('express');
-
-const usersController = require('../controllers/userController')
+const validateToken = require('../middlewares/validateTokenMid');
+const usersController = require('../controllers/userController');
 
 const router = express.Router();
 
-router.post('/', usersController.userCreate)
-
+router.post('/', usersController.userCreate);
+router.put('/:id', validateToken, usersController.userUpdate);
 
 module.exports = router;

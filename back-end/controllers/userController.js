@@ -2,6 +2,7 @@ const userService = require('../services/userService');
 
 const OK = 200;
 const CREATE = 201;
+const ERRORUPDATE = 204;
 const ERROR = 400;
 const CONFLICT = 409;
 
@@ -12,7 +13,7 @@ const userCreate = async (request, response) => {
       name,
       email,
       password,
-      iWantToSell
+      iWantToSell,
     );
     
     return response.status(CREATE).json({ user });
@@ -27,6 +28,18 @@ const userCreate = async (request, response) => {
   }
 };
 
+const userUpdate = async (request, response) => {
+  try {
+    const { name, email } = request.body;
+      const user = await userService.userUpdate(name, email);
+    return response.status(OK).json(user);
+  } catch (error) {
+    console.error(error);
+    response.status(ERRORUPDATE).json({ message: error.message });
+  }
+};
+
 module.exports = {
   userCreate,
+  userUpdate,
 };
