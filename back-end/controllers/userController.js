@@ -1,5 +1,4 @@
 const { STATUS_CODE } = require('../helpers');
-const { userModels } = require('../models');
 const { userServices } = require('../services');
 
 const userLogin = async (request, response) => {
