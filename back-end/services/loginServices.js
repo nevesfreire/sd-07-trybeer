@@ -13,10 +13,11 @@ const signInLogin = async (data) => {
   validEmail(email);
   validPassword(password);
   const user = await loginModel.getUserByEmail(email);
-  if(!user) throw errors.invalidData;
+  if (!user) throw errors.invalidData;
   delete user.password;
-  const token = tokenServices.generateToken({data: user});
-  return {token: token};
+  const token = tokenServices.generateToken({ data: user });
+  delete user.id;
+  return { token, user };
 };
 
 const signUpLogin = async (data) => {
