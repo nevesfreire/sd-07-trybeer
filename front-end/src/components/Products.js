@@ -29,8 +29,8 @@ function Products() {
             }
             return acc;
         }, 0)
-        setValorTotal(total);
-        return total;
+        setValorTotal(total.toFixed(2));
+        return total.toFixed(2);
     }
 
     const generateProducts = () => {
@@ -47,11 +47,16 @@ function Products() {
                             alt="bebida da lista"
                             width="50px"
                         />
-                        <h3
+                        <p
                             data-testid={`${index}-product-name`}
                         >
                             {item.name}
-                        </h3>
+                        </p>
+                        <p
+                        data-testid="0-product-price"
+                        >
+                            R${item.price}
+                        </p>
                         <button
                             type="button"
                             data-testid={`${index}-product-plus`}
