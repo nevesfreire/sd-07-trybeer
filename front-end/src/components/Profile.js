@@ -61,7 +61,7 @@ function LoginForm() {
         className="form-button"
         data-testid="profile-save-btn"
         type="button"
-        disabled={ name !== startingName }
+        disabled={ name === startingName }
         onClick={ () => handleSubmit() }
       >
         Salvar

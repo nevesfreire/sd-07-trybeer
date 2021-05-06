@@ -3,6 +3,7 @@ import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import Login from '../pages/Login';
 import RegisterPage from '../pages/RegisterPage';
 import ProductsPage from '../pages/ProductsPage';
+import ClientProfile from '../pages/ClientProfile';
 
 const Routes = () => {
   let componentToRender = '/login';
@@ -17,7 +18,7 @@ const Routes = () => {
       <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ RegisterPage } />
       <Route exact path="/products" component={ ProductsPage } />
-
+      <Route exact path="/profile" component={ ClientProfile } />
     </BrowserRouter>
   );
 };

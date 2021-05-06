@@ -26,10 +26,11 @@ export async function fetchRegisterNewUser({ name, password, email, role }) {
 }
 
 export async function fetchUpdateUser(name, email) {
+  const loggedUser = JSON.parse(localStorage.getItem('user'))
   const response = await fetch('http://localhost:3001/user', {
     method: 'PUT',
     body: JSON.stringify({ name, email }),
-    headers: headers,
+    headers: {...headers, Authorization: loggedUser.token},
   });
   const user = await response.json();
   return user;
