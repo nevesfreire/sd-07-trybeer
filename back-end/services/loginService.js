@@ -1,4 +1,5 @@
 const loginModel = require('../models/loginModel');
+
 let ERR_MESSAGE = 'All fields must be filled';
 
 const validateEmail = (email) => {
