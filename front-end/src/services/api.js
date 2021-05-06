@@ -1,6 +1,6 @@
 /* import { getStorage } from './localStorage' */
 
-const URL = process.env.REACT_APP_ENDPOINT || 'localhost:3001';
+const URL = process.env.REACT_APP_ENDPOINT || 'http://localhost:3001';
 
 // const tokenKeyStorage = 'token';
 
