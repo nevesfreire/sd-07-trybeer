@@ -2,13 +2,20 @@ const express = require('express');
 const checkToken = require('./middleware/checkToken');
 
 const router = express.Router();
-const UserController = require('./controller/UserController');
-const ProductsControler = require('./controller/ProductController');
 
-router.post('/user', UserController.create);
-router.post('/updateUserEmail', checkToken, UserController.updateUserEmail);
-router.post('/login', UserController.login);
-router.get('/token', checkToken, (req, res) => { res.send({ message: 'funcionando 100%' }); });
-router.get('/products', ProductsControler.getAllProducts);
+const userController = require('./controller/UserController');
+const productsControler = require('./controller/ProductController');
+const saleControler = require('./controller/SaleController');
+
+router.post('/user', userController.create);
+// Recebe "name" no body e atualiza o nome do usuário. (Requer Token)
+router.post('/updateUserName', checkToken, userController.updateUserName);
+
+// Recebe "email" e "passowrd" através do body e recebe o token.
+router.post('/login', userController.login);
+
+router.get('/products', productsControler.getAllProducts);
+
+router.post('/products', saleControler.create);
 
 module.exports = router;

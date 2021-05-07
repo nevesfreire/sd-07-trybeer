@@ -14,7 +14,22 @@ const loginUser = async (email, password) => {
   return result.data;
 };
 
+const updateUserName = async (newName, token) => {
+  try {
+    const result = await instance.post('updateUserName', { name: newName },
+      {
+        headers: {
+          Authorization: token,
+        },
+      });
+    return result;
+  } catch (error) {
+    return ({ error: 'usuário existe ou algo assim' });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  updateUserName,
 };
