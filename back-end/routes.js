@@ -3,8 +3,8 @@ const { body } = require('express-validator');
 
 const app = express();
 
-const { loginMiddleware } = require('./src/middlewares/index');
-const { loginController } = require('./src/controllers/index');
+const { loginMiddleware } = require('./src/middlewares');
+const { loginController } = require('./src/controllers');
 const { registerController } = require('./src/controllers');
 const { productController } = require('./src/controllers');
 const { fieldValidator } = require('./src/middlewares');
