@@ -1,14 +1,13 @@
+const { StatusCodes } = require('http-status-codes');
+
 const service = require('./service');
 
-const SUCESS = 200;
-const FAIL = 500;
-
-const getAll = async (req, res) => {
+const getAll = async (_req, res) => {
   try {
     const users = await service.getAll();
-    res.status(SUCESS).json(users);
+    res.status(StatusCodes.OK).json(users);
   } catch (error) {
-    res.status(FAIL);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
