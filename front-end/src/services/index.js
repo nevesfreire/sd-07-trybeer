@@ -1,4 +1,5 @@
 const METHOD_POST = 'POST';
+const METHOD_PUT = 'PUT';
 const CONTENT_TYPE = 'application/json';
 
 const loginFetch = async (userLogin) => {
@@ -60,6 +61,24 @@ const newUserRegister = async (newUserData) => {
   return newUser;
 };
 
+const updateNameFetch = async (name, email) => {
+  let result;
+  await fetch('http://localhost:3001/user/updateName', {
+    method: METHOD_PUT,
+    headers: {
+      'Content-type': CONTENT_TYPE,
+    },
+    body: JSON.stringify({
+      name,
+      email,
+    }),
+  }).then((response) => response.json())
+    .then((responseJSON) => {
+      result = responseJSON;
+      console.log(result);
+    });
+};
+
 const pathRedirectByRole = (role) => {
   console.log('entrou no redirect');
   if (role === 'client') return '/products';
@@ -71,4 +90,5 @@ export {
   pathRedirectByRole,
   newUserRegister,
   searchUserByEmail,
+  updateNameFetch,
 };
