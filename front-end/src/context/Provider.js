@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import BeerContext from './beerContext';
 
 function Provider({ children }) {
-  // setar funções
+  const [products, setProducts] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
   const valueProvider = {
-    // funções a serem passadas
+    isFetching,
+    products,
+    setIsFetching,
+    setProducts,
   };
   return (
     <BeerContext.Provider value={ valueProvider }>
