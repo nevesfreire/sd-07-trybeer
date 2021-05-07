@@ -3,11 +3,12 @@ import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 
-function MeusPedidos() {
+function Orders() {
   const { sideIsActive, setPageTitle } = useContext(MyContext);
   useEffect(() => {
     setPageTitle('Meus Pedidos');
-  }, []);
+  }, [setPageTitle]);
+
   return (
     <div>
       <MenuTopMobile />
@@ -16,4 +17,4 @@ function MeusPedidos() {
   );
 }
 
-export default MeusPedidos;
+export default Orders;

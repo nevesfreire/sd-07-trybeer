@@ -28,11 +28,18 @@ function Register() {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({ name, email, password, role }),
-    }).then((response) => response.status)
+    }).then((response) => (response.json()))
       .then((data) => {
-        if (data === UNAUTHORIZED) return setErrorEmail(true);
-        return role === 'client'
-          ? history.push('/products') : history.push('/admin/orders');
+        if (data.status === UNAUTHORIZED) return setErrorEmail(true);
+        return localStorage.setItem('user', JSON.stringify(data.message));
+      })
+      .then(() => {
+        const userStorage = JSON.parse(localStorage.getItem('user'));
+        if (userStorage.role === 'client') {
+          history.push('/products');
+        } else {
+          history.push('/admin/orders');
+        }
       });
   };
 

@@ -4,19 +4,19 @@ import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 
-function MeuPerfil() {
+function Profile() {
   const { sideIsActive, setPageTitle } = useContext(MyContext);
 
   useEffect(() => {
     setPageTitle('Meu perfil');
-  }, []);
+  }, [setPageTitle]);
 
   const [newName, setNewName] = useState('');
   const [success, setSuccess] = useState(false);
   const [user, setUser] = useState({});
 
   const history = useHistory();
-  const CREATED = 201;
+  const OK = 200;
 
   useEffect(() => {
     const getUser = () => {
@@ -40,7 +40,9 @@ function MeuPerfil() {
       },
       body: JSON.stringify({ newName, email }),
     }).then((response) => response.status)
-      .then((data) => { if (data === CREATED) setSuccess(true); });
+      .then((data) => {
+        if (data === OK) setSuccess(true);
+      });
   };
 
   return (
@@ -81,4 +83,4 @@ function MeuPerfil() {
   );
 }
 
-export default MeuPerfil;
+export default Profile;

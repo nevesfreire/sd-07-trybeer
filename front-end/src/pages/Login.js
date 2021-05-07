@@ -30,8 +30,14 @@ function Login() {
       body: JSON.stringify({ email, password }),
     }).then((response) => response.json())
       .then((data) => localStorage.setItem('user', JSON.stringify(data)))
-      .then(email === 'tryber@trybe.com.br'
-        ? history.push('/admin/orders') : history.push('/products'));
+      .then(() => {
+        const userStorage = JSON.parse(localStorage.getItem('user'));
+        if (userStorage.role === 'client') {
+          history.push('/products');
+        } else {
+          history.push('/admin/orders');
+        }
+      });
   };
 
   return (
