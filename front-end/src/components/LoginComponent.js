@@ -15,16 +15,18 @@ function LoginComponent({
   return (
     <Form size="large">
       <Segment stacked>
+        <span>Email</span>
         <Form.Input
           fluid
           icon="user"
           iconPosition="left"
-          placeholder="E-mail"
+          placeholder="Email"
           name="email"
           data-testid="email-input"
           value={ email }
           onChange={ (e) => onInputChange(e) }
         />
+        <span>Senha</span>
         <Form.Input
           fluid
           icon="lock"
@@ -64,8 +66,8 @@ function LoginComponent({
 
 LoginComponent.propTypes = {
   formData: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    password: PropTypes.string,
   }).isRequired,
   onHandleSubmit: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
