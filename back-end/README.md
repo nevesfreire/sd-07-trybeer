@@ -4,7 +4,6 @@ HOSTNAME=localhost
 MYSQL_USER=root
 MYSQL_PASSWORD=
 PORT=3001
-JWT_SECRET=secret
 
 ## Criação de novo usuario
 

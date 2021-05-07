@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const ContextLogin = createContext();
+const ApiContext = createContext();
 
-export default ContextLogin;
+export default ApiContext;

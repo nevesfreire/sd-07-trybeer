@@ -1,36 +1,26 @@
-import axios from 'axios';
-import React, { createContext, useState } from 'react';
-import api from '../components/api/config';
+import React, { useState } from 'react';
+import Proptypes from 'prop-types';
+import ApiContext from './context';
+// import api from '../components/api/config';
 // import auth from '../components/auth'
 
-const ApiContext = createContext();
+function ApiProvider({ children }) {
+  const [data, setData] = useState(false);
 
-export default ApiContext;
-
-export const ApiProvider = ({ children }) => {
-  const [user, setUser] = useState('hahay');
-
-  const userLogin = async ({ email, password }) => {
-    const options = {
-      method: 'POST',
-      url: 'http://localhost:3001/login',
-      headers: { 'Content-Type': 'application/json' },
-      data: { email, password },
-    };
-
-    return axios.request(options).then((response) => {
-      const { data } = response;
-      return data;
-    }).catch(({ err }) => {
-      console.error(err);
-    });
+  const userData = {
+    data,
+    setData,
   };
 
-  const data = { userLogin };
-
   return (
-    <ApiContext.Provider value={ data }>
+    <ApiContext.Provider value={ userData }>
       { children }
     </ApiContext.Provider>
   );
+}
+
+export default ApiProvider;
+
+ApiProvider.propTypes = {
+  children: Proptypes.node.isRequired,
 };

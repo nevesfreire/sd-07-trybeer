@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
-import { Redirect } from 'react-router-dom';
-import ApiContext from "../../context/apiContext";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { userLogin } from '../../services/apiService';
+import validateLogin from './validationLogin';
 import {
   Form,
   Label,
@@ -8,47 +9,41 @@ import {
   Button,
   Span,
   RegisterButton,
-} from './styles'
-
-
-// import "./styles.css";
-
-// const handleSubmit = (evt) => {
-//   evt.preventDefault();
-// }
+} from './styles';
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  // const [userRole, setRole] = useState(null);
 
-  const { userLogin } = useContext(ApiContext)
+  // const { userLogin } = useContext(ApiContext);
+  const history = useHistory();
 
-  
-  const onSubmitHandler = async (e) => {
+  const onSubmitHandler = async (e, user) => {
     e.preventDefault();
-    const user = {
-      email,
-      password,
+    // const user = {
+    //   email,
+    //   password,
+    // };
+    // req da api enviando:
+    const response = await userLogin(user).then((apiResponse) => apiResponse);
+    if (await response.role === 'administrator') {
+      localStorage.setItem('user', JSON.stringify(response));
+      history.push('/admin/orders');
     }
-    //req da api enviando:
-    const response = await userLogin(user);
-    localStorage.setItem('user', JSON.stringify(response));
-    if(response) {
-      const { role } = response;
-      if (role === 'administrator') {
-        return <Redirect to="/admin/orders" /> 
-      } 
-      return <Redirect to="/products" />
+    if (await response.role === 'client') {
+      localStorage.setItem('user', JSON.stringify(response));
+      history.push('/products');
     }
   };
 
   return (
-    <Form onSubmit={ onSubmitHandler }>
+    <Form>
       <Label>
         Email
         <Input
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          value={ email }
+          onChange={ (e) => setEmail(e.target.value) }
           placeholder="Email address"
           type="email"
           name="email"
@@ -59,8 +54,8 @@ function LoginForm() {
       <Label>
         <Span>Senha</Span>
         <Input
-          value={password}
-          onChange={e => setPassword(e.target.value)}
+          value={ password }
+          onChange={ (e) => setPassword(e.target.value) }
           placeholder="Password"
           type="password"
           name="password"
@@ -71,16 +66,19 @@ function LoginForm() {
       <Button
         type="submit"
         data-testid="signin-btn"
+        disabled={ validateLogin(email, password) }
+        onClick={ (e) => onSubmitHandler(e, { email, password }) }
       >
         Entrar
-      </Button> 
+      </Button>
       <RegisterButton
         to="/register"
         data-testid="no-account-btn"
       >
-        ou registre-se
+        Ainda não tenho conta
       </RegisterButton>
     </Form>
   );
 }
+
 export default LoginForm;
