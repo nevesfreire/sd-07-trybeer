@@ -17,7 +17,7 @@ function App() {
           <Route exact path="/login" component={ Login } />
           <Route exact path="/register" component={ Register } />
           <Route exact path="/admin/orders" component={ PendingOrders } />
-          <Route exact path="" component={ Products } />
+          <Route exact path="/products" component={ Products } />
         </Switch>
       </TrybeerProvider>
     </BrowserRouter>

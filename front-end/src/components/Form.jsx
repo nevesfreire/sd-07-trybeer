@@ -13,24 +13,30 @@ function Form({ history }) {
   const { location: { pathname } } = history;
   const path = pathname;
 
-  const submitLogin = async () => {
-    const userData = await login(email, password);
+  const handleLocalStorage = (data) => {
     const user = {
-      name: userData.name,
-      email: userData.email,
-      token: userData.token,
-      role: userData.role,
+      name: data.name,
+      email: data.email,
+      token: data.token,
+      role: data.role,
     };
   
     localStorage.setItem('user', JSON.stringify(user));
-    if (user.role === 'client') {
+    if (data.role === 'client') {
       return history.push('/products');
     }
     return history.push('/admin/orders');
+
+  };
+
+  const submitLogin = async () => {
+    const userData = await login(email, password);
+    handleLocalStorage(userData);
   };
 
   const submitRegister = async () => {
     const newUserData = await register(name, email, password, checkbox);
+    handleLocalStorage(newUserData);
   };
 
   const handleSubmit = async () => {
