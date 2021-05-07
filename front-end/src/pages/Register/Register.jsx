@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as api from '../../services/api';
+import { setStorage } from '../../services/localStorage';
 
 function Register() {
   const [name, setName] = useState('');
@@ -42,6 +43,8 @@ function Register() {
     e.preventDefault();
     const { message } = await api.getByEmail(email);
     if (message === 'User found') return setExistUser(true);
+    // adicionar usuário ao banco (até o momento sendo add pelo localStorage)
+    setStorage('user', { name, email });
     if (isSeller) return history.push('/admin/orders');
     return history.push('/products');
   }
@@ -86,7 +89,7 @@ function Register() {
             id="checkbox-input"
             data-testid="signup-seller"
             onClick={ () => setIsSeller(!isSeller) }
-            checked={ isSeller }
+            defaultChecked={ isSeller }
           />
           Quero vender
         </label>

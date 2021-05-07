@@ -17,6 +17,7 @@ function ClientProfile() {
   useEffect(() => {
     setDisabled(name === userData.name);
   }, [name, userData]);
+
   function handleSubmit(e) {
     e.preventDefault();
     const newUserData = { ...userData, name };
@@ -27,7 +28,7 @@ function ClientProfile() {
 
   return (
     <div>
-      <Header headerTitle="Meu perfil" />
+      <Header>Meu perfil</Header>
       <form>
         <label htmlFor="name-input">
           <h6>Nome</h6>
@@ -45,7 +46,7 @@ function ClientProfile() {
             type="email"
             id="email-input"
             data-testid="profile-email-input"
-            value={ userData.email }
+            value={ userData.email || '' }
             readOnly
           />
         </label>

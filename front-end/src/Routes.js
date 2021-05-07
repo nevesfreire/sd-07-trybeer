@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Register, Products, ClientProfile } from '../pages';
+import { Login, Register, Products, ClientProfile } from './pages';
 
 function Router() {
   return (

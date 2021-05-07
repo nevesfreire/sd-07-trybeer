@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { clearStorage } from '../../services/localStorage';
+
 import './styles.css';
 
-function Header({ headerTitle = 'TryBeer' }) {
+function Header({ children }) {
   const history = useHistory();
   const [sideMenu, setSideMenu] = useState(true);
 
@@ -16,6 +18,7 @@ function Header({ headerTitle = 'TryBeer' }) {
     case 'profile':
       return history.push('/profile');
     default:
+      clearStorage('user');
       return history.push('/');
     }
   }
@@ -76,7 +79,7 @@ function Header({ headerTitle = 'TryBeer' }) {
           </li>
         </ul>
       </div>
-      <h2 data-testid="top-title">{ headerTitle }</h2>
+      <h2 data-testid="top-title">{ children }</h2>
     </header>
   );
 }
@@ -84,5 +87,5 @@ function Header({ headerTitle = 'TryBeer' }) {
 export default Header;
 
 Header.propTypes = {
-  headerTitle: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };

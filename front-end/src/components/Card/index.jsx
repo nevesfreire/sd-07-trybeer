@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getStorage,
   setStorage,
-  calculateTotalProductsPrice } from '../services/localStorage';
-import { Creators } from '../store/ducks/reducers/clientInfo';
+  calculateTotalProductsPrice } from '../../services/localStorage';
+import { Creators } from '../../store/ducks/reducers/clientInfo';
+import format from '../../util/format';
 
-function Card({ product }) {
+function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
   const [productQuantity, setProductQuantity] = useState(0);
-
-  const { url_image: urlImage, name, price, id, quantity } = product;
 
   useEffect(() => {
     if (quantity) setProductQuantity(quantity);
@@ -50,17 +50,8 @@ function Card({ product }) {
         src={ urlImage }
         alt={ name }
       />
-      <h5
-        data-testid={ `${id - 1}-product-price` }
-      >
-        { `R$ ${price}` }
-      </h5>
-      <h6
-        data-testid={ `${id - 1}-product-name` }
-      >
-        { name }
-
-      </h6>
+      <h5 data-testid={ `${id - 1}-product-price` }>{ format(price) }</h5>
+      <h6 data-testid={ `${id - 1}-product-name` }>{ name }</h6>
       <button
         type="button"
         data-testid={ `${id - 1}-product-minus` }
@@ -68,12 +59,7 @@ function Card({ product }) {
       >
         -
       </button>
-      <span
-        data-testid={ `${id - 1}-product-qtd` }
-      >
-        { productQuantity }
-
-      </span>
+      <span data-testid={ `${id - 1}-product-qtd` }>{ productQuantity }</span>
       <button
         type="button"
         data-testid={ `${id - 1}-product-plus` }
@@ -86,3 +72,13 @@ function Card({ product }) {
 }
 
 export default Card;
+
+Card.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    url_image: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.string,
+    quantity: PropTypes.number,
+  }).isRequired,
+};
