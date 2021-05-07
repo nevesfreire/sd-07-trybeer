@@ -21,8 +21,9 @@ const create = async (dAddress, dNumber, listProducts, authorization) => {
   );
 };
 
-const getAll = async () => {
-  const sales = await SaleModel.getAll();
+const getAll = async (authorization) => {
+  const decoded = jwt.decodeToken(authorization);
+  const sales = await SaleModel.getAll(decoded.id);
   return sales;
 };
 

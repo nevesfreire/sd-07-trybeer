@@ -1,8 +1,10 @@
+const { v4 } = require('uuid');
 const SalesService = require('../service/SaleService');
 
 const create = async (req, res) => {
   // UserId DeliveryAdress DeliveryNumber {productId: quantity}
-  const { deliveryAddress, deliveryNumber, listProducts } = req.body;
+  const { deliveryAddress, listProducts } = req.body;
+  const deliveryNumber = v4();
   const { authorization } = req.headers;
   try {
     const newSale = await SalesService.create(
@@ -18,8 +20,9 @@ const create = async (req, res) => {
 };
 
 const getAll = async (req, res) => {
+  const { authorization } = req.headers;
   try {
-    const allSales = await SalesService.getAll();
+    const allSales = await SalesService.getAll(authorization);
     return res.status(200).json(allSales);
   } catch (error) {
     return res.status(500).json({ error: error.message });

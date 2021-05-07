@@ -20,7 +20,6 @@ router.get('/products', productsControler.getAllProducts);
 // Estrutura do body da requisição: 
 // {
 // "deliveryAddress":"Rua Leopardo Gazela",
-// "deliveryNumber":"25",
 // "listProducts": {"1":"5","2":"5"}
 // }
 router.post('/sale', saleControler.create);

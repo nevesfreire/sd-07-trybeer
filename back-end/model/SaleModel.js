@@ -15,11 +15,14 @@ const create = async (tudao) => {
   }
 };
 
-const getAll = async () => {
+const getAll = async (id) => {
   try {
     const sales = await connection.execute(
       `SELECT delivery_number,
-      date_format(sale_date, '%d/%m') AS date,total_price FROM sales ORDER BY id`,
+      date_format(sale_date, '%d/%m') AS date,total_price FROM sales 
+      WHERE user_id = ?
+      ORDER BY id`,
+      [id],
     );
     return sales[0];
   } catch (error) {
