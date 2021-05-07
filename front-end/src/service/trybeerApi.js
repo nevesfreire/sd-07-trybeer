@@ -22,7 +22,7 @@ const register = async (name, email, password, role) => {
     password,
     role,
   })
-    .then((response) => console.log(response))
+    .then((response) => response)
     .catch((error) => {
       if (error) return { error: error.message };
     });

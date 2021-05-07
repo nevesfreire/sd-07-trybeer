@@ -4,7 +4,7 @@ import { nameIsValid, passwordIsValid, emailIsValid } from '../../service/valida
 import { register } from '../../service/trybeerApi';
 
 export default function Register() {
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState('');
   const [registerInfo, setRegisterInfo] = useState({
     name: '',
     email: '',
@@ -28,16 +28,18 @@ export default function Register() {
 
   const handleClick = async () => {
     const { name, email, password, seller } = registerInfo;
-    const role = seller === 'false' ? 'client' : 'administrator';
+    const role = seller === false ? 'client' : 'administrator';
     const result = await register(name, email, password, role);
-    if (!result) {
+    console.log(result);
+    if (!result.error) {
       setShouldRedirect(role);
     }
   };
 
   if (shouldRedirect) {
+    console.log('entrei no if do redirect', shouldRedirect);
     return (<Redirect
-      to={ `/${shouldRedirect === 'administrator' ? '/admin/orders' : 'products'}` }
+      to={ `/${shouldRedirect === 'administrator' ? 'admin/orders' : 'products'}` }
     />);
   }
 
