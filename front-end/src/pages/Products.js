@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import 'semantic-ui-css/semantic.min.css';
 import { Grid, Button } from 'semantic-ui-react';
@@ -7,11 +7,12 @@ import { Grid, Button } from 'semantic-ui-react';
 import CardComponent from '../components/CardComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import * as API from '../helpers/apiHelper';
+import * as STORAGE from '../helpers/localStorageHelper';
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [getTotal, setTotal] = useState(0);
+  const [getTotal, setTotal] = useState('0.00'.replace('.', ','));
 
   const sumTotal = () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -37,6 +38,27 @@ function Products() {
 
   const renderLoading = () => <h1>LOADING...</h1>;
 
+  const renderButton = () => {
+    if (getTotal === '0,00') {
+      return (
+        <Button data-testid="checkout-bottom-btn" color="blue" disabled>
+          Ver Carrinho
+          <span data-testid="checkout-bottom-btn-value">{`R$ ${getTotal}`}</span>
+        </Button>
+      );
+    }
+    return (
+      <Link to="/checkout">
+        <Button data-testid="checkout-bottom-btn" color="blue">
+          Ver Carrinho
+          <span data-testid="checkout-bottom-btn-value">{`R$ ${getTotal}`}</span>
+        </Button>
+      </Link>
+    );
+  };
+
+  if (STORAGE.getUser() === null) return <Redirect to="/login" />;
+
   return (
     <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
       <Grid.Column style={ { maxWidth: 500 } }>
@@ -44,12 +66,7 @@ function Products() {
 
         {isLoading ? renderLoading() : renderProductsList()}
 
-        <Link to="/checkout">
-          <Button data-testid="checkout-bottom-btn" color="blue">
-            Ver carrinho R$
-            {getTotal}
-          </Button>
-        </Link>
+        {renderButton()}
       </Grid.Column>
     </Grid>
   );

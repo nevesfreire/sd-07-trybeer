@@ -59,7 +59,7 @@ function CardComponent({ product, sumTotal }) {
         <Card.Header data-testid={ `${id - 1}-product-name` }>{name}</Card.Header>
 
         <Card.Description data-testid={ `${id - 1}-product-price` }>
-          <span>R$</span>
+          <span>R$ </span>
           {price.replace('.', ',')}
         </Card.Description>
       </Card.Content>
