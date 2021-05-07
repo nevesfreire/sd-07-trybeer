@@ -14,16 +14,18 @@ const Provider = ({ children }) => {
   }, []);
 
   function addToCart(product) {
+    let newCart;
     if (cart.find(({ id }) => id === product.id)) {
-      setCart((prevCart) => prevCart.map((prod) => {
+      newCart = cart.map((prod) => {
         if (prod.id === product.id) prod.quantity += 1;
         return prod;
-      }));
+      });
     } else {
-      setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
+      newCart = [...cart, { ...product, quantity: 1 }];
     }
 
-    saveItem('cart', cart);
+    saveItem('cart', newCart);
+    setCart(newCart);
   }
 
   function removeFromCart(product) {

@@ -3,7 +3,12 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from './context';
 
 import ProtectedRoute from './ProtectedRoute';
-import { LoginPage, ProductsPage, RegisterPage } from './pages';
+import {
+  LoginPage,
+  ProductsPage,
+  RegisterPage,
+  CheckoutPage,
+} from './pages';
 
 function App() {
   return (
@@ -15,6 +20,7 @@ function App() {
           <Route path="/register" component={ RegisterPage } />
           <ProtectedRoute>
             <Route path="/products" component={ ProductsPage } />
+            <Route path="/checkout" component={ CheckoutPage } />
           </ProtectedRoute>
         </Provider>
       </Switch>
