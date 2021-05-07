@@ -72,8 +72,8 @@ const createSale = async (email, total_price, delivery_address, delivery_number,
   checkIfEmailIsValid(email);
   checkTotalPriceValue(total_price);
   checkDeliveryNumberValue(delivery_number);
-  console.log('entrou no services')
   checkProductsSalesValue(products_sales);
+
   const userId = await getUserIdFromEmail(email);
   const date = getDate();
   const result = await saleModels.createSale(userId, total_price, delivery_address, delivery_number, date, 'pendent');  
