@@ -25,8 +25,16 @@ export const Input = styled.input`
   min-width: 360px;
   border: none;
   margin-bottom: 0.8em;
-  border-bottom: solid 2px red;
+  border-bottom: solid 2px #f0be00;
   outline: none;
+  -webkit-transition: border-bottom 3s ease-out;
+  -moz-transition: border-bottom 3s ease-out;
+  -o-transition: border-bottom 3s ease-out;
+  transition: border-bottom 3s ease-out;
+  &:hover {
+    border-bottom: solid 2px #006600;
+    cursor: pointer;
+  }
 `;
 
 export const Button = styled.button`
@@ -38,10 +46,18 @@ export const Button = styled.button`
   border-radius: 5px;
   margin-top: 0.2em;
   outline: none;
-    &:hover {
-      background-color: red;
-      color: white;
-    }
+  background-color: #f0be00;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+  &:hover {
+    background-color: #006600;
+    cursor: pointer;
+  }
 `;
 
 export const Span = styled.span`
