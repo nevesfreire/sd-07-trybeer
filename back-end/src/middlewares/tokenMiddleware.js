@@ -2,6 +2,8 @@ const { StatusCodes } = require('http-status-codes');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+const secret = 'TRYBEER'
+
 const validateToken = async (req, res, next) => {
   try {
     const { email } = req.body;
@@ -11,7 +13,7 @@ const validateToken = async (req, res, next) => {
         .json({ message: 'Token não encontrado' });
     }
 
-    const verifyToken = jwt.verify(authorization, TRYBEER);
+    const verifyToken = jwt.verify(authorization, secret);
 
     if (verifyToken.email !== email) {
       return res.status(StatusCodes.UNAUTHORIZED)
