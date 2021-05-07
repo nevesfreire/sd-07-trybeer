@@ -1,31 +1,49 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Form, Label, Input } from './styles';
 import validateRegister from './validation';
-
-// const handleSubmit = (evt) => {
-//   evt.preventDefault();
-// }
+import { registerUser } from '../../services/apiService';
 
 function CreateUserForm() {
   // Estados de campos
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('client');
   const [iWantToSell, setiWantToSell] = useState(false);
+  const [userExists, setUserExists] = useState(false);
 
-  const onSubmitHandler = (e) => {
+  const history = useHistory();
+
+  const handleRole = () => {
+    setiWantToSell(!iWantToSell);
+    if (!iWantToSell) return setRole('administrator');
+    return setRole('client');
+  };
+
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     const user = {
       name,
       email,
       password,
+      role,
     };
-
     validateRegister(user);
-  };
 
-  console.log({ validate: validateRegister(name, email, password) });
+    const response = await registerUser(user).then((apiResponse) => apiResponse);
+    if (response.err) return setUserExists(true);
+    setUserExists(false);
+
+    if (role === 'administrator') {
+      history.push('/admin/orders');
+    }
+
+    if (role === 'client') {
+      history.push('/products');
+    }
+  };
 
   return (
     <Form onSubmit={ onSubmitHandler }>
@@ -52,6 +70,7 @@ function CreateUserForm() {
           required
         />
       </Label>
+      { userExists && <span>Já existe um usuário com esse e-mail.</span> }
 
       <Label data-testid="signup-password">
         Senha
@@ -65,11 +84,12 @@ function CreateUserForm() {
         />
       </Label>
 
-      <Label data-testid="signup-seller">
+      <Label>
         Quero vender
         <Input
+          data-testid="signup-seller"
           checked={ iWantToSell }
-          onChange={ () => setiWantToSell(!iWantToSell) }
+          onChange={ handleRole }
           type="checkbox"
         />
       </Label>

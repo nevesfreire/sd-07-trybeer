@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import userLogin from '../../services/apiService';
+import { userLogin } from '../../services/apiService';
 import validateLogin from './validationLogin';
 import {
   Form,
