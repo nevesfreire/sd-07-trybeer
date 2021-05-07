@@ -18,13 +18,9 @@ const ComponentLogin = () => {
     setLabelLogin(!result);
   };
   const params = { email: emailLabel, password: passwordLabel };
-  const toLogin = async () => {
-    api
-      .post('/login', params)
-      .then((token) => localStorage.setItem('token', token.data.token))
-      .catch((err) => console.log(`Error in login process: ${err}`));
-  };
-
+  const toLogin = async () => api.post('/login', params)
+    .then((token) => localStorage.setItem('token', token.data.token))
+    .catch((err) => console.log(`Error in login process: ${err}`));
   return (
     <div className="container-login">
       <div>
@@ -62,11 +58,15 @@ const ComponentLogin = () => {
             className="btn-submit-login"
             data-testid="signin-btn"
           >
-            Login
+            Entrar
           </button>
         </form>
       </div>
-      <button type="button" data-testid="no-account-btn">
+      <button
+        type="button"
+        data-testid="no-account-btn"
+        className="btn-submit-login remove-link"
+      >
         <Link to="/register">Ainda não tenho conta</Link>
       </button>
       <div className="container-link">

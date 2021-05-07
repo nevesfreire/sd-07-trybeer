@@ -79,6 +79,11 @@
   width: 1000px;
 }
 
+.remove-link a {
+  color:black;
+  text-decoration: none;
+}
+
 /* Aside contente */
 
 .aside-logo {
