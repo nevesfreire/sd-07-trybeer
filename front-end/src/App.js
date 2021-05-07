@@ -5,6 +5,8 @@ import TrybeerProvider from './context/TrybeerProvider';
 import Home from './pages/HomePage';
 import Login from './pages/LoginPage';
 import Register from './pages/RegisterPage';
+import PendingOrders from './pages/PendingOrders';
+import Products from './pages/Products';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route exact path="/" component={ Home } />
           <Route exact path="/login" component={ Login } />
           <Route exact path="/register" component={ Register } />
+          <Route exact path="/admin/orders" component={ PendingOrders } />
+          <Route exact path="" component={ Products } />
         </Switch>
       </TrybeerProvider>
     </BrowserRouter>

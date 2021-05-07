@@ -24,9 +24,9 @@ function Form({ history }) {
 
     localStorage.setItem('user', JSON.stringify(user));
     if (user.role === 'client') {
-      return history.push('/register');
+      return history.push('/products');
     }
-    return history.push('/register');
+    return history.push('/admin/orders');
   };
 
   const validateEmailAndPassword = () => {
@@ -59,7 +59,7 @@ function Form({ history }) {
           </label>
         )}
         <label htmlFor="email">
-          E-mail
+          Email
           <input
             type="email"
             data-testid={ path === '/register' ? 'signup-email' : 'email-input' }
