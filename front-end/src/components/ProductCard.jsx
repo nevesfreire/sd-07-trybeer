@@ -18,10 +18,11 @@ const ProductCard = (props) => {
   const accPrice = price.replace('.', ',');
 
   useEffect(() => {
+    console.log('effect');
     const pushCart = { ...cart, [id]: { product, quantity } };
     localStorage.setItem('cart', JSON.stringify(pushCart));
     setCart(pushCart);
-  }, [cart, id, product, quantity, setCart]);
+  }, [quantity]);
 
   if (!localStorage.getItem('token')) {
     return (<Redirect to="/login" />);
