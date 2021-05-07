@@ -1,11 +1,59 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
-import { ClientMenu } from '../../components';
+import React, { useEffect, useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 
-const ProductsPage = () => (
-  <div>
-    <ClientMenu><p data-testid="top-title">TryBeer</p></ClientMenu>
-  </div>
-);
+import { ProductCard, ClientMenu } from '../../components';
 
-export default ProductsPage;
+import api from '../../services/api';
+import { Context } from '../../context';
+
+function Products({ history }) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState('0.00');
+
+  const { cart } = useContext(Context);
+
+  const priceFormat = `R$ ${totalPrice.replace(/\./g, ',')}`;
+
+  useEffect(() => {
+    (async () => {
+      const response = await api.getProducts();
+      setProducts(response);
+      setIsLoading(false);
+    })();
+  }, []);
+
+  useEffect(() => {
+    setTotalPrice(cart
+      .reduce((acc, { price, quantity }) => acc + (price * quantity), 0)
+      .toFixed(2));
+  }, [cart]);
+
+  return isLoading ? <h1>Carregando</h1> : (
+    <>
+      <ClientMenu><p data-testid="top-title">TryBeer</p></ClientMenu>
+      <section>
+        {products.map((product) => <ProductCard key={ product.id } data={ product } />)}
+      </section>
+      <footer>
+        <button
+          type="button"
+          data-testid="checkout-bottom-btn"
+          disabled={ totalPrice === '0.00' }
+          onClick={ () => history.push('/checkout') }
+        >
+          <p>Ver Carrinho</p>
+          <p data-testid="checkout-bottom-btn-value">{ priceFormat }</p>
+        </button>
+      </footer>
+    </>
+  );
+}
+
+Products.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default Products;

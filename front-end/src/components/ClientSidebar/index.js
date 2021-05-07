@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Context } from '../../context';
 
+import { handleLogout } from '../../services/localStorage';
+
 const ClientSidebar = () => {
   const { setMenuOpen } = useContext(Context);
   const history = useHistory();
   const handleRoute = (path) => {
-    if (path === '/login') {
-      localStorage.removeItem('token');
-    }
+    if (path === '/login') handleLogout();
     history.push(path);
     setMenuOpen(false);
   };
@@ -30,14 +30,14 @@ const ClientSidebar = () => {
       </button>
       <button
         type="button"
-        data-testId="side-menu-item-my-profile"
+        data-testid="side-menu-item-my-profile"
         onClick={ () => handleRoute('/profile') }
       >
         Meu Perfil
       </button>
       <button
         type="button"
-        data-testId="side-menu-item-logout"
+        data-testid="side-menu-item-logout"
         onClick={ () => handleRoute('/login') }
       >
         Sair
