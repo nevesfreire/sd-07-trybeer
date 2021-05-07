@@ -29,7 +29,8 @@ function CreateUserForm() {
 
   return (
     <Form onSubmit={ onSubmitHandler }>
-      <Label>
+      {console.log('Aqui um console!')}
+      <Label data-testid="signup-name">
         Nome
         <Input
           value={ name }
@@ -37,12 +38,11 @@ function CreateUserForm() {
           placeholder="name"
           type="text"
           name="name"
-          data-testid="signup-name"
           required
         />
       </Label>
 
-      <Label>
+      <Label data-testid="signup-email">
         Email
         <Input
           value={ email }
@@ -50,12 +50,11 @@ function CreateUserForm() {
           placeholder="Email address"
           type="email"
           name="email"
-          data-testid="signup-email"
           required
         />
       </Label>
 
-      <Label>
+      <Label data-testid="signup-password">
         Senha
         <Input
           value={ password }
@@ -63,12 +62,11 @@ function CreateUserForm() {
           placeholder="Password"
           type="password"
           name="password"
-          data-testid="signup-password"
           required
         />
       </Label>
 
-      <Label>
+      <Label data-testid="signup-seller">
         Quero vender
         <Input
           checked={ iWantToSell }
@@ -80,6 +78,7 @@ function CreateUserForm() {
       <button
         type="submit"
         disabled={ validateRegister(name, email, password) }
+        data-testid="signup-btn"
       >
         Cadastrar
       </button>
