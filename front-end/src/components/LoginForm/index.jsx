@@ -19,7 +19,7 @@ function LoginForm() {
   // const { userLogin } = useContext(ApiContext);
   const history = useHistory();
 
-  const onSubmitHandler = (e, user) => {
+  const onSubmitHandler = async (e, user) => {
     e.preventDefault();
     // const user = {
     //   email,
