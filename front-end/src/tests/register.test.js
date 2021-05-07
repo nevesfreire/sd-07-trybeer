@@ -21,13 +21,14 @@ const sellerId = 'signup-seller'
 describe('1 - [PÁGINA DE REGISTRO] Crie uma página para registro de usuários com os seguintes campos e características:', () => {
 
   test('A rota para esta página deve ser \'/register\'', () => {
-    render(<App />, '/register');
+    render(<App />);
  
     expect(history.location.pathname).toBe('/register');
   });
 
   test('Crie um local para que o usuário insira seu nome, email e password', () => {
-    render(<App />, '/register');
+    render(<App />);
+
     const name = screen.getByTestId(nameId);
     const email = screen.getByTestId(emailId);
     const password = screen.getByTestId(passwordId);
@@ -40,14 +41,14 @@ describe('1 - [PÁGINA DE REGISTRO] Crie uma página para registro de usuários 
   });
 
   test('Crie um botão com o texto \'Cadastrar\'', () => {
-    render(<App />, '/register');
+    render(<App />);
 
     const button = screen.getByText(/Cadastrar/i);
     expect(button).toBeInTheDocument();
   });
 
   test('Realize as seguintes verificações nos campos de email, password e botão:', () => {
-    render(<App />, '/register');
+    render(<App />);
    
     const button = screen.getByText(/Cadastrar/i);
     expect(button).toBeDisabled();
@@ -198,7 +199,8 @@ describe('2 - [PÁGINA DE REGISTRO INFORMAÇÕES USER LOCALSTORAGE] Salvar as in
     render(<App />);
     beforeEach(() => localStorage.clear());
 
-    const result = await login('tryber@trybe.com.br', '123456')
+    await register('Roberto Carlos', 'usuario@test.com', 'test123', 'client');
+    const result = await login('usuario@test.com', 'test123')
 
     localStorage.setItem('user', JSON.stringify(result));
   

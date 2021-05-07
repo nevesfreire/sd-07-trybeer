@@ -2,8 +2,7 @@ const jwt = require('jsonwebtoken');
 const { service } = require('../user');
 const { emailIsValid, passwordIsValid } = require('../../helpers/validations');
 const { userNotFound, emailOrPasswordInvalid } = require('../../helpers/dictonary');
-
-const SECRET = 'TRYBEER';
+const { SECRET } = require('../../config/application');
 
 const validateLogin = async (email, password) => {
   if (!emailIsValid(email) || !passwordIsValid(password)) {
