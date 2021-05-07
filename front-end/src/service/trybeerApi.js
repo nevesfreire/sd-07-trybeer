@@ -23,9 +23,12 @@ const register = async (name, email, password, role) => {
     password,
     role,
   })
-    .then((response) => response)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
     .catch((error) => {
-      if (error) return { error: error.message };
+      if (error) return { error: 'Já existe um usuário com esse e-mail.' };
     });
   return result;
 };
