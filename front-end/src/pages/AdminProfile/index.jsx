@@ -1,7 +1,6 @@
 import React from 'react';
 import AdminProfile from '../../components/AdminProfile';
 import MenuBurger from '../../components/Menu';
-// import CreateUserForm from '../../components/CreateUserForm';
 import { MainDiv, FormWrapper, H1 } from './styles';
 
 const AdminProfilePage = () => (
