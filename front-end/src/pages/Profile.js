@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
-import { useHistory } from "react-router-dom";
-import { getToken } from "../helpers/localStorage";
-import CustomHeader from "../components/CustomHeader";
-import CustomProfile from "../components/CustomProfile";
-import fetchUpdate from "../service/profile";
+import React, { useState, useCallback } from 'react';
+// import { useHistory } from 'react-router-dom';
+import { getToken } from '../helpers/localStorage';
+import CustomHeader from '../components/CustomHeader';
+import CustomProfile from '../components/CustomProfile';
+import fetchUpdate from '../service/profile';
 
 function Profile() {
   const { email, name } = getToken();
@@ -13,39 +13,34 @@ function Profile() {
   const changeStateBtn = () => {
     setBtnEnable(false);
   };
-  const changeStateTxt = () => {
-    setTxtEnable(false);
-  };
 
   const [formDataUpdate, setFormDataUpdate] = useState(new Map());
 
-  const handleInputChange = useCallback(({ target: { name, value } }) => {
-    setFormDataUpdate((prevState) => {
-      return new Map(prevState).set(name, value);
-    });
+  const handleInputChange = useCallback(({ target: { key, value } }) => {
+    setFormDataUpdate((prevState) => new Map(prevState).set(key, value));
   }, []);
 
   const updateName = async () => {
-    const name = formDataUpdate.get("name");
-    const { id, token, email} = getToken();
-   const result = await fetchUpdate(email, name, id, token);
-   if(result === 200) setTxtEnable(false)
-   console.log(result) 
-  }
-  // const [formData, setFormData] = useState(new Map());
+    const twoHundred = 200;
+    // const name = formDataUpdate.get('name');
+    const { id, token } = getToken();
+    const result = await fetchUpdate(email, name, id, token);
+    if (result === twoHundred) setTxtEnable(false);
+    // if (result === undefined) history.push('/login');
+  };
+
   return (
     <div>
       <CustomHeader message="Cliente - Meu Perfil" />
       <CustomProfile
-        name={name}
-        email={email}
-        btnEnable={btnEnable}
-        txtEnable={txtEnable}
-        formDataUpdate={formDataUpdate}
-        stateBtn={changeStateBtn}
-        stateTxt={changeStateTxt}
-        uptName={updateName}
-        onInputChange={handleInputChange}
+        name={ name }
+        email={ email }
+        btnEnable={ btnEnable }
+        txtEnable={ txtEnable }
+        formDataUpdate={ formDataUpdate }
+        stateBtn={ changeStateBtn }
+        uptName={ updateName }
+        onInputChange={ handleInputChange }
       />
     </div>
   );

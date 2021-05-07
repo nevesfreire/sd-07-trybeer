@@ -1,14 +1,12 @@
 import React, { useState, useCallback, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import  CustomMessage from '../components/CustomMessage';
-import  CustomHeader from '../components/CustomHeader';
-import  CustomSignUpForm from '../components/CustomSignUpForm';
+import { useHistory, Link } from 'react-router-dom';
+import { Grid } from 'semantic-ui-react';
+import CustomMessage from '../components/CustomMessage';
+import CustomHeader from '../components/CustomHeader';
+import CustomSignUpForm from '../components/CustomSignUpForm';
 import fetchUser from '../service/user';
 
-import { Grid } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import CentralContext from '../context/Context';
-
 
 function SignUp() {
   const history = useHistory();
@@ -16,17 +14,19 @@ function SignUp() {
   const { setIsExistEmail } = useContext(CentralContext);
 
   const searchEmail = (user) => {
-    console.log(user)
-    if(user === 'Request failed with status code 409') {
-      setIsExistEmail(true)
-      return true
-    };
-  }
+    console.log(user);
+    if (user === 'Request failed with status code 409') {
+      setIsExistEmail(true);
+      return true;
+    }
+  };
 
   const validate = () => {
+    const five = 5;
+    const twelve = 12;
     const name = formData.get('name');
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const email = formData.get('email');
+    const password = formData.get('password');
     if (email) {
       const regexEmail = /\S+@\S+\.\S+/;
       if (!regexEmail.test(email)) {
@@ -34,12 +34,12 @@ function SignUp() {
       }
     }
 
-    if (!password || password.length <= 5) {
+    if (!password || password.length <= five) {
       return true;
     }
     if (name) {
       const regexName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
-      if(!regexName.test(name) || name.length <12 ){
+      if (!regexName.test(name) || name.length < twelve) {
         return true;
       }
     }
@@ -58,44 +58,43 @@ function SignUp() {
     const email = formData.get('email');
     const password = formData.get('password');
     const iWantToSell = formData.get('iWantToSell');
-    validate()
-    const resultSell = iWantToSell === undefined ? false : true;
+    validate();
+    const resultSell = iWantToSell !== undefined;
     const user = await fetchUser(name, email, password, resultSell);
-    console.log(user)
+    console.log(user);
     if (searchEmail(user)) return;
-    console.log('chegou aqui')
-    if (!resultSell) return history.push("/products");
-    history.push("/admin/orders"); 
+    console.log('chegou aqui');
+    if (!resultSell) return history.push('/products');
+    history.push('/admin/orders');
   };
 
   const handleInputChange = useCallback(({ target: { name, value } }) => {
-    setFormData(prevState => {
-      return new Map(prevState).set(name, value);
-    });
+    setFormData((prevState) => new Map(prevState).set(name, value));
   }, []);
 
-    return (
-      <Grid
-        textAlign="center"
-        style={{ height: '100vh' }}
-        verticalAlign="middle"
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <CustomHeader message="Central de Erros" />
-          <CustomSignUpForm
-            formData={formData}
-            onInputChange={handleInputChange}
-            onHandleSubmit={handleSubmit}
-            isValid={validate}
-            // existEmail={isExistEmail}
-          />
-          <CustomMessage>
-            Já possui conta ? <Link to="/login">logar</Link>
-          </CustomMessage>
-        </Grid.Column>
-      </Grid>
-    );
+  return (
+    <Grid
+      textAlign="center"
+      style={ { height: '100vh' } }
+      verticalAlign="middle"
+    >
+      <Grid.Column style={ { maxWidth: 450 } }>
+        <CustomHeader message="Central de Erros" />
+        <CustomSignUpForm
+          formData={ formData }
+          onInputChange={ handleInputChange }
+          onHandleSubmit={ handleSubmit }
+          isValid={ validate }
+          // existEmail={isExistEmail}
+        />
+        <CustomMessage>
+          Já possui conta ?
+          {' '}
+          <Link to="/login">logar</Link>
+        </CustomMessage>
+      </Grid.Column>
+    </Grid>
+  );
 }
-
 
 export default (SignUp);

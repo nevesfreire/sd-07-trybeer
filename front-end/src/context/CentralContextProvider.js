@@ -1,10 +1,8 @@
-
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Context from './Context';
 
 function CentralContextProvider({ children }) {
-
   const [isFetching, setIsFetching] = useState(true);
   const [isExistEmail, setIsExistEmail] = useState(false);
 
@@ -14,7 +12,7 @@ function CentralContextProvider({ children }) {
         isFetching,
         setIsFetching,
         isExistEmail,
-        setIsExistEmail
+        setIsExistEmail,
       } }
     >
       {children}

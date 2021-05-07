@@ -1,7 +1,8 @@
-import "semantic-ui-css/semantic.min.css";
-import React, { useEffect, useContext } from "react";
+import 'semantic-ui-css/semantic.min.css';
+import React, { useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
+import { Button, Form, Segment, Divider } from 'semantic-ui-react';
 import CentralContext from '../context/Context';
-import { Button, Form, Segment, Checkbox, Divider } from "semantic-ui-react";
 
 const SignUpForm = ({
   formData: { name, email, password, iWantToSell },
@@ -19,47 +20,50 @@ const SignUpForm = ({
           fluid
           label="Nome"
           placeholder="Name"
-          value={name}
+          value={ name }
           name="name"
-          onChange={(e) => onInputChange(e)}
+          onChange={ (e) => onInputChange(e) }
         />
         <Form.Input
           data-testid="signup-email"
           fluid
           label="Email"
           placeholder="E-mail address"
-          value={email}
+          value={ email }
           name="email"
-          onChange={(e) => onInputChange(e)}
+          onChange={ (e) => onInputChange(e) }
         />
         <Form.Input
           data-testid="signup-password"
           fluid
           label="Senha"
           placeholder="Password"
-          value={password}
+          value={ password }
           type="password"
           name="password"
-          onChange={(e) => onInputChange(e)}
+          onChange={ (e) => onInputChange(e) }
         />
-        <Divider></Divider>
-        <label htmlFor="signup-seller">Quero vender</label>
-        <input
-          data-testid="signup-seller"
-          type="checkbox"
-          label="Quero vender"
-          name="iWantToSell"
-          value={iWantToSell}
-          onChange={(e) => onInputChange(e)}
-        />
-        <Divider></Divider>
+        <Divider />
+        <label htmlFor="signup-seller">
+          Quero vender
+          <input
+            data-testid="signup-seller"
+            id="signup-seller"
+            type="checkbox"
+            label="Quero vender"
+            name="iWantToSell"
+            value={ iWantToSell }
+            onChange={ (e) => onInputChange(e) }
+          />
+        </label>
+        <Divider />
         <Button
           data-testid="signup-btn"
           color="orange"
           fluid
           size="large"
-          onClick={async () => await onHandleSubmit()}
-          disabled={isValid()}
+          onClick={ () => onHandleSubmit() }
+          disabled={ isValid() }
         >
           Cadastrar
         </Button>
@@ -71,4 +75,17 @@ const SignUpForm = ({
     </Form>
   );
 };
+
+SignUpForm.propTypes = {
+  formData: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string,
+    iWantToSell: PropTypes.bool,
+  }).isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  isValid: PropTypes.func.isRequired,
+  onHandleSubmit: PropTypes.func.isRequired,
+};
+
 export default SignUpForm;

@@ -1,11 +1,11 @@
-import axios from "axios";
-import { saveToken } from "../helpers/localStorage";
+import axios from 'axios';
+import { saveToken } from '../helpers/localStorage';
 
 export default async function fetchUser(name, email, password, iWantToSell) {
-  const requestUserUrl = "http://localhost:3001/user";
+  const requestUserUrl = 'http://localhost:3001/user';
 
   const requestHeader = {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   };
 
   const requestBody = {
@@ -13,11 +13,11 @@ export default async function fetchUser(name, email, password, iWantToSell) {
     email,
     password,
     iWantToSell,
-  }
+  };
 
   try {
     const res = await axios.post(requestUserUrl, requestBody, requestHeader);
-    console.log('res', res)
+    console.log('res', res);
     const { data } = res;
     if (data) {
       saveToken(data);

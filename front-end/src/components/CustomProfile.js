@@ -1,6 +1,7 @@
-import "semantic-ui-css/semantic.min.css";
-import React, { useEffect } from "react";
-import { Button, Form, Segment } from "semantic-ui-react";
+import 'semantic-ui-css/semantic.min.css';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Button, Form, Segment } from 'semantic-ui-react';
 
 const CustomPerfil = ({
   email: emailL,
@@ -8,12 +9,10 @@ const CustomPerfil = ({
   btnEnable,
   txtEnable,
   stateBtn,
-  stateTxt,
   uptName,
   onInputChange,
   formDataUpdate: { email, name },
 }) => {
-  let buttonEnable = false;
   useEffect(() => {}, [btnEnable]);
   useEffect(() => {}, [txtEnable]);
 
@@ -26,10 +25,10 @@ const CustomPerfil = ({
           icon="mail"
           iconPosition="left"
           label="Email"
-          placeholder={emailL}
+          placeholder={ emailL }
           name="email"
-          readonly
-          value={email}
+          readOnly
+          value={ email }
         />
         <Form.Input
           data-testid="profile-name-input"
@@ -37,30 +36,41 @@ const CustomPerfil = ({
           icon="user"
           iconPosition="left"
           label="Nome"
-          placeholder={nameL}
+          placeholder={ nameL }
           type="text"
           name="name"
-          value={name}
-          onChange={(e) => {
+          value={ name }
+          onChange={ (e) => {
             onInputChange(e);
-          }}
+            stateBtn();
+          } }
         />
 
-        {/* {console.log(isValid())} */}
         <Button
           data-testid="profile-save-btn"
           color="orange"
           fluid
           size="large"
-          onClick={() => uptName(email, name)}
-          // disabled={btnEnable}
+          onClick={ () => uptName(email, name) }
+          disabled={ btnEnable }
         >
           Salvar
         </Button>
-        {txtEnable ? null : <span>Atualização concluída com sucesso</span>} 
+        {txtEnable ? null : <span>Atualização concluída com sucesso</span>}
       </Segment>
     </Form>
   );
+};
+
+CustomPerfil.propTypes = {
+  email: PropTypes.string.isRequired,
+  btnEnable: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  txtEnable: PropTypes.bool.isRequired,
+  stateBtn: PropTypes.func.isRequired,
+  uptName: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  formDataUpdate: PropTypes.func.isRequired,
 };
 
 export default CustomPerfil;
