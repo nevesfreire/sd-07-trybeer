@@ -12,7 +12,6 @@ import {
 
 // const menuTitle = "Meu Perfil";
 
-
 function ClientProfile() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,7 +23,7 @@ function ClientProfile() {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const user = {
-      name
+      name,
     };
     // req da api enviando:
     return userLogin(user)
@@ -81,7 +80,7 @@ function ClientProfile() {
       >
         Salvar
       </Button>
-      
+
     </Form>
   );
 }
