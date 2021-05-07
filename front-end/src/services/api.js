@@ -1,12 +1,18 @@
 import axios from 'axios';
 
 const endpoint = 'http://localhost:3001';
+const headers = { 'Content-Type': 'application/json' };
 const applicationJson = 'application/json';
+
+async function getProducts() {
+  const response = await (await fetch(`${endpoint}/products`)).json();
+  return response;
+}
 
 async function registerUser(data) {
   const response = await (await fetch(`${endpoint}/register`, {
     method: 'POST',
-    headers: { 'Content-Type': applicationJson },
+    headers,
     body: JSON.stringify(data),
   })).json();
 
@@ -17,7 +23,7 @@ async function loginUser(email, password) {
   const options = {
     method: 'POST',
     url: `${endpoint}/login`,
-    headers: { 'Content-Type': applicationJson },
+    headers,
     data: { email, password },
   };
 
@@ -43,5 +49,6 @@ async function updateUser(name, token) {
 export default {
   registerUser,
   loginUser,
+  getProducts,
   updateUser,
 };
