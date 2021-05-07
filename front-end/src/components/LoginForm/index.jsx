@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import ApiContext from '../../context/apiContext';
 import validateLogin from './validationLogin';
 import {
@@ -23,6 +23,7 @@ function LoginForm() {
   const [userRole, setRole] = useState(null);
 
   const { userLogin } = useContext(ApiContext);
+  const history = useHistory();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -43,11 +44,13 @@ function LoginForm() {
   };
 
   if (userRole && userRole === 'administrator') {
-    return <Redirect to="/admin/orders" />;
+    history.push('/admin/orders');
+    // return <Redirect to="/admin/orders" />;
   }
 
   if (userRole && userRole === 'client') {
-    return <Redirect to="/products" />;
+    history.push('/products');
+    // return <Redirect to="/products" />;
   }
 
   return (
