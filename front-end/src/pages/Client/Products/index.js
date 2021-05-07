@@ -5,7 +5,7 @@ import TopMenu from '../../../commons/simple/TopMenu';
 function Products() {
   return (
     <div>
-      <TopMenu title="Trybeer" />
+      <TopMenu title="TryBeer" />
       <h1>Product Screen</h1>
     </div>
   );

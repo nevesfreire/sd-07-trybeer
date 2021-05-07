@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import loginRequest from '../services/usersApi';
+import { loginRequest } from '../services/usersApi';
 
 function Login() {
   const [email, setEmail] = useState('');

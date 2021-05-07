@@ -6,7 +6,7 @@ const defaultPort = 3001;
 
 const PORT = process.env.REACT_APP_PORT_BACKEND || defaultPort;
 
-async function loginRequest(email, password) {
+export async function loginRequest(email, password) {
   const endpoint = `http://localhost:${PORT}/login`;
   let response = {};
 
@@ -21,4 +21,17 @@ async function loginRequest(email, password) {
   }
 }
 
-export default loginRequest;
+export async function nameChangeRequest(name, email) {
+  const endpoint = `http://localhost:${PORT}/profile`;
+  let response = {};
+
+  try {
+    response = await axios.put(endpoint, {
+      name,
+      email,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+}

@@ -12,6 +12,7 @@ function App() {
     <Switch>
       <Route path="/products" component={ Products } />
       <Route exact path="/admin/orders" component={ Orders } />
+      <Route exact path="/orders" component={ Orders } />
       <Route path="/login" component={ Login } />
       <Route path="/register" />
       <Route exact path="/profile" component={ Profile } />
