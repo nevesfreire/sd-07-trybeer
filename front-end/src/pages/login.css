@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.container-out-login {
+  align-items: center;
+  display: flex;
+  font-family: 'Roboto', sans-serif;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.container-login {
+  align-items: center;
+  background-color: rgba(10, 19, 39, 1);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 280px;
+  padding: 30px;
+  
+}
+
+.container-int-login {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-login-title {
+  color: white;
+}
+
+.form-login {
+  color: white;
+  font-size: 10pt;
+}
+
+.label-login {
+  background-color: rgba(10, 19, 39, 1);
+  border:none;
+  border-bottom: 1px solid white;
+  color: white;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-submit-login{
+  background-color: rgba(218, 178, 11, 1);
+  border: none;
+  border-radius: 2px;
+  color: black;
+  font-weight: 700;
+  margin-top: 20px;
+  padding: 5px;
+}
+
+.btn-submit-login:hover {
+  cursor: pointer;
+}
+
+.link-login {
+  color: white;
+  font-size: 10pt;
+}
+
+.container-link {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.container-form-int {
+  box-shadow: 2px 4px 5px rgba(0,0,0,0.5);
+  display: flex;
+  margin-top: 10%;
+  min-height: 500px;
+  width: 1000px;
+}
+
+.remove-link a {
+  color:black;
+  text-decoration: none;
+}
+
+/* Aside contente */
+
+.aside-logo {
+  align-items: center;
+  background-color: rgba(218, 178, 11, 1);
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  min-height: 266px;
+  min-width: 300px;
+}
+
+/* Footer content */
+
+.footer-web {
+    align-items: center;
+    background-color: rgb(216, 216, 216);
+    color: rgb(168, 168, 168);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+    min-height: 50px;
+    width: 100%;
+}
