@@ -1,17 +1,18 @@
 import React from 'react';
 import ProductsButtons from './productsButtons';
 
-function productsCard() {
+function productsCard(props) {
+  const {name, price, image} = props
   return (
     <>
       <span
         data-testid="0-product-price"
       >
-        Valor produto
+        {price}
       </span>
       {/* <img
-        src={}
-        alt={}
+        src={image}
+        alt={name}
         data-testid="0-product-img"
       >
         Imagem produto
@@ -19,7 +20,7 @@ function productsCard() {
       <span
         data-testid="0-product-name"
       >
-        Nome produto
+        {name}
       </span>
       <ProductsButtons />
       <button

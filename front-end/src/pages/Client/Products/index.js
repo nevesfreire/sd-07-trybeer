@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useContext, useEffect } from 'react';
+import BeerContext from '../../../context/beerContext';
 import TopMenu from '../../../commons/simple/TopMenu';
 import ProductsCard from '../../../components/productsCard'
 import getProductsRequest from '../../../services/productsApi';
 
-
-// useEffect (() => {
-//   const renderProducts = async() => {
-//     const result = await getProductsRequest();
-//     console.log(result);
-//   }
-//   renderProducts()
-// }, [])
 function Products() {
+  const { products, setProducts, isFetching, setIsFetching } = useContext(BeerContext);
 
+  const renderProducts = async() => {
+    const result = await getProductsRequest();
+    setProducts(result.data);
+  }
+  
+  useEffect (() => {
+    renderProducts()
+  }, [])
+  console.log(products);
+  
   return (
     <>
-      <TopMenu title="Trybeer" />
+      <TopMenu title="TryBeer" />
       <h1>Product Screen</h1>
-      <ProductsCard />
+      {products.map((product) => {
+        return <ProductsCard
+          key={product.id}
+          name={product.name}
+          price={product.price}
+          image={product.url_image}
+          />
+      })}
     </>
   );
 }

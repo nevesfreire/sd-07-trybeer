@@ -5,6 +5,7 @@ import BeerContext from './beerContext';
 function Provider({ children }) {
   const [products, setProducts] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
+
   const valueProvider = {
     isFetching,
     products,
