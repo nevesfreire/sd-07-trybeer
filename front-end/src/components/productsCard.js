@@ -2,7 +2,8 @@ import React from 'react';
 import ProductsButtons from './productsButtons';
 
 function productsCard(props) {
-  const {name, price, image} = props
+  const {name, price, image} = props;
+  const newImg = image.replace('http://localhost:3001', '../../..');
   return (
     <>
       <span
@@ -10,13 +11,13 @@ function productsCard(props) {
       >
         {price}
       </span>
-      {/* <img
-        src={image}
+      <img
+        src={newImg}
         alt={name}
         data-testid="0-product-img"
       >
         Imagem produto
-      </img> */}
+      </img>
       <span
         data-testid="0-product-name"
       >
