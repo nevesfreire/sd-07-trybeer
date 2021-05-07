@@ -1,13 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-//import { Header } from './styles';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import './style.css';
 
 export default function TopMenu() {
-  
+  const history = useHistory();
+
   function handleMenuToggle() {
-    document.getElementsByClassName('side-menu-container')[0].classList.toggle('show-menu');
-    document.getElementsByClassName('nav-complement')[0].classList.toggle('nav-complement-show');
+    const sideBar = document.getElementsByClassName('side-menu-container')[0];
+    const sideBarComplement = document.getElementsByClassName('nav-complement')[0];
+    sideBar.classList.toggle('show-menu');
+    sideBarComplement.classList.toggle('nav-complement-show');
+  }
+
+  function link(url) {
+    history.push(url);
   }
 
   return (
@@ -17,41 +23,48 @@ export default function TopMenu() {
       </div>
       <div
         className="nav-complement"
-        onClick={() => handleMenuToggle()}
+        onClick={ () => handleMenuToggle() }
       />
       <div className="side-menu-container">
         <div
           className="nav-close"
-          onClick={() => handleMenuToggle()}
+          onClick={ () => handleMenuToggle() }
         >
           <h3>&#9587;</h3>
         </div>
-        <div className="nav-item" data-testid="side-menu-item-products">
-          <Link to="/products">
-            Produtos
-          </Link>
-          
+        <div
+          className="nav-item"
+          data-testid="side-menu-item-products"
+          onClick={ () => link('/products') }
+        >
+          Produtos
         </div>
-        <div className="nav-item" data-testid="side-menu-item-my-orders">
-          <Link to="/orders">
-            Meus Pedidos
-          </Link>
+        <div
+          className="nav-item"
+          data-testid="side-menu-item-my-orders"
+          onClick={ () => link('/orders') }
+        >
+          Meus Pedidos
         </div>
-        <div className="nav-item" data-testid="side-menu-item-my-profile">
-          <Link to="/profile">
-            Meu Perfil
-          </Link>
+        <div
+          className="nav-item"
+          data-testid="side-menu-item-my-profile"
+          onClick={ () => link('/profile') }
+        >
+          Meu Perfil
         </div>
-        <div className="logoff-button" data-testid="side-menu-item-logout">
-          <Link to="/">
-            Sair
-          </Link>
+        <div
+          className="logoff-button"
+          data-testid="side-menu-item-logout"
+          onClick={ () => link('/') }
+        >
+          Sair
         </div>
       </div>
       <div
         className="menu-button"
         data-testid="top-hamburguer"
-        onClick={() => handleMenuToggle()}
+        onClick={ () => handleMenuToggle() }
       >
         <h3>&#9776;</h3>
       </div>
