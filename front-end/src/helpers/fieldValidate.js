@@ -4,7 +4,6 @@ const fieldValidate = (name, email, password) => {
   const nameLength = 12;
   const result = regexEmail
     .test(email) && password.length >= passwordMinLength && name.length > nameLength;
-  console.log('na func', result);
   return result;
 };
 

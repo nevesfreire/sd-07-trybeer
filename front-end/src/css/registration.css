@@ -4,15 +4,17 @@
    margin-top: 2rem;
 }
 
-.form-registration {
+/* .form-registration {
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
    margin-top: 8rem;
-}
+} */
 
 .form-registration  {
+   display: flex;
+   align-items: center;
    width: 35rem;
    height: 30rem;
    margin-left: 25rem;
@@ -25,13 +27,12 @@
    font-size: 30px;
 }
 
-.RegisterBtn {
+.register-btn-group > .RegisterBtn {
    width: 20rem;
    height: 3rem;
-   margin-top: 5rem;
    text-align: center;
    border-radius: 0.5rem;
-   background-color: rgb(44, 204, 92);
+   background-color: rgb(13, 136, 9);
    font-size: 25px;
 }
 
@@ -45,4 +46,10 @@
    flex-flow: row;
    align-items: center;
    margin-bottom: 2rem;
+}
+
+.nav-register{
+   text-decoration: none;
+   color: rgba(0, 0, 0, 0.658);
+   margin-top: 30rem;
 }
