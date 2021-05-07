@@ -14,7 +14,7 @@ function Form({ history }) {
   const path = pathname;
 
   const handleSubmit = async () => {
-    const userData = await login();
+    const userData = await login(email, password);
     console.log('userData', userData);
   };
 
