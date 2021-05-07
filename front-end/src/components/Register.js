@@ -66,6 +66,7 @@ const ComponentRegister = () => {
         <label className="label-register">Senha:</label>
         <TextField
           data-testid="signup-password"
+          type="password"
           className="registration-input"
           variant="outlined"
           onChange={(event) => setPassword(event.target.value)}
