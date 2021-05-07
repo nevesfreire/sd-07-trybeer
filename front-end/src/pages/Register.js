@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { getUser, registerUser } from '../services/User';
+import { registerUser } from '../services/User';
 
 export default function Register() {
   const [disabled, setDisabled] = useState(true);
@@ -28,19 +28,19 @@ export default function Register() {
     };
     if (checkboxValue) {
       newRegister = { ...newRegister, role: 'admin' };
-      await registerUser(newRegister);
+      await registerUser(JSON.stringify(newRegister));
       return <Redirect to="/admin/orders" />;
     }
     newRegister = { ...newRegister, role: 'client' };
-    await registerUser(newRegister);
+    await registerUser(JSON.stringify(newRegister));
     return <Redirect to="/products" />;
   };
 
-  const verifyEmail = async (email) => {
-    const userFound = await getUser(email);
-    if (userFound) return true;
-    return false;
-  };
+  // const verifyEmail = async (email) => {
+  //   const userFound = await getUser(email);
+  //   if (userFound) return true;
+  //   return false;
+  // };
 
   useEffect(() => {
     const { name, email, password } = registerData;
@@ -51,8 +51,8 @@ export default function Register() {
     const passwordIsValid = password.length >= minLengthForPassword;
     const emailIsValid = rEmail.test(email);
     const nameIsValid = regexForName.test(name) && name.length >= minLengthForName;
-    const checkUserEmail = emailIsValid ? verifyEmail(email) : false;
-    if (passwordIsValid && checkUserEmail === false && nameIsValid) {
+    // const checkUserEmail = emailIsValid ? verifyEmail(email) : false;
+    if (passwordIsValid && emailIsValid && nameIsValid) {
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -87,7 +87,7 @@ export default function Register() {
           name="password"
           id="password"
           data-testid="signup-password"
-          type="email"
+          type="password"
           onChange={ (event) => handleChange(event) }
         />
       </label>
