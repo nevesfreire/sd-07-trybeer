@@ -9,12 +9,10 @@ export default function SideBar({ title }) {
   const { clientState } = useContext(ClientContext);
   return (
     <header className="side-menu-container">
-      {
-        clientState.isHiddenMenu
-          ? <HamburgerButtom />
-          : <HamburgerMenu />
-      }
+      { clientState.isHiddenMenu && <HamburgerMenu /> }
+      <HamburgerButtom />
       <h1>{title}</h1>
+      <div />
     </header>
   );
 }

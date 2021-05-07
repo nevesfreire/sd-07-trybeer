@@ -1,6 +1,21 @@
 .hamburgerMenu {
-  background-color: blue;
-  position: fixed;
+  background-color: green;
+  position: absolute;
   z-index: 2;
   cursor: pointer;
+  width: 30%;
+  height: 50%;
+}
+
+li {
+  list-style-type: none;
+  margin-top: 20px;
+}
+
+ul {
+  margin-top: 100px;
+}
+
+.hamburgerButton {
+  z-index: 3;
 }
