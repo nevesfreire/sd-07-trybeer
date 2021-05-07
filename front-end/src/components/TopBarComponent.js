@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import BeerContext from '../context/BeerContext';
 
-const TopBarComponent = () => {
+const TopBarComponent = ({ children }) => {
   const { toggleSideBar, setToggleSideBar } = useContext(BeerContext);
   const handleItemClick = () => setToggleSideBar(!toggleSideBar);
 
@@ -15,7 +15,7 @@ const TopBarComponent = () => {
       >
         <Icon name="bars" />
       </Menu.Item>
-      <Menu.Item header data-testid="top-title">TryBeer</Menu.Item>
+      <Menu.Item header data-testid="top-title">{ children }</Menu.Item>
     </Menu>
   );
 };

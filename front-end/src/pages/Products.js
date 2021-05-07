@@ -6,7 +6,7 @@ import AdminComponent from '../components/AdminComponent';
 function Products() {
   return (
     <>
-      <TopBarComponent />
+      <TopBarComponent>TryBeer</TopBarComponent>
       <SideBarComponent Component={ AdminComponent } />
     </>
   );
