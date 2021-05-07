@@ -26,7 +26,7 @@ function LoginForm() {
     //   password,
     // };
     // req da api enviando:
-    const response = await userLogin(user).then((apiResponse) => apiResponse)
+    const response = await userLogin(user).then((apiResponse) => apiResponse);
     localStorage.setItem('user', JSON.stringify(response));
     if (response.role === 'administrator') {
       history.push('/admin/orders');
