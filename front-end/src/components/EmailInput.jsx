@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function EmailInput({ dataTestid, onChange, className, readonly, value }) {
+export default function EmailInput({ dataTestid, onChange, className }) {
   return (
     <label htmlFor="email">
       Email
@@ -9,10 +9,8 @@ export default function EmailInput({ dataTestid, onChange, className, readonly, 
         data-testid={ dataTestid }
         type="email"
         id="email"
-        value={ value }
         onChange={ onChange }
         className={ className }
-        readOnly={ readonly }
       />
     </label>
   );
@@ -20,15 +18,10 @@ export default function EmailInput({ dataTestid, onChange, className, readonly, 
 
 EmailInput.defaultProps = {
   className: 'emailClass',
-  readonly: false,
-  value: '',
-  onChange: () => {},
 };
 
 EmailInput.propTypes = {
   dataTestid: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
-  readonly: PropTypes.bool,
-  value: PropTypes.string,
 };
