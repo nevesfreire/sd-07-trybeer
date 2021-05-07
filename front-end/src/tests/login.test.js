@@ -162,7 +162,9 @@ describe('2 - [PÁGINA DE LOGIN INFORMAÇÕES USER LOCALSTORAGE] Salvar as infor
 
     localStorage.setItem('user', JSON.stringify(result));
   
+    expect(JSON.parse(localStorage.getItem('user')).name).toBe(result.name);
     expect(JSON.parse(localStorage.getItem('user')).email).toBe(result.email);
+    expect(JSON.parse(localStorage.getItem('user')).role).toBe(result.role);
   });
 
 });
