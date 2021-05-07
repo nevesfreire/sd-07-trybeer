@@ -13,7 +13,9 @@ function Login() {
   const register = () => history.push('/register');
 
   const validate = () => {
-    const five = 5;
+
+    const passLimit = 5;
+
     const email = formData.get('email');
     const password = formData.get('password');
     if (email) {
@@ -22,7 +24,9 @@ function Login() {
         return true;
       }
     }
-    if (!password || password.length <= five) {
+
+    if (!password || password.length <= passLimit) {
+
       return true;
     }
     return false;
@@ -44,7 +48,8 @@ function Login() {
   return (
     <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
       <Grid.Column style={ { maxWidth: 500 } }>
-        <CustomHeader message="TRYBEER" />
+        <CustomHeader message="TryBeer" />
+
         <CustomLogin
           formData={ formData }
           onInputChange={ handleInputChange }

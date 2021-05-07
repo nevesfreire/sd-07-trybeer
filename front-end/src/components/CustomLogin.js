@@ -1,7 +1,9 @@
-import 'semantic-ui-css/semantic.min.css';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Segment } from 'semantic-ui-react';
+
+import 'semantic-ui-css/semantic.min.css';
 
 const CustomLogin = ({
   formData: { email, password },
@@ -52,7 +54,9 @@ const CustomLogin = ({
       data-testid="no-account-btn"
       inverted
       color="orange"
+
       onClick={ () => goRegister() }
+
       animated="fade"
     >
       <Button.Content visible>Ainda não tenho conta</Button.Content>
@@ -72,6 +76,7 @@ CustomLogin.propTypes = {
   isValid: PropTypes.func.isRequired,
   onHandleSubmit: PropTypes.func.isRequired,
   goRegister: PropTypes.func.isRequired,
+
 };
 
 export default CustomLogin;

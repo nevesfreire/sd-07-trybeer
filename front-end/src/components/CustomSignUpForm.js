@@ -1,8 +1,9 @@
-import 'semantic-ui-css/semantic.min.css';
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Segment, Divider } from 'semantic-ui-react';
 import CentralContext from '../context/Context';
+
+import 'semantic-ui-css/semantic.min.css';
 
 const SignUpForm = ({
   formData: { name, email, password, iWantToSell },
@@ -44,6 +45,7 @@ const SignUpForm = ({
           onChange={ (e) => onInputChange(e) }
         />
         <Divider />
+
         <label htmlFor="signup-seller">
           Quero vender
           <input
@@ -86,6 +88,7 @@ SignUpForm.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   isValid: PropTypes.func.isRequired,
   onHandleSubmit: PropTypes.func.isRequired,
+
 };
 
 export default SignUpForm;
