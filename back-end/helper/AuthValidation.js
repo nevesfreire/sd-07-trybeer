@@ -21,6 +21,13 @@ const generateToken = (dataUser) => {
   return jwt.sign(payload, SECRET, jwtConfig);
 };
 
+const verifyToken = (token) => {
+  const payload = jwt.verify(token, SECRET);
+  // Erro JsonWebTokenError é capturado no errorControler (INTERNAL_SERVER_ERROR)
+  return payload;
+};
+
 module.exports = {
   generateToken,
+  verifyToken,
 };
