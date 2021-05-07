@@ -32,3 +32,13 @@ export async function getByEmail(email) {
   const response = request.json();
   return response;
 }
+
+export async function getProducts() {
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  };
+  const request = await fetch('http://localhost:3001/products', requestOptions);
+  const response = request.json();
+  return response;
+}

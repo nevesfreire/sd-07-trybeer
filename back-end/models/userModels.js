@@ -12,9 +12,9 @@ const userRegistration = async (name, email, password, role) => {
   return result;
 };
 
-const data = async () => {
+const userProfile = async (name, email) => {
   const [result] = await connection.execute(
-    'SELECT * FROM products',
+    'UPDATE users SET name=? WHERE email=?', [name, email],
   );
   return result;
 };
@@ -22,5 +22,5 @@ const data = async () => {
 module.exports = {
   findUserByEmail,
   userRegistration,
-  data,
+  userProfile,
 };

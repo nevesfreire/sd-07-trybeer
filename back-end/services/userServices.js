@@ -1,5 +1,5 @@
 const { CustomError, STATUS_CODE, STATUS_MESSAGE } = require('../helpers');
-const { generateToken } = require('../auth');
+const { generateToken, decodeToken } = require('../auth');
 const { userModels } = require('../models');
 
 const SIX = 6;
@@ -78,7 +78,7 @@ const checkIfNameEmailPasswordAndSellerExist = (name, email, password, seller) =
 };
 
 const checkIfNameIsValid = (name) => {
-  const regex = /[^a-zA-Z]/g.test(name);
+  const regex = /[^a-zA-Z ]/g.test(name);
   if (regex || name.length < TWELVE) {
     throw new CustomError({
       status: STATUS_CODE.BAD_REQUEST,
@@ -111,8 +111,37 @@ const userRegistration = async (name, email, password, seller) => {
   return { message: STATUS_MESSAGE.USER_CREATED };
 };
 
+const checkIfEmailAndNameExist = (name, email) => {
+  if (!name || !email) {
+    throw new CustomError({
+      status: STATUS_CODE.BAD_REQUEST,
+      message: STATUS_MESSAGE.INVALID_ENTIRES,
+    });
+  }
+};
+
+const checkIfUserIsOwner = (emailFromBody, emailFromToken) => {
+  if (emailFromBody !== emailFromToken) {
+    throw new CustomError({
+      status: STATUS_CODE.UNAUTHORIZED,
+      message: STATUS_MESSAGE.EMAIL_NOT_EQUAL,
+    });
+  }
+};
+
+const userProfile = async (name, email, authorization) => {
+  const decodedToken = decodeToken.decode(authorization);
+  checkIfUserIsOwner(email, decodedToken.email);
+  checkIfEmailAndNameExist(name, email);
+  checkIfNameIsValid(name);
+  checkIfEmailIsValid(email);
+  await userModels.userProfile(name, email);
+  return { message: STATUS_MESSAGE.NAME_UPDATED };
+};
+
 module.exports = {
   userLogin,
   userEmail,
   userRegistration,
+  userProfile,
 };

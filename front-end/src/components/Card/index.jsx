@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getStorage, setStorage } from '../services/localStorage';
-import { changeTotalPrice } from '../actions';
+import { getStorage, setStorage } from '../../services/localStorage';
+import { changeTotalPrice } from '../../actions';
 
 function Card(product) {
   const ZERO = 0;
@@ -15,7 +15,7 @@ function Card(product) {
 
   const setCart = () => {
     const cart = getStorage('cart');
-    const totalProductPrice = price * quantity;
+    const totalProductPrice = Math.round((Number(price) * 100) * quantity) / 100;
     cart.forEach((element) => {
       if (element.name === name) {
         element.quantity = quantity;
