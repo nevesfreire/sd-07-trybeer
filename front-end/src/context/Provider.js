@@ -12,7 +12,7 @@ function Provider({ children }) {
   const [cart, setCart] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
   const [products, setProducts] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState('0,00');
 
   const valuesProvided = {
     email,

@@ -6,7 +6,7 @@ const getByEmail = async (email) => {
 };
 
 const registerUser = async (name, email, password, role) => {
-  await connection
+await connection
     .execute('INSERT INTO Trybeer.users (name, email, password, role) VALUES (?,?,?,?)',
     [name, email, password, role]);
 };

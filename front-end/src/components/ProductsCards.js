@@ -89,6 +89,8 @@ function ProductsCards() {
     }
   };
 
+  console.log(total);
+
   return (
     <div>
       {products.map((product, index) => (
@@ -126,12 +128,11 @@ function ProductsCards() {
         type="button"
         data-testid="checkout-bottom-btn"
         onClick={ () => history.push('/checkout') }
-        disabled={ total === 0 }
+        disabled={ !total }
       >
         Ver Carrinho &nbsp;
         <span data-testid="checkout-bottom-btn-value">
-          { total && total
-            .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+          { `R$ ${Number(total).toFixed(2).replace('.', ',')}`}
         </span>
       </button>
     </div>
