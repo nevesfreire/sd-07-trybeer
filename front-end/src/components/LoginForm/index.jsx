@@ -26,16 +26,14 @@ function LoginForm() {
     //   password,
     // };
     // req da api enviando:
-    return userLogin(user).then((apiResponse) => {
-      localStorage.setItem('user', JSON.stringify(apiResponse));
-      if (apiResponse.role === 'administrator') {
-        history.push('/admin/orders');
-      }
-
-      if (apiResponse.role === 'client') {
-        history.push('/products');
-      }
-    });
+    const response = await userLogin(user).then((apiResponse) => apiResponse)
+    localStorage.setItem('user', JSON.stringify(response));
+    if (response.role === 'administrator') {
+      history.push('/admin/orders');
+    }
+    if (response.role === 'client') {
+      history.push('/products');
+    }
   };
 
   return (
