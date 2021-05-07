@@ -9,7 +9,7 @@ import {
   AdmOrders,
   Order,
   OrderDetails,
-} from '../pages';
+} from '../src/pages';
 
 function Router() {
   return (

@@ -14,7 +14,7 @@ function CardOrder(props) {
   return (
     <Link to={ `/orders/${order.id}` }>
       <div
-        style={ { border: '1px solid black', width: '150px' } }
+        style={ { border: '1px solid black', width: '150px', marginLeft: '100px' } }
         data-testid={ `${index}-order-card-container` }
       >
         <div data-testid={ `${index}-order-number` }>

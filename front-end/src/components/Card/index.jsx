@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getStorage, setStorage } from '../../services/localStorage';
-import { changeTotalPrice } from '../../actions';
+import { Creators } from '../../store/ducks/reducers/clientInfo';
 
 function Card(product) {
   const ZERO = 0;
@@ -22,7 +22,7 @@ function Card(product) {
       }
     });
     cart.totalPrice += totalProductPrice;
-    dispatch(changeTotalPrice(cart.totalPrice));
+    dispatch(Creators.changeTotalPrice(cart.totalPrice));
     setStorage('cart', cart);
   };
 

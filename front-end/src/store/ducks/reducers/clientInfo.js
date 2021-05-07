@@ -1,19 +1,22 @@
-// Esse reducer será responsável por tratar as informações da pessoa usuária
-
 const INITIAL_STATE = {
   totalPrice: 0,
-  logged: false,
+};
+
+const Types = {
+  UPDATE_TOTAL_PRICE: 'client/updateTotalPrice',
+};
+
+export const Creators = {
+  changeTotalPrice: (price) => ({
+    type: Types.UPDATE_TOTAL_PRICE,
+    price,
+  }),
 };
 
 function clientReducer(state = INITIAL_STATE, action) {
   const { type, price } = action;
   switch (type) {
-  case 'LOGIN':
-    return {
-      ...state,
-      logged: true,
-    };
-  case 'CHANGE_TOTAL_PRICE':
+  case Types.UPDATE_TOTAL_PRICE:
     return {
       ...state,
       totalPrice: price,

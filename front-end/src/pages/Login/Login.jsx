@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as api from '../../services/api';
-import { login } from '../../actions';
 import { setStorage } from '../../services/localStorage';
 
 function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userNotFound, setUserNotFound] = useState(false);
   const [disabled, setDisabled] = useState(true);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -25,18 +22,17 @@ function Login() {
 
   const handleButton = async () => {
     const userData = await api.login({ email, password });
-    setStorage('user', userData);
-    dispatch(login());
+    if (userData.message) return setUserNotFound(true);
 
+    setStorage('user', userData);
     if (userData.role === 'client') return history.push('/products');
     history.push('/admin/orders');
   };
 
   return (
     <div>
-      <label
-        htmlFor="email"
-      >
+      { userNotFound && <p style={ { color: 'red' } }>Usúario não cadastrado</p>}
+      <label htmlFor="email">
         <h6>Email</h6>
         <input
           placeholder="E-mail"
@@ -45,9 +41,7 @@ function Login() {
           onChange={ ({ target }) => setEmail(target.value) }
         />
       </label>
-      <label
-        htmlFor="password"
-      >
+      <label htmlFor="password">
         <h6>Senha</h6>
         <input
           placeholder="Senha"
