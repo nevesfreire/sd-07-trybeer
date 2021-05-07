@@ -7,7 +7,7 @@ import { BeerContext } from '../context/BeerContext';
 const Products = () => {
   const { cart } = useContext(BeerContext);
   const { push } = useHistory();
-  
+
   const [localCart, setLocalCart] = useState(() => {
     const localValue = JSON.parse(localStorage.getItem('cart'));
     console.log(localValue);
@@ -16,13 +16,13 @@ const Products = () => {
     }
     return ({ 0: { product: { price: 0 }, quantity: 0 } });
   });
-  
+
   useEffect(() => {
     if (JSON.parse(localStorage.getItem('cart'))) {
       setLocalCart(JSON.parse(localStorage.getItem('cart')));
     }
   }, [cart]);
-  
+
   const value = Object.values(localCart).reduce((t, { quantity, product }) => {
     if (!Number.isNaN(parseFloat(product.price))) {
       console.log(`${t}isthis`, quantity, product.price);
@@ -30,7 +30,7 @@ const Products = () => {
     }
     return 0;
   }, 0);
-  
+
   const accPrice = parseFloat(value).toFixed(2).toString().replace('.', ',');
 
   return (
