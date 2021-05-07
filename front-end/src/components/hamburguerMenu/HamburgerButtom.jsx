@@ -10,6 +10,7 @@ export default function HamburgerButtom() {
       type="button"
       onClick={ () => dispatch({ type: CHANGE_MENU }) }
       className="hamburgerButton"
+      data-testid="top-hamburguer"
     >
       <img src={ icon } alt="menu" />
     </button>
