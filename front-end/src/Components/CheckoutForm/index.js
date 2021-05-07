@@ -19,7 +19,6 @@ const CheckoutForm = ({ finishSale }) => {
       delivery_number: houseNumber,
       products,
     };
-    console.log(dataSale);
     const { data: { token } } = JSON.parse(localStorage.getItem('user'));
 
     await addSale(dataSale, token);

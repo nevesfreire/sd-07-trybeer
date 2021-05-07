@@ -32,7 +32,7 @@ const ClientProfile = () => {
   const updateName = async () => {
     const { data } = verifyUserLocalStorage();
     const response = await updateNameUser(user, data.token);
-    if (response.status === HTTP_CODE_OK) {
+    if (response === HTTP_CODE_OK) {
       setShowMessage(true);
       localStorage.setItem('user',
         JSON.stringify({ data: { ...data, name: user.name } }));
