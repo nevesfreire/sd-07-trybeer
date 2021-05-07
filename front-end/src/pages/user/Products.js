@@ -3,19 +3,31 @@ import { useHistory } from 'react-router';
 import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
+import ProductsCards from '../../components/ProductsCards';
 
 function Products() {
-  const { sideIsActive, setPageTitle } = useContext(MyContext);
+  const {
+    sideIsActive,
+    setPageTitle,
+    setProducts,
+    setTotal,
+  } = useContext(MyContext);
+
+  const history = useHistory();
 
   useEffect(() => {
     setPageTitle('TryBeer');
   }, [setPageTitle]);
 
-  // const { } = useContext(MyContext);
-  const [isLoading, setIsLoading] = useState(false);
-  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const getUser = () => {
+      const userStorage = JSON.parse(localStorage.getItem('user'));
+      if (!userStorage) return history.push('/login');
+    };
+    getUser();
+  }, [history]);
 
-  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,36 +40,14 @@ function Products() {
   }, []);
 
   useEffect(() => {
-    const getUser = () => {
-      const userStorage = JSON.parse(localStorage.getItem('user'));
-      if (!userStorage) return history.push('/login');
-    };
-    getUser();
-  }, [history]);
+    setTotal(JSON.parse(localStorage.getItem('totalCart')));
+  }, []);
 
   return (
     <div>
       <MenuTopMobile />
       { sideIsActive && <SideBarMobile /> }
-      {isLoading
-        ? <span>Carregando...</span>
-        : (
-          <div>
-            {products.map((product) => (
-              <div key={ product.id }>
-                <img src={ product.url_image.replace(/\s/g, '') } alt={ product.name } />
-                <span>{ product.name }</span>
-                <span>
-                  { Number(product.price)
-                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-                </span>
-                <span>quantity</span>
-                <button type="button">- 1</button>
-                <button type="button">+ 1</button>
-              </div>
-            ))}
-          </div>
-        )}
+      {isLoading ? <span>Carregando...</span> : <ProductsCards />}
     </div>
   );
 }

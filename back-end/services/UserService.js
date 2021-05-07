@@ -3,7 +3,8 @@ const UserModel = require('../models/UserModel');
 const registerUser = async (name, email, password, role) => {
   const user = await UserModel.getByEmail(email);
   if (user !== undefined) return { status: 401, message: 'Já existe um usuário com esse e-mail.' };
-  const newUser = await UserModel.registerUser(name, email, password, role);
+  await UserModel.registerUser(name, email, password, role);
+  const newUser = await UserModel.getByEmail(email);
   return { status: 201, message: newUser };
 };
 
