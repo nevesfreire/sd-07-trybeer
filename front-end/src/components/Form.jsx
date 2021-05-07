@@ -2,6 +2,21 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
 
+const handleLocalStorage = (data, history) => {
+  const user = {
+    name: data.name,
+    email: data.email,
+    token: data.token,
+    role: data.role,
+  };
+
+  localStorage.setItem('user', JSON.stringify(user));
+  if (data.role === 'client') {
+    return history.push('/products');
+  }
+  return history.push('/admin/orders');
+};
+
 function Form({ history }) {
   const { login, register } = useFetch();
   const [email, setEmail] = useState('');
@@ -13,34 +28,19 @@ function Form({ history }) {
   const { location: { pathname } } = history;
   const path = pathname;
 
-  const handleLocalStorage = (data) => {
-    const user = {
-      name: data.name,
-      email: data.email,
-      token: data.token,
-      role: data.role,
-    };
-  
-    localStorage.setItem('user', JSON.stringify(user));
-    if (data.role === 'client') {
-      return history.push('/products');
-    }
-    return history.push('/admin/orders');
-
-  };
-
   const submitLogin = async () => {
     const userData = await login(email, password);
-    handleLocalStorage(userData);
+    handleLocalStorage(userData, history);
   };
 
   const submitRegister = async () => {
     const newUserData = await register(name, email, password, checkbox);
-    handleLocalStorage(newUserData);
+    handleLocalStorage(newUserData, history);
   };
 
   const handleSubmit = async () => {
-    path === '/register' ? await submitRegister() : await submitLogin();
+    if (path === '/register') await submitRegister();
+    await submitLogin();
   };
 
   const validateName = () => {
@@ -49,16 +49,22 @@ function Form({ history }) {
     return true;
   };
 
-  const validateInputsValue = () => {
-    const emailValidation = (/[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i)
-      .test(email);
-    const minLengthPass = 6;
-    const passwordValidation = password.length >= minLengthPass;
-    const nameValidation = validateName();
+  const validateEmail = () => (/[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i).test(email);
 
-    nameValidation && emailValidation && passwordValidation
-      ? setDisabled(false)
-      : setDisabled(true);
+  const validatePassword = () => {
+    const minLengthPass = 6;
+    return password.length >= minLengthPass;
+  };
+
+  const validateInputsValue = () => {
+    const emailValidation = validateEmail();
+    const nameValidation = validateName();
+    const passwordValidation = validatePassword();
+
+    if (nameValidation && emailValidation && passwordValidation) {
+      return setDisabled(false);
+    }
+    setDisabled(true);
   };
 
   useEffect(() => {
