@@ -15,7 +15,7 @@ const ComponentRegister = () => {
   const handleSubmit = (e) => {
     const isValid = fieldValidate(name, email, password);
     if (!isValid) {
-      window.alert("Dados inconsistentes. Tente novamente");
+      window.alert("Dados inválidos. Tente novamente");
     } else {
       e.preventDefault();
       try {
@@ -49,8 +49,10 @@ const ComponentRegister = () => {
         <label className="label-register">Nome:</label>
         <TextField
           data-testid="signup-name"
+          type="e-mail"
           className="registration-input"
           variant="outlined"
+          defaultValue="Monteiro Lobato"
           onChange={(event) => setName(event.target.value)}
         />
 
@@ -60,6 +62,7 @@ const ComponentRegister = () => {
         <TextField
           className="registration-input"
           variant="outlined"
+          defaultValue="lobato@lobato.com"
           onChange={(event) => setEmail(event.target.value)}
         />
 
