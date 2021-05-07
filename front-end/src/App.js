@@ -10,6 +10,7 @@ import {
   Profile,
   ProductsPage,
   ProfileAdmin,
+  AllOrdersPage,
 } from './pages';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <ProtectedRoute path="/products" component={ ProductsPage } />
           <ProtectedRoute path="/profile" component={ Profile } />
           <ProtectedRoute path="/admin/profile" component={ ProfileAdmin } />
+          <ProtectedRoute path="/orders" component={ AllOrdersPage } />
         </Switch>
       </Provider>
     </BrowserRouter>

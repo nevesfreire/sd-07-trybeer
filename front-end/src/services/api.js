@@ -40,8 +40,22 @@ async function updateUser(name, token) {
     .then((response) => response.data).catch((error) => error.response.data);
 }
 
+async function getAllOrders(token) {
+  const options = {
+    method: 'GET',
+    url: `${endpoint}/orders`,
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  return axios.request(options)
+    .then((response) => response.data).catch((error) => error.response.data);
+}
+
 export default {
   registerUser,
   loginUser,
   updateUser,
+  getAllOrders,
 };
