@@ -11,12 +11,6 @@ import {
   RegisterButton,
 } from './styles';
 
-// import "./styles.css";
-
-// const handleSubmit = (evt) => {
-//   evt.preventDefault();
-// }
-
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,7 +44,7 @@ function LoginForm() {
   };
 
   return (
-    <Form onSubmit={ onSubmitHandler }>
+    <Form>
       <Label>
         Email
         <Input
@@ -79,6 +73,7 @@ function LoginForm() {
         type="submit"
         data-testid="signin-btn"
         disabled={ validateLogin(email, password) }
+        onClick={ (e) => onSubmitHandler(e) }
       >
         Entrar
       </Button>
