@@ -8,22 +8,29 @@ import {
   ProductsPage,
   RegisterPage,
   CheckoutPage,
+  AdminHome,
+  Profile,
+  ProfileAdmin,
 } from './pages';
 
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Provider>
+      <Provider>
+        <Switch>
           <Route exact path="/" component={ LoginPage } />
           <Route exact path="/login" component={ LoginPage } />
           <Route path="/register" component={ RegisterPage } />
           <ProtectedRoute>
             <Route path="/products" component={ ProductsPage } />
+            <Route path="/products" component={ ProductsPage } />
             <Route path="/checkout" component={ CheckoutPage } />
+            <Route path="/admin/orders" component={ AdminHome } />
+            <Route path="/profile" component={ Profile } />
+            <Route path="/admin/profile" component={ ProfileAdmin } />
           </ProtectedRoute>
-        </Provider>
-      </Switch>
+        </Switch>
+      </Provider>
     </BrowserRouter>
   );
 }

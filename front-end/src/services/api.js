@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const endpoint = 'http://localhost:3001';
 const headers = { 'Content-Type': 'application/json' };
+const applicationJson = 'application/json';
 
 async function getProducts() {
   const response = await (await fetch(`${endpoint}/products`)).json();
@@ -30,8 +31,24 @@ async function loginUser(email, password) {
     .then((response) => response.data).catch((error) => error.response.data);
 }
 
+async function updateUser(name, token) {
+  const options = {
+    method: 'PUT',
+    url: `${endpoint}/profile`,
+    headers: {
+      'Content-Type': applicationJson,
+      Authorization: token,
+    },
+    data: { name },
+  };
+
+  return axios.request(options)
+    .then((response) => response.data).catch((error) => error.response.data);
+}
+
 export default {
   registerUser,
   loginUser,
   getProducts,
+  updateUser,
 };

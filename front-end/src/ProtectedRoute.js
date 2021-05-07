@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { isAuthenticated } from './services/localStorage';
@@ -8,7 +8,11 @@ function ProtectedRoute({ children, ...rest }) {
   return (
     <Route
       { ...rest }
-      render={ () => (isAuthenticated() ? children : <Redirect to="/login" />) }
+      render={ () => (isAuthenticated() ? (
+        <Switch>
+          {children}
+        </Switch>
+      ) : <Redirect to="/login" />) }
     />
   );
 }
