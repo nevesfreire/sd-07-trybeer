@@ -4,7 +4,7 @@ import SideBar from './SideBar';
 function TopMenu() {
   const [showSideBar, setShowSideBar] = useState(false);
   useEffect(() => {
-    console.log(showSideBar);
+    // console.log(showSideBar);
   }, [showSideBar]);
   return (
     <div>
