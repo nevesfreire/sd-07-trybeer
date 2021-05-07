@@ -1,4 +1,4 @@
-import fetchAPI from './fetchAPI';
+import fetchs from './fetchAPI';
 import localStorage from './localStorage';
 
-export { fetchAPI, localStorage };
+export { fetchs, localStorage };

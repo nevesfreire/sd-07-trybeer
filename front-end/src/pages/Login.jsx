@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { fetchAPI, localStorage } from '../functions-hooks';
+import { fetchs, localStorage } from '../functions-hooks';
 
 function validateEmail(email) {
   const regex = new RegExp([
@@ -23,6 +23,7 @@ export default function Login() {
   const [errorMenssage, setErrorMenssage] = useState({ error: false, menssage: '' });
 
   const buttonLogin = async () => {
+    const { fetchAPI } = fetchs;
     const obj = { email, password };
     const api = await fetchAPI('/login', 'POST', obj);
     if (api.error) return setErrorMenssage({ error: true, menssage: api.message });
