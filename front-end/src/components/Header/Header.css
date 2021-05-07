@@ -1,0 +1,13 @@
+.side-menu-container {
+}
+
+header {
+  display: flex;
+  height: 60px;
+  background-color: aqua;
+  align-items: center;
+}
+
+header, h1 {
+  justify-content: center;
+}

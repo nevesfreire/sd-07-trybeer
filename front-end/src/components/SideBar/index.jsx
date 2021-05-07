@@ -1,40 +1,29 @@
-import React from 'react';
-import { scaleRotate as Menu } from 'react-burger-menu';
-import './SideBar.css';
+import React, { useState, useRef } from 'react';
+import { ThemeProvider } from 'styled-components';
+import FocusLock from 'react-focus-lock';
+import useOnClickOutside from '../../context/hooks/hooks';
+import Menu from '../Menu';
+import Burger from '../Burger';
+import GlobalStyles from '../../global';
+import theme from '../../theme';
 
 export default function SideBar() {
+  const [open, setOpen] = useState(false);
+  const node = useRef();
+  const menuId = 'main-menu';
+
+  useOnClickOutside(node, () => setOpen(false));
   return (
-    <div id="outer-container">
-      <Menu width="20%" data-testid="top-hamburguer">
-        <a
-          className="menu-item"
-          href="/products"
-          data-testid="side-menu-item-products"
-        >
-          Produtos
-        </a>
-        <a
-          className="menu-item"
-          href="/orders"
-          data-testid="side-menu-item-my-orders"
-        >
-          Meus Pedidos
-        </a>
-        <a
-          className="menu-item"
-          href="/profile"
-          data-testid="side-menu-item-my-profile"
-        >
-          Meu Perfil
-        </a>
-        <a
-          className="menu-item"
-          href="/login"
-          data-testid="side-menu-item-logout"
-        >
-          Sair
-        </a>
-      </Menu>
-    </div>
+    <ThemeProvider theme={ theme }>
+      <>
+        <GlobalStyles />
+        <div ref={ node }>
+          <FocusLock disabled={ !open }>
+            <Burger open={ open } setOpen={ setOpen } aria-controls={ menuId } />
+            <Menu open={ open } setOpen={ setOpen } id={ menuId } />
+          </FocusLock>
+        </div>
+      </>
+    </ThemeProvider>
   );
 }
