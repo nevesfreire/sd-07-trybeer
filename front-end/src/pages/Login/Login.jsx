@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import * as api from '../../services/api';
+import * as API from '../../services/api';
 import { setStorage } from '../../services/localStorage';
 
 function Login() {
@@ -21,7 +21,7 @@ function Login() {
   }, [email, password]);
 
   const handleButton = async () => {
-    const userData = await api.login({ email, password });
+    const userData = await API.login({ email, password });
     if (userData.message) return setUserNotFound(true);
 
     setStorage('user', userData);

@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import * as API from '../../services/api';
 import {
   getStorage,
   setStorage,
   calculateTotalProductsPrice } from '../../services/localStorage';
-import { Header, Card } from '../../components';
-import format from '../../util/format';
+import { Products, Checkout } from '../../components';
 
-function Products() {
+function ProductsOrCheckout() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const totalPrice = useSelector((state) => state.client.totalPrice);
 
   const history = useHistory();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,21 +40,10 @@ function Products() {
   if (isLoading) return <div>Carregando...</div>;
   return (
     <div>
-      <Header>TryBeer</Header>
-      { products.map((product) => <Card key={ product.id } product={ product } />) }
-      <button
-        type="button"
-        data-testid="checkout-bottom-btn"
-        disabled={ totalPrice === 0 }
-        onClick={ () => history.push('/checkout') }
-      >
-        Ver Carrinho
-        <span data-testid="checkout-bottom-btn-value">
-          { format(totalPrice) }
-        </span>
-      </button>
+      { pathname.contains('products')
+        ? <Products products={ products } /> : <Checkout products={ products } /> }
     </div>
   );
 }
 
-export default Products;
+export default ProductsOrCheckout;
