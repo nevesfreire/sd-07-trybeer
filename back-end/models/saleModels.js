@@ -6,6 +6,13 @@ const createSale = async (user_id, total_price, delivery_address, delivery_numbe
   return result;
 };
 
+const createSaleProducs = async(sale_id, id, quantity) => {
+  console.log(sale_id ,id, quantity);
+  const [result] = await connection.execute('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)', [sale_id, id, quantity]);
+  return result;
+}
+
 module.exports = {
   createSale,
+  createSaleProducs,
 };
