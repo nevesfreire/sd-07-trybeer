@@ -7,6 +7,9 @@ const router = express.Router();
 router.use(cors());
 
 router.route('/sales')
-  .post(validateTokenMiddleware, saleController.createSale);
+  .post(validateTokenMiddleware, saleController.createSale)
+  .get(validateTokenMiddleware, saleController.getSaleByUserId);
 
-module.exports = router;
+router.route('/sales/:saleid')
+  .get(validateTokenMiddleware, saleController.getSaleProducts);
+ module.exports = router;

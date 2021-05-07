@@ -13,9 +13,25 @@ connect.execute(
   VALUES ("${saleId}", "${productId}", "${quantity}")`,
 ).catch((err) => console.log(err.message));
 
+const getSaleByUserId = (userId) => 
+  connect.execute(`SELECT id, sale_date, total_price 
+    FROM Trybeer.sales WHERE user_id = "${userId}"`)
+  .then((sale) => sale[0])
+  .catch((error) => error.message);
+
+const getSaleById = async (userId, saleId) => 
+  connect.execute(`SELECT sale_id, sale_date, quantity, name, price, total_price, user_id 
+  FROM Trybeer.sales AS s
+  INNER JOIN Trybeer.sales_products AS sp ON sp.sale_id = s.id
+  INNER JOIN Trybeer.products AS p ON p.id = sp.product_id
+  GROUP BY p.name, sp.sale_id
+  HAVING sale_id = "${saleId}" AND user_id = "${userId}"`)
+  .then((response) => response[0])
+  .catch((err) => console.log(err.message));
+
 module.exports = {
   createSale,
   createSaleProduct,
+  getSaleByUserId,
+  getSaleById,
 };
-
-// sale_id, product_id, quantity

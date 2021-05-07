@@ -10,8 +10,29 @@ const createSale = async (req, res) => {
   }
 };
 
-module.exports = {
-  createSale,
+const getSaleByUserId = async (req, res) => {
+  try {
+    const { id } = req.user[0];
+    const sales = await saleService.getSaleByUserId(id);
+    res.status(200).json(sales);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
-// id, user_id, total_price, delivery_address, delivery_number, sale_date, status
+const getSaleProducts = async (req, res) => {
+  try {
+    const { id } = req.user[0];
+    const { saleid } = req.params;
+    const prouctSale = await saleService.getSaleProducts(id, saleid);
+    res.status(200).json(prouctSale);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+module.exports = {
+  createSale,
+  getSaleByUserId,
+  getSaleProducts,
+};

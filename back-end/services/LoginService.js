@@ -15,9 +15,9 @@ const getUser = async (data) => {
   const [dataUser] = await loginModel.getUserInfo(data);
   if (error) throw error;
   await validUser(data);
-  const { email, password, name, role } = dataUser[0];
+  const { email, password, name, role, id } = dataUser[0];
   const token = jwt.sign({ email, password }, SECRET, jwtConfig);
-  return { token, name, email, role };
+  return { token, name, email, role, id };
 };
 
 module.exports = {
