@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import fetchAPI from '../functions-hooks/fetchAPI';
 
 function validateEmail(email) {
-  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.+-]+\.com$/;
+  const regex = new RegExp([
+    /^[-!#$%&'*+\\/0-9=?A-Z^_a-z{|}~]/,
+    /(\.?[-!#$%&'*+\\/0-9=?A-Z^_a-z`{|}~])*/,
+    /@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/,
+  ].map((r) => r.source).join(''));
   return regex.test(email);
 }
 
@@ -15,6 +20,13 @@ export default function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const buttonLogin = async () => {
+    const obj = { email, password }
+    const api = await fetchAPI('/login', 'POST', obj);
+    console.log(api);
+  }
+
   return (
     <div>
 
@@ -50,7 +62,7 @@ export default function Login() {
       <button
         data-testid="signin-btn"
         disabled={ !validateEmail(email) || !validatePassword(password) }
-        onClick={ () => history.push('/products') }
+        onClick={ buttonLogin }
         type="button"
       >
         Entrar
