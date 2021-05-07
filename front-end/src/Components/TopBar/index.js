@@ -34,7 +34,10 @@ export default function () {
 
   useEffect(() => {
     const { data } = verifyUserLocalStorage();
-    if (!data) return history.push('/login');
+    if (!data) {
+      localStorage.clear();
+      return history.push('/login');
+    }
     const { data: { role } } = JSON.parse(localStorage.getItem('user'));
     setRole(role);
     getTitle();
