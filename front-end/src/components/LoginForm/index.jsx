@@ -28,8 +28,6 @@ function LoginForm() {
     // req da api enviando:
     return userLogin(user).then((apiResponse) => {
       localStorage.setItem('user', JSON.stringify(apiResponse));
-      console.log(`Console log do apiResponse: ${apiResponse}`);
-      console.log(`Console log do role: ${apiResponse.role}`);
       if (apiResponse.role === 'administrator') {
         history.push('/admin/orders');
       }
