@@ -27,11 +27,12 @@ function LoginForm() {
     // };
     // req da api enviando:
     const response = await userLogin(user).then((apiResponse) => apiResponse);
-    localStorage.setItem('user', JSON.stringify(response));
     if (await response.role === 'administrator') {
+      localStorage.setItem('user', JSON.stringify(response));
       history.push('/admin/orders');
     }
     if (await response.role === 'client') {
+      localStorage.setItem('user', JSON.stringify(response));
       history.push('/products');
     }
   };
