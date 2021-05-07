@@ -65,18 +65,18 @@ export async function fetchRegister(name, email, password, queroVender) {
 
 export async function fetchProducts() {
   const endpoint = 'http://localhost:3001/products';
-  const response = await fetch(endpoint)
-    .then((data) => data.json())
-    .catch((err) => console.log(err.message));
-  return response;
+  const response = await fetch(endpoint);
+  const data = await response.json();
+  return data;
 }
 
-// export async function fetchImage(name) {
-//   const endpoint = `http://localhost:3001/images/${name}`;
-//   await fetch(endpoint)
-//     .then((data) => data)
-//     .catch((err) => console.log(err.message));
-// }
+export async function fetchImage(name) {
+  const endpoint = `http://localhost:3001/images/${name.replace('250', '350')}`;
+  const response = await fetch(endpoint);
+  const data = await response.blob();
+  const image = URL.createObjectURL(data);
+  return image;
+}
 
 export async function fetchUpdateClient(name, id, token) {
   const requestTokenUrl = `http://localhost:3001/users/${id}`;

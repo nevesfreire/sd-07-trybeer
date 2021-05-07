@@ -46,8 +46,8 @@ function ClientProfileComponent({
 
 ClientProfileComponent.propTypes = {
   formData: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    email: PropTypes.string,
   }).isRequired,
   onHandleSubmit: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
