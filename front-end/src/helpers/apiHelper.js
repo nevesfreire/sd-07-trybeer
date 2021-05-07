@@ -1,11 +1,13 @@
 import { setUser } from './localStorageHelper';
 
+const applicationType = 'application/json';
+
 export async function fetchToken(email, password) {
   const requestTokenUrl = 'http://localhost:3001/login';
   const request = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': applicationType,
     },
     body: JSON.stringify({
       email,
@@ -14,12 +16,13 @@ export async function fetchToken(email, password) {
   };
   try {
     const response = await fetch(requestTokenUrl, request);
-    const { name, token, role } = await response.json();
+    const { name, token, role, id } = await response.json();
     const user = {
       name,
       email,
       token,
       role,
+      id,
     };
     if (token) {
       setUser(user);
@@ -37,7 +40,7 @@ export async function fetchRegister(name, email, password, queroVender) {
   const request = {
     method: 'POST',
     headers: {
-      'Content-type': 'application/json',
+      'Content-type': applicationType,
     },
     body: JSON.stringify({
       name,
@@ -73,4 +76,26 @@ export async function fetchImage(name) {
   const data = await response.blob();
   const image = URL.createObjectURL(data);
   return image;
+}
+
+export async function fetchUpdateClient(name, id, token) {
+  const requestTokenUrl = `http://localhost:3001/users/${id}`;
+  const request = {
+    method: 'PUT',
+    headers: {
+      'Content-type': applicationType,
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      name,
+    }),
+  };
+  try {
+    const response = await fetch(requestTokenUrl, request);
+    const responseJson = await response.json();
+
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
 }
