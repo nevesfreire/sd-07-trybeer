@@ -8,6 +8,7 @@ export default function TopMenu() {
   function handleMenuToggle() {
     const sideBar = document.getElementsByClassName('side-menu-container')[0];
     const sideBarComplement = document.getElementsByClassName('nav-complement')[0];
+
     sideBar.classList.toggle('show-menu');
     sideBarComplement.classList.toggle('nav-complement-show');
   }
