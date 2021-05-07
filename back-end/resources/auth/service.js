@@ -1,34 +1,43 @@
 const jwt = require('jsonwebtoken');
 const { service } = require('../user');
 const { emailIsValid, passwordIsValid } = require('../../helpers/validations');
-require('dotenv').config();
+const { userNotFound, emailOrPasswordInvalid } = require('../../helpers/dictonary');
+const { SECRET } = require('../../config/application');
 
 const validateLogin = async (email, password) => {
   if (!emailIsValid(email) || !passwordIsValid(password)) {
     return {
       error: true,
-      message: 'deu ruim',
+      message: emailOrPasswordInvalid,
     };
   }
   const user = await service.getByEmail(email);
   if (!user) {
-    return { error: true, message: 'user nao encontrado' };
+    return { error: true, message: userNotFound };
   }
   if (user.password !== password) {
-    return { error: true, message: 'senha invalida' };
+    return { error: true, message: emailOrPasswordInvalid };
   }
   return { error: false, user };
 };
 
 const generateToken = ({ name, email, role }) => {
-  const secret = process.env.SECRET;
   const payload = {
     name,
     email,
     role,
   };
 
-  return jwt.sign(payload, secret);
+  return jwt.sign(payload, SECRET);
+};
+
+const tokenIsValid = (token) => {
+  try {
+      jwt.verify(token, SECRET);
+      return true;
+  } catch (error) {
+      return false;
+  }
 };
 
 const login = async (userEmail, password) => {
@@ -40,4 +49,4 @@ const login = async (userEmail, password) => {
   return { error: false, payload: { token, name, email, role } };
 };
 
-module.exports = { login };
+module.exports = { login, tokenIsValid };
