@@ -5,12 +5,8 @@ const app = express();
 const routes = require('./routes');
 require('dotenv').config();
 
-const corsOptions = {
-  origin: process.env.CORS_PORT_FRONT,
-  optionsSuccessStatus: 200, // For legacy browser support
-};
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 const { PORT } = process.env || 3007;
 

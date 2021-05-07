@@ -4,13 +4,11 @@ import TextField from "@material-ui/core/TextField";
 import fieldValidate from "../helpers/fieldValidate";
 import context from "../context";
 import "../css/registration.css";
-import "dotenv";
 
 const ComponentRegister = () => {
-  const { name, setName } = useContext(context);
-  const { email, setEmail } = useContext(context);
-  const { password, setPassword } = useContext(context);
-  const { checked, setChecked } = useContext(context);
+  console.log(process.env.PORT);
+  const { name, setName, email, setEmail } = useContext(context);
+  const { password, setPassword, checked, setChecked } = useContext(context);
 
   const handleSubmit = (e) => {
     const isValid = fieldValidate(name, email, password);
@@ -19,7 +17,7 @@ const ComponentRegister = () => {
     } else {
       e.preventDefault();
       try {
-        fetch("http://localhost:3005/register", { //alterar se preciso.
+        fetch(`${process.env.REACT_APP_URL}/register`, { //alterar se preciso.
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -52,7 +50,7 @@ const ComponentRegister = () => {
           type="e-mail"
           className="registration-input"
           variant="outlined"
-          defaultValue="Monteiro Lobato"
+          placeholder="Monteiro Lobato"
           onChange={(event) => setName(event.target.value)}
         />
 
@@ -62,7 +60,7 @@ const ComponentRegister = () => {
         <TextField
           className="registration-input"
           variant="outlined"
-          defaultValue="lobato@lobato.com"
+          placeholder="lobato@lobato.com"
           onChange={(event) => setEmail(event.target.value)}
         />
 
