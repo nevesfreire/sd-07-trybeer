@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const { PORT } = process.env;
+const PORT = 3001;
 
 app.get('/', (request, response) => {
   response.send();
