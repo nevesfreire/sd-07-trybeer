@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { FormControl, Button, Checkbox } from '@material-ui/core';
+import { FormControl, Button, Checkbox, Input } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import fieldValidate from '../helpers/fieldValidate';
 import context from '../context';
 import '../css/registration.css';
@@ -42,42 +43,37 @@ const ComponentRegister = () => {
   return (
     <div className="container-register">
       <FormControl className="form-registration">
-        <label className="label-register" htmlFor="login">
-          Nome:
-          <input
-            id="logins"
+      
+          <TextField
+            id="userName"
+            label="Nome"
             data-testid="signup-name"
             type="e-mail"
             className="registration-input"
             variant="outlined"
-            defaultValue="Monteiro Lobato"
+            placeholder="Monteiro Lobato"
             onChange={ (event) => setName(event.target.value) }
           />
-        </label>
-
-        <label data-testid="signup-email" className="label-register" htmlFor="email">
-          Email:
-          <input
+      
+          <TextField
             id="email"
+            label="Email"
             className="registration-input"
             variant="outlined"
-            defaultValue="lobato@lobato.com"
+            placeholder="lobato@lobato.com"
             onChange={ (event) => setEmail(event.target.value) }
           />
-        </label>
-
-        <label className="label-register" htmlFor="password">
-          Senha:
-          <input
+     
+          <TextField
             id="password"
+            label="Senha"
             data-testid="signup-password"
             type="password"
             className="registration-input"
             variant="outlined"
             onChange={ (event) => setPassword(event.target.value) }
           />
-        </label>
-
+   
         <div className="checkDecision">
           <Checkbox
             data-testid="signup-seller"
