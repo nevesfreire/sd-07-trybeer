@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import login from '../../service/trybeerApi';
+import TopMenu from '../../components/Header';
 
 export default function Login() {
   const [shouldRedirect, setShouldRedirect] = useState('');
@@ -42,6 +43,7 @@ export default function Login() {
 
   return (
     <div>
+      <TopMenu />
 
       <label htmlFor="email">
         Email:
