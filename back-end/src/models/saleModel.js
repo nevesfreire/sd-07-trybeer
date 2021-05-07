@@ -1,12 +1,12 @@
 const conn = require('../config/conn');
 
-const createSale = async (userId, totalPrice,  street, number) => {
-  const newSale = await conn.execute(
+const createSale = async (userId, totalPrice, street, number) => {
+  const [{ insertId }] = await conn.execute(
     `
-    INSERT INTO users(user_id, total_price, delivery_address, delivery_number, sale_date, status) 
+    INSERT INTO sales(user_id, total_price, delivery_address, delivery_number, sale_date, status) 
     VALUES (
-      '${userId}', 
-      '${totalPrice}', 
+      ${userId}, 
+      ${totalPrice}, 
       '${street}', 
       '${number}',
       NOW(),
@@ -14,10 +14,21 @@ const createSale = async (userId, totalPrice,  street, number) => {
     );
     `,
   );
-  console.log(newSale);
-  return '{ email, password }';
-}
+  return insertId;
+};
+
+const createSaleProducts = async (productsSaled) => {
+  const [{ insertId }] = await conn.query(
+    `
+    INSERT INTO sales_products(sale_id, product_id, quantity) 
+    VALUES ?;
+    `,
+    [productsSaled],
+  );
+  return insertId;
+};
 
 module.exports = { 
-  createSale
+  createSale,
+  createSaleProducts,
 };

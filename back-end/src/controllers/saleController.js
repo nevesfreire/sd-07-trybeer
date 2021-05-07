@@ -4,8 +4,10 @@ const createSale = async (req, res) => {
   try {
     const { totalPrice, products, address } = req.body;
     const { id } = req.user;
-    const newSale = await saleService.createSale(id, totalPrice, products, address);
-    res.status(201).json(newSale);
+    
+    await saleService.createSale(id, totalPrice, products, address);
+
+    res.status(201).json('Compra efetuada com sucesso');
   } catch (error) {
     const { message, code } = error;
     if (code) {
