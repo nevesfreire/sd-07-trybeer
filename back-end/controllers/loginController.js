@@ -17,8 +17,8 @@ const login = async (req, res) => {
         algorithm: 'HS256',
       };
       const token = generateToken(result, jwtConfig);
-      const { name, role } = result;
-      return res.status(200).json({ name, email, token, role });
+      const { name, role, id } = result;
+      return res.status(200).json({ name, email, token, role, id });
     }
   } catch (error) {
     const { message } = error;

@@ -45,27 +45,26 @@ const SignUpForm = ({
           onChange={ (e) => onInputChange(e) }
         />
         <Divider />
-        <form className="checkbox">
-          <label htmlFor="signup-seller">
-            <input
-              data-testid="signup-seller"
-              id="signup-seller"
-              type="checkbox"
-              label="Quero vender"
-              name="iWantToSell"
-              value={ iWantToSell }
-              onChange={ (e) => onInputChange(e) }
-            />
-            Quero vender
-          </label>
-        </form>
+
+        <label htmlFor="signup-seller">
+          Quero vender
+          <input
+            data-testid="signup-seller"
+            id="signup-seller"
+            type="checkbox"
+            label="Quero vender"
+            name="iWantToSell"
+            value={ iWantToSell }
+            onChange={ (e) => onInputChange(e) }
+          />
+        </label>
         <Divider />
         <Button
           data-testid="signup-btn"
           color="orange"
           fluid
           size="large"
-          onClick={ async () => onHandleSubmit() }
+          onClick={ () => onHandleSubmit() }
           disabled={ isValid() }
         >
           Cadastrar
@@ -80,14 +79,16 @@ const SignUpForm = ({
 };
 
 SignUpForm.propTypes = {
-  formData: PropTypes.element.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  iWantToSell: PropTypes.bool.isRequired,
+  formData: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string,
+    iWantToSell: PropTypes.bool,
+  }).isRequired,
   onInputChange: PropTypes.func.isRequired,
+  isValid: PropTypes.func.isRequired,
   onHandleSubmit: PropTypes.func.isRequired,
-  isValid: PropTypes.bool.isRequired,
+
 };
 
 export default SignUpForm;

@@ -6,6 +6,7 @@ const validateName = (name) => {
   if (!name || name.length < 12) {
     throw new Error(ERR_MESSAGE);
   }
+  return name;
 };
 
 const validateEmail = (email) => {
@@ -51,12 +52,12 @@ const createUser = async (name, email, password, iWantToSell) => {
 
 const userUpdate = async (name, email) => {
   try {
-    console.log(name, email);
     validateName(name);
-    validateEmail(email);
+    console.log(validateName(name));
     const [user] = await userModel.userUpdate(name, email);
     return user;
   } catch (error) {
+    console.log('passei no erro do service');
     console.error(error);
     return error.message;
   }

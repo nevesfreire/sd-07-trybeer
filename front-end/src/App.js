@@ -5,7 +5,7 @@ import CentralContextProvider from './context/CentralContextProvider';
 const App = () => (
   <CentralContextProvider>
     <Routes />
-  </CentralContextProvider>
-);
+  </CentralContextProvider>);
+
 
 export default App;

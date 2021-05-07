@@ -32,6 +32,7 @@ const userUpdate = async (request, response) => {
   try {
     const { name, email } = request.body;
       const user = await userService.userUpdate(name, email);
+      if (user === 'Invalid entries. Try again.') throw new Error(ERRORUPDATE);
     return response.status(OK).json(user);
   } catch (error) {
     console.error(error);
