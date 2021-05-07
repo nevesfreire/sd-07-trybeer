@@ -5,11 +5,19 @@ import 'semantic-ui-css/semantic.min.css';
 import { Card, Image, Button } from 'semantic-ui-react';
 
 import * as STORAGE from '../helpers/localStorageHelper';
+// import * as API from '../helpers/apiHelper';
 
 function CardComponent({ product, sumTotal }) {
   const { id, name, price, url_image: urlImage } = product;
 
   const [quantity, setQuantity] = useState(0);
+  // const [image, setImage] = useState();
+
+  // useEffect(() => {
+  //   API.fetchImage(name).then((data) => {
+  //     setImage(data);
+  //   });
+  // }, [name]);
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];

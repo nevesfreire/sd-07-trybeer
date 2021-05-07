@@ -68,3 +68,10 @@ export async function fetchProducts() {
     .catch((err) => console.log(err.message));
   return response;
 }
+
+// export async function fetchImage(name) {
+//   const endpoint = `http://localhost:3001/images/${name}`;
+//   await fetch(endpoint)
+//     .then((data) => data)
+//     .catch((err) => console.log(err.message));
+// }
