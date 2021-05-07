@@ -7,7 +7,7 @@ const CheckoutForm = ({ finishSale }) => {
   const zero = 0;
   const [address, setAddress] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
-  const { totalPrice } = useContext(TryBeerContext);
+  const { totalPrice, setTotalPrice } = useContext(TryBeerContext);
 
   const checkoutSubmit = async () => {
     const LSCart = JSON.parse(localStorage.getItem('cart'));
@@ -24,6 +24,7 @@ const CheckoutForm = ({ finishSale }) => {
     await addSale(dataSale, token);
     localStorage.removeItem('cart');
     localStorage.removeItem('totalCartPrice');
+    setTotalPrice(zero);
     finishSale();
   };
 

@@ -22,12 +22,12 @@ const getProducts = () => api.get('/products')
   .catch((e) => e.message);
 
 const addSale = (dataSale, token) => api
-  .post('/sale', dataSale, { headers: { Authorization: token } })
+  .post('/sales', dataSale, { headers: { Authorization: token } })
   .then(({ status }) => status)
   .catch((e) => e.message);
 
 const getSalesByUser = (token) => api
-  .get('/sale', { headers: { Authorization: token } })
+  .get('/sales', { headers: { Authorization: token } })
   .then(({ data }) => data)
   .catch((e) => e.message);
 
