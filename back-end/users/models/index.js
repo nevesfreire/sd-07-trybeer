@@ -21,8 +21,8 @@ const getByEmail = async (email) => {
 };
 
 const createUser = async (name, email, password, role) => {
-  const query = 'INSERT INTO users(name, email, password, role) ' +
-  'VALUES (?, ?, ?, ?)';
+  const query = 'INSERT INTO users(name, email, password, role) '
+  + 'VALUES (?, ?, ?, ?)';
   console.log(name, email, password, role, 'dataModelCreateUser');
   const [data] = await conn.execute(query, [name, email, password, role]);
   return data;
@@ -32,5 +32,5 @@ module.exports = {
   getAll,
   getById,
   getByEmail,
-  createUser
+  createUser,
 };

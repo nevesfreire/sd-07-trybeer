@@ -39,7 +39,7 @@ function FormLogin() {
 
     const user = await requestLoginAPI(formLogin);
     // console.log(token);
-    
+
     if (user.data) {
       const { data } = user;
       const { role } = data;
