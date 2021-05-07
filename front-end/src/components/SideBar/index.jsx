@@ -13,7 +13,7 @@ export default function SideBar() {
   const menuId = 'main-menu';
 
   const setClassName = (statusBurguerMenu) => {
-    if(statusBurguerMenu) return 'side-menu-container';
+    if (statusBurguerMenu) return 'side-menu-container';
     return '';
   };
 
@@ -24,8 +24,17 @@ export default function SideBar() {
         <GlobalStyles />
         <div ref={ node }>
           <FocusLock disabled={ !open }>
-            <Burger open={ open } setOpen={ setOpen } aria-controls={ menuId } />
-            <Menu open={ open } setOpen={ setOpen } id={ menuId } className={ setClassName(open)} />
+            <Burger
+              open={ open }
+              setOpen={ setOpen }
+              aria-controls={ menuId }
+            />
+            <Menu
+              open={ open }
+              setOpen={ setOpen }
+              id={ menuId }
+              className={ setClassName(open) }
+            />
           </FocusLock>
         </div>
       </>
