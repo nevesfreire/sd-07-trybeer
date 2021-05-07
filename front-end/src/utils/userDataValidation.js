@@ -24,7 +24,7 @@ const validate = {
 
   name: (name = '') => !contain.numbers.test(name)
     && contain.notSpecialCharacters.test(name)
-    && name.replaceAll(' ', '').length >= nameMinSize,
+    && name.length >= nameMinSize,
 };
 
 export default validate;

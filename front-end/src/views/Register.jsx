@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { Redirect } from 'react-router';
 import { EmailInput, PasswordInput, NameInput } from '../components';
 import fetchApi from '../hooks/fetchApi';
 import { userDataValidation } from '../utils';
@@ -21,7 +21,7 @@ export default function Register() {
 
   const [erroMessage, setErrorMessage] = useState(false);
 
-  const history = useHistory();
+  const [userRole, setUserRole] = useState('');
 
   const handleState = ({ target: { id, value } }) => {
     setUser((state) => ({ ...state, [id]: id === 'role' ? !state.role : value }));
@@ -29,11 +29,9 @@ export default function Register() {
 
   const handleRegister = async () => {
     const register = await fetchApi('/register', 'POST', user);
-    console.log('register', register);
     if (register.statusCode === CODE.CREATED) {
       window.localStorage.setItem('user', JSON.stringify(register.user));
-      if (register.user.role === 'administrator') return history.push('/admin/orders');
-      return history.push('/products');
+      setUserRole(register.user.role);
     }
     setErrorMessage(true);
   };
@@ -73,6 +71,9 @@ export default function Register() {
       <span visibility={ erroMessage ? 'hidden' : 'visible' }>
         Já existe um usuário com esse e-mail.
       </span>
+
+      {(userRole === 'administrator') && <Redirect to="/admin/orders" />}
+      {(userRole === 'client') && <Redirect to="/products" />}
     </form>
   );
 }
