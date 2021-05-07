@@ -38,7 +38,10 @@ function Checkout() {
     const response = await fetchFinishSale(cartList, address, valorTotal);
     if (response) {
       setShowMessage(false);
-      setTimeout(() => setShowMessage(true), twoSeconds);
+      setTimeout(() => {
+        setShowMessage(true);
+        history.push('/products');
+      }, twoSeconds);
       localStorage.removeItem('cartList');
       localStorage.removeItem('productList');
       setProductList([]);
