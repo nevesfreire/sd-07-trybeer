@@ -7,7 +7,7 @@ import { SideBar } from '../components';
 export default function ClientRouts() {
   return (
     <ClientProvider>
-      <Route exact path="/profile" component={ SideBar } />
+      <Route exact path="/profile" component={ () => <SideBar title="titulo" /> } />
       <Route exact path="/products" />
       <Route exact path="/orders" />
     </ClientProvider>
