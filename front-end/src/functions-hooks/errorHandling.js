@@ -1,11 +1,13 @@
 const status = {
   200: () => false,
   201: () => false,
-  400: () => true,
 };
 
 function errorHandling(request) {
-  const error = status[request.statusCode]();
+  let error = true;
+  if (status[request.statusCode]) {
+    error = status[request.statusCode]();
+  }
   return { ...request, error };
 }
 

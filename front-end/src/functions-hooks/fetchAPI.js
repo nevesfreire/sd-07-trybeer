@@ -9,6 +9,6 @@ const fecheAPI = async (route, method, iten) => {
   const obj = await response.json();
   const transformation = errorHandling(obj);
   return transformation;
-}
+};
 
 export default { fecheAPI };

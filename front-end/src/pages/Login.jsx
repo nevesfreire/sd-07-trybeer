@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import fetchAPI from '../functions-hooks/fetchAPI';
+import { fetchAPI, localStorage } from '../functions-hooks';
 
 function validateEmail(email) {
   const regex = new RegExp([
@@ -20,12 +20,16 @@ export default function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMenssage, setErrorMenssage] = useState({ error: false, menssage: '' });
 
   const buttonLogin = async () => {
-    const obj = { email, password }
+    const obj = { email, password };
     const api = await fetchAPI('/login', 'POST', obj);
-    console.log(api);
-  }
+    if (api.error) return setErrorMenssage({ error: true, menssage: api.message });
+    localStorage.setItem('user', api.user);
+    if (api.user.role === 'administrator') return history.push('/admin/orders');
+    history.push('/products');
+  };
 
   return (
     <div>
@@ -58,7 +62,9 @@ export default function Login() {
           value={ password }
         />
       </label>
-
+      <h4 visibility={ errorMenssage.error ? 'visible' : 'hidden' }>
+        {errorMenssage.menssage}
+      </h4>
       <button
         data-testid="signin-btn"
         disabled={ !validateEmail(email) || !validatePassword(password) }

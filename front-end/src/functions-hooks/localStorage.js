@@ -1,6 +1,6 @@
 function setItem(key, value) {
   if (value === undefined) {
-    value = '';
+    value = 'undefined';
   }
   if (typeof value !== 'string') {
     value = JSON.stringify(value);
