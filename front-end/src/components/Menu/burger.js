@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { StyledBurger } from './styles';
 
 const Burger = ({ open, setOpen }) => (
-  <div data-testid="top-hamburguer">
-    <StyledBurger open={ open } onClick={ () => setOpen(!open) }>
-      <div />
-      <div />
-      <div />
-    </StyledBurger>
-  </div>
+  <StyledBurger
+    open={ open }
+    onClick={ () => setOpen(!open) }
+    data-testid="top-hamburguer"
+  >
+    <div />
+    <div />
+    <div />
+  </StyledBurger>
 );
 
 export default Burger;

@@ -7,8 +7,8 @@ function MenuClient({ open }) {
   const history = useHistory();
 
   return (
-    <div className="side-menu-container">
-      <StyledMenu open={ open }>
+    <div hidden={ !open }>
+      <StyledMenu open={ open } className="side-menu-container">
 
         <Button
           name="btn-products"
