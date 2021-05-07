@@ -21,7 +21,6 @@ describe('1 - [PÁGINA DE REGISTER] Testa se a rota "/register" existe:', () => 
   });
 
   test('O hamburger botão e o título Trybeer deve existir', () => {
-    history.push('register');
     render(<App />);
 
     const email = screen.getByTestId('email-input');
@@ -40,137 +39,84 @@ describe('1 - [PÁGINA DE REGISTER] Testa se a rota "/register" existe:', () => 
     expect(hamburgerButton).toBeInTheDocument();
   });
 
-  /*test('Crie um botão com o texto \'Entrar\'', () => {
-    render(<App />, '/login');
+  test('Testa a existencia de do SideBar', () => {
+    history.push('register');
+    render(<App />);
 
-    const button = screen.getByText(/Entrar/i);
-    expect(button).toBeInTheDocument();
+    const hamburgerButton = screen.getByTestId('top-hamburguer');
+
+    fireEvent.click(hamburgerButton);
+
+    const products = screen.getByTestId('side-menu-item-products');
+    const orders = screen.getByTestId('side-menu-item-my-orders');
+    const profile = screen.getByTestId('side-menu-item-my-profile');
+    const quit = screen.getByTestId('side-menu-item-logout');
+
+
+    expect(products).toBeInTheDocument();
+    expect(orders).toBeInTheDocument();
+    expect(profile).toBeInTheDocument();
+    expect(quit).toBeInTheDocument();
   });
 
-  test('Realize as seguintes verificações nos campos de email, password e botão:', () => {
+})
+
+describe('2 - [PÁGINA DE REGISTER] Testa se todas as rotas de SideBar redirecionam corretamente', () => {
+  
+  test('A rota para esta página deve ser \'/register\'', () => {
     render(<App />);
-   
 
-    const button = screen.getByText(/Entrar/i);
-    expect(button).toBeDisabled();
+    const hamburgerButton = screen.getByTestId('top-hamburguer');
 
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
+    fireEvent.click(hamburgerButton);
 
-    userEvent.type(email, 'email');
-    userEvent.type(password, '123456');
-    expect(button).toBeDisabled();
-
-    userEvent.type(email, 'email@com@');
-    userEvent.type(password, '123456');
-    expect(button).toBeDisabled();
-
-    userEvent.type(email, 'emailcom@');
-    userEvent.type(password, '123456');
-    expect(button).toBeDisabled();
-
-    userEvent.type(email, 'alguem@email.com');
-    userEvent.type(password, '23456');
-    expect(button).toBeDisabled();
-
-    userEvent.type(email, 'alguem@email.');
-    userEvent.type(password, '123456');
-    expect(button).toBeDisabled();
-
-    userEvent.type(email, 'alguem@email.com');
-    userEvent.type(password, '123456');
-    expect(button).toBeEnabled();
+    const products = screen.getByTestId('side-menu-item-products');
+    const orders = screen.getByTestId('side-menu-item-my-orders');
+    const profile = screen.getByTestId('side-menu-item-my-profile');
+    const quit = screen.getByTestId('side-menu-item-logout');
   });
 
-  test('Realiza login com usuário client, assim que o usuário logar.', () => {
+  test('Botao produtos encaminha para a rota "/products"', () => {
     render(<App />);
-    
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
-    const button = screen.getByText(/Entrar/i);
+
+    const email = screen.getByTestId('email-input');
+    const password = screen.getByTestId('password-input');
+    const button = screen.getByTestId('no-account-btn');
 
     userEvent.type(email, 'user@test.com');
     userEvent.type(password, 'test123');
     expect(button).toBeEnabled();
-    fireEvent.click(button);
+    fireEvent.click(button)
+    
+    const hamburgerButton = screen.getByTestId('top-hamburguer');
+    fireEvent.click(hamburgerButton);
 
-    history.push('products');
+    const products = screen.getByTestId('side-menu-item-products');
+    fireEvent.click(products);
 
     expect(history.location.pathname).toBe('/products');
   });
 
-  test('Realiza login com usuário admin, assim que o usuário logar.', () => {
+  test('Botao "Meus pedidos" encaminha para a rota "/orders"', () => {
     render(<App />);
 
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
-    const button = screen.getByText(/Entrar/i);
-
-    userEvent.type(email, 'tryber@trybe.com.br');
-    userEvent.type(password, '123456');
-    expect(button).toBeEnabled();
-    fireEvent.click(button);
-
-    history.push('admin/orders');
-
-    expect(history.location.pathname).toBe('/admin/orders');
-  });
-
-  test('Login não autorizado e exibe a menssagem de erro.', async () => {
-    render(<App />);
-
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
-    const button = screen.getByText(/Entrar/i);
-
-    userEvent.type(email, 'test@test.com');
-    userEvent.type(password, '123456789');
-    expect(button).toBeEnabled();
-    fireEvent.click(button);
-
-    const result = await login('test@test.com', '123456789')
-
-    const message = 'Usuário ou senha inválido!';
-  
-    expect(message).toMatch(result.error);
-  });
-  */
-
-});
-
-
-
-/*describe('2 - [PÁGINA DE LOGIN INFORMAÇÕES USER LOCALSTORAGE] Salvar as informações de usuário no localstorage e recuperar as informações :', () => {
-
-  test('Testa se o token está ok.', async () => {
-    render(<App />);
-    beforeEach(() => localStorage.clear());
-  
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
-    const button = screen.getByText(/Entrar/i);
+    const email = screen.getByTestId('email-input');
+    const password = screen.getByTestId('password-input');
+    const button = screen.getByTestId('no-account-btn');
 
     userEvent.type(email, 'user@test.com');
     userEvent.type(password, 'test123');
     expect(button).toBeEnabled();
-    fireEvent.click(button);
+    fireEvent.click(button)
+    
+    const hamburgerButton = screen.getByTestId('top-hamburguer');
+    fireEvent.click(hamburgerButton);
 
-    const result = await login('user@test.com', 'test123')
+    const orders = screen.getByTestId('side-menu-item-my-orders');
+    fireEvent.click(orders);
 
-    localStorage.setItem('user', JSON.stringify(result));
-  
-    expect(JSON.parse(localStorage.getItem('user')).token).toBe(result.token);
+    expect(history.location.pathname).toBe('/orders');
   });
 
-  test('Testa se o email de usuário está ok.', async () => {
-    render(<App />);
-    beforeEach(() => localStorage.clear());
+})
 
-    const result = await login('tryber@trybe.com.br', '123456')
-
-    localStorage.setItem('user', JSON.stringify(result));
-  
-    expect(JSON.parse(localStorage.getItem('user')).email).toBe(result.email);
-  });
-});
-*/
