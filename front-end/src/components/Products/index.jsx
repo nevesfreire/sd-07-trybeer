@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Header from '../Header';
 import Card from '../Card';
 import format from '../../util/format';
@@ -29,3 +30,7 @@ function Products({ products }) {
 }
 
 export default Products;
+
+Products.propTypes = {
+  products: PropTypes.objectOf(PropTypes.string).isRequired,
+};

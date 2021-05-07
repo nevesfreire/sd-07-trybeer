@@ -3,15 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import * as API from '../../services/api';
-import {
-  getStorage,
-  setStorage,
-  calculateTotalProductsPrice } from '../../services/localStorage';
+import { getStorage, setStorage } from '../../services/localStorage';
 import { Products, Checkout } from '../../components';
 
 function ProductsOrCheckout() {
   const [isLoading, setIsLoading] = useState(true);
   const products = useSelector((state) => state.client.cart);
+  const checkouted = useSelector((state) => state.client.checkouted);
 
   const history = useHistory();
   const { pathname } = useLocation();
@@ -30,12 +28,10 @@ function ProductsOrCheckout() {
       });
     } else {
       dispatch(Creators.updateCart(cart));
-      const subtotal = calculateTotalProductsPrice(cart);
-      dispatch(Creators.changeTotalPrice(subtotal));
       setIsLoading(false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [checkouted]);
 
   if (isLoading) return <div>Carregando...</div>;
   return pathname.includes('products')

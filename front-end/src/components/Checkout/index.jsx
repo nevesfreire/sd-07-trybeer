@@ -1,19 +1,40 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import Header from '../Header';
 import ListItem from '../ListItem';
 import * as API from '../../services/api';
+import { clearStorage } from '../../services/localStorage';
+import { Creators } from '../../store/ducks/reducers/clientInfo';
 import format from '../../util/format';
 
 function Checkout({ products }) {
   const totalPrice = useSelector((state) => state.client.totalPrice);
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
+  const [showMessage, setShowMessage] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const timeToRedirect = 2000;
+    if (showMessage) {
+      clearStorage('cart');
+      dispatch(Creators.checkout());
+      setTimeout(() => {
+        history.push('/products');
+      }, timeToRedirect);
+    }
+  }, [showMessage, history, dispatch]);
+
+  if (showMessage) return <h1>Compra realizada com sucesso!</h1>;
 
   return (
     <div>
       <Header>Finalizar Pedido</Header>
-      { showMessage }
       { !totalPrice ? <h3>Não há produtos no carrinho</h3> : (
         <ul>
           { products.map((product, index) => (
@@ -46,6 +67,7 @@ function Checkout({ products }) {
         data-testid="checkout-finish-btn"
         disabled={ !totalPrice || !street || !houseNumber }
         onClick={ () => {
+          setShowMessage(true);
           API.sendSale(street, houseNumber, totalPrice, products);
         } }
       >
@@ -56,3 +78,7 @@ function Checkout({ products }) {
 }
 
 export default Checkout;
+
+Checkout.propTypes = {
+  products: PropTypes.objectOf(PropTypes.string).isRequired,
+};

@@ -1,25 +1,21 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getStorage,
-  setStorage,
-  calculateTotalProductsPrice } from '../../services/localStorage';
+import { getStorage, setStorage } from '../../services/localStorage';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import { format, totalPrice } from '../../util';
 
 function ListItem({ product: { name, price, id, quantity }, index }) {
-  const { changeTotalPrice, updateCart } = Creators;
+  const { updateCart } = Creators;
 
   const dispatch = useDispatch();
 
   const removeFromCart = useCallback(() => {
     const cart = getStorage('cart');
     const newCart = cart.filter((element) => element.id !== id);
-    const updateTotalPrice = calculateTotalProductsPrice(newCart);
-    dispatch(changeTotalPrice(updateTotalPrice));
-    setStorage('cart', newCart);
     dispatch(updateCart(newCart));
-  }, [dispatch, changeTotalPrice, updateCart, id]);
+    setStorage('cart', newCart);
+  }, [dispatch, updateCart, id]);
 
   if (!quantity) return null;
 
