@@ -120,7 +120,7 @@ Caso o token não seja passado ou esteja inválido, é retornado o seguinte erro
 
 ## Criando venda
 
-Rota: localhost:3001/sale
+Rota: localhost:3001/sales
 Metodo: POST
 
 O header deve conter o seguinte:
@@ -143,3 +143,65 @@ Os campos quantity, totalPrice, deliveryNumber devem ser numeros.
 quantity e totalPrice devem ser maiores que 1.
 
 Apenas os campos status e deliveryNumber são opcionais.
+
+## Consultando compras
+
+Rota: localhost:3001/sales
+Metodo: GET
+
+Caso exista alguma compra o retorno será um JSON com o seguinte:
+
+[
+  {
+    "saleId": 1,
+    "saleDate": "05/07",
+    "totalPrice": "343.98"
+  },
+  {
+    "saleId": 2,
+    "saleDate": "05/07",
+    "totalPrice": "343.98"
+  }
+]
+
+Caso não exista uma venda o retorno será o seguinte:
+
+{
+  err: 'Usuário ainda não realizou nenhuma compra'
+}
+
+## Consultando detalhes da compra
+
+Rota: localhost:/3001/sales/:id
+Metodo: GET
+
+Passar o id da compra como parâmetro ex: localhost:3001/sales/1
+
+Caso exista uma compra com o id buscado, será retornado o JSON:
+
+[
+  {
+    "sale_id": 1,
+    "sale_date": "2021-05-07T18:21:30.000Z",
+    "quantity": "21",
+    "name": "Skol Lata 250ml",
+    "price": "2.20",
+    "total_price": "343.98",
+    "user_id": 3
+  },
+  {
+    "sale_id": 1,
+    "sale_date": "2021-05-07T18:21:30.000Z",
+    "quantity": "21",
+    "name": "Brahma 600ml",
+    "price": "7.50",
+    "total_price": "343.98",
+    "user_id": 3
+  }
+]
+
+Caso não exista nenhuma compra com o id buscado, o retorno será o seguinte:
+
+{
+  "err": "Não foram encontradas compras com esse id"
+}
