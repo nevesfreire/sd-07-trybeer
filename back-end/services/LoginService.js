@@ -8,13 +8,15 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
+const SECRET = 'semideiaprasecret';
+
 const getUser = async (data) => {
   const { error } = validateLogin(data);
   const [dataUser] = await loginModel.getUserInfo(data);
   if (error) throw error;
   await validUser(data);
   const { email, password, name, role } = dataUser[0];
-  const token = jwt.sign({ email, password }, process.env.JWT_SECRET, jwtConfig);
+  const token = jwt.sign({ email, password }, SECRET, jwtConfig);
   return { token, name, email, role };
 };
 
