@@ -21,15 +21,16 @@ const signInLogin = async (data) => {
 };
 
 const signUpLogin = async (data) => {
-  const { email, password, name, role } = data;
+  const { email, password, name } = data;
   validEmail(email);
   validPassword(password);
   validName(name);
   const userAlreadyExistis = await loginModel.getUserByEmail(email);
   if (userAlreadyExistis) throw errors.userAlredyExists;
-
-  const result = await loginModel.createUser(data);
-  return result;
+  const user = await loginModel.createUser(data);
+  delete user.password;
+  const token = tokenServices.generateToken({ data: user });
+  return token;
 };
 
 module.exports = {

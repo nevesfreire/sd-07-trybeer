@@ -7,5 +7,5 @@ export {
   Login,
   Products,
   Profile,
-  Register
+  Register,
 };

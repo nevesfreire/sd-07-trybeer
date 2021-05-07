@@ -11,6 +11,6 @@ const authMiddleware = (req, resp, next) => {
   } catch (error) {
     next(errors.invalidToken);  
   }
-}
+};
 
 module.exports = authMiddleware;

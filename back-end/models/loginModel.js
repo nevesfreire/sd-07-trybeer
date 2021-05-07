@@ -17,11 +17,11 @@ const getUserByEmail = async (email) => {
 
 const createUser = async (data) => {
   const { name, email, password, role } = data;
-  const [result] = await connection.execute(
+  const [user] = await connection.execute(
     'INSERT INTO users (name, email, password, role) VALUES (?,?,?,?)', 
   [name, email, password, role],
 );
-  return result;
+  return user;
 };
 
 module.exports = {
