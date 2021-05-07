@@ -26,10 +26,16 @@ const addSale = (dataSale, token) => api
   .then(({ status }) => status)
   .catch((e) => e.message);
 
+const getSalesByUser = (token) => api
+  .get('/sale', { headers: { Authorization: token } })
+  .then(({ data }) => data)
+  .catch((e) => e.message);
+
 export {
   getUser,
   registerUser,
   updateNameUser,
   getProducts,
   addSale,
+  getSalesByUser,
 };
