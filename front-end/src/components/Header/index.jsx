@@ -5,7 +5,7 @@ import './Header.css';
 export default function Header() {
   return (
     <header className="header" data-testid="top-title">
-      <SideBar className="side-menu-container" />
+      <SideBar />
       TryBeer
     </header>
 
