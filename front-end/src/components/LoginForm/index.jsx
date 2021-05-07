@@ -19,12 +19,12 @@ function LoginForm() {
   // const { userLogin } = useContext(ApiContext);
   const history = useHistory();
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = (e, user) => {
     e.preventDefault();
-    const user = {
-      email,
-      password,
-    };
+    // const user = {
+    //   email,
+    //   password,
+    // };
     // req da api enviando:
     return userLogin(user).then((apiResponse) => {
       localStorage.setItem('user', JSON.stringify(apiResponse));
@@ -69,7 +69,7 @@ function LoginForm() {
         type="submit"
         data-testid="signin-btn"
         disabled={ validateLogin(email, password) }
-        onClick={ (e) => onSubmitHandler(e) }
+        onClick={ (e) => onSubmitHandler(e, { email, password }) }
       >
         Entrar
       </Button>
