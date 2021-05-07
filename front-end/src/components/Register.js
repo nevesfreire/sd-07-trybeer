@@ -1,35 +1,33 @@
-import React, { useContext } from "react";
-import { FormControl, Button, Checkbox } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import fieldValidate from "../helpers/fieldValidate";
-import context from "../context";
-import "../css/registration.css";
+import React, { useContext } from 'react';
+import { FormControl, Button, Checkbox } from '@material-ui/core';
+import fieldValidate from '../helpers/fieldValidate';
+import context from '../context';
+import '../css/registration.css';
 
 const ComponentRegister = () => {
-  console.log(process.env.PORT);
   const { name, setName, email, setEmail } = useContext(context);
   const { password, setPassword, checked, setChecked } = useContext(context);
 
   const handleSubmit = (e) => {
     const isValid = fieldValidate(name, email, password);
     if (!isValid) {
-      window.alert("Dados inválidos. Tente novamente");
+      window.alert('Dados inválidos. Tente novamente');
     } else {
       e.preventDefault();
       try {
-        fetch(`${process.env.REACT_APP_URL}/register`, { //alterar se preciso.
-          method: "POST",
+        fetch(`${process.env.REACT_APP_URL}/register`, {
+          // alterar se preciso.
+          method: 'POST',
           headers: {
-            "Content-type": "application/json",
+            'Content-type': 'application/json',
           },
           body: JSON.stringify({ name, email, password, checked }),
         })
           .then((response) => response.json())
-          .then((data) => {
+          .then((data) => (
             data.email
               ? window.alert(`Usuario cadastrado com sucesso: ${data.email}`)
-              : window.alert(`Esse email já foi utilizado.`);
-          });
+              : window.alert('Esse email já foi utilizado.')));
       } catch (error) {
         console.log(error);
       }
@@ -44,42 +42,49 @@ const ComponentRegister = () => {
   return (
     <div className="container-register">
       <FormControl className="form-registration">
-        <label className="label-register">Nome:</label>
-        <TextField
-          data-testid="signup-name"
-          type="e-mail"
-          className="registration-input"
-          variant="outlined"
-          placeholder="Monteiro Lobato"
-          onChange={(event) => setName(event.target.value)}
-        />
-
-        <label data-testid="signup-email" className="label-register">
-          Email:
+        <label className="label-register" htmlFor="login">
+          Nome:
+          <input
+            id="logins"
+            data-testid="signup-name"
+            type="e-mail"
+            className="registration-input"
+            variant="outlined"
+            defaultValue="Monteiro Lobato"
+            onChange={ (event) => setName(event.target.value) }
+          />
         </label>
-        <TextField
-          className="registration-input"
-          variant="outlined"
-          placeholder="lobato@lobato.com"
-          onChange={(event) => setEmail(event.target.value)}
-        />
 
-        <label className="label-register">Senha:</label>
-        <TextField
-          data-testid="signup-password"
-          type="password"
-          className="registration-input"
-          variant="outlined"
-          onChange={(event) => setPassword(event.target.value)}
-        />
+        <label data-testid="signup-email" className="label-register" htmlFor="email">
+          Email:
+          <input
+            id="email"
+            className="registration-input"
+            variant="outlined"
+            defaultValue="lobato@lobato.com"
+            onChange={ (event) => setEmail(event.target.value) }
+          />
+        </label>
+
+        <label className="label-register" htmlFor="password">
+          Senha:
+          <input
+            id="password"
+            data-testid="signup-password"
+            type="password"
+            className="registration-input"
+            variant="outlined"
+            onChange={ (event) => setPassword(event.target.value) }
+          />
+        </label>
 
         <div className="checkDecision">
           <Checkbox
             data-testid="signup-seller"
             className="registerCheck"
             size="medium"
-            checked={checked}
-            onChange={handChange}
+            checked={ checked }
+            onChange={ handChange }
           />
           <span>Quero vender</span>
         </div>
@@ -89,7 +94,7 @@ const ComponentRegister = () => {
           color="primary"
           variant="contained"
           className="RegisterBtn"
-          onClick={handleSubmit}
+          onClick={ handleSubmit }
         >
           Cadastrar
         </Button>

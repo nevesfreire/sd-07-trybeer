@@ -5,28 +5,27 @@ const messageError = require('../helpers/message.json');
 const errorCode = require('../helpers/status.json');
 
 const getUser = async (email) => {
-    const user = await userFind.getUser(email);
-    return user;
+  const user = await userFind.getUser(email);
+  return user;
 };
 
 const register = async (name, email, password, checked) => {
-    let role = 'admin';
-    const empty = 0;
+  let role = 'admin';
+  const empty = 0;
 
-    if (!checked) role = 'cliente';
+  if (!checked) role = 'cliente';
 
-    const userExists = await userFind.getUser(email);
- 
-    if (userExists.length === empty) {
-        const user = await modelRegister.register(name, email, password, role);
-        return user;
-    }
+  const userExists = await userFind.getUser(email);
 
-    return errorGenerator(errorCode.Unauthorized, messageError.same_user);
+  if (userExists.length === empty) {
+    const user = await modelRegister.register(name, email, password, role);
+    return user;
+  }
 
+  return errorGenerator(errorCode.Unauthorized, messageError.same_user);
 };
 
 module.exports = {
-    register,
-    getUser,
+  register,
+  getUser,
 };
