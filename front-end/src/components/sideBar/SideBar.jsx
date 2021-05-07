@@ -11,7 +11,7 @@ export default function SideBar({ title }) {
     <header className="side-menu-container">
       { clientState.isHiddenMenu && <HamburgerMenu /> }
       <HamburgerButtom />
-      <h1>{title}</h1>
+      <h1 data-testid="top-title">{title}</h1>
       <div />
     </header>
   );
