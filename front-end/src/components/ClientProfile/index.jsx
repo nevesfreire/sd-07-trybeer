@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import ApiContext from '../../context/apiContext';
+import React, { useState } from 'react';
+import { updateUser } from '../../services/apiService';
 import validationClientProfile from './validationClientProfile';
 import {
   Form,
@@ -10,40 +9,23 @@ import {
   Span,
 } from './styles';
 
-// const menuTitle = "Meu Perfil";
-
-function ClientProfile() {
+export default function ClientProfile() {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [userRole, setRole] = useState(null);
-  const { userLogin } = useContext(ApiContext);
+  const [nameUpdate, setNameUpdate] = useState(false);
 
-  // const currentUser = JSON.parse(localStorage.getItem('user'));
+  const currentUser = JSON.parse(localStorage.getItem('user'));
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     const user = {
       name,
+      email: currentUser.email,
     };
     // req da api enviando:
-    return userLogin(user)
-      .then((apiResponse) => {
-        localStorage.setItem('user', JSON.stringify(apiResponse));
-        if (apiResponse) {
-          const { role } = apiResponse;
-          setRole(role);
-          console.log('role', role);
-        }
-      });
+    const response = await updateUser(user).then((apiResponse) => apiResponse);
+
+    if (response) setNameUpdate(true);
   };
-
-  if (userRole && userRole === 'administrator') {
-    return <Redirect to="/admin/orders" />;
-  }
-
-  if (userRole && userRole === 'client') {
-    return <Redirect to="/products" />;
-  }
 
   return (
     <Form onSubmit={ onSubmitHandler }>
@@ -52,7 +34,6 @@ function ClientProfile() {
         <Input
           value={ name }
           onChange={ (e) => setName(e.target.value) }
-          placeholder="name"
           type="name"
           name="name"
           data-testid="profile-name-input"
@@ -63,13 +44,11 @@ function ClientProfile() {
       <Label>
         Email
         <Input
-          value={ email }
-          onChange={ (e) => setEmail(e.target.value) }
-          placeholder="Email address"
+          value={ currentUser.email }
           type="email"
           name="email"
           data-testid="profile-email-input"
-          readonly
+          readOnly
         />
       </Label>
 
@@ -81,7 +60,7 @@ function ClientProfile() {
         Salvar
       </Button>
 
+      { nameUpdate && <span>Atualização concluída com sucesso</span> }
     </Form>
   );
 }
-export default ClientProfile;

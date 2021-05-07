@@ -7,7 +7,7 @@ import { MainDiv, FormWrapper, H1 } from './styles';
 const ClientProfilePage = () => (
   <MainDiv>
     <MenuBurger />
-    <H1>Meu Perfil</H1>
+    <H1 data-testid="top-title">Meu perfil</H1>
     <FormWrapper>
       <ClientProfile />
     </FormWrapper>
