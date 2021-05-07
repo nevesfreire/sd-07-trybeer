@@ -7,18 +7,18 @@ function MenuAdmin({ open }) {
   const history = useHistory();
 
   return (
-    <StyledMenu class="side-menu-container" open={ open }>
+    <StyledMenu class="admin-side-bar-container" open={ open }>
       <Button
         name="btn-requests"
         onClick={ () => history.push('/admin/orders') }
-        data-testid="btn-requests"
+        data-testid="side-menu-item-orders"
       >
         Pedidos
       </Button>
       <Button
         name="btn-profile"
         onClick={ () => history.push('/admin/profile') }
-        data-testid="btn-profile"
+        data-testid="side-menu-item-profile"
       >
         Perfil
       </Button>
