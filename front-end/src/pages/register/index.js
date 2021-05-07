@@ -37,7 +37,6 @@ export default function Register() {
   };
 
   if (shouldRedirect) {
-    console.log('entrei no if do redirect', shouldRedirect);
     return (<Redirect
       to={ `/${shouldRedirect === 'administrator' ? 'admin/orders' : 'products'}` }
     />);
