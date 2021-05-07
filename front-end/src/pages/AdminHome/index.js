@@ -1,7 +1,13 @@
 import React from 'react';
+import Header from '../../components/Header';
+import AuthVerification from '../../components/AuthVerification';
 
-const AdminHome = () => (
-  <h1>Admin Home</h1>
-);
+const AdminHome = () => {
+  AuthVerification();
+
+  return (
+    <Header title="TryBeer" />
+  );
+};
 
 export default AdminHome;

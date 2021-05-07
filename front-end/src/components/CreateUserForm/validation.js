@@ -1,11 +1,11 @@
 const validateRegister = (name, email, password) => {
-  const specialCharReg = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+  const specialCharReg = /^[a-zA-Z\s]*$/;
   const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
   const NAME_MIN_LENGTH = 12;
   const PASSWORD_MIN_LENGTH = 6;
 
-  if (!name || name.length < NAME_MIN_LENGTH || specialCharReg.test(name)) {
+  if (!name || name.length < NAME_MIN_LENGTH || !specialCharReg.test(name)) {
     console.log('problema em name');
     return true;
   }

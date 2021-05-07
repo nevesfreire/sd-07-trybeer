@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import ApiContext from '../../context/apiContext';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { userLogin } from '../../services/apiService';
 import validateLogin from './validationLogin';
 import {
   Form,
@@ -11,47 +11,28 @@ import {
   RegisterButton,
 } from './styles';
 
-// import "./styles.css";
-
-// const handleSubmit = (evt) => {
-//   evt.preventDefault();
-// }
-
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userRole, setRole] = useState(null);
+  const history = useHistory();
 
-  const { userLogin } = useContext(ApiContext);
-
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e, user) => {
     e.preventDefault();
-    const user = {
-      email,
-      password,
-    };
+
     // req da api enviando:
-    return userLogin(user)
-      .then((apiResponse) => {
-        localStorage.setItem('user', JSON.stringify(apiResponse));
-        if (apiResponse) {
-          const { role } = apiResponse;
-          setRole(role);
-          console.log('role', role);
-        }
-      });
+    const response = await userLogin(user).then((apiResponse) => apiResponse);
+    if (await response.role === 'administrator') {
+      localStorage.setItem('user', JSON.stringify(response));
+      history.push('/admin/orders');
+    }
+    if (await response.role === 'client') {
+      localStorage.setItem('user', JSON.stringify(response));
+      history.push('/products');
+    }
   };
 
-  if (userRole && userRole === 'administrator') {
-    return <Redirect to="/admin/orders" />;
-  }
-
-  if (userRole && userRole === 'client') {
-    return <Redirect to="/products" />;
-  }
-
   return (
-    <Form onSubmit={ onSubmitHandler }>
+    <Form>
       <Label>
         Email
         <Input
@@ -80,6 +61,7 @@ function LoginForm() {
         type="submit"
         data-testid="signin-btn"
         disabled={ validateLogin(email, password) }
+        onClick={ (e) => onSubmitHandler(e, { email, password }) }
       >
         Entrar
       </Button>
@@ -92,4 +74,5 @@ function LoginForm() {
     </Form>
   );
 }
+
 export default LoginForm;
