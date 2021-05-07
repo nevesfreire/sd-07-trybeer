@@ -24,5 +24,6 @@ router.get('/products', productsControler.getAllProducts);
 // "listProducts": {"1":"5","2":"5"}
 // }
 router.post('/sale', saleControler.create);
+router.get('/orders', saleControler.getAll);
 
 module.exports = router;
