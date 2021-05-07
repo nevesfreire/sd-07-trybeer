@@ -31,11 +31,11 @@ function LoginForm() {
       console.log(`Console log do apiResponse: ${apiResponse}`);
       console.log(`Console log do role: ${apiResponse.role}`);
       if (apiResponse.role === 'administrator') {
-        return history.push('/admin/orders');
+        history.push('/admin/orders');
       }
 
       if (apiResponse.role === 'client') {
-        return history.push('/products');
+        history.push('/products');
       }
     });
   };
