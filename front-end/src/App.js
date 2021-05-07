@@ -5,8 +5,8 @@ import TrybeerProvider from './context/TrybeerProvider';
 import Home from './pages/HomePage';
 import Login from './pages/LoginPage';
 import Register from './pages/RegisterPage';
-import PendingOrders from './pages/PendingOrders';
-import Products from './pages/Products';
+import PendingOrders from './pages/PendingOrdersPage';
+import Products from './pages/ProductsPage';
 
 function App() {
   return (
