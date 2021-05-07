@@ -1,11 +1,17 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+
+import { saveItem, getItem } from '../services/localStorage';
 
 const Context = createContext();
 
 const Provider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (getItem('cart')) setCart(getItem('cart'));
+  }, []);
 
   function addToCart(product) {
     if (cart.find(({ id }) => id === product.id)) {
@@ -16,6 +22,8 @@ const Provider = ({ children }) => {
     } else {
       setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
     }
+
+    saveItem('cart', cart);
   }
 
   function removeFromCart(product) {
@@ -26,7 +34,9 @@ const Provider = ({ children }) => {
       return prod;
     });
 
-    setCart(newCart.filter(({ quantity }) => quantity > 0));
+    const filteredCart = newCart.filter(({ quantity }) => quantity > 0);
+    saveItem('cart', filteredCart);
+    setCart(filteredCart);
   }
 
   const contextValue = {

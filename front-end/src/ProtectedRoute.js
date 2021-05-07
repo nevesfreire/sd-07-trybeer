@@ -1,12 +1,20 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function ProtectedRoute(props) {
-  const isAuth = () => true;
+import { isAuthenticated } from './services/localStorage';
 
-  return isAuth()
-    ? <Route { ...props } />
-    : <Redirect to="/" />;
+function ProtectedRoute({ children, ...rest }) {
+  return (
+    <Route
+      { ...rest }
+      render={ () => (isAuthenticated() ? children : <Redirect to="/login" />) }
+    />
+  );
 }
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default ProtectedRoute;
