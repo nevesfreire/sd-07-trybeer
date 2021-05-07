@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { updateUserName } from '../services/Api/user';
 
-function ClientProfileForm() {
+const ClientProfileForm = () => {
   const email = JSON.parse(localStorage.getItem('email'));
   const name = JSON.parse(localStorage.getItem('name'));
   const token = JSON.parse(localStorage.getItem('token'));
   const [newName, setNewName] = useState('');
-  // const { push } = useHistory();
-  // const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const validatename = () => {
     const nameLength = 12;
@@ -20,14 +18,11 @@ function ClientProfileForm() {
     );
   };
 
-  const saveNewName = async () => {
-    // if (result.error) {
-    //   setShowError(true);
-    // }
-    console.log(token);
-    localStorage.setItem('name', JSON.stringify(newName, token));
+  const saveNewName = async (e) => {
+    e.preventDefault();
     await updateUserName(newName, token);
-    // push('/products');
+    localStorage.setItem('name', JSON.stringify(newName, token));
+    setShowSuccess(true);
   };
 
   return (
@@ -38,10 +33,10 @@ function ClientProfileForm() {
       <form>
         <label
           htmlFor="name"
-          data-testid="profile-name-input"
         >
           Name
           <input
+            data-testid="profile-name-input"
             type="text"
             id="name"
             placeholder={ name }
@@ -50,11 +45,11 @@ function ClientProfileForm() {
         </label>
         <label
           htmlFor="email"
-          readOnly
-          data-testid="profile-email-input"
         >
           Email
           <input
+            readOnly
+            data-testid="profile-email-input"
             type="email"
             id="email"
             value={ email }
@@ -64,14 +59,14 @@ function ClientProfileForm() {
           data-testid="profile-save-btn"
           type="submit"
           disabled={ !validatename() }
-          onClick={ () => saveNewName() }
+          onClick={ (e) => saveNewName(e) }
         >
           Salvar
         </button>
-        {/* {showError && <p>Atualização concluída com sucesso.</p>} */}
+        {showSuccess && <p>Atualização concluída com sucesso.</p>}
       </form>
     </div>
   );
-}
+};
 
 export default ClientProfileForm;
