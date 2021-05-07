@@ -15,14 +15,25 @@ function Form({ history }) {
 
   const handleSubmit = async () => {
     const userData = await login(email, password);
-    console.log('userData', userData);
+    const user = {
+      name: userData.name,
+      email: userData.email,
+      token: userData.token,
+      role: userData.role,
+    };
+
+    localStorage.setItem('user', JSON.stringify(user));
+    if (user.role === 'client') {
+      return history.push('/register');
+    }
+    return history.push('/register');
   };
 
   const validateEmailAndPassword = () => {
     const emailValidation = (/[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i)
       .test(email);
     const minLengthPass = 6;
-    const validation = emailValidation && password.length > minLengthPass
+    const validation = emailValidation && password.length >= minLengthPass
       ? setDisabled(false)
       : setDisabled(true);
     return validation;
@@ -32,17 +43,9 @@ function Form({ history }) {
     validateEmailAndPassword();
   }, [email, password]);
 
-  // const goToRegister = () => {
-  //   history.push('/register');
-  // };
-  // const goToLogin = () => {
-  //   history.push('/login');
-  // };
-
   return (
     <div>
       <form>
-        { history === ''}
         { path === '/register' && (
           <label htmlFor="name">
             Nome
@@ -83,7 +86,7 @@ function Form({ history }) {
               type="checkbox"
               name="checkbox"
               id="checkbox"
-              onClick={ setCheckbox(!checkbox) }
+              onClick={ () => setCheckbox(!checkbox) }
             />
             Quero vender
           </label>
@@ -101,6 +104,7 @@ function Form({ history }) {
         <button
           type="button"
           data-testid="no-account-btn"
+          onClick={ () => history.push('/register') }
         >
           Ainda não tenho conta
         </button>

@@ -11,7 +11,7 @@ const validateToken = async (req, res, next) => {
         .json({ message: 'Token não encontrado' });
     }
 
-    const verifyToken = jwt.verify(authorization, process.env.SECRET);
+    const verifyToken = jwt.verify(authorization, TRYBEER);
 
     if (verifyToken.email !== email) {
       return res.status(StatusCodes.UNAUTHORIZED)
