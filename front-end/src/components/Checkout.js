@@ -63,7 +63,7 @@ function Checkout() {
   const generateProducts = useCallback(() => (
     <div>
       {productList.length === zero
-        ? (<h3>Carrinho vazio (por enquanto...)</h3>)
+        ? (<h3>Não há produtos no carrinho</h3>)
         : productList
           .map((item, index) => (
             <div
@@ -79,19 +79,24 @@ function Checkout() {
               >
                 {item.name}
               </p>
+              Subtotal:
               <p
                 data-testid={ `${index}-product-total-value` }
               >
-                Subtotal: R$
+                R$
                 {' '}
-                {(parseFloat(item.price) * parseFloat(item.quantity)).toFixed(2)}
+                {
+                  (parseFloat(item.price) * parseFloat(item.quantity))
+                    .toFixed(2)
+                    .toString()
+                    .replace('.', ',')
+                }
               </p>
+              Unidade:
               <p
                 data-testid={ `${index}-product-unit-price` }
               >
-                Unidade: R$
-                {' '}
-                {item.price.replace('.', ',')}
+                { `(R$ ${item.price.replace('.', ',')} un)` }
               </p>
 
               <p
@@ -112,9 +117,10 @@ function Checkout() {
                 Remover
               </button>
             </div>
-          ))}
+          )) }
+      Total:
       <p data-testid="order-total-value">
-        Total: R$
+        R$
         {' '}
         {valorTotal}
       </p>

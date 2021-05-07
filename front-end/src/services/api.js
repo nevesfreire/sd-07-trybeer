@@ -46,14 +46,14 @@ export async function fetchProductList() {
 }
 
 export async function fetchFinishSale(cartList, address, totalPrice) {
-  // const response = await fetch('http://localhost:3001/sales', {
-  //   method: 'POST',
-  //   body: JSON.stringify({
-  //     products: cartList, address, totalPrice,
-  //   }),
-  //   headers,
-  // });
-  // const list = await response.json();
-  // return list;
-  return true
+  const loggedUser = JSON.parse(localStorage.getItem('user'));
+
+  await fetch('http://localhost:3001/sales', {
+    method: 'POST',
+    body: JSON.stringify({
+      products: cartList, address, totalPrice,
+    }),
+    headers: { ...headers, Authorization: loggedUser.token },
+  });
+  return true;
 }
