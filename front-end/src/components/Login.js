@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
+import redirectLogin from '../helpers/helpersLogin';
 
 const regexEmail = /\S+@\S+\.\S+/;
 const passwordMinLength = 6;
@@ -19,7 +20,10 @@ const ComponentLogin = () => {
   };
   const params = { email: emailLabel, password: passwordLabel };
   const toLogin = async () => api.post('/login', params)
-    .then((token) => localStorage.setItem('token', token.data.token))
+    .then((token) => {
+      localStorage.setItem('token', token.data.token);
+      redirectLogin(token);
+    })
     .catch((err) => console.log(`Error in login process: ${err}`));
   return (
     <div className="container-login">
