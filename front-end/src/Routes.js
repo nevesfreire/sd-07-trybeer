@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 import Products from './pages/Products';
 // import Checkout from './pages/Checkout';
 // import Orders from './pages/Orders';
@@ -14,7 +14,7 @@ const Routes = () => (
     <Route exact path="/" component={ Home } />
     <Route path="/login" component={ Login } />
     <Route path="/register" component={ Register } />
-    { /* <Route path="/profile" component={ Profile } /> */ }
+    <Route path="/profile" component={ Profile } />
     <Route path="/products" component={ Products } />
     { /* <Route path="/checkout" component={ Checkout } /> */ }
     { /* <Route path="/order/:id" component={ Orders } /> */ }
