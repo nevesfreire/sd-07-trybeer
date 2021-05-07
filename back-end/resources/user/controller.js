@@ -15,8 +15,9 @@ const getAll = async (req, res) => {
 const create = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
-    const user = await service.create(name, email, password, role);
-    res.status(SUCESS).json(user);
+    const { error, message } = await service.create(name, email, password, role);
+    if (error) return res.status(400).json({ message });
+    res.status(SUCESS).json({ message });
   } catch (error) {
     res.status(FAIL);
   }

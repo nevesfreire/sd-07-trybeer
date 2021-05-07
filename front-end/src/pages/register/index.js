@@ -1,35 +1,45 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { nameIsValid, passwordIsValid, emailIsValid } from '../../service/validateInputs';
+import { register } from '../../service/trybeerApi';
 
 export default function Register() {
-  // const [shouldRedirect, setShouldRedirect] = useState('');
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
     name: '',
     email: '',
     password: '',
+    seller: false,
   });
 
   const verifyInput = () => {
     const { name, email, password } = registerInfo;
-    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const passwordMinLength = 6;
-    const nameMinLength = 12;
-    const validName = name.length >= nameMinLength
-    && /^[a-z ]+$/i.test(name);
-    const validPassword = password.length >= passwordMinLength;
-    return validEmail && validPassword && validName;
+    return nameIsValid(name) && passwordIsValid(password) && emailIsValid(email);
   };
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     setRegisterInfo({
       ...registerInfo,
       [name]: value,
     });
   };
 
-  /* const handleClick = async () => {
-    setShouldRedirect(true);
+  const handleClick = async () => {
+    const { name, email, password, seller } = registerInfo;
+    const role = seller === 'false' ? 'client' : 'administrator';
+    const result = await register(name, email, password, role);
+    if (!result) {
+      setShouldRedirect(role);
+    }
   };
-  */
+
+  if (shouldRedirect) {
+    return (<Redirect
+      to={ `/${shouldRedirect === 'administrator' ? '/admin/orders' : 'products'}` }
+    />);
+  }
 
   return (
     <div>
@@ -82,7 +92,7 @@ export default function Register() {
         type="button"
         data-testid="signup-btn"
         disabled={ !verifyInput() }
-        // onClick={ handleClick }
+        onClick={ handleClick }
       >
         Cadastrar
       </button>
