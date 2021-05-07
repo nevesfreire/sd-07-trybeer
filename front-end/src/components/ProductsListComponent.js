@@ -63,6 +63,7 @@ function Products() {
     <Sidebar.Pusher>
       <Segment basic>
         {isLoading ? renderLoading() : renderProductsList()}
+
         {renderButton()}
       </Segment>
     </Sidebar.Pusher>
