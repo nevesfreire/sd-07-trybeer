@@ -2,7 +2,7 @@ const { StatusCodes } = require('http-status-codes');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const secret = 'TRYBEER'
+const secret = 'TRYBEER';
 
 const validateToken = async (req, res, next) => {
   try {
