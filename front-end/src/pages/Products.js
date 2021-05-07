@@ -4,8 +4,11 @@ import { Link, Redirect } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import { Grid, Button } from 'semantic-ui-react';
 
+import TopBarComponent from '../components/TopBarComponent';
+import SideBarComponent from '../components/SideBarComponent';
+import AdminComponent from '../components/AdminComponent';
 import CardComponent from '../components/CardComponent';
-import HeaderComponent from '../components/HeaderComponent';
+
 import * as API from '../helpers/apiHelper';
 import * as STORAGE from '../helpers/localStorageHelper';
 
@@ -62,7 +65,8 @@ function Products() {
   return (
     <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
       <Grid.Column style={ { maxWidth: 500 } }>
-        <HeaderComponent message="Trybeer" />
+        <TopBarComponent>TryBeer</TopBarComponent>
+        <SideBarComponent Component={ AdminComponent } />
 
         {isLoading ? renderLoading() : renderProductsList()}
 
