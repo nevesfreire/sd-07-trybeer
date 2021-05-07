@@ -18,7 +18,7 @@ function calculateTotalProductsPrice(cart) {
   // return updateTotalPrice;
   return cart.reduce((acc, { quantity, price }) => {
     if (!quantity) return acc;
-    return Math.round((Number(price) * 100) * quantity) / 100;
+    return acc + Math.round((Number(price) * 100) * quantity) / 100;
   }, 0);
 }
 

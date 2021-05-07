@@ -15,7 +15,7 @@ function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { changeTotalPrice } = Creators;
+  const { changeTotalPrice, updateCart } = Creators;
 
   const dispatch = useDispatch();
 
@@ -27,7 +27,8 @@ function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
     const updateTotalPrice = calculateTotalProductsPrice(newCart);
     dispatch(changeTotalPrice(updateTotalPrice));
     setStorage('cart', newCart);
-  }, [changeTotalPrice, dispatch, id]);
+    dispatch(updateCart(newCart));
+  }, [changeTotalPrice, dispatch, id, updateCart]);
 
   const changeQuantity = useCallback((operation) => {
     if (operation === 'minus' && productQuantity > 0) {

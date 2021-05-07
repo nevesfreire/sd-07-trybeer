@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import * as API from '../../services/api';
@@ -10,8 +10,8 @@ import {
 import { Products, Checkout } from '../../components';
 
 function ProductsOrCheckout() {
-  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const products = useSelector((state) => state.client.cart);
 
   const history = useHistory();
   const { pathname } = useLocation();
@@ -25,11 +25,11 @@ function ProductsOrCheckout() {
     if (!cart) {
       API.getProducts().then((data) => {
         setStorage('cart', data);
-        setProducts(data);
+        dispatch(Creators.updateCart(data));
         setIsLoading(false);
       });
     } else {
-      setProducts(cart);
+      dispatch(Creators.updateCart(cart));
       const subtotal = calculateTotalProductsPrice(cart);
       dispatch(Creators.changeTotalPrice(subtotal));
       setIsLoading(false);

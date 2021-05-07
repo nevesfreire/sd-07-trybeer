@@ -7,8 +7,8 @@ import { getStorage,
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import { format, totalPrice } from '../../util';
 
-function ListItem({ product: { name, price, id, quantity } }, index) {
-  const { changeTotalPrice } = Creators;
+function ListItem({ product: { name, price, id, quantity }, index }) {
+  const { changeTotalPrice, updateCart } = Creators;
 
   const dispatch = useDispatch();
 
@@ -18,7 +18,8 @@ function ListItem({ product: { name, price, id, quantity } }, index) {
     const updateTotalPrice = calculateTotalProductsPrice(newCart);
     dispatch(changeTotalPrice(updateTotalPrice));
     setStorage('cart', newCart);
-  }, [dispatch, changeTotalPrice, id]);
+    dispatch(updateCart(newCart));
+  }, [dispatch, changeTotalPrice, updateCart, id]);
 
   if (!quantity) return null;
 
@@ -26,7 +27,7 @@ function ListItem({ product: { name, price, id, quantity } }, index) {
     <li>
       <h6 data-testid={ `${index}-product-qtd-input` }>{ quantity }</h6>
       <h6 data-testid={ `${index}-product-name` }>{ name }</h6>
-      <h6 data-testid={ `${index}-product-unit-price` }>{ format(price) }</h6>
+      <h6 data-testid={ `${index}-product-unit-price` }>{ `(${format(price)} un)` }</h6>
       <h6
         data-testid={ `${index}-product-total-value` }
       >
@@ -53,4 +54,5 @@ ListItem.propTypes = {
     price: PropTypes.string,
     quantity: PropTypes.number,
   }).isRequired,
+  index: PropTypes.number.isRequired,
 };
