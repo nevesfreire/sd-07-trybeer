@@ -1,6 +1,6 @@
 import validEmail from './validEmail';
 import validPassword from './validPassword';
 import validName from './validName';
-import setUserLocalStorage from './acessLocalStorage';
+import acessLocalStorage from './acessLocalStorage';
 
-export default { validEmail, validPassword, validName, setUserLocalStorage };
+export default { validEmail, validPassword, validName, acessLocalStorage };

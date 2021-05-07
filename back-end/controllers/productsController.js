@@ -2,7 +2,6 @@ const { StatusCodes } = require('http-status-codes');
 const { productsServices } = require('../services');
 
 const getProductListController = async (_req, res, next) => {
-  console.log(productsServices);
   try {
     const result = await productsServices.getProductsList();
     return res.status(StatusCodes.OK).json(result);
