@@ -15,7 +15,6 @@ const Products = () => {
 
   useEffect(() => {
     const { data } = verifyUserLocalStorage();
-    console.log(data);
     if (!data) return history.push('/login');
   }, [history]);
 
