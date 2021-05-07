@@ -12,4 +12,5 @@ app.use(routes);
 
 app.use('/images', express.static(`${__dirname}/images`));
 
-app.listen(process.env.PORT, () => console.log('Rodando...'));
+// Não use process.env pra porta, o env não existe no remoto, só declare env pros lances do mysql do readme- Berilo
+app.listen(3001, () => console.log('Rodando...'));
