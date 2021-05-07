@@ -45,3 +45,23 @@ export async function fetchProductList() {
   console.log(list);
   return list;
 }
+
+export async function fetchOrders() {
+  const loggedUser = JSON.parse(localStorage.getItem('user'));
+  const response = await fetch('http://localhost:3001/sales', {
+    method: 'GET',
+    headers: { ...headers, Authorization: loggedUser.token },
+  });
+  const orders = await response.json();
+  return orders;
+}
+
+export async function fetchOrderById(id) {
+  const loggedUser = JSON.parse(localStorage.getItem('user'));
+  const response = await fetch(`http://localhost:3001/sales/${id}`, {
+    method: 'GET',
+    headers: { ...headers, Authorization: loggedUser.token },
+  });
+  const order = await response.json();
+  return order;
+}
