@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { FormControl, Button, Checkbox, Input } from '@material-ui/core';
+import { FormControl, Button, Checkbox } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import fieldValidate from '../helpers/fieldValidate';
 import context from '../context';
@@ -43,37 +43,37 @@ const ComponentRegister = () => {
   return (
     <div className="container-register">
       <FormControl className="form-registration">
-      
-          <TextField
-            id="userName"
-            label="Nome"
-            data-testid="signup-name"
-            type="e-mail"
-            className="registration-input"
-            variant="outlined"
-            placeholder="Monteiro Lobato"
-            onChange={ (event) => setName(event.target.value) }
-          />
-      
-          <TextField
-            id="email"
-            label="Email"
-            className="registration-input"
-            variant="outlined"
-            placeholder="lobato@lobato.com"
-            onChange={ (event) => setEmail(event.target.value) }
-          />
-     
-          <TextField
-            id="password"
-            label="Senha"
-            data-testid="signup-password"
-            type="password"
-            className="registration-input"
-            variant="outlined"
-            onChange={ (event) => setPassword(event.target.value) }
-          />
-   
+
+        <TextField
+          id="userName"
+          label="Nome"
+          data-testid="signup-name"
+          type="e-mail"
+          className="registration-input"
+          variant="outlined"
+          placeholder="Monteiro Lobato"
+          onChange={ (event) => setName(event.target.value) }
+        />
+
+        <TextField
+          id="email"
+          label="Email"
+          className="registration-input"
+          variant="outlined"
+          placeholder="lobato@lobato.com"
+          onChange={ (event) => setEmail(event.target.value) }
+        />
+
+        <TextField
+          id="password"
+          label="Senha"
+          data-testid="signup-password"
+          type="password"
+          className="registration-input"
+          variant="outlined"
+          onChange={ (event) => setPassword(event.target.value) }
+        />
+
         <div className="checkDecision">
           <Checkbox
             data-testid="signup-seller"
