@@ -12,7 +12,6 @@ function Login() {
   const [role, setRole] = useState('');
   const handleClick = async () => {
     const response = await loginRequest(email, password);
-    console.log(response);
     const { status } = response;
     const ok = 200;
     if (status === ok) {
