@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
+const { PORT } = require('./config/application');
 
 const { user, auth } = require('./resources');
 
@@ -11,8 +11,6 @@ app.use(express.json());
 app.use(user.route);
 app.use(auth.route);
 
-const { PORT } = process.env;
-
 app.listen(PORT, () => {
-  console.log(`Online, Ouvindo porta ${PORT}!`);
+  console.log(`Trybeer API ON and listen at ${PORT}!`);
 });
