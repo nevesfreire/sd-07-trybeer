@@ -30,11 +30,11 @@ function LoginForm() {
       localStorage.setItem('user', JSON.stringify(apiResponse));
 
       if (apiResponse.role === 'administrator') {
-        history.push('/admin/orders');
+        return history.push('/admin/orders');
       }
 
       if (apiResponse.role === 'client') {
-        history.push('/products');
+        return history.push('/products');
       }
     });
   };
