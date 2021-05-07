@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
 import React, { useState, useContext } from 'react';
-import { Button, Form, Segment, Checkbox } from 'semantic-ui-react';
+import { Button, Form, Segment } from 'semantic-ui-react';
 import MessageComponent from './MessageComponent';
 import BeerContext from '../context/BeerContext';
 
@@ -55,16 +55,20 @@ function RegisterComponent({
         >
           Cadastrar
         </Button>
-        <Checkbox
-          name="queroVender"
-          label="Quero vender"
-          data-testid="signup-seller"
-          defaultChecked={ unchecked }
-          onChange={ (e, data) => {
-            setUnchecked(!unchecked);
-            onInputChange({ target: { name: data.name, value: data.checked } });
-          } }
-        />
+        <span>Quero vender</span>
+        <form>
+          <input
+            type="checkbox"
+            id="queroVender"
+            name="queroVender"
+            data-testid="signup-seller"
+            checked={ unchecked }
+            onChange={ (e) => {
+              setUnchecked(!unchecked);
+              onInputChange({ target: { name: e.target.name, value: e.target.checked } });
+            } }
+          />
+        </form>
       </Segment>
     </Form>
   );
