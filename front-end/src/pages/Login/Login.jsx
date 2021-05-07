@@ -1,37 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { login } from '../../actions';
-// import * as api from '../services/api';
-// import { setStorage } from '../services/localSorage';
+import { useHistory } from 'react-router-dom';
+import * as api from '../../services/api';
+import { setStorage } from '../../services/localStorage';
 
-function Login({ history, sendClientInfoToStore }) {
+function Login() {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userNotFound, setUserNotFound] = useState(false);
   const [disabled, setDisabled] = useState(true);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const MIN_LENGTH = 6;
     if (password.length >= MIN_LENGTH && regex.test(email)) {
       setDisabled(false);
-    } else { setDisabled(true);
+    } else {
+      setDisabled(true);
     }
   }, [email, password]);
 
-  const handleButton = () => {
-    // setStorage('toke()n', xxx)
-    dispatch(login({ email }));
-    history.push('/products');
-    // history.push('/admin/profile');
+  const handleButton = async () => {
+    const userData = await api.login({ email, password });
+    if (userData.message) return setUserNotFound(true);
+
+    setStorage('user', userData);
+    if (userData.role === 'client') return history.push('/products');
+    history.push('/admin/orders');
   };
 
   return (
     <div>
-      <label
-        htmlFor="email"
-      >
+      { userNotFound && <p style={ { color: 'red' } }>Usúario não cadastrado</p>}
+      <label htmlFor="email">
         <h6>Email</h6>
         <input
           placeholder="E-mail"
@@ -40,9 +41,7 @@ function Login({ history, sendClientInfoToStore }) {
           onChange={ ({ target }) => setEmail(target.value) }
         />
       </label>
-      <label
-        htmlFor="password"
-      >
+      <label htmlFor="password">
         <h6>Senha</h6>
         <input
           placeholder="Senha"

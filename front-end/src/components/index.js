@@ -1,7 +1,7 @@
-import Routes from './Routes.jsx';
+import Card from './Card';
 import Header from './Header';
 
 export {
-  Routes,
-  Header
+  Card,
+  Header,
 };

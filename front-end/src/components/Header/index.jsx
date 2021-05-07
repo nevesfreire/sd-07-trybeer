@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { clearStorage } from '../../services/localStorage';
+
 import './styles.css';
 
-const Header = () => {
+function Header({ children }) {
   const history = useHistory();
   const [sideMenu, setSideMenu] = useState(true);
 
   function handleClick({ target }) {
     switch (target.name) {
-      case 'products':
-        return history.push('/products');
-      case 'orders':
-        return history.push('/orders');
-      case 'profile':
-        return history.push('/profile');
-      default:
-        return history.push('/');
+    case 'products':
+      return history.push('/products');
+    case 'orders':
+      return history.push('/orders');
+    case 'profile':
+      return history.push('/profile');
+    default:
+      clearStorage('user');
+      return history.push('/');
     }
   }
 
@@ -23,39 +27,65 @@ const Header = () => {
     <header className="header">
       <div>
         <button
-          className={sideMenu ? 'menuHide' : 'menu'}
+          type="button"
+          className={ sideMenu ? 'menuHide' : 'menu' }
           data-testid="top-hamburguer"
-          onClick={() => setSideMenu(!sideMenu)}>
-          <div></div>
-          <div></div>
-          <div></div>
+          onClick={ () => setSideMenu(!sideMenu) }
+        >
+          <div />
+          <div />
+          <div />
         </button>
-        <ul className={sideMenu ? 'menuInfoHide' : 'menuInfo side-menu-container'}>
+        <ul className={ sideMenu ? 'menuInfoHide' : 'menuInfo side-menu-container' }>
           <li>
-            <button type="button" name="products" data-testid="side-menu-item-products" onClick={handleClick}>
+            <button
+              type="button"
+              name="products"
+              data-testid="side-menu-item-products"
+              onClick={ handleClick }
+            >
               Produtos
             </button>
           </li>
           <li>
-            <button type="button" name="orders" data-testid="side-menu-item-my-orders" onClick={handleClick}>
+            <button
+              type="button"
+              name="orders"
+              data-testid="side-menu-item-my-orders"
+              onClick={ handleClick }
+            >
               Meus Pedidos
             </button>
           </li>
           <li>
-            <button type="button" name="profile" data-testid="side-menu-item-my-profile" onClick={handleClick}>
+            <button
+              type="button"
+              name="profile"
+              data-testid="side-menu-item-my-profile"
+              onClick={ handleClick }
+            >
               Meu Perfil
             </button>
           </li>
           <li>
-            <button type="button" name="login" data-testid="side-menu-item-logout" onClick={handleClick}>
+            <button
+              type="button"
+              name="login"
+              data-testid="side-menu-item-logout"
+              onClick={ handleClick }
+            >
               Sair
             </button>
           </li>
         </ul>
       </div>
-      <h2 data-testid="top-title">TryBeer</h2>
+      <h2 data-testid="top-title">{ children }</h2>
     </header>
   );
-};
+}
 
 export default Header;
+
+Header.propTypes = {
+  children: PropTypes.node.isRequired,
+};
