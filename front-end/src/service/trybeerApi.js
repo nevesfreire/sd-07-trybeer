@@ -10,8 +10,9 @@ const login = async (email, password) => {
       return response.data;
     })
     .catch((error) => {
-      if (error) return { error: error.message };
+      if (error) return { error: 'Usuário ou senha inválido!' };
     });
+
   return result;
 };
 
