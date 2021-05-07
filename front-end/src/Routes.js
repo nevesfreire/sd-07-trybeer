@@ -5,14 +5,13 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Products from './pages/Products';
 
-
 const Routes = () => (
   <Switch>
     <Route exact path="/register" component={ SignUpForm } />
     <Route exact path="/profile" component={ Profile } />
     <Route exact path="/login" component={ Login } />
     <Route exact path="/" component={ Login } />
-    <Route exact path="/products" component={Products}/>
+    <Route exact path="/products" component={ Products } />
     <Route exact path="/admin/orders" />
   </Switch>
 );

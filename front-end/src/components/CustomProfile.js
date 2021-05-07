@@ -27,10 +27,11 @@ const CustomPerfil = ({
           label="Email"
           placeholder={ emailL }
           name="email"
+          readonly="true"
           readOnly
           value={ email }
         />
-        <Form.Input
+        <input
           data-testid="profile-name-input"
           fluid
           icon="user"
