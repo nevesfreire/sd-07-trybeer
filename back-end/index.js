@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 
-const { PORT } = 3001;
+const PORT = 3001;
 
 app.use(login);
 app.use(user);
