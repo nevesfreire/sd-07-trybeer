@@ -8,6 +8,7 @@ import Products from './pages/Products';
 import AdminProfile from './pages/Admin/Profile';
 import ClientProfile from './pages/Client/Profile';
 import Orders from './pages/Client/Orders';
+import Checkout from './pages/Client/Checkout'
 
 const App = () => (
   <BrowserRouter>
@@ -18,6 +19,7 @@ const App = () => (
     <Route exact path="/products" component={ Products } />
     <Route exact path="/orders" component={ Orders } />
     <Route exact path="/profile" component={ ClientProfile } />
+    <Route exact path="/checkout" component={ Checkout } />
   </BrowserRouter>
 );
 
