@@ -1,14 +1,13 @@
 import React from 'react';
-import MenuBurger from '../../components/Menu';
+import Header from '../../components/Header';
+import AuthVerification from '../../components/AuthVerification';
 
-const Products = () => (
-  <div>
-    <header style={ { display: 'flex', justifyContent: 'center', background: 'gray' } }>
-      <MenuBurger />
-      <h1 data-testid="top-title">TryBeer</h1>
-    </header>
-    <h2 style={ { display: 'flex', justifyContent: 'center' } }>Produtos</h2>
-  </div>
-);
+const Products = () => {
+  AuthVerification();
+
+  return (
+    <Header title="TryBeer" />
+  );
+};
 
 export default Products;

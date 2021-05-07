@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const StyledMenu = styled.div`
 display: flex;
+border-right: solid 0.01px black;
 flex-direction: column;
 justify-content: center;
-background: #EFFFFA;
+background: gray;
 transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
 height: 100vh;
 text-align: left;
@@ -90,7 +91,7 @@ export const Button = styled.button`
   margin-top: 0.2em;
   outline: none;
     &:hover {
-      background-color: red;
+      background-color: gray;
       color: white;
     }
 `;

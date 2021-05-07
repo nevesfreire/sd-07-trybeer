@@ -1,36 +1,31 @@
-import React /* { useContext } */ from 'react';
+import React from 'react';
 import Burger from './burger';
 import MenuClient from './menuClient';
+import MenuAdmin from './menuAdmin';
 
 function MenuBurger() {
   const [open, setOpen] = React.useState(false);
   const node = React.useRef();
 
+  const currentUser = JSON.parse(localStorage.getItem('user'));
+  const renderMenu = () => {
+    if (currentUser) {
+      if (currentUser.role === 'administrator') {
+        return <MenuAdmin open={ open } setOpen={ setOpen } />;
+      }
+
+      return <MenuClient open={ open } setOpen={ setOpen } />;
+    }
+  };
+
   return (
     <div>
-      <div ref={ node }>
+      <div ref={ node } className="side-menu-container">
         <Burger open={ open } setOpen={ setOpen } />
-        <MenuClient open={ open } setOpen={ setOpen } />
+        { renderMenu() }
       </div>
     </div>
   );
 }
-
-// const useOnClickOutside = (ref, handler) => {
-//   React.useEffect(() => {
-//     const listener = (event) => {
-//       if (!ref.current || ref.current.contains(event.target)) {
-//         return;
-//       }
-//       handler(event);
-//     };
-//     document.addEventListener('mousedown', listener);
-
-//     return () => {
-//       document.removeEventListener('mousedown', listener);
-//     };
-//   },
-//   [ref, handler]);
-// };
 
 export default MenuBurger;
