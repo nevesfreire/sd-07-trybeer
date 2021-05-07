@@ -8,29 +8,26 @@ function Products() {
   const {
     sideIsActive,
     setPageTitle,
-    cart,
-    setCart,
-    totalCart,
-    setTotalCart } = useContext(MyContext);
+  } = useContext(MyContext);
 
   const history = useHistory();
-
-  // TESTA SE O USUÁRIO ESTÁ LOGADO
-
-  // useEffect(() => {
-  //   const getUser = () => {
-  //     const userStorage = JSON.parse(localStorage.getItem('user'));
-  //     if (!userStorage) return history.push('/login');
-  //   };
-  //   getUser();
-  // }, [history]);
 
   useEffect(() => {
     setPageTitle('TryBeer');
   }, [setPageTitle]);
 
+  useEffect(() => {
+    const getUser = () => {
+      const userStorage = JSON.parse(localStorage.getItem('user'));
+      if (!userStorage) return history.push('/login');
+    };
+    getUser();
+  }, [history]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
+
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
@@ -43,52 +40,89 @@ function Products() {
   }, []);
 
   useEffect(() => {
-    const getTotalCart = () => {
-      const sumCart = cart.reduce((total, atual) => atual.totalItem + total, 0);
-      return setTotalCart(sumCart);
-    };
-    getTotalCart();
-  }, [cart, setTotalCart]);
+    const totalStorage = JSON.parse(localStorage.getItem('totalCart'));
+    setTotal(totalStorage);
+  }, []);
 
-  const addInCart = (id, name, price) => {
-    const productExists = cart.some((item) => item.name === name);
-    const cartItem = cart.find((item) => item.name === name);
-    if (!productExists) {
-      return setCart([...cart, {
-        id,
-        name,
-        price,
-        quantity: 1,
-        totalItem: Number(price),
-      }]);
-    }
-    const newQuantity = cartItem.quantity + 1;
-    const newTotalItem = cartItem.totalItem + Number(price);
-    const newCartItem = { ...cartItem, quantity: newQuantity, totalItem: newTotalItem };
-    return setCart([...cart.filter((item) => item.name !== name), newCartItem]);
+  const setTotalCart = () => {
+    const cartStorage = JSON.parse(localStorage.getItem('cart'));
+    const sumCart = cartStorage
+      .reduce((totalItem, actual) => actual.totalItem + totalItem, 0);
+    return (
+      localStorage.setItem('totalCart', JSON.stringify(sumCart)),
+      setTotal(sumCart)
+    );
   };
 
   const getQuantity = (name) => {
-    const cartItem = cart.find((item) => item.name === name);
-    return cartItem === undefined ? 0 : cartItem.quantity;
+    const cartStorage = JSON.parse(localStorage.getItem('cart'));
+    if (cartStorage) {
+      const cartItem = cartStorage.find((item) => item.name === name);
+      return cartItem === undefined ? 0 : cartItem.quantity;
+    }
+    return 0;
+  };
+
+  const addInCart = (id, name, price) => {
+    const cartStorage = JSON.parse(localStorage.getItem('cart'));
+    if (cartStorage) {
+      const cartItem = cartStorage.find((item) => item.name === name);
+      if (cartItem === undefined) {
+        const newCartStorage = [...cartStorage, {
+          id,
+          name,
+          price,
+          quantity: 1,
+          totalItem: Number(price),
+        }];
+        return (
+          localStorage.setItem('cart', JSON.stringify(newCartStorage)),
+          setTotalCart()
+        );
+      }
+      const newQuantity = cartItem.quantity + 1;
+      const newTotalItem = cartItem.totalItem + Number(price);
+      const newCartItem = { ...cartItem, quantity: newQuantity, totalItem: newTotalItem };
+      const newCartStorage = [...cartStorage
+        .filter((item) => item.name !== name), newCartItem];
+      return (
+        localStorage.setItem('cart', JSON.stringify(newCartStorage)),
+        setTotalCart()
+      );
+    }
+    const cartItem = {
+      id,
+      name,
+      price,
+      quantity: 1,
+      totalItem: Number(price),
+    };
+    return (
+      localStorage.setItem('cart', JSON.stringify([cartItem])),
+      setTotalCart()
+    );
   };
 
   const removeFromCart = (name, price) => {
-    const cartItem = cart.find((item) => item.name === name);
+    const cartStorage = JSON.parse(localStorage.getItem('cart'));
+    const cartItem = cartStorage.find((item) => item.name === name);
     if (cartItem !== undefined) {
-      const newQuantity = cartItem.quantity < 1
-        ? cartItem.quantity : cartItem.quantity - 1;
-      const newTotalItem = cartItem && cartItem.totalItem - Number(price);
+      const newQuantity = cartItem.quantity - 1;
+      const newTotalItem = cartItem.totalItem - Number(price);
       const newCartItem = { ...cartItem, quantity: newQuantity, totalItem: newTotalItem };
-      if (newQuantity < 1) return setCart(cart.filter((item) => item.name !== name));
-      return setCart([...cart.filter((item) => item.name !== name), newCartItem]);
+      if (newQuantity < 1) {
+        return (
+          localStorage.setItem('cart', JSON
+            .stringify(cartStorage.filter((item) => item.name !== name))),
+          setTotalCart()
+        );
+      }
+      return (
+        localStorage.setItem('cart', JSON
+          .stringify([...cartStorage.filter((item) => item.name !== name), newCartItem])),
+        setTotalCart()
+      );
     }
-  };
-
-  const handleClick = () => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('totalCart', JSON.stringify(totalCart));
-    history.push('/checkout');
   };
 
   return (
@@ -133,12 +167,12 @@ function Products() {
             <button
               type="button"
               data-testid="checkout-bottom-btn"
-              onClick={ () => handleClick() }
-              disabled={ totalCart === 0 }
+              onClick={ () => (history.push('/checkout')) }
+              disabled={ total === 0 }
             >
-              Ver Carrinho
+              Ver Carrinho &nbsp;
               <span data-testid="checkout-bottom-btn-value">
-                { totalCart
+                { total && total
                   .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
               </span>
             </button>
