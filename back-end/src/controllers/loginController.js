@@ -11,7 +11,7 @@ const jwtConfig = {
 
 const loginController = async (req, res) => {
   const { email, password } = req.body;
-  loginService(email, password)
+   loginService(email, password)
     .then((result) => {
       if (result.length > 0) {
         const token = jwt.sign({ data: email }, SECRET_PASS, jwtConfig);
