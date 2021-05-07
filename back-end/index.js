@@ -18,11 +18,11 @@ app.use(productsRoute);
 app.use(imagesRoute);
 
 // código apenas para testes
-// const usersModel = require('./src/models/usersModel');
-// app.get('/', async (req,res)=>{
-//     const allUsers = await usersModel.getAllUsers();
-//     res.status(200).json(allUsers)
-// })
+const usersModel = require('./src/models/usersModel');
+app.get('/', async (req,res)=>{
+    const allUsers = await usersModel.getAllUsers();
+    res.status(200).json(allUsers)
+})
 
 app.use(errorMiddleware);
 
