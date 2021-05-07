@@ -26,4 +26,14 @@ const getAll = async (req, res) => {
   }
 };
 
-module.exports = { create, getAll };
+const getByNumber = async (req, res) => {
+  const { numeroDoPedido } = req.params;
+  try {
+    const sale = await SalesService.getSaleByOrderNumber(numeroDoPedido);
+    return res.status(200).json(sale);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { create, getAll, getByNumber };

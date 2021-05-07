@@ -25,5 +25,6 @@ router.get('/products', productsControler.getAllProducts);
 // }
 router.post('/sale', saleControler.create);
 router.get('/orders', saleControler.getAll);
+router.get('/orders/:numeroDoPedido', saleControler.getByNumber);
 
 module.exports = router;
