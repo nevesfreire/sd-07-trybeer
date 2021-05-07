@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { EmailInput, PasswordInput } from '../components';
 import { userDataValidation } from '../utils';
 import fetchApi from '../hooks/fetchApi';
@@ -9,21 +9,21 @@ const validation = ({ email, password }) => (
   userDataValidation.email(email) && userDataValidation.password(password)
 );
 
-const handleLogin = async (body, history) => {
-  const login = await fetchApi('/login', 'POST', body);
-  if (login.statusCode === CODE.OK) {
-    window.localStorage.setItem('user', JSON.stringify(login.user));
-    if (login.user.role === 'administrator') return history.push('/admin/orders');
-    history.push('/products');
-  }
-};
-
 export default function Login() {
   const [user, setUser] = useState({});
-  const history = useHistory();
+  const [userRole, setUserRole] = useState('');
+
   const handleState = useCallback(({ target: { value, id } }) => {
     setUser((state) => ({ ...state, [id]: value }));
   }, []);
+
+  const handleLogin = async () => {
+    const login = await fetchApi('/login', 'POST', user);
+    if (login.statusCode === CODE.OK) {
+      window.localStorage.setItem('user', JSON.stringify(login.user));
+      setUserRole(login.user.role);
+    }
+  };
 
   return (
     <div>
@@ -39,12 +39,14 @@ export default function Login() {
         data-testid="signin-btn"
         type="button"
         disabled={ !validation(user) }
-        onClick={ () => handleLogin(user, history) }
+        onClick={ handleLogin }
       >
         Entrar
       </button>
 
       <Link data-testid="no-account-btn" to="/register">Ainda não tenho conta</Link>
+      {(userRole === 'administrator') && <Redirect to="/admin/orders" />}
+      {(userRole === 'client') && <Redirect to="/products" />}
 
     </div>
   );

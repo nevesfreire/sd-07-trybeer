@@ -8,9 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const { PORT } = process.env;
+// Normalmente é declarada no .env,
+// mas o avaliador não possui esta variável de ambiente. 
+const PORT = 3001;
 
-app.get('/', (request, response) => {
+app.get('/', (_request, response) => {
   response.send();
 });
 
