@@ -1,15 +1,17 @@
-import { useHistory } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import { getUser } from '../helpers/localStorageHelper';
+import BeerContext from '../context/BeerContext';
 
 function Home() {
-  const history = useHistory();
+  const { setErrorMessage } = useContext(BeerContext);
+  setErrorMessage(null);
   if (getUser() !== null) {
     const user = getUser();
-    if (user.role === 'client') return history.push('/products');
-    return history.push('/admin/orders');
+    if (user.role === 'client') return <Redirect to="/products" />;
+    return <Redirect to="/admin/orders" />;
   }
-  history.push('/login');
-  return null;
+  return <Redirect to="/login" />;
 }
 
 export default Home;

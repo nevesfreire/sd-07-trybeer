@@ -33,8 +33,8 @@ function Login() {
     const email = formData.get('email');
     const password = formData.get('password');
     const loginResponse = await fetchToken(email, password);
-    if (loginResponse) return history.push('/central');
-    history.push('/');
+    if (loginResponse) return history.push('/');
+    history.push('/login');
   };
 
   return (

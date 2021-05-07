@@ -1,20 +1,20 @@
 import { setUser } from './localStorageHelper';
 
-export async function fetchToken(emailInput, password) {
+export async function fetchToken(email, password) {
   const requestTokenUrl = 'http://localhost:3001/login';
   const request = {
     method: 'POST',
     headers: {
-      'Content-type': 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      emailInput,
+      email,
       password,
     }),
   };
   try {
     const response = await fetch(requestTokenUrl, request);
-    const { name, email, token, role } = await response.json();
+    const { name, token, role } = await response.json();
     const user = {
       name,
       email,
@@ -33,7 +33,7 @@ export async function fetchToken(emailInput, password) {
 
 export async function fetchRegister(name, email, password, queroVender) {
   const SUCCESS = 200;
-  const requestTokenUrl = 'http://localhost:3001/register';
+  const requestTokenUrl = 'http://localhost:3001/users';
   const request = {
     method: 'POST',
     headers: {
@@ -50,12 +50,27 @@ export async function fetchRegister(name, email, password, queroVender) {
     const response = await fetch(requestTokenUrl, request);
     const responseJson = await response.json();
 
-    if (responseJson.status === SUCCESS) {
-      fetchToken(email, password);
+    if (responseJson.user) {
+      await fetchToken(email, password);
       return SUCCESS;
     }
-    alert('Ero no cadastro do usuário!');
+    return responseJson.message;
   } catch (error) {
     console.error(error);
   }
 }
+
+export async function fetchProducts() {
+  const endpoint = 'http://localhost:3001/products';
+  const response = await fetch(endpoint)
+    .then((data) => data.json())
+    .catch((err) => console.log(err.message));
+  return response;
+}
+
+// export async function fetchImage(name) {
+//   const endpoint = `http://localhost:3001/images/${name}`;
+//   await fetch(endpoint)
+//     .then((data) => data)
+//     .catch((err) => console.log(err.message));
+// }
