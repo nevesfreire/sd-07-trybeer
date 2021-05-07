@@ -16,7 +16,7 @@ const create = async (req, res) => {
     const { name, email, password, role } = req.body;
     const { error, message } = await service.create(name, email, password, role);
     if (error) return res.status(StatusCodes.BAD_REQUEST).json({ error, message });
-    res.status(StatusCodes.OK).json({ message });
+    res.status(StatusCodes.CREATED).json({ message });
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
