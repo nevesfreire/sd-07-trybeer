@@ -17,8 +17,12 @@ function useFetch() {
     return data;
   }
 
+  async function register(name, email, password, role) {
+
+  }
+
   return (
-    { login }
+    { login, register }
   );
 }
 
