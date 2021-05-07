@@ -31,6 +31,17 @@ export async function fetchProductList() {
     headers,
   });
   const list = await response.json();
-  console.log(list);
+  return list;
+}
+
+export async function fetchFinishSale(cartList, address, totalPrice) {
+  const response = await fetch('http://localhost:3001/sales', {
+    method: 'POST',
+    body: JSON.stringify({
+      products: cartList, address, totalPrice,
+    }),
+    headers,
+  });
+  const list = await response.json();
   return list;
 }
