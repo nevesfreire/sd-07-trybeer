@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function PasswordInput({ dataTestid, onChange, className }) {
+export default function NameInput({ dataTestid, onChange, className }) {
   return (
     <label htmlFor="name">
       Nome
@@ -16,11 +16,11 @@ export default function PasswordInput({ dataTestid, onChange, className }) {
   );
 }
 
-PasswordInput.defaultProps = {
+NameInput.defaultProps = {
   className: 'nameClass',
 };
 
-PasswordInput.propTypes = {
+NameInput.propTypes = {
   dataTestid: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
