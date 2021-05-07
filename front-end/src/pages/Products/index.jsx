@@ -4,9 +4,7 @@ import Header from '../../components/Header';
 export default function Products() {
   return (
     <div>
-      <header>
-        <Header />
-      </header>
+      <Header namePage="TryBeer" />
       <main>
         <div>
           <h1>Produtos</h1>

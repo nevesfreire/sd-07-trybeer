@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { updateNameFetch } from '../../services/index';
+import Header from '../../components/Header';
 
 export default function ProfileUser() {
   const [email, setEmail] = useState('');
@@ -50,6 +51,7 @@ export default function ProfileUser() {
 
   return (
     <main>
+      <Header namePage="Meu perfil" />
       <Form className="form__login">
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
