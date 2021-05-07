@@ -1,7 +1,10 @@
 import React from 'react';
+import Header from '../../components/Header';
 
 const Products = () => (
-  <h1>Produtos</h1>
+  <>
+    <Header title="TryBeer"/>
+  </>
 );
 
 export default Products;

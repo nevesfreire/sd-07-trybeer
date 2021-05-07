@@ -24,7 +24,31 @@ export const ApiProvider = ({ children }) => {
       console.error(err);
     });
 
-  const data = { userLogin };
+  const userRegister = ({ name, email, password, role }) => fetch('http://localhost:3001/user', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name,
+      email,
+      password,
+      role,
+    }),
+  })
+    .then((request) => request.json())
+    .then((response) => {
+      const data = response;
+      return data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  const data = {
+    userLogin,
+    userRegister,
+  };
 
   console.log('data context', data);
 

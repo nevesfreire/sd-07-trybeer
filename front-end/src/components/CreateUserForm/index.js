@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import ApiContext from '../../context/apiContext';
 import { Form, Label, Input } from './styles';
 import validateRegister from './validation';
 
@@ -13,6 +14,8 @@ function CreateUserForm() {
   const [password, setPassword] = useState('');
   const [iWantToSell, setiWantToSell] = useState(false);
 
+  const { userRegister } = useContext(ApiContext);
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -20,12 +23,14 @@ function CreateUserForm() {
       name,
       email,
       password,
+      role: iWantToSell ? 'administrator' : 'client',
     };
 
-    validateRegister(user);
+    return userRegister(user)
+      .then((apiResponse) => {
+        console.log(apiResponse);
+      });
   };
-
-  console.log({ validate: validateRegister(name, email, password) });
 
   return (
     <Form onSubmit={ onSubmitHandler }>
@@ -73,6 +78,7 @@ function CreateUserForm() {
         <Input
           checked={ iWantToSell }
           onChange={ () => setiWantToSell(!iWantToSell) }
+          data-testid="signup-seller"
           type="checkbox"
         />
       </Label>
@@ -80,6 +86,7 @@ function CreateUserForm() {
       <button
         type="submit"
         disabled={ validateRegister(name, email, password) }
+        data-testid="signup-btn"
       >
         Cadastrar
       </button>

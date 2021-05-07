@@ -25,7 +25,7 @@ export const Input = styled.input`
   min-width: 360px;
   border: none;
   margin-bottom: 0.8em;
-  border-bottom: solid 2px red;
+  border-bottom: solid 2px gray;
   outline: none;
 `;
 
@@ -39,7 +39,7 @@ export const Button = styled.button`
   margin-top: 0.2em;
   outline: none;
     &:hover {
-      background-color: red;
+      background-color: gray;
       color: white;
     }
 `;

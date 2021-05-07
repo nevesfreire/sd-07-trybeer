@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, StyledMenu } from './styles';
 
-export const MenuAdmin = ({ open }) => (
-  <StyledMenu class="side-menu-container" open={ open }>
+const MenuAdmin = ({ open }) => (
+  <StyledMenu class="side-menu-container" open={ open } >
     <Button
       name="btn-requests"
       to="/"
-      data-testid="btn-requests"
+      data-testid="side-menu-item-my-orders"
     >
       Pedidos
     </Button>
     <Button
       name="btn-profile"
       to="/"
-      data-testid="btn-profile"
+      data-testid="side-menu-item-my-profile"
     >
       Perfil
     </Button>
