@@ -6,9 +6,9 @@ const registerUser = async ({ name, email, password, role }) =>
     VALUES ('${name}', '${email}', '${password}', '${role}')`,
   ).catch((error) => error);
 
-const getUserEmail = async ({ email }) => 
+const getUserEmail = async ({ email }) =>
 connect.execute(
-  `SELECT email FROM Trybeer.users
+  `SELECT id, email FROM Trybeer.users
   WHERE email = "${email}"`,
 ).catch((error) => console.log(error));
 

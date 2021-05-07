@@ -1,11 +1,13 @@
-// const { saleModel, productModel } = require('../models');
+const { saleService } = require('../services');
 
-// createSale, getProductByName
-
-const createSale = () => {
-  // const { name, quantity ,total_price, delivery_address, delivery_number, status = Pendente /* :D */} = data;
-  // const [product][0] = await productModel.getProductByName(name);
-  // const price = (product.price)
+const createSale = async (req, res) => {
+  try {
+    const { body, user } = req;
+    await saleService.createSale(body, user);
+    res.status(200).json({ message: 'Compra realizada com sucesso!' });
+  } catch (error) {
+    res.status(400).json({ err: error.message });
+  }
 };
 
 module.exports = {
