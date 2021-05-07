@@ -7,7 +7,103 @@
   width: 100%;
 }
 
-.nav-container {
+.header-title {
+  margin: auto 0;
+  padding: 20px 20px;
+  padding-left: 100px;
+}
+
+h1, h3 {
+  margin: 0;
+}
+
+.side-menu-container {
   display: flex;
   justify-content: space-around;
+}
+
+.nav-item, .logoff-button {
+  margin: auto 30px;
+}
+
+.nav-close, .menu-button {
+  padding: 5px 25px;
+}
+
+.menu-button, .nav-close, .nav-complement {
+  visibility: hidden;
+}
+
+@media only screen and (orientation:portrait){
+  .header-title {
+    font-size: 30px;
+    margin: auto;
+  }
+  
+  .side-menu-container {
+    background-color: rgb(25, 25, 25);
+    box-shadow: -1px -1px 12px #222;
+    display: block;
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    right: -100%;
+    top: 0;
+    transition: all 0.5s ease;
+    width: 75%;
+    z-index: 2;
+  }
+
+  .nav-complement {
+    display: block;
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .nav-complement-show {
+    visibility: visible;
+  }
+
+  .show-menu {
+    right: 0;
+  }
+
+  .nav-close {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 20px;
+    padding: 10px 30px;
+    text-align: right;
+  }
+
+  .nav-item, .logoff-button {
+    font-size: 30px;
+    margin: 20px 25px;
+    text-align: left;
+  }
+  
+  .logoff-button {
+    margin-bottom: 50px;
+    padding-top: 80%;
+  }
+
+  .menu-button {
+    display: block;
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    font-size: 37px;
+    margin: auto 0;
+    padding: 0px 20px;
+    text-align: right;
+  }
+
+  .menu-button, .nav-close {
+    cursor: pointer;
+    visibility: visible;
+  }
 }

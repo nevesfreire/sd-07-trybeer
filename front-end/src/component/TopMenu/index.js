@@ -1,25 +1,59 @@
-import react from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+//import { Header } from './styles';
 import './style.css';
 
 export default function TopMenu() {
+  
+  function handleMenuToggle() {
+    document.getElementsByClassName('side-menu-container')[0].classList.toggle('show-menu');
+    document.getElementsByClassName('nav-complement')[0].classList.toggle('nav-complement-show');
+  }
+
   return (
-    <div class="header">
-      <div class="header-title" data-testid="top-title">
-        Titulo
+    <div className="header">
+      <div className="header-title" data-testid="top-title">
+        Título
       </div>
-      <div class="nav-container">
-        <div class="nav-item">
-          Produtos
+      <div
+        className="nav-complement"
+        onClick={() => handleMenuToggle()}
+      />
+      <div className="side-menu-container">
+        <div
+          className="nav-close"
+          onClick={() => handleMenuToggle()}
+        >
+          <h3>&#9587;</h3>
         </div>
-        <div class="nav-item">
-          Meus Pedidos
+        <div className="nav-item" data-testid="side-menu-item-products">
+          <Link to="/products">
+            Produtos
+          </Link>
+          
         </div>
-        <div class="nav-item">
-          Meu Perfil
+        <div className="nav-item" data-testid="side-menu-item-my-orders">
+          <Link to="/orders">
+            Meus Pedidos
+          </Link>
         </div>
-        <div class="nav-exit">
-          Sair
+        <div className="nav-item" data-testid="side-menu-item-my-profile">
+          <Link to="/profile">
+            Meu Perfil
+          </Link>
         </div>
+        <div className="logoff-button" data-testid="side-menu-item-logout">
+          <Link to="/">
+            Sair
+          </Link>
+        </div>
+      </div>
+      <div
+        className="menu-button"
+        data-testid="top-hamburguer"
+        onClick={() => handleMenuToggle()}
+      >
+        <h3>&#9776;</h3>
       </div>
     </div>
   );
