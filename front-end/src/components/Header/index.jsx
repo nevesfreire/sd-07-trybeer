@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { clearStorage } from '../../services/localStorage';
+import { clearStorage, getStorage } from '../../services/localStorage';
 
 import './styles.css';
 
 function Header({ children }) {
   const history = useHistory();
   const [sideMenu, setSideMenu] = useState(true);
+  const [role, setRole] = useState('client');
+
+  useEffect(() => {
+    const user = getStorage('user');
+    if (user.role === 'administrator') setRole('administrator');
+  }, []);
 
   function handleClick({ target }) {
     switch (target.name) {
@@ -23,36 +29,58 @@ function Header({ children }) {
     }
   }
 
+  function handleClickAdm({ target }) {
+    switch (target.name) {
+    case 'orders':
+      return history.push('/admin/orders');
+    case 'profile':
+      return history.push('/admin/profile');
+    default:
+      return history.push('/');
+    }
+  }
+
   return (
     <header className="header">
-      <div>
-        <button
-          type="button"
-          className={ sideMenu ? 'menuHide' : 'menu' }
-          data-testid="top-hamburguer"
-          onClick={ () => setSideMenu(!sideMenu) }
+      <div data-testid="admin-side-bar-container">
+        {role === 'client' && (
+          <button
+            type="button"
+            className={ sideMenu ? 'menuHide' : 'menu' }
+            data-testid="top-hamburguer"
+            onClick={ () => setSideMenu(!sideMenu) }
+          >
+            <div />
+            <div />
+            <div />
+          </button>
+        )}
+        <ul
+          className={
+            sideMenu && role === 'client'
+              ? 'menuInfoHide'
+              : 'menuInfo side-menu-container'
+          }
         >
-          <div />
-          <div />
-          <div />
-        </button>
-        <ul className={ sideMenu ? 'menuInfoHide' : 'menuInfo side-menu-container' }>
-          <li>
-            <button
-              type="button"
-              name="products"
-              data-testid="side-menu-item-products"
-              onClick={ handleClick }
-            >
-              Produtos
-            </button>
-          </li>
+          { role === 'client' && (
+            <li>
+              <button
+                type="button"
+                name="products"
+                data-testid="side-menu-item-products"
+                onClick={ handleClick }
+              >
+                Produtos
+              </button>
+            </li>)}
           <li>
             <button
               type="button"
               name="orders"
-              data-testid="side-menu-item-my-orders"
-              onClick={ handleClick }
+              data-testid={
+                role === 'client' ? 'side-menu-item-my-orders' : 'side-menu-item-orders'
+              }
+              onClick={ role === 'client' ? handleClick : handleClickAdm }
             >
               Meus Pedidos
             </button>
@@ -61,8 +89,10 @@ function Header({ children }) {
             <button
               type="button"
               name="profile"
-              data-testid="side-menu-item-my-profile"
-              onClick={ handleClick }
+              data-testid={
+                role === 'client' ? 'side-menu-item-my-profile' : 'side-menu-item-profile'
+              }
+              onClick={ role === 'client' ? handleClick : handleClickAdm }
             >
               Meu Perfil
             </button>

@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getStorage,
-  setStorage,
-  calculateTotalProductsPrice } from '../../services/localStorage';
+import { getStorage, setStorage } from '../../services/localStorage';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import format from '../../util/format';
 
@@ -15,21 +13,20 @@ function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { changeTotalPrice } = Creators;
+  const { updateCart } = Creators;
 
   const dispatch = useDispatch();
 
-  const setCart = (newQuantity) => {
+  const setCart = useCallback((newQuantity) => {
     const cart = getStorage('cart');
     // const totalProductPrice = Math.round((Number(price) * 100) * newQuantity) / 100;
     const newCart = cart.map((element) => (element.id === id
       ? { ...element, quantity: newQuantity } : element));
-    const updateTotalPrice = calculateTotalProductsPrice(newCart);
-    dispatch(changeTotalPrice(updateTotalPrice));
+    dispatch(updateCart(newCart));
     setStorage('cart', newCart);
-  };
+  }, [dispatch, id, updateCart]);
 
-  const changeQuantity = (operation) => {
+  const changeQuantity = useCallback((operation) => {
     if (operation === 'minus' && productQuantity > 0) {
       const newQuantity = productQuantity - 1;
       setProductQuantity(newQuantity);
@@ -41,7 +38,7 @@ function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
       setCart(newQuantity);
     }
     return null;
-  };
+  }, [productQuantity, setCart]);
 
   return (
     <div>
