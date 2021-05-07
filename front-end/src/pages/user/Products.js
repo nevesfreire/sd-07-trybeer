@@ -20,8 +20,10 @@ function Products() {
   }, [setPageTitle]);
 
   useEffect(() => {
-    const getUser = () => !JSON.parse(localStorage.getItem('user'))
-      && history.push('/login');
+    const getUser = () => {
+      const userStorage = JSON.parse(localStorage.getItem('user'));
+      if (!userStorage) return history.push('/login');
+    };
     getUser();
   }, [history]);
 
