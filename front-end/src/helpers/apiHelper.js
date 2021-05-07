@@ -67,9 +67,10 @@ export async function fetchProducts() {
   return data;
 }
 
-// export async function fetchImage(name) {
-//   const endpoint = `http://localhost:3001/images/${name}`;
-//   await fetch(endpoint)
-//     .then((data) => data)
-//     .catch((err) => console.log(err.message));
-// }
+export async function fetchImage(name) {
+  const endpoint = `http://localhost:3001/images/${name}`;
+  const response = await fetch(endpoint);
+  const data = await response.blob();
+  const image = URL.createObjectURL(data);
+  return image;
+}
