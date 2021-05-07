@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import ClientRouts from './ClientRouts';
 
 import Views from '../views';
 
@@ -10,6 +10,7 @@ export default function Routes() {
       <Switch>
         <Route exact path="/login" component={ Views.Login } />
         <Route exact path="/register" component={ Views.Register } />
+        <ClientRouts />
         <Route exact path="/profile" component={ Views.Profile } />
         <Route exact path="/products" component={ Views.Products } />
         <Route exact path="/checkout" component={ Views.Checkout } />
