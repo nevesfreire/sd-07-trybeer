@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { BeerContext } from '../context/BeerContext';
 import { Redirect } from 'react-router';
+import { BeerContext } from '../context/BeerContext';
 
 const ProductCard = (props) => {
   const { data } = props;
   const { key, product } = data;
   const { name, price, urlImage, id } = product;
   const [quantity, setQuantity] = useState(() => {
-    const localValue = JSON.parse(localStorage.getItem('cart'))
-    if(localValue && localValue[id] && localValue[id].quantity){
-      return localValue[id].quantity
+    const localValue = JSON.parse(localStorage.getItem('cart'));
+    if (localValue && localValue[id] && localValue[id].quantity) {
+      return localValue[id].quantity;
     }
     return 0;
   });
@@ -19,12 +19,12 @@ const ProductCard = (props) => {
 
   useEffect(() => {
     const pushCart = { ...cart, [id]: { product, quantity } };
-    localStorage.setItem('cart', JSON.stringify(pushCart))
+    localStorage.setItem('cart', JSON.stringify(pushCart));
     setCart(pushCart);
-  }, [quantity]);
+  }, [cart, id, product, quantity, setCart]);
 
-  if(!localStorage.getItem('token')){
-    return(<Redirect to="/login"/>)
+  if (!localStorage.getItem('token')) {
+    return (<Redirect to="/login" />);
   }
 
   return (
