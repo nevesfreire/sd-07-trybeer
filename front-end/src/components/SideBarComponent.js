@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
@@ -6,10 +7,9 @@ import {
   Segment,
   Sidebar,
 } from 'semantic-ui-react';
-import AdminComponent from './AdminComponent';
 import BeerContext from '../context/BeerContext';
 
-const SideBarComponent = () => {
+const SideBarComponent = ({ Component }) => {
   const history = useHistory();
   const { toggleSideBar } = useContext(BeerContext);
   console.log(toggleSideBar);
@@ -60,11 +60,15 @@ const SideBarComponent = () => {
               Sair
             </Menu.Item>
           </Sidebar>
-          <AdminComponent />
+          <Component />
         </Sidebar.Pushable>
       </Grid.Column>
     </Grid>
   );
+};
+
+SideBarComponent.propTypes = {
+  Component: PropTypes.func.isRequired,
 };
 
 export default SideBarComponent;
