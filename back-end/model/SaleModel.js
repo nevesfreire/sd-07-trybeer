@@ -32,11 +32,11 @@ const getByOrderNumber = async (orderNumber) => {
     const sale = await connection.execute(
       `
         SELECT ss.delivery_number, date_format(ss.sale_date, '%d/%m') AS date,
-        sp.quantity, p.name, p.price
+        sp.quantity, p.name, p.price, ss.total_price
         FROM sales AS ss
         INNER JOIN sales_products AS sp ON ss.id = sp.sale_id
         INNER JOIN products AS p ON sp.product_id = p.id
-        WHERE ss.id = ?
+        WHERE ss.delivery_number = ?
       `,
      [orderNumber],
     );
@@ -46,4 +46,17 @@ const getByOrderNumber = async (orderNumber) => {
   }
 };
 
-module.exports = { create, getAll, getByOrderNumber };
+  const getAllOrders = async () => {
+    try {
+      const orders = await connection.execute(
+        `
+        SELECT delivery_number, delivery_address, total_price FROM sales;
+        `,
+      );
+    return orders[0];
+    } catch (error) {
+    throw new Error(error);
+    }
+  };
+
+module.exports = { create, getAll, getByOrderNumber, getAllOrders };

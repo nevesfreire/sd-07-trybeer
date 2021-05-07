@@ -25,6 +25,8 @@ router.get('/products', productsControler.getAllProducts);
 // }
 router.post('/sale', saleControler.create);
 router.get('/orders', saleControler.getAll);
-router.get('/orders/:numeroDoPedido', saleControler.getByNumber);
+// O "total_price" é o valor total do pedido
+router.get('/orders/:numeroDoPedido', saleControler.getByNumber); 
+router.get('/admin/orders', saleControler.getAllOrders);
 
 module.exports = router;

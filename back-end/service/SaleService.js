@@ -31,4 +31,9 @@ const getSaleByOrderNumber = async (orderNumber) => {
   return sale;
 };
 
-module.exports = { create, getAll, getSaleByOrderNumber };
+const getAllOrders = async () => {
+  const orders = await SaleModel.getAllOrders();
+  return orders;
+};
+
+module.exports = { create, getAll, getSaleByOrderNumber, getAllOrders };
