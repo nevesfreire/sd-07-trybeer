@@ -5,18 +5,18 @@ const ComponentLogin = () => {
   const [labelLogin, setLabelLogin] = useState(true);
   const [emailLabel, setEmailLabel] = useState('');
   const [passwordLabel, setPasswordLabel] = useState('');
-  console.log(`emailLabel ${emailLabel}`);
-  console.log(`passwordLabel ${passwordLabel}`);
+  // console.log(`emailLabel ${emailLabel}`);
+  // console.log(`passwordLabel ${passwordLabel}`);
 
   const inputValidation = (password) => {
-    console.log(`Input validation password ${password}`);
-    console.log(`Input validation emailLabel ${emailLabel}`);
+    // console.log(`Input validation password ${password}`);
+    // console.log(`Input validation emailLabel ${emailLabel}`);
     setPasswordLabel(password);
-    console.log(`Input validation passwordLabel ${passwordLabel}`);
+    // console.log(`Input validation passwordLabel ${passwordLabel}`);
     const regexEmail = /\S+@\S+\.\S+/;
     const passwordMinLength = 6;
-    const result = regexEmail.test(emailLabel)
-      && passwordLabel.length >= passwordMinLength;
+    const result = regexEmail.test(emailLabel) && passwordLabel
+      .length >= passwordMinLength;
     setLabelLogin(!result);
   };
   return (
