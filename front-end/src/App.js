@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import ProtectedRoute from './ProtectedRoute';
 import { Provider } from './context';
 
+import ProtectedRoute from './ProtectedRoute';
 import {
-  RegisterPage,
   LoginPage,
+  ProductsPage,
+  RegisterPage,
+  CheckoutPage,
   AdminHome,
   Profile,
-  ProductsPage,
   ProfileAdmin,
   AllOrdersPage,
 } from './pages';
@@ -19,13 +20,17 @@ function App() {
       <Provider>
         <Switch>
           <Route exact path="/" component={ LoginPage } />
-          <Route path="/login" component={ LoginPage } />
+          <Route exact path="/login" component={ LoginPage } />
           <Route path="/register" component={ RegisterPage } />
-          <ProtectedRoute path="/admin/orders" component={ AdminHome } />
-          <ProtectedRoute path="/products" component={ ProductsPage } />
-          <ProtectedRoute path="/profile" component={ Profile } />
-          <ProtectedRoute path="/admin/profile" component={ ProfileAdmin } />
-          <ProtectedRoute path="/orders" component={ AllOrdersPage } />
+          <ProtectedRoute>
+            <Route path="/products" component={ ProductsPage } />
+            <Route path="/products" component={ ProductsPage } />
+            <Route path="/checkout" component={ CheckoutPage } />
+            <Route path="/admin/orders" component={ AdminHome } />
+            <Route path="/profile" component={ Profile } />
+            <Route path="/admin/profile" component={ ProfileAdmin } />
+            <Route path="/orders" component={ AllOrdersPage } />
+          </ProtectedRoute>
         </Switch>
       </Provider>
     </BrowserRouter>
