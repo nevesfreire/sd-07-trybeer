@@ -28,7 +28,7 @@ export default function Register() {
 
   const handleClick = async () => {
     const { name, email, password, seller } = registerInfo;
-    const role = seller === 'false' ? 'client' : 'administrator';
+    const role = (seller === false ? 'client' : 'administrator');
     const result = await register(name, email, password, role);
     if (!result) {
       setShouldRedirect(role);
