@@ -1,13 +1,10 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import Proptypes from 'prop-types';
+import ApiContext from './context';
 // import api from '../components/api/config';
 // import auth from '../components/auth'
 
-const ApiContext = createContext();
-
-export default ApiContext;
-
-export const ApiProvider = ({ children }) => {
+function ApiProvider({ children }) {
   const userLogin = ({ email, password }) => fetch('http://localhost:3001/login', {
     method: 'POST',
     headers: {
@@ -17,8 +14,8 @@ export const ApiProvider = ({ children }) => {
   })
     .then((request) => request.json())
     .then((response) => {
-      const data = response;
-      return data;
+      const results = response;
+      return results;
     })
     .catch((err) => {
       console.error(err);
@@ -26,14 +23,14 @@ export const ApiProvider = ({ children }) => {
 
   const data = { userLogin };
 
-  console.log('data context', data);
-
   return (
     <ApiContext.Provider value={ data }>
       { children }
     </ApiContext.Provider>
   );
-};
+}
+
+export default ApiProvider;
 
 ApiProvider.propTypes = {
   children: Proptypes.node.isRequired,

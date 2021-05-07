@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import ApiContext from '../../context/apiContext';
+import ApiContext from '../../context/context';
 import validateLogin from './validationLogin';
 import {
   Form,
@@ -20,38 +20,34 @@ import {
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userRole, setRole] = useState(null);
+  // const [userRole, setRole] = useState(null);
 
   const { userLogin } = useContext(ApiContext);
   const history = useHistory();
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     const user = {
       email,
       password,
     };
     // req da api enviando:
-    return userLogin(user)
+    const userValid = await userLogin(user)
       .then((apiResponse) => {
         localStorage.setItem('user', JSON.stringify(apiResponse));
-        if (apiResponse) {
-          const { role } = apiResponse;
-          setRole(role);
-          console.log('role', role);
-        }
+        return apiResponse;
       });
+
+    if (userValid && userValid.role === 'administrator') {
+      history.push('/admin/orders');
+      // return <Redirect to="/admin/orders" />;
+    }
+
+    if (userValid && userValid.role === 'client') {
+      history.push('/products');
+      // return <Redirect to="/products" />;
+    }
   };
-
-  if (userRole && userRole === 'administrator') {
-    history.push('/admin/orders');
-    // return <Redirect to="/admin/orders" />;
-  }
-
-  if (userRole && userRole === 'client') {
-    history.push('/products');
-    // return <Redirect to="/products" />;
-  }
 
   return (
     <Form onSubmit={ onSubmitHandler }>
@@ -95,4 +91,5 @@ function LoginForm() {
     </Form>
   );
 }
+
 export default LoginForm;
