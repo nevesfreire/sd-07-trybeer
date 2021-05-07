@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
+import BeerContext from '../context/BeerContext';
+import MessageComponent from './MessageComponent';
 
 function ClientProfileComponent({
   formData: { name, email },
@@ -9,10 +11,12 @@ function ClientProfileComponent({
   onHandleSubmit,
   validateInputs,
 }) {
+  const { errorMessage } = useContext(BeerContext);
+
   return (
     <Form size="large">
       <Segment stacked>
-        <Form.Input
+        <input
           fluid
           placeholder="Nome"
           value={ name }
@@ -20,7 +24,9 @@ function ClientProfileComponent({
           data-testid="profile-name-input"
           onChange={ (e) => onInputChange(e) }
         />
-        <Form.Input
+        {errorMessage && <MessageComponent>{errorMessage}</MessageComponent>}
+        <input
+          type="text"
           fluid
           placeholder="E-mail"
           value={ email }

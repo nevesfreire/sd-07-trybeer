@@ -11,7 +11,7 @@ function Profile() {
   return (
     <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
       <Grid.Column style={ { maxWidth: 500 } }>
-        <TopBarComponent>TryBeer</TopBarComponent>
+        <TopBarComponent>Meu perfil</TopBarComponent>
         <SideBarComponent Component={ ProfileComponent } />
       </Grid.Column>
     </Grid>

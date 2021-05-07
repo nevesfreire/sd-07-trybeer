@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Segment, Sidebar } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
-import HeaderComponent from './HeaderComponent';
 import ClientProfileComponent from './ClientProfileComponent';
 import { fetchUpdateClient } from '../helpers/apiHelper';
 import { getUser, setUser } from '../helpers/localStorageHelper';
@@ -58,7 +57,6 @@ function Profile() {
   return (
     <Sidebar.Pusher>
       <Segment basic>
-        <HeaderComponent message="Meu perfil" />
         <ClientProfileComponent
           formData={ formData }
           onInputChange={ handleInputChange }
