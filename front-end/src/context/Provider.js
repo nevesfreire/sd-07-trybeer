@@ -11,6 +11,8 @@ function Provider({ children }) {
   const [sideIsActive, setSideIsActive] = useState(false);
   const [cart, setCart] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
+  const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0);
 
   const valuesProvided = {
     email,
@@ -29,6 +31,10 @@ function Provider({ children }) {
     setCart,
     totalCart,
     setTotalCart,
+    products,
+    setProducts,
+    total,
+    setTotal,
   };
 
   return (
