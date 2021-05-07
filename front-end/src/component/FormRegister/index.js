@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { StatusCodes } from 'http-status-codes';
 import { requestCreateUserAPI, requestLoginAPI } from '../../services';
 import { setToLocalStorage } from '../../utils/localStorage';
 
@@ -75,16 +76,15 @@ function FormRegister() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const {data , status} = await requestCreateUserAPI(formRegister);
+    const { data, status } = await requestCreateUserAPI(formRegister);
 
-    if(status === 201) {
+    if (status === StatusCodes.CREATED) {
       const userToken = await requestLoginAPI(data);
-  
+
       if (userToken.data) {
-        const { data } = userToken;
-        const { role } = data;
-        setToLocalStorage(data);
-  
+        const { role } = userToken.data;
+        setToLocalStorage(userToken.data);
+
         if (role === 'administrator') {
           history.push('/admin/orders');
         } else {
@@ -116,7 +116,7 @@ function FormRegister() {
           id="name"
           name="name"
           data-testid="signup-name"
-          value={formRegister.name}
+          value={ formRegister.name }
           onChange={ (e) => handleImputChange(e) }
         />
       </label>
@@ -127,7 +127,7 @@ function FormRegister() {
           id="email"
           name="email"
           data-testid="signup-email"
-          value={formRegister.email}
+          value={ formRegister.email }
           onChange={ (e) => handleImputChange(e) }
         />
       </label>
@@ -139,7 +139,7 @@ function FormRegister() {
           id="password"
           name="password"
           data-testid="signup-password"
-          value={formRegister.password}
+          value={ formRegister.password }
           onChange={ (e) => handleImputChange(e) }
         />
       </label>

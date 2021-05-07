@@ -14,12 +14,12 @@ const validateCreateUser = async (name, email, password, role) => {
   if (userExist) throw new Error('Já existe um usuário com esse e-mail.');
 
   const result = await model.createUser(name, email, password, role);
-  console.log(result, 'resultService')
+  console.log(result, 'resultService');
 
   if (!result) throw new Error('Error to createUser');
 
   return { id: result.insertId, name, email, password, role };
-}
+};
 
 module.exports = {
   validateUserId,
