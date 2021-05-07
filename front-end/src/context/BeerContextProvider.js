@@ -7,6 +7,7 @@ function BeerContextProvider({ children }) {
   const [saleDetails, setSaleDetails] = useState({});
   const [isFetching, setIsFetching] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [toggleSideBar, setToggleSideBar] = useState(false);
 
   useEffect(() => {
     if (allBeers !== undefined) {
@@ -25,6 +26,8 @@ function BeerContextProvider({ children }) {
         setSaleDetails,
         errorMessage,
         setErrorMessage,
+        toggleSideBar,
+        setToggleSideBar,
       } }
     >
       {children}

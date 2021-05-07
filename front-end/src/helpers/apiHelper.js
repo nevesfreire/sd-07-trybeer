@@ -53,9 +53,8 @@ export async function fetchRegister(name, email, password, queroVender) {
     if (responseJson.user) {
       await fetchToken(email, password);
       return SUCCESS;
-    } else {
-      return responseJson.message;
     }
+    return responseJson.message;
   } catch (error) {
     console.error(error);
   }
