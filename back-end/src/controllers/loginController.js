@@ -8,8 +8,7 @@ const onLogin = async (request, response) => {
     const user = await userModel.findByEmail(email);
     const token = userToken(user);
     delete user[0].password;
-
-    const userWithToken = { ...user, token };
+    const userWithToken = { ...user[0], token };
     return response.status(StatusCodes.OK).json(userWithToken);
   } catch (error) {
     console.error(error);
