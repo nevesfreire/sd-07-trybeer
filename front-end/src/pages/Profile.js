@@ -31,7 +31,7 @@ function Profile() {
 
   return (
     <div>
-      <CustomHeader message="Cliente - Meu Perfil" />
+      <CustomHeader message="Meu Perfil" data-testid="top-title" />
       <CustomProfile
         name={ name }
         email={ email }

@@ -6,7 +6,7 @@ import { Message } from 'semantic-ui-react';
 const CustomMessage = ({ children }) => {
   render();
   return (
-    <Message>
+    <Message >
       { children }
     </Message>
   );
