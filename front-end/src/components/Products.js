@@ -4,27 +4,26 @@ import { fetchProductList } from '../services/api';
 
 function Products() {
   const zero = 0;
+  const two = 2;
   const history = useHistory();
   const [productList, setProductList] = useState([]);
   const [valorTotal, setValorTotal] = useState('0,00');
 
-  async function didMount() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user);
-    let list = [];
-    if (!user) history.push('/login');
-    list = await fetchProductList();
+  async function listRequest() {
+    const list = await fetchProductList();
     setProductList(list);
   }
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) history.push('/login');
     const savedList = localStorage.getItem('productList');
     if (savedList) {
       setProductList(JSON.parse(savedList));
     } else {
-      didMount();
+      listRequest();
     }
-  }, [history]);
+  }, []);
 
   const generateTotal = () => {
     const total = productList.reduce((acc, item) => {
@@ -36,16 +35,17 @@ function Products() {
       return acc;
     }, 0);
     setValorTotal(total.toFixed(2).toString().replace('.', ','));
-    // return total.toFixed(2);
   };
 
   useEffect(() => {
     generateTotal();
-  }, [generateTotal, productList]);
+  }, [productList]);
 
   const generateProducts = () => (
-    <div>
-      {productList.length === zero
+    <div
+      style={ { marginLeft: `${two}em` } }
+    >
+      { productList.length === zero
         ? (<h3>Carregando...</h3>)
         : productList.map((item, index) => (
           <div
@@ -60,14 +60,12 @@ function Products() {
             <p
               data-testid={ `${index}-product-name` }
             >
-              {item.name}
+              { item.name }
             </p>
             <p
               data-testid={ `${index}-product-price` }
             >
-              R$
-              {' '}
-              {item.price.replace('.', ',')}
+              {`R$ ${item.price.replace('.', ',')}`}
             </p>
             <button
               type="button"
@@ -78,7 +76,6 @@ function Products() {
                   ? list[index].quantity + 1 : 1;
                 setProductList(list);
                 localStorage.setItem('productList', JSON.stringify(productList));
-              // generateTotal()
               } }
             >
               &uArr;
@@ -93,7 +90,6 @@ function Products() {
                   ? list[index].quantity - 1 : 0;
                 setProductList(list);
                 localStorage.setItem('productList', JSON.stringify(productList));
-              // generateTotal();
               } }
             >
 
@@ -102,7 +98,7 @@ function Products() {
             <h3
               data-testid={ `${index}-product-qtd` }
             >
-              {productList[index].quantity || 0}
+              { item.quantity || 0 }
             </h3>
           </div>
         ))}
