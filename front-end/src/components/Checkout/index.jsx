@@ -5,7 +5,7 @@ import ListItem from '../ListItem';
 import * as API from '../../services/api';
 import format from '../../util/format';
 
-function Checkout(products) {
+function Checkout({ products }) {
   const totalPrice = useSelector((state) => state.client.totalPrice);
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
@@ -14,8 +14,8 @@ function Checkout(products) {
     <div>
       <Header>Finalizar Pedido</Header>
       <ul>
-        { products.map((product, index) => product.quantity > 0
-        && <ListItem key={ product.id } product={ product } index={ index } />) }
+        { products.map((product, index) => (
+          <ListItem key={ product.id } product={ product } index={ index } />)) }
       </ul>
       <span data-testid="order-total-value">{ format(totalPrice) }</span>
       <h5>Endereço</h5>

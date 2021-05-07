@@ -38,12 +38,8 @@ function ProductsOrCheckout() {
   }, []);
 
   if (isLoading) return <div>Carregando...</div>;
-  return (
-    <div>
-      { pathname.contains('products')
-        ? <Products products={ products } /> : <Checkout products={ products } /> }
-    </div>
-  );
+  return pathname.includes('products')
+    ? <Products products={ products } /> : <Checkout products={ products } />;
 }
 
 export default ProductsOrCheckout;

@@ -5,7 +5,7 @@ import Header from '../Header';
 import Card from '../Card';
 import format from '../../util/format';
 
-function Products(products) {
+function Products({ products }) {
   const totalPrice = useSelector((state) => state.client.totalPrice);
   const history = useHistory();
 

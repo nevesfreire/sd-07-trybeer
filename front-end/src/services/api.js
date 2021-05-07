@@ -1,4 +1,3 @@
-import { tokenToString } from 'typescript';
 import { getStorage } from './localStorage';
 
 const URL = process.env.REACT_APP_ENDPOINT || 'http://localhost:3001';
@@ -13,10 +12,12 @@ const ENDPOINT = {
   // token: '/oauth/token'
 };
 
+const headers = { 'Content-Type': 'application/json' };
+
 export async function login(userData) {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     body: JSON.stringify(userData),
   };
   const request = await fetch(URL + ENDPOINT.login, requestOptions);
@@ -27,7 +28,7 @@ export async function login(userData) {
 export async function getByEmail(email) {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers,
   };
   const request = await fetch(URL + ENDPOINT.getUser + email, requestOptions);
   const response = request.json();
@@ -43,12 +44,8 @@ export async function getProducts() {
 export async function sendSale(street, houseNumber, totalPrice, products) {
   const token = getStorage('token');
   const { email } = getStorage('user');
-  const toObjectWithIdAndQuantity = (p) => {
-    const { id, quantity } = p;
-    const newObject = {
-      id,
-      quantity,
-    };
+  const toObjectWithIdAndQuantity = ({ id, quantity }) => {
+    const newObject = { id, quantity };
     return newObject;
   };
   const salesProducts = products.map((product) => product.quantity > 0

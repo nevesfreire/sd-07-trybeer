@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getStorage,
@@ -19,7 +19,7 @@ function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
 
   const dispatch = useDispatch();
 
-  const setCart = (newQuantity) => {
+  const setCart = useCallback((newQuantity) => {
     const cart = getStorage('cart');
     // const totalProductPrice = Math.round((Number(price) * 100) * newQuantity) / 100;
     const newCart = cart.map((element) => (element.id === id
@@ -27,9 +27,9 @@ function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
     const updateTotalPrice = calculateTotalProductsPrice(newCart);
     dispatch(changeTotalPrice(updateTotalPrice));
     setStorage('cart', newCart);
-  };
+  }, [changeTotalPrice, dispatch, id]);
 
-  const changeQuantity = (operation) => {
+  const changeQuantity = useCallback((operation) => {
     if (operation === 'minus' && productQuantity > 0) {
       const newQuantity = productQuantity - 1;
       setProductQuantity(newQuantity);
@@ -41,7 +41,7 @@ function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
       setCart(newQuantity);
     }
     return null;
-  };
+  }, [productQuantity, setCart]);
 
   return (
     <div>
