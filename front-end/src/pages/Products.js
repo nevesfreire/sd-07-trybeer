@@ -3,7 +3,7 @@ import { Header } from 'semantic-ui-react';
 import CustomTopMenu from '../components/CustomTopMenu';
 import CustomProductCard from '../components/CustomProductCard';
 import fetchProducts from '../service/products';
-
+// dasda
 function Products() {
     const renderIngredients = () => {
     const LENGTH = 12;
