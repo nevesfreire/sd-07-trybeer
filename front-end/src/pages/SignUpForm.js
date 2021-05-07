@@ -81,7 +81,7 @@ function SignUp() {
       verticalAlign="middle"
     >
       <Grid.Column style={ { maxWidth: 450 } }>
-        <CustomHeader message="Central de Erros" />
+        <CustomHeader message="TryBeer" />
         <CustomSignUpForm
           formData={ formData }
           onInputChange={ handleInputChange }

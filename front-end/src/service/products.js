@@ -1,22 +1,15 @@
 import axios from 'axios';
 import { saveProduct } from '../helpers/localStorage';
 
-export default async function fetchUser(name, email, password, iWantToSell) {
-  const requestUserUrl = 'http://localhost:3001/user';
+export default async function fetchProducts() {
+  const requestProductsUrl = 'http://localhost:3001/products';
 
   const requestHeader = {
     'Content-Type': 'application/json',
   };
 
-  const requestBody = {
-    name,
-    email,
-    password,
-    iWantToSell,
-  };
-
   try {
-    const res = await axios.post(requestUserUrl, requestBody, requestHeader);
+    const res = await axios.get(requestProductsUrl, requestHeader);
     console.log('res', res);
     const { data } = res;
     if (data) {

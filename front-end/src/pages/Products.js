@@ -2,19 +2,20 @@ import React from 'react';
 import { Header } from 'semantic-ui-react';
 import CustomTopMenu from '../components/CustomTopMenu';
 import CustomProductCard from '../components/CustomProductCard';
+import fetchProducts from '../service/products';
 
 function Products() {
-  renderIngredients = () => {
+    const renderIngredients = () => {
     const LENGTH = 12;
     const INITIAL_LENGTH = 0;
-    const MAX_LENGTH = products.length > LENGTH ? LENGTH : products.length;
+    const products = fetchProducts()
     return (
-      <div className="explore-ingredients-content">
-        { products.slice(INITIAL_LENGTH, MAX_LENGTH).map((beer, index) => (
+      <div>
+        { products = <p>Loading</p> : products.map((beer, index) => (
           <CustomProductCard
             key={ beer.id }
             index={ index }
-            drink={ beer }
+            beer={ beer }
           />
         ))}
       </div>
