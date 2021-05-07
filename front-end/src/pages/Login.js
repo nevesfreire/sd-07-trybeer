@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { getToken } from '../services/Login';
-import { getUser } from '../services/User';
+// import { getUser } from '../services/User';
 
 export default function Login() {
   const [disabled, setDisabled] = useState(true);
@@ -21,16 +21,15 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const userToken = await getToken();
-    const userInfo = await getUser(userLogin.email);
+    const userToken = await getToken(JSON.stringify(userLogin));
     const userData = {
-      name: userInfo.name,
-      email: userInfo.email,
-      token: userToken,
-      role: userInfo.role,
+      name: userToken.name,
+      email: userToken.email,
+      token: userToken.token,
+      role: userToken.role,
     };
     localStorage.setItem('user', JSON.stringify(userData));
-    setRoleType(userInfo.role);
+    setRoleType(userToken.role);
   };
 
   useEffect(() => {
@@ -48,8 +47,8 @@ export default function Login() {
 
   return (
     <>
-      { roleType === 'administrador' && <Redirect to="/admin/orders" /> }
-      { roleType === 'cliente' && <Redirect to="/products" /> }
+      { roleType === 'administrator' && <Redirect to="/admin/orders" /> }
+      { roleType === 'client' && <Redirect to="/products" /> }
       { newUser && <Redirect to="/register" /> }
       <form onSubmit={ (event) => handleSubmit(event) }>
         <label htmlFor="id">

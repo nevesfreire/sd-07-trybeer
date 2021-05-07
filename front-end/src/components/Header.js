@@ -1,57 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Sidebar from './Sidebar';
 
-export default function Header() {
-  const state = useSelector(({ header }) => header);
+export default function Header({ title }) {
+  const [checked, setChecked] = useState(false);
+/*   const state = useSelector(({ header }) => header);
   const { hasSearchIcon, pageTitle, barIsShowing } = state;
   const history = useHistory();
-  const dispatch = useDispatch();
-
-  const handleSearchBar = () => {
-/*     if (barIsShowing) {
-      dispatch(allActions.hideBar());
-    } else {
-      dispatch(allActions.showBar());
-    } */
-  };
-
-  const changePage = () => {
-    /* history.push('/perfil'); */
-  };
-
-  const renderIcon = () => {
-    /* if (hasSearchIcon) {
-      return (
-        <button
-          onClick={ handleSearchBar }
-          type="button"
-        >
-          <img
-            data-testid="search-top-btn"
-            src={ searchIcon }
-            alt="search icon"
-          />
-        </button>
-      );
-    } */
-  };
+  const dispatch = useDispatch(); */
 
   return (
-    {/* <div>
-      <button
-        type="button"
-        onClick={ changePage }
-      >
-        <img
-          data-testid="profile-top-btn"
-          src={ ProfileIcon }
-          alt="profile icon"
+    <>
+      <div className="container-menu">
+        <input
+          type="checkbox"
+          id="hamburger-menu"
+          onChange={ () => setChecked(!checked) }
+          defaultChecked={ checked }
         />
-      </button>
-      <h1 data-testid="page-title">{pageTitle}</h1>
-      {renderIcon()}
-      <SearchBar />
-    </div> */}
+        <label className="hamburger-label" htmlFor="hamburger-menu" data-testid="top-hamburguer">
+          <span className="hamburger-span"></span>
+          <span className="hamburger-span"></span>
+          <span className="hamburger-span"></span>
+        </label>
+      </div>
+      <h1 data-testid="top-title">{ title }</h1>
+      <Sidebar openAndClose={ checked } />
+    </>
   );
 }
