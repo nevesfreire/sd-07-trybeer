@@ -28,10 +28,10 @@ function LoginForm() {
     // req da api enviando:
     const response = await userLogin(user).then((apiResponse) => apiResponse);
     localStorage.setItem('user', JSON.stringify(response));
-    if (response.role === 'administrator') {
+    if (await response.role === 'administrator') {
       history.push('/admin/orders');
     }
-    if (response.role === 'client') {
+    if (await response.role === 'client') {
       history.push('/products');
     }
   };
