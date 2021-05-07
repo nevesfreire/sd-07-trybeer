@@ -14,7 +14,7 @@ const requestCreateUserAPI = user => {
   const endpoint = `${urlAPI}/users`;
   return axios
     .post(endpoint, user)
-    .then(response => response)
+    .then(response => response )
     .catch(error => error.response);
 };
 

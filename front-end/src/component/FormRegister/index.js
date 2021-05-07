@@ -72,21 +72,13 @@ function FormRegister() {
     }
   };
 
-  const handleErrorMessage = (createdUser) => {
-    createdUser.data.message ? setErrorState(true) : setErrorState(false);
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const createdUser = await requestCreateUserAPI(formRegister);
-    // console.log(createdUser);
+    const {data , status} = await requestCreateUserAPI(formRegister);
 
-    handleErrorMessage(createdUser);
-    
-    if (!errorState) {
-      const userToken = await requestLoginAPI(createdUser.data);
-      // console.log(userToken);
+    if(status === 201) {
+      const userToken = await requestLoginAPI(data);
   
       if (userToken.data) {
         const { data } = userToken;
@@ -99,6 +91,8 @@ function FormRegister() {
           history.push('/products');
         }
       }
+    } else {
+      setErrorState(true);
     }
   };
 
@@ -122,6 +116,7 @@ function FormRegister() {
           id="name"
           name="name"
           data-testid="signup-name"
+          value={formRegister.name}
           onChange={ (e) => handleImputChange(e) }
         />
       </label>
@@ -132,6 +127,7 @@ function FormRegister() {
           id="email"
           name="email"
           data-testid="signup-email"
+          value={formRegister.email}
           onChange={ (e) => handleImputChange(e) }
         />
       </label>
@@ -143,6 +139,7 @@ function FormRegister() {
           id="password"
           name="password"
           data-testid="signup-password"
+          value={formRegister.password}
           onChange={ (e) => handleImputChange(e) }
         />
       </label>
