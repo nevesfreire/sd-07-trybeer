@@ -4,6 +4,7 @@ const cors = require('cors');
 const loginRoute = require('./src/routes/loginRoute');
 const usersRoute = require('./src/routes/usersRoute');
 const productsRoute = require('./src/routes/productsRoute');
+const imagesRoute = require('./src/routes/imagesRoute');
 const errorMiddleware = require('./src/middleware/error');
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(loginRoute);
 app.use(usersRoute);
 app.use(productsRoute);
+app.use(imagesRoute);
 
 // código apenas para testes
 // const usersModel = require('./src/models/usersModel');
