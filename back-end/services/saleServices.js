@@ -64,6 +64,8 @@ const getUserIdFromEmail = async (email) => {
   return result[0].id;
 };
 
+// Source: https://stackoverflow.com/questions/5129624/convert-js-date-time-to-mysql-datetime
+const getDate = () => new Date().toISOString().slice(0, 10)+" "+new Date().toLocaleTimeString('pt-br', { timeZone: 'America/Sao_Paulo' });
 
 const createSale = async (email, total_price, delivery_address, delivery_number, products_sales) => {
   verifyIFDataExist(email, total_price, delivery_address, delivery_number, products_sales);
@@ -73,9 +75,8 @@ const createSale = async (email, total_price, delivery_address, delivery_number,
   console.log('entrou no services')
   checkProductsSalesValue(products_sales);
   const userId = await getUserIdFromEmail(email);
-  const date = "2021-05-06";
-  const status = "pendent";
-  const result = await saleModels.createSale(userId, total_price, delivery_address, delivery_number, date, status);  
+  const date = getDate();
+  const result = await saleModels.createSale(userId, total_price, delivery_address, delivery_number, date, 'pendent');  
   return result;
 };
 
