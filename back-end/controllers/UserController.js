@@ -25,8 +25,8 @@ const updateUserName = async (req, res) => {
 };
 const registerOrder = async (req, res) => {
   try {
-  const { email, totalChart, address, addressNumber, saleDate, status } = req.body;
-  const order = { email, totalChart, address, addressNumber, saleDate, status };
+  const { userId, totalCart, address, addressNumber, status } = req.body;
+  const order = { userId, totalCart, address, addressNumber, status };
   const result = await UserService.registerOrder(order);
   return res.status(result.status).json(result.message);
   } catch (error) {

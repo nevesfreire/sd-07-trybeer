@@ -14,9 +14,11 @@ const updateUserName = async (newName, email) => {
 };
 
 const registerOrder = async (order) => {
-  const { id } = await UserModel.getByEmail(order.email);
-  const registeredOrder = await UserModel.registerOrder({ id, ...order });
-  return { status: 201, message: registeredOrder };
+  const saleDate = await UserModel.getDate();
+  await UserModel.registerOrder({ ...order, saleDate });
+  const { userId } = order;
+  const newOrder = await UserModel.getOrderByUserId(userId);
+  return { status: 201, message: newOrder };
 };
 
 module.exports = {
