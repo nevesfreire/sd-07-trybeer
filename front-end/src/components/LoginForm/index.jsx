@@ -42,6 +42,7 @@ function LoginForm() {
 
   return (
     <Form>
+      {console.log('Entrou!')}
       <Label>
         Email
         <Input

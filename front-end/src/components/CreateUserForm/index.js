@@ -29,7 +29,6 @@ function CreateUserForm() {
 
   return (
     <Form onSubmit={ onSubmitHandler }>
-      {console.log('Aqui um console!')}
       <Label data-testid="signup-name">
         Nome
         <Input
