@@ -12,8 +12,10 @@ export default function TopMenu() {
     sideBarComplement.classList.toggle('nav-complement-show');
   }
 
+  const twentySeven = 27;
+
   function getKeyCode(e) {
-    if (e.keyCode == 27) {
+    if (e.keyCode === twentySeven) {
       handleMenuToggle();
     }
   }
