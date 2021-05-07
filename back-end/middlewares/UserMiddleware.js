@@ -1,7 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const { throwError } = require('../helpers');
 
-const checkLoginFields = (req, _res, next) => {
+const checkCreatingUserFields = (req, _res, next) => {
   try {
     const { name, email, password, role } = req.body;
   
@@ -17,5 +17,5 @@ const checkLoginFields = (req, _res, next) => {
 };
 
 module.exports = {
-  checkLoginFields,
+  checkCreatingUserFields,
 };
