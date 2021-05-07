@@ -9,6 +9,7 @@ loginCtrl.post('/', async (req, res, next) => {
     const loginRes = await loginServ(body);
     if (loginRes.err) return next(loginRes);
     const { error, message, status } = loginRes;
+    console.log(loginRes)
     return res.status(status).json({ message, error } || { });
   } catch (err) {
     console.log('controller: ', err);

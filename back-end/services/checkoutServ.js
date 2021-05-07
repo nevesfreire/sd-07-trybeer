@@ -4,8 +4,8 @@ const { getProductsData,
 const statusMsgMap = require('./dictionaries/statusMsgMap');
 
 const preCheckFields = (requiredFields, inputs) => {
-  const correctEntries = requiredFields.find((field) => !Object.keys(inputs).includes(field));
-  if (!correctEntries) return false;
+  const missingEntries = requiredFields.find((field) => !Object.keys(inputs).includes(field));
+  if (missingEntries) return false;
   return true;
 };
 
@@ -15,15 +15,22 @@ const validateSale = (saleData) => {
 };
 
 const insertPurchase = async (purchase, pdtList) => {
-  const insertPurchRes = await registerPurchase(purchase);
+  const [insertPurchRes] = await registerPurchase(purchase);
   if (insertPurchRes.err) return false;
-  const insertPurchPdtsRes = await registerPurchaseProducts(pdtList, insertPurchRes.id);
-  if (insertPurchPdtsRes.err) {
+  const { insertId } = insertPurchRes;
+  const insertPurchPdtsRes = await registerPurchaseProducts(pdtList, insertId);
+  const allInserted = insertPurchPdtsRes
+    .find((insertion) => insertion[0].affectedRows !== 1);
+  if (insertPurchPdtsRes.err || allInserted) {
     // const deletionRes = await delPurchase(purchase);
     return false;
   }
-  const { id, date } = insertPurchRes;
-  return { id, date };
+  return { insertId, statusCode: statusMsgMap.created.status };
+};
+
+const getFormatedDate = () => {
+  const date = new Date();
+  return `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
 };
 
 const checkoutServ = async (body) => {
@@ -32,36 +39,19 @@ const checkoutServ = async (body) => {
     if (!validateSale(sale)) return statusMsgMap.allFieldsMustBeFilled;
     const productsIds = productsList.map((p) => p.productId);
     const productsData = await getProductsData(productsIds);
-    const price = productsData
-      .reduce((acc, pr, i) => acc + (pr.price * productsList[i].quantity), 0);
+    const totalPrice = productsData
+      .reduce((acc, p, i) => acc + (p.price * productsList[i].quantity), 0);
     const { userId, deliveryAddress, deliveryNumber, status } = sale;
-    const trustedSale = { userId, deliveryAddress, deliveryNumber, status, price };
-    
-    const insertionRes = insertPurchase(trustedSale, productsList);
+    const saleDate = getFormatedDate();
+    const trustedSale = { userId, deliveryAddress, deliveryNumber, status, totalPrice, saleDate };
+    const insertionRes = await insertPurchase(trustedSale, productsList);
     if (!insertionRes) return statusMsgMap.erorInDb;
-    return { status: statusMsgMap.created, message: insertionRes };
+    const { insertId, statusCode } = insertionRes;
+    return { message: { insertId, saleDate }, status: statusCode };
   } catch (err) {
     console.log('error: ', err);
     return (err);
   }
 };
 
-module.exports = {
-  checkoutServ,
-};
-
-// sales (
-//   user_id 
-//   total_price 
-//   delivery_address 
-//   delivery_number 
-//   sale_date 
-//   status
-
-// sales_products (
-//   product_id
-//   quantity
-//   PRIMARY KEY(sale_id, product_id),
-
-//   FOREIGN KEY(sale_id) REFERENCES sales(id),
-//   FOREIGN KEY(product_id) REFERENCES products(id)
+module.exports = checkoutServ;

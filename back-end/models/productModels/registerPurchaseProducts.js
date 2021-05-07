@@ -1,13 +1,19 @@
 const connection = require('../connection');
 
 const registerPurchaseProducts = async (productsList, saleId) => {
-  const response = productsList.map((pdt) => connection
-    .execute('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES(?,?,?)',
-    [saleId, pdt.product_id, pdt.quantity]));
-
-  const pdtsList = await Promise.all(response)
-    .then((resp) => resp.map((e) => e[0][0]));
-  return pdtsList;
+  try {
+    const response = productsList.map((pdt) => connection
+      .execute('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES(?,?,?)',
+      [saleId, pdt.productId, pdt.quantity]));
+  
+    const pdtsList = await Promise.all(response)
+      .then((resp) => resp.map((e) => e))
+      .catch((err) => err);
+    return pdtsList;
+  } catch (err) {
+    console.log('registerPurchasePRODUCTS: ', err);
+    return err;
+  }
 };
 
-export default registerPurchaseProducts;
+module.exports = registerPurchaseProducts;
