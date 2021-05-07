@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { nameIsValid, passwordIsValid, emailIsValid } from '../../service/validateInputs';
-import { register } from '../../service/trybeerApi';
+import { register, login } from '../../service/trybeerApi';
 
 export default function Register() {
   const [shouldRedirect, setShouldRedirect] = useState('');
+  const [loginException, setLoginException] = useState();
   const [registerInfo, setRegisterInfo] = useState({
     name: '',
     email: '',
@@ -30,10 +31,12 @@ export default function Register() {
     const { name, email, password, seller } = registerInfo;
     const role = (seller === false ? 'client' : 'administrator');
     const result = await register(name, email, password, role);
+    await login(email, password);
     console.log(result);
     if (!result.error) {
       setShouldRedirect(role);
     }
+    setLoginException(<p>{result.error}</p>);
   };
 
   if (shouldRedirect) {
@@ -68,7 +71,7 @@ export default function Register() {
       </label>
 
       <label htmlFor="password">
-        Password:
+        Senha:
         <input
           id="password"
           name="password"
@@ -79,6 +82,7 @@ export default function Register() {
       </label>
 
       <label htmlFor="seller">
+        Quero vender
         <input
           id="seller"
           name="seller"
@@ -86,7 +90,6 @@ export default function Register() {
           data-testid="signup-seller"
           onChange={ handleChange }
         />
-        Quero Vender
       </label>
 
       <button
@@ -97,6 +100,7 @@ export default function Register() {
       >
         Cadastrar
       </button>
+      {loginException}
     </div>
   );
 }
