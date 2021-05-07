@@ -4,6 +4,7 @@ import login from '../../service/trybeerApi';
 
 export default function Login() {
   const [shouldRedirect, setShouldRedirect] = useState('');
+  const [loginException, setLoginException] = useState();
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
@@ -27,14 +28,15 @@ export default function Login() {
   const handleClick = async () => {
     const { email, password } = loginInfo;
     const result = await login(email, password);
-    if (result === undefined) {
-      setShouldRedirect(result.role);
+    if (!result.error) {
+      return setShouldRedirect(result.role);
     }
+    setLoginException(<p>{result.error}</p>);
   };
 
   if (shouldRedirect) {
     return (<Redirect
-      to={ `/${shouldRedirect === 'administrator' ? 'home' : 'produtos'}` }
+      to={ `/${shouldRedirect === 'administrator' ? 'admin/orders' : 'products'}` }
     />);
   }
 
@@ -53,7 +55,7 @@ export default function Login() {
       </label>
 
       <label htmlFor="password">
-        Password:
+        Senha:
         <input
           id="password"
           name="password"
@@ -78,6 +80,7 @@ export default function Login() {
       >
         Ainda não tenho conta
       </Link>
+      {loginException}
     </div>
   );
 }
