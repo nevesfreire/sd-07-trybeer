@@ -68,7 +68,7 @@ export async function fetchProducts() {
 }
 
 export async function fetchImage(name) {
-  const endpoint = `http://localhost:3001/images/${name}`;
+  const endpoint = `http://localhost:3001/images/${name.replace('250', '350')}`;
   const response = await fetch(endpoint);
   const data = await response.blob();
   const image = URL.createObjectURL(data);
