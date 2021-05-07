@@ -37,6 +37,14 @@ const getUser = async (email) => {
     }; 
 };
 
+const getIDByEmail = async (email) => {
+    const [data] = await connection.execute(`SELECT id 
+    FROM Trybeer.users
+    WHERE email = ?`, [email]);
+
+    return data[0].id;
+};
+
 const editUser = async (name, email) => {
     await connection.execute(`UPDATE Trybeer.users
                               SET name = ?
@@ -52,4 +60,5 @@ module.exports = {
     logUser,
     getUser,
     editUser,
+    getIDByEmail,
 };
