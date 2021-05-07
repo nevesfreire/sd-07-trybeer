@@ -14,17 +14,11 @@ import {
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [userRole, setRole] = useState(null);
-
-  // const { userLogin } = useContext(ApiContext);
   const history = useHistory();
 
   const onSubmitHandler = async (e, user) => {
     e.preventDefault();
-    // const user = {
-    //   email,
-    //   password,
-    // };
+
     // req da api enviando:
     const response = await userLogin(user).then((apiResponse) => apiResponse);
     if (await response.role === 'administrator') {
