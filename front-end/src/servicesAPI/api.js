@@ -14,11 +14,16 @@ const registerUser = (userData) => api.post('/user/signup', userData)
 
 const updateNameUser = (userData, token) => api
   .put('/user', userData, { headers: { Authorization: token } })
-  .then(({ status }) => ({ status }))
+  .then(({ status }) => status)
   .catch((e) => e.message);
 
 const getProducts = () => api.get('/products')
   .then(({ data }) => data)
+  .catch((e) => e.message);
+
+const addSale = (dataSale, token) => api
+  .post('/sale', dataSale, { headers: { Authorization: token } })
+  .then(({ status }) => status)
   .catch((e) => e.message);
 
 export {
@@ -26,4 +31,5 @@ export {
   registerUser,
   updateNameUser,
   getProducts,
+  addSale,
 };

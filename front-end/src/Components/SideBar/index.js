@@ -9,7 +9,10 @@ export default function SideBar({ role }) {
 
   useEffect(() => {
     const { data } = verifyUserLocalStorage();
-    if (!data) return history.push('/login');
+    if (!data) {
+      localStorage.clear();
+      return history.push('/login');
+    }
   }, [history]);
 
   if (role === 'administrator') {
