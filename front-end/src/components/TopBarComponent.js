@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
 import BeerContext from '../context/BeerContext';
@@ -18,6 +19,10 @@ const TopBarComponent = ({ children }) => {
       <Menu.Item header data-testid="top-title">{ children }</Menu.Item>
     </Menu>
   );
+};
+
+TopBarComponent.propTypes = {
+  children: PropTypes.string.isRequired,
 };
 
 export default TopBarComponent;
