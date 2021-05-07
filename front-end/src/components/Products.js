@@ -65,8 +65,7 @@ function Products() {
             <p
               data-testid={ `${index}-product-price` }
             >
-              R$
-              { item.price.replace('.', ',') }
+              {`R$ ${item.price.replace('.', ',')}`}
             </p>
             <button
               type="button"
