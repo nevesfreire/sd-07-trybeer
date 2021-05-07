@@ -1,34 +1,30 @@
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ApiContext from '../../context/apiContext';
-import validateLogin from './validationLogin';
+import validationClientProfile from './validationClientProfile';
 import {
   Form,
   Label,
   Input,
   Button,
   Span,
-  RegisterButton,
 } from './styles';
 
-// import "./styles.css";
+// const menuTitle = "Meu Perfil";
 
-// const handleSubmit = (evt) => {
-//   evt.preventDefault();
-// }
 
-function LoginForm() {
+function ClientProfile() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [userRole, setRole] = useState(null);
-
   const { userLogin } = useContext(ApiContext);
+
+  // const currentUser = JSON.parse(localStorage.getItem('user'));
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const user = {
-      email,
-      password,
+      name
     };
     // req da api enviando:
     return userLogin(user)
@@ -53,6 +49,19 @@ function LoginForm() {
   return (
     <Form onSubmit={ onSubmitHandler }>
       <Label>
+        <Span>Name</Span>
+        <Input
+          value={ name }
+          onChange={ (e) => setName(e.target.value) }
+          placeholder="name"
+          type="name"
+          name="name"
+          data-testid="profile-name-input"
+          required
+        />
+      </Label>
+
+      <Label>
         Email
         <Input
           value={ email }
@@ -60,36 +69,20 @@ function LoginForm() {
           placeholder="Email address"
           type="email"
           name="email"
-          data-testid="email-input"
-          required
+          data-testid="profile-email-input"
+          readonly
         />
       </Label>
-      <Label>
-        <Span>Senha</Span>
-        <Input
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
-          placeholder="Password"
-          type="password"
-          name="password"
-          data-testid="password-input"
-          required
-        />
-      </Label>
+
       <Button
         type="submit"
-        data-testid="signin-btn"
-        disabled={ validateLogin(email, password) }
+        data-testid="profile-save-btn"
+        disabled={ validationClientProfile(name) }
       >
-        Entrar
+        Salvar
       </Button>
-      <RegisterButton
-        to="/register"
-        data-testid="no-account-btn"
-      >
-        Ainda não tenho conta
-      </RegisterButton>
+      
     </Form>
   );
 }
-export default LoginForm;
+export default ClientProfile;
