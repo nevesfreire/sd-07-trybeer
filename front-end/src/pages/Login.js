@@ -13,7 +13,6 @@ function Login() {
   const register = () => history.push('/register');
 
   const validate = () => {
-
     const passLimit = 5;
 
     const email = formData.get('email');
@@ -26,7 +25,6 @@ function Login() {
     }
 
     if (!password || password.length <= passLimit) {
-
       return true;
     }
     return false;

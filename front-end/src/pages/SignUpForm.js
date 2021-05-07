@@ -22,7 +22,6 @@ function SignUp() {
   };
 
   const validate = () => {
-
     const passLimit = 5;
     const nameLimit = 12;
 
@@ -36,16 +35,13 @@ function SignUp() {
       }
     }
 
-
     if (!password || password.length <= passLimit) {
-
       return true;
     }
     if (name) {
       const regexName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
 
       if (!regexName.test(name) || name.length < nameLimit) {
-
         return true;
       }
     }

@@ -7,5 +7,4 @@ const App = () => (
     <Routes />
   </CentralContextProvider>);
 
-
 export default App;
