@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Header = styled.div`
+export default Header = styled.div`
   background-color: rgb(25, 25, 25);
   color: white;
   display: flex;

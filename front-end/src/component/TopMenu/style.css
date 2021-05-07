@@ -47,6 +47,7 @@ h1, h3 {
     display: block;
     height: 100%;
     margin: 0;
+    outline: none;
     position: fixed;
     right: -100%;
     top: 0;
@@ -88,10 +89,10 @@ h1, h3 {
     margin: 20px 25px;
     text-align: left;
   }
-  
+
   .logoff-button {
     margin-bottom: 50px;
-    padding-top: 80%;
+    margin-top: 80%;
   }
 
   .menu-button {
