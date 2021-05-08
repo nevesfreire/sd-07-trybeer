@@ -2,27 +2,27 @@ import React, { useContext, useEffect } from 'react';
 import { FormControl, Button, Checkbox } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import fieldValidate from '../helpers/fieldValidate';
-import { useHistory } from 'react-router';
+import messageSuccess from '../helpers/MessageSuccess';
 import context from '../context';
+import useRedirect from '../hooks/useRedirect';
 import '../css/registration.css';
 
 const ComponentRegister = () => {
-
-  const history = useHistory();
+  const [setGetEvent] = useRedirect();
 
   const { name, setName, email, setEmail } = useContext(context);
-  const { password, setPassword, isChecked, setIsChecked } = useContext(context);
-  const { isOk, setIsOk } = useContext(context);
-  
+  const { password, setPassword } = useContext(context);
+  const { isOk, setIsOk, user, setUser } = useContext(context);
+  const { isChecked, setIsChecked } = useContext(context);
+
   const isValid = fieldValidate(name, email, password);
 
   useEffect(() => {
     setName('');
     setIsChecked(false);
-  }, []);
+  }, [setIsChecked, setName]);
 
   useEffect(() => {
-    console.log('entrei');
     if (!isValid) {
       setIsOk(true);
     } else {
@@ -30,29 +30,30 @@ const ComponentRegister = () => {
     }
   }, [isValid, setIsOk]);
 
-  const handleSubmit = (e) => {
-    const isValid = fieldValidate(name, email, password);
+  const handleSubmit = async (e) => {
+    const payload = {
+      name,
+      email,
+      password,
+      checked: isChecked,
+    };
+
     if (!isValid) {
-      window.alert('Dados inválidos. Tente novamente');
+      console.log('Dados inválidos.'); // não remover, ainda não sei o que por aqui
     } else {
       e.preventDefault();
-      try {
-        fetch(`${process.env.REACT_APP_URL}/register`, {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify({ name, email, password, isChecked }),
-        })
-          .then((response) => response.json())
-          .then((data) => (
-            data.email
-              ? <span>{`Usuario cadastrado com sucesso: ${data.email}`}</span>
-              : <span>Já existe um usuário com esse e-mail.</span>));
 
-      } catch (error) {
-        console.log(error);
-      }
+      fetch(`${process.env.REACT_APP_URL}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({ ...payload }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setUser(data.role);
+        });
     }
   };
 
@@ -60,11 +61,15 @@ const ComponentRegister = () => {
     setIsChecked(event.target.checked);
   };
 
+  const focusRef = (event) => {
+    handleSubmit(event);
+    setGetEvent(Math.random());
+  };
+
   return (
     <div className="container-register">
-        
       <FormControl className="form-registration">
-      <h1>Cadastro</h1>
+        <h1>Cadastro</h1>
         <TextField
           id="userName"
           label="Nome"
@@ -105,20 +110,22 @@ const ComponentRegister = () => {
           />
           <span>Quero vender</span>
         </div>
-        {
-            <div className="register-btn-group">
-            <Button
-              data-testid="signup-btn"
-              color="primary"
-              variant="contained"
-              className="RegisterBtn"
-              disabled={isOk}
-              onClick={ handleSubmit }
-            >
-              Cadastrar
-            </Button>
+
+        <div className="register-btn-group">
+          <Button
+            data-testid="signup-btn"
+            color="primary"
+            variant="contained"
+            className="RegisterBtn"
+            disabled={ isOk }
+            onClick={ focusRef }
+          >
+            Cadastrar
+          </Button>
         </div>
-        }    
+        <div className="succes-message">
+          {user ? null : messageSuccess(user)}
+        </div>
       </FormControl>
     </div>
   );

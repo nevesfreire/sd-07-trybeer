@@ -53,3 +53,8 @@
    color: rgba(0, 0, 0, 0.658);
    margin-top: 30rem;
 }
+
+.success-message {
+   color: red;
+   transition: 0.5s;
+}

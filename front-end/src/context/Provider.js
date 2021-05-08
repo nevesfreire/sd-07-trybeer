@@ -8,6 +8,7 @@ const Provider = (props) => {
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isOk, setIsOk] = useState(true);
+  const [user, setUser] = useState({});
 
   const contexto = {
     name,
@@ -18,8 +19,10 @@ const Provider = (props) => {
     setPassword,
     isChecked,
     setIsChecked,
-    isOk, 
+    isOk,
     setIsOk,
+    user,
+    setUser,
   };
 
   const { children } = props;
