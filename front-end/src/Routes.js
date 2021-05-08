@@ -9,7 +9,7 @@ import {
   AdmOrders,
   Order,
   OrderDetails,
-} from '../src/pages';
+} from './pages';
 
 function Router() {
   return (
@@ -21,7 +21,11 @@ function Router() {
       <Route exact path="/products" component={ ProductsOrCheckout } />
       <Route exact path="/checkout" component={ ProductsOrCheckout } />
       <Route exact path="/orders" component={ Order } />
-      <Route exact path="/orders/:id" render={(props) => <OrderDetails {...props} />} />
+      <Route
+        exact
+        path="/orders/:id"
+        render={ (props) => <OrderDetails { ...props } /> }
+      />
       <Route exact path="/admin/profile" component={ AdmProfile } />
       <Route exact path="/admin/orders" component={ AdmOrders } />
       <Route exact path="/admin/orders/:id" />

@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
-import {Header, CardOrder} from "../../components";
-import {getStorage} from "../../services/localStorage";
-import {Redirect, useHistory} from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Header, CardOrder } from '../../components';
+import { getStorage } from '../../services/localStorage';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -10,13 +10,13 @@ function Orders() {
 
   useEffect(() => {
     // setIsLoading(false);
-    const user = getStorage("user");
+    const user = getStorage('user');
     if (!user) {
-      history.push("/login");
+      history.push('/login');
     }
-    const cart = getStorage("purchase");
+    const cart = getStorage('purchase');
     setOrders(cart);
-  }, []);
+  }, [history]);
 
   if (!orders) {
     return (
@@ -30,7 +30,7 @@ function Orders() {
     <div>
       <Header data-testid="top-title">Meus Pedidos</Header>
       {orders.map((order, index) => (
-        <CardOrder key={index} order={order} index={index} />
+        <CardOrder key={ index } order={ order } index={ index } />
       ))}
     </div>
   );

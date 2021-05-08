@@ -12,7 +12,7 @@ function Header({ children }) {
 
   useEffect(() => {
     const user = getStorage('user');
-    if (user && user.role === 'administrator' ) setRole('administrator');
+    if (user && user.role === 'administrator') setRole('administrator');
   }, []);
 
   function handleClick({ target }) {
