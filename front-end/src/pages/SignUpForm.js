@@ -63,9 +63,7 @@ function SignUp() {
     validate();
     const resultSell = iWantToSell !== undefined;
     const user = await fetchUser(name, email, password, resultSell);
-    console.log(user);
     if (searchEmail(user)) return;
-    console.log('chegou aqui');
     if (!resultSell) return history.push('/products');
     history.push('/admin/orders');
   };

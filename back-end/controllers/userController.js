@@ -29,6 +29,7 @@ const userCreate = async (request, response) => {
 };
 
 const userUpdate = async (request, response) => {
+  console.log(request)
   try {
     const { name, email } = request.body;
       const user = await userService.userUpdate(name, email);

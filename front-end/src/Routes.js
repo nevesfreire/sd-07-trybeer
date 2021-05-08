@@ -13,6 +13,7 @@ const Routes = () => (
     <Route exact path="/" component={ Login } />
     <Route exact path="/products" component={ Products } />
     <Route exact path="/admin/orders" />
+    <Route exact path="/checkout" />
   </Switch>
 );
 

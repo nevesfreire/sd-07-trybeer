@@ -15,7 +15,7 @@ const validateToken = async (request, response, next) => {
       response.status(ERROR).json({ message: 'missing auth token' });
     }
     request.user = user;
-    return next();
+    next();
   } catch (error) {
     return response.status(401).json({ message: error.message });
   }

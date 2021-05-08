@@ -5,6 +5,7 @@ import Context from './Context';
 function CentralContextProvider({ children }) {
   const [isFetching, setIsFetching] = useState(true);
   const [isExistEmail, setIsExistEmail] = useState(false);
+  const [totalKart, setTotalKart] = useState(0);
 
   return (
     <Context.Provider
@@ -13,6 +14,8 @@ function CentralContextProvider({ children }) {
         setIsFetching,
         isExistEmail,
         setIsExistEmail,
+        totalKart,
+        setTotalKart,
       } }
     >
       {children}
