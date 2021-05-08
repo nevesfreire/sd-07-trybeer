@@ -9,7 +9,6 @@ import AdminOrdersPage from '../pages/AdminOrdersPage';
 import CheckoutPage from '../pages/CheckoutPage';
 import HomePage from '../pages/HomePage';
 
-
 const Routes = () => (
   <BrowserRouter>
     <Route exact path="/login" component={ Login } />
@@ -18,8 +17,6 @@ const Routes = () => (
     <Route exact path="/profile" component={ ClientProfile } />
     <Route exact path="/orders" component={ ClientOrdersPage } />
     <Route exact path="/admin/orders" component={ AdminOrdersPage } />
-  </BrowserRouter>
-);
     <Route exact path="/checkout" component={ CheckoutPage } />
     <Route exact path="/" component={ HomePage } />
   </BrowserRouter>

@@ -63,6 +63,7 @@ export async function fetchOrderById(id) {
   });
   const order = await response.json();
   return order;
+}
 
 export async function fetchFinishSale(cartList, address, totalPrice) {
   const loggedUser = JSON.parse(localStorage.getItem('user'));
