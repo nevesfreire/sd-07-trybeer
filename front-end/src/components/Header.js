@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-import { Form, Button } from 'react-bulma-components';
+import { Form, Card } from 'react-bulma-components';
 
 const { Control, Field } = Form;
 
 function Header() {
-  <>
-    <div className="card">
-      <div className="card-content">
-        <Field>
-          <Control>
-          </Control>
-        </Field>
-      </div>
+  return (
+    <div>
+      <Card>
+        <Card.Content>
+          <Field>
+            <Control>Header</Control>
+          </Field>
+        </Card.Content>
+      </Card>
     </div>
-  </>
-};
+  );
+}
+
+export default Header;

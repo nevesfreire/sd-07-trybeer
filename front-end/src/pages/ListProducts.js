@@ -22,13 +22,13 @@ function Products() {
   return (
     <div>
       {
-        loading ?
-        <Loading /> :
-        (
-          products.map((product, index) => {
-            return <ProductCard key={ index } item = { product } index = { index } />
-          })
-        )
+        loading
+          ? <Loading />
+          : (
+            products.map((product, index) => {
+              return <ProductCard key={ index } item={ product } index={ index } />;
+            })
+          )
       }
     </div>
   );

@@ -48,68 +48,64 @@ function LoginForm() {
 
   return (
     <>
-      <div className="card">
-        <div className="card-content">
-          <Field>
-            <Label>
-              Email
-            </Label>
-            <Control>
-              <Input
-                onChange={ (e) => setEmail(e.target.value) }
-                name="email"
-                data-testid="email-input"
-                placeholder="e.g. trybe@trybe.com"
-                type="text"
-              />
-            </Control>
-          </Field>
-          <Field>
-            <Label>
-              Senha
-            </Label>
-            <Control>
-              <Input
-                onChange={ (e) => setPassword(e.target.value) }
-                name="password"
-                data-testid="password-input"
-                placeholder="password"
-                type="password"
-              />
-            </Control>
-          </Field>
-          <div
-            hidden={ notification }
-            >
-            <p>
-              Usuário ou Senha inválida!
-              <Button
-                remove
-                onClick={ () => setNotification(true) }
-                />
-            </p>
-          </div>
-          <Field>
-            <Control>
-              <Button
-                onClick={ () => handleClick() }
-                data-testid="signin-btn"
-                className="button is-black"
-                disabled={ disable }
-              >
-                {' '}
-                Entrar
-              </Button>
-            </Control>
-            <Link
-              to="/register"
-              data-testid="no-account-btn"
-            >
-              Ainda não tenho conta
-            </Link>
-          </Field>
-        </div>
+      <Field>
+        <Label>
+          Email
+        </Label>
+        <Control>
+          <Input
+            onChange={ (e) => setEmail(e.target.value) }
+            name="email"
+            data-testid="email-input"
+            placeholder="e.g. trybe@trybe.com"
+            type="text"
+          />
+        </Control>
+      </Field>
+      <Field>
+        <Label>
+          Senha
+        </Label>
+        <Control>
+          <Input
+            onChange={ (e) => setPassword(e.target.value) }
+            name="password"
+            data-testid="password-input"
+            placeholder="password"
+            type="password"
+          />
+        </Control>
+      </Field>
+      <div
+        hidden={ notification }
+      >
+        <p>
+          Usuário ou Senha inválida!
+          <Button
+            remove
+            onClick={ () => setNotification(true) }
+          />
+        </p>
       </div>
+      <Field>
+        <Control>
+          <Button
+            onClick={ () => handleClick() }
+            data-testid="signin-btn"
+            className="button is-black"
+            disabled={ disable }
+          >
+            {' '}
+            Entrar
+          </Button>
+        </Control>
+      </Field>
+      <Link
+        to="/register"
+        data-testid="no-account-btn"
+      >
+        Ainda não tenho conta
+      </Link>
     </>
   );
 }

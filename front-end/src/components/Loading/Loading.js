@@ -3,11 +3,10 @@ import React from 'react';
 import './LoadingCss.css';
 
 function Loading() {
-  return (<>
+  return (
     <div className="loading">
-
-    </div>
-  </>)
-};
+      <p hidden>.</p>
+    </div>);
+}
 
 export default Loading;

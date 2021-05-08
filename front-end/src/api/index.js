@@ -25,11 +25,12 @@ async function registerUser(userData) {
 
 async function getProducts(token) {
   try {
-    const productsReceived = axios.get(`${url}${products}`, { headers: { Authorization: token } });
+    const productsReceived = axios
+      .get(`${url}${products}`, { headers: { Authorization: token } });
     return productsReceived;
   } catch (error) {
     return error.response.status;
   }
-};
+}
 
 export { requestToken, registerUser, getProducts };
