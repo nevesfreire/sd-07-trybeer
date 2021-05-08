@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { nameIsValid, passwordIsValid, emailIsValid } from '../../service/validateInputs';
 import { register, login } from '../../service/trybeerApi';
