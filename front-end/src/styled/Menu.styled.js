@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const StyledMenu = styled.nav`
+const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: ${({ theme }) => theme.primaryLight};
-  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   height: 100vh;
   text-align: left;
   padding: 2rem;
@@ -38,3 +38,5 @@ export const StyledMenu = styled.nav`
     }
   }
 `;
+
+export default StyledMenu;

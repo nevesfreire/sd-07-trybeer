@@ -1,19 +1,18 @@
 import React from 'react';
 import { bool } from 'prop-types';
-import { StyledMenu } from '../styled/Menu.styled';
 import { Link } from 'react-router-dom';
+import StyledMenu from '../styled/Menu.styled';
 
 const Menu = ({ open, ...props }) => {
-
-  const isHidden = open ? true : false;
+  const isHidden = !!open;
   // const tabIndex = isHidden ? 0 : -1;
 
   return (
     <StyledMenu
-      open={open}
-      aria-hidden={!isHidden}
-      {...props}
-      className={ isHidden &&"side-menu-container"}
+      open={ open }
+      aria-hidden={ !isHidden }
+      { ...props }
+      className={ isHidden && 'side-menu-container' }
     >
       <Link to="/products" data-testid="side-menu-item-products">
         Produtos
@@ -28,11 +27,11 @@ const Menu = ({ open, ...props }) => {
         Sair
       </Link>
     </StyledMenu>
-  )
-}
+  );
+};
 
 Menu.propTypes = {
   open: bool.isRequired,
-}
+};
 
 export default Menu;

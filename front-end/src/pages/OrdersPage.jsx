@@ -1,11 +1,10 @@
 import React from 'react';
 import HeaderBurguer from '../components/HeaderBurger';
 
-
 function Orders() {
   return (
     <>
-      <HeaderBurguer titulo={"Meus Pedidos"}/>
+      <HeaderBurguer titulo="Meus Pedidos" />
       client
     </>
   );

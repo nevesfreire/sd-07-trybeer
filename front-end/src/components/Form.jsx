@@ -41,7 +41,7 @@ function Form({ history }) {
 
   useEffect(() => {
     validateEmailAndPassword();
-  }, [email, password]);
+  }, [email, password, validateEmailAndPassword]);
 
   return (
     <div>

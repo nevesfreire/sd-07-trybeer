@@ -4,7 +4,7 @@ import HeaderBurguer from '../components/HeaderBurger';
 function Products() {
   return (
     <>
-      <HeaderBurguer titulo={"Trybeer"} />
+      <HeaderBurguer titulo="Trybeer" />
       Client
     </>
   );
