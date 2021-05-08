@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { fetchs, localStorage } from '../functions-hooks';
 
 function validateEmail(email) {
@@ -17,10 +17,10 @@ function validatePassword(password) {
 }
 
 export default function Login() {
-  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMenssage, setErrorMenssage] = useState({ error: false, menssage: '' });
+  const [role, setRole] = useState('');
 
   const buttonLogin = async () => {
     const { fetchAPI } = fetchs;
@@ -28,8 +28,7 @@ export default function Login() {
     const api = await fetchAPI('/login', 'POST', obj);
     if (api.error) return setErrorMenssage({ error: true, menssage: api.message });
     localStorage.setItem('user', api.user);
-    if (api.user.role === 'administrator') return history.push('/admin/orders');
-    history.push('/products');
+    setRole(api.user.role);
   };
 
   return (
@@ -63,9 +62,11 @@ export default function Login() {
           value={ password }
         />
       </label>
+
       <h4 visibility={ errorMenssage.error ? 'visible' : 'hidden' }>
         {errorMenssage.menssage}
       </h4>
+
       <button
         data-testid="signin-btn"
         disabled={ !validateEmail(email) || !validatePassword(password) }
@@ -81,6 +82,9 @@ export default function Login() {
       >
         Ainda não tenho conta
       </Link>
+
+      {(role === 'administrator') && <Redirect to="/admin/orders" />}
+      {(role === 'client') && <Redirect to="/products" />}
 
     </div>
   );
