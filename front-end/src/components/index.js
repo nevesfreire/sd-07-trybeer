@@ -7,5 +7,5 @@ export {
   LoginForm,
   RegisterForm,
   ProductCard,
-  Loading
+  Loading,
 };

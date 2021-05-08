@@ -6,7 +6,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Button, Card, Media, Image, Heading } from 'react-bulma-components';
 
 function ProductCard({ item, index }) {
-  const { name, url_image } = item;
+  const { name, urlImage } = item;
   let { price } = item;
   price = price.split('.').join(',');
   const [qtt, setQtt] = useState(0);
@@ -28,7 +28,7 @@ function ProductCard({ item, index }) {
               data-testid={ `${index}-product-img` }
               size={ 64 }
               alt="64x64"
-              src={ url_image }
+              src={ urlImage }
             />
           </Media.Item>
           <Media.Item>
@@ -69,7 +69,7 @@ ProductCard.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string,
     price: PropTypes.string,
-    url_image: PropTypes.string,
+    urlImage: PropTypes.string,
   }).isRequired,
   index: PropTypes.number.isRequired,
 };

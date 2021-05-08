@@ -25,9 +25,12 @@ function Products() {
         loading
           ? <Loading />
           : (
-            products.map((product, index) => {
-              return <ProductCard key={ index } item={ product } index={ index } />;
-            })
+            products
+              .map((product, index) => {
+                const alterSnakeCase = product.url_image;
+                product.urlImage = alterSnakeCase;
+                return <ProductCard key={ index } item={ product } index={ index } />;
+              })
           )
       }
     </div>
