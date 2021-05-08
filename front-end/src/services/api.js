@@ -57,6 +57,7 @@ export async function sendSale(street, houseNumber, totalPrice, products) {
     delivery_number: houseNumber,
     products_sales: salesProducts,
   };
+
   const requestOptions = {
     method: 'POST',
     headers: {

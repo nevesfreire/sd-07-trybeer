@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import * as API from '../../services/api';
 import { getStorage, setStorage } from '../../services/localStorage';
-import { Products, Checkout } from '../../components';
+import { Products, Checkout } from '../../components/index';
 
 function ProductsOrCheckout() {
   const [isLoading, setIsLoading] = useState(true);

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../Header';
 import ListItem from '../ListItem';
 import * as API from '../../services/api';
-import { clearStorage } from '../../services/localStorage';
+import { clearStorage, setPurchaseStorage } from '../../services/localStorage';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import format from '../../util/format';
 
@@ -14,9 +14,7 @@ function Checkout({ products }) {
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
   const [showMessage, setShowMessage] = useState(false);
-
   const dispatch = useDispatch();
-
   const history = useHistory();
 
   useEffect(() => {
@@ -69,6 +67,7 @@ function Checkout({ products }) {
         onClick={ () => {
           setShowMessage(true);
           API.sendSale(street, houseNumber, totalPrice, products);
+          setPurchaseStorage(products.filter((product) => product.quantity));
         } }
       >
         Finalizar pedido

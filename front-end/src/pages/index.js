@@ -4,6 +4,8 @@ import ProductsOrCheckout from './ProductsOrCheckout/ProductsOrCheckout';
 import ClientProfile from './ClientProfile/ClientProfile';
 import AdmProfile from './AdmProfile/AdmProfile';
 import AdmOrders from './AdmOrders/AdmOrders';
+import Order from './Orders/Orders';
+import OrderDetails from './OrderDetails/OrderDetails';
 
 export {
   Login,
@@ -12,4 +14,6 @@ export {
   ClientProfile,
   AdmProfile,
   AdmOrders,
+  Order,
+  OrderDetails,
 };
