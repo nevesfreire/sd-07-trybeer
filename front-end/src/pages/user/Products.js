@@ -4,14 +4,16 @@ import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 import ProductsCards from '../../components/ProductsCards';
+import Storage from '../../services/storageFunctions';
 
 function Products() {
   const {
     sideIsActive,
     setPageTitle,
     setProducts,
-    setTotal,
   } = useContext(MyContext);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
 
@@ -20,14 +22,9 @@ function Products() {
   }, [setPageTitle]);
 
   useEffect(() => {
-    const getUser = () => {
-      const userStorage = JSON.parse(localStorage.getItem('user'));
-      if (!userStorage) return history.push('/login');
-    };
-    getUser();
+    const userStorage = Storage.getItem('user');
+    if (!userStorage) return history.push('/login');
   }, [history]);
-
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -37,11 +34,7 @@ function Products() {
         setProducts(data);
         setIsLoading(false);
       });
-  }, []);
-
-  useEffect(() => {
-    setTotal(JSON.parse(localStorage.getItem('totalCart')));
-  }, []);
+  }, [setProducts]);
 
   return (
     <div>

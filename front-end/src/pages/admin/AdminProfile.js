@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import SideBarAdmin from '../../components/SideBarAdmin';
+import Storage from '../../services/storageFunctions';
 
 function AdminProfile() {
   const [user, setUser] = useState({});
@@ -8,12 +9,9 @@ function AdminProfile() {
   const history = useHistory();
 
   useEffect(() => {
-    const getUser = () => {
-      const userStorage = JSON.parse(localStorage.getItem('user'));
-      if (!userStorage) return history.push('/login');
-      return setUser(userStorage);
-    };
-    getUser();
+    const userStorage = Storage.getItem('user');
+    if (!userStorage) return history.push('/login');
+    return setUser(userStorage);
   }, [history]);
 
   const { name, email } = user;

@@ -11,7 +11,7 @@ const login = async (email, password) => {
   if (password !== user.password) return { status: 401, msg: 'wrong password' };
 
   const jwtConfig = {
-    expiresIn: 1000 * 60 * 60 * 24 * 15,
+    expiresIn: '15d',
     algorithm: 'HS256',
   };
 
