@@ -48,7 +48,7 @@ export default function Register() {
 
   return (
     <div>
-      <TopMenu>Produtos</TopMenu>
+      <TopMenu />
       <label htmlFor="name">
         Nome:
         <input

@@ -16,7 +16,7 @@ function TopMenu({ children }) {
       >
         <img alt="hambeuger menu" src="https://img.icons8.com/ios-filled/50/000000/menu--v1.png" />
       </button>
-      <h2 data-testid="top-title">{children === 'Produtos' ? 'Trybeer' : children}</h2>
+      <h2 data-testid="top-title">{children === 'Produtos' || children === undefined ? 'Trybeer' : children}</h2>
 
       {showSideBar ? <SideBar class="side-menu-container" /> : <div />}
     </div>
