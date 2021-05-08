@@ -20,7 +20,9 @@ html, body {
   opacity: 0;
 }
 
-.hamburger-label {
+.hamburger-button {
+  background-color: transparent;
+  border: none;
   cursor: pointer;
   position: relative;
   display: block;
@@ -36,7 +38,7 @@ html, body {
   width: 30px;
 }
 
-.hamburger-span {
+.hamburger-span-one {
   position: absolute;
   display: block;
   height: 5px;
@@ -44,30 +46,63 @@ html, body {
   border-radius: 30px;
   background-color: goldenrod;
   transition: 0.25s ease-in-out;
-}
-
-.hamburger-span:nth-child(1) {
   top: 0;
 }
 
-.hamburger-span:nth-child(2) {
+.hamburger-span-two {
+  position: absolute;
+  display: block;
+  height: 5px;
+  width: 100%;
+  border-radius: 30px;
+  background-color: goldenrod;
+  transition: 0.25s ease-in-out;
   top: 8px;
+  opacity: 1;
 }
 
-.hamburger-span:nth-child(3) {
+.hamburger-span-three {
+  position: absolute;
+  display: block;
+  height: 5px;
+  width: 100%;
+  border-radius: 30px;
+  background-color: goldenrod;
+  transition: 0.25s ease-in-out;
   top: 16px;
 }
 
-#hamburger-menu:checked + label span:nth-child(1) {
+.x-one {
+  position: absolute;
+  display: block;
+  height: 5px;
+  width: 100%;
+  border-radius: 30px;
+  background-color: goldenrod;
   transform: rotate(-45deg);
+  transition: 0.25s ease-in-out;
   top: 8px;
 }
 
-#hamburger-menu:checked + label span:nth-child(2) {
+.x-two {
+  position: absolute;
+  display: block;
+  height: 5px;
+  width: 100%;
+  border-radius: 30px;
+  background-color: goldenrod;
   opacity: 0;
+  transition: 0.25s ease-in-out;
 }
 
-#hamburger-menu:checked + label span:nth-child(3) {
+.x-three {
+  position: absolute;
+  display: block;
+  height: 5px;
+  width: 100%;
+  border-radius: 30px;
+  background-color: goldenrod;
   transform: rotate(45deg);
+  transition: 0.25s ease-in-out;
   top: 8px;
 }

@@ -3,8 +3,6 @@ import Header from '../components/Header';
 
 export default function OrderDetails() {
   return (
-    <>
-      <Header title={ `Detalhes de Pedido` } />
-    </>
+    <Header title="Detalhes de Pedido" />
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { getToken } from '../services/Login';
 import getToken from '../services/Login';
 // import { getUser } from '../services/User';
 

@@ -3,8 +3,6 @@ import Header from '../components/Header';
 
 export default function AdminProfile() {
   return (
-    <>
-      <Header title={ `Perfil` } />
-    </>
+    <Header title="Perfil" />
   );
 }

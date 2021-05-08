@@ -3,8 +3,6 @@ import Header from '../components/Header';
 
 export default function Profile() {
   return (
-    <>
-      <Header title={ `Meu Perfil` } />
-    </>
+    <Header title="Meu Perfil" />
   );
 }
