@@ -14,9 +14,7 @@ function Checkout({ products }) {
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
   const [showMessage, setShowMessage] = useState(false);
-
   const dispatch = useDispatch();
-
   const history = useHistory();
 
   useEffect(() => {
