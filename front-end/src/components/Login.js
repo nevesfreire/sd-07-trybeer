@@ -20,19 +20,19 @@ const ComponentLogin = () => {
   const history = useHistory();
 
   const redirect = (data) => {
-    if (data.user === 'admin') {
-      history.push('/home');
+    if (data.role === 'administrator') {
+      return history.push('/home');
     }
-    history.push('/products');
+    return history.push('/products');
   };
 
   const toLogin = async (event) => {
     event.preventDefault();
     return api
       .post('/login', params)
-      .then((token) => {
-        localStorage.setItem('token', token.data.token);
-        redirect(token.data.data);
+      .then((dataUser) => {
+        localStorage.setItem('token', dataUser.data.token);
+        redirect(dataUser.data.data);
       })
       .catch((err) => console.log(`Error in login process: ${err}`));
   };
