@@ -17,6 +17,21 @@ const handleLocalStorage = (data, history) => {
   return history.push('/admin/orders');
 };
 
+const validateName = (name) => {
+  const minLengthName = 12;
+  const verifyLength = name.length >= minLengthName;
+  const verifyCharacter = (/^[a-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/i).test(name);
+  if (path === '/register') return verifyLength && verifyCharacter;
+  return true;
+};
+
+const validateEmail = (email) => (/[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i).test(email);
+
+const validatePassword = (password) => {
+  const minLengthPass = 6;
+  return password.length >= minLengthPass;
+};
+
 function Form({ history }) {
   const { login, register } = useFetch();
   const [email, setEmail] = useState('');
@@ -44,25 +59,10 @@ function Form({ history }) {
     await submitLogin();
   };
 
-  const validateName = () => {
-    const minLengthName = 12;
-    const verifyLength = name.length >= minLengthName;
-    const verifyCharacter = (/^[a-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/i).test(name);
-    if (path === '/register') return verifyLength && verifyCharacter;
-    return true;
-  };
-
-  const validateEmail = () => (/[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i).test(email);
-
-  const validatePassword = () => {
-    const minLengthPass = 6;
-    return password.length >= minLengthPass;
-  };
-
   const validateInputsValue = () => {
-    const emailValidation = validateEmail();
-    const nameValidation = validateName();
-    const passwordValidation = validatePassword();
+    const emailValidation = validateEmail(email);
+    const nameValidation = validateName(name);
+    const passwordValidation = validatePassword(password);
 
     setDisabled(!(nameValidation && emailValidation && passwordValidation));
   };
