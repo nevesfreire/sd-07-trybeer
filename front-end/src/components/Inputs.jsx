@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Inputs({ value }) {
+export default function Inputs({ value, testid }) {
   return (
-    <input type="text" value={ value } />
+    <input
+      data-testid={ testid }
+      type="number"
+      value={ `${value}` }
+    />
   );
 }
 
 Inputs.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  testid: PropTypes.string.isRequired,
 };
