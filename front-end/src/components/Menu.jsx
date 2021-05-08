@@ -13,12 +13,12 @@ const Menu = ({ open, ...props }) => {
       open={open}
       aria-hidden={!isHidden}
       {...props}
-      class="side-menu-container"
+      className={ isHidden &&"side-menu-container"}
     >
       <Link to="/products" data-testid="side-menu-item-products">
         Produtos
       </Link>
-      <Link to="/admin/orders" data-testid="side-menu-item-my-orders">
+      <Link to="/orders" data-testid="side-menu-item-my-orders">
         Meus Pedidos
       </Link>
       <Link to="/profile" data-testid="side-menu-item-my-profile">

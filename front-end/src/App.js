@@ -7,6 +7,10 @@ import Login from './pages/LoginPage';
 import Register from './pages/RegisterPage';
 import PendingOrders from './pages/PendingOrdersPage';
 import Products from './pages/ProductsPage';
+import Orders from './pages/OrdersPage';
+import Checkout from './pages/CheckoutPage';
+import ClientProfile from './pages/ClientProfilePage';
+import OrdersDetails from './pages/OrdersDetailsPage';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './global'
 
@@ -30,6 +34,10 @@ function App() {
             <Route exact path="/register" component={Register} />
             <Route exact path="/admin/orders" component={PendingOrders} />
             <Route exact path="/products" component={Products} />
+            <Route exact path="/orders" component={Orders} />
+            <Route exact path="/orders/:numero-do-pedido" component={OrdersDetails} />
+            <Route exact path="/profile" component={ClientProfile} />
+            <Route exact path="/checkout" component={Checkout} />
           </Switch>
         </ThemeProvider>
       </TrybeerProvider>
