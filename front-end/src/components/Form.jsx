@@ -30,6 +30,7 @@ function Form({ history }) {
 
   const submitLogin = async () => {
     const userData = await login(email, password);
+    if (!userData.token) return alert('Email ou senha incorreto');
     handleLocalStorage(userData, history);
   };
 
@@ -63,7 +64,7 @@ function Form({ history }) {
     const nameValidation = validateName();
     const passwordValidation = validatePassword();
 
-    setDisabled(nameValidation && emailValidation && passwordValidation);
+    setDisabled(!(nameValidation && emailValidation && passwordValidation));
   };
 
   useEffect(() => {
