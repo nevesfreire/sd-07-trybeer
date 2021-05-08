@@ -44,7 +44,7 @@ function RegisterForm() {
       return setNotification(false);
     }
     const { data } = result;
-    services.setUserLocalStorage({ name,
+    services.acessLocalStorage.setUserLocalStorage({ name,
       email,
       token: data,
       role: userRole,
