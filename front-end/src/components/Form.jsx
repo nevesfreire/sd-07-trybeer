@@ -45,7 +45,9 @@ function Form({ history }) {
 
   const validateName = () => {
     const minLengthName = 12;
-    if (path === '/register') return name.length >= minLengthName;
+    const verifyLength = name.length >= minLengthName;
+    const verifyCharacter = (/^[a-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/i).test(name);
+    if (path === '/register') return verifyLength && verifyCharacter;
     return true;
   };
 
@@ -61,10 +63,7 @@ function Form({ history }) {
     const nameValidation = validateName();
     const passwordValidation = validatePassword();
 
-    if (nameValidation && emailValidation && passwordValidation) {
-      return setDisabled(false);
-    }
-    setDisabled(true);
+    setDisabled(nameValidation && emailValidation && passwordValidation);
   };
 
   useEffect(() => {
