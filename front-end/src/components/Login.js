@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import api from '../services/api';
-import redirectLogin from '../helpers/helpersLogin';
 
 const regexEmail = /\S+@\S+\.\S+/;
 const passwordMinLength = 6;
@@ -13,25 +12,41 @@ const ComponentLogin = () => {
 
   const inputValidation = (password) => {
     setPasswordLabel(password);
-    const result = regexEmail.test(emailLabel)
-    && passwordLabel.length
-    >= passwordMinLength;
+    const result = regexEmail.test(emailLabel) && password.length >= passwordMinLength;
     setLabelLogin(!result);
   };
+
   const params = { email: emailLabel, password: passwordLabel };
-  const toLogin = async () => api.post('/login', params)
-    .then((token) => {
-      localStorage.setItem('token', token.data.token);
-      redirectLogin(token);
-    })
-    .catch((err) => console.log(`Error in login process: ${err}`));
+  const history = useHistory();
+
+  const redirect = (data) => {
+    if (data.user === 'admin') {
+      history.push('/home');
+    }
+    history.push('/products');
+  };
+
+  const toLogin = async (event) => {
+    event.preventDefault();
+    return api
+      .post('/login', params)
+      .then((token) => {
+        localStorage.setItem('token', token.data.token);
+        redirect(token.data.data);
+      })
+      .catch((err) => console.log(`Error in login process: ${err}`));
+  };
+
   return (
     <div className="container-login">
       <div>
         <h3 className="form-login-title">Login</h3>
       </div>
       <div>
-        <form onSubmit={ () => toLogin() } className="container-int-login">
+        <form
+          onSubmit={ (event) => toLogin(event) }
+          className="container-int-login"
+        >
           <label htmlFor="email" className="form-login">
             Email
             <input
@@ -59,7 +74,7 @@ const ComponentLogin = () => {
           <button
             type="submit"
             disabled={ labelLogin }
-            className="btn-submit-login"
+            className={ labelLogin === false ? 'btn-submit-login' : 'disable' }
             data-testid="signin-btn"
           >
             Entrar
