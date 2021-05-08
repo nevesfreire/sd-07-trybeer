@@ -18,10 +18,15 @@ const userRegisterSuccess = {
   message: 'User registered.',
 };
 
+const notFoundMessage = {
+  message: 'image not found',
+};
+
 module.exports = {
   userPasswordMessage,
   updateNameMessageSuccess,
   updateNameMessageError,
   userEmailorName,
   userRegisterSuccess,
+  notFoundMessage,
 };
