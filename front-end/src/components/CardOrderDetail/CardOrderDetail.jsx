@@ -23,7 +23,6 @@ function CardOrderDetail(props) {
         {`R$ ${total
           .toString()
           .replace('.', ',')}`}
-
       </div>
     </div>
   );
