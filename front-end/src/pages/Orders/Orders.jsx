@@ -5,11 +5,9 @@ import { getStorage } from '../../services/localStorage';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
 
   useEffect(() => {
-    // setIsLoading(false);
     const user = getStorage('user');
     if (!user) {
       history.push('/login');
