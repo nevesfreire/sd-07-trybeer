@@ -1,0 +1,55 @@
+.container-register {
+   display: flex;
+   justify-content: center;
+   margin-top: 2rem;
+}
+
+.form-registration  {
+   display: flex;
+   align-items: center;
+   width: 35rem;
+   height: 30rem;
+   margin-left: 25rem;
+}
+
+.form-registration > .registration-input{
+   width: 20rem;
+   margin: 5px;
+   background-color: #ffff;
+   font-size: 30px;
+}
+
+.register-btn-group > .RegisterBtn {
+   width: 20rem;
+   height: 3rem;
+   text-align: center;
+   border-radius: 0.5rem;
+   background-color: rgb(13, 136, 9);
+   font-size: 25px;
+   margin-bottom: 20px;
+}
+
+.label-register {
+   margin-right: 18rem;
+}
+
+.checkDecision {
+   width: 22rem;
+   display: flex;
+   flex-flow: row;
+   align-items: center;
+   margin-bottom: 1rem;
+   margin-left: 1.5rem;
+}
+
+.nav-register{
+   text-decoration: none;
+   color: rgba(0, 0, 0, 0.658);
+   margin-top: 30rem;
+}
+
+.success-message {
+   height: 3rem;
+   color: red;
+   transition: 0.5s;
+}
