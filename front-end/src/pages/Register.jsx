@@ -32,7 +32,7 @@ export default function Register() {
 
   const buttonRegister = async () => {
     const { fetchAPI } = fetchs;
-    const obj = { name, email, password, isChecked };
+    const obj = { name, email, password, role: isChecked };
     const api = await fetchAPI('/register', 'POST', obj);
     if (api.error) return setErrorMenssage({ error: true, menssage: api.message });
     localStorage.setItem('user', api.user);
