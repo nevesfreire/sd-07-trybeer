@@ -102,7 +102,7 @@ const ComponentRegister = () => {
         />
 
         <div className="checkDecision">
-          <Checkbox
+          <input type="checkbox"
             data-testid="signup-seller"
             className="registerCheck"
             size="medium"

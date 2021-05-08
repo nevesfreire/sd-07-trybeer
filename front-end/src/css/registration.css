@@ -46,8 +46,8 @@
    display: flex;
    flex-flow: row;
    align-items: center;
-   margin-bottom: 0.2rem;
-   margin-left: 0.5rem;
+   margin-bottom: 1rem;
+   margin-left: 1.5rem;
 }
 
 .nav-register{
