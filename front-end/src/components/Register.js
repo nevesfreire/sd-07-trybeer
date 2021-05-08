@@ -72,8 +72,8 @@ const ComponentRegister = () => {
         <h1>Cadastro</h1>
         <TextField
           id="userName"
-          label="Nome"
           data-testid="signup-name"
+          label="Nome"
           type="e-mail"
           className="registration-input"
           variant="outlined"
@@ -83,6 +83,7 @@ const ComponentRegister = () => {
 
         <TextField
           id="email"
+          data-testid="signup-email"
           label="Email"
           className="registration-input"
           variant="outlined"
@@ -92,8 +93,8 @@ const ComponentRegister = () => {
 
         <TextField
           id="password"
-          label="Senha"
           data-testid="signup-password"
+          label="Senha"
           type="password"
           className="registration-input"
           variant="outlined"
