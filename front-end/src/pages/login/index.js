@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-import login from '../../service/trybeerApi';
+import { login } from '../../service/trybeerApi';
 
 export default function Login() {
   const [shouldRedirect, setShouldRedirect] = useState('');

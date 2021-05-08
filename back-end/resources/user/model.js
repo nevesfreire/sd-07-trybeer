@@ -14,4 +14,9 @@ const getByEmail = async (email) => {
   return user;
 };
 
-module.exports = { getAll, getByEmail };
+const create = async (name, email, password, role) => conn.execute(
+  `INSERT INTO users (name, email, password, role) VALUES
+    (?, ?, ?, ?)`, [name, email, password, role],
+);
+
+module.exports = { getAll, getByEmail, create };
