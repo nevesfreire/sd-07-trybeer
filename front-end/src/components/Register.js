@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { FormControl, Button, Checkbox } from '@material-ui/core';
+import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import fieldValidate from '../helpers/fieldValidate';
 import messageSuccess from '../helpers/MessageSuccess';
@@ -102,7 +102,8 @@ const ComponentRegister = () => {
         />
 
         <div className="checkDecision">
-          <input type="checkbox"
+          <input
+            type="checkbox"
             data-testid="signup-seller"
             className="registerCheck"
             size="medium"
