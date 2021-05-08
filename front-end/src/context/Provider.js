@@ -1,10 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Global from './index';
 
-const Provider = ({ children }) => (
-  <Global.Provider>{children}</Global.Provider>
-);
+const Provider = (props) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+  const [isOk, setIsOk] = useState(true);
+  const [user, setUser] = useState({});
+
+  const contexto = {
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    isChecked,
+    setIsChecked,
+    isOk,
+    setIsOk,
+    user,
+    setUser,
+  };
+
+  const { children } = props;
+
+  return (
+    <Global.Provider value={ contexto }>
+      {children}
+    </Global.Provider>
+  );
+};
 
 Provider.propTypes = {
   children: PropTypes.node.isRequired,
