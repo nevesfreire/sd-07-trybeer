@@ -5,6 +5,7 @@ import { Grid } from 'semantic-ui-react';
 import CustomLogin from '../components/CustomLogin';
 import CustomHeader from '../components/CustomHeader';
 import fetchToken from '../service/auth';
+import fetchProducts from '../service/products';
 
 function Login() {
   const history = useHistory();
@@ -38,6 +39,7 @@ function Login() {
     const email = formData.get('email');
     const password = formData.get('password');
     const user = await fetchToken(email, password);
+    await fetchProducts(); // mudança do local do fetch
     const { role } = user;
     if (role === 'client') return history.push('/products');
     history.push('/admin/orders');
