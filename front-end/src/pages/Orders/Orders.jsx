@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Header, CardOrder} from "../../components";
 import {getStorage} from "../../services/localStorage";
-import {useHistory} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -16,9 +16,15 @@ function Orders() {
     }
     const cart = getStorage("purchase");
     setOrders(cart);
-
   }, []);
 
+  if (!orders) {
+    return (
+      <div>
+        <Header data-testid="top-title">Meus Pedidos</Header>
+      </div>
+    );
+  }
 
   return (
     <div>
