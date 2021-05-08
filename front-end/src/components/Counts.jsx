@@ -32,7 +32,7 @@ export default function Counts({ price, index }) {
     <div>
       <Buttons
         testid={ `${index}-product-minus` }
-        value="-"
+        defaultValue="-"
         disable={ count <= 0 ? AUX_BOOLEAN : false }
         countClick={ countSub }
       />
@@ -42,7 +42,7 @@ export default function Counts({ price, index }) {
       />
       <Buttons
         testid={ `${index}-product-plus` }
-        value="+"
+        defaultValue="+"
         countClick={ countSum }
       />
     </div>

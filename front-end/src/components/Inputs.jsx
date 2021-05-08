@@ -6,7 +6,7 @@ export default function Inputs({ value, testid }) {
     <input
       data-testid={ testid }
       type="number"
-      value={ `${value}` }
+      value={ value }
     />
   );
 }

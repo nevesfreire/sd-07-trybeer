@@ -18,7 +18,7 @@ export default function SalesCar({ value }) {
     <div>
       <Buttons
         data-testid="checkout-bottom-btn"
-        value="Ver Carrinho"
+        defaultValue="Ver Carrinho"
         disable={ priceCar <= 0 ? AUX_BOOLEAN : false }
         countClick={ handlerRedirect }
       />

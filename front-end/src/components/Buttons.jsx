@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Buttons({ value, countClick, testid, disable }) {
+export default function Buttons({ defaultValue, countClick, testid, disable }) {
   return (
     <button
       data-testid={ testid }
@@ -9,18 +9,16 @@ export default function Buttons({ value, countClick, testid, disable }) {
       disabled={ disable }
       onClick={ () => countClick() }
     >
-      {value}
+      { defaultValue }
     </button>
   );
 }
 
 Buttons.propTypes = {
-  value: PropTypes.string.isRequired,
-  testid: PropTypes.string.isRequired,
-  disable: PropTypes.bool.isRequired,
-  countClick: PropTypes.func,
+  defaultValue: PropTypes.string.isRequired,
 };
 
-Buttons.defaultProps = {
-  countClick: PropTypes.func,
+/* Buttons.defaultProps = {
+
 };
+ */
