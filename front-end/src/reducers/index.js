@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-/* import header from './header';
-import mainpage from './mainpage'; */
+import products from './products';
 
 const rootReducer = combineReducers({
-/*   header,
-  mainpage, */
+  products,
 });
 
 export default rootReducer;

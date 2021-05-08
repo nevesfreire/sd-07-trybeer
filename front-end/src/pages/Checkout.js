@@ -3,8 +3,6 @@ import Header from '../components/Header';
 
 export default function Checkout() {
   return (
-    <>
-      <Header title={ `Finalizar Pedido` } />
-    </>
+    <Header title="Finalizar Pedido" />
   );
 }

@@ -3,8 +3,6 @@ import Header from '../components/Header';
 
 export default function AdminOrderDetails() {
   return (
-    <>
-      <Header title={ `- Pendente` } />
-    </>
+    <Header title="- Pendente" />
   );
 }
