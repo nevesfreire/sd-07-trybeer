@@ -21,8 +21,16 @@ const findByEmailAndPassword = async (email, password) => {
   return user[0];
 };
 
+const updateUser = async (name, email) => {
+  const query = 'UPDATE users SET name=? WHERE email=?';
+  const values = [name, email];
+  const [ResultSetHeader] = await conn.execute(query, values);
+  return ResultSetHeader.changedRows;
+};
+
 module.exports = {
   create,
   findByEmail,
   findByEmailAndPassword,
+  updateUser,
 };

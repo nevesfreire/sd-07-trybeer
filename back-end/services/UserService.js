@@ -1,6 +1,6 @@
 const User = require('../models/UserModel');
 const CustomError = require('../helper/CustomError');
-const { generateToken } = require('../helper/AuthValidation');
+const { generateToken, verifyToken } = require('../helper/AuthValidation');
 const Validations = require('./validations');
 const CODE = require('../helper/statusCodes');
 
@@ -30,7 +30,18 @@ const findByEmailAndPassword = async (email, password) => {
   return { statusCode: CODE.OK, user };
 };
 
+const updateUser = async (token, name) => {
+  if (!token) throw new CustomError(CODE.UNAUTHORIZED, 'Necessário realizar autenticação');
+  const { username } = verifyToken(token);
+
+  // Adicionar validação para o nome
+  const update = await User.updateUser(name, username);
+  if (update < 1) throw new CustomError(CODE.CONFLICT, 'Não foi possível atualizar o nome');
+  return { statusCode: CODE.ACCEPTED, message: 'Nome atualizado com sucesso' };
+};
+
 module.exports = {
   create,
   findByEmailAndPassword,
+  updateUser,
 };

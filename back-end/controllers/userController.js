@@ -14,6 +14,19 @@ const create = async (req, res, next) => {
   }
 };
 
+const updateUser = async (req, res, next) => {
+  const token = req.headers.authorization;
+  const { name } = req.body;
+
+  try {
+    const { statusCode, message } = await User.updateUser(token, name);
+    res.status(statusCode).json({ statusCode, message });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
+  updateUser,
 };

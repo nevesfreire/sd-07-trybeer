@@ -1,6 +1,7 @@
 const Joi = require('@hapi/joi');
 
 const userValidation = (object) => {
+  // const minPasswordLength = 6;
   const dataSchema = Joi.object({
     name: Joi.string().regex(/^[a-z ,.'-]+$/i).min(12).required(),
     email: Joi.string().email().required(),
