@@ -17,7 +17,7 @@ const handleLocalStorage = (data, history) => {
   return history.push('/admin/orders');
 };
 
-const validateName = (name) => {
+const validateName = (name, path) => {
   const minLengthName = 12;
   const verifyLength = name.length >= minLengthName;
   const verifyCharacter = (/^[a-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/i).test(name);
@@ -25,11 +25,33 @@ const validateName = (name) => {
   return true;
 };
 
-const validateEmail = (email) => (/[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i).test(email);
+const validateEmail = (email) => (/[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i)
+  .test(email);
 
 const validatePassword = (password) => {
   const minLengthPass = 6;
   return password.length >= minLengthPass;
+};
+
+const submitRegister = async (...restParams) => {
+  const [
+    name,
+    email,
+    password,
+    checkbox,
+    history,
+    register,
+    setEmailAlreadyExist,
+  ] = restParams;
+  const newUserData = await register(name, email, password, checkbox);
+  if (newUserData.message) return setEmailAlreadyExist(newUserData.message);
+  handleLocalStorage(newUserData, history);
+};
+
+const submitLogin = async (email, password, history, login) => {
+  const userData = await login(email, password);
+  if (userData.token) return handleLocalStorage(userData, history);
+  return alert('Email ou senha incorreto');
 };
 
 function Form({ history }) {
@@ -39,29 +61,29 @@ function Form({ history }) {
   const [name, setName] = useState('');
   const [checkbox, setCheckbox] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [emailAlreadyExist, setEmailAlreadyExist] = useState(false);
 
   const { location: { pathname } } = history;
   const path = pathname;
 
-  const submitLogin = async () => {
-    const userData = await login(email, password);
-    if (!userData.token) return alert('Email ou senha incorreto');
-    handleLocalStorage(userData, history);
-  };
-
-  const submitRegister = async () => {
-    const newUserData = await register(name, email, password, checkbox);
-    handleLocalStorage(newUserData, history);
-  };
-
   const handleSubmit = async () => {
-    if (path === '/register') await submitRegister();
-    await submitLogin();
+    if (path === '/register') {
+      return submitRegister(
+        name,
+        email,
+        password,
+        checkbox,
+        history,
+        register,
+        setEmailAlreadyExist,
+      );
+    }
+    return submitLogin(email, password, history, login);
   };
 
   const validateInputsValue = () => {
     const emailValidation = validateEmail(email);
-    const nameValidation = validateName(name);
+    const nameValidation = validateName(name, path);
     const passwordValidation = validatePassword(password);
 
     setDisabled(!(nameValidation && emailValidation && passwordValidation));
@@ -120,6 +142,7 @@ function Form({ history }) {
           </label>
         )}
       </form>
+      { emailAlreadyExist && <span>{ emailAlreadyExist }</span> }
       <button
         type="button"
         data-testid={ path === '/register' ? 'signup-btn' : 'signin-btn' }
