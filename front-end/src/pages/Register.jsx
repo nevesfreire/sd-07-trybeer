@@ -91,6 +91,7 @@ export default function Register() {
           Quero vender
 
           <input
+            data-testid="signup-seller"
             checked={ isChecked }
             id="checkboxRegister"
             name="checkbox"
@@ -106,7 +107,7 @@ export default function Register() {
       </h4>
 
       <button
-        data-testid="signin-btn"
+        data-testid="signup-btn"
         disabled={
           !validateName(name) || !validateEmail(email) || !validatePassword(password)
         }
