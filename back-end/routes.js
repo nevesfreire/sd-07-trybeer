@@ -26,7 +26,7 @@ app.post(
 app.get('/products', productController);
 
 app.post('/', body('name').isString().isLength({ min: 12 }),
-             body('email').isEmail(),
-             body('password').isLength({ min: 6 }), fieldValidator, registerController);
+              body('email').isEmail(),
+              body('password').isLength({ min: 6 }), fieldValidator, registerController);
 
 module.exports = app;

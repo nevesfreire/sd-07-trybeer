@@ -11,7 +11,7 @@ const registerController = async (req, res) => {
    try {
         const { name, email, password, checked } = req.body;
         let role = 'admin';
-
+        console.log('no back:', checked);
         if (!checked) role = 'cliente';
 
         const user = await registerService.register(name, email, password, checked);
