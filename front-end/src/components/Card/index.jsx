@@ -1,58 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getStorage, setStorage } from '../../services/localStorage';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
+import format from '../../util/format';
 
-function Card(product) {
-  const ZERO = 0;
-  const ONE = 1;
+function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
+  const [productQuantity, setProductQuantity] = useState(0);
 
-  const [quantity, setQuantity] = useState(ZERO);
+  useEffect(() => {
+    if (quantity) setProductQuantity(quantity);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const { updateCart } = Creators;
 
   const dispatch = useDispatch();
 
-  const { url_image: urlImage, name, price } = product;
-
-  const setCart = () => {
+  const setCart = useCallback((newQuantity) => {
     const cart = getStorage('cart');
-    const totalProductPrice = Math.round((Number(price) * 100) * quantity) / 100;
-    cart.forEach((element) => {
-      if (element.name === name) {
-        element.quantity = quantity;
-      }
-    });
-    cart.totalPrice += totalProductPrice;
-    dispatch(Creators.changeTotalPrice(cart.totalPrice));
-    setStorage('cart', cart);
-  };
+    // const totalProductPrice = Math.round((Number(price) * 100) * newQuantity) / 100;
+    const newCart = cart.map((element) => (element.id === id
+      ? { ...element, quantity: newQuantity } : element));
+    dispatch(updateCart(newCart));
+    setStorage('cart', newCart);
+  }, [dispatch, id, updateCart]);
 
-  const changeQuantity = (operation) => {
-    if (operation === 'minus' && quantity > ZERO) {
-      setQuantity(quantity - ONE);
-      setCart();
+  const changeQuantity = useCallback((operation) => {
+    if (operation === 'minus' && productQuantity > 0) {
+      const newQuantity = productQuantity - 1;
+      setProductQuantity(newQuantity);
+      setCart(newQuantity);
     }
     if (operation === 'plus') {
-      setQuantity(quantity + ONE);
-      setCart();
+      const newQuantity = productQuantity + 1;
+      setProductQuantity(newQuantity);
+      setCart(newQuantity);
     }
     return null;
-  };
+  }, [productQuantity, setCart]);
 
   return (
     <div>
-      <img alt={ name } src={ urlImage } />
-      <h5>{ price }</h5>
-      <h6>{ name }</h6>
+      <img
+        data-testid={ `${id - 1}-product-img` }
+        src={ urlImage }
+        alt={ name }
+      />
+      <h5 data-testid={ `${id - 1}-product-price` }>{ format(price) }</h5>
+      <h6 data-testid={ `${id - 1}-product-name` }>{ name }</h6>
       <button
         type="button"
-        onClick={ changeQuantity('plus') }
+        data-testid={ `${id - 1}-product-minus` }
+        onClick={ () => changeQuantity('minus') }
       >
         -
       </button>
-      <span>{ quantity }</span>
+      <span data-testid={ `${id - 1}-product-qtd` }>{ productQuantity }</span>
       <button
         type="button"
-        onClick={ changeQuantity('minus') }
+        data-testid={ `${id - 1}-product-plus` }
+        onClick={ () => changeQuantity('plus') }
       >
         +
       </button>
@@ -61,3 +69,13 @@ function Card(product) {
 }
 
 export default Card;
+
+Card.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    url_image: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.string,
+    quantity: PropTypes.number,
+  }).isRequired,
+};

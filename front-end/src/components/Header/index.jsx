@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { clearStorage } from '../../services/localStorage';
+import { clearStorage, getStorage } from '../../services/localStorage';
 
 import './styles.css';
-import { getStorage } from '../../services/localStorage';
 
 function Header({ children }) {
   const history = useHistory();
@@ -13,7 +12,7 @@ function Header({ children }) {
 
   useEffect(() => {
     const user = getStorage('user');
-    if (user.role === 'administrator') setRole('administrator');
+    if (user && user.role === 'administrator' ) setRole('administrator');
   }, []);
 
   function handleClick({ target }) {

@@ -16,8 +16,8 @@ function OrderDetails({
     if (!user) {
       history.push("/login");
     }
-    const data = getStorage("cart");
-    setCart(data[id - 1]);
+    const data = getStorage("purchase");
+    if(data) setCart(data[id - 1]);
     setIsLoading(false);
   }, [history]);
 
@@ -27,15 +27,16 @@ function OrderDetails({
 
   return (
     <div>
-      <Header headerTitle="Detalhes do Pedido" data-testid="top-title" />
+      <Header data-testid="top-title">Detalhes do Pedido</Header>
+      <div data-testid="order-number">{`Pedido ${id}`}</div>
+      <div data-testid="order-date">{cart.sale_date}</div>
       <div>
-        <div data-testid="order-number">{`Pedido ${id}`}</div>
-        <div data-testid="order-date">{cart.sale_date}</div>
-        <div>
-          {cart.products.map((product, index) => {
-            return <CardOrderDetail key={index} product={product} index={index} />;
-          })}
-        </div>
+        {cart.products.map((product, index) => {
+          return <CardOrderDetail key={index} product={product} index={index} />;
+        })}
+      </div>
+      <div data-testid="order-total-value">
+        {`R$ ${parseFloat(cart.total_price).toFixed(2).toString().replace(".", ",")}`}
       </div>
     </div>
   );
