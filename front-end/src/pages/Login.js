@@ -39,6 +39,7 @@ function Login() {
     const email = formData.get('email');
     const password = formData.get('password');
     const user = await fetchToken(email, password);
+    console.log(user);
     await fetchProducts(); // mudança do local do fetch
     const { role } = user;
     if (role === 'client') return history.push('/products');
