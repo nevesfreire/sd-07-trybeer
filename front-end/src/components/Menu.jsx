@@ -6,13 +6,27 @@ import { Link } from 'react-router-dom';
 const Menu = ({ open, ...props }) => {
 
   const isHidden = open ? true : false;
-  const tabIndex = isHidden ? 0 : -1;
+  // const tabIndex = isHidden ? 0 : -1;
 
   return (
-    <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
-      <Link to="/"> Produtos </Link>
-      <Link to="/"> Meus Pedidos </Link>
-      <Link to="/"> Meu Perfil </Link>
+    <StyledMenu
+      open={open}
+      aria-hidden={!isHidden}
+      {...props}
+      class="side-menu-container"
+    >
+      <Link to="/products" data-testid="side-menu-item-products">
+        Produtos
+      </Link>
+      <Link to="/admin/orders" data-testid="side-menu-item-my-orders">
+        Meus Pedidos
+      </Link>
+      <Link to="/profile" data-testid="side-menu-item-my-profile">
+        Meu Perfil
+      </Link>
+      <Link to="/" data-testid="side-menu-item-logout">
+        Sair
+      </Link>
     </StyledMenu>
   )
 }
