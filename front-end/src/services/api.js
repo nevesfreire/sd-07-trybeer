@@ -76,5 +76,4 @@ export async function fetchFinishSale(cartList, address, totalPrice) {
     headers: { ...headers, Authorization: loggedUser.token },
   });
   return true;
-
 }
