@@ -55,90 +55,86 @@ function RegisterForm() {
   };
 
   return (
-    <>
-    <div className="card">
-      <div className="card-content">
-        <Field>
-          <Label>
-            Nome
-          </Label>
-          <Control>
-            <Input
-              onChange={ (e) => setName(e.target.value) }
-              name="name"
-              data-testid="signup-name"
-              placeholder="Chuck Norrys"
-              type="text"
-              />
-          </Control>
-        </Field>
-        <Field>
-          <Label>
-            Email
-          </Label>
-          <Control>
-            <Input
-              onChange={ (e) => setEmail(e.target.value) }
-              name="email"
-              data-testid="signup-email"
-              placeholder="chuck@emailcom"
-              type="text"
-            />
-          </Control>
-        </Field>
-        <div
-          hidden={ notification }
-          >
-          <p>
-            Já existe um usuário com esse e-mail.
-            <Button
-              remove
-              onClick={ () => setNotification(true) }
-              />
-          </p>
-        </div>
-        <Field>
-          <Label>
-            Senha
-          </Label>
-          <Control>
-            <Input
-              onChange={ (e) => setPassword(e.target.value) }
-              name="email"
-              data-testid="signup-password"
-              placeholder="123456"
-              type="text"
-            />
-          </Control>
-        </Field>
-        <Field>
-          <Control>
-            <Label>
-              <Checkbox
-                type="checkbox"
-                data-testid="signup-seller"
-                onChange={ () => setRole(!role) }
-              />
-              Quero vender
-            </Label>
-          </Control>
-        </Field>
-        <Field>
-          <Control>
-            <Button
-              onClick={ () => handleClick() }
-              data-testid="signup-btn"
-              className="button is-black"
-              disabled={ disable }
-            >
-              {' '}
-              Cadastrar
-            </Button>
-          </Control>
-        </Field>
-        </div>
+    <div>
+      <Field>
+        <Label>
+          Nome
+        </Label>
+        <Control>
+          <Input
+            onChange={ (e) => setName(e.target.value) }
+            name="name"
+            data-testid="signup-name"
+            placeholder="Chuck Norrys"
+            type="text"
+          />
+        </Control>
+      </Field>
+      <Field>
+        <Label>
+          Email
+        </Label>
+        <Control>
+          <Input
+            onChange={ (e) => setEmail(e.target.value) }
+            name="email"
+            data-testid="signup-email"
+            placeholder="chuck@emailcom"
+            type="text"
+          />
+        </Control>
+      </Field>
+      <div
+        hidden={ notification }
+      >
+        <p>
+          Já existe um usuário com esse e-mail.
+          <Button
+            remove
+            onClick={ () => setNotification(true) }
+          />
+        </p>
       </div>
-    </>
+      <Field>
+        <Label>
+          Senha
+        </Label>
+        <Control>
+          <Input
+            onChange={ (e) => setPassword(e.target.value) }
+            name="email"
+            data-testid="signup-password"
+            placeholder="123456"
+            type="text"
+          />
+        </Control>
+      </Field>
+      <Field>
+        <Control>
+          <Label>
+            <Checkbox
+              type="checkbox"
+              data-testid="signup-seller"
+              onChange={ () => setRole(!role) }
+            />
+            Quero vender
+          </Label>
+        </Control>
+      </Field>
+      <Field>
+        <Control>
+          <Button
+            onClick={ () => handleClick() }
+            data-testid="signup-btn"
+            className="button is-black"
+            disabled={ disable }
+          >
+            {' '}
+            Cadastrar
+          </Button>
+        </Control>
+      </Field>
+    </div>
   );
 }
 
