@@ -77,46 +77,59 @@ describe('2 - [PÁGINA DE REGISTER] Testa se todas as rotas de SideBar redirecio
   });
 
   test('Botao produtos encaminha para a rota "/products"', () => {
+    history.push('products');
     render(<App />);
 
-    const email = screen.getByTestId('email-input');
-    const password = screen.getByTestId('password-input');
-    const button = screen.getByTestId('no-account-btn');
-
-    userEvent.type(email, 'user@test.com');
-    userEvent.type(password, 'test123');
-    expect(button).toBeEnabled();
-    fireEvent.click(button)
-    
     const hamburgerButton = screen.getByTestId('top-hamburguer');
+
     fireEvent.click(hamburgerButton);
 
     const products = screen.getByTestId('side-menu-item-products');
-    fireEvent.click(products);
 
+    fireEvent.click(products);
     expect(history.location.pathname).toBe('/products');
   });
 
   test('Botao "Meus pedidos" encaminha para a rota "/orders"', () => {
+    history.push('orders');
     render(<App />);
 
-    const email = screen.getByTestId('email-input');
-    const password = screen.getByTestId('password-input');
-    const button = screen.getByTestId('no-account-btn');
-
-    userEvent.type(email, 'user@test.com');
-    userEvent.type(password, 'test123');
-    expect(button).toBeEnabled();
-    fireEvent.click(button)
-    
     const hamburgerButton = screen.getByTestId('top-hamburguer');
+
     fireEvent.click(hamburgerButton);
 
     const orders = screen.getByTestId('side-menu-item-my-orders');
-    fireEvent.click(orders);
 
+    fireEvent.click(orders);
     expect(history.location.pathname).toBe('/orders');
   });
 
+  test('Botao "Meus pedidos" encaminha para a rota "/profile"', () => {
+    history.push('profile');
+    render(<App />);
+
+    const hamburgerButton = screen.getByTestId('top-hamburguer');
+
+    fireEvent.click(hamburgerButton);
+
+    const profile = screen.getByTestId('side-menu-item-my-profile');
+
+    fireEvent.click(profile);
+    expect(history.location.pathname).toBe('/profile');
+  });
+
+  test('Botao "Meus pedidos" encaminha para a rota "/orders"', () => {
+    history.push('login');
+    render(<App />);
+
+    const hamburgerButton = screen.getByTestId('top-hamburguer');
+
+    fireEvent.click(hamburgerButton);
+
+    const quit = screen.getByTestId('side-menu-item-logout');
+
+    fireEvent.click(quit);
+    expect(history.location.pathname).toBe('/login');
+  });
 })
 

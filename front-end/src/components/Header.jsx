@@ -17,7 +17,7 @@ function TopMenu() {
       </button>
       <h2 data-testid="top-title">Trybeer</h2>
 
-      {showSideBar ? <SideBar /> : <div />}
+      {showSideBar ? <SideBar class="side-menu-container" /> : <div />}
     </div>
   );
 }
