@@ -16,8 +16,9 @@ function useRedirect() {
     }
 
     if (user === 'cliente') {
-      history.push('/client');
+      history.push('/products');
     }
+
   }, [history, user]);
 
   return [setGetEvent];
