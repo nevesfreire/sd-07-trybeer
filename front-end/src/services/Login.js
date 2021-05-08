@@ -1,4 +1,4 @@
-export const getToken = (user) => {
+const getToken = (user) => {
   try {
     const url = 'http://localhost:3001/login';
     return fetch(url, {
@@ -12,3 +12,5 @@ export const getToken = (user) => {
     console.log(error.message);
   }
 };
+
+export default getToken;
