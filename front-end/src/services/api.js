@@ -1,4 +1,4 @@
-const axios = require('axios').default;
+const axios = require('axios');
 
 const BASE_URL = 'http://localhost:3001';
 
