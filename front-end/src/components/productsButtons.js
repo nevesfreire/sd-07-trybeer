@@ -7,7 +7,7 @@ function ProductsButtons(props) {
       <button
         type="button"
         data-testid="0-product-minus"
-        onclick={remove}
+        onClick={remove}
       >
         -
       </button>
@@ -19,7 +19,7 @@ function ProductsButtons(props) {
       <button
         type="button"
         data-testid="0-product-plus"
-        onclick={add}
+        onClick={add}
       >
         +
       </button>

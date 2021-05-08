@@ -3,12 +3,12 @@ import ProductsButtons from './productsButtons';
 
 function ProductsCard(props) {
   const { id, name, price, image, updateCart } = props;
-  const [cartQtt, setCartQtt] = useState(0);
+  const [cartQuantity, setCartQuantity] = useState(0);
   const [update, setUpdate] = useState(false);
   
   const updateThis = () => {
-    if(update) return setUpdate(false);
-    if(!update) return setUpdate(true);
+    if(update) setUpdate(false);
+    setUpdate(true);
   }
 
   const addCartItem = () => {
@@ -42,7 +42,7 @@ function ProductsCard(props) {
     if (!cart.includes(id)) return false; 
     cart.forEach((product) => {
       if (product.id === id) {
-        setCartQtt(product.quantity);
+        setCartQuantity(product.quantity);
       }
     });
   }
@@ -83,7 +83,7 @@ function ProductsCard(props) {
         {name}
       </span>
       <ProductsButtons
-        quantity={cartQtt}
+        quantity={cartQuantity}
         add={addCartItem}
         remove={removeCartItem}
       />
