@@ -8,7 +8,7 @@ import '@testing-library/jest-dom'
 import '@testing-library/dom';
 import { createMemoryHistory } from 'history';
 import App from '../App';
-import login from '../service/trybeerApi';
+import { login } from '../service/trybeerApi';
 
 const history = createMemoryHistory();
 history.push('login');
