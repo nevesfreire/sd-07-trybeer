@@ -1,36 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import MyContext from '../context/Context';
+import Storage from '../services/storageFunctions';
 
 function ProductsCards() {
   const history = useHistory();
 
-  const { products, total, setTotal } = useContext(MyContext);
+  const { products } = useContext(MyContext);
+  const [total, setTotal] = useState(0);
 
   const getQuantity = (name) => {
-    if (JSON.parse(localStorage.getItem('cart'))) {
-      const cartItem = JSON.parse(localStorage.getItem('cart'))
-        .find((item) => item.name === name);
+    if (Storage.getItem('cart')) {
+      const cartItem = Storage.getItem('cart').find((item) => item.name === name);
       return cartItem === undefined ? 0 : cartItem.quantity;
     }
     return 0;
   };
 
+  useEffect(() => {
+    setTotal(Storage.getItem('totalCart') || 0);
+  }, []);
+
   const setTotalCart = () => {
-    const sumCart = JSON.parse(localStorage.getItem('cart'))
+    const sumCart = Storage.getItem('cart')
       .reduce((totalItem, actual) => actual.totalItem + totalItem, 0);
     return (
-      localStorage.setItem('totalCart', JSON.stringify(sumCart)),
+      Storage.setItem('totalCart', sumCart),
       setTotal(sumCart)
     );
   };
 
   const addInCart = (id, name, price) => {
-    if (JSON.parse(localStorage.getItem('cart'))) {
-      const cartItem = JSON.parse(localStorage.getItem('cart'))
-        .find((item) => item.name === name);
+    if (Storage.getItem('cart')) {
+      const cartItem = Storage.getItem('cart').find((item) => item.name === name);
       if (!cartItem) {
-        const newCartStorage = [...JSON.parse(localStorage.getItem('cart')), {
+        const newCartStorage = [...Storage.getItem('cart'), {
           id,
           name,
           price,
@@ -38,7 +42,7 @@ function ProductsCards() {
           totalItem: Number(price),
         }];
         return (
-          localStorage.setItem('cart', JSON.stringify(newCartStorage)),
+          Storage.setItem('cart', newCartStorage),
           setTotalCart()
         );
       }
@@ -47,10 +51,10 @@ function ProductsCards() {
         quantity: cartItem.quantity + 1,
         totalItem: cartItem.totalItem + Number(price),
       };
-      const newCartStorage = [...JSON.parse(localStorage.getItem('cart'))
+      const newCartStorage = [...Storage.getItem('cart')
         .filter((item) => item.name !== name), newCartItem];
       return (
-        localStorage.setItem('cart', JSON.stringify(newCartStorage)),
+        Storage.setItem('cart', newCartStorage),
         setTotalCart()
       );
     }
@@ -62,13 +66,13 @@ function ProductsCards() {
       totalItem: Number(price),
     };
     return (
-      localStorage.setItem('cart', JSON.stringify([cartItem])),
+      Storage.setItem('cart', [cartItem]),
       setTotalCart()
     );
   };
 
   const removeFromCart = (name, price) => {
-    const cartStorage = JSON.parse(localStorage.getItem('cart'));
+    const cartStorage = Storage.getItem('cart');
     const cartItem = cartStorage.find((item) => item.name === name);
     if (cartItem !== undefined) {
       const newQuantity = cartItem.quantity - 1;
@@ -76,20 +80,17 @@ function ProductsCards() {
       const newCartItem = { ...cartItem, quantity: newQuantity, totalItem: newTotalItem };
       if (newQuantity < 1) {
         return (
-          localStorage.setItem('cart', JSON
-            .stringify(cartStorage.filter((item) => item.name !== name))),
+          Storage.setItem('cart', cartStorage.filter((item) => item.name !== name)),
           setTotalCart()
         );
       }
       return (
-        localStorage.setItem('cart', JSON
-          .stringify([...cartStorage.filter((item) => item.name !== name), newCartItem])),
+        Storage.setItem('cart', [...cartStorage
+          .filter((item) => item.name !== name), newCartItem]),
         setTotalCart()
       );
     }
   };
-
-  console.log(total);
 
   return (
     <div>
@@ -128,11 +129,11 @@ function ProductsCards() {
         type="button"
         data-testid="checkout-bottom-btn"
         onClick={ () => history.push('/checkout') }
-        disabled={ !total }
+        disabled={ total === 0 }
       >
         Ver Carrinho &nbsp;
         <span data-testid="checkout-bottom-btn-value">
-          { `R$ ${Number(total).toFixed(2).replace('.', ',')}`}
+          { `R$ ${total.toFixed(2).replace('.', ',')}`}
         </span>
       </button>
     </div>

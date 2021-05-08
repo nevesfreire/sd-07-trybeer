@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import MyContext from '../context/Context';
+import Storage from '../services/storageFunctions';
 
 function Login() {
   const history = useHistory();
@@ -29,13 +30,15 @@ function Login() {
       },
       body: JSON.stringify({ email, password }),
     }).then((response) => response.json())
-      .then((data) => localStorage.setItem('user', JSON.stringify(data)))
+      .then((data) => Storage.setItem('user', data))
       .then(() => {
-        const userStorage = JSON.parse(localStorage.getItem('user'));
+        const userStorage = Storage.getItem('user');
         if (userStorage.role === 'client') {
           history.push('/products');
-        } else {
+        } else if (userStorage.role === 'administrator') {
           history.push('/admin/orders');
+        } else {
+          alert('Usuário não cadastrado');
         }
       });
   };
