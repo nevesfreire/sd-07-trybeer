@@ -1,9 +1,10 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function AdminOrderDetails() {
   return (
-    <div>
-      {}
-    </div>
+    <>
+      <Header title={ `- Pendente` } />
+    </>
   );
 }
