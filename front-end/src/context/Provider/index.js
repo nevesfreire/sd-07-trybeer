@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import BeerContext from '../BeerContext';
 
 export default function Provider({ children }) {
-  const context = {
+  const [isLoading, setIsLoading] = useState(false);
 
+  const context = {
+    isLoading,
+    setIsLoading,
   };
   return (
     <BeerContext.Provider value={ context }>

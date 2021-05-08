@@ -10,6 +10,7 @@ const Routes = () => (
     <Route exact path="/admin" />
     <Route exact path="/products" component={ Products } />
     <Route exact path="/register" component={ Register } />
+    <Route exact path="/checkout" />
   </Switch>
 );
 

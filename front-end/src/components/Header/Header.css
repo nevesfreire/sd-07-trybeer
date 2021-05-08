@@ -4,8 +4,9 @@
 header {
   display: flex;
   height: 60px;
-  background-color: aqua;
+  background-color: rgb(3, 6, 37);
   align-items: center;
+  color: white;
 }
 
 header, h1 {

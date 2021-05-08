@@ -13,7 +13,6 @@ const GlobalStyles = createGlobalStyle`
     ${''}
     ${''}
     background: ${({ theme }) => theme.primaryDark};
-    color: ${({ theme }) => theme.primaryLight};
     height: 100vh;
     text-rendering: optimizeLegibility;
     font-family: -apple-system, BlinkMacSystemFont,
