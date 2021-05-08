@@ -34,6 +34,7 @@
    border-radius: 0.5rem;
    background-color: rgb(13, 136, 9);
    font-size: 25px;
+   margin-bottom: 20px;
 }
 
 .label-register {
@@ -45,7 +46,8 @@
    display: flex;
    flex-flow: row;
    align-items: center;
-   margin-bottom: 2rem;
+   margin-bottom: 0.2rem;
+   margin-left: 0.5rem;
 }
 
 .nav-register{
@@ -55,6 +57,7 @@
 }
 
 .success-message {
+   height: 3rem;
    color: red;
    transition: 0.5s;
 }
