@@ -102,7 +102,7 @@ export default function Register() {
         </label>
       </div>
 
-      <h4 visibility={ errorMenssage.error ? 'visible' : 'hidden' }>
+      <h4 style={ { visibility: (errorMenssage.error ? 'visible' : 'hidden') } }>
         {errorMenssage.menssage}
       </h4>
 
