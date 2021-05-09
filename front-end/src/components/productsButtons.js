@@ -2,12 +2,14 @@ import React from 'react';
 
 function ProductsButtons(props) {
   const { quantity, add, remove } = props;
+
+  console.log('vai');
   return (
     <>
       <button
         type="button"
         data-testid="0-product-minus"
-        onClick={remove}
+        onClick={ remove }
       >
         -
       </button>
@@ -19,7 +21,7 @@ function ProductsButtons(props) {
       <button
         type="button"
         data-testid="0-product-plus"
-        onClick={add}
+        onClick={ add }
       >
         +
       </button>
