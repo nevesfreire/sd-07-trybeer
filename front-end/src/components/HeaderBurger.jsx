@@ -21,7 +21,7 @@ export default function HeaderBurguer({ titulo }) {
           <Menu open={ open } setOpen={ setOpen } id={ menuId } />
         </FocusLock>
       </div>
-      <span className={ styles.spanName }>
+      <span className={ styles.spanName } data-testid="top-title">
         {' '}
         {titulo}
       </span>
