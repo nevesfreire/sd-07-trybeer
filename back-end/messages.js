@@ -11,7 +11,7 @@ const updateNameMessageError = {
 };
 
 const userEmailorName = {
-  message: 'Email in use or name smaller then 12 characters',
+  message: 'Já existe um usuário com esse e-mail.',
 };
 
 const userRegisterSuccess = {
