@@ -64,7 +64,6 @@ function Products() {
           {cartPreview}
         </span>
       </button>
-
     </>
   );
 }
