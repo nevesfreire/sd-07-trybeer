@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import StyledMenu from '../styled/Menu.styled';
 
 const Menu = ({ open, ...props }) => {
-  const isHidden = !!open;
+  const isHidden = open ? true : false;
   // const tabIndex = isHidden ? 0 : -1;
 
   return (

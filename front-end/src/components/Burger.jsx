@@ -12,6 +12,7 @@ const Burger = ({ open, setOpen, ...props }) => {
       open={ open }
       onClick={ () => setOpen(!open) }
       { ...props }
+      data-testid="top-hamburguer"
     >
       <span />
       <span />
