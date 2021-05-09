@@ -5,13 +5,15 @@ const checkIfUserIsAuthenticated = (request, response, next) => {
   const token = request.headers.authorization;
   
   if (!token) {
-    return response.status(STATUS_CODE.UNAUTHORIZED).json({ message: STATUS_MESSAGE.MISSING_TOKEN });
+    return response.status(STATUS_CODE.UNAUTHORIZED)
+      .json({ message: STATUS_MESSAGE.MISSING_TOKEN });
   }
   if (validateToken.tokenIsValid(token)) {
     return next();
   }
 
-  return response.status(STATUS_CODE.UNAUTHORIZED).json({ message: STATUS_MESSAGE.MALFORMED_TOKEN });
+  return response.status(STATUS_CODE.UNAUTHORIZED)
+    .json({ message: STATUS_MESSAGE.MALFORMED_TOKEN });
 };
 
 module.exports = {

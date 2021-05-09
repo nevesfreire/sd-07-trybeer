@@ -1,4 +1,4 @@
-const { CustomError, STATUS_MESSAGE, validationsHelper } = require('../helpers');
+const { STATUS_MESSAGE, validationsHelper } = require('../helpers');
 const { generateToken, decodeToken } = require('../auth');
 const { userModels } = require('../models');
 
@@ -28,7 +28,6 @@ const userEmail = async (email) => {
 
   return STATUS_MESSAGE.USER_FOUND;
 };
-
 
 const userRegistration = async (name, email, password, seller) => {
   validationsHelper.checkIfNameEmailPasswordAndSellerExist(name, email, password, seller);

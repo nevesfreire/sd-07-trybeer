@@ -2,10 +2,12 @@ const { CustomError } = require('./errorHelper');
 const { STATUS_CODE } = require('./statusHelper');
 const { STATUS_MESSAGE } = require('./msgHelper');
 
-//-- userServices 
+// No magic numbers
 const SIX = 6;
 const TWELVE = 12;
+const ZERO = 0;
 
+// userServices 
 const checkIfEmailAndPasswordExist = (email, password) => {
   if (!email || !password) {
     throw new CustomError({
@@ -89,18 +91,9 @@ const checkIfUserIsOwner = (emailFromBody, emailFromToken) => {
   }
 };
 
-//-- saleServices
-const checkVerifyIFDataExist = (email, total_price, delivery_address, delivery_number, products_sales) => {
-  if (!email || !total_price || !delivery_address || !delivery_number || !products_sales) {
-    throw new CustomError({
-      status: STATUS_CODE.BAD_REQUEST,
-      message: STATUS_MESSAGE.INVALID_ENTIRES,
-    });
-  }
-}
-
-const checkTotalPriceValue = (total_price) => {
-  if (typeof total_price !== 'number' || total_price < 0) {
+// saleServices
+const checkIfDataExist = (data) => {
+  if (!data) {
     throw new CustomError({
       status: STATUS_CODE.BAD_REQUEST,
       message: STATUS_MESSAGE.INVALID_ENTIRES,
@@ -108,8 +101,8 @@ const checkTotalPriceValue = (total_price) => {
   }
 };
 
-const checkDeliveryNumberValue = (delivery_number) => {
-  if (typeof delivery_number !== 'number' || delivery_number < 0) {
+const checkTotalPriceValue = (totalPrice) => {
+  if (typeof totalPrice !== 'number' || totalPrice < 0) {
     throw new CustomError({
       status: STATUS_CODE.BAD_REQUEST,
       message: STATUS_MESSAGE.INVALID_ENTIRES,
@@ -117,8 +110,17 @@ const checkDeliveryNumberValue = (delivery_number) => {
   }
 };
 
-const checkProductsSalesValue = (products_sales) => {
-  if (products_sales.length < 0) {
+const checkDeliveryNumberValue = (deliveryNumber) => {
+  if (typeof deliveryNumber !== 'number' || deliveryNumber < 0) {
+    throw new CustomError({
+      status: STATUS_CODE.BAD_REQUEST,
+      message: STATUS_MESSAGE.INVALID_ENTIRES,
+    });
+  }
+};
+
+const checkProductsSalesValue = (productsSales) => {
+  if (productsSales.length < ZERO) {
     throw new CustomError({
       status: STATUS_CODE.BAD_REQUEST,
       message: STATUS_MESSAGE.INVALID_ENTIRES,
@@ -136,7 +138,7 @@ module.exports = {
   checkIfEmailExist,
   checkIfEmailAndNameExist,
   checkIfUserIsOwner,
-  checkVerifyIFDataExist,
+  checkIfDataExist,
   checkTotalPriceValue,
   checkDeliveryNumberValue,
   checkProductsSalesValue,

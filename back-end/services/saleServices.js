@@ -1,5 +1,5 @@
 const { saleModels, userModels } = require('../models');
-const { CustomError, STATUS_MESSAGE, validationsHelper } = require('../helpers');
+const { STATUS_MESSAGE, validationsHelper } = require('../helpers');
 
 const getUserIdFromEmail = async (email) => {
   const result = await userModels.findUserByEmail(email);
@@ -9,27 +9,35 @@ const getUserIdFromEmail = async (email) => {
 };
 
 // Source: https://stackoverflow.com/questions/5129624/convert-js-date-time-to-mysql-datetime
-const getDate = () => new Date().toISOString().slice(0, 10)+" "+new Date().toLocaleTimeString('pt-br', { timeZone: 'America/Sao_Paulo' });
+const getDate = () => {
+  const date = new Date().toISOString().slice(0, 10);
+  const hour = new Date().toLocaleTimeString('pt-br', { timeZone: 'America/Sao_Paulo' });
+  const result = `${date} ${hour}`;
+  return result;
+};
 
-const createSaleProducts =  async (sale_id, products_sales) => {
-  products_sales.forEach( async (product) => {
-    await saleModels.createSaleProducts(sale_id, product.id, product.quantity)
+const createSaleProducts = async (saleId, productsSales) => {
+  productsSales.forEach(async (product) => {
+    await saleModels.createSaleProducts(saleId, product.id, product.quantity);
   });
   return STATUS_MESSAGE.CREATED_SALE;
-}
+};
 
+const createSale = async (purchaseRequest) => {
+  validationsHelper.checkIfDataExist(purchaseRequest.email);
+  validationsHelper.checkIfDataExist(purchaseRequest.total_price);
+  validationsHelper.checkIfDataExist(purchaseRequest.delivery_address);
+  validationsHelper.checkIfDataExist(purchaseRequest.delivery_number);
+  validationsHelper.checkIfDataExist(purchaseRequest.products_sales);
+  validationsHelper.checkIfEmailIsValid(purchaseRequest.email);
+  validationsHelper.checkTotalPriceValue(purchaseRequest.total_price);
+  validationsHelper.checkDeliveryNumberValue(purchaseRequest.delivery_number);
+  validationsHelper.checkProductsSalesValue(purchaseRequest.products_sales);
 
-const createSale = async (email, total_price, delivery_address, delivery_number, products_sales) => {
-  validationsHelper.checkVerifyIFDataExist(email, total_price, delivery_address, delivery_number, products_sales);
-  validationsHelper.checkIfEmailIsValid(email);
-  validationsHelper.checkTotalPriceValue(total_price);
-  validationsHelper.checkDeliveryNumberValue(delivery_number);
-  validationsHelper.checkProductsSalesValue(products_sales);
-
-  const userId = await getUserIdFromEmail(email);
+  const userId = await getUserIdFromEmail(purchaseRequest.email);
   const date = getDate();
-  const completedSale = await saleModels.createSale(userId, total_price, delivery_address, delivery_number, date, 'pendent');
-  const result = await createSaleProducts(completedSale.insertId, products_sales);
+  const completedSale = await saleModels.createSale(userId, purchaseRequest, date, 'pendent');
+  const result = await createSaleProducts(completedSale.insertId, purchaseRequest.products_sales);
   return result;
 };
 
