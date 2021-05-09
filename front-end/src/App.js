@@ -5,8 +5,9 @@ import TrybeerProvider from './context/TrybeerProvider';
 import Home from './pages/HomePage';
 import Login from './pages/LoginPage';
 import Register from './pages/RegisterPage';
-import PendingOrders from './pages/PendingOrders';
-import Products from './pages/Products';
+import PendingOrders from './pages/PendingOrdersPage';
+import Products from './pages/ProductsPage';
+import ClientProfile from './pages/ClientProfilePage';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Route exact path="/login" component={ Login } />
           <Route exact path="/register" component={ Register } />
           <Route exact path="/admin/orders" component={ PendingOrders } />
-          <Route exact path="" component={ Products } />
+          <Route exact path="/products" component={ Products } />
+          <Route exact path="/profile" component={ ClientProfile } />
         </Switch>
       </TrybeerProvider>
     </BrowserRouter>
