@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import BeerContext from '../context/beerContext';
 import jwtDecode from 'jwt-decode';
+import BeerContext from '../context/beerContext';
 import { loginRequest } from '../services/usersApi';
 
 function Login() {
@@ -11,9 +11,9 @@ function Login() {
     isDisable, setIsDisable,
     isLogged, setIsLogged,
     errorMessage, setErrorMessage,
-    role, setRole
+    role, setRole,
   } = useContext(BeerContext);
-  
+
   const handleClick = async () => {
     const response = await loginRequest(email, password);
     const { status } = response;
@@ -39,7 +39,7 @@ function Login() {
     };
 
     verifyUserData();
-  }, [email, password]);
+  }, [email, password, setIsDisable]);
 
   return (
     <>

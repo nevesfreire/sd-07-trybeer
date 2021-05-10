@@ -11,11 +11,13 @@ function Provider({ children }) {
   const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [role, setRole] = useState('');
+  const [cartPreview, setCartPreview] = useState(0);
+  const [cartQuantity, setCartQuantity] = useState(0);
 
   const valueProvider = {
     isFetching,
-    products,
     setIsFetching,
+    products,
     setProducts,
     email,
     setEmail,
@@ -29,6 +31,10 @@ function Provider({ children }) {
     setErrorMessage,
     role,
     setRole,
+    cartPreview,
+    setCartPreview,
+    cartQuantity,
+    setCartQuantity,
   };
   return (
     <BeerContext.Provider value={ valueProvider }>

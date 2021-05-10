@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import BeerContext from '../../../context/beerContext';
 import TopMenu from '../../../commons/simple/TopMenu';
@@ -6,8 +6,12 @@ import ProductsCard from '../../../components/productsCard';
 import getProductsRequest from '../../../services/productsApi';
 
 function Products() {
-  const { products, setProducts, isFetching, setIsFetching } = useContext(BeerContext);
-  const [cartPreview, setCartPreview] = useState(0);
+  const {
+    products, setProducts,
+    isFetching, setIsFetching,
+    isDisable, setIsDisable,
+    cartPreview, setCartPreview,
+  } = useContext(BeerContext);
 
   const updateCartPreview = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -16,6 +20,7 @@ function Products() {
       cart.forEach((product) => {
         cartSum += product.price * product.quantity;
       });
+      setIsDisable(false);
     }
     setCartPreview(cartSum.toFixed(2));
   };
@@ -56,6 +61,7 @@ function Products() {
       <button
         type="button"
         data-testid="checkout-bottom-btn"
+        disabled={ isDisable }
         onClick={ () => history.push('/checkout') }
       >
         Ver Carrinho
