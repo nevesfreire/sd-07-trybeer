@@ -92,6 +92,7 @@ function ProductsCard(props) {
         {name}
       </span>
       <ProductsButtons
+        index={ index }
         quantity={ cartQuantity }
         add={ addCartItem }
         remove={ removeCartItem }

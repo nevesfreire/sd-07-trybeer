@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import BeerContext from '../../../context/beerContext';
 import TopMenu from '../../../commons/simple/TopMenu';
 import ProductsCard from '../../../components/productsCard';
@@ -36,6 +37,8 @@ function Products() {
     setCart();
   }, [setIsFetching, setProducts]);
 
+  const history = useHistory();
+
   return (
     <>
       <TopMenu title="TryBeer" />
@@ -53,6 +56,7 @@ function Products() {
       <button
         type="button"
         data-testid="checkout-bottom-btn"
+        onClick={ () => history.push('/checkout') }
       >
         Ver Carrinho
       </button>

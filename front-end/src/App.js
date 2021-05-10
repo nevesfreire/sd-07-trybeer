@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Products from './pages/Client/Products';
+import Checkout from './pages/Client/Checkout';
 import Profile from './pages/Client/Profile';
 import Orders from './pages/Client/Orders';
 import Login from './pages/Login';
@@ -11,11 +12,12 @@ function App() {
   return (
     <Switch>
       <Route path="/products" component={ Products } />
-      <Route exact path="/admin/orders" component={ Orders } />
-      <Route exact path="/orders" component={ Orders } />
+      <Route path ="/admin/orders" component={ Orders } />
+      <Route path ="/orders" component={ Orders } />
+      <Route path ="/checkout" component={ Checkout } />
       <Route path="/login" component={ Login } />
       <Route path="/register" />
-      <Route exact path="/profile" component={ Profile } />
+      <Route path ="/profile" component={ Profile } />
       <Redirect from="/" to="/login" />
     </Switch>
   );
