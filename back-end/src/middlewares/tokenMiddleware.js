@@ -8,6 +8,7 @@ const validateToken = async (req, res, next) => {
   try {
     const { email } = req.body;
     const { authorization } = req.headers;
+    console.log(req.headers);
     if (!authorization) {
       return res.status(StatusCodes.UNAUTHORIZED)
         .json({ message: 'Token não encontrado' });
