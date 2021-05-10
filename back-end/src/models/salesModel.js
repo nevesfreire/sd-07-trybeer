@@ -7,9 +7,10 @@ const getAllSales = async () => {
 };
 
 const getSaleById = async (id) => {
-  const [
-    [sale],
-  ] = await connection.execute('SELECT * FROM sales WHERE id = ?', [id]);
+  const [[sale]] = await connection.execute(
+    'SELECT * FROM sales WHERE id = ?',
+    [id],
+  );
 
   return sale;
 };
