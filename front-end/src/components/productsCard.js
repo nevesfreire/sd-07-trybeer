@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import ProductsButtons from './productsButtons';
 
 function ProductsCard(props) {
@@ -13,7 +14,7 @@ function ProductsCard(props) {
       setCartQuantity(thisProduct[0].quantity);
     }
     updateCart();
-  });
+  }, [id, updateCart]);
 
   const addCartItem = () => {
     const product = {
@@ -43,21 +44,20 @@ function ProductsCard(props) {
     updateCartQuantity();
   };
 
-  const getCart = () => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart.length < 1) return false;
-    if (!cart.includes(id)) return false;
-    cart.forEach((product) => {
-      if (product.id === id) {
-        setCartQuantity(product.quantity);
-      }
-    });
-  };
-
   useEffect(() => {
+    const getCart = () => {
+      const cart = JSON.parse(localStorage.getItem('cart'));
+      if (cart.length < 1) return false;
+      if (!cart.includes(id)) return false;
+      cart.forEach((product) => {
+        if (product.id === id) {
+          setCartQuantity(product.quantity);
+        }
+      });
+    };
     getCart();
     updateCartQuantity();
-  }, [getCart, updateCartQuantity]);
+  }, [id, updateCartQuantity]);
 
   const removeCartItem = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -77,17 +77,17 @@ function ProductsCard(props) {
   return (
     <>
       <span
-        data-testid={`${index}-product-price`}
+        data-testid={ `${index}-product-price` }
       >
-        {price}
+        {`R$ ${price.replace('.', ',')}`}
       </span>
       <img
         src={ image.replace(/\s/g, '') }
         alt={ name }
-        data-testid={`${index}-product-img`}
+        data-testid={ `${index}-product-img` }
       />
       <span
-        data-testid={`${index}-product-name`}
+        data-testid={ `${index}-product-name` }
       >
         {name}
       </span>
@@ -99,5 +99,14 @@ function ProductsCard(props) {
     </>
   );
 }
+
+ProductsCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  updateCart: PropTypes.func.isRequired,
+};
 
 export default ProductsCard;

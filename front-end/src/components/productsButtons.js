@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ProductsButtons(props) {
   const { quantity, add, remove } = props;
@@ -27,5 +28,11 @@ function ProductsButtons(props) {
     </>
   );
 }
+
+ProductsButtons.propTypes = {
+  quantity: PropTypes.number.isRequired,
+  add: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
+};
 
 export default ProductsButtons;

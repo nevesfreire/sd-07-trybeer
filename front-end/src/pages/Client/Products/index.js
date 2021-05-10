@@ -8,15 +8,6 @@ function Products() {
   const { products, setProducts, isFetching, setIsFetching } = useContext(BeerContext);
   const [cartPreview, setCartPreview] = useState(0);
 
-  const setCart = () => {
-    let cart = localStorage.getItem('cart');
-    if (cart === null) {
-      cart = [];
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-    setIsFetching(false);
-  };
-
   const updateCartPreview = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     let cartSum = 0;
@@ -27,16 +18,23 @@ function Products() {
     }
     setCartPreview(cartSum.toFixed(2));
   };
-
-  const renderProducts = async () => {
-    const result = await getProductsRequest();
-    setProducts(result.data);
-  };
-
+  console.log(typeof cartPreview);
   useEffect(() => {
+    const renderProducts = async () => {
+      const result = await getProductsRequest();
+      setProducts(result.data);
+    };
+    const setCart = () => {
+      let cart = localStorage.getItem('cart');
+      if (cart === null) {
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }
+      setIsFetching(false);
+    };
     renderProducts();
     setCart();
-  }, [renderProducts, setCart]);
+  }, [setIsFetching, setProducts]);
 
   return (
     <>
@@ -61,7 +59,7 @@ function Products() {
       <span
         data-testid="checkout-bottom-btn-value"
       >
-        {`R$ ${Number(cartPreview)}`}
+        {`R$ ${cartPreview.toString().replace('.', ',')}`}
       </span>
     </>
   );
