@@ -8,6 +8,7 @@ const Router = () => (
     <Route path="/register" component={ pages.Register } />
     <Route path="/products" component={ pages.Products } />
     <Route path="/admin/orders" component={ pages.Profile } />
+    <Route path="/checkout" component={ pages.Checkout } />
     <Route exact path="/" component={ pages.Login } />
   </Switch>
 );
