@@ -5,6 +5,7 @@ const PORT = 3001;
 
 const userRouter = require('./router/usersRoutes');
 const productsRouter = require('./router/productsRouter');
+const saleRouter = require('./router/salesRoutes');
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 
 app.use('/user', userRouter);
 app.use('/products', productsRouter);
+
+app.use('/sales', saleRouter);
 
 app.listen(PORT, () => {
   console.log('Servidor iniciado');
