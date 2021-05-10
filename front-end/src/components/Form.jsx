@@ -2,46 +2,96 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
 
+const handleLocalStorage = (data, history) => {
+  const user = {
+    name: data.name,
+    email: data.email,
+    token: data.token,
+    role: data.role,
+  };
+
+  localStorage.setItem('user', JSON.stringify(user));
+  if (data.role === 'client') {
+    return history.push('/products');
+  }
+  return history.push('/admin/orders');
+};
+
+const validateName = (name, path) => {
+  const minLengthName = 12;
+  const verifyLength = name.length >= minLengthName;
+  const verifyCharacter = (/^[a-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/i).test(name);
+  if (path === '/register') return verifyLength && verifyCharacter;
+  return true;
+};
+
+const validateEmail = (email) => (/[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i)
+  .test(email);
+
+const validatePassword = (password) => {
+  const minLengthPass = 6;
+  return password.length >= minLengthPass;
+};
+
+const submitRegister = async (...restParams) => {
+  const [
+    name,
+    email,
+    password,
+    checkbox,
+    history,
+    register,
+    setEmailAlreadyExist,
+  ] = restParams;
+  const newUserData = await register(name, email, password, checkbox);
+  if (newUserData.message) return setEmailAlreadyExist(newUserData.message);
+  handleLocalStorage(newUserData, history);
+};
+
+const submitLogin = async (email, password, history, login) => {
+  const userData = await login(email, password);
+  if (userData.token) return handleLocalStorage(userData, history);
+  return alert('Email ou senha incorreto');
+};
+
 function Form({ history }) {
-  const { login } = useFetch();
+  const { login, register } = useFetch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [checkbox, setCheckbox] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [emailAlreadyExist, setEmailAlreadyExist] = useState(false);
 
   const { location: { pathname } } = history;
   const path = pathname;
 
   const handleSubmit = async () => {
-    const userData = await login(email, password);
-    const user = {
-      name: userData.name,
-      email: userData.email,
-      token: userData.token,
-      role: userData.role,
-    };
-
-    localStorage.setItem('user', JSON.stringify(user));
-    if (user.role === 'client') {
-      return history.push('/products');
+    if (path === '/register') {
+      return submitRegister(
+        name,
+        email,
+        password,
+        checkbox,
+        history,
+        register,
+        setEmailAlreadyExist,
+      );
     }
-    return history.push('/admin/orders');
+    return submitLogin(email, password, history, login);
   };
 
-  const validateEmailAndPassword = () => {
-    const emailValidation = (/[A-Z0-9]{1,}@[A-Z0-9]{2,}\.[A-Z0-9]{2,}/i)
-      .test(email);
-    const minLengthPass = 6;
-    const validation = emailValidation && password.length >= minLengthPass
-      ? setDisabled(false)
-      : setDisabled(true);
-    return validation;
+  const validateInputsValue = () => {
+    const emailValidation = validateEmail(email);
+    const nameValidation = validateName(name, path);
+    const passwordValidation = validatePassword(password);
+
+    setDisabled(!(nameValidation && emailValidation && passwordValidation));
   };
 
   useEffect(() => {
-    validateEmailAndPassword();
-  }, [email, password, validateEmailAndPassword]);
+    validateInputsValue();
+  }, [email, password, name]);
 
   return (
     <div>
@@ -53,7 +103,7 @@ function Form({ history }) {
               type="name"
               name="name"
               value={ name }
-              data-testid="name-input"
+              data-testid="signup-name"
               onChange={ ({ target }) => setName(target.value) }
             />
           </label>
@@ -92,9 +142,10 @@ function Form({ history }) {
           </label>
         )}
       </form>
+      { emailAlreadyExist && <span>{ emailAlreadyExist }</span> }
       <button
         type="button"
-        data-testid={ path === '/register' ? 'signup-seller' : 'signin-btn' }
+        data-testid={ path === '/register' ? 'signup-btn' : 'signin-btn' }
         disabled={ disabled }
         onClick={ () => handleSubmit() }
       >
