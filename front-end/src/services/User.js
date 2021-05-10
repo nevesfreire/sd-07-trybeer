@@ -9,7 +9,6 @@
   }
 };
  */
-
 export default registerUser = (user) => {
   try {
     const url = 'http://localhost:3001/register';
