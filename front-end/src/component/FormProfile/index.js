@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getToLocalStorage } from '../../utils/localStorage'
+import { requestAlterUserAPI } from '../../services'
 
 const FormDefault = {
   name:'',
@@ -8,11 +9,22 @@ const FormDefault = {
 function FormProfile() {
   
   const [ formProfile, setFormProfile ] = useState(FormDefault);
+  const [sucessState, setSucessState] = useState(false);
+  const [alterState, setAlterState] = useState(true);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormProfile({...formProfile, [name]: value})
+    setAlterState(false)
   };
+
+  const handleSubmit= async (e) => {
+    e.preventDefault();
+    const user = await requestAlterUserAPI(formProfile);
+    if (user.data) {
+     setSucessState(true);
+    }
+  }
   
   useEffect(() => {
     const name = getToLocalStorage().name
@@ -42,9 +54,12 @@ function FormProfile() {
         onChange={(event) => handleInputChange(event)}
         />
       </label>
+      { sucessState && <p>Atualização concluída com sucesso</p> }
       <button
       type="submit"
       data-testid="profile-save-btn"
+      onClick={(e) => handleSubmit(e)}
+      disabled={alterState}
       >
         Salvar
       </button>

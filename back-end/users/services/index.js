@@ -20,7 +20,17 @@ const validateCreateUser = async (name, email, password, role) => {
   return { id: result.insertId, name, email, password, role };
 };
 
+const alterUser = async (name, email) => {
+  const userExist = await model.getByEmail(email);
+  console.log('userExistService', userExist);
+  if (!userExist) throwError(userExist, 'Usuário não cadastrado.');
+  const userModify = await model.alterByEmail(name, email);
+  console.log('userModifyService', userModify);
+  return userModify;
+};
+
 module.exports = {
   validateUserId,
   validateCreateUser,
+  alterUser,
 };

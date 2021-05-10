@@ -23,7 +23,16 @@ const requestCreateUserAPI = (user) => {
 // console.log(error.toJSON());
 // });
 
+const requestAlterUserAPI = (user) => {
+  const endpoint = `${urlAPI}/profile`;
+  return axios
+    .put(endpoint, user)
+    .then((response) => response)
+    .catch((error) => error.response);
+};
+
 export {
   requestLoginAPI,
   requestCreateUserAPI,
+  requestAlterUserAPI,
 };

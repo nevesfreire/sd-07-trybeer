@@ -28,9 +28,17 @@ const createUser = async (name, email, password, role) => {
   return data;
 };
 
+const alterByEmail = async (name, email) => {
+  const query = 'UPDATE users SET name = ? WHERE email = ?';
+  const [data] = await conn.execute(query, [name, email]);
+  console.log('dataModel', data);
+  return data;
+};
+
 module.exports = {
   getAll,
   getById,
   getByEmail,
   createUser,
+  alterByEmail,
 };
