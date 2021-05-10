@@ -22,6 +22,7 @@ function OrderCard(props) {
   const orderDate = `${day}/${month}`;
   const { id } = order;
   const { total_price: totalPrice } = order;
+  const totalPriceFormated = totalPrice.replace('.', ',');
   const orderObj = {
     id,
     totalPrice,
@@ -49,7 +50,7 @@ function OrderCard(props) {
         <div
           data-testid={ `${index}-order-total-value` }
         >
-          {` R$ ${totalPrice}`}
+          {` R$ ${totalPriceFormated}`}
 
         </div>
       </div>
