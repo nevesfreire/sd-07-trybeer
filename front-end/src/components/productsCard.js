@@ -85,6 +85,7 @@ function ProductsCard(props) {
       <img
         src={ image.replace(/\s/g, '') }
         alt={ name }
+
         data-testid={ `${index}-product-img` }
       />
       <span

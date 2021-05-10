@@ -17,7 +17,7 @@ function App() {
       <Route path="/orders" component={ Orders } />
       <Route path="/checkout" component={ Checkout } />
       <Route path="/login" component={ Login } />
-      <Route path="/register" />
+      <Route path="/register" component={ Register } />
       <Route path="/profile" component={ Profile } />
       <Redirect from="/" to="/login" />
     </Switch>

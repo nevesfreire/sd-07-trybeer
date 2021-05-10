@@ -1,8 +1,8 @@
 import React, { useEffect, useContext } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import BeerContext from '../context/beerContext';
-import { loginRequest } from '../services/usersApi';
+import BeerContext from '../../context/beerContext';
+import { loginRequest } from '../../services/usersApi';
 
 function Login() {
   const {
