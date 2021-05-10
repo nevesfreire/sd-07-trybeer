@@ -11,7 +11,7 @@ export default function Profile() {
   const [response, setResponse] = useState({ SC: false, message: '' });
 
   const handleRegister = async () => {
-    const register = await fetchApi('/register', 'PUT', name, user.token);
+    const register = await fetchApi('/register', 'PUT', { name }, user.token);
     if (register.statusCode === CODE.ACCEPTED) {
       user.name = name;
       window.localStorage.setItem('user', JSON.stringify(user));
