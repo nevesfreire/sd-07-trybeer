@@ -1,16 +1,19 @@
 import axios from 'axios';
-import { saveToken } from '../helpers/localStorage';  //, getToken
+import { saveToken, getToken } from '../helpers/localStorage';  //, getToken
 
 export default async function fetchToken(email, password) {
   const requestTokenUrl = 'http://localhost:3001/login';
   // const { REACT_APP_CLIENT_SECRET } = process.env;
   // console.log(REACT_APP_CLIENT_SECRET);
 
+
+
   const requestHeader = {
     'Content-Type': 'application/json',
-    // 'Authorization': getToken(),
-    // "secret-key": process.env.REACT_APP_SECRET,
+        // "secret-key": process.env.REACT_APP_SECRET,
   };
+
+  
 
   const requestBody = {
     email,

@@ -10,9 +10,20 @@ const getToken = () => JSON.parse(localStorage.getItem('token'));
 
 const getProduct = () => JSON.parse(localStorage.getItem('product'));
 
+const loadItemsToLocalStorage = (id, price, qtd) => {
+  if (Storage) {
+    const getItemSaved = JSON.parse(localStorage.getItem('cart'));
+    const values = (getItemSaved === null ? [] : getItemSaved);
+    let newItemSaved = [];
+    if(getItemSaved) {newItemSaved = getItemSaved.filter(cart => cart[0] !== id)}
+    newItemSaved.push([ id, price, qtd ]);
+    localStorage.setItem('cart', JSON.stringify(newItemSaved));
+}};
+
 export {
   getToken,
   saveToken,
   saveProduct,
   getProduct,
+  loadItemsToLocalStorage,
 };

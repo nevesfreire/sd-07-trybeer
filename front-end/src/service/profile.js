@@ -1,16 +1,19 @@
 import axios from 'axios';
-import { saveToken } from '../helpers/localStorage';
+import { saveToken, getToken } from '../helpers/localStorage';
 
-export default async function fetchUpdate(email, name, id, token) {
+export default async function fetchUpdate(email, name, id) {
   const requestTokenUrl = `http://localhost:3001/user/${id}`;
-  console.log(token);
   // const { REACT_APP_CLIENT_SECRET } = process.env;
   // console.log(REACT_APP_CLIENT_SECRET);
 
+  const token = getToken()
+
   const requestHeader = {
     'Content-Type': 'application/json',
-    Authorization: token,
+    'Authorization': token.token
+
   };
+  console.log(requestHeader)
 
   const requestBody = {
     email,
@@ -19,7 +22,7 @@ export default async function fetchUpdate(email, name, id, token) {
 
   try {
     console.log(requestBody);
-    const res = await axios.put(requestTokenUrl, requestBody, requestHeader);
+    const res = await axios.put(requestTokenUrl, requestBody, { headers: requestHeader });
     // console.log(res)
     const { data } = res;
     if (data) {
