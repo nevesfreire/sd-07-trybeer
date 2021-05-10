@@ -9,7 +9,7 @@ function TrybeerProvider({ children }) {
   const addOrder = (product) => {
     order.push(product);
     setTotalValue(totalValue + product.price);
-  }
+  };
   const context = {
     addOrder,
   };

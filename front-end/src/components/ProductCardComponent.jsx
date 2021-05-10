@@ -1,34 +1,34 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import MyContext from '../context/TrybeerContext';
-
+import React, { useEffect, useState } from 'react';
+// import useFetch from '../hooks/useFetch';
+// import MyContext from '../context/TrybeerContext';
 
 function ProductsCards() {
-  // const history = useHistory();
-  const [ product, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch('http://localhost:3001/products')
-    .then((response) => response.json())
-    .then((data) => setProduct(data));
-    setLoading(false);
+	  fetch('http://localhost:3001/products')
+		  .then((response) => response.json())
+		  .then((data) => setProducts(data));
+	  setLoading(false);
   }, []);
 
-  return loading
-  ? (<span>tenha fé...</span>)
-  : (
+  return loading ? (
+    <span>tenha fé...</span>
+  ) : (
     <div>
-      {product.map((product, index) => (
+      {products.map((product, index) => (
         <div key={ product.id }>
           <img
             src={ product.url_image.replace(/\s/g, '') }
             alt={ product.name }
             data-testid={ `${index}-product-img` }
           />
-          <span data-testid={ `${index}-product-name` }>{ product.name }</span>
+          <span data-testid={ `${index}-product-name` }>{product.name}</span>
           <span data-testid={ `${index}-product-price` }>
-            { Number(product.price)
-              .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+            {Number(product.price).toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
           </span>
           <button
             type="button"
@@ -40,7 +40,6 @@ function ProductsCards() {
           <span data-testid={ `${index}-product-qtd` }>
             {/* { getQuantity(product.name) } */}
           </span>
-import useFetch from '../hooks/useFetch';
           <button
             type="button"
             data-testid={ `${index}-product-plus` }
@@ -62,10 +61,7 @@ import useFetch from '../hooks/useFetch';
         </span>
       </button>
     </div>
-  
-
   );
-
 }
 
 export default ProductsCards;
