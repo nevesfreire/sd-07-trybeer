@@ -2,29 +2,21 @@
 // import { useContext } from 'react';
 // import TrybeerContext from '../context/TrybeerContext';
 
-const informationType = 'application/json';
 
 function useFetch() {
   const methods = {
     post: 'POST',
   };
-
+  
+  const informationType = 'application/json';
   const headerWithoutToken = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   };
   async function login(email, password) {
     const result = await fetch('http://localhost:3001/login', {
-<<<<<<< HEAD
-      method: 'POST',
-      headers: {
-        Accept: informationType,
-        'Content-Type': informationType,
-      },
-=======
       method: methods.post,
       headers: headerWithoutToken,
->>>>>>> 957e88b8848b77e3ab1d5db3bdffa45520411da9
       body: JSON.stringify({ email, password }),
     });
     const data = await result.json();
@@ -58,14 +50,11 @@ function useFetch() {
   }
 
   return (
-<<<<<<< HEAD
     {
       login,
       updateProfileName,
+      register,
     }
-=======
-    { login, register }
->>>>>>> 957e88b8848b77e3ab1d5db3bdffa45520411da9
   );
 }
 
