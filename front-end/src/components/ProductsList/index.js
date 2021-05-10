@@ -15,22 +15,20 @@ export default function ProductsList() {
       const response = await getProducts(currentUser.token)
         .then((apiResponse) => apiResponse);
 
-      setProducts(response.map(item => ({...item, productQtt })));
-      // console.log()
+      setProducts(response.map((item) => ({ ...item, productQtt })));
+      setTotalValue(0);
     };
 
     fetchProducts();
-  }, []);
-
-  
+  }, [productQtt]);
 
   const addProdQtt = (e, id) => {
     const { name } = e.target;
-    if(Number(name) === id) {
+    if (Number(name) === id) {
       const addProdValue = productQtt + 1;
       setProductQtt(addProdValue);
     }
-  }
+  };
 
   return (
     <div style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
@@ -44,10 +42,13 @@ export default function ProductsList() {
               data-testid={ `${index}-product-img` }
             />
             <p data-testid={ `${index}-product-name` }>{item.name}</p>
-            <p data-testid={ `${index}-product-price` }>R$ {item.price.replace('.', ',')}</p>
+            <p data-testid={ `${index}-product-price` }>
+              R$
+              {item.price.replace('.', ',')}
+            </p>
             <button
               type="button"
-              name={item.id}
+              name={ item.id }
               data-testid={ `${index}-product-plus` }
               onClick={ (e) => addProdQtt(e, item.id) }
             >
@@ -62,7 +63,9 @@ export default function ProductsList() {
             </button>
           </div>
         ))}
-      <footer style={ { background: 'gray', bottom: '0', position: 'fixed', padding: '10px' } }>
+      <footer
+        style={ { background: 'gray', bottom: '0', position: 'fixed', padding: '10px' } }
+      >
         <span data-testid="checkout-bottom-btn-value">{`R$ ${totalValue}`}</span>
         <button
           type="button"
