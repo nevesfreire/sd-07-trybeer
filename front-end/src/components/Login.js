@@ -19,7 +19,6 @@ const ComponentLogin = () => {
 
   const params = { email: emailLabel, password: passwordLabel };
 
-
   const toLogin = async (event) => {
     event.preventDefault();
     return api
