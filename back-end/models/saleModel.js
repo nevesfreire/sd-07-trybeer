@@ -25,6 +25,7 @@ const getSale = async (id) => {
     const [rows] = await connection
     .execute(`SELECT id, sale_date, total_price 
     FROM Trybeer.sales WHERE user_id = ?`, [id]);
+    console.log('rows:', rows);
     return rows;
 };
 

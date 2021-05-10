@@ -1,49 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
-// import { getSales } from '../../servicesAPI/api';
+import { getSales } from '../../servicesAPI/api';
 
 const AdminOrders = () => {
   const role = 'administrator';
   const [isLoading, setIsLoading] = useState(true);
   const [sales, setSales] = useState([]);
 
-  // useEffect(() => {
-  //   if (JSON.parse(localStorage.getItem('user'))) {
-  //     const { data: { token } } = JSON.parse(localStorage.getItem('user'));
-  //     const salesResponse = await getSales(token);
-  //     setSales(salesResponse);
-  //     setIsLoading(false);
-  //   }
-  // }, []);
-
-  const obj = [
-    {
-      saleId: 1,
-      deliveryAddress: 'Rua A',
-      deliveryNumber: '123',
-      totalPrice: 110.19,
-      status: 'Pendente',
-    },
-    {
-      saleId: 3,
-      deliveryAddress: 'Rua B',
-      deliveryNumber: '456',
-      totalPrice: 11.19,
-      status: 'Entregue',
-    },
-    {
-      saleId: 4,
-      deliveryAddress: 'Rua C',
-      deliveryNumber: '7',
-      totalPrice: 19,
-      status: 'Pendente',
-    },
-  ];
+  const getSalesResponse = async () => {
+    if (JSON.parse(localStorage.getItem('user'))) {
+      const { data: { token } } = JSON.parse(localStorage.getItem('user'));
+      const salesResponse = await getSales(token);
+      console.log(salesResponse);
+      setSales(salesResponse);
+      setIsLoading(false);
+    }
+  }
 
   useEffect(() => {
-    setSales(obj);
-    setIsLoading(false);
+    getSalesResponse();
   }, []);
 
   return (
