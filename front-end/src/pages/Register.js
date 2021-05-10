@@ -1,26 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { fetchs, localStorage } from '../functions-hooks';
-
-function validateName(name) {
-  const regex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
-  const minimumSize = 12;
-  return (regex.test(name) && name.length >= minimumSize);
-}
-
-function validateEmail(email) {
-  const regex = new RegExp([
-    /^[-!#$%&'*+\\/0-9=?A-Z^_a-z{|}~]/,
-    /(\.?[-!#$%&'*+\\/0-9=?A-Z^_a-z`{|}~])*/,
-    /@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/,
-  ].map((r) => r.source).join(''));
-  return regex.test(email);
-}
-
-function validatePassword(password) {
-  const minimumSize = 6;
-  return minimumSize <= password.length;
-}
+import { fetchs, localStorage, validate } from '../functions-hooks';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -29,6 +9,7 @@ export default function Register() {
   const [isChecked, setIsChecked] = useState(false);
   const [errorMenssage, setErrorMenssage] = useState({ error: false, menssage: '' });
   const [role, setRole] = useState('');
+  const { validateName, validateEmail, validatePassword } = validate;
 
   const buttonRegister = async () => {
     const { fetchAPI } = fetchs;

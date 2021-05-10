@@ -1,26 +1,13 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { fetchs, localStorage } from '../functions-hooks';
-
-function validateEmail(email) {
-  const regex = new RegExp([
-    /^[-!#$%&'*+\\/0-9=?A-Z^_a-z{|}~]/,
-    /(\.?[-!#$%&'*+\\/0-9=?A-Z^_a-z`{|}~])*/,
-    /@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/,
-  ].map((r) => r.source).join(''));
-  return regex.test(email);
-}
-
-function validatePassword(password) {
-  const minimumSize = 6;
-  return minimumSize <= password.length;
-}
+import { fetchs, localStorage, validate } from '../functions-hooks';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMenssage, setErrorMenssage] = useState({ error: false, menssage: '' });
   const [role, setRole] = useState('');
+  const { validateEmail, validatePassword } = validate;
 
   const buttonLogin = async () => {
     const { fetchAPI } = fetchs;
