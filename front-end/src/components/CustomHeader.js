@@ -12,7 +12,7 @@ const CustomHeader = ({ message }) => (
 );
 
 CustomHeader.propTypes = {
-  message: PropTypes.element.isRequired,
+  message: PropTypes.string.isRequired,
 
 };
 

@@ -4,7 +4,6 @@ const loginService = require('../services/loginService');
 const generateToken = (result, jwtConfig) => {
   const { email, role, id } = result;
   const token = jwt.sign({ email, role, id }, process.env.REACT_APP_SECRET || process.env.SECRET, jwtConfig);
-  console.log(token)
   return token;
 };
 
