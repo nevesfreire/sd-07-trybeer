@@ -6,10 +6,10 @@ import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 
 function OrderDetails() {
-  const { sideIsActive, setPageTitle, OrderDetail } = useContext(MyContext);
-  const { orderObj } = OrderDetail;
-  const { id, index, orderDate, totalPrice } = orderObj;
-  console.log(id);
+  const { sideIsActive, setPageTitle } = useContext(MyContext);
+  // const { orderObj } = OrderDetail;
+  // const { id, index, orderDate, totalPrice } = orderObj;
+  // console.log(id);
 
   const history = useHistory();
   useEffect(() => {
@@ -41,13 +41,13 @@ function OrderDetails() {
   return (
     <div>
       <MenuTopMobile />
-      <div data-testid={ `${index}-order-number` }>{`Pedido ${id}`}</div>
+      {/* <div data-testid={ `${index}-order-number` }>{`Pedido ${id}`}</div>
       <div
         data-testid="order-total-value"
       >
         {` Total : R$ ${totalPrice}`}
       </div>
-      <div data-testid={ `${index}-order-date` }>{` ${orderDate}`}</div>
+      <div data-testid={ `${index}-order-date` }>{` ${orderDate}`}</div> */}
       { sideIsActive && <SideBarMobile /> }
     </div>
   );
