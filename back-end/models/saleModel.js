@@ -28,8 +28,21 @@ const getSale = async (id) => {
     return rows;
 };
 
+const saleById = async (id) => {
+    const [rows] = await connection.execute(`
+    SELECT t1.total_price, t1.sale_date, t1.status, t2.sale_id, t2.quantity, t3.name, t3.price
+    FROM Trybeer.sales AS t1
+    INNER JOIN Trybeer.sales_products AS t2
+    ON t1.id = t2.sale_id
+    INNER JOIN Trybeer.products AS t3
+    ON t2.product_id = t3.id
+    WHERE t2.sale_id = ?`, [id]);
+    return rows;
+};
+
 module.exports = {
     createSale,
     getSale,
     createSaleProduct,
+    saleById,
 };
