@@ -9,6 +9,7 @@ import {
   RegisterPage,
   CheckoutPage,
   AdminHome,
+  AdminDetails,
   Profile,
   ProfileAdmin,
 } from './pages';
@@ -23,11 +24,11 @@ function App() {
           <Route path="/register" component={ RegisterPage } />
           <ProtectedRoute>
             <Route path="/products" component={ ProductsPage } />
-            <Route path="/products" component={ ProductsPage } />
             <Route path="/checkout" component={ CheckoutPage } />
-            <Route path="/admin/orders" component={ AdminHome } />
             <Route path="/profile" component={ Profile } />
             <Route path="/admin/profile" component={ ProfileAdmin } />
+            <Route path="/admin/orders/:id" component={ AdminDetails } />
+            <Route path="/admin/orders" component={ AdminHome } />
           </ProtectedRoute>
         </Switch>
       </Provider>
