@@ -1,3 +1,4 @@
+const convertDate = require('../helpers/convertDate');
 const model = require('../models/saleModel');
 
 const createSale = async (obj) => {
@@ -10,7 +11,13 @@ const createSale = async (obj) => {
     return response;
 };
 
-const getSale = (data) => data;
+const getSale = async (id) => {
+    const data = await model.getSale(id);
+    data.forEach((obj) => {
+        convertDate(obj);
+    });
+    return data;
+};
 
 module.exports = {
     createSale,
