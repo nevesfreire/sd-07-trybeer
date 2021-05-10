@@ -20,6 +20,7 @@ router.get('/products', productsControler.getAllProducts);
 // Estrutura do body da requisição: 
 // {
 // "deliveryAddress":"Rua Leopardo Gazela",
+// "deliveryNumber":"25",
 // "listProducts": {"1":"5","2":"5"}
 // }
 router.post('/sale', saleControler.create);
@@ -32,7 +33,7 @@ router.get('/sale/:id', saleControler.getById);
 
 router.get('/orders', saleControler.getAll);
 // O "total_price" é o valor total do pedido
-router.get('/orders/:numeroDoPedido', saleControler.getByNumber); 
+router.get('/orders/:idDOPedido', saleControler.getByNumber); 
 router.get('/admin/orders', saleControler.getAllOrders);
 
 module.exports = router;
