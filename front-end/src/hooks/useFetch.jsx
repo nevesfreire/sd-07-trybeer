@@ -26,7 +26,10 @@ function useFetch() {
     const role = roleParam ? 'administrator' : 'client';
     const result = await fetch('http://localhost:3001/register', {
       method: methods.post,
-      headers: headerWithoutToken,
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+      },
       body: JSON.stringify({ name, email, password, role }),
     });
     const data = await result.json();
