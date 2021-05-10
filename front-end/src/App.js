@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Products from './pages/Client/Products';
 import Checkout from './pages/Client/Checkout';
