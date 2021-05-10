@@ -26,16 +26,13 @@ const ComponentLogin = () => {
     return <Redirect to="/products" />;
   }
 
-  const toLogin = async () => {
-    // event.preventDefault();
-    return api
-      .post('/login', params)
-      .then((dataUser) => {
-        localStorage.setItem('token', dataUser.data.token);
-        setData(dataUser.data.data);
-      })
-      .catch((err) => console.log(`Error in login process: ${err}`));
-  };
+  const toLogin = async () => api
+    .post('/login', params)
+    .then((dataUser) => {
+      localStorage.setItem('token', dataUser.data.token);
+      setData(dataUser.data.data);
+    })
+    .catch((err) => console.log(`Error in login process: ${err}`));
 
   return (
     <div className="container-login">
@@ -75,7 +72,7 @@ const ComponentLogin = () => {
             disabled={ labelLogin }
             className={ labelLogin === false ? 'btn-submit-login' : 'disable' }
             data-testid="signin-btn"
-            onClick = {toLogin}
+            onClick={ toLogin }
           >
             Entrar
           </button>
