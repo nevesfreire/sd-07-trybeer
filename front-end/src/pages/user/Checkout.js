@@ -59,6 +59,7 @@ function Checkout() {
         address,
         addressNumber,
         status: 'Pendente',
+        cart: Storage.getItem('cart'),
       }),
     }).then((response) => response.json())
       .then((msg) => {

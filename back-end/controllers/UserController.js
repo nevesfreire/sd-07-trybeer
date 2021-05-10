@@ -27,10 +27,11 @@ const registerOrder = async (req, res) => {
   try {
   const order = req.body;
   const result = await UserService.registerOrder(order);
+  console.log(result);
   return res.status(result.status).json(result.message);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: serverError });
+    return res.status(500).json(serverError);
   }  
 };
 const getAllOrders = async (_req, res) => {

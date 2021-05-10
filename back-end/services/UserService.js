@@ -14,16 +14,23 @@ const updateUserName = async (newName, email) => {
 
 const registerOrder = async (order) => {
   const saleDate = await UserModel.getDate();
-  const { userEmail, totalCart, address, addressNumber, status } = order;
+  const { userEmail, totalCart, address, addressNumber, status, cart } = order;
   const user = await UserModel.getByEmail(userEmail);
   const { id } = user;
-  await UserModel.registerOrder({
+  const newOrder = await UserModel.registerOrder({
     userId: id,
     totalCart,
     address, 
     addressNumber,
     saleDate,
     status });
+  
+  const saleId = newOrder.id;
+
+  cart.forEach(async (item) => {
+    await UserModel.registerSaleProducts(saleId, item.id, item.quantity);
+  });
+
   return { status: 201, message: 'Compra realizada com sucesso!' };
 };
 const getAllOrders = async () => {

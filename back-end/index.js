@@ -7,6 +7,7 @@ const cors = require('cors');
 const LoginController = require('./controllers/LoginController');
 const UserController = require('./controllers/UserController');
 const ProductController = require('./controllers/ProductController');
+// const OrderController = require('./controllers/OrderController');
 
 app.use(cors());
 app.use(express.json());
@@ -22,5 +23,6 @@ app.get('/orders', UserController.getAllOrders);
 app.get('/orders/:id', UserController.getOrderDetailsById);
 
 app.get('/admin/orders', UserController.getAllOrders);
+app.get('/admin/orders/:id', UserController.getOrderDetailsById);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
