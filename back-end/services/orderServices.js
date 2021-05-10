@@ -26,7 +26,13 @@ const getOrdersAdmin = async (token) => {
   return result;
 };
 
+const getOrderDetails = async (id) => {
+  const result = await orderModels.getOrderDetails(id);
+  return result;
+}
+
 module.exports = {
   getOrdersUser,
   getOrdersAdmin,
+  getOrderDetails,
 };

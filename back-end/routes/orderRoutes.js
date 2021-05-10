@@ -9,6 +9,8 @@ const router = express.Router();
 router.get('/orders', authMiddleware.checkIfUserIsAuthenticated, orderController.getOrdersUser);
 router.get('/admin/orders', authMiddleware.checkIfUserIsAuthenticated,
   orderController.getOrdersAdmin);
+router.get('/orders/:id', authMiddleware.checkIfUserIsAuthenticated,
+  orderController.getOrderDetails);
 
 /*
  * /orders/:id - requisito 8
