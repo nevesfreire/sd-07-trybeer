@@ -8,19 +8,19 @@ function ProductsButtons(props) {
     <>
       <button
         type="button"
-        data-testid={`${index}-product-minus`}
+        data-testid={ `${index}-product-minus` }
         onClick={ remove }
       >
         -
       </button>
       <span
-        data-testid={`${ index }-product-qtd`}
+        data-testid={ `${index}-product-qtd` }
       >
         { quantity }
       </span>
       <button
         type="button"
-        data-testid={`${ index }-product-plus`}
+        data-testid={ `${index}-product-plus` }
         onClick={ add }
       >
         +
@@ -33,6 +33,7 @@ ProductsButtons.propTypes = {
   quantity: PropTypes.number.isRequired,
   add: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default ProductsButtons;
