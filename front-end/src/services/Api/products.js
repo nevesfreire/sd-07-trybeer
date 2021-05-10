@@ -9,6 +9,16 @@ const getAllProducts = async () => {
   }
 };
 
+const sendProducts = async (cart) => {
+  try {
+    const result = await instance.post('checkout', { cart });
+    return result;
+  } catch (error) {
+    return ({ error: 'não há produtos' });
+  }
+};
+
 module.exports = {
   getAllProducts,
+  sendProducts
 };

@@ -47,3 +47,9 @@ color: white;
   font-size: 30px;
   
 }
+
+.products-checkout {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
