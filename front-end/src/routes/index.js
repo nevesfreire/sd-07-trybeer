@@ -11,12 +11,12 @@ import HomePage from '../pages/HomePage';
 
 const Routes = () => (
   <BrowserRouter>
+    <Route exact path="/admin/orders" component={ AdminOrdersPage } />
     <Route exact path="/login" component={ Login } />
     <Route exact path="/register" component={ RegisterPage } />
     <Route exact path="/products" component={ ProductsPage } />
     <Route exact path="/profile" component={ ClientProfile } />
     <Route exact path="/orders" component={ ClientOrdersPage } />
-    <Route exact path="/admin/orders" component={ AdminOrdersPage } />
     <Route exact path="/checkout" component={ CheckoutPage } />
     <Route exact path="/" component={ HomePage } />
   </BrowserRouter>

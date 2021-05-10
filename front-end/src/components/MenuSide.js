@@ -11,6 +11,7 @@ function MenuSide({ isAdmin }) {
   };
 
   const adminRoute = (isAdmin) ? '/admin' : '';
+  const dataTestIdClient = (isAdmin) ? '' : 'my-';
   const menuClass = (isAdmin) ? 'admin-side-bar-container' : 'side-menu-container';
 
   return (
@@ -25,14 +26,14 @@ function MenuSide({ isAdmin }) {
       </button>
       <button
         type="button"
-        data-testid="side-menu-item-my-orders"
+        data-testid={ `side-menu-item-${dataTestIdClient}orders` }
         onClick={ () => history.push(`${adminRoute}/orders`) }
       >
         { (isAdmin) ? 'Pedidos' : 'Meus Pedidos' }
       </button>
       <button
         type="button"
-        data-testid="side-menu-item-my-profile"
+        data-testid={ `side-menu-item-${dataTestIdClient}profile` }
         onClick={ () => history.push(`${adminRoute}/profile`) }
       >
         Meu Perfil
