@@ -14,7 +14,7 @@ const getStorage = (key) => JSON.parse(localStorage.getItem(key));
 
 const setStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 
-const setPurchaseStorage = (value) => {
+const setPurchaseStorage = (value, street, houseNumber) => {
   if (!getStorage('purchase')) {
     localStorage.setItem('purchase', JSON.stringify([]));
   }
@@ -26,6 +26,9 @@ const setPurchaseStorage = (value) => {
     sale_date: formatedDate(),
     products: value,
     total_price: total,
+    street,
+    houseNumber,
+    status: 'Pendente',
   };
 
   purchase.push(newObject);

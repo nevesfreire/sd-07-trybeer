@@ -67,7 +67,8 @@ function Checkout({ products }) {
         onClick={ () => {
           setShowMessage(true);
           API.sendSale(street, houseNumber, totalPrice, products);
-          setPurchaseStorage(products.filter((product) => product.quantity));
+          setPurchaseStorage(products
+            .filter((product) => product.quantity), street, houseNumber);
         } }
       >
         Finalizar pedido

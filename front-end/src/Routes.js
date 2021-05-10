@@ -9,6 +9,8 @@ import {
   AdmOrders,
   Order,
   OrderDetails,
+  AdmOrderDetails,
+
 } from './pages';
 
 function Router() {
@@ -28,7 +30,11 @@ function Router() {
       />
       <Route exact path="/admin/profile" component={ AdmProfile } />
       <Route exact path="/admin/orders" component={ AdmOrders } />
-      <Route exact path="/admin/orders/:id" />
+      <Route
+        exact
+        path="/admin/orders/:id"
+        render={ (props) => <AdmOrderDetails { ...props } /> }
+      />
     </Switch>
   );
 }
