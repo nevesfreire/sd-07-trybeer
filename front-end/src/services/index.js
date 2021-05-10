@@ -7,7 +7,7 @@ const requestLoginAPI = (formData) => {
   return axios
     .post(endpoint, formData)
     .then((response) => response)
-    .catch((error) => error);
+    .catch((error) => error.response);
 };
 
 const requestCreateUserAPI = (user) => {
@@ -18,12 +18,16 @@ const requestCreateUserAPI = (user) => {
     .catch((error) => error.response);
 };
 
-// axios.get('/user/12345')
-// .catch(function (error) {
-// console.log(error.toJSON());
-// });
+const requestGetProductsAPI = () => {
+  const endpoint = `${urlAPI}/products`;
+  return axios
+    .get(endpoint)
+    .then((response) => response)
+    .catch((error) => error.response);
+};
 
 export {
   requestLoginAPI,
   requestCreateUserAPI,
+  requestGetProductsAPI,
 };
