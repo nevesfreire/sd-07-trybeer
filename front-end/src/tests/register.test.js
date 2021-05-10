@@ -158,7 +158,7 @@ describe('1 - [PÁGINA DE REGISTRO] Crie uma página para registro de usuários 
     expect(button).toBeEnabled();
     fireEvent.click(button);
 
-    const result = await register('testuser', 'user@test.com', 'test123', 'client');
+    const result = await register('testuser', 'user@test.com', '123456789', 'client');
     await login('test@test.com', '123456789')
 
     const message = 'Já existe um usuário com esse e-mail.';
