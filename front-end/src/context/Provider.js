@@ -11,6 +11,7 @@ function Provider({ children }) {
   const [orderDetail, setOrderDetail] = useState({});
   const [pageTitle, setPageTitle] = useState('TryBeer');
   const [sideIsActive, setSideIsActive] = useState(false);
+  const [products, setProducts] = useState([]);
 
   const valuesProvided = {
     email,
@@ -29,6 +30,8 @@ function Provider({ children }) {
     setPageTitle,
     sideIsActive,
     setSideIsActive,
+    products,
+    setProducts,
   };
 
   return (

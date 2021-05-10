@@ -8,12 +8,23 @@ const registerUser = async (name, email, password, role) => {
 };
 
 const updateUserName = async (newName, email) => {
-  const updatedUser = await UserModel.updateUserName(newName, email);
-  return { status: 200, message: updatedUser };
+  await UserModel.updateUserName(newName, email);
+  return { status: 200, message: 'Atualização concluída com sucesso' };
 };
+
 const registerOrder = async (order) => {
-  const registeredOrder = await UserModel.registerOrder(order);
-  return { status: 200, message: registeredOrder };
+  const saleDate = await UserModel.getDate();
+  const { userEmail, totalCart, address, addressNumber, status } = order;
+  const user = await UserModel.getByEmail(userEmail);
+  const { id } = user;
+  await UserModel.registerOrder({
+    userId: id,
+    totalCart,
+    address, 
+    addressNumber,
+    saleDate,
+    status });
+  return { status: 201, message: 'Compra realizada com sucesso!' };
 };
 const getAllOrders = async () => {
   const allOrders = await UserModel.getAllOrders();

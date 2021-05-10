@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
+import Storage from '../../services/storageFunctions';
 
 function Profile() {
   const { sideIsActive, setPageTitle } = useContext(MyContext);
@@ -12,24 +13,19 @@ function Profile() {
   }, [setPageTitle]);
 
   const [newName, setNewName] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [updateMsg, setUpdateMsg] = useState('');
   const [user, setUser] = useState({});
 
   const history = useHistory();
-  const OK = 200;
 
   useEffect(() => {
-    const getUser = () => {
-      const userStorage = JSON.parse(localStorage.getItem('user'));
-      if (!userStorage) return history.push('/login');
-      return setUser(userStorage);
-    };
-    getUser();
+    const userStorage = Storage.getItem('user');
+    if (!userStorage) return history.push('/login');
+    return setUser(userStorage);
   }, [history]);
 
   const { name, email } = user;
 
-  const successMsg = 'Atualização concluída com sucesso';
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -39,10 +35,9 @@ function Profile() {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({ newName, email }),
-    }).then((response) => response.status)
-      .then((data) => {
-        if (data === OK) setSuccess(true);
-      });
+    }).then((response) => response.json())
+      .then((msg) => setUpdateMsg(msg))
+      .catch(((err) => console.log(err.message)));
   };
 
   return (
@@ -78,7 +73,9 @@ function Profile() {
           Salvar
         </button>
       </form>
-      { success && <span>{successMsg}</span> }
+      <span>
+        {updateMsg}
+      </span>
     </div>
   );
 }
