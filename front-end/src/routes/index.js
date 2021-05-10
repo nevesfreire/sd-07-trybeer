@@ -4,6 +4,7 @@ import Login from '../pages/Login';
 import RegisterPage from '../pages/RegisterPage';
 import ProductsPage from '../pages/ProductsPage';
 import ClientProfile from '../pages/ClientProfile';
+import AdminProfile from '../pages/AdminProfile';
 import ClientOrdersPage from '../pages/ClientOrdersPage';
 import AdminOrdersPage from '../pages/AdminOrdersPage';
 import CheckoutPage from '../pages/CheckoutPage';
@@ -16,6 +17,7 @@ const Routes = () => (
     <Route exact path="/register" component={ RegisterPage } />
     <Route exact path="/products" component={ ProductsPage } />
     <Route exact path="/profile" component={ ClientProfile } />
+    <Route exact path="/admin/profile" component={ AdminProfile } />
     <Route exact path="/orders" component={ ClientOrdersPage } />
     <Route exact path="/checkout" component={ CheckoutPage } />
     <Route exact path="/" component={ HomePage } />

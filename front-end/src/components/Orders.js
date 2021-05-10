@@ -16,9 +16,12 @@ function Orders() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (!user) return history.push('/login');
-    if (user.role === 'administrator') setIsAdmin(true);
-    getOrders();
+    if (!user) {
+      history.push('/login');
+    } else {
+      if (user.role === 'administrator') setIsAdmin(true);
+      getOrders();
+    }
   }, []);
 
   return (

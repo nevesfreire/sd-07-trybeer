@@ -10,7 +10,7 @@ const createSale = async (userId, totalPrice, street, number) => {
       '${street}', 
       '${number}',
       NOW(),
-      'pendente'
+      'Pendente'
     );
     `,
   );
