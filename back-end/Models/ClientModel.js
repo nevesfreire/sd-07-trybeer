@@ -76,6 +76,20 @@ const allProducts = async () => {
   return aProducts;
 }
 
+const saveSales = async (userId, totalPrice, deliveryAddress, deliveryNumber, products) => {
+  const saleCad = await connect
+  .execute(`
+  INSERT INTO sales ( user_id, total_price, delivery_address, delivery_number, sale_date, status) VALUES
+    (?, ?, ?, ?, now(), 'pendente')`, [userId, totalPrice, deliveryAddress, deliveryNumber]);
+
+  const saleId = saleCad[0].insertId;
+  const result = await connect
+  .query(`INSERT INTO sales_products (sale_id, product_id, quantity) VALUES ?`,
+    [products.map((product) => [saleId, product.id, product.quantity])]
+  )
+  return(result, 'deu tudo certo :D')
+}
+
 module.exports = {
   getEmailUser,
   token,
@@ -83,5 +97,5 @@ module.exports = {
   getUserForName,
   editName,
   allProducts,
-
+  saveSales,
 };
