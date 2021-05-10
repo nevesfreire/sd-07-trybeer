@@ -19,8 +19,9 @@ function UpdateForm() {
 
   const handleButtonChange = () => {
     if (userName !== initialName) {
-      return setDisabled(false)
-    } else { setDisabled(true) }
+      return setDisabled(false);
+    }
+    setDisabled(true);
   };
 
   useEffect(() => {
@@ -76,7 +77,6 @@ function UpdateForm() {
         <button
           type="button"
           data-testid="profile-save-btn"
-          onChange={() => handleButtonChange()}
           onClick={ () => handleClick() }
           disabled={ disabled }
         >
