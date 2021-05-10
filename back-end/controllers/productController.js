@@ -16,7 +16,7 @@ const getImageProduct = async (req, res) => {
   try {
     const { params: { name } } = req;
     const imagePath = `/images/${name}`;
-    return res.status(OK).sendFile(imagePath, { root: process.cwd() });
+    return res.status(OK).download(imagePath, { root: process.cwd() });
   } catch (error) {
     console.log(error);
     return res.status(INTERNAL_SERVER_ERROR).json(error);
