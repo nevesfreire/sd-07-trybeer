@@ -26,4 +26,14 @@ const getAll = async (req, res) => {
   }
 };
 
-module.exports = { create, getAll };
+const getById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const allSalesById = await SalesService.getById(id);
+    return res.status(200).json(allSalesById);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { create, getAll, getById };

@@ -25,4 +25,17 @@ const getAll = async () => {
   }
 };
 
-module.exports = { create, getAll };
+const getById = async (id) => {
+  console.log(id);
+  try {
+    const sales = await connection.execute(
+      'SELECT * FROM sales WHERE id=?', 
+      [id],
+    );
+    return sales[0];
+  } catch (error) {
+    throw new Error('Erro de conexão');
+  }
+};
+
+module.exports = { create, getAll, getById };

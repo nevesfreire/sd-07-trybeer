@@ -24,6 +24,10 @@ router.get('/products', productsControler.getAllProducts);
 // "listProducts": {"1":"5","2":"5"}
 // }
 router.post('/sale', saleControler.create);
+
+// Busca uma venda especifica atraves do id a venda.
+router.get('/sale/:id', saleControler.getById);
+
 router.get('/orders', saleControler.getAll);
 
 module.exports = router;
