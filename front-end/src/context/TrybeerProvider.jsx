@@ -7,9 +7,9 @@ function TrybeerProvider({ children }) {
   const [totalValue, setTotalValue] = useState(0);
 
   const addOrder = (product) => {
-    order.push(product);
+    setOrder([...order, product]);
     setTotalValue(totalValue + product.price);
-  }
+  };
   const context = {
     addOrder,
   };
