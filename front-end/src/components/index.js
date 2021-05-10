@@ -5,6 +5,8 @@ import Checkout from './Checkout/index';
 import CardOrder from './CardOrder/CardOrder';
 import CardOrderDetail from './CardOrderDetail/CardOrderDetail';
 import HeaderButtons from './HeaderButtons/HeaderButtons';
+import AdminCardOrder from './AdminCardOrder/AdminCardOrder';
+import AdminCardOrderDetail from './AdminCardOrderDetail/AdminCardOrderDetail';
 
 export {
   HeaderButtons,
@@ -14,4 +16,6 @@ export {
   Checkout,
   CardOrder,
   CardOrderDetail,
+  AdminCardOrder,
+  AdminCardOrderDetail,
 };
