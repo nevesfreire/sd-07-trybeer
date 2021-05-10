@@ -5,6 +5,16 @@ MYSQL_USER=root
 MYSQL_PASSWORD=
 PORT=3001
 
+# Mensagens de erro
+
+Todas as mensagens de erro seguem o seguinte formato:
+
+{
+  "err": {
+    "message": "Mensagem de erro"
+  }
+}
+
 ## Criação de novo usuario
 
 Rota: localhost:3001/user
@@ -13,10 +23,10 @@ Metodo: POST
 Passar o seguinte json no body:
 
 {
- "name":"",
+ "name": "",
  "email": "",
- "password":"",
- "role":"client"
+ "password": "",
+ "role": "client"
 }
 
 O usuário não pode ter caracteres especiais ou números.
@@ -59,10 +69,10 @@ Rota: localhost:3001/user
 Metodo: PUT
 
 O header deve conter o seguinte:
-
 authorization: token
 
 Passar o seguinte json no body:
+
 {
   "name":"Novo nome de usuário"
 }
@@ -109,15 +119,6 @@ Caso sucesso:
   }
 ]
 
-Caso o token não seja passado ou esteja inválido, é retornado o seguinte erro:
-
-{
-  "err": {
-    "name": "JsonWebTokenError",
-    "message": "jwt must be provided"
-  }
-}
-
 ## Criando venda
 
 Rota: localhost:3001/sales
@@ -144,10 +145,13 @@ quantity e totalPrice devem ser maiores que 1.
 
 Apenas os campos status e deliveryNumber são opcionais.
 
-## Consultando compras
+## Consultando compras (cliente)
 
-Rota: localhost:3001/sales
+Rota: localhost:3001/sales/users
 Metodo: GET
+
+O header deve conter o seguinte:
+authorization: token
 
 Caso exista alguma compra o retorno será um JSON com o seguinte:
 
@@ -164,18 +168,39 @@ Caso exista alguma compra o retorno será um JSON com o seguinte:
   }
 ]
 
-Caso não exista uma venda o retorno será o seguinte:
+## Consultando vendas (administrador)
 
-{
-  err: 'Usuário ainda não realizou nenhuma compra'
-}
+Rota: localhost:3001/sales/admin
+Metodo: GET
+
+O header deve conter o seguinte:
+authorization: token
+O usuário deve ser um administrador
+
+Caso exista alguma compra o retorno será um JSON com o seguinte:
+
+[
+  {
+    "saleId": 1,
+    "saleDate": "05/07",
+    "totalPrice": "343.98"
+  },
+  {
+    "saleId": 2,
+    "saleDate": "05/07",
+    "totalPrice": "343.98"
+  }
+]
 
 ## Consultando detalhes da compra
 
-Rota: localhost:/3001/sales/:id
+Rota: localhost:/3001/sales/users/:saleid
 Metodo: GET
 
-Passar o id da compra como parâmetro ex: localhost:3001/sales/1
+O header deve conter o seguinte:
+authorization: token
+
+Passar o id da compra como parâmetro ex: localhost:3001/sales/users/1
 
 Caso exista uma compra com o id buscado, será retornado o JSON:
 
@@ -200,8 +225,19 @@ Caso exista uma compra com o id buscado, será retornado o JSON:
   }
 ]
 
-Caso não exista nenhuma compra com o id buscado, o retorno será o seguinte:
+## Atualizando o status da venda
+
+Rota: localhost:/3001/sales/admin/:id
+Método: PUT
+
+O header deve conter o seguinte:
+authorization: token
+O usuário deve ser um administrador
+
+Passar o id da compra como parâmetro ex: localhost:3001/sales/admin/1
+
+Em caso de sucesso, o retorno será o seguinte:
 
 {
-  "err": "Não foram encontradas compras com esse id"
+  "message": "Pedido registrado como entregue"
 }

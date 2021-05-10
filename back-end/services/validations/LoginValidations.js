@@ -1,7 +1,6 @@
 const Joi = require('joi');
+const { INVALIDUSER } = require('../errors/LoginMessages');
 const { loginModel } = require('../../models');
-
-const error = { message: 'Usuario invalido' };
 
 const validateLogin = (data) =>
   Joi.object({
@@ -11,8 +10,9 @@ const validateLogin = (data) =>
 
 const validUser = async (data) => {
   const [userData] = await loginModel.getUserInfo(data);
-  if (!userData[0]) throw error;
+  if (!userData[0]) throw INVALIDUSER;
 };
+
 module.exports = {
   validateLogin,
   validUser,

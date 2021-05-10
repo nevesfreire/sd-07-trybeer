@@ -29,9 +29,20 @@ const getSaleById = async (userId, saleId) =>
   .then((response) => response[0])
   .catch((err) => console.log(err.message));
 
+const getAllSales = async () =>
+  connect.execute('SELECT * FROM Trybeer.sales')
+  .catch((error) => error);
+
+const updateSaleStatus = async (id, status) =>
+  connect.execute(`UPDATE Trybeer.sales
+  SET status = '${status}'
+  WHERE id = '${id}'`);
+
 module.exports = {
   createSale,
   createSaleProduct,
   getSaleByUserId,
   getSaleById,
+  getAllSales,
+  updateSaleStatus,
 };
