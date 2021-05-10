@@ -25,7 +25,7 @@ function Products() {
         cartSum += product.price * product.quantity;
       });
     }
-    setCartPreview(Number(cartSum.toFixed(2)));
+    setCartPreview(cartSum.toFixed(2));
   };
 
   const renderProducts = async () => {
@@ -42,12 +42,13 @@ function Products() {
     <>
       <TopMenu title="TryBeer" />
       { isFetching && <h1>Loading...</h1>}
-      { !isFetching && products.map((product) => (<ProductsCard
+      { !isFetching && products.map((product, index) => (<ProductsCard
         key={ product.id }
         id={ product.id }
         name={ product.name }
         price={ product.price }
         image={ product.url_image }
+        index={ index }
         updateCart={ updateCartPreview }
       />
       ))}
@@ -60,10 +61,7 @@ function Products() {
       <span
         data-testid="checkout-bottom-btn-value"
       >
-        {' '}
-        R$:
-        {' '}
-        {cartPreview}
+        {`R$ ${Number(cartPreview)}`}
       </span>
     </>
   );

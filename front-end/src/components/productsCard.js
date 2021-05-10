@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProductsButtons from './productsButtons';
 
 function ProductsCard(props) {
-  const { id, name, price, image, updateCart } = props;
+  const { id, name, price, image, index, updateCart } = props;
   const [cartQuantity, setCartQuantity] = useState(0);
 
   const updateCartQuantity = useCallback(() => {
@@ -77,17 +77,17 @@ function ProductsCard(props) {
   return (
     <>
       <span
-        data-testid="0-product-price"
+        data-testid={`${index}-product-price`}
       >
         {price}
       </span>
       <img
         src={ image.replace(/\s/g, '') }
         alt={ name }
-        data-testid="0-product-img"
+        data-testid={`${index}-product-img`}
       />
       <span
-        data-testid="0-product-name"
+        data-testid={`${index}-product-name`}
       >
         {name}
       </span>
