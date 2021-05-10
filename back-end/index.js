@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const { userRoutes, productRoutes, saleRoutes } = require('./routes');
+const { userRoutes, productRoutes, saleRoutes, orderRoutes } = require('./routes');
 
 require('dotenv').config();
 
@@ -17,6 +17,7 @@ app.use(cors());
 app.use(userRoutes);
 app.use(productRoutes);
 app.use(saleRoutes);
+app.use(orderRoutes);
 
 app.listen(PORT, () => {
   console.log(`Trybeer API listen on ${PORT}`);

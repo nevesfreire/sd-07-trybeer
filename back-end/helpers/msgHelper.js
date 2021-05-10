@@ -10,6 +10,8 @@ const STATUS_MESSAGE = {
   MALFORMED_TOKEN: 'JWT malformed',
   EMAIL_NOT_EQUAL: 'Informed email is not valid',
   CREATED_SALE: 'Successfully created sale',
+  NOT_AUTHORIZED: 'You are not authorized to use this feature.',
+  
 };
 
 module.exports = STATUS_MESSAGE;

@@ -1,6 +1,6 @@
 const { CustomError } = require('./errorHelper');
-const { STATUS_CODE } = require('./statusHelper');
-const { STATUS_MESSAGE } = require('./msgHelper');
+const STATUS_CODE = require('./statusHelper');
+const STATUS_MESSAGE = require('./msgHelper');
 
 // No magic numbers
 const SIX = 6;
@@ -128,6 +128,15 @@ const checkProductsSalesValue = (productsSales) => {
   }
 };
 
+const checkIsAdmin = (role) => {
+  if (role !== 'administrator') {
+    throw new CustomError({
+      status: STATUS_CODE.UNAUTHORIZED,
+      message: STATUS_MESSAGE.NOT_AUTHORIZED,
+    });
+  }
+};
+
 module.exports = {
   checkIfEmailAndPasswordExist,
   checkIfEmailIsValid,
@@ -142,4 +151,5 @@ module.exports = {
   checkTotalPriceValue,
   checkDeliveryNumberValue,
   checkProductsSalesValue,
+  checkIsAdmin,
 };
