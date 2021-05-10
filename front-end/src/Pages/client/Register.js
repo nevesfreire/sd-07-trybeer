@@ -75,6 +75,7 @@ function Register() {
         htmlFor="signup-email"
       >
         Email
+
       <input
         type="email"
         data-testid="signup-email"

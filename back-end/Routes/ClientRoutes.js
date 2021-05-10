@@ -8,4 +8,5 @@ router.post('/register', ClienteController.addUser);
 router.put('/profile', ClienteController.updateUserName);
 router.get('/products', ClienteController.getAllProducts);
 
+
 module.exports = router;
