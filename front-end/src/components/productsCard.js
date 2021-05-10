@@ -4,9 +4,8 @@ import ProductsButtons from './productsButtons';
 function ProductsCard(props) {
   const { id, name, price, image, updateCart } = props;
   const [cartQuantity, setCartQuantity] = useState(0);
-  const [update, setUpdate] = useState(false);
 
-  const updateCartQuantity = () => {
+  const updateCartQuantity = useCallback(() => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     let thisProduct = [];
     thisProduct = cart.filter((cartproduct) => cartproduct.id === id);
@@ -14,11 +13,7 @@ function ProductsCard(props) {
       setCartQuantity(thisProduct[0].quantity);
     }
     updateCart();
-  };
-  const updateThis = () => {
-    if (update) setUpdate(false);
-    setUpdate(true);
-  };
+  });
 
   const addCartItem = () => {
     const product = {
@@ -45,7 +40,6 @@ function ProductsCard(props) {
       });
     }
     localStorage.setItem('cart', JSON.stringify(cart));
-    console.log('adicionou');
     updateCartQuantity();
   };
 
@@ -63,7 +57,7 @@ function ProductsCard(props) {
   useEffect(() => {
     getCart();
     updateCartQuantity();
-  }, []);
+  }, [getCart, updateCartQuantity]);
 
   const removeCartItem = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -77,7 +71,6 @@ function ProductsCard(props) {
       }
     });
     localStorage.setItem('cart', JSON.stringify(cart));
-    console.log('removeu');
     updateCartQuantity();
   };
 
@@ -88,13 +81,11 @@ function ProductsCard(props) {
       >
         {price}
       </span>
-      {/* <img
-        src={newImg}
-        alt={name}
+      <img
+        src={ image.replace(/\s/g, '') }
+        alt={ name }
         data-testid="0-product-img"
-      >
-        Imagem produto
-      </img> */}
+      />
       <span
         data-testid="0-product-name"
       >

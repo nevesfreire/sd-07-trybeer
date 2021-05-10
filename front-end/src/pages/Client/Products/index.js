@@ -14,6 +14,7 @@ function Products() {
       cart = [];
       localStorage.setItem('cart', JSON.stringify(cart));
     }
+    setIsFetching(false);
   };
 
   const updateCartPreview = () => {
@@ -24,7 +25,7 @@ function Products() {
         cartSum += product.price * product.quantity;
       });
     }
-    setCartPreview(cartSum.toFixed(2));
+    setCartPreview(Number(cartSum.toFixed(2)));
   };
 
   const renderProducts = async () => {
@@ -35,35 +36,35 @@ function Products() {
   useEffect(() => {
     renderProducts();
     setCart();
-  }, []);
-  console.log(products);
+  }, [renderProducts, setCart]);
 
   return (
     <>
       <TopMenu title="TryBeer" />
-      <h1>Product Screen</h1>
-      {products.map((product) => (<ProductsCard
+      { isFetching && <h1>Loading...</h1>}
+      { !isFetching && products.map((product) => (<ProductsCard
         key={ product.id }
         id={ product.id }
         name={ product.name }
         price={ product.price }
         image={ product.url_image }
         updateCart={ updateCartPreview }
-      />))}
+      />
+      ))}
       <button
         type="button"
         data-testid="checkout-bottom-btn"
       >
         Ver Carrinho
-        <span
-          data-testid="checkout-bottom-btn-value"
-        >
-          {' '}
-          R$:
-          {' '}
-          {cartPreview}
-        </span>
       </button>
+      <span
+        data-testid="checkout-bottom-btn-value"
+      >
+        {' '}
+        R$:
+        {' '}
+        {cartPreview}
+      </span>
     </>
   );
 }

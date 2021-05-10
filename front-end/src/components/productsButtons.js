@@ -3,7 +3,6 @@ import React from 'react';
 function ProductsButtons(props) {
   const { quantity, add, remove } = props;
 
-  console.log('vai');
   return (
     <>
       <button
@@ -16,7 +15,7 @@ function ProductsButtons(props) {
       <span
         data-testid="0-product-qtd"
       >
-        {quantity}
+        { quantity }
       </span>
       <button
         type="button"
