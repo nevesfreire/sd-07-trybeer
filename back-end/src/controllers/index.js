@@ -3,7 +3,7 @@ const { registerController } = require('./registerController');
 const { productController } = require('./productController');
 
 module.exports = {
-    loginController,
-    registerController,
-    productController,
+  loginController,
+  registerController,
+  productController,
 };

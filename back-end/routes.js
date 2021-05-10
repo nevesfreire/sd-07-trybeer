@@ -13,8 +13,13 @@ app.post('/login', loginMiddleware, loginController);
 
 app.get('/products', productController);
 
-app.post('/', body('name').isString().isLength({ min: 12 }),
-             body('email').isEmail(),
-             body('password').isLength({ min: 6 }), fieldValidator, registerController);
+app.post(
+  '/',
+  body('name').isString().isLength({ min: 12 }),
+  body('email').isEmail(),
+  body('password').isLength({ min: 6 }),
+  fieldValidator,
+  registerController,
+);
 
 module.exports = app;

@@ -4,13 +4,13 @@ const SUCCESS = 200;
 const ERRO500 = 500;
 
 const productController = async (req, res) => {
-   try {
-        const data = await productService.productService(); // melhorar o nome
-        res.status(SUCCESS).json(data); 
-   } catch (error) {
+  try {
+    const data = await productService.productService(); // melhorar o nome
+    res.status(SUCCESS).json(data);
+  } catch (error) {
     //  console.log(`product controler ${error}`);
-       res.status(ERRO500).json({ messsage: error.messsage }); // não esta retornando nenhuma mensagem
-   }
+    res.status(ERRO500).json({ messsage: error.messsage }); // não esta retornando nenhuma mensagem
+  }
 };
 
 module.exports = {
