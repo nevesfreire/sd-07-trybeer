@@ -41,8 +41,7 @@ const statusMsgMap = {
   wrongPassword: {
     status: 401, message: 'Incorrect username or password', error: true,
   },
-  
-erorInDb: {
+  errorInDb: {
     status: 500, message: 'Bad db connection || query', error: true,
   },
 };
