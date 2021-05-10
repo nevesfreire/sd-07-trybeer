@@ -9,7 +9,7 @@ const newRegister = async (req, res) => {
     const token = userToken(user);
     delete user[0].password;
 
-    const userWithToken = { ...user, token };
+    const userWithToken = { ...user[0], token };
     res.status(StatusCodes.CREATED).json(userWithToken);
   } catch (error) {
     console.log('caí no catch controller');

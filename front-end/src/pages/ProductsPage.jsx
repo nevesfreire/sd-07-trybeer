@@ -1,9 +1,14 @@
 import React from 'react';
+import HeaderBurguer from '../components/HeaderBurger';
 import ProductsCard from '../components/ProductCardComponent';
 
 function Products() {
   return (
-    <ProductsCard />
+    <>
+      <HeaderBurguer titulo="TryBeer" />
+      <ProductsCard />
+      Client
+    </>
   );
 }
 
