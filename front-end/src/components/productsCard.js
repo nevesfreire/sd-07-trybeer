@@ -95,6 +95,7 @@ function ProductsCard(props) {
         quantity={ cartQuantity }
         add={ addCartItem }
         remove={ removeCartItem }
+        index={ index }
       />
     </>
   );
