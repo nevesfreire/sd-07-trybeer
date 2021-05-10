@@ -4,6 +4,7 @@ export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS';
 export const REQUEST_PRODUCTS_SUCCESS = 'REQUEST_PRODUCTS_SUCCESS';
 export const REQUEST_PRODUCTS_FAIL = 'REQUEST_PRODUCTS_FAIL';
+export const SAVE_ORDER = 'SAVE_ORDER';
 
 export const update = (cart) => ({
   type: UPDATE_QUANTITY,
@@ -22,6 +23,11 @@ export const requestProductsSuccess = (products) => ({
 export const requestProductsFail = (error) => ({
   type: REQUEST_PRODUCTS_FAIL,
   error,
+});
+
+export const finish = (message) => ({
+  type: SAVE_ORDER,
+  message,
 });
 
 export function fetchProducts() {
