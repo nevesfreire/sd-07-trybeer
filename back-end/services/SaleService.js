@@ -1,13 +1,18 @@
 const { saleModel, productModel, userModel } = require('../models');
-const { validateData } = require('./validations/SaleValidations');
+const { 
+  SAMESTATUS,
+  NOTFOUNDID,
+  NOEXISTENTPURCHASE,
+  NOTADMINISTRATOR,
+  NOEXISTENTSALE,
+} = require('./errors/SaleMessages');
+const { validateData, validateStatus } = require('./validations/SaleValidations');
 
-const ERRORID = { err: 'Não foram encontradas compras com esse id' };
-const ERROR = { err: 'Usuário ainda não realizou nenhuma compra' };
 const createSale = async (data, token) => {
   const validateArray = data.map((saleData) => validateData(saleData));
-  const dataIsValid = validateArray.some((item) => item.error);
-  if (dataIsValid === true) throw validateArray[0].error.details[0];
-
+  const dataIsntValid = validateArray.some((item) => item.error);
+  if (dataIsntValid === true) throw validateArray.find((error) => error.error).error.details[0];
+  
   const totalProductPrice = await Promise.all(
     data.map(async ({ productName, quantity }) => {
       const product = await productModel.getProductByName(productName);
@@ -29,13 +34,13 @@ const createSale = async (data, token) => {
 
 const getSaleProducts = async (id, saleid) => {
   const sales = await saleModel.getSaleById(id, saleid);
-  if (sales.length === 0) throw ERRORID;
+  if (sales.length === 0) throw NOTFOUNDID;
   return sales;
 };
 
 const getSaleByUserId = async (id) => {
   const result = await saleModel.getSaleByUserId(id);
-  if (result.length === 0) throw ERROR;
+  if (result.length === 0) throw NOEXISTENTPURCHASE;
   const retorno = await Promise.all(result.map((sale) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     const saleDate = sale.sale_date.toLocaleString('en-GB', options);
@@ -48,8 +53,26 @@ const getSaleByUserId = async (id) => {
   return retorno;
 };
 
+const getAllSales = async (token) => {
+  if (token[0].role !== 'administrator') throw NOTADMINISTRATOR;
+  const [sales] = await saleModel.getAllSales();
+  if (sales.length === 0) throw NOEXISTENTSALE;
+  return sales;
+};
+
+const updateSaleStatus = async (id, status, token) => {
+  const { error } = validateStatus(status);
+  if (token[0].role !== 'administrator') throw NOTADMINISTRATOR;
+  if (error) throw error;
+  const [response] = await saleModel.updateSaleStatus(id, status);
+  if (response.changedRows === 0) throw SAMESTATUS;
+  return { message: `Pedido registrado como ${status}` };
+};
+
 module.exports = {
   createSale,
   getSaleByUserId,
   getSaleProducts,
+  getAllSales,
+  updateSaleStatus,
 };

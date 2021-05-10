@@ -1,12 +1,13 @@
 const { loginService } = require('../services');
+const { OK, BADREQUEST } = require('./HttpCodes');
 
 const getUser = async (req, res) => {
   try {
     const { body } = req;
     const data = await loginService.getUser(body);
-    res.status(200).json(data);
+    res.status(OK).json(data);
   } catch (error) {
-    res.status(400).json({ err: error.message });
+    res.status(BADREQUEST).json({ err: { message: error.message } });
   }
 };
 

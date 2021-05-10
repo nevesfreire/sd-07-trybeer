@@ -10,6 +10,10 @@ const validateData = (data) =>
     status: Joi.string().optional(),
   }).validate(data);
 
+const validateStatus = (status) => 
+  Joi.string().valid('Pendente', 'Entregue').required().validate(status);
+
 module.exports = {
   validateData,
+  validateStatus,
 };
