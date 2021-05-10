@@ -32,7 +32,7 @@ function OrderCard(props) {
 
   const renderOrderDetail = () => {
     setOrderDetail(orderObj);
-    history.push('/orders/:id');
+    history.push(`/orders/${id}`);
   };
 
   return (
