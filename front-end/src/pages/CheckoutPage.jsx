@@ -1,13 +1,13 @@
 import React from 'react';
 import HeaderBurguer from '../components/HeaderBurger';
 
-function Products() {
+function CheckoutPage() {
   return (
     <>
-      <HeaderBurguer titulo="TryBeer" />
-      Client
+      <HeaderBurguer titulo="Finalizar Pedido" />
+      client
     </>
   );
 }
 
-export default Products;
+export default CheckoutPage;
