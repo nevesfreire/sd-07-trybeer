@@ -2,7 +2,7 @@ const connection = require('../connection');
 
 const orderDetails = async (orderId) => {
     const [result] = await connection.execute(
-    'SELECT sales.id ,sales.sale_date,sales.delivery_number AS'
+    'SELECT sales.id ,sales.sale_date, product.quantity, sales.delivery_number AS'
         + ' number_order,products_info.price * product.quantity AS'
         + ' total_item_price,product.product_id,products_info.name FROM sales'
         + ' INNER JOIN sales_products AS product'

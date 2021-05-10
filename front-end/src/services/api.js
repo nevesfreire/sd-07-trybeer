@@ -59,10 +59,24 @@ async function getAllOrders(token) {
     .then((response) => response.data).catch((error) => error.response.data);
 }
 
+async function getOrderDetailsById(token, id) {
+  const options = {
+    method: 'GET',
+    url: `${endpoint}/orders/${id}`,
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  return axios.request(options)
+    .then((response) => response.data).catch((error) => error.response.data);
+}
+
 export default {
   registerUser,
   loginUser,
   getProducts,
   updateUser,
   getAllOrders,
+  getOrderDetailsById,
 };

@@ -12,6 +12,7 @@ import {
   Profile,
   ProfileAdmin,
   AllOrdersPage,
+  OrderDetails,
 } from './pages';
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
             <Route path="/admin/orders" component={ AdminHome } />
             <Route path="/profile" component={ Profile } />
             <Route path="/admin/profile" component={ ProfileAdmin } />
+            <Route
+              path="/orders/:id"
+              render={ (props) => <OrderDetails { ...props } /> }
+            />
             <Route path="/orders" component={ AllOrdersPage } />
           </ProtectedRoute>
         </Switch>
