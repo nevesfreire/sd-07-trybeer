@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Form,
   Label,
-  Input,
   Span,
 } from './styles';
 
@@ -13,24 +12,16 @@ export default function AdminProfile() {
     <Form>
       <Label>
         <Span>Nome:</Span>
-        <Input
-          value={ currentUser.name }
-          type="name"
-          name="name"
-          data-testid="profile-name"
-          readOnly
-        />
+        <span data-testid="profile-name" readOnly>
+          { currentUser ? currentUser.name : '' }
+        </span>
       </Label>
 
       <Label>
         Email:
-        <Input
-          value={ currentUser.email }
-          type="email"
-          name="email"
-          data-testid="profile-email"
-          readOnly
-        />
+        <span data-testid="profile-email" readOnly>
+          { currentUser ? currentUser.email : '' }
+        </span>
       </Label>
     </Form>
   );
