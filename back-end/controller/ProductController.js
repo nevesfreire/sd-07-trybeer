@@ -1,7 +1,6 @@
 const url = require('url');
 const ProductService = require('../service/ProductService');
 
-
 const getAllProducts = async (req, res) => {
   try {
     const result = await ProductService.getAll();

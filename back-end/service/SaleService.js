@@ -21,8 +21,9 @@ const create = async (dAddress, dNumber, listProducts, authorization) => {
   );
 };
 
-const getAll = async () => {
-  const sales = await SaleModel.getAll();
+const getAll = async (authorization) => {
+  const decoded = jwt.decodeToken(authorization);
+  const sales = await SaleModel.getAll(decoded.id);
   return sales;
 };
 
@@ -31,4 +32,14 @@ const getById = async (id) => {
   return sales;
 };
 
-module.exports = { create, getAll, getById };
+const getSaleByOrderNumber = async (orderNumber) => {
+  const sale = await SaleModel.getByOrderNumber(orderNumber);
+  return sale;
+};
+
+const getAllOrders = async () => {
+  const orders = await SaleModel.getAllOrders();
+  return orders;
+};
+
+module.exports = { create, getAll, getSaleByOrderNumber, getAllOrders, getById };
