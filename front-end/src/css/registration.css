@@ -1,7 +1,5 @@
-.container-register {
-   display: flex;
-   justify-content: center;
-   margin-top: 2rem;
+body {
+   font: 500 1rem Inter, sans-serif;
 }
 
 .form-registration  {
@@ -9,7 +7,7 @@
    align-items: center;
    width: 35rem;
    margin-left: 25rem;
-   background-color: rgb(218, 222, 231);
+   background-color: rgb(170, 172, 177);
 }
  
 .form-registration > .registration-input{
@@ -44,9 +42,16 @@
    margin-left: 1.5rem;
 }
 
+hr {
+   width: 23rem;
+	border: 1px solid #00010250;
+   margin-bottom: 3rem;
+   margin-top: 1rem;
+}
+
 .nav-register{
    text-decoration: none;
-   color: rgba(0, 0, 0, 0.658);
+   color: rgba(0, 0, 0, 0.877);
    margin-top: 30rem;
 }
 

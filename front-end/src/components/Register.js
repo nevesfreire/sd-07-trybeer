@@ -110,7 +110,7 @@ const ComponentRegister = () => {
         />
         <span>Quero vender</span>
       </div>
-
+      <hr />
       <div className="register-btn-group">
         <Button
           data-testid="signup-btn"
