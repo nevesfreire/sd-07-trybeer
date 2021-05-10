@@ -25,7 +25,7 @@ export default function () {
       setTitle('Finalizar Pedido');
       break;
     case '/orders':
-      setTitle('Meus pedidos');
+      setTitle('Meus Pedidos');
       break;
     default:
       setTitle('Detalhes de Pedido');

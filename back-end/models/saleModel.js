@@ -23,7 +23,7 @@ const createSaleProduct = async (products, saleID) => {
 
 const getSale = async (id) => {
     const [rows] = await connection
-    .execute(`SELECT delivery_number, sale_date, total_price 
+    .execute(`SELECT id, sale_date, total_price 
     FROM Trybeer.sales WHERE user_id = ?`, [id]);
     return rows;
 };
