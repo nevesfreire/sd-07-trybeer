@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import BeerContext from '../context/beerContext';
@@ -9,10 +9,10 @@ function Login() {
     email, setEmail,
     password, setPassword,
     isDisable, setIsDisable,
-    isLogged, setIsLogged,
     errorMessage, setErrorMessage,
     role, setRole,
   } = useContext(BeerContext);
+  const [isLogged, setIsLogged] = useState(false);
 
   const handleClick = async () => {
     const response = await loginRequest(email, password);

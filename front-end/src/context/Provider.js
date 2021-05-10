@@ -8,7 +8,6 @@ function Provider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-  const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [role, setRole] = useState('');
   const [cartPreview, setCartPreview] = useState(0);
@@ -25,8 +24,6 @@ function Provider({ children }) {
     setPassword,
     isDisable,
     setIsDisable,
-    isLogged,
-    setIsLogged,
     errorMessage,
     setErrorMessage,
     role,
