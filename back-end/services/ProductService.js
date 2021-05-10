@@ -8,7 +8,7 @@ const findAll = async (token) => {
   try {
     verifyToken(token);
   } catch (error) {
-    throw new CustomError(error.status, error.message)
+    throw new CustomError(error.status, error.message);
   }
 
   const products = await Product.findAll();

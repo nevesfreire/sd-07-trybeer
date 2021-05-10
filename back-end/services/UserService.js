@@ -9,13 +9,13 @@ const create = async (name, email, password, role) => {
   if (error) throw new CustomError(CODE.BAD_REQUEST, error.message);
 
   const user = await User.findByEmail(email);
-  if (user) throw new CustomError(CODE.CONFLICT, 'Email já cadastrado');
+  if (user) throw new CustomError(CODE.CONFLICT, 'Já existe um usuário com esse e-mail.');
 
   const userRole = (role) ? 'administrator' : 'client';
 
   try {
     await User.create(name, email, password, userRole);
-    return { statusCode: CODE.CREATED, message: 'Usuário criado com sucesso!' };
+    return { statusCode: CODE.CREATED, message: 'Atualização concluída com sucesso' };
   } catch (err) {
     throw new CustomError(CODE.INTERNAL_SERVER_ERROR, 'Erro ao conectar com o banco de dados');
   }
