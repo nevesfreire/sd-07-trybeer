@@ -7,7 +7,7 @@ import { Context } from '../../context';
 function CheckoutPdtCard({ data, index }) {
   const [quantity, setQuantity] = useState(0);
   const { cart, addToCart, removeFromCart } = useContext(Context);
-  console.log(index)
+  console.log(index);
   const {
     id,
     name,
@@ -15,7 +15,8 @@ function CheckoutPdtCard({ data, index }) {
     url_image: urlImage,
   } = data;
 
-  const priceFormat = `R$ ${price.replace(/\./g, ',')}`;
+  const formatedPrice = `R$ ${(price * quantity).toFixed(2).replace(/\./g, ',')}`;
+  const priceFormat = `(R$ ${price.replace(/\./g, ',')} un)`;
 
   useEffect(() => {
     const currentProduct = cart.find((prod) => prod.id === id);
@@ -34,15 +35,19 @@ function CheckoutPdtCard({ data, index }) {
       </header>
       <main>
         <strong data-testid={ `${index}-product-name` }>{name}</strong>
-        <p data-testid={ `${index}-product-price` }>{priceFormat}</p>
+        <p data-testid={ `${index}-product-unit-price` }>{priceFormat}</p>
         <div>
           <button
             type="button"
             onClick={ () => removeFromCart(data) }
-            data-testid={ `${index}-product-minus` }
+            data-testid={ `${index}-removal-button` }
           >
             -
           </button>
+          <br />
+          <strong data-testid={ `${index}-product-total-value` }>
+            {formatedPrice}
+          </strong>
           <p data-testid={ `${index}-product-qtd-input` }>{quantity}</p>
           <button
             type="button"
@@ -58,6 +63,7 @@ function CheckoutPdtCard({ data, index }) {
 }
 
 CheckoutPdtCard.propTypes = {
+  index: PropTypes.number.isRequired,
   data: PropTypes.shape({
     id: PropTypes.number.isRequired,
     price: PropTypes.string.isRequired,
