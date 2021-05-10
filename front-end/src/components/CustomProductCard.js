@@ -5,8 +5,24 @@ import { loadItemsToLocalStorage} from '../helpers/localStorage'
 
 export default function CustomProductCard({ index, beer }) {
   const { totalKart, setTotalKart } = useContext(CentralContext);
+ 
+let result = 0 
+let result2 = 0
 
-  const [qtdProduct, setQtdProduct] = useState(0);
+console.log("beer", beer)
+  //const products = JSON.parse(localStorage.getItem('product'));
+  const kart = JSON.parse(localStorage.getItem('cart'));
+  kart && kart.map(test => {
+    if(test[0] == beer.id ){
+    result =test[2]
+    if(test[2] !== 0) result2 = result2 + (result * Number(beer.price));
+    
+  }})
+  console.log("aqui", result2)
+  setTotalKart(result2)
+
+  const [qtdProduct, setQtdProduct] = useState(result)
+
  
   const saveToLocalMore = (beer, qtdProduct) => {
     const { id, price } = beer
@@ -26,7 +42,7 @@ export default function CustomProductCard({ index, beer }) {
     // FUNC RECUP LOCALSTORAGE
   //}, []);
 
-  useEffect(() => {}, [qtdProduct]);
+  useEffect(() => {}, [qtdProduct, result2]);
 
  // const addMore = () => { 
  //   const more = Number(beer.price);
@@ -71,7 +87,9 @@ export default function CustomProductCard({ index, beer }) {
             <Card.Meta data-testid={`${index}-product-name`}>
               {beer.name}
             </Card.Meta>
-            <Card.Meta data-testid={`${index}-product-qtd`}>
+            <Card.Meta data-testid={`${index}-product-qtd`}
+            onChange={ () => { setTotalKart( totalKart + (qtdProduct*Number(beer.price)))}}
+            >
               {qtdProduct}
             </Card.Meta>
           </Card.Content>
@@ -83,7 +101,7 @@ export default function CustomProductCard({ index, beer }) {
                 data-testid={`${index}-product-plus`}
                 onClick={() => {
                   setQtdProduct(qtdProduct + 1);
-                  setTotalKart(totalKart + Number(beer.price));
+                  // setTotalKart(totalKart + Number(beer.price));
                   saveToLocalMore(beer, qtdProduct);
                 }}
                 size="mini"
@@ -96,7 +114,7 @@ export default function CustomProductCard({ index, beer }) {
                 data-testid={`${index}-product-minus`}
                 onClick={() => {
                   (qtdProduct > 0) && setQtdProduct(qtdProduct - 1) ;
-                  (qtdProduct > 0) && setTotalKart(totalKart - Number(beer.price));
+                  // (qtdProduct > 0) && setTotalKart(totalKart - Number(beer.price));
                   saveToLocalLess(beer, qtdProduct);
                 }}
                 size="mini"
