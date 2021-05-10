@@ -5,7 +5,7 @@ import fieldValidate from '../helpers/fieldValidate';
 import messageSuccess from '../helpers/MessageSuccess';
 import context from '../context';
 import useRedirect from '../hooks/useRedirect';
-import '../css/registration.css';
+
 
 const ComponentRegister = () => {
   const [setGetEvent] = useRedirect();
@@ -67,7 +67,6 @@ const ComponentRegister = () => {
   };
 
   return (
-    <div className="container-register">
       <FormControl className="form-registration">
         <h1>Cadastro</h1>
         <TextField
@@ -94,7 +93,7 @@ const ComponentRegister = () => {
         <TextField
           id="password"
           data-testid="signup-password"
-          label="Senha"
+          label="Senha" 
           type="password"
           className="registration-input"
           variant="outlined"
@@ -126,10 +125,9 @@ const ComponentRegister = () => {
           </Button>
         </div>
         <div className="succes-message">
-          {user ? null : messageSuccess(user)}
+          { user ? null : messageSuccess(user) }
         </div>
       </FormControl>
-    </div>
   );
 };
 
