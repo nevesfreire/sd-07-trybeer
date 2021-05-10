@@ -1,4 +1,9 @@
 import React from 'react';
+import HeaderAdmin from '../../components/HeaderAdmin';
 
-const AdminProfile = () => <div><h1>Tela admin</h1></div>;
+const AdminProfile = () => (
+  <div>
+    <HeaderAdmin />
+  </div>
+);
 export default AdminProfile;
