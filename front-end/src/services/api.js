@@ -31,6 +31,24 @@ async function loginUser(email, password) {
     .then((response) => response.data).catch((error) => error.response.data);
 }
 
+const registerPurchase = async (cart, number, street, token) => {
+  const options = {
+    method: 'POST',
+    url: `${endpoint}/checkout`,
+    headers: {
+      'Content-Type': applicationJson,
+      Authorization: token,
+    },
+    data: { number, street, cart },
+  };
+  try {
+    const purchRes = await axios.request(options);
+    return purchRes.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
 async function updateUser(name, token) {
   const options = {
     method: 'PUT',
@@ -60,9 +78,10 @@ async function getAllOrders(token) {
 }
 
 export default {
-  registerUser,
-  loginUser,
   getProducts,
+  loginUser,
+  registerUser,
+  registerPurchase,
   updateUser,
   getAllOrders,
 };
