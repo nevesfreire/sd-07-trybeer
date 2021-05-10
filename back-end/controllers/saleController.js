@@ -1,5 +1,7 @@
 const service = require('../services/saleService');
 
+const messageErr = 'We found an error';
+
 const createSale = async (req, res) => {
     // const obj = { user_id, total_price, delivery_address, delivery_number, products }
     try {
@@ -8,7 +10,7 @@ const createSale = async (req, res) => {
         if (data) return res.status(201).json({ message: 'Sale registered' });
     } catch (error) {
         res.status(500).json({
-            message: 'We found an error',
+            message: messageErr,
         });
     }
 };
@@ -20,7 +22,19 @@ const getSale = async (req, res) => {
         res.json(data);
     } catch (error) {
         return res.status(500).json({
-            message: 'We found an error',
+            message: messageErr,
+        });
+    }
+};
+
+const saleById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const data = await service.saleById(id);
+        res.json(data);
+    } catch (error) {
+        return res.status(500).json({
+            message: messageErr,
         });
     }
 };
@@ -28,4 +42,5 @@ const getSale = async (req, res) => {
 module.exports = {
     createSale,
     getSale,
+    saleById,
 };
