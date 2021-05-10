@@ -19,6 +19,15 @@ const create = async (req, res) => {
   }
 };
 
+const getReallyAll = async (req, res) => {
+  try {
+    const allSales = await SalesService.getReallyAll();
+    return res.status(200).json(allSales);
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 const getAll = async (req, res) => {
   const { authorization } = req.headers;
   try {
@@ -58,4 +67,4 @@ const getAllOrders = async (req, res) => {
   }
 };
 
-module.exports = { create, getAll, getByNumber, getAllOrders, getById };
+module.exports = { create, getAll, getByNumber, getAllOrders, getById, getReallyAll };

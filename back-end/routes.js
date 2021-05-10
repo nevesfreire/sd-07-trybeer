@@ -24,6 +24,9 @@ router.get('/products', productsControler.getAllProducts);
 // }
 router.post('/sale', saleControler.create);
 
+// Listagem com todas as vendas.
+router.get('/sale', saleControler.getReallyAll);
+
 // Busca uma venda especifica atraves do id a venda.
 router.get('/sale/:id', saleControler.getById);
 

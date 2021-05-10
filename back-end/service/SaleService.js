@@ -27,6 +27,11 @@ const getAll = async (authorization) => {
   return sales;
 };
 
+const getReallyAll = async () => {
+  const sales = await SaleModel.getReallyAll();
+  return sales;
+};
+
 const getById = async (id) => {
   const sales = await SaleModel.getById(id);
   return sales;
@@ -42,4 +47,4 @@ const getAllOrders = async () => {
   return orders;
 };
 
-module.exports = { create, getAll, getSaleByOrderNumber, getAllOrders, getById };
+module.exports = { create, getAll, getSaleByOrderNumber, getAllOrders, getById, getReallyAll };

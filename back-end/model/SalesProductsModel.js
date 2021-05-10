@@ -7,7 +7,6 @@ const create = async (saleId, userId, quantity) => {
       [saleId, userId, quantity],
     );
   } catch (error) {
-    console.log(error);
     throw new Error('Erro de conexão');
   }
 };

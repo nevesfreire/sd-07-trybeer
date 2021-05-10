@@ -1,5 +1,7 @@
 const connection = require('./connection');
 
+const messageErroConexão = 'Erro de conexão';
+
 const create = async (tudao) => {
   const { userId, tPrice, dAddress, dNumber, date, status } = tudao;
   try {
@@ -10,8 +12,7 @@ const create = async (tudao) => {
     );
     return newUser[0].insertId;
   } catch (error) {
-    console.log(error);
-    throw new Error('Erro de conexão');
+    throw new Error(messageErroConexão);
   }
 };
 
@@ -26,12 +27,22 @@ const getAll = async (id) => {
     );
     return sales[0];
   } catch (error) {
-    throw new Error('Erro de conexão');
+    throw new Error(messageErroConexão);
+  }
+};
+
+const getReallyAll = async () => {
+  try {
+    const sales = await connection.execute(
+      'SELECT * FROM sales',
+);
+    return sales[0];
+  } catch (error) {
+    throw new Error(messageErroConexão);
   }
 };
 
 const getById = async (id) => {
-  console.log(id);
   try {
     const sales = await connection.execute(
       'SELECT * FROM sales WHERE id=?', 
@@ -39,7 +50,7 @@ const getById = async (id) => {
     );
     return sales[0];
   } catch (error) {
-    throw new Error('Erro de conexão');
+    throw new Error(messageErroConexão);
   }
 };
 
@@ -75,4 +86,4 @@ const getByOrderNumber = async (orderNumber) => {
     }
   };
 
-module.exports = { create, getAll, getByOrderNumber, getAllOrders, getById };
+module.exports = { create, getAll, getByOrderNumber, getAllOrders, getById, getReallyAll };
