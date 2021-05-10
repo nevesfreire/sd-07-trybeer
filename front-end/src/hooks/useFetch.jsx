@@ -7,14 +7,15 @@ function useFetch() {
     post: 'POST',
   };
 
-  const headerWithoutToken = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  };
+  const informationType = 'application/json';
+
   async function login(email, password) {
     const result = await fetch('http://localhost:3001/login', {
       method: methods.post,
-      headers: headerWithoutToken,
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+      },
       body: JSON.stringify({ email, password }),
     });
     const data = await result.json();
@@ -25,15 +26,37 @@ function useFetch() {
     const role = roleParam ? 'administrator' : 'client';
     const result = await fetch('http://localhost:3001/register', {
       method: methods.post,
-      headers: headerWithoutToken,
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+      },
       body: JSON.stringify({ name, email, password, role }),
     });
     const data = await result.json();
     return data;
   }
 
+  async function updateProfileName(name, email, token) {
+    const result = await fetch('http://localhost:3001/profile', {
+      method: 'PUT',
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+        Authorization: token,
+      },
+      body: JSON.stringify({ email, name }),
+    });
+    const responseAPI = await result.json();
+    console.log('responseAPI', responseAPI);
+    return responseAPI;
+  }
+
   return (
-    { login, register }
+    {
+      login,
+      updateProfileName,
+      register,
+    }
   );
 }
 
