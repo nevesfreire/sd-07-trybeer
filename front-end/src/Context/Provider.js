@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import trybeerContext from './TrybeerContext';
 
 function Provider({ children }) {
@@ -11,5 +12,9 @@ function Provider({ children }) {
     </trybeerContext.Provider>
   );
 }
+
+Provider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Provider;
