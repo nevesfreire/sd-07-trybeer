@@ -18,5 +18,7 @@ app.put('/profile', UserController.updateUserName);
 app.get('/products', ProductController.getAllProducts);
 app.get('/images/:filename', ProductController.getImages);
 app.post('/checkout', UserController.registerOrder);
+app.get('/orders', UserController.getAllOrders);
+app.get('/orders/:id', UserController.getOrderDetailsById);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

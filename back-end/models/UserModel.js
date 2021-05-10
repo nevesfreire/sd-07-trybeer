@@ -35,12 +35,30 @@ const getDate = async () => {
   const [[saleDate]] = await connection.execute('SELECT now() AS saleDate');
   return saleDate.saleDate;
 };
+const getOrderDetailsById = async (orderId) => {
+  const [ordersDetails] = await connection
+    .execute(`select products.name,products.price,sales_products.quantity
+    , sales_products.sale_id
+    FROM  sales
+    INNER JOIN sales_products ON sales.id = sales_products.sale_id
+    INNER JOIN products ON sales_products.product_id = products.id
+    where sale_id = ?;`,
+    [orderId]);
+  return ordersDetails;
+};
+const getAllOrders = async () => {
+  const [sales] = await connection
+    .execute('SELECT * FROM Trybeer.sales');
+  return sales;
+};
 
 module.exports = {
   getByEmail,
   registerUser,
   updateUserName,
   registerOrder,
-  getDate,
+  getAllOrders,
+  getOrderDetailsById,
   getOrderByUserId,
+  getDate,
 };

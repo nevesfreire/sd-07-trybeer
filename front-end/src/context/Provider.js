@@ -7,6 +7,8 @@ function Provider({ children }) {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [role, setRole] = useState('client');
+  const [order, setOrder] = useState({});
+  const [orderDetail, setOrderDetail] = useState({});
   const [pageTitle, setPageTitle] = useState('TryBeer');
   const [sideIsActive, setSideIsActive] = useState(false);
   const [products, setProducts] = useState([]);
@@ -20,6 +22,10 @@ function Provider({ children }) {
     setName,
     role,
     setRole,
+    order,
+    setOrder,
+    orderDetail,
+    setOrderDetail,
     pageTitle,
     setPageTitle,
     sideIsActive,
