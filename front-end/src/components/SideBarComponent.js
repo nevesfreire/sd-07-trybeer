@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react';
 import BeerContext from '../context/BeerContext';
 
-const SideBarComponent = ({ Component }) => {
+const ClientSideBar = ({ Component }) => {
   const history = useHistory();
   const { toggleSideBar } = useContext(BeerContext);
   console.log(toggleSideBar);
@@ -67,8 +67,8 @@ const SideBarComponent = ({ Component }) => {
   );
 };
 
-SideBarComponent.propTypes = {
+ClientSideBar.propTypes = {
   Component: PropTypes.func.isRequired,
 };
 
-export default SideBarComponent;
+export default ClientSideBar;
