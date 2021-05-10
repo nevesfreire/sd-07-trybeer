@@ -9,7 +9,6 @@ const getAllProducts = async () => {
 const getImageProduct = async (name) => {
   const destinationImg = `http://localhost:3001/images/${name}`;
   const imagePath = `/images/${name}`;
-  console.log(imagePath);
   const query = 'SELECT url_image FROM Trybeer.products WHERE url_image = ? ';
   const [productImage] = await connection.execute(query, [destinationImg]);
   if (!productImage[0]) {
