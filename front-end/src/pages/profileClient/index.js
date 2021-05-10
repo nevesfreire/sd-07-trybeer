@@ -5,6 +5,7 @@ import TopMenu from '../../components/Header';
 
 export default function ProfileClient() {
   const data = JSON.parse(localStorage.getItem('user'));
+  const [text, setText] = useState();
   const [profileInfo, setProfileInfo] = useState({
     name: data.name,
     email: data.email,
@@ -25,16 +26,22 @@ export default function ProfileClient() {
   };
 
   const handleClick = () => {
+    const TWO_THOUSAND = 2000;
     const newData = {
       ...data,
       name: profileInfo.name,
     };
     localStorage.setItem('user', JSON.stringify(newData));
+    setText('Atualização concluída com sucesso');
+
+    setTimeout(() => {
+      setText();
+    }, TWO_THOUSAND);
   };
 
   return (
     <div>
-      <TopMenu>Perfil</TopMenu>
+      <TopMenu>Meu perfil</TopMenu>
       <label htmlFor="name">
         Nome:
         <input
@@ -67,6 +74,7 @@ export default function ProfileClient() {
       >
         Salvar
       </button>
+      { text }
     </div>
   );
 }
