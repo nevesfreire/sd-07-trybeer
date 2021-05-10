@@ -1,9 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { userDataValidation } from '../utils';
+import TopBar from '../components/menuSideBar/Menu';
+import fetchApi from '../hooks/fetchApi';
+import CODE from '../utils/statusCode';
 
 export default function Profile() {
+  const user = JSON.parse(window.localStorage.getItem('user'));
+  const savedName = user.name;
+  const [name, setName] = useState(user.name);
+  const [response, setResponse] = useState({ SC: 0, menssage: '' });
+
+  const handleRegister = async () => {
+    const register = await fetchApi('/register', 'PUT', name);
+    if (register.statusCode === CODE.ACCEPTED) {
+      user.name = name;
+      window.localStorage.setItem('user', JSON.stringify(user));
+    }
+    setResponse({ SC: register.statusCode, menssage: register.menssage });
+  };
+
   return (
     <div>
-      <h1>Cliente-Perfil</h1>
+      <TopBar title="Meu perfil" />
+      <div>
+        <h1>perfil</h1>
+        <input
+          data-testid="profile-name-input"
+          id="nameProfile"
+          name="name"
+          onChange={ ({ target: { value } }) => setName(value) }
+          type="text"
+          value={ name }
+        />
+        <input
+          data-testid="profile-email-input"
+          id="emailProfile"
+          name="email"
+          readOnly
+          type="email"
+          value={ user.email }
+        />
+        <h4 style={ { visibility: ((response.SC > 0) ? 'visible' : 'hidden') } }>
+          {response.menssage}
+        </h4>
+        <button
+          data-testid="profile-save-btn"
+          disabled={ !userDataValidation.name(name) || (savedName === name) }
+          onClick={ handleRegister }
+          type="button"
+        >
+          Salvar
+        </button>
+      </div>
     </div>
   );
 }
