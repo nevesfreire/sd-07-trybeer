@@ -5,7 +5,7 @@ function MessageSuccess(response) {
   if (response === undefined) {
     return (
       <div className="success-message">
-         <Message />
+        <Message />
       </div>
     );
   }

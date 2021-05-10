@@ -11,10 +11,8 @@ const Register = () => (
       <ComponentRegister />
       <AsideLogo />
     </div>
-  <Footer />
-</div>
+    <Footer />
+  </div>
 );
-
-
 
 export default Register;
