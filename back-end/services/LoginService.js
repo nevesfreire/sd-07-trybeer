@@ -1,14 +1,8 @@
 const jwt = require('jsonwebtoken');
+const { jwtConfig, SECRET } = require('../config/jwt');
 const { loginModel } = require('../models');
 const { validateLogin, validUser } = require('./validations/LoginValidations');
 require('dotenv').config();
-
-const jwtConfig = {
-  expiresIn: '1d',
-  algorithm: 'HS256',
-};
-
-const SECRET = 'semideiaprasecret';
 
 const getUser = async (data) => {
   const { error } = validateLogin(data);

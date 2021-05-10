@@ -1,11 +1,9 @@
 const jwt = require('jsonwebtoken');
 const { loginModel } = require('../models');
-
+const { SECRET } = require('../config/jwt');
 require('dotenv').config();
 
-const SECRET = 'semideiaprasecret';
-
-const error = { message: 'Invalid token' };
+const ERROR = { message: 'Invalid token' };
 const validateTokenMiddleware = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
@@ -13,7 +11,7 @@ const validateTokenMiddleware = async (req, res, next) => {
     const { email, password } = jwt.verify(token, SECRET);
     const [user] = await loginModel.getUserInfo({ email, password });
 
-    if (await user[0].password !== password) throw error;
+    if (await user[0].password !== password) throw ERROR;
     req.user = user;
 
     next();

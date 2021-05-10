@@ -1,12 +1,14 @@
 const { userService } = require('../services');
+const { OK, CREATED, NOTMODIFIED, BADREQUEST } = require('./HttpCodes');
+const { SAMESTATUS } = require('../services/errors/SaleMessages');
 
 const createUser = async (req, res) => {
   try {
     const data = req.body;
     const userData = await userService.registerUser(data);
-    res.status(201).json(userData);
+    res.status(CREATED).json(userData);
   } catch (error) {
-    res.status(400).json({ err: error.message });
+    res.status(BADREQUEST).json({ err: { message: error.message } });
   }
 };
 
@@ -15,9 +17,11 @@ const updateUser = async (req, res) => {
     const { name } = req.body;
     const { email } = req.user[0];
     const response = await userService.updateUser(name, email);
-    res.status(200).json(response);
+    res.status(OK).json(response);
   } catch (error) {
-    res.status(400).json({ err: error.message });
+    let code = BADREQUEST;
+    if (error.message === SAMESTATUS.message) code = NOTMODIFIED;
+    res.status(code).json({ err: { message: error.message } });
   }
 };
 
