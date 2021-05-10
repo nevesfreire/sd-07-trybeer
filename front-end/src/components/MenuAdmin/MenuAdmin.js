@@ -42,7 +42,7 @@ const MenuAdmin = ({ open, ...props }) => {
   );
 };
 
-Menu.propTypes = {
+MenuAdmin.propTypes = {
   open: bool.isRequired,
 };
 
