@@ -21,7 +21,7 @@ const ComponentLogin = () => {
 
   const redirect = (data) => {
     if (data.role === 'administrator') {
-      return history.push('/home');
+      return history.push('/admin/orders');
     }
     return history.push('/products');
   };
