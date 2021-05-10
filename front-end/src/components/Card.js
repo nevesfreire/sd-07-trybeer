@@ -7,7 +7,8 @@ export default function Card({ product, position }) {
   const ROUNDING_OPTION = 2;
   const ADD_ITEM = 1;
   const REMOVE_ITEM = -1;
-  const [cartQuantity, setCartQuantity] = useState(INITIAL_VALUE);
+  const cartList = useSelector(({ cart }) => cart);
+  /*   const [cartQuantity, setCartQuantity] = useState(INITIAL_VALUE); */
   const dispatch = useDispatch();
 
   const manageQuantity = (productFound, cart) => {
@@ -15,29 +16,32 @@ export default function Card({ product, position }) {
     if (productFound.quantity !== 0) {
       const newPosition = cart.findIndex((item) => item.id === productFound.id);
       cart.splice(newPosition, amountToSplice, productFound);
-      setCartQuantity(cart);
+      /*       setCartQuantity(cart); */
       dispatch(update(cart));
     } else {
       const filteredCart = cart.filter((item) => item.id !== productFound.id);
-      setCartQuantity(filteredCart);
+      /*       setCartQuantity(filteredCart); */
       dispatch(update(filteredCart));
     }
   };
 
   const getNewQuantity = (newProduct) => {
-    const cartCopy = [...cartQuantity];
+    /*     const cartCopy = [...cartQuantity]; */
+    const cartCopy = [...cartList];
     const productFound = cartCopy.find((item) => item.id === newProduct.id);
     if (productFound) {
       manageQuantity(productFound, cartCopy);
     } else {
-      const newCart = [...cartQuantity, newProduct];
-      setCartQuantity(newCart);
+      /*       const newCart = [...cartQuantity, newProduct]; */
+      const newCart = [...cartList, newProduct];
+      /*       setCartQuantity(newCart); */
       dispatch(update(newCart));
     }
   };
 
   const getValue = (id) => {
-    const isPresent = cartQuantity.find((item) => item.id === id);
+    /*     const isPresent = cartQuantity.find((item) => item.id === id); */
+    const isPresent = cartList.find((item) => item.id === id);
     if (isPresent) return isPresent.quantity;
     return INITIAL_VALUE;
   };

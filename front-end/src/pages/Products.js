@@ -6,11 +6,11 @@ import Card from '../components/Card';
 import { fetchProducts } from '../actions';
 
 export default function Products() {
-  const [shouldRedirect, setShouldRedirect] = useState(false);
   const INITIAL_VALUE = 0;
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const productsList = useSelector(({ products }) => products);
   const cartList = useSelector(({ cart }) => cart);
-  
+
   const totalValue = cartList
     .map((item) => item.totalPrice)
     .reduce((acc, next) => acc + next, INITIAL_VALUE);
