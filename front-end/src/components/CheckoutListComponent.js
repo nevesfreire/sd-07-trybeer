@@ -71,12 +71,25 @@ function CheckoutListComponent() {
     localStorage.removeItem('cart');
   };
 
-  const renderCartProducts = () => cart.map((product) => (
-    <div key={ product.id }>
-      <span>{product.quantidade}</span>
-      <span>{product.name}</span>
-      <span>{(product.quantidade * product.price).toFixed(2)}</span>
-      <Button color="red" onClick={ () => handleClickExclude(product.id) }>
+  const renderCartProducts = () => cart.map((product, index) => (
+    <div key={ product.id } className="cart-products">
+      <span data-testid={ `${index}-product-qtd-input` }>
+        {product.quantidade}
+      </span>
+      <span data-testid={ `${index}-product-name` }>{product.name}</span>
+      <span data-testid={ `${index}-product-total-value` }>
+        {`R$ ${(product.quantidade * product.price)
+          .toFixed(2)
+          .replace('.', ',')}`}
+      </span>
+      <span data-testid={ `${index}-product-unit-price` }>
+        {`(R$ ${product.price.replace('.', ',')} un)`}
+      </span>
+      <Button
+        color="red"
+        onClick={ () => handleClickExclude(product.id) }
+        data-testid={ `${index}-removal-button` }
+      >
         X
       </Button>
     </div>
@@ -84,40 +97,48 @@ function CheckoutListComponent() {
 
   const renderTotal = () => (
     <div>
-      Total: R$
-      <span>{total}</span>
+      Total:
+      <span data-testid="order-total-value">{`R$ ${total}`}</span>
     </div>
   );
 
-  const renderForm = () => (
-    <Form onSubmit={ handleSubmit }>
-      <label htmlFor="deliveryAddress">
-        Rua:
-        <input
-          name="deliveryAddress"
-          type="text"
-          onChange={ handleChange }
-          value={ formState.deliveryAddress }
-        />
-      </label>
-      <label htmlFor="deliveryNumber">
-        Número da casa:
-        <input
-          name="deliveryNumber"
-          type="text"
-          onChange={ handleChange }
-          value={ formState.deliveryNumber }
-        />
-      </label>
-      {total !== '0,00' ? (
-        <Button color="green">Finalizar Pedido</Button>
-      ) : (
-        <Button color="green" disabled>
-          Finalizar Pedido
-        </Button>
-      )}
-    </Form>
-  );
+  const renderForm = () => {
+    const { deliveryAddress, deliveryNumber } = formState;
+
+    return (
+      <Form onSubmit={ handleSubmit }>
+        <label htmlFor="deliveryAddress">
+          Rua:
+          <input
+            name="deliveryAddress"
+            type="text"
+            onChange={ handleChange }
+            value={ deliveryAddress }
+            data-testid="checkout-street-input"
+          />
+        </label>
+        <label htmlFor="deliveryNumber">
+          Número da casa:
+          <input
+            name="deliveryNumber"
+            type="text"
+            onChange={ handleChange }
+            value={ deliveryNumber }
+            data-testid="checkout-house-number-input"
+          />
+        </label>
+        {total !== '0,00' && deliveryAddress !== '' && deliveryNumber !== '' ? (
+          <Button color="green" data-testid="checkout-finish-btn">
+            Finalizar Pedido
+          </Button>
+        ) : (
+          <Button color="green" disabled data-testid="checkout-finish-btn">
+            Finalizar Pedido
+          </Button>
+        )}
+      </Form>
+    );
+  };
 
   if (STORAGE.getUser() === null) return <Redirect to="/login" />;
 
@@ -125,6 +146,7 @@ function CheckoutListComponent() {
     <Sidebar.Pusher>
       <Segment basic>
         {renderCartProducts()}
+        {total === '0,00' && <span>Não há produtos no carrinho</span>}
         {renderTotal()}
         {renderForm()}
         {message.length !== 0 && <span>{message}</span>}
