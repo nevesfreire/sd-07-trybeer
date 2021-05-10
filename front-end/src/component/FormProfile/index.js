@@ -1,70 +1,72 @@
 import React, { useEffect, useState } from 'react';
-import { getToLocalStorage } from '../../utils/localStorage'
-import { requestAlterUserAPI } from '../../services'
+import { getToLocalStorage } from '../../utils/localStorage';
+import { requestAlterUserAPI } from '../../services';
 
 const FormDefault = {
-  name:'',
-  email:'',
-}
+  name: '',
+  email: '',
+};
 function FormProfile() {
-  
-  const [ formProfile, setFormProfile ] = useState(FormDefault);
+  const [formProfile, setFormProfile] = useState(FormDefault);
   const [sucessState, setSucessState] = useState(false);
   const [alterState, setAlterState] = useState(true);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormProfile({...formProfile, [name]: value})
-    setAlterState(false)
+    setFormProfile({ ...formProfile, [name]: value });
+    setAlterState(false);
   };
 
-  const handleSubmit= async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const user = await requestAlterUserAPI(formProfile);
     if (user.data) {
-     setSucessState(true);
+      setSucessState(true);
     }
-  }
-  
+  };
+
   useEffect(() => {
-    const name = getToLocalStorage().name
-    const email = getToLocalStorage().email
-    setFormProfile({ name, email })
-  },[])
-  
-  
+    const { name } = getToLocalStorage();
+    const { email } = getToLocalStorage();
+    setFormProfile({ name, email });
+  }, []);
+
   return (
     <>
-      <label>
+      <label htmlFor="nome">
         Nome
-        <input type="text" 
-        name="name"
-        data-testid="profile-name-input"
-        value={formProfile.name}
-        onChange={(event) => handleInputChange(event)}
+        <input
+          type="text"
+          id="nome"
+          name="name"
+          data-testid="profile-name-input"
+          value={ formProfile.name }
+          onChange={ (event) => handleInputChange(event) }
         />
       </label>
-      <label>
+      <label htmlFor="e-mail">
         Email
-        <input type="email" 
-        readOnly="readOnly"
-        name="email"
-        data-testid="profile-email-input"
-        value={formProfile.email}
-        onChange={(event) => handleInputChange(event)}
+        <input
+          type="email"
+          id="e-mail"
+          readOnly="readOnly"
+          name="email"
+          data-testid="profile-email-input"
+          value={ formProfile.email }
+          onChange={ (event) => handleInputChange(event) }
         />
       </label>
       { sucessState && <p>Atualização concluída com sucesso</p> }
       <button
-      type="submit"
-      data-testid="profile-save-btn"
-      onClick={(e) => handleSubmit(e)}
-      disabled={alterState}
+        type="submit"
+        data-testid="profile-save-btn"
+        onClick={ (e) => handleSubmit(e) }
+        disabled={ alterState }
       >
         Salvar
       </button>
-    </>  
-  )
+    </>
+  );
 }
 
 export default FormProfile;
