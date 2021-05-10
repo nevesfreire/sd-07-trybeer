@@ -1,9 +1,12 @@
 import React from 'react';
+import Message from '../components/Message';
 
 function MessageSuccess(response) {
   if (response === undefined) {
     return (
-      <span className="success-message">Já existe um usuário com esse e-mail.</span>
+      <div className="success-message">
+        <Message />
+      </div>
     );
   }
 }

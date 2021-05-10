@@ -1,22 +1,21 @@
-.container-register {
-   display: flex;
-   justify-content: center;
-   margin-top: 2rem;
+body {
+   font: 500 1rem Inter, sans-serif;
 }
 
 .form-registration  {
    display: flex;
    align-items: center;
    width: 35rem;
-   height: 30rem;
    margin-left: 25rem;
+   background-color: rgb(170, 172, 177);
 }
-
+ 
 .form-registration > .registration-input{
    width: 20rem;
    margin: 5px;
    background-color: #ffff;
    font-size: 30px;
+   border-radius: 5px;
 }
 
 .register-btn-group > .RegisterBtn {
@@ -24,9 +23,10 @@
    height: 3rem;
    text-align: center;
    border-radius: 0.5rem;
-   background-color: rgb(13, 136, 9);
+   background-color: rgba(10, 19, 39, 1);
    font-size: 25px;
    margin-bottom: 20px;
+   box-shadow: 2px 4px 5px rgba(0,0,0,0.5);
 }
 
 .label-register {
@@ -42,9 +42,16 @@
    margin-left: 1.5rem;
 }
 
+hr {
+   width: 23rem;
+	border: 1px solid #00010250;
+   margin-bottom: 3rem;
+   margin-top: 1rem;
+}
+
 .nav-register{
    text-decoration: none;
-   color: rgba(0, 0, 0, 0.658);
+   color: rgba(0, 0, 0, 0.877);
    margin-top: 30rem;
 }
 
@@ -52,4 +59,37 @@
    height: 3rem;
    color: red;
    transition: 0.5s;
+}
+
+:root {
+   --white: #fff;
+
+   --gray-50: #F7F8FA;
+   --gray-100: #E6E8EB;
+   --gray-200: #AFB2B1;
+   --gray-500: #808080;
+   --gray-800: #494D4B;
+
+   --green-500: #84D361;
+
+   --puple-300: #9F75FF;
+   --puple-400: #9164FA;
+   --puple-500: #8257E5;
+   --puple-800: #6F48C9;
+}
+
+body {
+   background: var(--gray-50);
+}
+
+@media (max-width: 1080px) {
+   html {
+       font-size: 93.75%;
+   }
+}
+
+@media (max-width: 1080px) {
+   html {
+       font-size: 87.5%;
+   }
 }

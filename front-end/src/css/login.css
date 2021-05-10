@@ -84,7 +84,7 @@
 .container-form-int {
   box-shadow: 2px 4px 5px rgba(0,0,0,0.5);
   display: flex;
-  margin-top: 10%;
+  margin-top: 5%;
   min-height: 500px;
   width: 1000px;
 }
