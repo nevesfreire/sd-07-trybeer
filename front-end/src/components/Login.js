@@ -19,6 +19,7 @@ const ComponentLogin = () => {
 
   const params = { email: emailLabel, password: passwordLabel };
 
+
   const toLogin = async (event) => {
     event.preventDefault();
     return api
@@ -39,7 +40,6 @@ const ComponentLogin = () => {
       </div>
       <div>
         <form
-          onSubmit={ (event) => toLogin(event) }
           className="container-int-login"
         >
           <label htmlFor="email" className="form-login">
@@ -67,10 +67,11 @@ const ComponentLogin = () => {
           </label>
 
           <button
-            type="submit"
+            type="button"
             disabled={ labelLogin }
             className={ labelLogin === false ? 'btn-submit-login' : 'disable' }
             data-testid="signin-btn"
+            onClick={ toLogin }
           >
             Entrar
           </button>
