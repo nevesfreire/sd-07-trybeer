@@ -39,7 +39,7 @@ function Register({ history }) {
     );
 
     if (status === success && isChecked) {
-      return history.push('/admin/orders');
+      return history.push('/login');
     } if (status === success && !isChecked) {
       return history.push('/products');
     }

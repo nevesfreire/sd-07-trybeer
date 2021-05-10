@@ -3,10 +3,12 @@ import jwtDecode from 'jwt-decode';
 import TopMenu from '../../../commons/simple/TopMenu';
 import { nameChangeRequest } from '../../../services/usersApi';
 
+import SideBar from '../../../commons/composed/SideBar';
+
 function Profile() {
   const tokenUser = localStorage.getItem('token');
   const userData = jwtDecode(tokenUser);
-  const { name: userNameReq, email: userEmailReq } = userData;
+  const { name: userNameReq, email: userEmailReq, role } = userData;
   let newName = localStorage.getItem('newName');
   const OK = 200;
 
@@ -37,8 +39,8 @@ function Profile() {
   console.log(isDisable);
   return (
     <div>
-      <TopMenu title="Meu perfil" />
-      <h1>My Profile</h1>
+      { role !== 'administrator' && <TopMenu title="Meu perfil" /> }
+      { role === 'administrator'}<SideBar isAdmin={ true } />
       <label htmlFor="name-user">
         Name
         <input
