@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+
 import api from '../../services/api';
+import { handleLogin } from '../../services/localStorage';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -26,7 +28,7 @@ function LoginPage() {
         if (response.error) {
           setMessageError(response.message);
         } else {
-          localStorage.setItem('user', JSON.stringify(response.message));
+          handleLogin(response.message);
           const route = response.message.role === 'administrator'
             ? '/admin/orders' : '/products';
           history.push(route);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
+import { handleLogin } from '../../services/localStorage';
 
 function RegisterPage() {
   const [error, setError] = useState('');
@@ -41,6 +42,7 @@ function RegisterPage() {
         const userExists = 'Email already registered';
         if (res.message === userExists) setError('Já existe um usuário com esse e-mail.');
       } else {
+        handleLogin(res);
         redirectTo();
       }
     } catch (err) {

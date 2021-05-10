@@ -24,7 +24,7 @@ const loginServ = async (body) => {
   return { message: msgRes, status: 200 };
   } catch (err) {
     console.log('error: ', err);
-    return (err);
+    return err;
   }
 };
 
