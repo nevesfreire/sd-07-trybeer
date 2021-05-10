@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import BeerAppContext from './BeerAppContext';
 
 function Provider({ children }) {
+  const [products, setProducts] = useState([]);
+  const [totalProducts, setTotalProducts] = useState(0);
+
+  const globalState = {
+    totalProducts,
+    setTotalProducts,
+    products,
+    setProducts,
+  };
+
   return (
-    <BeerAppContext.Provider>
+    <BeerAppContext.Provider value={globalState}>
       {children}
     </BeerAppContext.Provider>
   );
