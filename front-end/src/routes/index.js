@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Register, ProfileClient } from '../pages';
+import { Login, Register, ProfileClient, Orders, Profile, Products } from '../pages';
 
 const Routes = () => (
   <Router>
@@ -11,6 +11,9 @@ const Routes = () => (
       <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ Register } />
       <Route exact path="/profile" component={ ProfileClient } />
+      <Route exact path="/orders" component={ Orders } />
+      <Route exact path="/profile" component={ Profile } />
+      <Route exact path="/products" component={ Products } />
     </Switch>
   </Router>
 );

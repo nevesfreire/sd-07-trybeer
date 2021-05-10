@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { nameIsValid } from '../../service/validateInputs';
+import TopMenu from '../../components/Header';
 
 export default function ProfileClient() {
   const data = JSON.parse(localStorage.getItem('user'));
@@ -33,7 +34,7 @@ export default function ProfileClient() {
 
   return (
     <div>
-      <h1 data-testid="top-title">Perfil</h1>
+      <TopMenu>Perfil</TopMenu>
       <label htmlFor="name">
         Nome:
         <input
