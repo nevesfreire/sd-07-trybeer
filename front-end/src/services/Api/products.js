@@ -20,5 +20,5 @@ const sendProducts = async (cart) => {
 
 module.exports = {
   getAllProducts,
-  sendProducts
+  sendProducts,
 };

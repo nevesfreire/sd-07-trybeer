@@ -20,7 +20,6 @@ const Products = () => {
   useEffect(() => {
     if (JSON.parse(localStorage.getItem('cart'))) {
       setLocalCart(JSON.parse(localStorage.getItem('cart')));
-      console.log(localCart)
     }
   }, [cart]);
 
@@ -55,4 +54,3 @@ const Products = () => {
 };
 
 export default Products;
-
