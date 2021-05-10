@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import api from '../../services/api';
 import { OrderItemDetails } from '../../components';
+import { Context } from '../../context';
 
 function OrderDetails({ match }) {
+  const { orders } = useContext(Context);
   const [orderDetails, setOrderDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
 
   const { id } = match.params;
-  console.log(orderDetails);
+
+  const order = orders.find((item) => item.delivery_number === id);
   const user = JSON.parse(localStorage.getItem('user')) || { name: null, role: null };
+
+  const formatPrice = (price) => {
+    const priceConverted = Number(price).toFixed(2);
+    const formattedPrice = `R$ ${priceConverted.replace(/\./g, ',')}`;
+    return (formattedPrice);
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,11 +38,13 @@ function OrderDetails({ match }) {
       <h1 data-testid="top-title">Cliente - Detalhes de Pedido</h1>
       <p data-testid="order-number">
         Pedido
+        {' '}
         {id}
       </p>
       <p data-testid="order-date">
         Data pedido
-        {/* {orderDetails[0].sale_date} */}
+        {' '}
+        {orders.sale_date}
       </p>
 
       {
@@ -44,11 +56,21 @@ function OrderDetails({ match }) {
                 key={ index }
                 orderDetails={ item }
                 index={ index }
+                formatPrice={ formatPrice }
               />))
       }
       <h2>{ message }</h2>
+      <p data-testid="order-total-value">
+        Total
+        {' '}
+        { formatPrice(order.total_price) }
+      </p>
     </div>
   );
 }
+
+OrderDetails.propTypes = {
+  match: PropTypes.objectOf(),
+}.isRequired;
 
 export default OrderDetails;

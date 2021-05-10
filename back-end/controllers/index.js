@@ -1,3 +1,4 @@
+const checkoutCtrl = require('./checkoutCtrl');
 const loginCtrl = require('./loginCtrl');
 const registerCtrl = require('./registerCtrl');
 const productCtrl = require('./productCtrl');
@@ -6,6 +7,7 @@ const allOrders = require('./allOrders');
 const orderDetails = require('./orderDetails');
 
 module.exports = {
+  checkoutCtrl,
   loginCtrl,
   registerCtrl,
   productCtrl,

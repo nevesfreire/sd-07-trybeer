@@ -2,7 +2,8 @@ require('dotenv').config();
 const { resolve } = require('path');
 const express = require('express');
 const cors = require('cors');
-const { 
+
+const { CheckoutRoute,
   RegisterRoute,
   loginRoute,
   updateUser,
@@ -21,6 +22,7 @@ app.use(express.json());
 
 app.use('/register', RegisterRoute);
 app.use('/login', loginRoute);
+app.use('/checkout', CheckoutRoute);
 app.use('/products', ProductsRoute);
 app.use('/profile', updateUser);
 app.use('/orders', allOrders);
