@@ -8,15 +8,15 @@ export default function Profile() {
   const user = JSON.parse(window.localStorage.getItem('user'));
   const savedName = user.name;
   const [name, setName] = useState(user.name);
-  const [response, setResponse] = useState({ SC: 0, message: '' });
+  const [response, setResponse] = useState({ SC: false, message: '' });
 
   const handleRegister = async () => {
-    const register = await fetchApi('/register', 'PUT', name);
+    const register = await fetchApi('/register', 'PUT', name, user.token);
     if (register.statusCode === CODE.ACCEPTED) {
       user.name = name;
       window.localStorage.setItem('user', JSON.stringify(user));
     }
-    setResponse({ SC: register.statusCode, message: register.message });
+    setResponse({ SC: true, message: register.message });
   };
 
   return (
@@ -40,7 +40,7 @@ export default function Profile() {
           type="email"
           value={ user.email }
         />
-        <h4 style={ { visibility: ((response.SC > 0) ? 'visible' : 'hidden') } }>
+        <h4 style={ { visibility: ((response.SC) ? 'visible' : 'hidden') } }>
           {response.message}
         </h4>
         <button
