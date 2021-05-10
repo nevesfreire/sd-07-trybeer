@@ -16,7 +16,6 @@ const getImageProduct = async (req, res) => {
   try {
     const { params: { name } } = req;
     const imagePath = `images/${name}`;
-    console.log(req.params);
     return res.status(OK).download(imagePath);
   } catch (error) {
     console.log(error);
