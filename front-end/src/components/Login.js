@@ -19,13 +19,6 @@ const ComponentLogin = () => {
 
   const params = { email: emailLabel, password: passwordLabel };
 
-  if (data.role === 'administrator') {
-    return <Redirect to="/admin/orders" />;
-  }
-  if (data.role === 'client') {
-    return <Redirect to="/products" />;
-  }
-
   const toLogin = async (event) => {
     event.preventDefault();
     return api
@@ -39,6 +32,8 @@ const ComponentLogin = () => {
 
   return (
     <div className="container-login">
+      { data.role === 'administrator' && <Redirect to="/admin/orders" /> }
+      { data.role === 'client' && <Redirect to="/products" /> }
       <div>
         <h3 className="form-login-title">Login</h3>
       </div>
