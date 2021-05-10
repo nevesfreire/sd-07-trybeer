@@ -47,7 +47,7 @@ function Products() {
         qtd: 1,
       };
       console.log(add);
-      console.log(cart)
+      console.log(cart);
       setCart([add])
       console.log(cart)
     }
