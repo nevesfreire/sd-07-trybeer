@@ -8,7 +8,7 @@ export default function Profile() {
   const user = JSON.parse(window.localStorage.getItem('user'));
   const savedName = user.name;
   const [name, setName] = useState(user.name);
-  const [response, setResponse] = useState({ SC: 0, menssage: '' });
+  const [response, setResponse] = useState({ SC: 0, message: '' });
 
   const handleRegister = async () => {
     const register = await fetchApi('/register', 'PUT', name);
@@ -16,7 +16,7 @@ export default function Profile() {
       user.name = name;
       window.localStorage.setItem('user', JSON.stringify(user));
     }
-    setResponse({ SC: register.statusCode, menssage: register.menssage });
+    setResponse({ SC: register.statusCode, message: register.message });
   };
 
   return (
@@ -41,7 +41,7 @@ export default function Profile() {
           value={ user.email }
         />
         <h4 style={ { visibility: ((response.SC > 0) ? 'visible' : 'hidden') } }>
-          {response.menssage}
+          {response.message}
         </h4>
         <button
           data-testid="profile-save-btn"
