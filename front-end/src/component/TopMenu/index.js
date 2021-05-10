@@ -39,7 +39,7 @@ export default function TopMenu({ title }) {
 
   return (
     <div className="header">
-      <div id="title" className="header-title header-title-trybeer" data-testid="top-title">
+      <div id="title" className="header-title" data-testid="top-title">
         { title }
       </div>
       <div
