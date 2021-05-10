@@ -15,8 +15,9 @@ function FormProfile() {
   };
   
   useEffect(() => {
+    const name = getToLocalStorage().name
     const email = getToLocalStorage().email
-    console.log(email)
+    setFormProfile({ name, email })
   },[])
   
   
