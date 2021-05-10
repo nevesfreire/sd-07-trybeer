@@ -26,7 +26,6 @@ const updateUserName = async (req, res) => {
 const registerOrder = async (req, res) => {
   try {
   const order = req.body;
-  console.log(order);
   const result = await UserService.registerOrder(order);
   return res.status(result.status).json(result.message);
   } catch (error) {
@@ -34,7 +33,7 @@ const registerOrder = async (req, res) => {
     return res.status(500).json({ message: serverError });
   }  
 };
-const getAllOrders = async (req, res) => {
+const getAllOrders = async (_req, res) => {
   try {  
   const result = await UserService.getAllOrders();
   return res.status(result.status).json(result.message);
@@ -43,6 +42,7 @@ const getAllOrders = async (req, res) => {
     return res.status(500).json({ message: serverError });
   }  
 };
+
 const getOrderDetailsById = async (req, res) => {
   const { id } = req.params;
   try {  
