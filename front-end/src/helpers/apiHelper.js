@@ -16,7 +16,8 @@ export async function fetchToken(email, password) {
   };
   try {
     const response = await fetch(requestTokenUrl, request);
-    const { name, token, role, id } = await response.json();
+    const responseJson = await response.json();
+    const { name, token, role, id } = responseJson;
     const user = {
       name,
       email,
@@ -28,7 +29,7 @@ export async function fetchToken(email, password) {
       setUser(user);
       return token;
     }
-    alert('Usuário ou senha inválidos!');
+    return responseJson.message;
   } catch (error) {
     console.error(error);
   }
@@ -68,6 +69,30 @@ export async function fetchProducts() {
   const response = await fetch(endpoint);
   const data = await response.json();
   return data;
+}
+
+export async function fetchOrders(id) {
+  const endpoint = id ? 'http://localhost:3001/sales' : `http://localhost:3001/sales${id}`;
+  const { token } = getUser();
+  const request = {
+    method: 'GET',
+    headers: {
+      'Content-type': applicationType,
+      Authorization: token,
+    },
+  };
+  try {
+    const response = await fetch(endpoint, request);
+    const responseJson = await response.json();
+    const { sales } = responseJson;
+
+    if (sales) {
+      return sales;
+    }
+    return responseJson.message;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function fetchImage(name) {
