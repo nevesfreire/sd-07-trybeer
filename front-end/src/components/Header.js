@@ -19,9 +19,9 @@ function TopMenu({ children }) {
       <h2
         data-testid="top-title"
       >
-        {children === 'Produtos' || children === undefined ? 'Trybeer' : children}
+        {children === 'Produtos' || children === undefined ? 'TryBeer' : children}
       </h2>
-      {showSideBar ? <SideBar class="side-menu-container" /> : <div />}
+      {showSideBar ? <SideBar /> : <div />}
     </div>
   );
 }
