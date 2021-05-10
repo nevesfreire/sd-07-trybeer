@@ -6,10 +6,10 @@ function ProductsCards() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-	  fetch('http://localhost:3001/products')
-		  .then((response) => response.json())
-		  .then((data) => setProducts(data));
-	  setLoading(false);
+    fetch('http://localhost:3001/products')
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+    setLoading(false);
   }, []);
 
   return loading ? (
