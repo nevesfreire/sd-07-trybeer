@@ -12,10 +12,13 @@ function LoginForm() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     // melhor forma de definir se o usuário está logado?
-    if (!user.name || !user.email) history.push('/login');
-    setName(user.name);
-    setEmail(user.email);
-    setStartingName(user.name);
+    if (!user) {
+      history.push('/login');
+    } else {
+      setName(user.name);
+      setEmail(user.email);
+      setStartingName(user.name);
+    }
   }, [history]);
 
   const handleSubmit = async () => {

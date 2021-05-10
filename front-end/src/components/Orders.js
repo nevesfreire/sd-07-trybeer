@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import OrderCard from './OrderCard';
 import { fetchOrders } from '../services/api';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+
+  const history = useHistory();
 
   const getOrders = async () => {
     const ordersList = await fetchOrders();
@@ -13,19 +16,28 @@ function Orders() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user.role === 'administrator') setIsAdmin(true);
-    getOrders();
+    if (!user) {
+      history.push('/login');
+    } else {
+      if (user.role === 'administrator') setIsAdmin(true);
+      getOrders();
+    }
   }, []);
 
   return (
     <div>
       {
-        (orders)
+        (orders.length)
           ? orders
-            .map((order) => (
-              <OrderCard key={ order.id } order={ order } isAdmin={ isAdmin } />
+            .map((order, index) => (
+              <OrderCard
+                key={ order.id }
+                order={ order }
+                isAdmin={ isAdmin }
+                index={ index }
+              />
             ))
-          : <div>Carregando...</div>
+          : <div>Não há pedidos</div>
       }
     </div>
   );
