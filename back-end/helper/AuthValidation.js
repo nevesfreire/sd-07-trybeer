@@ -1,4 +1,7 @@
 const jwt = require('jsonwebtoken');
+const CustomError = require('./CustomError');
+const CODE = require('../helper/statusCodes');
+
 
 // Normalmente é declarada no .env,
 // mas o avaliador não possui esta variável de ambiente. 
@@ -22,9 +25,17 @@ const generateToken = (dataUser) => {
 };
 
 const verifyToken = (token) => {
-  const payload = jwt.verify(token, SECRET);
-  // Erro JsonWebTokenError é capturado no errorControler (INTERNAL_SERVER_ERROR)
-  return payload;
+  try {
+    const { payload, TokenExpiredError } = jwt.verify(token, SECRET);
+    console.log('verify3 expire', TokenExpiredError)
+    return payload;
+  } catch (error) {
+    const { TokenExpiredError, JsonWebTokenErro } = error;
+    if (TokenExpiredError) throw new CustomError(CODE.UNAUTHORIZED, 'Token expirado!');
+    if (JsonWebTokenErro) throw new CustomError(CODE.UNAUTHORIZED, 'Token inválido!');
+    throw error;
+  }
+
 };
 
 module.exports = {

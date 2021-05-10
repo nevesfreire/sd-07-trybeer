@@ -5,7 +5,11 @@ const CODE = require('../helper/statusCodes');
 
 const findAll = async (token) => {
   if (!token) throw new CustomError(CODE.UNAUTHORIZED, 'Necessário realizar autenticação');
-  verifyToken(token);
+  try {
+    verifyToken(token);
+  } catch (error) {
+    throw new CustomError(error.status, error.message)
+  }
 
   const products = await Product.findAll();
   return { statusCode: CODE.OK, products };
