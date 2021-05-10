@@ -9,9 +9,10 @@ import { Context } from '../../context';
 function Products({ history }) {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const [totalPrice, setTotalPrice] = useState('0.00');
 
-  const { cart } = useContext(Context);
+  const { cart, totalPrice } = useContext(Context);
+
+  // const { cart } = useContext(Context);
 
   const priceFormat = `R$ ${totalPrice.replace(/\./g, ',')}`;
 
@@ -23,11 +24,11 @@ function Products({ history }) {
     })();
   }, []);
 
-  useEffect(() => {
-    setTotalPrice(cart
-      .reduce((acc, { price, quantity }) => acc + (price * quantity), 0)
-      .toFixed(2));
-  }, [cart]);
+  // useEffect(() => {
+  //   setTotalPrice(cart
+  //     .reduce((acc, { price, quantity }) => acc + (price * quantity), 0)
+  //     .toFixed(2));
+  // }, [cart]);
 
   return isLoading ? <h1>Carregando</h1> : (
     <>
@@ -35,17 +36,16 @@ function Products({ history }) {
       <section>
         {products.map((product) => <ProductCard key={ product.id } data={ product } />)}
       </section>
-      <footer>
-        <button
-          type="button"
-          data-testid="checkout-bottom-btn"
-          disabled={ totalPrice === '0.00' }
-          onClick={ () => history.push('/checkout') }
-        >
-          <p>Ver Carrinho</p>
-          <p data-testid="checkout-bottom-btn-value">{ priceFormat }</p>
-        </button>
-      </footer>
+      <button
+        type="button"
+        data-testid="checkout-bottom-btn"
+        disabled={ cart.length === 0 }
+        onClick={ () => history.push('/checkout') }
+      >
+        <p>Ver Carrinho</p>
+        <p data-testid="checkout-bottom-btn-value">{ priceFormat }</p>
+      </button>
+
     </>
   );
 }
