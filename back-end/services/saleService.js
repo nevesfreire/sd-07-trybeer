@@ -19,6 +19,16 @@ const getSale = async (id) => {
     return data;
 };
 
+const getAll = async () => {
+    const data = await model.getAll();
+    return data;
+};
+
+const updateStatus = async (id) => {
+    const data = await model.updateStatus(id);
+    return data;
+};
+
 const saleById = async (id) => {
     const data = await model.saleById(id);
     const { total_price: totalPrice, sale_id: saleID, status } = data[0];
@@ -40,4 +50,6 @@ module.exports = {
     createSale,
     getSale,
     saleById,
+    getAll,
+    updateStatus,
 };

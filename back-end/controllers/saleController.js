@@ -15,6 +15,17 @@ const createSale = async (req, res) => {
     }
 };
 
+const getAll = async (req, res) => {
+    try {
+        const data = await service.getAll();
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({
+            message: messageErr,
+        });
+    }
+};
+
 const getSale = async (req, res) => {
     const { userID } = req.body;
     try {
@@ -39,8 +50,22 @@ const saleById = async (req, res) => {
     }
 };
 
+const updateStatus = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const data = await service.updateStatus(id);
+        if (data) return res.status(204).json();
+    } catch (error) {
+        return res.status(500).json({
+            message: messageErr,
+        });
+    }
+};
+
 module.exports = {
     createSale,
     getSale,
     saleById,
+    getAll,
+    updateStatus,
 };

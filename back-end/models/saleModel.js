@@ -28,6 +28,15 @@ const getSale = async (id) => {
     return rows;
 };
 
+const getAll = async () => {
+    const [rows] = await connection.execute(`SELECT 
+    id AS saleId, delivery_address AS deliveryAddress,
+    delivery_number AS deliveryNumber,
+    total_price AS totalPrice,
+    status FROM Trybeer.sales`);
+    return rows;
+};
+
 const saleById = async (id) => {
     const [rows] = await connection.execute(`
     SELECT t1.total_price, t1.sale_date, t1.status, t2.sale_id, t2.quantity, t3.name, t3.price
@@ -40,9 +49,18 @@ const saleById = async (id) => {
     return rows;
 };
 
+const updateStatus = async (id) => {
+    const data = await connection.execute(`UPDATE Trybeer.sales 
+    SET status = 'Entregue'
+    WHERE id = ?`, [id]);
+    return data;
+};
+
 module.exports = {
     createSale,
     getSale,
     createSaleProduct,
     saleById,
+    getAll,
+    updateStatus,
 };
