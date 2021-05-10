@@ -20,7 +20,7 @@ export default function ProductsList() {
     };
 
     fetchProducts();
-  }, [productQtt]);
+  }, []);
 
   const addProdQtt = (e, id) => {
     const { name } = e.target;
