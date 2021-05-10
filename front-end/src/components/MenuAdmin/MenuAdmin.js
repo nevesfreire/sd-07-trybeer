@@ -1,49 +1,32 @@
 import React from 'react';
-import { bool } from 'prop-types';
 import StyledMenu from './Menu.styled';
 
-const MenuAdmin = ({ open, ...props }) => {
-  const ONE = -1;
-  const isHidden = !!open;
-  const tabIndex = isHidden ? 0 : ONE;
-
-  return (
-    <StyledMenu
-      className="admin-side-bar-container"
-      open={ open }
-      aria-hidden={ !isHidden }
-      { ...props }
+const MenuAdmin = () => (
+  <StyledMenu
+    className="admin-side-bar-container"
+  >
+    <a
+      href="/admin/orders"
+      data-testid="side-menu-item-orders"
     >
-      <a
-        href="/orders"
-        data-testid="side-menu-item-orders"
-        tabIndex={ tabIndex }
-      >
-        <span aria-hidden="true">📝</span>
-        Pedidos
-      </a>
-      <a
-        href="/profile"
-        data-testid="side-menu-item-profile"
-        tabIndex={ tabIndex }
-      >
-        <span aria-hidden="true">👤</span>
-        Meu Perfil
-      </a>
-      <a
-        href="/login"
-        data-testid="side-menu-item-logout"
-        tabIndex={ tabIndex }
-      >
-        <span aria-hidden="true">❌</span>
-        Sair
-      </a>
-    </StyledMenu>
-  );
-};
-
-MenuAdmin.propTypes = {
-  open: bool.isRequired,
-};
+      <span aria-hidden="true">📝</span>
+      Pedidos
+    </a>
+    <a
+      href="/admin/profile"
+      data-testid="side-menu-item-profile"
+    >
+      <span aria-hidden="true">👤</span>
+      Meu Perfil
+    </a>
+    <a
+      href="/login"
+      data-testid="side-menu-item-logout"
+    >
+      <span aria-hidden="true">❌</span>
+      Sair
+    </a>
+  </StyledMenu>
+);
 
 export default MenuAdmin;

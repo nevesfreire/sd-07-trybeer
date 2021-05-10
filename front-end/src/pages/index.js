@@ -3,6 +3,8 @@ import Main from './Main';
 import Register from './Register';
 import ProfileUser from './ProfileUser';
 import Products from './Products';
+import OrdersAdmin from './OrdersAdmin';
+import ProfileAdmin from './ProfileAdmin';
 
 export {
   Login,
@@ -10,4 +12,6 @@ export {
   Register,
   ProfileUser,
   Products,
+  OrdersAdmin,
+  ProfileAdmin,
 };
