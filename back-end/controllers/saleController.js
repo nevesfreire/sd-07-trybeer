@@ -14,7 +14,15 @@ const createSale = async (req, res) => {
 };
 
 const getSale = async (req, res) => {
-    res.send('Ok');
+    const { userID } = req.body; 
+    try {
+        const data = await service.getSale(userID);
+        res.json(data);
+    } catch (error) {
+        return res.status(500).json({
+            message: 'We found an error',
+        });
+    }
 };
 
 module.exports = {
