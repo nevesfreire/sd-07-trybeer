@@ -49,7 +49,7 @@ function Products() {
       console.log(add);
       console.log(cart);
       setCart([add])
-      console.log(cart)
+      console.log(cart);
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
