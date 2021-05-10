@@ -26,8 +26,8 @@ const ComponentLogin = () => {
     return <Redirect to="/products" />;
   }
 
-  const toLogin = async (event) => {
-    event.preventDefault();
+  const toLogin = async () => {
+    // event.preventDefault();
     return api
       .post('/login', params)
       .then((dataUser) => {
@@ -44,7 +44,6 @@ const ComponentLogin = () => {
       </div>
       <div>
         <form
-          onSubmit={ (event) => toLogin(event) }
           className="container-int-login"
         >
           <label htmlFor="email" className="form-login">
@@ -72,10 +71,11 @@ const ComponentLogin = () => {
           </label>
 
           <button
-            type="submit"
+            type="button"
             disabled={ labelLogin }
             className={ labelLogin === false ? 'btn-submit-login' : 'disable' }
             data-testid="signin-btn"
+            onClick = {toLogin}
           >
             Entrar
           </button>
