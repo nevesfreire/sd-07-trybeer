@@ -35,3 +35,20 @@ export async function nameChangeRequest(name, email) {
     return error.response;
   }
 }
+
+export async function registerNewUser(name, email, password, role) {
+  const endpoint = `http://localhost:${PORT}/register`;
+  let response = {};
+
+  try {
+    response = await axios.post(endpoint, {
+      name,
+      email,
+      password,
+      role,
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+}

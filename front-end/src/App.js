@@ -1,5 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+
+import Register from './pages/Register';
 import Products from './pages/Client/Products';
 import Checkout from './pages/Client/Checkout';
 import Profile from './pages/Client/Profile';
