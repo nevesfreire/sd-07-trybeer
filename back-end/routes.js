@@ -14,6 +14,8 @@ app.post('/login', loginMiddleware, loginController);
 
 app.get('/', getUser);
 
+app.put('/', )
+
 app.post(
   '/',
   body('name').isString().isLength({ min: 12 }),
