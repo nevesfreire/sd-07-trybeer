@@ -33,6 +33,7 @@ ProductsButtons.propTypes = {
   quantity: PropTypes.number.isRequired,
   add: PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default ProductsButtons;
