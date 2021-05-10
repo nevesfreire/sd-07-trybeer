@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './style.css';
 
-export default function TopMenu() {
+export default function TopMenu({ title }) {
   const history = useHistory();
 
   function handleMenuToggle() {
@@ -10,6 +11,7 @@ export default function TopMenu() {
     const sideBarComplement = document.getElementsByClassName('nav-complement')[0];
 
     sideBar.classList.toggle('show-menu');
+    sideBarComplement.classList.toggle('nav-complement-hide');
     sideBarComplement.classList.toggle('nav-complement-show');
   }
 
@@ -25,14 +27,29 @@ export default function TopMenu() {
     history.push(url);
   }
 
+  useEffect(() => {
+    if (title.toLowerCase() === 'trybeer') {
+      document.getElementById('title')
+        .classList.add('header-title-trybeer');
+    } else {
+      document.getElementById('title')
+        .classList.remove('header-title-trybeer');
+    }
+  }, []);
+
   return (
     <div className="header">
-      <div className="header-title" data-testid="top-title">
-        Título
+      <div id="title" className="header-title header-title-trybeer" data-testid="top-title">
+        { title }
       </div>
       <div
-        className="nav-complement"
-        onClick={ () => handleMenuToggle() }
+        className="nav-complement nav-complement-hide"
+        onClick={ () => {
+          if (document.getElementsByClassName('nav-complement')[0]
+            .classList[1] === 'nav-complement-show') {
+            handleMenuToggle();
+          }
+        } }
         onKeyDown={ (e) => getKeyCode(e) }
         aria-hidden="true"
       />
@@ -96,3 +113,7 @@ export default function TopMenu() {
     </div>
   );
 }
+
+TopMenu.propTypes = {
+  title: PropTypes.string.isRequired,
+};
