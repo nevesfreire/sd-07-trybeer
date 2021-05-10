@@ -25,9 +25,14 @@ const getProducts = async () => {
   return ClientModel.allProducts();
 }
 
+const savSale = async (userId, totalPrice, deliveryAddress, deliveryNumber, products) => {
+  return ClientModel.saveSales(userId, totalPrice, deliveryAddress, deliveryNumber, products);
+};
+
 module.exports = {
   resLogin,
   cadUser,
   nameEdi,
-  getProducts
+  getProducts,
+  savSale,
 };

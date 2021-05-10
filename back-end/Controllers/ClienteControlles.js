@@ -3,6 +3,7 @@ const {
   cadUser,
   nameEdi,
   getProducts,
+  savSale,
 } = require('../Services/ClienteServices');
 const { error1 } = require('../error/index')
 
@@ -55,9 +56,30 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const saleSave = async (req, res) => {
+  const resOK = 200;
+  const { userId,
+    totalPrice,
+    deliveryAddress,
+    deliveryNumber,
+    products,
+  } = req.body;
+
+  try {
+    const cadSale = await savSale(userId, totalPrice, deliveryAddress, deliveryNumber, products);
+    res.status(resOK).json(cadSale);
+  } catch (err) {
+    res.status(err.code).json({
+      message: err.message,
+    });
+  }
+
+};
+
 module.exports = {
   login,
   addUser,
   updateUserName,
   getAllProducts,
+  saleSave,
 };

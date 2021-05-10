@@ -22,7 +22,7 @@ function Profile() {
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ emailUser, newName }),
+      body: JSON.stringify({ name: newName, email: email }),
     }).then((response) => response.json())
       .then((data) => {
         if(data.status && data.status === 200){
@@ -33,7 +33,7 @@ function Profile() {
 
   useEffect(() => {
     verifyData();
-  }, [name, verifyData]);
+  }, [name]);
 
   return (
     <div>

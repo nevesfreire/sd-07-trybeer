@@ -7,5 +7,6 @@ router.post('/login', ClienteController.login);
 router.post('/register', ClienteController.addUser);
 router.put('/profile', ClienteController.updateUserName);
 router.get('/products', ClienteController.getAllProducts);
+router.post('/savedSale', ClienteController.saleSave);
 
 module.exports = router;
