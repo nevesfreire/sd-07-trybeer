@@ -7,7 +7,7 @@ checkoutCtrl.post('/', async (req, res, next) => {
   try {
     const { body } = req;
     const checkoutRes = await checkoutServ(body);
-    console.log(checkoutRes)
+    console.log(checkoutRes);
     if (checkoutRes.err) return next(checkoutRes);
     const { error, message, status } = checkoutRes;
     return res.status(status).json({ message, error } || { });

@@ -8,14 +8,17 @@ function Checkout() {
   const [isLoading, setIsLoading] = useState(true);
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
+  const [purchaseSucceeded, setPurchaseSucceeded] = useState('');
 
   const { cart, totalPrice } = useContext(Context);
 
   const history = useHistory();
 
+  const formatedTotalPrice = `R$ ${totalPrice.replace(/\./g, ',')}`;
+
   const purchaseFinished = () => {
     const ALERT_TIME = 4000;
-    alert('Compra realizada com sucesso!');
+    setPurchaseSucceeded('Compra realizada com sucesso!');
     setTimeout(() => {
       history.push('/products');
     }, ALERT_TIME);
@@ -43,15 +46,16 @@ function Checkout() {
     <>
       <ClientMenu><p data-testid="top-title">TryBeer</p></ClientMenu>
       <section>
-        {cart.map((prd, i) => (<CheckoutPdtCard
-          key={ prd.id }
-          data={ prd }
-          index={ i }
-        />))}
+        {cart.length === 0 ? <h2>Não há produtos no carrinho</h2>
+          : cart.map((prd, i) => (<CheckoutPdtCard
+            key={ prd.id }
+            data={ prd }
+            index={ i }
+          />))}
         <div
           data-testid="order-total-value"
         >
-          {totalPrice}
+          { formatedTotalPrice }
         </div>
         <label htmlFor="street">
           Endereço
@@ -78,10 +82,12 @@ function Checkout() {
         <button
           data-testid="checkout-finish-btn"
           type="button"
+          disabled={ street === '' || houseNumber === '' }
           onClick={ (event) => handlePurchFinish(event) }
         >
           Finalizar pedido
         </button>
+        <div>{ purchaseSucceeded }</div>
       </section>
     </>
   );
