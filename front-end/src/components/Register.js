@@ -1,14 +1,12 @@
 import React, { useContext, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import fieldValidate from '../helpers/fieldValidate';
 import messageSuccess from '../helpers/MessageSuccess';
 import context from '../context';
-import useRedirect from '../hooks/useRedirect';
 
 const ComponentRegister = () => {
-  const [setGetEvent] = useRedirect();
-
   const { name, setName, email, setEmail } = useContext(context);
   const { password, setPassword } = useContext(context);
   const { isOk, setIsOk, user, setUser } = useContext(context);
@@ -60,10 +58,13 @@ const ComponentRegister = () => {
     setIsChecked(event.target.checked);
   };
 
-  const focusRef = (event) => {
-    handleSubmit(event);
-    setGetEvent(Math.random());
-  };
+  if (user === 'administrator') {
+    return <Redirect to="/admin/orders" />;
+  }
+
+  if (user === 'client') {
+    return <Redirect to="/products" />;
+  }
 
   return (
     <FormControl className="form-registration">
@@ -118,7 +119,7 @@ const ComponentRegister = () => {
           variant="contained"
           className="RegisterBtn"
           disabled={ isOk }
-          onClick={ focusRef }
+          onClick={ handleSubmit }
         >
           Cadastrar
         </Button>

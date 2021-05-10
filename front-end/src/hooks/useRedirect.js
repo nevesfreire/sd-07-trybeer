@@ -12,7 +12,7 @@ function useRedirect() {
 
   useEffect(() => {
     if (user === 'admin') {
-      history.push('/admin');
+      history.push('/admin/orders');
     }
 
     if (user === 'cliente') {
