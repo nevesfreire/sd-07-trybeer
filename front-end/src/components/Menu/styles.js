@@ -15,7 +15,7 @@ top: 0;
 left: 0;
 transition: transform 0.3s ease-in-out;
 
-@media (max-width: 576px) {
+@media (max-width: 540) {
     width: 100%;
   }
 
@@ -29,7 +29,7 @@ a {
   text-decoration: none;
   transition: color 0.3s linear;
 
-  @media (max-width: 576px) {
+  @media (max-width: 540) {
     font-size: 1.5rem;
     text-align: center;
   }
@@ -85,7 +85,7 @@ export const Button = styled.button`
   font-size: 1.5em;
   font-weight: bolder;
   padding: 0;
-  width: 15em;
+  width: 14em;
   height: 3em;
   border-radius: 5px;
   margin-top: 0.2em;
