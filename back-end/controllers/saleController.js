@@ -14,7 +14,7 @@ const createSale = async (req, res) => {
 };
 
 const getSale = async (req, res) => {
-    const { userID } = req.body; 
+    const { userID } = req.body;
     try {
         const data = await service.getSale(userID);
         res.json(data);
