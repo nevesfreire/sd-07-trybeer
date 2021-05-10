@@ -1,7 +1,6 @@
 import React from 'react';
-import HeaderBurguer from '../components/HeaderBurger';
-
 import { Redirect } from 'react-router-dom';
+import HeaderBurguer from '../components/HeaderBurger';
 import UpdateForm from '../components/UpdateForm';
 
 function ClientProfile() {
