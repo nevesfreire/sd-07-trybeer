@@ -43,7 +43,7 @@ function FormLogin() {
     if (user.data) {
       const { data } = user;
       const { role } = data;
-      setToLocalStorage(data);
+      setToLocalStorage('user', data);
 
       if (role === 'administrator') {
         history.push('/admin/orders');

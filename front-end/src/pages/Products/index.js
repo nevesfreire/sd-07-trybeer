@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import BeerAppContext from '../../context/BeerAppContext';
 import { requestGetProductsAPI } from '../../services';
 import ProductCard from '../../component/ProductCard';
+import TopMenu from '../../component/TopMenu';
+import { getToLocalStorage } from '../../utils/localStorage';
 
 function ProductsCards() {
   const {
@@ -18,9 +20,14 @@ function ProductsCards() {
     if (products.status === 200) setProducts(data);
   };
 
-
+  const validateToken = () => {
+    const user = getToLocalStorage('user');
+    console.log(user);
+    if (!user) history.push('/login');
+  }
 
   useEffect(() => {
+    validateToken();
     HandleRequestGetProducts();
   }, []);
 
@@ -28,15 +35,18 @@ function ProductsCards() {
 
   return (
     <div>
+      <TopMenu title="TryBeer" />
       {products.map(product => (
         <ProductCard key={product.id} product={product} />
       ))}
       <button
         type='button'
         data-testid='checkout-bottom-btn'
-        onClick={() => history('/checkout')}>
+        onClick={() => history.push('/checkout')}
+        disabled={ totalProducts === 'R$ 0,00' ? true : false }
+        >
         Ver Carrinho
-        <span data-testid='checkout-bottom-btn-value'>{` R$ ${totalProducts}`}</span>
+        <span data-testid='checkout-bottom-btn-value'>{ totalProducts}</span>
       </button>
     </div>
   );
