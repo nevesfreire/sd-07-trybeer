@@ -9,7 +9,7 @@ const STATUS_MESSAGE = {
   MISSING_TOKEN: 'Missing token',
   MALFORMED_TOKEN: 'JWT malformed',
   EMAIL_NOT_EQUAL: 'Informed email is not valid',
-  CREATED_SALE: 'Successfully created sale'
+  CREATED_SALE: 'Successfully created sale',
 };
 
 module.exports = STATUS_MESSAGE;

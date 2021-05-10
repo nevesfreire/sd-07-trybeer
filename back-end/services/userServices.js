@@ -88,7 +88,7 @@ const checkIfNameIsValid = (name) => {
 };
 
 const checkIfEmailExist = (result) => {
-  if (result.length) {
+  if (!result.length) {
     throw new CustomError({
       status: STATUS_CODE.BAD_REQUEST,
       message: STATUS_MESSAGE.DUPLICATED_EMAIL,
