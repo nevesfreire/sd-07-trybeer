@@ -24,4 +24,16 @@ const updateUser = ({ name, email }) => fetch('http://localhost:3001/user', {
   .then((response) => response.json())
   .catch((error) => console.log(error));
 
-export { userLogin, registerUser, updateUser };
+const getProducts = (token) => fetch('http://localhost:3001/products', {
+  method: 'GET',
+  headers: { ...contentType, authorization: token },
+})
+  .then((response) => response.json())
+  .catch((error) => console.log(error));
+
+export {
+  userLogin,
+  registerUser,
+  updateUser,
+  getProducts,
+};
