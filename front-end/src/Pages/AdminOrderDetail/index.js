@@ -47,7 +47,7 @@ const AdminOrderDetail = () => {
                 <span data-testid={ `${index}-product-qtd` }>{ quantity }</span>
                 <span data-testid={ `${index}-product-name` }>{ name }</span>
                 <span
-                  data-testid={ `${index}-unit-price` }
+                  data-testid={ `${index}-order-unit-price` }
                 >
                   { `(R$ ${price.replace('.', ',')})` }
                 </span>
