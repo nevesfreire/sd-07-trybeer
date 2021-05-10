@@ -24,7 +24,7 @@ function LoginForm() {
     }
     const { token, user: { name, role } } = response.data;
     if (response) {
-      services.acessLocalStorage.setUserLocalStorage({ name,
+      services.setUserLocalStorage({ name,
         email,
         token,
         role,
