@@ -5,14 +5,27 @@ function UpdateForm() {
   const { updateProfileName } = useFetch();
   const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
+  const [initialName, setInitialName] = useState('');
   const [responseAPI, setResponseAPI] = useState('');
+  const [disabled, setDisabled] = useState(true);
 
   const getClient = () => {
     const client = JSON.parse(localStorage.getItem('user'));
     console.log(client);
     setUserEmail(client.email);
     setUserName(client.name);
+    setInitialName(client.name);
   };
+
+  const handleButtonChange = () => {
+    if (userName !== initialName) {
+      return setDisabled(false)
+    } else { setDisabled(true) }
+  };
+
+  useEffect(() => {
+    handleButtonChange();
+  }, [userName]);
 
   useEffect(() => {
     getClient();
@@ -63,7 +76,9 @@ function UpdateForm() {
         <button
           type="button"
           data-testid="profile-save-btn"
+          onChange={() => handleButtonChange()}
           onClick={ () => handleClick() }
+          disabled={ disabled }
         >
           Salvar
         </button>
