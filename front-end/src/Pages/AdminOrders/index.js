@@ -12,11 +12,10 @@ const AdminOrders = () => {
     if (JSON.parse(localStorage.getItem('user'))) {
       const { data: { token } } = JSON.parse(localStorage.getItem('user'));
       const salesResponse = await getSales(token);
-      console.log(salesResponse);
       setSales(salesResponse);
       setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     getSalesResponse();
@@ -43,7 +42,7 @@ const AdminOrders = () => {
               <span
                 data-testid={ `${index}-order-total-value` }
               >
-                { `R$ ${sale.totalPrice.toFixed(2).replace('.', ',')}` }
+                { `R$ ${sale.totalPrice.replace('.', ',')}` }
               </span>
               <span data-testid={ `${index}-order-status` }>{ sale.status }</span>
             </Link>

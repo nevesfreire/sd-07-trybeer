@@ -42,7 +42,7 @@ const getSales = (token) => api
   .catch((e) => e.message);
 
 const updateSale = (token, id) => api
-  .put(`/sales/admin/${id}`, { headers: { Authorization: token } })
+  .put(`/sales/admin/${id}`, {}, { headers: { Authorization: token } })
   .then(({ status }) => status)
   .catch((e) => e.message);
 
