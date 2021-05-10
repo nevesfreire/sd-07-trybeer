@@ -16,6 +16,23 @@ router.post('/login', userController.login);
 
 router.get('/products', productsControler.getAllProducts);
 
-router.post('/products', saleControler.create);
+// Cria uma nova venda. (Requer Token) - Será usado no req. 6
+// Estrutura do body da requisição: 
+// {
+// "deliveryAddress":"Rua Leopardo Gazela",
+// "listProducts": {"1":"5","2":"5"}
+// }
+router.post('/sale', saleControler.create);
+
+// Listagem com todas as vendas.
+router.get('/sale', saleControler.getReallyAll);
+
+// Busca uma venda especifica atraves do id a venda.
+router.get('/sale/:id', saleControler.getById);
+
+router.get('/orders', saleControler.getAll);
+// O "total_price" é o valor total do pedido
+router.get('/orders/:numeroDoPedido', saleControler.getByNumber); 
+router.get('/admin/orders', saleControler.getAllOrders);
 
 module.exports = router;
