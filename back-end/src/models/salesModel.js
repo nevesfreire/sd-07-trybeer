@@ -15,18 +15,14 @@ const getSaleById = async (id) => {
   return sale;
 };
 
-const createSale = async (
-  userId,
-  totalPrice,
-  deliveryAddress,
-  deliveryNumber,
-) => {
+const createSale = async (userId, totalPrice, deliveryAddress, deliveryNumber) => {
   const pendente = 'pendente';
+  const query = 'INSERT INTO sales (user_id, total_price, delivery_address, ';
+  const queryTwo = 'delivery_number, sale_date, status) VALUES (?, ?, ?, ?, NOW(), ?)';
   const sale = await connection.execute(
-    'INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, sale_date, status) VALUES (?, ?, ?, ?, NOW(), ?)',
+    `${query}${queryTwo}`,
     [userId, totalPrice, deliveryAddress, deliveryNumber, pendente],
   );
-
   return {
     saleId: sale.insertedId,
     userId,
