@@ -1,12 +1,50 @@
-// const SaleModel = require('../model/SaleModel');
+const SaleModel = require('../model/SaleModel');
+const ProductService = require('./ProductService');
+const SalesProductsModel = require('../model/SalesProductsModel');
+const jwt = require('../helper/jwt');
 
-// const create = async (sale, authorization) => {
-//   const decoded = jwt.decodeToken(authorization);
+const create = async (dAddress, dNumber, listProducts, authorization) => {
+  const decoded = jwt.decodeToken(authorization);
+  const produtosLista = await ProductService.getAll();
+  const tPrice = Object.entries(listProducts).reduce((acc, product) => {
+    const productQuantity = Number(product[1]);
+    const productPrice = produtosLista[0].find((p) => p.id === Number(product[0])).price;
+    return acc + (productQuantity * productPrice);
+  }, 0);
+  const allPropeties = {
+    userId: decoded.id, tPrice, dAddress, dNumber, date: new Date(), status: 'pendente',
+  };
 
-//   // logica create sale
-//   // logica loop product_quantity
-//   const products = await SaleModel.create();
-//   return products;
-// };
+  const newSaleId = await SaleModel.create(allPropeties);
+  Promise.all(
+    Object.entries(listProducts).map((p) => SalesProductsModel.create(newSaleId, p[0], p[1])),
+  );
+};
 
-// module.exports = { create };
+const getAll = async (authorization) => {
+  const decoded = jwt.decodeToken(authorization);
+  const sales = await SaleModel.getAll(decoded.id);
+  return sales;
+};
+
+const getReallyAll = async () => {
+  const sales = await SaleModel.getReallyAll();
+  return sales;
+};
+
+const getById = async (id) => {
+  const sales = await SaleModel.getById(id);
+  return sales;
+};
+
+const getSaleByOrderNumber = async (orderNumber) => {
+  const sale = await SaleModel.getByOrderNumber(orderNumber);
+  return sale;
+};
+
+const getAllOrders = async () => {
+  const orders = await SaleModel.getAllOrders();
+  return orders;
+};
+
+module.exports = { create, getAll, getSaleByOrderNumber, getAllOrders, getById, getReallyAll };

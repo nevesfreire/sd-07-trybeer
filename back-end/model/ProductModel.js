@@ -7,7 +7,6 @@ const allProducts = async () => {
         );
         return products;
     } catch (error) {
-        console.log(error);
         throw new Error('Erro de conexão');
     }
 };

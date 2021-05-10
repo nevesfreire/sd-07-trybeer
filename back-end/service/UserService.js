@@ -19,7 +19,12 @@ const login = async (email, password) => {
   if (!user || password !== user.password) {
     throw new Error('Email ou senha inválidos');
   }
-  const token = jwt.createToken({ email: user.email, role: user.role, name: user.name });
+  const token = jwt.createToken({
+    email: user.email,
+    role: user.role,
+    name: user.name,
+    id: user.id,
+  });
   return {
     token,
     status: 200,
