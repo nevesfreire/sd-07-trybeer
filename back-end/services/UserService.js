@@ -28,7 +28,7 @@ const registerOrder = async (order) => {
   const saleId = newOrder.id;
 
   cart.forEach(async (item) => {
-    await UserModel.registerSaleProducts(saleId, item.id, item.quantity);
+    await UserModel.registerSalesProducts(saleId, item.id, item.quantity);
   });
 
   return { status: 201, message: 'Compra realizada com sucesso!' };
@@ -38,13 +38,20 @@ const getAllOrders = async () => {
   return { status: 200, message: allOrders };
 };
 const getOrderDetailsById = async (orderId) => {
-  const ordersDetails = await UserModel.getOrderDetailsById(orderId);
-  return { status: 200, message: ordersDetails };
+  const orderDetails = await UserModel.getOrderDetailsById(orderId);
+  return { status: 200, message: orderDetails };
 };
+
+const updateSale = async (saleId) => {
+  const updatedStatus = await UserModel.updateSale(saleId);
+  return { status: 200, message: updatedStatus };
+};
+
 module.exports = {
   registerUser,
   updateUserName,
   registerOrder,
   getAllOrders,
   getOrderDetailsById,
+  updateSale,
 };

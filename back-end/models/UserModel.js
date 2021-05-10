@@ -44,8 +44,8 @@ const getDate = async () => {
 const getOrderDetailsById = async (orderId) => {
   const [ordersDetails] = await connection
     .execute(`SELECT products.name,products.price,sales_products.quantity
-    , sales_products.sale_id
-    FROM  Trybeer.sales
+    , sales_products.sale_id, sales.status
+    FROM  sales
     INNER JOIN sales_products ON sales.id = sales_products.sale_id
     INNER JOIN products ON sales_products.product_id = products.id
     where sale_id = ?;`,
@@ -59,6 +59,14 @@ const getAllOrders = async () => {
   return sales;
 };
 
+const updateSale = async (saleId) => {
+  const delivered = 'Entregue';
+  const query = 'UPDATE Trybeer.sales SET status=? WHERE id=?';
+  await connection.execute(query, [delivered, saleId]);
+  const updatedSale = await getOrderDetailsById(saleId);
+  return updatedSale[0].status;
+};
+
 module.exports = {
   getByEmail,
   registerUser,
@@ -69,4 +77,5 @@ module.exports = {
   getOrderByUserId,
   getDate,
   registerSalesProducts,
+  updateSale,
 };
