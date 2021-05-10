@@ -21,4 +21,6 @@ app.post('/checkout', UserController.registerOrder);
 app.get('/orders', UserController.getAllOrders);
 app.get('/orders/:id', UserController.getOrderDetailsById);
 
+app.get('/admin/orders', UserController.getAllOrders);
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
