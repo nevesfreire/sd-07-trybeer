@@ -37,3 +37,12 @@ export const removeFromCart = (product) => {
     }
   });
 };
+
+export const excludeProductFromCheckout = (id) => {
+  const cart = JSON.parse(localStorage.getItem('cart'));
+  const filteredCart = cart.filter((element) => element.id !== id);
+
+  localStorage.setItem('cart', JSON.stringify(filteredCart));
+
+  return filteredCart;
+};

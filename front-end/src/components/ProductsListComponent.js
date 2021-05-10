@@ -22,6 +22,7 @@ function Products() {
       0,
     );
     setTotal(total.toFixed(2).replace('.', ','));
+    localStorage.setItem('total', total.toFixed(2).replace('.', ','));
   };
 
   useEffect(() => {

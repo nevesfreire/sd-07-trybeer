@@ -12,7 +12,7 @@ import BeerContext from '../context/BeerContext';
 const SideBarComponent = ({ Component }) => {
   const history = useHistory();
   const { toggleSideBar } = useContext(BeerContext);
-  console.log(toggleSideBar);
+
   return (
     <Grid columns={ 1 }>
       <Grid.Column>
