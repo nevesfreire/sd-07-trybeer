@@ -1,8 +1,8 @@
-const setToLocalStorage = (key, payload) =>
+const setToLocalStorage = (key, payload) => {
   localStorage.setItem(key, JSON.stringify(payload));
+};
 
-const getToLocalStorage = (key) =>
-  JSON.parse(localStorage.getItem(key));
+const getToLocalStorage = (key) => JSON.parse(localStorage.getItem(key));
 
 // const setToLocalStorageShopCart = (shopCart) =>
 //   localStorage.setItem('shopCart', JSON.stringify(shopCart));
@@ -12,8 +12,8 @@ const getToLocalStorageShopCart = () => {
   if (shopCart) {
     return shopCart;
   }
-  return []
-}
+  return [];
+};
 
 const clearLocalStorage = () => localStorage.clear();
 

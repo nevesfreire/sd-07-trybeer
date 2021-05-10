@@ -35,7 +35,7 @@ export default function TopMenu({ title }) {
       document.getElementById('title')
         .classList.remove('header-title-trybeer');
     }
-  }, []);
+  }, [title]);
 
   return (
     <div className="header">

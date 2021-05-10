@@ -1,5 +1,6 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { StatusCodes } from 'http-status-codes';
 import BeerAppContext from '../../context/BeerAppContext';
 import { requestGetProductsAPI } from '../../services';
 import ProductCard from '../../component/ProductCard';
@@ -8,45 +9,45 @@ import { getToLocalStorage } from '../../utils/localStorage';
 
 function ProductsCards() {
   const {
-    totalProducts, 
+    totalProducts,
     products,
-    setProducts
+    setProducts,
   } = useContext(BeerAppContext);
   const history = useHistory();
 
-  const HandleRequestGetProducts = async () => {
-    const products = await requestGetProductsAPI();
-    const data = products.data;
-    if (products.status === 200) setProducts(data);
-  };
+  const HandleRequestGetProducts = useCallback(async () => {
+    const productsList = await requestGetProductsAPI();
+    const { data } = productsList;
+    if (productsList.status === StatusCodes.OK) setProducts(data);
+  }, [setProducts]);
 
-  const validateToken = () => {
+  const validateToken = useCallback(() => {
     const user = getToLocalStorage('user');
     console.log(user);
     if (!user) history.push('/login');
-  }
+  }, [history]);
 
-  useEffect(() => {
+  useEffect(useCallback(() => {
     validateToken();
     HandleRequestGetProducts();
-  }, []);
+  }, [HandleRequestGetProducts, validateToken]));
 
   if (!products.length) return <h1>LOADING...</h1>;
 
   return (
     <div>
       <TopMenu title="TryBeer" />
-      {products.map(product => (
-        <ProductCard key={product.id} product={product} />
+      {products.map((product) => (
+        <ProductCard key={ product.id } product={ product } />
       ))}
       <button
-        type='button'
-        data-testid='checkout-bottom-btn'
-        onClick={() => history.push('/checkout')}
-        disabled={ totalProducts === 'R$ 0,00' ? true : false }
-        >
+        type="button"
+        data-testid="checkout-bottom-btn"
+        onClick={ () => history.push('/checkout') }
+        disabled={ totalProducts === 'R$ 0,00' }
+      >
         Ver Carrinho
-        <span data-testid='checkout-bottom-btn-value'>{ totalProducts}</span>
+        <span data-testid="checkout-bottom-btn-value">{ totalProducts}</span>
       </button>
     </div>
   );
