@@ -6,14 +6,17 @@ import MyContext from '../context/TrybeerContext';
 function ProductsCards() {
   // const history = useHistory();
   const [ product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const products = fetch('localhost/3001/products')
-    .then((response) => response.json());
-    setProduct(products);
-  console.log(products);
+    fetch('http://localhost:3001/products')
+    .then((response) => response.json())
+    .then((data) => setProduct(data));
+    setLoading(false);
   }, []);
 
-  return (
+  return loading
+  ? (<span>tenha fé...</span>)
+  : (
     <div>
       {product.map((product, index) => (
         <div key={ product.id }>
@@ -59,7 +62,10 @@ import useFetch from '../hooks/useFetch';
         </span>
       </button>
     </div>
+  
+
   );
+
 }
 
 export default ProductsCards;
