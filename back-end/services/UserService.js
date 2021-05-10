@@ -37,7 +37,7 @@ const updateUser = async (token, name) => {
   // Adicionar validação para o nome
   const update = await User.updateUser(name, username);
   if (update < 1) throw new CustomError(CODE.CONFLICT, 'Não foi possível atualizar o nome');
-  return { statusCode: CODE.ACCEPTED, message: 'Nome atualizado com sucesso' };
+  return { statusCode: CODE.ACCEPTED, message: 'Atualização concluída com sucesso' };
 };
 
 module.exports = {

@@ -1,6 +1,7 @@
 const status = {
   200: () => false,
   201: () => false,
+  202: () => false,
 };
 
 function errorHandling(request) {
