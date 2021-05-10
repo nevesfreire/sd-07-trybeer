@@ -11,4 +11,16 @@ const create = async (saleId, userId, quantity) => {
   }
 };
 
-module.exports = { create };
+const getById = async (id) => {
+  try {
+    const sales = await connection.execute(
+      'SELECT * FROM sales WHERE id=?', 
+      [id],
+    );
+    return sales[0];
+  } catch (error) {
+    throw new Error('messageErroConexão');
+  }
+};
+
+module.exports = { create, getById };

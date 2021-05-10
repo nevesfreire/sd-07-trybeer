@@ -37,9 +37,10 @@ const getById = async (id) => {
   return sales;
 };
 
-const getSaleByOrderNumber = async (orderNumber) => {
-  const sale = await SaleModel.getByOrderNumber(orderNumber);
-  return sale;
+const getSaleByOrderNumber = async (idDOPedido) => {
+  const sale = await SaleModel.getById(idDOPedido);
+  const products = await SaleModel.getByOrderNumber(idDOPedido);
+  return { saleDetail: sale, productList: products };
 };
 
 const getAllOrders = async () => {
