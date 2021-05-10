@@ -57,11 +57,10 @@ const getByOrderNumber = async (idDOPedido) => {
   try {
     const sale = await connection.execute(
       `
-        SELECT *
-        FROM sales AS ss
-        INNER JOIN sales_products AS sp ON ss.id = sp.sale_id
-        INNER JOIN products AS p ON sp.product_id = p.id
-        WHERE ss.id = ?
+      select sp.product_id, sp.quantity, p.price, p.name from sales s
+      join sales_products sp on s.id=sp.sale_id
+      join products p on p.id=sp.product_id
+      where s.id=?;
       `,
      [idDOPedido],
     );
