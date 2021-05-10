@@ -7,7 +7,7 @@ require('dotenv').config();
 
 app.use(cors());
 
-const { PORT } = process.env || 3007;
+const { PORT } = process.env || 3001;
 
 app.use(cors());
 
