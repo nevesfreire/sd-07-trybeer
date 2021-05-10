@@ -55,4 +55,5 @@ export {
   getSalesByUser,
   getSaleById,
   getSales,
+  updateSale,
 };

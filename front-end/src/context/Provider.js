@@ -10,7 +10,7 @@ function Provider({ children }) {
     const products = JSON.parse(localStorage.getItem('cart'));
     products[index].quantity += difference;
     let total = totalPrice + products[index].price * difference;
-    total = (Math.round(total * 100) / 100).toFixed(2);
+    total = Number((Math.round(total * 100) / 100).toFixed(2));
 
     localStorage.setItem('totalCartPrice', JSON.stringify(total));
     localStorage.setItem('cart', JSON.stringify(products));

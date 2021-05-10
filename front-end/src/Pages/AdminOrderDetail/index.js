@@ -50,7 +50,7 @@ const AdminOrderDetail = () => {
 
   const markAsDelivered = async () => {
     const { data: { token } } = JSON.parse(localStorage.getItem('user'));
-    await updateSale(token, sale.saleId);
+    // await updateSale(token, sale.saleId);
     setStatus('Entregue');
   }
 
