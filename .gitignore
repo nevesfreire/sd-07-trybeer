@@ -289,3 +289,6 @@ $RECYCLE.BIN/
 
 cypress/screenshots/
 cypress/videos/
+back-end/package-lock.json
+back-end/package.json
+front-end/package.json
