@@ -7,14 +7,17 @@ const getEmailUser = async (email, password) => {
     FROM Trybeer.users
     WHERE email = ? AND password = ?`, [email, password]);
 
+
   console.log(data.length);
   if(!data.length) return null
+
   return {
     name: data[0].name,
     email: data[0].email,
     role: data[0].role,
   };
 };
+
 
 const getUserForName = async (name, email) => {
   const user = await connect

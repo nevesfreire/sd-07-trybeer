@@ -5,7 +5,9 @@ function Checkout() {
   return (
     <div>
       <h1>Aqui é Checkout</h1>
+
       <Header />
+
     </div>
   );
 }

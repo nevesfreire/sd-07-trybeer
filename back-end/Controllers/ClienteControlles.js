@@ -1,5 +1,6 @@
 const {
   resLogin,
+
   cadUser,
   nameEdi,
   getProducts,
@@ -7,11 +8,14 @@ const {
 } = require('../Services/ClienteServices');
 const { error1 } = require('../error/index')
 
+
 const login = async (req, res) => {
   const resOK = 200;
   try {
     const { email, password } = req.body;
+
     if (!email || !password) throw error1;
+
     const loginOk = await resLogin(email, password);
     return res.status(resOK).json(loginOk);
   } catch (err) {

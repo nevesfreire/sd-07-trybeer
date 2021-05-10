@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+
 import { Redirect } from 'react-router-dom';
+
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-  const [data, setData] = useState('');
+
   const [logado, setLogado] = useState(false);
+
 
   const verifyData = () => {
     const six = 6;
@@ -14,6 +17,7 @@ function Login() {
     if (regex.test(email) && password.length >= six) setIsDisable(false);
     else setIsDisable(true);
   };
+
 
   const saveInLocalStorage = (data) => {
     window.localStorage.setItem('user', JSON.stringify(
@@ -40,6 +44,7 @@ function Login() {
         setData(data);
         console.log(data);
         saveInLocalStorage(data);
+
       });
   };
 
@@ -81,6 +86,7 @@ function Login() {
       </button>
       { logado && data.user.role === 'client' && <Redirect to="/products" /> }
       { logado && data.user.role === 'administrator' && <Redirect to="/admin/orders" /> }
+
       <a href="/register" data-testid="no-account-btn">Ainda não tenho conta</a>
     </div>
   );
