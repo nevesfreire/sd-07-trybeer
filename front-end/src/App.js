@@ -6,12 +6,12 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/user/Products';
 import Orders from './pages/user/Orders';
-import OrdersId from './pages/user/OrdersId';
 import Profile from './pages/user/Profile';
 import Checkout from './pages/user/Checkout';
 import AdminOrders from './pages/admin/AdminOrders';
 import AdminOrdersId from './pages/admin/AdminOrdersId';
 import AdminProfile from './pages/admin/AdminProfile';
+import OrderDetails from './pages/user/OrderDetails';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
       <Route path="/register" component={ Register } />
       <Route path="/products" component={ Products } />
       <Route exact path="/orders" component={ Orders } />
-      <Route path="/orders/:id" component={ OrdersId } />
+      <Route path="/orders/:id" component={ OrderDetails } />
       <Route exact path="/profile" component={ Profile } />
       <Route path="/checkout" component={ Checkout } />
       <Route path="/admin/orders" component={ AdminOrders } />

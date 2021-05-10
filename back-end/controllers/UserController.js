@@ -43,10 +43,21 @@ const getAllOrders = async (req, res) => {
     return res.status(500).json({ message: serverError });
   }  
 };
+const getOrderDetailsById = async (req, res) => {
+  const { id } = req.params;
+  try {  
+  const result = await UserService.getOrderDetailsById(id);
+  return res.status(result.status).json(result.message);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: serverError });
+  }  
+};
 
 module.exports = {
   registerUser,
   updateUserName,
   registerOrder,
   getAllOrders,
+  getOrderDetailsById,
 };

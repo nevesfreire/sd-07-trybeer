@@ -7,7 +7,7 @@ import OrderCard from '../../components/OrderCard';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
-  const { sideIsActive } = useContext(MyContext);
+  const { sideIsActive, setPageTitle } = useContext(MyContext);
   const history = useHistory();
   useEffect(() => {
     const getUser = () => {
@@ -16,6 +16,10 @@ function Orders() {
     };
     getUser();
   }, [history]);
+
+  useEffect(() => {
+    setPageTitle('Meu pedidos');
+  }, [setPageTitle]);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -33,7 +37,6 @@ function Orders() {
   return (
     <div>
       <MenuTopMobile />
-      <h1 data-testid="top-title">Meus Pedidos</h1>
       { sideIsActive && <SideBarMobile /> }
       {orders.map((order, index) => (<OrderCard
         key={ index }

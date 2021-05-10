@@ -21,6 +21,17 @@ const updateUserName = async (newName, email) => {
     .execute('UPDATE Trybeer.users SET name=? WHERE email=?',
     [newName, email]);
 };
+const getOrderDetailsById = async (orderId) => {
+  const [ordersDetails] = await connection
+    .execute(`select products.name,products.price,sales_products.quantity
+    , sales_products.sale_id
+    FROM  sales
+    INNER JOIN sales_products ON sales.id = sales_products.sale_id
+    INNER JOIN products ON sales_products.product_id = products.id
+    where sale_id = ?;`,
+    [orderId]);
+  return ordersDetails;
+};
 const getAllOrders = async () => {
   const [sales] = await connection
     .execute('SELECT * FROM Trybeer.sales');
@@ -33,4 +44,5 @@ module.exports = {
   updateUserName,
   registerOrder,
   getAllOrders,
+  getOrderDetailsById,
 };
