@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Buttons, Inputs } from './index';
+import { Buttons } from './index';
 import TrybeerContext from '../context/TrybeerContext';
 
 export default function Counts({ price, index }) {
   const { priceCar, setPriceCar } = useContext(TrybeerContext);
   const [count, setCount] = useState(0);
   const AUX_NUMBER = 1;
-  const AUX_BOOLEAN = true;
 
   const countSum = () => {
     setCount(count + AUX_NUMBER);
@@ -32,17 +31,19 @@ export default function Counts({ price, index }) {
     <div>
       <Buttons
         testid={ `${index}-product-minus` }
-        defaultValue="-"
-        disable={ count <= 0 ? AUX_BOOLEAN : false }
+        value="-"
         countClick={ countSub }
       />
-      <Inputs
-        testid={ `${index}-product-qtd` }
-        value={ count }
-      />
+      {' '}
+      <span
+        data-testid={ `${index}-product-qtd` }        
+      >
+        { count }
+      </span>
+      {' '}
       <Buttons
         testid={ `${index}-product-plus` }
-        defaultValue="+"
+        value="+"
         countClick={ countSum }
       />
     </div>

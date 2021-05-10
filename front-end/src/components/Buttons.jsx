@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Buttons({ defaultValue, countClick, testid, disable }) {
+export default function Buttons({ value, countClick, testid, disable }) {
   return (
     <button
       data-testid={ testid }
@@ -9,7 +9,7 @@ export default function Buttons({ defaultValue, countClick, testid, disable }) {
       disabled={ disable }
       onClick={ () => countClick() }
     >
-      { defaultValue }
+      { value }
     </button>
   );
 }

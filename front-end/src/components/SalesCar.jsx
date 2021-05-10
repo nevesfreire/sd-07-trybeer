@@ -12,13 +12,13 @@ export default function SalesCar({ value }) {
 
   const handlerRedirect = () => setRedirect(true);
 
-  if (redirect) return (<Redirect to="/salesBar" />);
+  if (redirect) return (<Redirect to="/checkout" />);
 
   return (
     <div>
       <Buttons
-        data-testid="checkout-bottom-btn"
-        defaultValue="Ver Carrinho"
+        testid="checkout-bottom-btn"
+        value="Ver Carrinho"
         disable={ priceCar <= 0 ? AUX_BOOLEAN : false }
         countClick={ handlerRedirect }
       />

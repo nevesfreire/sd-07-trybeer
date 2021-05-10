@@ -38,5 +38,4 @@ const productList = async () => {
 export {
   login,
   productList,
-  userStorage,
 };
