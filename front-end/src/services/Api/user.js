@@ -28,8 +28,23 @@ const updateUserName = async (newName, token) => {
   }
 };
 
+const getDetailOrders = async (orderId) => {
+  try {
+    const result = await instance.get('orders/:numeroDoPedido', orderId);
+      // {
+      //   headers: {
+      //     Authorization: token,
+      //   },
+      // });
+    return result;
+  } catch (error) {
+    return ({ error: 'pedido não encontrado' });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   updateUserName,
+  getDetailOrders,
 };
