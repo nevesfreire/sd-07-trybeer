@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-// import MyContext from '../context/TrybeerContext';
+import MyContext from '../context/TrybeerContext';
+
 
 function ProductsCards() {
   // const history = useHistory();
-  const products = fetch('localhost/3001/products')
-    .then((response) => response.json())
-    .then(data);
+  const [ product, setProduct] = useState([]);
+  useEffect(() => {
+    const products = fetch('localhost/3001/products')
+    .then((response) => response.json());
+    setProduct(products);
   console.log(products);
+  }, []);
+
   return (
     <div>
-      {products.map((product, index) => (
+      {product.map((product, index) => (
         <div key={ product.id }>
           <img
             src={ product.url_image.replace(/\s/g, '') }
@@ -30,8 +35,9 @@ function ProductsCards() {
             -
           </button>
           <span data-testid={ `${index}-product-qtd` }>
-            { getQuantity(product.name) }
+            {/* { getQuantity(product.name) } */}
           </span>
+import useFetch from '../hooks/useFetch';
           <button
             type="button"
             data-testid={ `${index}-product-plus` }
@@ -45,11 +51,11 @@ function ProductsCards() {
         type="button"
         data-testid="checkout-bottom-btn"
         // onClick={ () => history.push('/checkout') }
-        disabled={ !total }
+        // disabled={ !total }
       >
         Ver Carrinho &nbsp;
         <span data-testid="checkout-bottom-btn-value">
-          { `R$ ${Number(total).toFixed(2).replace('.', ',')}`}
+          {/* { `R$ ${Number(total).toFixed(2).replace('.', ',')}`} */}
         </span>
       </button>
     </div>
