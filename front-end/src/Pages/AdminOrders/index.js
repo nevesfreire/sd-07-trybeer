@@ -19,24 +19,24 @@ const AdminOrders = () => {
 
   const obj = [
     {
-      sale_id: 1,
-      delivery_address: 'Rua A',
-      delivery_number: '123',
-      total_price: 110.19,
+      saleId: 1,
+      deliveryAddress: 'Rua A',
+      deliveryNumber: '123',
+      totalPrice: 110.19,
       status: 'Pendente',
     },
     {
-      sale_id: 3,
-      delivery_address: 'Rua B',
-      delivery_number: '456',
-      total_price: 11.19,
+      saleId: 3,
+      deliveryAddress: 'Rua B',
+      deliveryNumber: '456',
+      totalPrice: 11.19,
       status: 'Entregue',
     },
     {
-      sale_id: 4,
-      delivery_address: 'Rua C',
-      delivery_number: '7',
-      total_price: 19,
+      saleId: 4,
+      deliveryAddress: 'Rua C',
+      deliveryNumber: '7',
+      totalPrice: 19,
       status: 'Pendente',
     },
   ];
@@ -44,7 +44,7 @@ const AdminOrders = () => {
   useEffect(() => {
     setSales(obj);
     setIsLoading(false);
-  }, [obj]);
+  }, []);
 
   return (
     <div>
@@ -53,21 +53,21 @@ const AdminOrders = () => {
         <div>
           <h2>Pedidos</h2>
           { sales.map((sale, index) => (
-            <Link to={ `/admin/orders/${sale.sale_id}` } key={ index }>
+            <Link to={ `/admin/orders/${sale.saleId}` } key={ index }>
               <div
                 data-testid={ `${index}-order-number` }
               >
-                { `Pedido ${sale.sale_id}` }
+                { `Pedido ${sale.saleId}` }
               </div>
               <div
                 data-testid={ `${index}-order-address` }
               >
-                { `${sale.delivery_address}, ${sale.delivery_number}` }
+                { `${sale.deliveryAddress}, ${sale.deliveryNumber}` }
               </div>
               <span
                 data-testid={ `${index}-order-total-value` }
               >
-                { `R$ ${sale.total_price.toFixed(2).replace('.', ',')}` }
+                { `R$ ${sale.totalPrice.toFixed(2).replace('.', ',')}` }
               </span>
               <span data-testid={ `${index}-order-status` }>{ sale.status }</span>
             </Link>

@@ -31,7 +31,7 @@ const getSalesByUser = (token) => api
   .then(({ data }) => data)
   .catch((e) => e.message);
 
-const getSalesById = (token, id) => api
+const getSaleById = (token, id) => api
   .get(`/sales/${id}`, { headers: { Authorization: token } })
   .then(({ data }) => data)
   .catch((e) => e.message);
@@ -41,6 +41,11 @@ const getSales = (token) => api
   .then(({ data }) => data)
   .catch((e) => e.message);
 
+const updateSale = (token, id) => api
+  .put(`/sales/admin/${id}`, { headers: { Authorization: token } })
+  .then(({ status }) => status)
+  .catch((e) => e.message);
+
 export {
   getUser,
   registerUser,
@@ -48,6 +53,6 @@ export {
   getProducts,
   addSale,
   getSalesByUser,
-  getSalesById,
+  getSaleById,
   getSales,
 };
