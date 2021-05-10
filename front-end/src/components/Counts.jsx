@@ -36,7 +36,7 @@ export default function Counts({ price, index }) {
       />
       {' '}
       <span
-        data-testid={ `${index}-product-qtd` }        
+        data-testid={ `${index}-product-qtd` }
       >
         { count }
       </span>

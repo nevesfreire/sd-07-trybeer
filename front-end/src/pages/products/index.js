@@ -36,7 +36,7 @@ export default function Product() {
     <div>
       <div>
         <h2 data-testid="top-title">TryBeer</h2>
-        <h3>{ isLoading ? "Carregando" : "" }</h3>
+        <h3>{ isLoading ? 'Carregando' : '' }</h3>
       </div>
       <div className="div-card">
         {products && products.map((prod, index) => (

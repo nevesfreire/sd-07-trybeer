@@ -19,7 +19,7 @@ export default function SalesCar({ value }) {
       <Buttons
         testid="checkout-bottom-btn"
         value="Ver Carrinho"
-        disable={ priceCar <= 0 ? AUX_BOOLEAN : false }
+        disable={ priceCar === 0 ? AUX_BOOLEAN : false }
         countClick={ handlerRedirect }
       />
       {' '}
