@@ -36,7 +36,7 @@ const Products = () => {
 
   useEffect(() => {
     getProductList();
-  }, []);
+  }, [getProductList]);
 
   return (
     <div>

@@ -31,6 +31,16 @@ const getSalesByUser = (token) => api
   .then(({ data }) => data)
   .catch((e) => e.message);
 
+const getSalesById = (token, id) => api
+  .get(`/sales/${id}`, { headers: { Authorization: token } })
+  .then(({ data }) => data)
+  .catch((e) => e.message);
+
+const getSales = (token) => api
+  .get('/sales/admin', { headers: { Authorization: token } })
+  .then(({ data }) => data)
+  .catch((e) => e.message);
+
 export {
   getUser,
   registerUser,
@@ -38,4 +48,6 @@ export {
   getProducts,
   addSale,
   getSalesByUser,
+  getSalesById,
+  getSales,
 };

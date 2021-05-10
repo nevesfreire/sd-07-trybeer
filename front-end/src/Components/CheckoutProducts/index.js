@@ -13,7 +13,7 @@ const CheckoutProducts = () => {
     const productsOnCart = LSCart.filter(({ quantity }) => quantity > zero);
     setTotalPrice(totalCartPriceLS);
     setCart(productsOnCart);
-  }, []);
+  }, [setTotalPrice]);
 
   const removeItem = (name, price, quantity) => {
     const LSCart = JSON.parse(localStorage.getItem('cart'));

@@ -41,7 +41,7 @@ export default function () {
     const { data: { role } } = JSON.parse(localStorage.getItem('user'));
     setRole(role);
     getTitle();
-  });
+  }, [getTitle, history]);
 
   return (
     <div>
