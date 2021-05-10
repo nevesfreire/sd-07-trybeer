@@ -6,18 +6,22 @@ import MyContext from '../context/Context';
 function OrderCard(props) {
   const { setOrderDetail } = useContext(MyContext);
   const history = useHistory();
+  const NINEAdicionaZero = 9;
   const mystyle = {
     padding: '10px',
     fontFamily: 'Arial',
   };
+  function adicionaZero(numero) {
+    if (numero <= NINEAdicionaZero) return `0${numero}`;
+    return numero;
+  }
   const { order, index } = props;
   const date = new Date(order.sale_date);
-  const day = date.getUTCDate();
-  const month = date.getUTCMonth() + 1;
+  const day = adicionaZero(date.getUTCDate());
+  const month = adicionaZero(date.getUTCMonth() + 1);
   const orderDate = `${day}/${month}`;
   const { id } = order;
   const { total_price: totalPrice } = order;
-
   const orderObj = {
     id,
     totalPrice,
@@ -29,6 +33,7 @@ function OrderCard(props) {
     setOrderDetail(orderObj);
     history.push('/orders/:id');
   };
+
   return (
     <div
       role="button"
