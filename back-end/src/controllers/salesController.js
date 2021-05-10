@@ -10,6 +10,18 @@ const getAllSales = async (_req, res) => {
   res.status(STATUS_OK).json({ sales: result });
 };
 
+const getSaleById = async (req, res) => {
+  const { id } = req.params;
+
+  const result = await salesService.getSaleById(id);
+
+  if (typeof result === 'string') {
+    res.status(STATUS_BAD_REQUEST).json({ message: result });
+  } else {
+    res.status(STATUS_OK).json(result);
+  }
+};
+
 const createSale = async (req, res) => {
   const { userId, totalPrice, deliveryAddress, deliveryNumber } = req.body;
 
@@ -29,4 +41,4 @@ const createSale = async (req, res) => {
   }
 };
 
-module.exports = { getAllSales, createSale };
+module.exports = { getAllSales, createSale, getSaleById };

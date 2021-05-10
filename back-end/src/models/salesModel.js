@@ -6,6 +6,14 @@ const getAllSales = async () => {
   return allSales;
 };
 
+const getSaleById = async (id) => {
+  const [
+    [sale],
+  ] = await connection.execute('SELECT * FROM sales WHERE id = ?', [id]);
+
+  return sale;
+};
+
 const createSale = async (
   userId,
   totalPrice,
@@ -27,4 +35,4 @@ const createSale = async (
   };
 };
 
-module.exports = { getAllSales, createSale };
+module.exports = { getAllSales, createSale, getSaleById };
