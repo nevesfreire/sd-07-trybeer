@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import api from '../services/api';
 
 const regexEmail = /\S+@\S+\.\S+/;
@@ -9,6 +9,7 @@ const ComponentLogin = () => {
   const [labelLogin, setLabelLogin] = useState(true);
   const [emailLabel, setEmailLabel] = useState('');
   const [passwordLabel, setPasswordLabel] = useState('');
+  const [data, setData] = useState({});
 
   const inputValidation = (password) => {
     setPasswordLabel(password);
@@ -17,14 +18,13 @@ const ComponentLogin = () => {
   };
 
   const params = { email: emailLabel, password: passwordLabel };
-  const history = useHistory();
 
-  const redirect = (data) => {
-    if (data.role === 'administrator') {
-      return history.push('/admin/orders');
-    }
-    return history.push('/products');
-  };
+  if (data.role === 'administrator') {
+    return <Redirect to="/admin/orders" />;
+  }
+  if (data.role === 'client') {
+    return <Redirect to="/products" />;
+  }
 
   const toLogin = async (event) => {
     event.preventDefault();
@@ -32,7 +32,7 @@ const ComponentLogin = () => {
       .post('/login', params)
       .then((dataUser) => {
         localStorage.setItem('token', dataUser.data.token);
-        redirect(dataUser.data.data);
+        setData(dataUser.data.data);
       })
       .catch((err) => console.log(`Error in login process: ${err}`));
   };
