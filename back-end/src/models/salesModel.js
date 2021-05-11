@@ -15,16 +15,32 @@ const getSaleById = async (id) => {
   return sale;
 };
 
-const createSale = async (userId, totalPrice, deliveryAddress, deliveryNumber) => {
-  const pendente = 'pendente';
+const putSalesLoop = async (cart, saleId) => {
+  const queryThree = 'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)';
+
+  for (let i = 0; i < cart.length; i += 1) {
+    connection.execute(queryThree, [
+      saleId,
+      cart[i].id,
+      cart[i].quantidade,
+    ]);
+  }
+};
+
+const createSale = async (userId, totalPrice, delivery, cart) => {
+  const { deliveryAddress, deliveryNumber } = delivery;
   const query = 'INSERT INTO sales (user_id, total_price, delivery_address, ';
   const queryTwo = 'delivery_number, sale_date, status) VALUES (?, ?, ?, ?, NOW(), ?)';
-  const sale = await connection.execute(
-    `${query}${queryTwo}`,
-    [userId, totalPrice, deliveryAddress, deliveryNumber, pendente],
-  );
+  const sale = await connection.execute(`${query}${queryTwo}`, [
+    userId,
+    totalPrice,
+    deliveryAddress,
+    deliveryNumber,
+    'pendente',
+  ]);
+  await putSalesLoop(cart, sale[0].insertId);
   return {
-    saleId: sale.insertedId,
+    saleId: sale[0].insertId,
     userId,
     totalPrice,
     deliveryAddress,

@@ -56,8 +56,8 @@ function CheckoutListComponent() {
     const response = await API.fetchCreateSale(
       id,
       Number(total.replace(',', '.')),
-      deliveryAddress,
-      Number(deliveryNumber),
+      { deliveryAddress, deliveryNumber: Number(deliveryNumber) },
+      cart,
     );
     setMessage(response.message);
     // console.log(id, total, deliveryAddress, deliveryNumber);

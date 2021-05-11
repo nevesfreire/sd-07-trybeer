@@ -23,13 +23,13 @@ const getSaleById = async (req, res) => {
 };
 
 const createSale = async (req, res) => {
-  const { userId, totalPrice, deliveryAddress, deliveryNumber } = req.body;
+  const { userId, totalPrice, deliveryAddress, deliveryNumber, cart } = req.body;
 
   const result = await salesService.createSale(
     userId,
     totalPrice,
-    deliveryAddress,
-    deliveryNumber,
+    { deliveryAddress, deliveryNumber },
+    cart,
   );
 
   if (typeof result === 'string') {
