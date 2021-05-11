@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dateFormat from 'dateformat';
 import { Redirect, useHistory } from 'react-router';
-import { getDetailOrders } from '../services/Api/user';
+import { getDetailOrders } from '../../services/Api/user';
 
 const AdminDetailOrder = () => {
   const [products, setProducts] = useState([]);
@@ -32,7 +32,6 @@ const AdminDetailOrder = () => {
   if (!localStorage.getItem('token')) {
     return (<Redirect to="/login" />);
   }
-
   return (
     <div>
       <h1 data-testid="top-title">Detalhes de Pedido</h1>
@@ -46,9 +45,9 @@ const AdminDetailOrder = () => {
               <h5
                 data-testid={ `${index}-order-unit-price` }
               >
-                { `R$ ${accPrice(price)}` }
+                { `(R$ ${accPrice(price)})` }
               </h5>
-              <h5 data-testid={ `${index}-product-qtd` }>{ accPrice(quantity) }</h5>
+              <h5 data-testid={ `${index}-product-qtd` }>{ quantity }</h5>
               <h5 data-testid={ `${index}-product-name` }>{name}</h5>
               <h5 data-testid={ `${index}-product-total-value` }>
                 {
