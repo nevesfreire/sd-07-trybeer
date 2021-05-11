@@ -23,7 +23,9 @@ router.get('/products', productsControler.getAllProducts);
 // "deliveryNumber":"25",
 // "listProducts": {"1":"5","2":"5"}
 // }
-router.post('/sale', saleControler.create);
+//nesse caso não seria /checkout???
+// router.post('/sale', saleControler.create);
+router.post('/checkout', saleControler.create);
 
 // Listagem com todas as vendas.
 router.get('/sale', saleControler.getReallyAll);

@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
+import { useHistory } from 'react-router';
 import Header from '../../components/Header';
 import { BeerContext } from '../../context/BeerContext';
 import { sendProducts } from '../../services/Api/products';
 
 const Checkout = () => {
+  const { push } = useHistory();
+  const { cart } = useContext(BeerContext);
+
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
-  const { cart } = useContext(BeerContext);
   const [localCart, setLocalCart] = useState(() => {
     const localValue = JSON.parse(localStorage.getItem('cart'));
     if (!localValue === undefined || !localValue === null) {
@@ -15,6 +18,7 @@ const Checkout = () => {
     }
     return ({ 0: { product: { price: 0 }, quantity: 0 } });
   });
+  const [endSale, setEndSale] = useState(false);
 
   useEffect(() => {
     setLocalCart(JSON.parse(localStorage.getItem('cart')));
@@ -37,12 +41,15 @@ const Checkout = () => {
 
   const accPrice = (price) => parseFloat(price).toFixed(2).toString().replace('.', ',');
 
+  const backToProducts = () => push('/products')
+  const timeToGoToProducts = 2000;
+
   const finalizarPedido = async (e) => {
     e.preventDefault();
-    const closeOrder = await sendProducts(localCart);
-    console.log(street.length);
-    console.log(houseNumber.length);
-    return closeOrder;
+    await sendProducts(finalValue, street, houseNumber);
+    setEndSale(true)
+    localStorage.setItem('cart', JSON.stringify({ 0: { product: { price: 0 }, quantity: 0 } }));
+    setTimeout(backToProducts, timeToGoToProducts);
   };
 
   const disableRule = () => {
@@ -131,6 +138,7 @@ const Checkout = () => {
           Finalizar Pedido
         </button>
       </div>
+      {endSale && <span>Compra realizada com sucesso!</span>}
     </div>);
 };
 

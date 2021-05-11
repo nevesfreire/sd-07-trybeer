@@ -9,9 +9,9 @@ const getAllProducts = async () => {
   }
 };
 
-const sendProducts = async (cart) => {
+const sendProducts = async (tPrice, dAddress, dNumber) => {
   try {
-    const result = await instance.post('checkout', { cart });
+    const result = await instance.post('checkout', { tPrice, dAddress, dNumber });
     return result;
   } catch (error) {
     return ({ error: 'não há produtos' });
