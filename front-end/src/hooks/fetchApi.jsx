@@ -3,7 +3,7 @@ const fetchApi = async (endpoint, method, body, token = '') => {
     method,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: token,
+      authorization: token,
     },
     body: JSON.stringify(body),
   };
