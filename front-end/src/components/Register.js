@@ -51,7 +51,6 @@ const ComponentRegister = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log('Meus dados', data);
           setUser(data);
         });
     }
@@ -134,9 +133,7 @@ const ComponentRegister = () => {
       </div>
       <div className="success-message">
         {
-          !user.status && user.messageFailed
-            ? <p>{user.messageFailed}</p>
-            : <p>{user.messageSuccess}</p>
+          !user.status && <p>{user.messageFailed}</p>
         }
       </div>
 
