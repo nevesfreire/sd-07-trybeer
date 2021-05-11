@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import jwtDecode from 'jwt-decode';
 
@@ -7,16 +7,26 @@ import TopMenu from '../../../commons/simple/TopMenu';
 import SideBar from '../../../commons/composed/SideBar';
 
 function Orders() {
-  const tokenUser = localStorage.getItem('token');
-  const userData = jwtDecode(tokenUser);
-  console.log(userData)
-  const { role } = userData;
+  const [role, setRole] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+   
+    const getToken = async () => {
+      const tokenUser = await localStorage.getItem('token');
+      const userData = jwtDecode(tokenUser);
+      setRole(userData.role)
+      setIsLoading(false)
+    }
+    
+    getToken()
+  }, [])
 
   return (
     <div>
-      <TopMenu title="Meus Pedidos" /> 
-      { role !== 'administrator' && <TopMenu title="Meus Pedidos" /> }
-      { role === 'administrator'}<SideBar isAdmin={ true } />
+      { isLoading && <h1>Loading...</h1> }
+      { !isLoading && role !== 'administrator' && <TopMenu title="Meus Pedidos" /> }
+      { !isLoading && role === 'administrator' && <SideBar isAdmin={ true } />  }
     </div>
   );
 }

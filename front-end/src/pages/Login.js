@@ -10,14 +10,17 @@ function Login() {
   const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [role, setRole] = useState('');
+
   const handleClick = async () => {
     const response = await loginRequest(email, password);
     const { status } = response;
     const ok = 200;
     if (status === ok) {
       const { token } = response.data;
+      console.log('token', token)
       localStorage.setItem('token', token);
       const payload = jwtDecode(token);
+      console.log(payload)
       setRole(payload.role);
       return setIsLogged(true);
     }

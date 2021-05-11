@@ -35,11 +35,11 @@ function Register({ history }) {
   async function onRegisterNewUser() {
     const success = 200;
     const { status, data } = await registerNewUser(
-      name, email, password, isChecked ? 'admin' : 'client',
+      name, email, password, isChecked ? 'admin' : null,
     );
 
     if (status === success && isChecked) {
-      return history.push('/login');
+      return history.push('/admin/orders');
     } if (status === success && !isChecked) {
       return history.push('/products');
     }
