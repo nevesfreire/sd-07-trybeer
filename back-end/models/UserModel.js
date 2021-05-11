@@ -44,7 +44,7 @@ const getDate = async () => {
 const getOrderDetailsById = async (orderId) => {
   const [ordersDetails] = await connection
     .execute(`SELECT products.name,products.price,sales_products.quantity
-    , sales_products.sale_id, sales.status
+    , sales_products.sale_id, sales.status, sales.sale_date
     FROM  sales
     INNER JOIN sales_products ON sales.id = sales_products.sale_id
     INNER JOIN products ON sales_products.product_id = products.id

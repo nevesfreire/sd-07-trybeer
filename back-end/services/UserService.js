@@ -39,6 +39,7 @@ const getAllOrders = async () => {
 };
 const getOrderDetailsById = async (orderId) => {
   const orderDetails = await UserModel.getOrderDetailsById(orderId);
+  console.log(orderDetails);
   return { status: 200, message: orderDetails };
 };
 
