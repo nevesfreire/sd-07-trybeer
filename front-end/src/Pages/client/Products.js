@@ -6,16 +6,17 @@ import ListCardsProduts from "../../Components/ListCardsProduts";
 function Products() {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState("");
+  const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(999);
-  const [logado, setLogado] = useState(false);
-
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  if (user) setLogado(true);
+  const [logado, setLogado] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
+    // loggedUser()
+
+    // const userOn = localStorage.getItem('user')
+
+    // if (!userOn) setLogado(true)
+
     fetch("http://localhost:3001/products")
       .then((response) => response.json())
       .then((products) => {
@@ -35,8 +36,6 @@ function Products() {
 
         setCart(initialCart());
 
-        console.log(logado);
-
         setIsLoading(false);
       });
   }, []);
@@ -48,10 +47,20 @@ function Products() {
       sum += parseFloat(product.price) * getQtd(product.id);
     });
 
+    console.log('2', logado)
+
     setTotal(sum);
   }, [cart]);
 
   const history = useHistory();
+
+  // const loggedUser = () => {
+  //   const userOn = localStorage.getItem('user');
+  //   console.log('Entrou');
+  //   console.log(userOn);
+
+  //   if (userOn !== null) setLogado(true)
+  // }
 
   function addQuantity(id) {
     let add = cart.find((product) => product.id === id);
@@ -84,9 +93,23 @@ function Products() {
   }
 
   function getQtd(id) {
+    if (cart.length === 0 ) {
+      return 0;
+    }
     const add = cart.find((product) => product.id === id);
+
     return add.qtd;
   }
+
+  // const loggedUser = () => {
+  //   localStorage.getItem('user');
+  //   console.log('Entrou');
+  //   console.log(user);
+
+  //   if (user !== '' || user !== undefined) setLogado(true)
+  // }
+
+  // console.log(logado);
 
   // console.log(JSON.parse(localStorage.getItem('user')) === '')
   // console.log(JSON.parse(localStorage.getItem('user')) !== '')
@@ -98,10 +121,17 @@ function Products() {
   // if (xablau === '') vazio = true
   // else vazio = false
 
+  // const user = JSON.parse(localStorage.getItem("user"));
+  console.log('1', logado)
+
+  if (!localStorage.getItem('user')) {
+    return <Redirect to="/login" />
+  }
+
   return (
     <div>
-      {logado ? (
-        <Redirect to="login" />
+      { !logado ? (
+        <Redirect to="/login" />
       ) : (
         <div>
           <Header />
