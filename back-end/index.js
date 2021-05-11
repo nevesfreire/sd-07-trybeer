@@ -3,6 +3,8 @@ const cors = require('cors');
 const login = require('./routes/login');
 const register = require('./routes/register');
 
+const routes = require('./routes');
+
 const app = express();
 
 const PORT = 3001;
@@ -17,6 +19,7 @@ app.get('/', (_request, response) => {
 
 app.use(login);
 app.use(register);
+app.use(routes.salesRoute);
 
 app.listen(PORT, () => {
   console.log(`API rodando na porta ${PORT}`);
