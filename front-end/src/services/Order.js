@@ -1,8 +1,8 @@
 import { finish } from '../actions';
 
-export const saveOrder = (dispatch, order) => {
+const saveOrder = (dispatch, order) => {
   try {
-    /* const url = 'http://localhost:3001/...'; */
+    const url = 'http://localhost:3001/...';
     return fetch(url, {
       method: 'POST',
       body: order,
@@ -16,3 +16,5 @@ export const saveOrder = (dispatch, order) => {
     console.log(error.message);
   }
 };
+
+export default saveOrder;
