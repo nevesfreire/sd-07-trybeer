@@ -69,7 +69,7 @@ export default function ProductsList() {
         [...productsArray, { name, totalPrice: totalPrice / productQtt, productQtt }],
       ),
     );
-    localStorage.setItem('total', totalValue + floatPrice);
+    localStorage.setItem('total', totalValue - floatPrice);
     setTotalValue(totalValue - floatPrice);
   };
 
