@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { nameIsValid } from '../../service/validateInputs';
 import TopMenu from '../../components/Header';
+import { updateClient } from '../../service/trybeerApi';
 
 export default function ProfileClient() {
   const data = JSON.parse(localStorage.getItem('user'));
@@ -25,14 +26,21 @@ export default function ProfileClient() {
     });
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     const TWO_THOUSAND = 2000;
     const newData = {
       ...data,
       name: profileInfo.name,
     };
+    const result = await updateClient(newData.name, newData.email);
+    if (result.error) {
+      setText(result.error);
+      return setTimeout(() => {
+        setText();
+      }, TWO_THOUSAND);
+    }
     localStorage.setItem('user', JSON.stringify(newData));
-    setText('Atualização concluída com sucesso');
+    setText(result.message);
 
     setTimeout(() => {
       setText();
