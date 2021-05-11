@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import fieldValidate from '../helpers/fieldValidate';
-import messageSuccess from '../helpers/MessageSuccess';
 import context from '../context';
 
 const ComponentRegister = () => {
@@ -13,11 +12,14 @@ const ComponentRegister = () => {
   const { isChecked, setIsChecked } = useContext(context);
 
   const isValid = fieldValidate(name, email, password);
+  const REACT_APP_URL = 'http://localhost:3001';
 
   useEffect(() => {
     setName('');
+    setEmail('');
+    setPassword('');
     setIsChecked(false);
-  }, [setIsChecked, setName]);
+  }, [setEmail, setIsChecked, setName, setPassword]);
 
   useEffect(() => {
     if (!isValid) {
@@ -27,6 +29,7 @@ const ComponentRegister = () => {
     }
   }, [isValid, setIsOk]);
 
+  console.log(user.status);
   const handleSubmit = async (e) => {
     const payload = {
       name,
@@ -39,8 +42,7 @@ const ComponentRegister = () => {
       console.log('Dados inválidos.'); // não remover, ainda não sei o que por aqui
     } else {
       e.preventDefault();
-
-      fetch(`${process.env.REACT_APP_URL}/register`, {
+      fetch(`${REACT_APP_URL}/register`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
@@ -49,7 +51,7 @@ const ComponentRegister = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setUser(data.role);
+          setUser(data);
         });
     }
   };
@@ -58,16 +60,21 @@ const ComponentRegister = () => {
     setIsChecked(event.target.checked);
   };
 
-  if (user === 'administrator') {
-    return <Redirect to="/admin/orders" />;
-  }
-
-  if (user === 'client') {
-    return <Redirect to="/products" />;
-  }
+  // if (user.status) {
+  //   switch (user.role) {
+  //   case 'administrator':
+  //     return <Redirect to="/admin/orders" />;
+  //   case 'client':
+  //     return <Redirect to="/products" />;
+  //   default:
+  //     return <Redirect to="/Not Found" />;
+  //   }
+  // }
 
   return (
     <FormControl className="form-registration">
+      { user.role === 'administrator' && <Redirect to="/admin/orders" /> }
+      { user.role === 'client' && <Redirect to="/products" /> }
       <h1>Cadastro</h1>
       <TextField
         id="userName"
@@ -124,9 +131,12 @@ const ComponentRegister = () => {
           Cadastrar
         </Button>
       </div>
-      <div className="succes-message">
-        { user ? null : messageSuccess(user) }
+      <div className="success-message">
+        {
+          !user.status && <p>{user.messageFailed}</p>
+        }
       </div>
+
     </FormControl>
   );
 };

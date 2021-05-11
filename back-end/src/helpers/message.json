@@ -1,7 +1,7 @@
 {
     "invalidEntry": "Invalid entries. Try again.",
     "same_email": "Email already registered",
-    "same_user": "User already registered",
+    "same_user": "Já existe um usuário com esse e-mail.",
     "fill_fields": "All fields must be filled",
     "invalid_email": "Incorrect username or password",
     "recipe_not_found": "recipe not found"
