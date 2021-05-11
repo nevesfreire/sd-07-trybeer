@@ -1,15 +1,17 @@
-import React, { useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useHistory } from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router';
 import MenuTopMobile from '../../components/MenuTopMobile';
 import SideBarMobile from '../../components/SideBarMobile';
 import MyContext from '../../context/Context';
 
 function OrderDetails() {
-  const { sideIsActive, setPageTitle } = useContext(MyContext);
-  // const { orderObj } = OrderDetail;
-  // const { id, index, orderDate, totalPrice } = orderObj;
-  // console.log(id);
+  const { sideIsActive } = useContext(MyContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [total, setTotal] = useState(0);
+  const [order, setOrder] = useState([]);
+  // Referência: live lectures esquenta para Trybeer
+  const { id } = useParams();
+  console.log(id);
 
   const history = useHistory();
   useEffect(() => {
@@ -21,44 +23,63 @@ function OrderDetails() {
   }, [history]);
 
   useEffect(() => {
-    setPageTitle('Detalhes de Pedido');
-  }, [setPageTitle]);
-
-  // useEffect(() => {
-  //   const fetchOrdersDetails = async () => {
-  //     const response = await fetch('http://localhost:3001/orders/?id=1', {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //       },
-  //     });
-  //     const orderDetailsList = await response.json();
-  //     console.log(orderDetailsList);
-  //     setOrdersDetails(orderDetailsList);
-  //   };
-  //   fetchOrdersDetails();
-  // }, [order.id]);
+    setIsLoading(true);
+    const fetchOrders = async () => {
+      const response = await fetch(`http://localhost:3001/orders/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      });
+      const ordersList = await response.json();
+      console.log(ordersList);
+      setOrder(ordersList);
+      setIsLoading(false);
+    };
+    fetchOrders();
+  }, [id]);
+  // Referência: requisito 12 feito por Luise
+  useEffect(() => {
+    const sumProduct = order.reduce((totalItem, actual) => (Number(actual.price)
+      * Number(actual.quantity)) + totalItem, 0);
+    setTotal(sumProduct);
+  }, [order]);
+  // Referência:requisito 12 feito por Luise
   return (
     <div>
       <MenuTopMobile />
-      {/* <div data-testid={ `${index}-order-number` }>{`Pedido ${id}`}</div>
-      <div
-        data-testid="order-total-value"
-      >
-        {` Total : R$ ${totalPrice}`}
-      </div>
-      <div data-testid={ `${index}-order-date` }>{` ${orderDate}`}</div> */}
+      <h1 data-testid="top-title">Detalhes de Pedido</h1>
+      { isLoading ? <span>Carregando...</span>
+        : (
+          <div>
+            <span data-testid="order-number">
+              {`Pedido ${order[0] && order[0].sale_id} - `}
+            </span>
+            { order.map((product, index) => (
+              <div key={ index }>
+                <span data-testid={ `${index}-product-qtd` }>
+                  {product.quantity}
+                </span>
+                <span data-testid={ `${index}-product-name` }>
+                  {product.name}
+                </span>
+                <span data-testid={ `${index}-product-total-value` }>
+                  {`R$ ${(Number(product.price) * Number(product.quantity))
+                    .toFixed(2).replace('.', ',')}`}
+                </span>
+                <span data-testid={ `${index}-order-unit-price` }>
+                  {`(R$ ${Number(product.price).toFixed(2).replace('.', ',')})`}
+                </span>
+              </div>
+            ))}
+            <span data-testid="order-total-value">
+              {`R$ ${total.toFixed(2).replace('.', ',')}`}
+            </span>
+          </div>
+        )}
       { sideIsActive && <SideBarMobile /> }
     </div>
   );
 }
-OrderDetails.propTypes = {
-  orderObj: PropTypes.shape({
-    id: PropTypes.number,
-    orderDate: PropTypes.string,
-    totalPrice: PropTypes.string,
-    index: PropTypes.number,
-  }).isRequired,
-};
 
 export default OrderDetails;
