@@ -31,7 +31,7 @@ async function loginUser(email, password) {
     .then((response) => response.data).catch((error) => error.response.data);
 }
 
-const registerPurchase = async ({ cart, number, street, token }) => {
+const registerPurchase = async ({ cart, houseNumber, street, token }) => {
   const options = {
     method: 'POST',
     url: `${endpoint}/checkout`,
@@ -39,7 +39,7 @@ const registerPurchase = async ({ cart, number, street, token }) => {
       'Content-Type': applicationJson,
       Authorization: token,
     },
-    data: { number, street, cart },
+    data: { houseNumber, street, cart },
   };
   try {
     const purchRes = await axios.request(options);

@@ -18,7 +18,6 @@ const validateSale = (saleData, user) => {
 };
 
 const insertPurchase = async (purchase, pdtList) => {
-  console.log(purchase, pdtList)
   const [insertPurchRes] = await registerPurchase(purchase);
   if (insertPurchRes.err) return false;
   const { insertId } = insertPurchRes;
@@ -32,25 +31,31 @@ const insertPurchase = async (purchase, pdtList) => {
   return { insertId, statusCode: statusMsgMap.created.status };
 };
 
-const formatInfo = (pdts, usr, ttlPrice) => {
-  const { deliveryAddress, deliveryNumber, status } = pdts;
-  const { id } = usr;
+const formatInfo = (pdts, { userId, street, houseNumber, totalPrice }) => {
+  const { status } = pdts;
   const date = new Date();
   const trustedDate = `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
-  return { userId: id, deliveryAddress, deliveryNumber, status, totalPrice: ttlPrice, trustedDate };
+  return {
+    userId,
+    deliveryAddress: street,
+    deliveryNumber: houseNumber,
+    status: status || 'pendente',
+    totalPrice,
+    trustedDate,
+  };
 };
 
 const checkoutServ = async (body, user) => {
   try {
-    const { cart } = body;
+    const { cart, street, houseNumber } = body;
     if (!validateSale(cart, user)) return statusMsgMap.allFieldsMustBeFilled;
-    const productsIds = cart.map((p) => p.productId);
+    const productsIds = cart.map((product) => product.id);
     const productsData = await getProductsData(productsIds);
     const totalPrice = productsData
-      .reduce((acc, p, i) => acc + (p.price * cart[i].quantity), 0);
-    const formatedData = formatInfo(cart, user, totalPrice);
+      .reduce((acc, p, i) => acc + (p.price * cart[i].quantity), 0).toFixed(2);
+    const purchInfo = { userId: user.id, street, houseNumber, totalPrice };
+    const formatedData = formatInfo(cart, purchInfo);
     const { trustedDate } = formatedData;
-    console.log('LINE53: ', formatedData, cart)
     const insertionRes = await insertPurchase(formatedData, cart);
     if (!insertionRes) return statusMsgMap.erorInDb;
     const { insertId, statusCode } = insertionRes;
