@@ -50,7 +50,6 @@ function Profile() {
   }, []);
 
   if (getUser() === null) {
-    console.log('valor', getUser());
     return <Redirect to="/login" />;
   }
 
