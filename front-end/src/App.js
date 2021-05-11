@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import {
   Login,

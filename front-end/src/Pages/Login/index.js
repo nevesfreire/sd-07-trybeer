@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { getUser } from '../../servicesAPI/api';
-// import PropTypes from 'prop-types';
+import { Button, Form, Container } from 'react-bootstrap';
 import { validateFields } from '../../util/validations';
+import './index.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -14,8 +15,9 @@ export default function Login() {
 
   useEffect(() => {
     if (validateFields(email, password) === true) {
-      setisValid(true);
+      return setisValid(true);
     }
+    return setisValid(false);
   }, [email, password, history]);
 
   const handleSubmit = async () => {
@@ -29,49 +31,44 @@ export default function Login() {
   };
 
   return (
-    <div className="form-wrapper">
-      <form className="form-login">
-        <label htmlFor="email">
-          Email
-          <input
-            id="email"
-            onChange={ (e) => setEmail(e.target.value) }
-            type="email"
-            data-testid="email-input"
-            placeholder="Email"
-            className="form-input"
-          />
-        </label>
-        <label htmlFor="password">
-          Senha
-          <input
-            id="password"
-            onChange={ (e) => setPassword(e.target.value) }
-            type="password"
-            data-testid="password-input"
-            placeholder="Senha"
-            className="form-input"
-          />
-        </label>
-        <button
-          type="button"
+    <Container className="container-forms">
+      <Form>
+        <Form.Group>
+          <Form.Label>Email</Form.Label>
+            <Form.Control
+              id="email"
+              onChange={ (e) => setEmail(e.target.value) }
+              type="email"
+              data-testid="email-input"
+              placeholder="Email"
+            />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Senha</Form.Label>
+            <Form.Control
+              onChange={ (e) => setPassword(e.target.value) }
+              type="password"
+              data-testid="password-input"
+              placeholder="Senha"
+            />
+         
+        </Form.Group>
+        <Button
           data-testid="signin-btn"
           disabled={ !isValid }
-          onClick={ handleSubmit }
-          className="form-button"
+          onClick={ () => handleSubmit() }
         >
           Entrar
-        </button>
+        </Button>
         { showMessage && <p>Usuário ou senha inválido!</p> }
-      </form>
+      </Form>
       <Link
+        className="link-login"
         data-testid="no-account-btn"
         to="/register"
       >
         Ainda não tenho conta
       </Link>
-    </div>
+    </Container>
   );
 }
-
-// Login.propTypes = {};
