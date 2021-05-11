@@ -24,7 +24,18 @@ const findByUserId = async (req, res, next) => {
   }
 };
 
+const findSaleDetailsById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const { statusCode, saleDetails } = await Sale.findSaleDetailsById(id);
+    res.status(statusCode).json({ statusCode, saleDetails });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
   findByUserId,
+  findSaleDetailsById,
 };

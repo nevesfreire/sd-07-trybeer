@@ -7,4 +7,10 @@ router.route('/')
   .put()
   .delete();
 
+router.route('/:id')
+  .get(Sale.findSaleDetailsById)
+  .post()
+  .put()
+  .delete();
+
 module.exports = router;
