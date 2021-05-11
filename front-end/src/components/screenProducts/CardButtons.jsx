@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocalStorage } from '../../hooks';
 
-export default function CardButtons({ id }) {
-  const [localStorageState, setStorage] = useLocalStorage('shoppingCart');
-
+export default function CardButtons({ id, storage: state, setStorage }) {
   const increment = () => {
-    if (localStorageState[id]) {
+    if (state[id]) {
       setStorage((storage) => ({ ...storage, [id]: storage[id] + 1 }));
     } else {
       setStorage((storage) => ({ ...storage, [id]: 1 }));
@@ -14,9 +11,9 @@ export default function CardButtons({ id }) {
   };
 
   const decrement = () => {
-    if (localStorageState[id] > 1) {
+    if (state[id] > 1) {
       setStorage((storage) => ({ ...storage, [id]: storage[id] - 1 }));
-    } else if (localStorageState[id]) {
+    } else if (state[id]) {
       setStorage((storage) => {
         delete storage[id];
         return storage;
@@ -24,12 +21,12 @@ export default function CardButtons({ id }) {
     }
   };
 
-  const quantity = localStorageState[id] || 0;
+  const quantity = state[id] || 0;
 
   return (
     <div>
       <button type="button" onClick={ increment }>+</button>
-      <span>{quantity}</span>
+      <span>{ quantity }</span>
       <button type="button" onClick={ decrement }>-</button>
     </div>
   );
@@ -37,4 +34,6 @@ export default function CardButtons({ id }) {
 
 CardButtons.propTypes = {
   id: PropTypes.number.isRequired,
+  storage: PropTypes.shape({}).isRequired,
+  setStorage: PropTypes.func.isRequired,
 };
