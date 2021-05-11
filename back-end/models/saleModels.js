@@ -10,6 +10,7 @@ const createSale = async (userId, purchaseRequest, saleDate, status) => {
       purchaseRequest.delivery_number,
       saleDate,
       status]);
+      
   return result;
 };
 
@@ -18,6 +19,7 @@ const createSaleProducts = async (saleId, id, quantity) => {
     'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
     [saleId, id, quantity],
   );
+
   return result;
 };
 

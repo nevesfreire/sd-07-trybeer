@@ -1,6 +1,7 @@
 const { CustomError } = require('./errorHelper');
 const STATUS_CODE = require('./statusHelper');
 const STATUS_MESSAGE = require('./msgHelper');
+const { orderModels } = require('../models');
 
 // No magic numbers
 const SIX = 6;
@@ -137,6 +138,16 @@ const checkIsAdmin = (role) => {
   }
 };
 
+const checkIfOrderBelongUser = async (idUser, id) => {
+  const check = await orderModels.checkIfOrderBelongUser(idUser, id);
+  if (!check) {
+    throw new CustomError({
+      status: STATUS_CODE.UNAUTHORIZED,
+      message: STATUS_MESSAGE.NOT_AUTHORIZED,
+    });
+  }
+};
+
 module.exports = {
   checkIfEmailAndPasswordExist,
   checkIfEmailIsValid,
@@ -152,4 +163,5 @@ module.exports = {
   checkDeliveryNumberValue,
   checkProductsSalesValue,
   checkIsAdmin,
+  checkIfOrderBelongUser,
 };

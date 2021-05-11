@@ -23,8 +23,9 @@ const getOrdersAdmin = async (request, response) => {
 
 const getOrderDetails = async (request, response) => {
   try {
+    const { authorization } = request.headers;
     const { id } = request.params;
-    const result = await orderServices.getOrderDetails(id);
+    const result = await orderServices.getOrderDetails(id, authorization);
     response.status(STATUS_CODE.SUCCESS).json(result);
   } catch (error) {
     response.status(error.status).json({ message: error.message });
