@@ -33,7 +33,7 @@ function Products() {
       if (!token) return history.push('/login');
     };
     getToken();
-  }, []);
+  }, [history]);
 
   useEffect(() => {
     const renderProducts = async () => {
