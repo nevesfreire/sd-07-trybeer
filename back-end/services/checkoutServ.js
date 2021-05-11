@@ -38,7 +38,7 @@ const formatInfo = (pdts, { userId, street, houseNumber, totalPrice }) => {
     userId,
     deliveryAddress: street,
     deliveryNumber: houseNumber,
-    status: status || 'pendente',
+    status: status || 'Pendente',
     totalPrice,
     trustedDate,
   };
