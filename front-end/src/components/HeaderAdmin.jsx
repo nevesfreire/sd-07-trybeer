@@ -3,7 +3,7 @@ import Hamburger from 'hamburger-react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const [sideBar, setSideBar] = useState(false);
+  const [sideBar, setSideBar] = useState(true);
 
   const logout = () => {
     localStorage.clear();
@@ -30,7 +30,7 @@ const Header = () => {
               <div className="itensHamburguer">
                 <Link
                   className="linksHamburguer"
-                  to="/orders"
+                  to="/admin/orders"
                   data-testid="side-menu-item-orders"
                 >
                   Pedidos
@@ -39,8 +39,8 @@ const Header = () => {
               <div className="itensHamburguer">
                 <Link
                   className="linksHamburguer"
-                  to="/profile"
-                  data-testid="side-menu-item-my-profile"
+                  to="/admin/profile"
+                  data-testid="side-menu-item-profile"
                 >
                   Meu Perfil
                 </Link>
