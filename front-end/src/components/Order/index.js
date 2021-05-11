@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Order({ order, index }) {
   return (
     <Link
-      to={ `/orders/${order.id}` }
+      to={ `/orders/${order.delivery_number}` }
       data-testid={ `${index}-order-card-container` }
     >
       <p data-testid={ `${index}-order-number` }>

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Order } from '../../components';
 import api from '../../services/api';
+import { Context } from '../../context';
 
 function AllOrders() {
-  const [orders, setOrders] = useState([]);
+  const { orders, setOrders } = useContext(Context);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -23,7 +24,7 @@ function AllOrders() {
       }
     });
     setIsLoading(false);
-  }, [history, user.name, user.token]);
+  }, [history, setOrders, user.name, user.token]);
   return (
     <div>
       <h1 data-testid="top-title">Meus Pedidos</h1>

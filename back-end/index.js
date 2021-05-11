@@ -7,12 +7,13 @@ const cors = require('cors');
 const { CheckoutRoute,
   RegisterRoute,
   loginRoute,
-  ProductsRoute,
   updateUser,
   orderDetails,
   allOrders,
+  ProductsRoute,
 } = require('./routes');
 
+ 
 
 const port = process.env.PORT || 3001;
 
