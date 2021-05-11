@@ -7,14 +7,21 @@ const getAllSales = async () => {
 };
 
 const getSaleById = async (id) => {
-  const [[sale]] = await connection.execute(
-    'SELECT * FROM sales WHERE id = ?',
-    [id],
-  );
+  const query = `SELECT p.id AS 'product_id', p.name, p.price, sp.quantity, sp.sale_id, 
+  s.total_price, s.sale_date, s.\`status\`
+  FROM products AS \`p\`
+  INNER JOIN sales_products AS \`sp\`
+  ON p.id = sp.product_id
+  INNER JOIN sales AS \`s\`
+  ON sp.sale_id = s.id
+  WHERE sp.sale_id = ?;`;
+
+  const [[sale]] = await connection.execute(query, [id]);
 
   return sale;
 };
 
+// prettier-ignore
 const putSalesLoop = async (cart, saleId) => {
   const queryThree = 'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)';
 
@@ -27,6 +34,7 @@ const putSalesLoop = async (cart, saleId) => {
   }
 };
 
+// prettier-ignore
 const createSale = async (userId, totalPrice, delivery, cart) => {
   const { deliveryAddress, deliveryNumber } = delivery;
   const query = 'INSERT INTO sales (user_id, total_price, delivery_address, ';
