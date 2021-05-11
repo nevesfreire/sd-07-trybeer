@@ -33,4 +33,14 @@ async function getProducts(token) {
   }
 }
 
-export { requestToken, registerUser, getProducts };
+async function updateUser(userData) {
+  console.log(userData);
+  try {
+    const response = await axios.put(`${url}${register}`, userData);
+    return response;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
+export { requestToken, registerUser, getProducts, updateUser };
