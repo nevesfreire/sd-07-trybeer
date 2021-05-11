@@ -1,3 +1,4 @@
 import TopMenu from './Header';
+import AdminSideBar from './AdminSideBar';
 
-export default TopMenu;
+export { TopMenu, AdminSideBar };
