@@ -11,7 +11,7 @@ export default function AdminOrders() {
   const buttonUpdate = async () => {
     const { fetchAPI } = fetchs;
     const obj = { name };
-    const api = await fetchAPI('/register', 'POST', obj);
+    const api = await fetchAPI('/register', 'PUT', obj);
     if (api.error) {
       user.name = name;
       localStorage.setItem('user', user);
