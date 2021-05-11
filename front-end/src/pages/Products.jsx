@@ -25,7 +25,6 @@ const Products = () => {
 
   const value = Object.values(localCart).reduce((t, { quantity, product }) => {
     if (!Number.isNaN(parseFloat(product.price))) {
-      console.log(`${t}isthis`, quantity, product.price);
       return t + quantity * parseFloat(product.price);
     }
     return 0;
