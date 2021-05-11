@@ -17,6 +17,7 @@ function MenuSide({ isAdmin }) {
   return (
     <div className={ menuClass }>
       <button
+        className="menu-button first-button"
         type="button"
         data-testid="side-menu-item-products"
         onClick={ () => history.push('/products') }
@@ -25,6 +26,7 @@ function MenuSide({ isAdmin }) {
         Produtos
       </button>
       <button
+        className="menu-button"
         type="button"
         data-testid={ `side-menu-item-${dataTestIdClient}orders` }
         onClick={ () => history.push(`${adminRoute}/orders`) }
@@ -32,6 +34,7 @@ function MenuSide({ isAdmin }) {
         { (isAdmin) ? 'Pedidos' : 'Meus Pedidos' }
       </button>
       <button
+        className="menu-button"
         type="button"
         data-testid={ `side-menu-item-${dataTestIdClient}profile` }
         onClick={ () => history.push(`${adminRoute}/profile`) }
@@ -39,6 +42,7 @@ function MenuSide({ isAdmin }) {
         Meu Perfil
       </button>
       <button
+        className="menu-button"
         type="button"
         data-testid="side-menu-item-logout"
         onClick={ handleLogout }

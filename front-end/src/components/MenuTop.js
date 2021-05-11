@@ -15,9 +15,10 @@ function MenuTop({ title = 'TryBeer' }) {
   const menuTopClass = (isAdmin) ? 'menu-top-adm' : 'menu-top';
 
   return (
-    <div className={ menuTopClass }>
-      <div>
+    <div className={ `${menuTopClass} pl-5 pr-5` }>
+      <div className="header">
         <input
+          className="top-hamburguer"
           data-testid="top-hamburguer"
           width="30rem"
           type="image"
@@ -26,7 +27,7 @@ function MenuTop({ title = 'TryBeer' }) {
           hidden={ isAdmin }
           onClick={ () => setMenuVisible(!menuVisible) }
         />
-        <div data-testid="top-title">{ title }</div>
+        <div className="title" data-testid="top-title">{ title }</div>
       </div>
       { (menuVisible || isAdmin) && <MenuSide isAdmin={ isAdmin } /> }
     </div>

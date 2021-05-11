@@ -4,7 +4,7 @@ import '../style/login.css';
 
 function Login() {
   return (
-    <div className="form-page App-header">
+    <div className="form-page login-page">
       <LoginForm />
     </div>
   );
