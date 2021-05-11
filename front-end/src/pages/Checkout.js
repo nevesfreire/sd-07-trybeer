@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Address from '../components/Address';
 import Header from '../components/Header';
 import saveOrder from '../services/Order';
 import { update } from '../actions';
+=======
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Address from '../components/Address';
+import Header from '../components/Header';
+import { update } from '../actions'; 
+import { saveOrder } from '../services/Order';
+>>>>>>> 002bdfb60cf49a5ca8e12c3beb18e28e23dfa2fe
 
 export default function Checkout() {
   const INITIAL_VALUE = 0;

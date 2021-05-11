@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import registerUser from '../services/User';
+import { registerUser } from '../services/User';
 
 export default function Register() {
   const [disabled, setDisabled] = useState(true);
@@ -110,6 +110,7 @@ export default function Register() {
           Cadastrar
         </button>
       </form>
+<<<<<<< HEAD
 
     <form onSubmit={ () => handleSubmit() }>
       <label htmlFor="name">
@@ -161,5 +162,8 @@ export default function Register() {
       </button>
     </form>
   </>
+=======
+    </>
+>>>>>>> 002bdfb60cf49a5ca8e12c3beb18e28e23dfa2fe
   );
 }

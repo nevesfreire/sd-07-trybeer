@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+=======
+import React, { useState, useEffect, useSelector } from 'react';
+import { useDispatch } from 'react-redux';
+>>>>>>> 002bdfb60cf49a5ca8e12c3beb18e28e23dfa2fe
 import { update } from '../actions';
 
 export default function Card({ product, position }) {
