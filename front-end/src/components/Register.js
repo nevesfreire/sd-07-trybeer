@@ -60,19 +60,21 @@ const ComponentRegister = () => {
     setIsChecked(event.target.checked);
   };
 
-  if (user.status) {
-    switch (user.role) {
-    case 'administrator':
-      return <Redirect to="/admin/orders" />;
-    case 'client':
-      return <Redirect to="/products" />;
-    default:
-      return <Redirect to="/Not Found" />;
-    }
-  }
+  // if (user.status) {
+  //   switch (user.role) {
+  //   case 'administrator':
+  //     return <Redirect to="/admin/orders" />;
+  //   case 'client':
+  //     return <Redirect to="/products" />;
+  //   default:
+  //     return <Redirect to="/Not Found" />;
+  //   }
+  // }
 
   return (
     <FormControl className="form-registration">
+      { user.role === 'administrator' && <Redirect to="/admin/orders" /> }
+      { user.role === 'client' && <Redirect to="/products" /> }
       <h1>Cadastro</h1>
       <TextField
         id="userName"
@@ -131,7 +133,7 @@ const ComponentRegister = () => {
       </div>
       <div className="success-message">
         {
-          user.status ? user.messageSuccess : user.messageFailed
+          !user.status ? user.messageFailed : user.messageSuccess
         }
       </div>
 
