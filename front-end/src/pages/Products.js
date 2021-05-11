@@ -24,18 +24,12 @@ function Products() {
   const renderIngredients = () => {
     const products = getProduct();
     return (
-      <Grid verticalAlign={'middle'}>
-        <Grid.Row>
-          <Grid.Column>
-            <Card.Group stackable="true">
-              {products &&
-                products.map((beer, index) => (
-                  <CustomProductCard key={beer.id} index={index} beer={beer} />
-                ))}
-            </Card.Group>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+      <Card.Group stackable="true">
+        {products &&
+          products.map((beer, index) => (
+            <CustomProductCard key={beer.id} index={index} beer={beer} />
+          ))}
+      </Card.Group>
     );
   };
   return (
@@ -46,7 +40,7 @@ function Products() {
         </Grid.Column>
         <Header as="h1" color="orange" textAlign="center"></Header>
       </Grid>
-      <Grid>{renderIngredients()}</Grid>
+      {renderIngredients()}
       <Segment textAlign="center">
         <Button
           circular="true"

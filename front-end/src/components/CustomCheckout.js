@@ -1,46 +1,50 @@
 import React from 'react';
-import { Button, Item, Image } from 'semantic-ui-react';
+import { Card, Button, Image, Grid } from 'semantic-ui-react';
 
-export default function CustomCheckout({index, beer, removeButton }) {
-
-
-
+export default function CustomCheckout({ index, beer, removeButton }) {
   return (
-    <div>
+    <Grid>
       {!beer ? (
-        'Não há produtos no carrinho'
+        <span>'Não há produtos no carrinho'</span>
       ) : (
-        <li>
-          <div>            
-            <p data-testid={`${index}-product-name`}>
-            {beer[3]} 
-            </p>
+        <Card>
+          <Card.Content>
+            <Image
+              data-testid={`${index}-product-img`}
+              floated="right"
+              size={beer.name === 'Skol Lata 250ml' ? 'mini' : 'tiny'}
+              src={beer.url_image}
+              alt="imagem de uma bebida"
+            />
+            <Card.Header data-testid={`${index}-product-name`}>
+              {beer[3]}
+            </Card.Header>
 
-            <p data-testid={`${index}-product-total-value`}>
+            <Card.Meta data-testid={`${index}-product-total-value`}>
               {`R$ ${(beer[1] * beer[2]).toFixed(2).replace('.', ',')}`}
-            </p>
+            </Card.Meta>
 
-            <p data-testid={`${index}-product-qtd-input`}>
-              {beer[2]}
-           </p>
-           <p data-testid={`${index}-product-unit-price`}>
+            <Card.Description data-testid={`${index}-product-qtd-input`}>
+              Unidades: {beer[2]}
+            </Card.Description>
+            <Card.Description data-testid={`${index}-product-unit-price`}>
               {`(R$ ${beer[1].replace('.', ',')} un)`}
-           </p>
-              <button
-                basic
-                color="green"
-                data-testid={`${index}-removal-button`}
-                onClick={() => {
-                  removeButton(index)                  
-                }}
-               
-              >
-                X
-              </button>
-          </div>
-        </li>
+            </Card.Description>
+            <Button
+              floated="right"
+              inverted
+              color="red"
+              size="mini"
+              data-testid={`${index}-removal-button`}
+              onClick={() => {
+                removeButton(beer[0]);
+              }}
+            >
+              X
+            </Button>
+          </Card.Content>
+        </Card>
       )}
-    </div>
+    </Grid>
   );
 }
-
