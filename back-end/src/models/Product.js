@@ -11,7 +11,7 @@ const modelProduct = async () => {
       nome: beer.name,
       preco: beer.price,
     }));
-  // console.log(`product model ${productData}`);
+  console.log(`product model ${productData}`);
   return productData;
 };
 
