@@ -6,12 +6,25 @@ function TrybeerProvider({ children }) {
   const [order, setOrder] = useState([]);
   const [totalValue, setTotalValue] = useState(0);
 
-  const addOrder = (product) => {
-    setOrder([...order, product]);
-    setTotalValue(totalValue + product.price);
+  const addInCart = (id, name, price) => {
+    const filteredProduct = order.filter((product) => id === product.id);
+    setOrder([...order, { id, name, price }]);
+    setTotalValue(totalValue + price);
   };
+
+  const removeFromCart = (name, price) => {
+
+  };
+
+  const getQuantity = (name) => {
+
+  };
+
   const context = {
     addOrder,
+    addInCart,
+    removeFromCart,
+    getQuantity,
   };
 
   return (

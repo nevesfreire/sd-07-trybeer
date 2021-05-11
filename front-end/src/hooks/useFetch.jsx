@@ -51,11 +51,25 @@ function useFetch() {
     return responseAPI;
   }
 
+  async function getProducts(token) {
+    const result = await fetch('http://localhost:3001/products', {
+      method: 'GET',
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+        Authorization: token,
+      },      
+    });
+    const responseAPI = await result.json();
+    return responseAPI;
+  }
+
   return (
     {
       login,
       updateProfileName,
       register,
+      getProducts,
     }
   );
 }

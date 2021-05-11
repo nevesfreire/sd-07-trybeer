@@ -1,17 +1,35 @@
-import React, { useEffect, useState } from 'react';
-// import useFetch from '../hooks/useFetch';
-// import MyContext from '../context/TrybeerContext';
+import React, { useEffect, useState, useContext } from 'react';
+import useFetch from '../hooks/useFetch';
+import { Redirect } from 'react-router-dom';
+import MyContext from '../context/TrybeerContext';
 
 function ProductsCards() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    fetch('http://localhost:3001/products')
-      .then((response) => response.json())
-      .then((data) => setProduct(data));
+  const [jwtInvalid, setJwtInvalid] = useState(false);
+  const {
+    addInCart,
+    removeFromCart,
+    getQuantity,
+  } = useContext(MyContext);
+
+  const { getProducts } = useFetch();
+  const callAPI = async (userResult) => {
+    const resultAPI = await getProducts(userResult);
+    if (resultAPI.message) return setJwtInvalid(true);
+    setProducts(resultAPI);
     setLoading(false);
+  };
+
+  useEffect(() => {
+    setJwtInvalid(false);
+    const userResult = localStorage.getItem('user');
+    if (!userResult) return setJwtInvalid(true);
+    callAPI(userResult);
   }, []);
 
+  
+  if (jwtInvalid) return (<Redirect to="/login" />);
   return loading
     ? (<span>tenha fé...</span>)
     : (
@@ -31,17 +49,17 @@ function ProductsCards() {
             <button
               type="button"
               data-testid={ `${index}-product-minus` }
-              // onClick={ () => removeFromCart(product.name, product.price) }
+              onClick={ () => removeFromCart(product.name, product.price) }
             >
               -
             </button>
             <span data-testid={ `${index}-product-qtd` }>
-              {/* { getQuantity(product.name) } */}
+              { getQuantity(product.name) }
             </span>
             <button
               type="button"
               data-testid={ `${index}-product-plus` }
-              // onClick={ () => addInCart(product.id, product.name, product.price) }
+              onClick={ () => addInCart(product.id, product.name, product.price) }
             >
               +
             </button>
