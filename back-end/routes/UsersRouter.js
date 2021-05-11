@@ -1,6 +1,7 @@
 const express = require('express');
 const { getAllUsers, getByUserId, createLoginUser, createUser } = require('../users/controllers');
-const { checkCreatingUserFields } = require('../middlewares/UserMiddleware');
+const { UserMiddleware } = require('../middlewares');
+const { checkCreatingUserFields } = UserMiddleware;
 
 const UsersRouter = express.Router();
 

@@ -83,7 +83,7 @@ function FormRegister() {
 
       if (userToken.data) {
         const { role } = userToken.data;
-        setToLocalStorage(userToken.data);
+        setToLocalStorage('user', userToken.data);
 
         if (role === 'administrator') {
           history.push('/admin/orders');
