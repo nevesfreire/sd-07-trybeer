@@ -7,11 +7,13 @@ import { fetchOrderById, updateOrderById } from '../services/api';
 function SalesDetailsPage() {
   const history = useHistory();
   const [order, setOrder] = useState(false);
+  const [orderStatus, setOrderStatus] = useState('');
   const params = useParams();
 
   async function getOrder() {
     const list = await fetchOrderById(params.id);
     setOrder(list);
+    setOrderStatus(list.sale.status);
   }
 
   useEffect(() => {
@@ -33,9 +35,8 @@ function SalesDetailsPage() {
 
   const confirmDelivery = async () => {
     const result = await updateOrderById(sale.id);
-    console.log(result);
+    if (result) setOrderStatus('Entregue');
   };
-  console.log(sale.total_price);
   return (
     <div className="form-page">
       <MenuTop title="Detalhes de Pedido" />
@@ -45,7 +46,7 @@ function SalesDetailsPage() {
         {` ${sale.id}`}
       </p>
       <p data-testid="order-status">
-        {sale.status}
+        {orderStatus}
       </p>
       <p data-testid="order-date">{getDate(sale.sale_date)}</p>
       {products.map((product, index) => (
