@@ -24,9 +24,9 @@ const signUp = async (req, res, next) => {
 };
 
 // Update 
-
 const updateUser = async (req, res, next) => {
-  const data = req.boy;
+  const data = req.body;
+  console.log(data);
   try {
     const result = await loginServices.updateUser(data);
     return res.status(StatusCodes.CREATED).json(result);
