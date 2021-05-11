@@ -15,8 +15,12 @@ export default function Buttons({ value, countClick, testid, disable }) {
 }
 
 Buttons.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
   countClick: PropTypes.func.isRequired,
   testid: PropTypes.string.isRequired,
-  disable: PropTypes.bool.isRequired,
+  disable: PropTypes.bool,
+};
+
+Buttons.defaultProps = {
+  disable: false,
 };
