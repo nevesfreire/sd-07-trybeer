@@ -9,4 +9,9 @@ const getOrderById = async (id) => {
   return allOrder;
 };
 
-module.exports = { getAllOrders, getOrderById};
+const getOrderDetails = async (id) => {
+  const order = await orderModel.getOrderDetails(id);
+  return order;
+};
+
+module.exports = { getAllOrders, getOrderById, getOrderDetails };

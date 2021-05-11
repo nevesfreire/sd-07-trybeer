@@ -18,7 +18,7 @@ const getAllSales = async (request, response) => {
 const getSaleById = async (request, response) => {
   try {
     const { id } = request.params;
-    const sale = await saleService.getSaleById(id);
+    const sale = await checkoutService.getSaleById(id);
     if (!sale) {
       const ERR_MESSAGE = 'sale not found';
       throw new Error(ERR_MESSAGE);
@@ -32,15 +32,8 @@ const getSaleById = async (request, response) => {
 
 const createSale = async (request, response) => {
   try {
-    /*const {
-      user_id,
-      total_price,
-      delivery_address,
-      delivery_number,
-      cart
-    } = request.body;*/
-    const objParams = {...request.body}
-    const sale  = await checkoutService.createSale(objParams);
+    const objParams = { ...request.body };
+    const sale = await checkoutService.createSale(objParams);
     return response.status(CREATE).json(sale);
   } catch (error) {
     console.error(error);
@@ -50,6 +43,6 @@ const createSale = async (request, response) => {
     }
     response.status(ERROR).json({ message: error.message });
   }
-}
+};
 
-module.exports = { getAllSales, getSaleById, createSale }
+module.exports = { getAllSales, getSaleById, createSale };

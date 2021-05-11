@@ -28,4 +28,4 @@ const getProductById = async (request, response) => {
   }
 };
 
-module.exports = { getAllProducts, getProductById }
+module.exports = { getAllProducts, getProductById };
