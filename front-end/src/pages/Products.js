@@ -4,19 +4,17 @@ import { Header } from 'semantic-ui-react';
 import CustomProductCard from '../components/CustomProductCard';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
-import { Card, Grid } from 'semantic-ui-react';
-
-
+import { Card, Grid, Button, Segment } from 'semantic-ui-react';
+import { getProduct } from '../helpers/localStorage';
 function Products() {
-  const { totalKart, setTotalKart} = useContext(CentralContext);
+  const { totalKart, setTotalKart } = useContext(CentralContext);
 
   useEffect(() => {
-    let localtotal = 0 
     const total = JSON.parse(localStorage.getItem('cart'));
-    total && total.map(item => {
-      localtotal = localtotal + item[1] * item[2] 
-    })
-    setTotalKart(localtotal)
+    total &&
+      total.map((item) => {
+        setTotalKart(item[1] * item[2]);
+      });
   }, []);
 
   useEffect(() => {}, [totalKart]);
@@ -24,31 +22,36 @@ function Products() {
   const history = useHistory();
 
   const renderIngredients = () => {
-    const products = JSON.parse(localStorage.getItem('product'));
-    // fiz com a função do helper antes mas deu erro
+    const products = getProduct();
     return (
-      <div>
-        <Card.Group stackable="true">
-          {products &&
-            products.map((beer, index) => (
-              <CustomProductCard key={beer.id} index={index} beer={beer} />
-            ))}
-        </Card.Group>
-      </div>
+      <Grid verticalAlign={'middle'}>
+        <Grid.Row>
+          <Grid.Column>
+            <Card.Group stackable="true">
+              {products &&
+                products.map((beer, index) => (
+                  <CustomProductCard key={beer.id} index={index} beer={beer} />
+                ))}
+            </Card.Group>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   };
   return (
     <div>
-      <Grid container >
-      <Grid.Column>
-      <CustomHeader message='TryBeer'/>
-      </Grid.Column>
-      <Header  as="h1" color="orange" textAlign="center">
-      </Header>
-      </Grid>
       <Grid>
-      {renderIngredients()}
-        <button
+        <Grid.Column>
+          <CustomHeader message="TryBeer" />
+        </Grid.Column>
+        <Header as="h1" color="orange" textAlign="center"></Header>
+      </Grid>
+      <Grid>{renderIngredients()}</Grid>
+      <Segment textAlign="center">
+        <Button
+          circular="true"
+          size="big"
+          color="orange"
           data-testid="checkout-bottom-btn"
           disabled={!totalKart}
           onClick={() => history.push('/checkout')}
@@ -57,8 +60,8 @@ function Products() {
           <p data-testid="checkout-bottom-btn-value">{`R$ ${totalKart
             .toFixed(2)
             .replace('.', ',')}`}</p>
-        </button>
-        </Grid>
+        </Button>
+      </Segment>
     </div>
   );
 }

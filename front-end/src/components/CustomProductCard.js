@@ -103,7 +103,7 @@ export default function CustomProductCard({ index, beer }) {
                 onClick={() => {
                   (qtdProduct > 0) && setQtdProduct(qtdProduct - 1) ;
                   (qtdProduct > 0) && setTotalKart(totalKart - Number(beer.price));
-                  saveToLocalLess(beer, qtdProduct);
+                  (qtdProduct > 0) && saveToLocalLess(beer, qtdProduct);
                 }}
                 size="mini"
               >
