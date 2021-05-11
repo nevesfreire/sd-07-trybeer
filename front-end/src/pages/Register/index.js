@@ -37,6 +37,10 @@ function Register({ history }) {
     const { status, data } = await registerNewUser(
       name, email, password, isChecked ? 'admin' : null,
     );
+    if (status === success) {
+      const { token } = data;
+      localStorage.setItem('token', token);
+    }
 
     if (status === success && isChecked) {
       return history.push('/admin/orders');

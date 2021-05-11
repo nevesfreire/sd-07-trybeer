@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
+import BeerContext from '../context/beerContext';
 import { loginRequest } from '../services/usersApi';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isDisable, setIsDisable] = useState(true);
+  const {
+    email, setEmail,
+    password, setPassword,
+    errorMessage, setErrorMessage,
+    role, setRole,
+  } = useContext(BeerContext);
+
   const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [role, setRole] = useState('');
+  const [isDisable, setIsDisable] = useState(true);
 
   const handleClick = async () => {
     const response = await loginRequest(email, password);
@@ -38,7 +44,7 @@ function Login() {
     };
 
     verifyUserData();
-  }, [email, password]);
+  }, [email, password, setIsDisable]);
 
   return (
     <>

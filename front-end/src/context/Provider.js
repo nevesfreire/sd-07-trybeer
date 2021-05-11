@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import BeerContext from './beerContext';
 
 function Provider({ children }) {
-  // setar funções
+  const [products, setProducts] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [role, setRole] = useState('');
+  const [cartPreview, setCartPreview] = useState(0);
+  const [cartQuantity, setCartQuantity] = useState(0);
+
   const valueProvider = {
-    // funções a serem passadas
+    isFetching,
+    setIsFetching,
+    products,
+    setProducts,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    errorMessage,
+    setErrorMessage,
+    role,
+    setRole,
+    cartPreview,
+    setCartPreview,
+    cartQuantity,
+    setCartQuantity,
   };
   return (
     <BeerContext.Provider value={ valueProvider }>
