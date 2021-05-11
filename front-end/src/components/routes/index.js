@@ -6,6 +6,7 @@ import ClientProfilePage from '../../pages/ClientProfile';
 import AdminProfilePage from '../../pages/AdminProfile';
 import Products from '../../pages/Products';
 import AdminHome from '../../pages/AdminHome';
+import Checkout from '../../pages/Checkout';
 
 function AppRoutes() {
   return (
@@ -18,6 +19,7 @@ function AppRoutes() {
       <Route path="/profile" component={ ClientProfilePage } />
       <Route path="/admin/profile" component={ AdminProfilePage } />
       <Route path="/products" component={ Products } />
+      <Route path="/checkout" component={ Checkout } />
       <Route path="/admin/orders" component={ AdminHome } />
     </Switch>
   );

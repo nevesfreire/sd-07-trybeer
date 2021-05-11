@@ -1,16 +1,17 @@
 import React from 'react';
 import Header from '../../components/Header';
-import ProductsList from '../../components/ProductsList';
+import CheckoutCart from '../../components/CheckoutCart';
 import AuthVerification from '../../components/AuthVerification';
 
-const Products = () => {
+const Checkout = () => {
   AuthVerification();
 
   return (
     <>
-      <Header title="TryBeer" />
-      <ProductsList />
+      <Header title="Finalizar Pedido" />
+      <CheckoutCart />
     </>
   );
 };
-export default Products;
+
+export default Checkout;
