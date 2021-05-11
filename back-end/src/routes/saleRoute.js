@@ -7,6 +7,11 @@ const router = express.Router();
 router
   .route('/sales')
   .post(validateJWT, saleController.createSale)
-  .put(validateJWT);
+  .put(validateJWT)  
+  .get(validateJWT, saleController.getSales);
+
+router
+  .route('sales/:orderNumber')
+  .get(saleController.getSaleByNumber);
 
 module.exports = router;
