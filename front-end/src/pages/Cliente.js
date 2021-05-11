@@ -1,10 +1,10 @@
 import React from 'react';
 
-import ComponentClient from '../components/Client';
+import Menu from '../components/Menu';
 
 const Cliente = () => (
   <div className="container-register">
-    <ComponentClient />
+    <Menu />
   </div>
 );
 
