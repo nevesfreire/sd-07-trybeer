@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { globalReducer } from './globalReducer';
 import GlobalContext from './GlobalContext';
 
-const productsInitialState = {
+const INITIAL_STATE = {
   products: [],
 };
 
 export default function GlobalProvider({ children }) {
-  const [products, productsDispatch] = useReducer(globalReducer, productsInitialState);
+  const [productState, productsDispatch] = useReducer(globalReducer, INITIAL_STATE);
   return (
-    <GlobalContext.Provider value={ { productsDispatch, products } }>
+    <GlobalContext.Provider value={ { productsDispatch, productState } }>
       {children}
     </GlobalContext.Provider>
   );
