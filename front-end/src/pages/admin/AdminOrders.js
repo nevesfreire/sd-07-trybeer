@@ -18,9 +18,8 @@ function AdminOrders() {
   }, []);
 
   return (
-    <div>
+    <div className="div-container">
       <SideBarAdmin />
-
       { isLoading ? <span>Carregando...</span>
         : (
           <div>
@@ -29,17 +28,33 @@ function AdminOrders() {
                 type="button"
                 onClick={ () => history.push(`/admin/orders/${order.id}`) }
                 key={ order.id }
+                className="admin-container-order"
               >
-                <span data-testid={ `${index}-order-number` }>
+                <span
+                  data-testid={ `${index}-order-number` }
+                  className="admin-orders-span font-style"
+                >
                   {`Pedido ${order.id}`}
                 </span>
-                <span data-testid={ `${index}-order-address` }>
+                <span
+                  data-testid={ `${index}-order-address` }
+                  className="admin-orders-span"
+                >
                   {`${order.delivery_address}, ${order.delivery_number}`}
                 </span>
-                <span data-testid={ `${index}-order-total-value` }>
+                <span
+                  data-testid={ `${index}-order-total-value` }
+                  className="admin-orders-span font-style"
+                >
                   {`R$ ${order.total_price.replace('.', ',')}`}
                 </span>
-                <span data-testid={ `${index}-order-status` }>
+                <span
+                  data-testid={ `${index}-order-status` }
+                  className={
+                    `${order.status === 'Pendente' ? "admin-orders-span pendente"
+                    : "admin-orders-span entregue"}`
+                  }
+                >
                   {order.status}
                 </span>
               </button>

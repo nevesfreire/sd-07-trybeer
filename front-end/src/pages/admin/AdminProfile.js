@@ -17,12 +17,18 @@ function AdminProfile() {
   const { name, email } = user;
 
   return (
-    <>
+    <div className="div-container">
       <SideBarAdmin />
       <h1>Perfil</h1>
-      <span data-testid="profile-name">{`Nome: ${name}`}</span>
-      <span data-testid="profile-email">{`Email: ${email}`}</span>
-    </>
+      <div className="main-container">
+        <span data-testid="profile-name" className="admin-profile-span">
+          {`Nome: ${name}`}
+        </span>
+        <span data-testid="profile-email" className="admin-profile-span">
+          {`Email: ${email}`}
+        </span>
+      </div>
+    </div>
   );
 }
 

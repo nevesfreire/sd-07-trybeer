@@ -7,10 +7,10 @@ function OrderCard(props) {
   const { setOrderDetail } = useContext(MyContext);
   const history = useHistory();
   const NINEAdicionaZero = 9;
-  const mystyle = {
-    padding: '10px',
-    fontFamily: 'Arial',
-  };
+  // const mystyle = {
+  //   padding: '10px',
+  //   fontFamily: 'Arial',
+  // };
   function adicionaZero(numero) {
     if (numero <= NINEAdicionaZero) return `0${numero}`;
     return numero;
@@ -36,26 +36,26 @@ function OrderCard(props) {
   };
 
   return (
-    <div
-      role="button"
-      tabIndex={ 0 }
+    <button
+      type="button"
+      // tabIndex={ 0 }
       onClick={ () => renderOrderDetail() }
       onKeyDown={ () => renderOrderDetail() }
-      style={ mystyle }
+      // style={ mystyle }
       data-testid={ `${index}-order-card-container` }
+      className="container-order-card checkout-container"
     >
-      <div>
-        <div data-testid={ `${index}-order-number` }>{`Pedido ${id}`}</div>
-        <div data-testid={ `${index}-order-date` }>{` ${orderDate}`}</div>
-        <div
-          data-testid={ `${index}-order-total-value` }
-        >
-          {` R$ ${totalPriceFormated}`}
+      <span data-testid={ `${index}-order-number` } className="font-style">
+        {`Pedido ${id}`}
+      </span>
+      <span data-testid={ `${index}-order-date` }>{` ${orderDate}`}</span>
+      <span
+        data-testid={ `${index}-order-total-value` }
+      >
+        {` R$ ${totalPriceFormated}`}
+      </span>
 
-        </div>
-      </div>
-
-    </div>
+    </button>
   );
 }
 OrderCard.propTypes = {
