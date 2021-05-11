@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Header, ProductCard, Loading } from '../components';
 
 import TrybeerContext from '../store/context';
 import { ProductCard, Loading } from '../components';
@@ -34,6 +35,9 @@ function Products() {
 
   return (
     <div>
+      <div>
+        <Header title="TryBeer" />
+      </div>
       <pre>{JSON.stringify(cart, null, 2)}</pre>
       {
         loading

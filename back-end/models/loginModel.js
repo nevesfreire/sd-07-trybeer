@@ -24,9 +24,18 @@ const createUser = async (data) => {
   return user;
 };
 
+const updateUser = async (data) => {
+  const { name, email } = data;
+  const [user] = await connection.execute(
+    'UPDATE users SET name=? WHERE email=?', [name, email],
+        );
+    return user;
+};
+
 module.exports = {
   getUsers,
   getProductsById,
   getUserByEmail,
   createUser,
+  updateUser,
 };
