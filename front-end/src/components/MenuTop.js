@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import MenuSide from './MenuSide';
+import '../style/menu.css';
 import menuHamburger from '../assets/bars-solid.svg';
 
 function MenuTop({ title = 'TryBeer' }) {

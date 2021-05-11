@@ -43,12 +43,15 @@ function Products() {
 
   const generateProducts = () => (
     <div
+      className="product-container"
       style={ { marginLeft: `${two}em` } }
     >
+      <div className="products">
       { productList.length === zero
         ? (<h3>Carregando...</h3>)
         : productList.map((item, index) => (
           <div
+            className="card mb-3"
             key={ index }
           >
             <img
@@ -67,20 +70,22 @@ function Products() {
             >
               {`R$ ${item.price.replace('.', ',')}`}
             </p>
-            <button
-              type="button"
-              data-testid={ `${index}-product-plus` }
-              onClick={ () => {
-                const list = [...productList];
-                list[index].quantity = list[index].quantity
-                  ? list[index].quantity + 1 : 1;
-                setProductList(list);
-                localStorage.setItem('productList', JSON.stringify(productList));
-              } }
-            >
-              &uArr;
-            </button>
-            <button
+            <div className="qtd-button-container">
+              <button
+                className="qtd-first-button"
+                type="button"
+                data-testid={ `${index}-product-plus` }
+                onClick={ () => {
+                  const list = [...productList];
+                  list[index].quantity = list[index].quantity
+                    ? list[index].quantity + 1 : 1;
+                  setProductList(list);
+                  localStorage.setItem('productList', JSON.stringify(productList));
+                } }
+              >
+                &uArr;
+              </button>
+              <button
               type="button"
               data-testid={ `${index}-product-minus` }
 
@@ -95,15 +100,18 @@ function Products() {
 
               &dArr;
             </button>
+            </div>
             <h3
+              className="qtd mt-3"
               data-testid={ `${index}-product-qtd` }
             >
               { item.quantity || 0 }
             </h3>
           </div>
         ))}
-
+      </div>
       <button
+        className="checkout-bottom-btn"
         data-testid="checkout-bottom-btn"
         type="button"
         onClick={ () => history.push('/checkout') }
