@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { nameIsValid, passwordIsValid, emailIsValid } from '../../service/validateInputs';
-import { register, login } from '../../service/trybeerApi';
+import { login } from '../../service/trybeerApi';
 import TopMenu from '../../components/Header';
 
 export default function Register() {
