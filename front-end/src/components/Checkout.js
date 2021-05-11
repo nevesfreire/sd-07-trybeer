@@ -67,8 +67,8 @@ function Checkout() {
         ? (<h3>Não há produtos no carrinho</h3>)
         : productList
           .map((item, index) => (
-            <div>
-              <Details item={item} index={index} />
+            <div key={ index }>
+              <Details item={ item } index={ index } />
               Unidade:
               <p
                 data-testid={ `${index}-product-unit-price` }

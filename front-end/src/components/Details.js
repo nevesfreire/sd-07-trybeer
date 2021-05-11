@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
-function Details({item, index}) {
+function Details({ item, index }) {
   const [productQtd, setProductQtd] = useState('');
   const params = useParams();
   useEffect(() => {
@@ -20,7 +21,7 @@ function Details({item, index}) {
         <p
           data-testid={ productQtd }
         >
-          {item.quantity}
+          { item.quantity }
         </p>
         <p
           data-testid={ `${index}-product-name` }
@@ -40,7 +41,7 @@ function Details({item, index}) {
               .replace('.', ',')
           }
         </p>
-        {/* 
+        {/*
         <p
           data-testid={ `${index}-product-qtd` }
         >
@@ -50,5 +51,14 @@ function Details({item, index}) {
     </div>
   );
 }
+
+Details.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+};
 
 export default Details;

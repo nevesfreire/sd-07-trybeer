@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import MenuTop from '../components/MenuTop';
 import Details from '../components/Details';
@@ -29,15 +29,19 @@ function DetailsPage() {
   };
 
   if (!order) return null;
-  const {sale, products} = order;
+  const { sale, products } = order;
   console.log(sale.total_price);
   return (
     <div className="form-page">
-      <MenuTop title="Detalhes de Pedido"/>
-      <p data-testid="order-number">Pedido {` ${sale.id}`}</p>
+      <MenuTop title="Detalhes de Pedido" />
+      <p data-testid="order-number">
+        Pedido
+        {' '}
+        {` ${sale.id}`}
+      </p>
       <p data-testid="order-date">{getDate(sale.sale_date)}</p>
       {products.map((product, index) => (
-        <Details item={product} index={index} />
+        <Details key={ index } item={ product } index={ index } />
       ))}
       Total:
       <p data-testid="order-total-value">
