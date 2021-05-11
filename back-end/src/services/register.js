@@ -10,10 +10,10 @@ const getUser = async (email) => {
 };
 
 const register = async (name, email, password, checked) => {
-  let role = 'admin';
+  let role = 'administrator';
   const empty = 0;
 
-  if (!checked) role = 'cliente';
+  if (!checked) role = 'client';
 
   const userExists = await userFind.getUser(email);
 
