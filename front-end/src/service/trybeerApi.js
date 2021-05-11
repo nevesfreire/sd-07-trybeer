@@ -30,7 +30,7 @@ const register = async (name, email, password, role) => {
       return response.data;
     })
     .catch((error) => {
-      if (error) return { error: error.message };
+      if (error) return { error: 'Já existe um usuário com esse e-mail.' };
     });
   return result;
 };
