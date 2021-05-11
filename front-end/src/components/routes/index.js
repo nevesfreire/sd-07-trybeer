@@ -6,12 +6,9 @@ import ClientProfilePage from '../../pages/ClientProfile';
 import AdminProfilePage from '../../pages/AdminProfile';
 import Products from '../../pages/Products';
 import AdminHome from '../../pages/AdminHome';
-<<<<<<< HEAD
 import ClientOrdersPage from '../../pages/ClientOrders';
 import ClientOrderDetailsPage from '../../pages/ClientOrderDetails';
-=======
 import Checkout from '../../pages/Checkout';
->>>>>>> 29d38c8cb803070a1dd5330b743d2cd8e7b2997e
 
 function AppRoutes() {
   return (
