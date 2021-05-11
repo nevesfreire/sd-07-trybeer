@@ -28,31 +28,33 @@ function Products() {
       {
         loading
           ? <Loading />
-          : <div>
-            {
-              products
-                .map((product, index) => {
-                  const alterSnakeCase = product.url_image;
-                  product.urlImage = alterSnakeCase;
-                  return <ProductCard key={ index } item={ product } index={ index } />;
-                })
-            }
-            <button
-              type="button"
-              data-testid="checkout-bottom-btn"
-              onClick={ () => history.push('/checkout') }
-              disabled
-            >
-
-              Ver Carrinho
-              <br />
-              <span
-                data-testid="checkout-bottom-btn-value"
+          : (
+            <div>
+              {
+                products
+                  .map((product, index) => {
+                    const alterSnakeCase = product.url_image;
+                    product.urlImage = alterSnakeCase;
+                    return <ProductCard key={ index } item={ product } index={ index } />;
+                  })
+              }
+              <button
+                type="button"
+                data-testid="checkout-bottom-btn"
+                onClick={ () => history.push('/checkout') }
+                disabled
               >
-                R$ 00000
-              </span>
-            </button>
-          </div>
+
+                Ver Carrinho
+                <br />
+                <span
+                  data-testid="checkout-bottom-btn-value"
+                >
+                  R$ 00000
+                </span>
+              </button>
+            </div>
+          )
       }
     </div>
   );
