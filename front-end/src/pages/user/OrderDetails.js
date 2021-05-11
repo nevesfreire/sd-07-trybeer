@@ -11,7 +11,6 @@ function OrderDetails() {
   const [order, setOrder] = useState([]);
   // Referência: live lectures esquenta para Trybeer
   const { id } = useParams();
-  console.log(id);
 
   const history = useHistory();
   useEffect(() => {
@@ -44,6 +43,14 @@ function OrderDetails() {
       * Number(actual.quantity)) + totalItem, 0);
     setTotal(sumProduct);
   }, [order]);
+  function adicionaZero(numero) {
+    if (numero <= NINEAdicionaZero) return `0${numero}`;
+    return numero;
+  }
+  const date = new Date(order[0].sale_date);
+  const day = adicionaZero(date.getUTCDate());
+  const month = adicionaZero(date.getUTCMonth() + 1);
+  const orderDate = `${day}/${month}`;
   // Referência:requisito 12 feito por Luise
   return (
     <div>
@@ -56,7 +63,7 @@ function OrderDetails() {
               {`Pedido ${order[0] && order[0].sale_id} - `}
             </span>
             <span data-testid="order-date">
-              {order.sale_date}
+              {orderDate}
             </span>
             { order.map((product, index) => (
               <div key={ index }>
