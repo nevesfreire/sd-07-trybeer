@@ -92,7 +92,7 @@ function AdminOrdersId() {
               type="button"
               onClick={ () => handleClick() }
               hidden={ hidden }
-              className="checkout-button"
+              className={ status === 'Pendente' && 'checkout-button' }
             >
               Marcar como entregue
             </button>
