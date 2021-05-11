@@ -52,7 +52,7 @@ function ProductCard({ product }) {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     price: PropTypes.string,
     name: PropTypes.string,
     url_image: PropTypes.string,

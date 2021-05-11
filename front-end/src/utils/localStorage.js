@@ -2,10 +2,9 @@ const setToLocalStorage = (key, payload) => {
   localStorage.setItem(key, JSON.stringify(payload));
 };
 
-const getToLocalStorage = (key) => JSON.parse(localStorage.getItem(key));
-
-// const setToLocalStorageShopCart = (shopCart) =>
-//   localStorage.setItem('shopCart', JSON.stringify(shopCart));
+const getToLocalStorage = (key) => {
+  return JSON.parse(localStorage.getItem(key));
+};
 
 const getToLocalStorageShopCart = () => {
   const shopCart = JSON.parse(localStorage.getItem('shopCart'));
