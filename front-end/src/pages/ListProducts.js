@@ -24,12 +24,11 @@ function Products() {
       (acc, value) => (
         acc + (parseFloat(cart[value].item.price)) * (cart[value].quantity)
       ), 0,
-    ): 0;
+    ) : 0;
 
   useEffect(() => {
     requestProducts();
   }, [requestProducts]);
-
 
   return (
     <div>
