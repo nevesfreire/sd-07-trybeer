@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-// import TrybeerContext from '../store/context';
+import TrybeerContext from '../store/context';
 import { ProductCard, Loading } from '../components';
 import { getProducts } from '../api';
 import acessLocalStorage from '../services';
@@ -10,7 +10,7 @@ function Products() {
   const [products, setproducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const history = useHistory();
-  // const { cart, setCart, addProductsToCart } = useContext(TrybeerContext);
+  const { cart } = useContext(TrybeerContext);
 
   const requestProducts = useCallback(async () => {
     const user = await acessLocalStorage.acessLocalStorage.getUserLocalStorage();
@@ -19,40 +19,50 @@ function Products() {
     if (resultApi) setLoading(false);
   }, [setproducts]);
 
+  const sumItens = Object.keys(cart)
+    .reduce(
+      (acc, value) => (
+        acc + (parseFloat(cart[value].item.price)) * (cart[value].quantity)
+      ), 0,
+    );
+
   useEffect(() => {
     requestProducts();
   }, [requestProducts]);
 
+  console.log(Object.values(cart));
   return (
     <div>
+      <pre>{JSON.stringify(cart, null, 2)}</pre>
       {
         loading
           ? <Loading />
-          : <div>
-            {
-              products
-                .map((product, index) => {
-                  const alterSnakeCase = product.url_image;
-                  product.urlImage = alterSnakeCase;
-                  return <ProductCard key={ index } item={ product } index={ index } />;
-                })
-            }
-            <button
-              type="button"
-              data-testid="checkout-bottom-btn"
-              onClick={ () => history.push('/checkout') }
-              disabled
-            >
-
-              Ver Carrinho
-              <br />
-              <span
-                data-testid="checkout-bottom-btn-value"
+          : (
+            <>
+              {
+                products
+                  .map((product, index) => {
+                    const alterSnakeCase = product.url_image;
+                    product.urlImage = alterSnakeCase;
+                    return <ProductCard key={ index } item={ product } index={ index } />;
+                  })
+              }
+              <button
+                type="button"
+                data-testid="checkout-bottom-btn"
+                onClick={ () => history.push('/checkout') }
               >
-                R$ 00000
-              </span>
-            </button>
-          </div>
+
+                Ver Carrinho
+                <br />
+                <span
+                  data-testid="checkout-bottom-btn-value"
+                >
+                  {`R$ ${(sumItens).toFixed(2)}`}
+                </span>
+              </button>
+            </>
+          )
       }
     </div>
   );

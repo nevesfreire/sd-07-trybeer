@@ -6,19 +6,26 @@ import { Button, Card, Media, Image, Heading } from 'react-bulma-components';
 import TrybeerContext from '../store/context';
 
 function ProductCard({ item, index }) {
-  const { addProductsToCart } = useContext(TrybeerContext);
+  const cart = useContext(TrybeerContext);
   const { name, urlImage } = item;
   let { price } = item;
   price = price.split('.').join(',');
   const [qtt, setQtt] = useState(0);
 
-  const sumQtt = (element) => {
+  const add = () => {
+    cart.addToCart(item);
     setQtt(qtt + 1);
-    addProductsToCart(element, { qtt: qtt + 1 });
   };
+  /*   const sumQtt = (element) => {
+      setQtt(qtt + 1);
+      addProductsToCart(element, { qtt: qtt + 1 });
+    }; */
   const subQtt = () => {
     const zero = 0;
-    if (qtt > zero) setQtt(qtt - 1);
+    if (qtt > zero) {
+      setQtt(qtt - 1);
+      cart.removeToCart(item);
+    }
   };
 
   return (
@@ -38,23 +45,23 @@ function ProductCard({ item, index }) {
               data-testid={ `${index}-product-name` }
               size={ 4 }
             >
-              { name }
+              {name}
             </Heading>
             <Heading subtitle size={ 6 } data-testid={ `${index}-product-price` }>
-              { `R$ ${price}` }
+              {`R$ ${price}`}
             </Heading>
           </Media.Item>
         </Card.Content>
         <Button
           data-testid={ `${index}-product-plus` }
-          onClick={ () => sumQtt(item) }
+          onClick={ () => add() }
         >
           <FontAwesomeIcon icon={ faPlus } fixedWidth />
         </Button>
         <div
           data-testid={ `${index}-product-qtd` }
         >
-          { qtt }
+          {qtt}
         </div>
         <Button
           data-testid={ `${index}-product-minus` }
