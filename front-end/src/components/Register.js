@@ -133,7 +133,9 @@ const ComponentRegister = () => {
       </div>
       <div className="success-message">
         {
-          !user.status ? user.messageFailed : user.messageSuccess
+          !user.status
+            ? <p>Já existe um usuário com esse e-mail.</p>
+            : user.messageSuccess
         }
       </div>
 
