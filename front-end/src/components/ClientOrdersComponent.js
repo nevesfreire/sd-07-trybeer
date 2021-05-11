@@ -10,31 +10,38 @@ import * as API from '../helpers/apiHelper';
 import * as STORAGE from '../helpers/localStorageHelper';
 
 function ClientOrdersComponent() {
-  const [sales, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [userSales, setUserSales] = useState([]);
 
   useEffect(() => {
-    API.fetchOrders().then((data) => {
-      setOrders(data.sales);
-      setIsLoading(false);
-    });
+    if (STORAGE.getUser() !== null) {
+      const { id } = STORAGE.getUser();
+      const filterUserSales = (allSales) => allSales.filter(
+        (sale) => sale.userId !== id,
+      );
+      API.fetchOrders().then((salesResponse) => {
+        setUserSales(filterUserSales(salesResponse));
+        setIsLoading(false);
+      });
+    }
   }, []);
 
-  const rendersalesList = () => sales.map((sale) => (
-    <OrderCardComponent key={ sale.id } sale={ sale } />
-  ));
-
   const renderLoading = () => <h1>LOADING...</h1>;
-
   if (STORAGE.getUser() === null) return <Redirect to="/login" />;
+  if (!isLoading) {
+    const rendersalesList = () => userSales.map((sale) => (
+      <OrderCardComponent key={ sale.id } sale={ sale } />
+    ));
 
-  return (
-    <Sidebar.Pusher>
-      <Segment basic>
-        {isLoading ? renderLoading() : rendersalesList()}
-      </Segment>
-    </Sidebar.Pusher>
-  );
+    return (
+      <Sidebar.Pusher>
+        <Segment basic>
+          { rendersalesList() }
+        </Segment>
+      </Sidebar.Pusher>
+    );
+  }
+  return renderLoading();
 }
 
 export default ClientOrdersComponent;

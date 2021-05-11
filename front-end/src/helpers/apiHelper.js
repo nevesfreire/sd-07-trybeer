@@ -71,8 +71,8 @@ export async function fetchProducts() {
   return data;
 }
 
-export async function fetchOrders(id) {
-  const endpoint = id ? 'http://localhost:3001/sales' : `http://localhost:3001/sales${id}`;
+export async function fetchOrders() {
+  const endpoint = 'http://localhost:3001/sales';
   const { token } = getUser();
   const request = {
     method: 'GET',
