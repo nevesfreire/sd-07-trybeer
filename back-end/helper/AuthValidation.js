@@ -23,6 +23,20 @@ const generateToken = (dataUser) => {
   return jwt.sign(payload, SECRET, jwtConfig);
 };
 
+// const verifyToken = (token) => {
+//   try {
+//     const payload = jwt.verify(token, SECRET);
+//     return { payload };
+//   } catch (error) {
+//     console.log('verifyToken error', error.name);
+//     let errorMessage = error.message;
+//     if (error.name === 'TokenExpiredError') errorMessage = 'Token expirado!';
+//     if (error.name === 'JsonWebTokenError') errorMessage = 'Token inválido!';
+//     console.log('Depois verifyToken error', errorMessage);
+//     return { message: errorMessage };
+//   }
+// };
+
 const verifyToken = (token) => {
   try {
     const payload = jwt.verify(token, SECRET);

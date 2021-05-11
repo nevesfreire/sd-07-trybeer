@@ -7,7 +7,7 @@ const create = async (name, email, password, role) => {
 };
 
 const findByEmail = async (email) => {
-  const query = 'SELECT name, email, role FROM users WHERE email=?';
+  const query = 'SELECT id, name, email, role FROM users WHERE email=?';
   const values = [email];
   const [user] = await conn.execute(query, values);
   console.log('model user', user);

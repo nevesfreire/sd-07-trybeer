@@ -16,6 +16,8 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
+app.use('/images', express.static(`${__dirname}/images`));
+
 app.use('/', routes);
 
 app.use(errorController);
