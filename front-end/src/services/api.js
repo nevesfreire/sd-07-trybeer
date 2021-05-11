@@ -77,3 +77,13 @@ export async function fetchFinishSale(cartList, address, totalPrice) {
   });
   return true;
 }
+
+export async function updateOrderById(id) {
+  const loggedUser = JSON.parse(localStorage.getItem('user'));
+
+  await fetch(`http://localhost:3001/sales/${id}`, {
+    method: 'PUT',
+    headers: { ...headers, Authorization: loggedUser.token },
+  });
+  return true;
+}
