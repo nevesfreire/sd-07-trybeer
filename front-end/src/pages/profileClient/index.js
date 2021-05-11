@@ -5,7 +5,7 @@ import TopMenu from '../../components/Header';
 import { updateClient } from '../../service/trybeerApi';
 
 export default function ProfileClient() {
-  const data = JSON.parse(localStorage.getItem('user'));
+  const data = JSON.parse(localStorage.getItem('user')) || { name: '', email: '' };
   const [text, setText] = useState();
   const [profileInfo, setProfileInfo] = useState({
     name: data.name,
