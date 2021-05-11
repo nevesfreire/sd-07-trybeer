@@ -6,7 +6,7 @@ import { BeerContext } from '../../context';
 
 export default function ProductCard(props) {
   const { product, index } = props;
-  const { name, price } = product;
+  const { id, name, price } = product;
   const imageSrc = product.url_image;
 
   const [quantity, setQuantity] = useState(0);
@@ -28,7 +28,10 @@ export default function ProductCard(props) {
   const changeProductQuantity = () => {
     const updatedCart = productsCart.map((p) => {
       if (p.name === name) {
-        return { name, quantity, totalPrice: (parseFloat(price) * quantity).toFixed(2) };
+        return { id,
+          name,
+          quantity,
+          totalPrice: (parseFloat(price) * quantity).toFixed(2) };
       } return p;
     });
     setProductsCart(updatedCart);
@@ -39,7 +42,7 @@ export default function ProductCard(props) {
     if (buttonClicked === 'plus') {
       if (!productIsInTheCart()) {
         setProductsCart(
-          [...productsCart, { name, quantity, totalPrice: parseFloat(price) }],
+          [...productsCart, { id, name, quantity, totalPrice: parseFloat(price) }],
         );
         localStorage.setItem('cart',
           JSON.stringify([...productsCart,
@@ -142,6 +145,7 @@ export default function ProductCard(props) {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     url_image: PropTypes.string.isRequired,
