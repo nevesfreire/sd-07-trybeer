@@ -10,7 +10,7 @@ const ClientOrdersPage = () => {
   return (
     <MainDiv>
       <MenuBurger />
-      <H1 data-testid="top-title">Meus pedidos</H1>
+      <H1 data-testid="top-title">Meus Pedidos</H1>
       <FormWrapper>
         <ClientOrders />
       </FormWrapper>

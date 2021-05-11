@@ -38,10 +38,18 @@ const getUserSalesInfo = (token) => fetch('http://localhost:3001/sales/users', {
   .then((response) => response.json())
   .catch((error) => console.log(error));
 
+const getUserSaleDetails = (token) => fetch(`http://localhost:3001/sales/users/${saleId}`, {
+  method: 'GET',
+  headers: { ...contentType, authorization: token },
+})
+  .then((response) => response.json())
+  .catch((error) => console.log(error));
+
 export {
   userLogin,
   registerUser,
   updateUser,
   getProducts,
   getUserSalesInfo,
+  getUserSaleDetails
 };
