@@ -18,8 +18,8 @@ function AppRoutes() {
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/profile" component={ ClientProfilePage } />
-      <Route exact path="/orders" component={ ClientOrdersPage } />
       <Route path="/orders/:id" component={ ClientOrderDetailsPage } />
+      <Route exact path="/orders" component={ ClientOrdersPage } />
       <Route path="/admin/profile" component={ AdminProfilePage } />
       <Route path="/products" component={ Products } />
       <Route path="/admin/orders" component={ AdminHome } />
