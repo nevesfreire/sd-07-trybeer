@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { Button, Form, Container } from 'react-bootstrap';
 import TopBar from '../../Components/TopBar';
 import verifyUserLocalStorage from '../../util/changeLocalStorage';
 import { updateNameUser } from '../../servicesAPI/api';
-import { Button, Form, Container } from 'react-bootstrap';
 
 const ClientProfile = () => {
   const [user, setUser] = useState({ name: '', email: '' });

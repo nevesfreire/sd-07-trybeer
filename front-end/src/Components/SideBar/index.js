@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 import propTypes from 'prop-types';
 import verifyUserLocalStorage from '../../util/changeLocalStorage';
+import './index.css';
 
 export default function SideBar({ role }) {
   const history = useHistory();
@@ -17,42 +18,46 @@ export default function SideBar({ role }) {
 
   if (role === 'administrator') {
     return (
-      <div data-testid="side-bar-container" className="side-bar-container">
-        <Link data-testid="side-menu-item-orders" to="/admin/orders">
+      <Nav
+        fixed="left"
+        data-testid="side-bar-container"
+        className="side-menu-container flex-column"
+      >
+        <Nav.Link data-testid="side-menu-item-orders" href="/admin/orders">
           Pedidos
-        </Link>
-        <Link data-testid="side-menu-item-profile" to="/admin/profile">
+        </Nav.Link>
+        <Nav.Link data-testid="side-menu-item-profile" href="/admin/profile">
           Perfil
-        </Link>
-        <Link
+        </Nav.Link>
+        <Nav.Link
           data-testid="side-menu-item-logout"
-          to="/login"
+          href="/login"
           onClick={ () => localStorage.clear() }
         >
           Sair
-        </Link>
-      </div>
+        </Nav.Link>
+      </Nav>
     );
   }
   return (
-    <div data-testid="side-menu-container" className="side-menu-container">
-      <Link data-testid="side-menu-item-products" to="/products">
+    <Nav data-testid="side-menu-container" className="side-menu-container flex-column">
+      <Nav.Link data-testid="side-menu-item-products" href="/products">
         Produtos
-      </Link>
-      <Link data-testid="side-menu-item-my-orders" to="/orders">
+      </Nav.Link>
+      <Nav.Link data-testid="side-menu-item-my-orders" href="/orders">
         Meus pedidos
-      </Link>
-      <Link data-testid="side-menu-item-my-profile" to="/profile">
+      </Nav.Link>
+      <Nav.Link data-testid="side-menu-item-my-profile" href="/profile">
         Meu Perfil
-      </Link>
-      <Link
+      </Nav.Link>
+      <Nav.Link
         data-testid="side-menu-item-logout"
-        to="/login"
+        href="/login"
         onClick={ () => localStorage.clear() }
       >
         Sair
-      </Link>
-    </div>
+      </Nav.Link>
+    </Nav>
   );
 }
 

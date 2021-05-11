@@ -1,0 +1,9 @@
+.side-menu-container {
+  background-color: whitesmoke;
+  height: 100%;
+  left: 0;
+  margin-top: 78px;
+  position: fixed;
+  width: 20%;
+  z-index: 1;
+}

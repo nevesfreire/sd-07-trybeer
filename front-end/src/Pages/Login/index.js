@@ -35,23 +35,22 @@ export default function Login() {
       <Form>
         <Form.Group>
           <Form.Label>Email</Form.Label>
-            <Form.Control
-              id="email"
-              onChange={ (e) => setEmail(e.target.value) }
-              type="email"
-              data-testid="email-input"
-              placeholder="Email"
-            />
+          <Form.Control
+            id="email"
+            onChange={ (e) => setEmail(e.target.value) }
+            type="email"
+            data-testid="email-input"
+            placeholder="Email"
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label>Senha</Form.Label>
-            <Form.Control
-              onChange={ (e) => setPassword(e.target.value) }
-              type="password"
-              data-testid="password-input"
-              placeholder="Senha"
-            />
-         
+          <Form.Control
+            onChange={ (e) => setPassword(e.target.value) }
+            type="password"
+            data-testid="password-input"
+            placeholder="Senha"
+          />
         </Form.Group>
         <Button
           data-testid="signin-btn"
