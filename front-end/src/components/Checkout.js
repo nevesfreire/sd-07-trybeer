@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { fetchFinishSale } from '../services/api';
+import Details from './Details';
 
 function Checkout() {
   const twoSeconds = 2000;
@@ -66,44 +67,8 @@ function Checkout() {
         ? (<h3>Não há produtos no carrinho</h3>)
         : productList
           .map((item, index) => (
-            <div
-              key={ index }
-            >
-              <p
-                data-testid={ `${index}-product-qtd-input` }
-              >
-                {item.quantity}
-              </p>
-              <p
-                data-testid={ `${index}-product-name` }
-              >
-                {item.name}
-              </p>
-              Subtotal:
-              <p
-                data-testid={ `${index}-product-total-value` }
-              >
-                R$
-                {' '}
-                {
-                  (parseFloat(item.price) * parseFloat(item.quantity))
-                    .toFixed(2)
-                    .toString()
-                    .replace('.', ',')
-                }
-              </p>
-              Unidade:
-              <p
-                data-testid={ `${index}-product-unit-price` }
-              >
-                { `(R$ ${item.price.replace('.', ',')} un)` }
-              </p>
-
-              <p
-                data-testid={ `${index}-product-qtd` }
-              >
-                {item.quantity}
-              </p>
+            <div>
+              <Details item={item} index={index} />
               <button
                 type="button"
                 data-testid={ `${index}-removal-button` }

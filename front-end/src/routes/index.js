@@ -8,6 +8,7 @@ import ClientOrdersPage from '../pages/ClientOrdersPage';
 import AdminOrdersPage from '../pages/AdminOrdersPage';
 import CheckoutPage from '../pages/CheckoutPage';
 import HomePage from '../pages/HomePage';
+import DetailsPage from '../pages/DetailsPage';
 
 const Routes = () => (
   <BrowserRouter>
@@ -18,6 +19,7 @@ const Routes = () => (
     <Route exact path="/orders" component={ ClientOrdersPage } />
     <Route exact path="/admin/orders" component={ AdminOrdersPage } />
     <Route exact path="/checkout" component={ CheckoutPage } />
+    <Route exact path="/orders/:id" component={ DetailsPage } />
     <Route exact path="/" component={ HomePage } />
   </BrowserRouter>
 );
