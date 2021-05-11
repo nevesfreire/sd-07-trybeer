@@ -33,8 +33,9 @@ const getFormatedDate = () => {
   return `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
 };
 
-const checkoutServ = async (body) => {
+const checkoutServ = async (body, user) => {
   try {
+    console.log(user)
     const { sale, productsList } = body;
     if (!validateSale(sale)) return statusMsgMap.allFieldsMustBeFilled;
     const productsIds = productsList.map((p) => p.productId);
