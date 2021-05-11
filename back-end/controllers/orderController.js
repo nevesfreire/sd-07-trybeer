@@ -33,14 +33,14 @@ const getOrderDetails = async (request, response) => {
 
 const getOrderDetailsAdmin = async (request, response) => {
   try {
+    const { authorization } = request.headers;
     const { id } = request.params;
-    const result = await orderServices.getOrderDetails(id);
+    const result = await orderServices.getOrderDetailsAdmin(authorization, id);
     response.status(STATUS_CODE.SUCCESS).json(result);
   } catch (error) {
-    console.log('entrou aqui')
     response.status(error.status).json({ message: error.message });
   }
-}
+};
 
 const changeStatus = async (request, response) => {
   try {

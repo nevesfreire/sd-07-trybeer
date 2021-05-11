@@ -30,6 +30,13 @@ const getOrderDetails = async (id) => {
   return result;
 };
 
+const getOrderDetailsAdmin = async (token, id) => {
+  const decodedToken = decodeToken.decode(token);
+  validationsHelper.checkIsAdmin(decodedToken.role);
+  const result = await orderModels.getOrderDetails(id);
+  return result;
+};
+
 const changeStatus = async (id, situation, token) => {
   const decodedToken = decodeToken.decode(token);
   validationsHelper.checkIsAdmin(decodedToken.role);
@@ -42,4 +49,5 @@ module.exports = {
   getOrdersAdmin,
   getOrderDetails,
   changeStatus,
+  getOrderDetailsAdmin,
 };
