@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { ViewCart, CardButtons } from '../components';
 import TopBar from '../components/menuSideBar/Menu';
-import { GlobalContext, actionType, fetchProducts } from '../services';
+import { GlobalContext, actionType, fetchProducts, fetchMapImages } from '../services';
 
 export default function Products() {
   const { productsDispatch, productState } = useContext(GlobalContext);
@@ -10,6 +10,7 @@ export default function Products() {
     fetchProducts().then(({ products }) => {
       productsDispatch({ type: actionType.REQUEST_PRODUCTS, payload: products });
     });
+    fetchMapImages().then(result => console.log(result));
   }, [productsDispatch]);
 
   return (
