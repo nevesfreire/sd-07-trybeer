@@ -55,7 +55,7 @@ export default function ProductsList() {
   console.log('renderizou de novo');
 
   return (
-    <div style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
+    <div style={ { display: 'flex', flexDirection: 'row', alignItems: 'center' } }>
       { !products ? <p>Loading...</p>
         : products.map((item, index) => (
           <div key={ item.id }>
@@ -68,6 +68,7 @@ export default function ProductsList() {
             <p data-testid={ `${index}-product-name` }>{item.name}</p>
             <p data-testid={ `${index}-product-price` }>
               R$
+              {' '}
               {item.price.replace('.', ',')}
             </p>
             <button
