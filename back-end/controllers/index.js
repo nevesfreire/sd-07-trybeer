@@ -5,6 +5,7 @@ const productCtrl = require('./productCtrl');
 const updateUser = require('./updateUser');
 const allOrders = require('./allOrders');
 const orderDetails = require('./orderDetails');
+const salesCtrl = require('./salesCtrl');
 
 module.exports = {
   checkoutCtrl,
@@ -14,4 +15,5 @@ module.exports = {
   updateUser,
   allOrders,
   orderDetails,
+  salesCtrl,
 };

@@ -89,6 +89,17 @@ async function getOrderDetailsById(token, id) {
   return axios.request(options)
     .then((response) => response.data).catch((error) => error.response.data);
 }
+async function fetchOrders(token) {
+  const response = await (await fetch(`${endpoint}/admin/orders`, {
+    method: 'GET',
+    headers: {
+      ...headers,
+      Authorization: token,
+    },
+  })).json();
+
+  return response;
+}
 
 export default {
   getProducts,
@@ -98,4 +109,5 @@ export default {
   updateUser,
   getAllOrders,
   getOrderDetailsById,
+  fetchOrders,
 };

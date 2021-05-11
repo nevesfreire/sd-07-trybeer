@@ -3,13 +3,16 @@ const { resolve } = require('path');
 const express = require('express');
 const cors = require('cors');
 
-const { CheckoutRoute,
+const {
+  CheckoutRoute,
   RegisterRoute,
   loginRoute,
   updateUser,
   orderDetails,
   allOrders,
   ProductsRoute,
+  SalesRoute,
+
 } = require('./routes');
 
 const port = process.env.PORT || 3001;
@@ -27,6 +30,7 @@ app.use('/products', ProductsRoute);
 app.use('/profile', updateUser);
 app.use('/orders', allOrders);
 app.use('/orders', orderDetails);
+app.use('/admin/orders', SalesRoute);
 
 app.listen(port, () => {
   console.log(`Server inicializado na porta ${port}`);

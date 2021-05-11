@@ -1,6 +1,5 @@
-const { getProductsData,
-  registerPurchase,
-  registerPurchaseProducts } = require('../models/productModels');
+const { getProductsData } = require('../models/productModels');
+const { registerPurchase, registerPurchaseProducts } = require('../models/salesModels');
 const statusMsgMap = require('./dictionaries/statusMsgMap');
 
 const preCheckFields = (requiredFields, inputs) => {
@@ -39,7 +38,7 @@ const formatInfo = (pdts, { userId, street, houseNumber, totalPrice }) => {
     userId,
     deliveryAddress: street,
     deliveryNumber: houseNumber,
-    status: status || 'pendente',
+    status: status || 'Pendente',
     totalPrice,
     trustedDate,
   };

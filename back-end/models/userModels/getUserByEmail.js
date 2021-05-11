@@ -7,8 +7,7 @@ const getUserByEmail = async (email) => {
       if (user === undefined) return null;
     return user;
   } catch (err) {
-    console.log(err);
-    return err;
+    return { err };
   }
 };
 
