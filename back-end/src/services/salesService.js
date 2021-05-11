@@ -29,20 +29,17 @@ const getSaleById = async (id) => {
   }
 };
 
-const createSale = async (
-  userId,
-  totalPrice,
-  deliveryAddress,
-  deliveryNumber,
-) => {
+const createSale = async (userId, totalPrice, delivery, cart) => {
   try {
+    const { deliveryAddress, deliveryNumber } = delivery;
+
     verifyEntries(userId, totalPrice, deliveryAddress, deliveryNumber);
 
     const newSale = await salesModel.createSale(
       userId,
       totalPrice,
-      deliveryAddress,
-      deliveryNumber,
+      { deliveryAddress, deliveryNumber },
+      cart,
     );
     return newSale;
   } catch (error) {
