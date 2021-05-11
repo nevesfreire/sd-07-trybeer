@@ -1,6 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Register, Orders, Profile, Products } from '../pages';
+import {
+  Login,
+  Register,
+  Orders,
+  Profile,
+  Products,
+  AdminOrders,
+  AdminProducts,
+} from '../pages';
 
 const Routes = () => (
   <Router>
@@ -13,6 +21,8 @@ const Routes = () => (
       <Route exact path="/orders" component={ Orders } />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/products" component={ Products } />
+      <Route exact path="/admin/orders" component={ AdminOrders } />
+      <Route exact path="/admin/products" component={ AdminProducts } />
     </Switch>
   </Router>
 );
