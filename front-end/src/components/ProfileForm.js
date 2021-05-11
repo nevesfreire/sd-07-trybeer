@@ -6,10 +6,8 @@ import { updateUser } from '../api';
 const { Input, Field, Control, Label } = Form;
 
 function ProfileForm() {
-
   const [inputName, setInputName] = useState('');
   const [notification, setNotification] = useState(true);
-  const errorCode = 400;
 
   const { email, name, role, token } = services.getUserLocalStorage();
 
@@ -17,34 +15,33 @@ function ProfileForm() {
     const newUser = {
       email,
       name: inputName,
-      role,      
+      role,
       token,
     };
-    await updateUser({ name: inputName, email})
-    services.setUserLocalStorage(newUser); 
-    setNotification(false);        
-    }      
-  
+    await updateUser({ name: inputName, email });
+    services.setUserLocalStorage(newUser);
+    setNotification(false);
+  };
 
   return (
     <>
-    <h1
+      <h1
         data-testid="top-title"
       >
         Meu perfil
       </h1>
-    <div
+      <div
         hidden={ notification }
       >
         <p>
-        Atualização concluída com sucesso
+          Atualização concluída com sucesso
           <Button
             remove
             onClick={ () => setNotification(true) }
           />
         </p>
       </div>
-    <Field>
+      <Field>
         <Label>
           Nome
         </Label>

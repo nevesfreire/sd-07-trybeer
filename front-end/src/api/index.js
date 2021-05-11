@@ -33,7 +33,6 @@ async function getProducts(token) {
   }
 }
 
-
 async function updateUser(userData) {
   console.log(userData);
   try {
@@ -43,6 +42,5 @@ async function updateUser(userData) {
     return error.response.status;
   }
 }
-
 
 export { requestToken, registerUser, getProducts, updateUser };
