@@ -5,7 +5,7 @@ import { MainDiv, FormWrapper, H1 } from './styles';
 import AuthVerification from '../../components/AuthVerification';
 
 const ClientOrderDetailsPage = () => {
-  AuthVerification()
+  AuthVerification();
 
   return (
     <MainDiv>
@@ -15,7 +15,7 @@ const ClientOrderDetailsPage = () => {
         <ClientOrderDetails />
       </FormWrapper>
     </MainDiv>
-  )
+  );
 };
 
 export default ClientOrderDetailsPage;

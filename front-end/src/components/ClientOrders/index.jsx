@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getUserSalesInfo } from '../../services/apiService';
+// import { DivOrder } from './styles';
 
 export default function ClientOrders() {
   const [userSales, setUserSales] = useState(null);
@@ -12,7 +13,7 @@ export default function ClientOrders() {
       if (!currentUser) return null;
       const response = await getUserSalesInfo(currentUser.token)
         .then((apiResponse) => apiResponse);
-      console.log(response)
+      console.log(response);
       if (response && Object.values(response).length > 0) {
         return setUserSales(response);
       }
@@ -25,13 +26,17 @@ export default function ClientOrders() {
       { !userSales ? <p>Loading...</p>
         : userSales.map((item, index) => (
           <div
-            data-testid={`${index}-order-card-container}`}
+            type="button"
+            data-testid={ `${index}-order-card-container}` }
             key={ item.saleId }
             onClick={ () => history.push(`/orders/${item.saleId}`) }
+            role="button"
+            onKeyDown={ () => history.push(`/orders/${item.saleId}`) }
+            tabIndex={ 0 }
           >
-              <p data-testid={`${index}-order-number`}>{item.saleId}</p>
-              <p data-testid={`${index}-order-date`}>{item.saleDate}</p>
-              <p data-testid={`${index}-order-total-value`}>{item.totalPrice}</p>
+            <p data-testid={ `${index}-order-number` }>{item.saleId}</p>
+            <p data-testid={ `${index}-order-date` }>{item.saleDate}</p>
+            <p data-testid={ `${index}-order-total-value` }>{item.totalPrice}</p>
           </div>
         ))}
     </div>

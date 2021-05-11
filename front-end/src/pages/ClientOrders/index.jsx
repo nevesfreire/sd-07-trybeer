@@ -15,7 +15,7 @@ const ClientOrdersPage = () => {
         <ClientOrders />
       </FormWrapper>
     </MainDiv>
-  )
+  );
 };
 
 export default ClientOrdersPage;

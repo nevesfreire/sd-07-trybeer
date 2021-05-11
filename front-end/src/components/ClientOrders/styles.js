@@ -47,3 +47,8 @@ export const Button = styled.button`
 export const Span = styled.span`
   justify-self: flex-start;
 `;
+
+export const DivOrder = styled.div`
+  padding: 20px;
+  border: solid black 1px;
+`;
