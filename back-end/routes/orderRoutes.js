@@ -10,6 +10,8 @@ router.get('/admin/orders', authMiddleware.checkIfUserIsAuthenticated,
   orderController.getOrdersAdmin);
 router.get('/orders/:id', authMiddleware.checkIfUserIsAuthenticated,
   orderController.getOrderDetails);
+router.get('/admin/orders/:id', authMiddleware.checkIfUserIsAuthenticated,
+  orderController.getOrderDetailsAdmin);
 router.put('/orders/status', authMiddleware.checkIfUserIsAuthenticated,
   orderController.changeStatus);
 
