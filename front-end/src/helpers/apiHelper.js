@@ -95,6 +95,30 @@ export async function fetchOrders() {
   }
 }
 
+export async function fetchOrderById(id) {
+  const endpoint = `http://localhost:3001/sales/${id}`;
+  const { token } = getUser();
+  const request = {
+    method: 'GET',
+    headers: {
+      'Content-type': applicationType,
+      Authorization: token,
+    },
+  };
+  try {
+    const response = await fetch(endpoint, request);
+    const responseJson = await response.json();
+    const { sale } = responseJson;
+
+    if (sale) {
+      return sale;
+    }
+    return responseJson.message;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function fetchImage(name) {
   const endpoint = `http://localhost:3001/images/${name.replace('250', '350')}`;
   const response = await fetch(endpoint);
