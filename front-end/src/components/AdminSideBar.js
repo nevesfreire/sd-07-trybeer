@@ -7,7 +7,7 @@ function SideBar() {
     <aside className="admin-side-bar-container">
       <button
         type="button"
-        data-testid="side-menu-item-products"
+        data-testid="side-menu-item-orders"
         onClick={ () => history.push('/admin/orders') }
       >
         Pedidos
