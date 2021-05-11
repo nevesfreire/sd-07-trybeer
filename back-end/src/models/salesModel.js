@@ -16,7 +16,7 @@ const getSaleById = async (id) => {
   ON sp.sale_id = s.id
   WHERE sp.sale_id = ?;`;
 
-  const [[sale]] = await connection.execute(query, [id]);
+  const [sale] = await connection.execute(query, [id]);
 
   return sale;
 };
