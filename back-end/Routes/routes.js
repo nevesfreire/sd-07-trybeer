@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require('../controllers/usersControllers');
 const productController = require('../controllers/productController');
+const salesController = require('../controllers/salesController');
 const { loginValidationMiddleware } = require('../middlewares/loginValidation');
 const {
   registerNameEmailValidation,
@@ -20,5 +21,7 @@ router.post(
 );
 router.get('/products', productController.getAll);
 router.get('/images/:name', productController.getImageProduct);
+
+router.post('/checkout', salesController.saleRegister);
 
 module.exports = router;
