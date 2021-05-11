@@ -12,7 +12,7 @@ function TopMenu({ children }) {
       <button
         type="button"
         data-testid="top-hamburguer"
-        onClick={ () => { setShowSideBar(!showSideBar); } }
+        onClick={ () => setShowSideBar(!showSideBar) }
       >
         <img alt="hambeuger menu" src="https://img.icons8.com/ios-filled/50/000000/menu--v1.png" />
       </button>

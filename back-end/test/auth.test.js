@@ -1,106 +1,90 @@
-const frisby = require('frisby');
+let request = require('supertest');
 const messages = require('../helpers/dictonary');
+const { auth: { service, controller } } = require('../resources');
 
-const url = 'http://localhost:3001';
+describe('AUTH TEST', () => {
 
-describe('1 - Valida o endpoint para o login de usuários', () => {
+  request = request('http://localhost:3001');
 
   const users = [
     { name: 'Tryber Admin', email: 'tryber@trybe.com.br', password: '123456', role: 'administrator' },
     { name: 'testuser', email: 'user@test.com', password: 'test123', role: 'client'}
   ];
 
+  // TENTATIVA DE USAR O SUPER TEST - NÃO FINALIZADO
+  it('Testa o Controller', async (done) => {
+    request.post('/login')
+      .set('Accept', 'application/json')
+      .field('email', users[0].email)
+      .field('password', users[0].password)
+      .expect(200)
+      .then(response => {
+        assert(response.body.name, users[0].name);
+        assert(response.body.email, users[0].email);
+        assert(response.body.role, users[0].role).toBe();
+        assert(response.body.token).not.toBeNull();
+        done();
+      })
+      .catch(err => done(err))
+  });
+
+  
+
   it('Será validado que o campo "email" é obrigatório', async () => {
-    await frisby
-      .post(`${url}/login/`,
-        {
-          password: users[0].password,
-        })
-      .expect('status', 401)
-      .then((response) => {
-        const { body } = response;
-        const result = JSON.parse(body);
-        expect(result.message).toBe(messages.emailOrPasswordInvalid);
+    await service.login(undefined, users[0].password)
+      .then((result) => {
+        const { error, message } = result;
+        expect(error).toBeTruthy();
+        expect(message).toBe(messages.emailOrPasswordInvalid);
       });
   });
 
   it('Será validado que o campo "password" é obrigatório', async () => {
-    await frisby
-      .post(`${url}/login/`,
-        {
-          email: users[0].email,
-        })
-      .expect('status', 401)
-      .then((response) => {
-        const { body } = response;
-        const result = JSON.parse(body);
-        expect(result.message).toBe(messages.emailOrPasswordInvalid);
+    await service.login(users[0].email, undefined)
+      .then((result) => {
+        const { error, message } = result;
+        expect(error).toBeTruthy();
+        expect(message).toBe(messages.emailOrPasswordInvalid);
       });
   });
 
   it('Será validado que não é possível fazer login com um email inválido', async () => {
-    await frisby
-      .post(`${url}/login`,
-        {
-          email: 'emailInvalido',
-          password: users[0].password,
-        })
-      .expect('status', 401)
-      .then((response) => {
-        const { body } = response;
-        const result = JSON.parse(body);
-        expect(result.message).toBe(messages.emailOrPasswordInvalid);
+    await service.login('emailInvalido', users[0].password)
+      .then((result) => {
+        const { error, message } = result;
+        expect(error).toBeTruthy();
+        expect(message).toBe(messages.emailOrPasswordInvalid);
       });
   });
 
   it('Será validado que não é possível fazer login com uma senha inválida', async () => {
-    await frisby
-      .post(`${url}/login`,
-        {
-          email: users[0].email,
-          password: users[0].password + 'Invalid',
-        })
-      .expect('status', 401)
-      .then((response) => {
-        const { body } = response;
-        const result = JSON.parse(body);
-        expect(result.message).toBe(messages.emailOrPasswordInvalid);
+    await service.login(users[0].email, '1a')
+      .then((result) => {
+        const { error, message } = result;
+        expect(error).toBeTruthy();
+        expect(message).toBe(messages.emailOrPasswordInvalid);
       });
   });
 
   it('Será validado que é possível fazer login como admin com sucesso', async () => {
-    await frisby
-      .post(`${url}/login`,
-        {
-          email: users[0].email,
-          password: users[0].password,
-        })
-      .expect('status', 200)
-      .then((response) => {
-        const { body, json } = response;
-        const result = JSON.parse(body);
-        expect(result.name).toBe(users[0].name);
-        expect(result.email).toBe(users[0].email);
-        expect(result.role).toBe(users[0].role);
-        expect(json.token).not.toBeNull();
-      });
+    await service.login(users[0].email, users[0].password)
+    .then((result) => {
+      const { payload } = result;
+      expect(payload.name).toBe(users[0].name);
+      expect(payload.email).toBe(users[0].email);
+      expect(payload.role).toBe(users[0].role);
+      expect(payload.token).not.toBeNull();
+    });
   });
 
   it('Será validado que é possível fazer login como client com sucesso', async () => {
-    await frisby
-      .post(`${url}/login`,
-        {
-          email: users[1].email,
-          password: users[1].password,
-        })
-      .expect('status', 200)
-      .then((response) => {
-        const { body, json } = response;
-        const result = JSON.parse(body);
-        expect(result.name).toBe(users[1].name);
-        expect(result.email).toBe(users[1].email);
-        expect(result.role).toBe(users[1].role);
-        expect(json.token).not.toBeNull();
-      });
+    await service.login(users[1].email, users[1].password)
+    .then((result) => {
+      const { payload } = result;
+      expect(payload.name).toBe(users[1].name);
+      expect(payload.email).toBe(users[1].email);
+      expect(payload.role).toBe(users[1].role);
+      expect(payload.token).not.toBeNull();
+    });
   });
 });

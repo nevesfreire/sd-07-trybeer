@@ -1,3 +1,13 @@
-import TopMenu from './Header';
+import Prices from './Prices';
+import Buttons from './Buttons';
+import Images from './Images';
+import Texts from './Texts';
+import SalesCar from './SalesCar';
 
-export default TopMenu;
+export {
+  Prices,
+  Buttons,
+  Images,
+  Texts,
+  SalesCar,
+};
