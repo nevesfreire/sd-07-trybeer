@@ -4,8 +4,8 @@ import { ProfileForm, Header } from '../components';
 function ClientProfile() {
   return (
     <>
-    <Header title="Meu Perfil"/>
-    <ProfileForm />
+      <Header title="Meu Perfil" />
+      <ProfileForm />
     </>
   );
 }

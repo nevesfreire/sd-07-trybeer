@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Header } from '../components';
-
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { Header, ProductCard, Loading } from '../components';
 
 // import TrybeerContext from '../store/context';
 
-import { ProductCard, Loading } from '../components';
 import { getProducts } from '../api';
 import acessLocalStorage from '../services';
 
@@ -28,42 +26,46 @@ function Products() {
 
   return (
     <>
-    <div>
-    <Header title="TryBeer"/>
-    </div>   
-    <div>
-      {
-        loading
-          ? <Loading />
-          : (
-            <div>
-              {
-                products
-                  .map((product, index) => {
-                    const alterSnakeCase = product.url_image;
-                    product.urlImage = alterSnakeCase;
-                    return <ProductCard key={ index } item={ product } index={ index } />;
-                  })
-              }
-              <button
-                type="button"
-                data-testid="checkout-bottom-btn"
-                onClick={ () => history.push('/checkout') }
-                disabled
-              >
-
-                Ver Carrinho
-                <br />
-                <span
-                  data-testid="checkout-bottom-btn-value"
+      <div>
+        <Header title="TryBeer" />
+      </div>
+      <div>
+        {
+          loading
+            ? <Loading />
+            : (
+              <div>
+                {
+                  products
+                    .map((product, index) => {
+                      const alterSnakeCase = product.url_image;
+                      product.urlImage = alterSnakeCase;
+                      return (<ProductCard
+                        key={ index }
+                        item={ product }
+                        index={ index }
+                      />);
+                    })
+                }
+                <button
+                  type="button"
+                  data-testid="checkout-bottom-btn"
+                  onClick={ () => history.push('/checkout') }
+                  disabled
                 >
-                  R$ 00000
-                </span>
-              </button>
-            </div>
-          )
-      }     
-    </div>
+
+                  Ver Carrinho
+                  <br />
+                  <span
+                    data-testid="checkout-bottom-btn-value"
+                  >
+                    R$ 00000
+                  </span>
+                </button>
+              </div>
+            )
+        }
+      </div>
     </>
   );
 }

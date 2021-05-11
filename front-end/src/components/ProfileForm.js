@@ -23,10 +23,10 @@ function ProfileForm() {
     setNotification(false);
   };
 
-  return (    
+  return (
 
-       <div>
-         <h1 data-testid="top-title">Meu perfil</h1>      
+    <div>
+      <h1 data-testid="top-title">Meu perfil</h1>
       <Field>
         <Label>
           Nome
@@ -75,8 +75,8 @@ function ProfileForm() {
           </Button>
         </Control>
       </Field>
-      </div>
-  
+    </div>
+
   );
 }
 

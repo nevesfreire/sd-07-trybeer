@@ -3,7 +3,7 @@ import RegisterForm from './RegisterForm';
 import ProductCard from './ProductCard';
 import Loading from './Loading/Loading';
 import ProfileForm from './ProfileForm';
-import Header from './Header'
+import Header from './Header';
 
 export {
   LoginForm,
@@ -11,5 +11,5 @@ export {
   ProductCard,
   Loading,
   ProfileForm,
-  Header
+  Header,
 };
