@@ -23,6 +23,15 @@ async function registerUser(userData) {
   }
 }
 
+async function updateUser(userData) {
+  try {
+    const response = await axios.put(`${url}${register}`, userData);
+    return response;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
 async function getProducts(token) {
   try {
     const productsReceived = axios
@@ -33,4 +42,4 @@ async function getProducts(token) {
   }
 }
 
-export { requestToken, registerUser, getProducts };
+export { requestToken, registerUser, getProducts, updateUser };
