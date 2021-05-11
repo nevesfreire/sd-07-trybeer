@@ -10,4 +10,13 @@ const getAll = async () => {
   }
 };
 
-module.exports = { getAll };
+const getById = async (id) => {
+  try {
+    const sale = await salesModel.getById(id);
+    return { sale, ...OK };
+  } catch (error) {
+    return errorInDb;
+  }
+};
+
+module.exports = { getAll, getById };
