@@ -8,11 +8,12 @@ function Login() {
   const {
     email, setEmail,
     password, setPassword,
-    isDisable, setIsDisable,
     errorMessage, setErrorMessage,
     role, setRole,
   } = useContext(BeerContext);
+
   const [isLogged, setIsLogged] = useState(false);
+  const [isDisable, setIsDisable] = useState(true);
 
   const handleClick = async () => {
     const response = await loginRequest(email, password);

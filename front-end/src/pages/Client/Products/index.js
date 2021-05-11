@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import BeerContext from '../../../context/beerContext';
 import TopMenu from '../../../commons/simple/TopMenu';
@@ -9,22 +9,32 @@ function Products() {
   const {
     products, setProducts,
     isFetching, setIsFetching,
-    isDisable, setIsDisable,
     cartPreview, setCartPreview,
   } = useContext(BeerContext);
+
+  const [isDisabled, setIsDisabled] = useState(true);
+  const history = useHistory();
 
   const updateCartPreview = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     let cartSum = 0;
-    if (cart.length > 0) {
+    if (cart && cart.length > 0) {
       cart.forEach((product) => {
         cartSum += product.price * product.quantity;
       });
-      setIsDisable(false);
+      setIsDisabled(false);
     }
     setCartPreview(cartSum.toFixed(2));
   };
-  console.log(typeof cartPreview);
+
+  useEffect(() => {
+    const getToken = () => {
+      const token = localStorage.getItem('token');
+      if (!token) return history.push('/login');
+    };
+    getToken();
+  }, []);
+
   useEffect(() => {
     const renderProducts = async () => {
       const result = await getProductsRequest();
@@ -41,8 +51,6 @@ function Products() {
     renderProducts();
     setCart();
   }, [setIsFetching, setProducts]);
-
-  const history = useHistory();
 
   return (
     <>
@@ -61,7 +69,7 @@ function Products() {
       <button
         type="button"
         data-testid="checkout-bottom-btn"
-        disabled={ isDisable }
+        disabled={ isDisabled }
         onClick={ () => history.push('/checkout') }
       >
         Ver Carrinho

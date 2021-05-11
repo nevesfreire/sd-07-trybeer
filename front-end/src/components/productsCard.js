@@ -27,7 +27,7 @@ function ProductsCard(props) {
     };
     const cart = JSON.parse(localStorage.getItem('cart'));
     let thisProduct = [];
-    if (cart.length >= 1) {
+    if (cart && cart.length >= 1) {
       thisProduct = cart.filter((cartproduct) => cartproduct.id === id);
     }
     if (thisProduct.length === 0) {
@@ -48,7 +48,7 @@ function ProductsCard(props) {
   useEffect(() => {
     const getCart = () => {
       const cart = JSON.parse(localStorage.getItem('cart'));
-      if (cart.length < 1) return false;
+      if (cart && cart.length < 1) return false;
       if (!cart.includes(id)) return false;
       cart.forEach((product) => {
         if (product.id === id) {

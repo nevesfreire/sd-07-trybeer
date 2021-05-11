@@ -7,7 +7,6 @@ function Provider({ children }) {
   const [isFetching, setIsFetching] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isDisable, setIsDisable] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   const [role, setRole] = useState('');
   const [cartPreview, setCartPreview] = useState(0);
@@ -22,8 +21,6 @@ function Provider({ children }) {
     setEmail,
     password,
     setPassword,
-    isDisable,
-    setIsDisable,
     errorMessage,
     setErrorMessage,
     role,
