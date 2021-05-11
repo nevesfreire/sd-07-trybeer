@@ -11,7 +11,7 @@ const ProductsList = () => {
   return (
     <div>
       <h1>Página produtos</h1>
-      {products.map(
+      {products && products.map(
         (product, key) => <ProductCard data={ { product, key } } key={ key } />,
       )}
     </div>);

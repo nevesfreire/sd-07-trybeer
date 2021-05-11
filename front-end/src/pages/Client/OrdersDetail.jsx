@@ -1,10 +1,10 @@
 import React from 'react';
+import HeaderAdmin from '../../components/HeaderAdmin';
 import ClientDetailOrder from '../../components/ClientDetailOrder';
-import Header from '../../components/Header';
 
 const OrdersDetail = () => (
   <div>
-    <Header />
+    <HeaderAdmin />
     <ClientDetailOrder />
   </div>
 );
