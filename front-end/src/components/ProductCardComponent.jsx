@@ -54,7 +54,7 @@ function ProductCard({ product, index }) {
   );
 }
 
-Form.propTypes = {
+ProductCard.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-import useFetch from '../hooks/useFetch';
 import { Redirect } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
 import ProductCard from './ProductCardComponent';
 import MyContext from '../context/TrybeerContext';
 
@@ -12,6 +12,7 @@ function ProductsComponent() {
 
   const {
     totalValue,
+    setTotalValue,
   } = useContext(MyContext);
 
   const { getProducts } = useFetch();
@@ -19,13 +20,14 @@ function ProductsComponent() {
     const resultAPI = await getProducts(userResult);
     if (resultAPI.message) return setJwtInvalid(true);
     setProducts(resultAPI);
-    console.log(resultAPI)
     setLoading(false);
   };
 
   useEffect(() => {
     setJwtInvalid(false);
     const userResult = localStorage.getItem('user');
+    const cartResult = localStorage.getItem('TotalValue');
+    setTotalValue(Number(cartResult));
     if (!userResult) return setJwtInvalid(true);
     callAPI(userResult);
   }, []);

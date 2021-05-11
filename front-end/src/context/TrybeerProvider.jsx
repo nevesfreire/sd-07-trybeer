@@ -2,9 +2,20 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import TrybeerContext from './TrybeerContext';
 
+const updateTotalValue = () => {
+  const cartResult = localStorage.getItem('TotalValue');
+  return Number(cartResult);
+};
+
+const updatedOrderValue = () => {
+  const orderResult = JSON.parse(localStorage.getItem('products'));
+  if (orderResult === null) return [];
+  return orderResult;
+};
+
 function TrybeerProvider({ children }) {
-  const [order, setOrder] = useState([]);
-  const [totalValue, setTotalValue] = useState(0);
+  const [order, setOrder] = useState(updatedOrderValue());
+  const [totalValue, setTotalValue] = useState(updateTotalValue());
 
   const addInCart = (id, price, quantity) => {
     const updatedOrder = order.filter((object) => object.id !== id);
@@ -32,13 +43,15 @@ function TrybeerProvider({ children }) {
   };
 
   useEffect(() => {
-    
+    localStorage.setItem('products', JSON.stringify(order));
+    localStorage.setItem('TotalValue', totalValue);
   }, [order]);
 
   const context = {
     addInCart,
     removeFromCart,
     totalValue,
+    setTotalValue,
   };
 
   return (
