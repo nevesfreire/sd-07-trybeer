@@ -79,8 +79,8 @@ export default function ProductCard(props) {
   const minus = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
+      setButtonClicked('minus');
     }
-    setButtonClicked('minus');
   };
 
   const plus = () => {
@@ -90,17 +90,12 @@ export default function ProductCard(props) {
 
   const getQuantityFromLocalStorage = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
-    if (!cart) return 0;
+    if (!cart) return '0';
     const productFromLocalStorage = cart.find((p) => p.name === name);
-    if (productFromLocalStorage === undefined) return 0;
-    const productQuantity = productFromLocalStorage.quantity;
+    if (productFromLocalStorage === undefined) return '0';
+    const productQuantity = productFromLocalStorage.quantity.toString();
     console.log(productQuantity);
     return productQuantity;
-  };
-
-  const disableMinusButton = () => {
-    if (getQuantityFromLocalStorage() === 0) return true;
-    return false;
   };
 
   return (
@@ -124,16 +119,14 @@ export default function ProductCard(props) {
           data-testid={ `${index}-product-minus` }
           onClick={ minus }
           id="num"
-          disabled={ disableMinusButton() }
         >
           -
         </Button>
-        <input
-          readOnly
-          type="text"
-          value={ getQuantityFromLocalStorage() }
+        <div
           data-testid={ `${index}-product-qtd` }
-        />
+        >
+          { getQuantityFromLocalStorage() }
+        </div>
         <Button
           variant="primary"
           data-testid={ `${index}-product-plus` }
