@@ -23,7 +23,7 @@ export default function CardButtons({ id }) {
       });
     }
   };
-
+  
   const quantity = storageState[id] || 0;
 
   return (

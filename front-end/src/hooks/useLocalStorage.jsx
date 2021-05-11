@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { GlobalContext } from '../services';
 import { handleStorage } from '../utils';
 
@@ -16,6 +16,10 @@ export default function useLocalStorage(key) {
       setStorage(callback);
     }
   }, [key]);
+
+  useEffect(() => {
+    setStorage(() => handleStorage.get(key) || {})
+  }, []);
 
   return [storage, update];
 }
