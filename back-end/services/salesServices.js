@@ -1,7 +1,7 @@
 const salesModel = require('../models/salesModel');
 
-const saleRegister = async () => {
-  const saleRegistered = await salesModel.saleRegister();
+const saleRegister = async (orderData) => {
+  const saleRegistered = await salesModel.saleRegister(orderData);
   
   return saleRegistered;
 };

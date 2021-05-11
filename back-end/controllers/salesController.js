@@ -5,7 +5,7 @@ const salesServices = require('../services/salesServices');
 
 const saleRegister = async (req, res) => {
   try {
-    const saleRegistered = await salesServices.saleRegister();
+    const saleRegistered = await salesServices.saleRegister(req.body);
     console.log(saleRegistered);
     return res.status(OK).json(saleRegistered);
   } catch (error) {
