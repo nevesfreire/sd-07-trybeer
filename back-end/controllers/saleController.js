@@ -2,11 +2,11 @@ const Sale = require('../services/SaleService');
 
 const create = async (req, res, next) => {
   const token = req.headers.authorization;
-  const { total, deliveryAddress, deliveryNumber } = req.body;
+  const { orderItems, orderDetails } = req.body;
 
   try {
     const { statusCode, message } = await Sale
-      .create(token, total, deliveryAddress, deliveryNumber);
+      .create(token, orderItems, orderDetails);
     res.status(statusCode).json({ statusCode, message });
   } catch (error) {
     next(error);

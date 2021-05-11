@@ -8,8 +8,8 @@ const create = async (userId, total, deliveryAddress, deliveryNumber) => {
     + '(user_id, total_price, delivery_address, delivery_number, sale_date, status)'
     + 'VALUES (?,?,?,?,?,?)';
   const values = [userId, total, deliveryAddress, deliveryNumber, dateFormat, status];
-
-  await conn.execute(query, values);
+  const [ResultSetHeader] = await conn.execute(query, values);
+  return ResultSetHeader.insertId;
 };
 
 const findByUserId = async (userId) => {
@@ -19,7 +19,15 @@ const findByUserId = async (userId) => {
   return sale;
 };
 
+const addSaleProducts = async (saleId, productId, quanity) => {
+  const query = 'INSERT INTO sales_products (sale_id, product_id, quantity)'
+    + 'VALUES (?,?,?)';
+  const values = [saleId, productId, quanity];
+  await conn.execute(query, values);
+};
+
 module.exports = {
   create,
   findByUserId,
+  addSaleProducts,
 };
