@@ -28,9 +28,9 @@ export default function CardButtons({ id }) {
 
   return (
     <div>
-      <button type="button" onClick={ increment }>+</button>
-      <span>{ quantity }</span>
-      <button type="button" onClick={ decrement }>-</button>
+      <button type="button" onClick={ increment } data-testid={`${id}-product-plus`} >+</button>
+      <span data-testid={`${id}-product-qtd`}>{ quantity }</span>
+      <button type="button" onClick={ decrement } data-testid={`${id}-product-minus`}>-</button>
     </div>
   );
 }
