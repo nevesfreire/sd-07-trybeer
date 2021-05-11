@@ -1,27 +1,23 @@
+import { getToLocalStorage } from '../utils/localStorage';
 const axios = require('axios');
 
 const urlAPI = 'http://localhost:3001';
 
-const requestLoginAPI = (formData) => {
+const requestLoginAPI = formData => {
   const endpoint = `${urlAPI}/users/login`;
   return axios
     .post(endpoint, formData)
-    .then((response) => response)
-    .catch((error) => error);
+    .then(response => response)
+    .catch(error => error.response);
 };
 
-const requestCreateUserAPI = (user) => {
+const requestCreateUserAPI = user => {
   const endpoint = `${urlAPI}/users`;
   return axios
     .post(endpoint, user)
-    .then((response) => response)
-    .catch((error) => error.response);
+    .then(response => response)
+    .catch(error => error.response);
 };
-
-// axios.get('/user/12345')
-// .catch(function (error) {
-// console.log(error.toJSON());
-// });
 
 const requestAlterUserAPI = (user) => {
   const endpoint = `${urlAPI}/profile`;
@@ -31,8 +27,20 @@ const requestAlterUserAPI = (user) => {
     .catch((error) => error.response);
 };
 
+const requestGetProductsAPI = () => {
+  const endpoint = `${urlAPI}/products`;
+  const token = getToLocalStorage('user').token;
+  console.log(token, 'token');
+  const headersAxios = { headers: { Authorization: token } };
+  return axios
+    .get(endpoint, headersAxios)
+    .then(response => response)
+    .catch(error => error.response);
+};
+
 export {
   requestLoginAPI,
   requestCreateUserAPI,
   requestAlterUserAPI,
+  requestGetProductsAPI,
 };

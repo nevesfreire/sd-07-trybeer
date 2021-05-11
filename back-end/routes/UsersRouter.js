@@ -4,8 +4,9 @@ const { getAllUsers,
         createLoginUser,
         createUser,
         alterUser,
-      } = require('../users/controllers');
-const { checkCreatingUserFields } = require('../middlewares/UserMiddleware');
+} = require('../users/controllers');
+const { UserMiddleware } = require('../middlewares');
+const { checkCreatingUserFields } = UserMiddleware;
 
 const UsersRouter = express.Router();
 

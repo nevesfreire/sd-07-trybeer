@@ -49,12 +49,10 @@ const createLoginUser = async (req, res, next) => {
 const createUser = async (req, res, next) => {
   try {
     const { name, email, password, role } = req.body;
-    console.log(req.body, 'body');
     const user = await service.validateCreateUser(name, email, password, role);
-    console.log(user, 'userCreated');
     res.status(StatusCodes.CREATED).json(user);
   } catch (error) {
-    // console.error(error);
+    console.error(error);
     next({
       status: StatusCodes.BAD_REQUEST,
       message: error.message,
