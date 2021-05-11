@@ -1,8 +1,13 @@
 import React from 'react';
+import TopMenu from '../../component/TopMenu';
 import FormProfile from '../../component/FormProfile';
 
 export default function Profile() {
   return (
-    <FormProfile />
+    <>
+      <TopMenu  title="Cliente - Meu Perfil"/>
+      <FormProfile />
+    </>
+    
   );
 }

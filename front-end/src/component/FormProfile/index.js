@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getToLocalStorage } from '../../utils/localStorage';
 import { requestAlterUserAPI } from '../../services';
+import { useHistory } from 'react-router';
+
 
 const FormDefault = {
   name: '',
@@ -10,6 +12,7 @@ function FormProfile() {
   const [formProfile, setFormProfile] = useState(FormDefault);
   const [sucessState, setSucessState] = useState(false);
   const [alterState, setAlterState] = useState(true);
+  const history = useHistory();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,9 +29,13 @@ function FormProfile() {
   };
 
   useEffect(() => {
-    const { name } = getToLocalStorage();
-    const { email } = getToLocalStorage();
-    setFormProfile({ name, email });
+    try {
+      const { name, email } = getToLocalStorage();  
+
+      setFormProfile({ name, email });    
+    } catch (error) {
+       history.push('/');
+    }
   }, []);
 
   return (
