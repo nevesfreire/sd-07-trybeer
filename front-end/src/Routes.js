@@ -1,5 +1,6 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
+
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
@@ -24,6 +25,7 @@ export default function Routes() {
       <Route path="/admin/profile" component={ AdminProfile } />
       <Route path="/admin/orders/:id" component={ AdminOrderDetails } />
       <Route path="/admin/orders" component={ AdminOrders } />
+      <Redirect from="/" to="/login" />
     </Switch>
   );
 }
