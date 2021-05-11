@@ -15,15 +15,19 @@ export default function ClientOrders() {
         .then((apiResponse) => apiResponse);
       console.log(response);
       if (response && Object.values(response).length > 0) {
-        return setUserSales(response);
+        setUserSales(response);
       }
     };
     fetchSales();
   }, []);
 
+  if (!userSales) {
+    return <p>Loading...</p>
+  }
+
   return (
     <div style={ { display: 'flex', justifyContent: 'center' } }>
-      { !userSales ? <p>Loading...</p>
+      { userSales.err ? <p>{userSales.err.message}</p>
         : userSales.map((item, index) => (
           <div
             type="button"
