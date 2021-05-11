@@ -8,34 +8,45 @@ export default function ProductsList() {
   const [products, setProducts] = useState(null);
   const history = useHistory();
 
-  console.log(totalValue);
-
-  // useEffect(() => {
-  //
-  // }, [products])
-
   useEffect(() => {
     const fetchProducts = async () => {
       const currentUser = JSON.parse(localStorage.getItem('user'));
+      const newProductsList = JSON.parse(localStorage.getItem('newProdList'));
       if (!currentUser) return null;
       const response = await getProducts(currentUser.token)
         .then((apiResponse) => apiResponse);
 
+      if (newProductsList && newProductsList.length > 0) {
+        return setProducts(newProductsList);
+      }
       setProducts(response.map((item) => ({ ...item, productQtt: 0 })));
     };
+    const productsLocalStorage = JSON.parse(localStorage.getItem('productsList'));
 
+    if (!productsLocalStorage || productsLocalStorage.length === 0) {
+      localStorage.setItem('productsList', JSON.stringify([]));
+    }
     fetchProducts();
   }, []);
 
-  const addProdQtt = (id) => {
-    const searchedProduct = products.find((e) => e.id === id);
+  const addProdQtt = (e, id) => {
+    e.preventDefault();
+    const searchedProduct = products.find((elem) => elem.id === id);
     const index = products.indexOf(searchedProduct);
     const newArr = [...products];
     newArr[index].productQtt += 1;
-    const price = parseFloat(searchedProduct.price);
+    const floatPrice = parseFloat(searchedProduct.price);
     setProducts(newArr);
-    localStorage.setItem('total', totalValue + price);
-    setTotalValue(totalValue + price);
+    localStorage.setItem('newProdList', JSON.stringify(newArr));
+    const { name, productQtt } = newArr[index];
+    const productsArray = JSON.parse(localStorage.getItem('productsList'));
+    const totalPrice = floatPrice * productQtt;
+    localStorage.setItem(
+      'productsList',
+      JSON.stringify([...productsArray, { name, totalPrice, productQtt }]),
+    );
+    localStorage.setItem('total', totalValue + floatPrice);
+    setTotalValue(totalValue + floatPrice);
   };
 
   const decProdQtt = (id) => {
@@ -46,16 +57,24 @@ export default function ProductsList() {
     }
     const newArr = [...products];
     newArr[index].productQtt -= 1;
-    const price = parseFloat(searchedProduct.price);
-    localStorage.setItem('total', totalValue + price);
-    setTotalValue(totalValue - price);
+    const floatPrice = parseFloat(searchedProduct.price);
     setProducts(newArr);
+    localStorage.setItem('newProdList', JSON.stringify(newArr));
+    const { name, productQtt } = newArr[index];
+    const productsArray = JSON.parse(localStorage.getItem('productsList'));
+    const totalPrice = floatPrice * productQtt;
+    localStorage.setItem(
+      'productsList',
+      JSON.stringify(
+        [...productsArray, { name, totalPrice: totalPrice / productQtt, productQtt }],
+      ),
+    );
+    localStorage.setItem('total', totalValue + floatPrice);
+    setTotalValue(totalValue - floatPrice);
   };
 
-  console.log('renderizou de novo');
-
   return (
-    <div style={ { display: 'flex', flexDirection: 'row', alignItems: 'center' } }>
+    <div style={ { display: 'flex', justifyContent: 'center' } }>
       { !products ? <p>Loading...</p>
         : products.map((item, index) => (
           <div key={ item.id }>
@@ -67,15 +86,12 @@ export default function ProductsList() {
             />
             <p data-testid={ `${index}-product-name` }>{item.name}</p>
             <p data-testid={ `${index}-product-price` }>
-              R$
-              {' '}
-              {item.price.replace('.', ',')}
+              {`R$ ${item.price.replace('.', ',')}`}
             </p>
             <button
               type="button"
-              name={ item.id }
               data-testid={ `${index}-product-plus` }
-              onClick={ () => addProdQtt(item.id) }
+              onClick={ (e) => addProdQtt(e, item.id) }
             >
               +
             </button>

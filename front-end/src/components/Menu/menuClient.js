@@ -33,8 +33,11 @@ function MenuClient({ open }) {
         </Button>
         <Button
           name="btn-exit"
-          onClick={ () => history.push('/login') }
           data-testid="side-menu-item-logout"
+          onClick={ () => {
+            history.push('/login');
+            localStorage.clear();
+          } }
         >
           Sair
         </Button>
