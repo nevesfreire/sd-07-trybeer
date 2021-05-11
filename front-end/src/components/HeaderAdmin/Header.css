@@ -1,9 +1,8 @@
 header {
   display: flex;
   height: 60px;
-  background-color: rgb(3, 6, 37);
+  background-color: aqua;
   align-items: center;
-  color: white;
 }
 
 header, h1 {
