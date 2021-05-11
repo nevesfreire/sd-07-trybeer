@@ -85,17 +85,26 @@ function Checkout() {
         <ul>
           { total > 0 && Storage.getItem('cart').map((product, index) => (
             <li key={ index }>
-              <span data-testid={ `${index}-product-qtd-input` }>
-                { `${product.quantity} > ` }
+              <span
+                data-testid={ `${index}-product-qtd-input` }
+                className="checkout-quantity"
+              >
+                {product.quantity}
               </span>
-              <span data-testid={ `${index}-product-name` }>
-                { `${product.name}  >  `}
-                </span>
-              <span data-testid={ `${index}-product-total-value` }>
+              <span data-testid={ `${index}-product-name` } className="checkout-name">
+                {product.name}
+              </span>
+              <span
+                data-testid={ `${index}-product-total-value` }
+                className="checkout-value"
+              >
                 { Number(product.totalItem)
                   .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
               </span>
-              <span data-testid={ `${index}-product-unit-price` } className="checkout-unit-price">
+              <span
+                data-testid={ `${index}-product-unit-price` }
+                className="checkout-unit-price"
+              >
                 {`(${Number(product.price)
                   .toLocaleString('pt-BR', {
                     style: 'currency', currency: 'BRL' })} un)`}

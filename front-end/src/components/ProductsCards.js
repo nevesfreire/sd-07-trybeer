@@ -102,7 +102,9 @@ function ProductsCards() {
             data-testid={ `${index}-product-img` }
             className="img-card"
           />
-          <span data-testid={ `${index}-product-name` } className="name-card">{ product.name }</span>
+          <span data-testid={ `${index}-product-name` } className="name-card">
+            { product.name }
+          </span>
           <span data-testid={ `${index}-product-price` } className="price-unit-card">
             { Number(product.price)
               .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
