@@ -64,10 +64,50 @@ async function updateUser(name, token) {
     .then((response) => response.data).catch((error) => error.response.data);
 }
 
+async function getAllOrders(token) {
+  const options = {
+    method: 'GET',
+    url: `${endpoint}/orders`,
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  return axios.request(options)
+    .then((response) => response.data).catch((error) => error.response.data);
+}
+
+async function getOrderDetailsById(token, id) {
+  const options = {
+    method: 'GET',
+    url: `${endpoint}/orders/${id}`,
+    headers: {
+      Authorization: token,
+    },
+  };
+
+  return axios.request(options)
+    .then((response) => response.data).catch((error) => error.response.data);
+}
+async function fetchOrders(token) {
+  const response = await (await fetch(`${endpoint}/admin/orders`, {
+    method: 'GET',
+    headers: {
+      ...headers,
+      Authorization: token,
+    },
+  })).json();
+
+  return response;
+}
+
 export default {
   getProducts,
   loginUser,
   registerUser,
   registerPurchase,
   updateUser,
+  getAllOrders,
+  getOrderDetailsById,
+  fetchOrders,
 };

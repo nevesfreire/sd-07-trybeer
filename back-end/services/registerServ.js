@@ -10,7 +10,9 @@ const registerServ = async (body) => {
 
   const role = isSeller ? 'administrator' : 'client';
   await userModel.create({ name, email, password, role });
-  const token = jwt.sign({ name, email }, process.env.SECRET || '12345');
+  
+  const { id } = await userModel.getUserByEmail(email);
+  const token = jwt.sign({ id, role }, process.env.SECRET || '12345');
 
   return { ...created, name, role, email, token };
 };

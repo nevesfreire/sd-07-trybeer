@@ -9,6 +9,7 @@ const Provider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState('0.00');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     if (getItem('cart')) setCart(getItem('cart'));
@@ -63,6 +64,8 @@ const Provider = ({ children }) => {
     removeFromCart,
     totalPrice,
     setTotalPrice,
+    orders,
+    setOrders,
   };
 
   return (
