@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../../services';
+import { useLocalStorage } from '../../hooks';
 
-export default function ViewCart({ storage }) {
+export default function ViewCart() {
   const { productState: { products } } = useContext(GlobalContext);
+  const [storage] = useLocalStorage('shoppingCart');
 
   const total = products.reduce((acc, crr) => {
     if (storage[crr.id]) {
@@ -11,10 +12,6 @@ export default function ViewCart({ storage }) {
     }
     return acc;
   }, 0);
-
-  useEffect(() => {
-
-  }, [storage]);
 
   return (
     <div>
@@ -26,7 +23,3 @@ export default function ViewCart({ storage }) {
     </div>
   );
 }
-
-ViewCart.propTypes = {
-  storage: PropTypes.shape({}).isRequired,
-};

@@ -1,21 +1,21 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useContext } from 'react';
+import { GlobalContext } from '../services';
 import { handleStorage } from '../utils';
 
 export default function useLocalStorage(key) {
-  const INITIAL_STATE = handleStorage.get(key) || {};
-  const [value, setValue] = useState(INITIAL_STATE);
+  const { storage, setStorage } = useContext(GlobalContext);
 
   const update = useCallback((callback) => {
     if (typeof callback === 'function') {
-      const storage = handleStorage.get(key);
-      const newDate = callback(storage);
+      const newStorage = handleStorage.get(key);
+      const newDate = callback(newStorage);
       handleStorage.set(key, newDate);
-      setValue(newDate);
+      setStorage(newDate);
     } else {
       handleStorage.set(key, callback);
-      setValue(callback);
+      setStorage(callback);
     }
   }, [key]);
 
-  return [value, update];
+  return [storage, update];
 }

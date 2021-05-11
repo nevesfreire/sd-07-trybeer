@@ -2,11 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import { ViewCart, CardButtons } from '../components';
 import TopBar from '../components/menuSideBar/Menu';
 import { GlobalContext, actionType, fetchProducts } from '../services';
-import { useLocalStorage } from '../hooks';
 
 export default function Products() {
   const { productsDispatch, productState } = useContext(GlobalContext);
-  const [localStorageState, setStorage] = useLocalStorage('shoppingCart');
 
   useEffect(() => {
     fetchProducts().then(({ products }) => {
@@ -23,15 +21,11 @@ export default function Products() {
             <h4>{ product.name }</h4>
             <h5>{ product.price }</h5>
             <img src={ product.url_image } alt="foto da bebida" />
-            <CardButtons
-              id={ product.id }
-              storage={ localStorageState }
-              setStorage={ setStorage }
-            />
+            <CardButtons id={ product.id } />
           </div>
         ))
       }
-      <ViewCart storage={ localStorageState } />
+      <ViewCart />
     </div>
   );
 }
