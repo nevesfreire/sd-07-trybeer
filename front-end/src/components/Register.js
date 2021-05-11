@@ -12,6 +12,7 @@ const ComponentRegister = () => {
   const { isChecked, setIsChecked } = useContext(context);
 
   const isValid = fieldValidate(name, email, password);
+  const REACT_APP_URL = 'http://localhost:3005';
 
   useEffect(() => {
     setName('');
@@ -40,8 +41,7 @@ const ComponentRegister = () => {
       console.log('Dados inválidos.'); // não remover, ainda não sei o que por aqui
     } else {
       e.preventDefault();
-
-      fetch(`${process.env.REACT_APP_URL}/register`, {
+      fetch(`${REACT_APP_URL}/register`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
