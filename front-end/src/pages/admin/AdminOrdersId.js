@@ -55,8 +55,8 @@ function AdminOrdersId() {
             <span
               data-testid="order-status"
               className={
-                `${status === 'Pendente' ? "admin-orders-span pendente"
-                : "admin-orders-span entregue"}`
+                `${status === 'Pendente' ? 'admin-orders-span pendente'
+                  : 'admin-orders-span entregue'}`
               }
             >
               {status}
@@ -73,12 +73,18 @@ function AdminOrdersId() {
                   {`R$ ${(Number(product.price) * Number(product.quantity))
                     .toFixed(2).replace('.', ',')}`}
                 </span>
-                <span data-testid={ `${index}-order-unit-price` } className="details-price">
+                <span
+                  data-testid={ `${index}-order-unit-price` }
+                  className="details-price"
+                >
                   {`(R$ ${Number(product.price).toFixed(2).replace('.', ',')})`}
                 </span>
               </div>
             ))}
-            <span data-testid="order-total-value" className="admin-orders-span font-style">
+            <span
+              data-testid="order-total-value"
+              className="admin-orders-span font-style"
+            >
               {`R$ ${total.toFixed(2).replace('.', ',')}`}
             </span>
             <button

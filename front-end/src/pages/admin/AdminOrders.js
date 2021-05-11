@@ -51,8 +51,8 @@ function AdminOrders() {
                 <span
                   data-testid={ `${index}-order-status` }
                   className={
-                    `${order.status === 'Pendente' ? "admin-orders-span pendente"
-                    : "admin-orders-span entregue"}`
+                    `${order.status === 'Pendente' ? 'admin-orders-span pendente'
+                      : 'admin-orders-span entregue'}`
                   }
                 >
                   {order.status}
