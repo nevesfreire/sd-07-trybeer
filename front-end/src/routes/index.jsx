@@ -18,6 +18,7 @@ const Routes = () => (
     <Route exact path="/admin/profile" component={ ProfileAdmin } />
     <Route exact path="/products" component={ Products } />
     <Route exact path="/register" component={ Register } />
+    <Route exact path="/checkout" />
   </Switch>
 );
 

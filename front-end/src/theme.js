@@ -1,6 +1,6 @@
 const theme = {
-  primaryDark: '#0D0C1D',
-  primaryLight: '#EFFFFA',
+  primaryDark: '#A2A2A2',
+  primaryLight: '#297664',
   primaryHover: '#343078',
   mobile: '576px',
 };

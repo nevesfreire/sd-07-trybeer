@@ -17,7 +17,6 @@ const loginFetch = async (userLogin) => {
   }).then((response) => response.json())
     .then((responseJSON) => {
       user = responseJSON;
-      console.log('fez o fetch');
     });
   return user;
 };
@@ -34,7 +33,6 @@ const searchUserByEmail = async (userEmail) => {
   }).then((response) => response.json())
     .then((responseJSON) => {
       result = responseJSON;
-      console.log('fez o fetch do email', result);
     });
   return result;
 };
@@ -56,7 +54,6 @@ const newUserRegister = async (newUserData) => {
   }).then((response) => response.json())
     .then((responseJSON) => {
       newUser = responseJSON;
-      console.log('fez criação do novo usuário', newUser);
     });
   return newUser;
 };
@@ -75,8 +72,18 @@ const updateNameFetch = async (name, email) => {
   }).then((response) => response.json())
     .then((responseJSON) => {
       result = responseJSON;
+    });
+  return result;
+};
+const fetchProducts = async () => {
+  let result;
+  await fetch('http://localhost:3001/products')
+    .then((response) => response.json())
+    .then((responseJSON) => {
+      result = responseJSON;
       console.log(result);
     });
+  return result;
 };
 
 const pathRedirectByRole = (role) => {
@@ -91,4 +98,5 @@ export {
   newUserRegister,
   searchUserByEmail,
   updateNameFetch,
+  fetchProducts,
 };
