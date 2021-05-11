@@ -4,7 +4,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import Menu from '../image/icon-menu.svg';
 import Global from '../context/index';
 
-function Header() {
+function Header(title) {
   const CurrentDate = format(new Date(), 'EEEEEE, d, MMMM', { locale: ptBR });
   const { setMenuState, menuState } = useContext(Global);
   return (
@@ -20,7 +20,7 @@ function Header() {
         </button>
       </div>
       <p className="header-message" data-testid="top-title">
-        Trybeer
+        {title}
       </p>
 
       <span className="date-time">{CurrentDate}</span>
