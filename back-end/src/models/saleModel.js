@@ -57,10 +57,21 @@ const getSaleByNumber = async (orderNumber) => {
   return { sale, products };
 };
 
+const changeSaleStatus = async (orderNumber) => {
+  await conn.execute(`
+  UPDATE sales
+  SET status = 'Entregue'
+  WHERE id = ${orderNumber};
+  `);
+
+  return 'Status do pedido alterado';
+};
+
 module.exports = {
   createSale,
   createSaleProducts,
   getSalesByUserId,
   getAllSales,
   getSaleByNumber,
+  changeSaleStatus,
 };

@@ -16,9 +16,11 @@ const getSales = async (userId, role) => {
 
 const getSaleByNumber = async (orderNumber) => saleModel.getSaleByNumber(orderNumber);
 
+const changeSaleStatus = async (orderNumber) => saleModel.changeSaleStatus(orderNumber);
+
 module.exports = {
   createSale,
   getSales,
   getSaleByNumber,
-
+  changeSaleStatus,
 };
