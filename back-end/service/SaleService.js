@@ -12,7 +12,7 @@ const create = async (dAddress, dNumber, listProducts, authorization) => {
     return acc + (productQuantity * productPrice);
   }, 0);
   const allPropeties = {
-    userId: decoded.id, tPrice, dAddress, dNumber, date: new Date(), status: 'pendente',
+    userId: decoded.id, tPrice, dAddress, dNumber, date: new Date(), status: 'Pendente',
   };
 
   const newSaleId = await SaleModel.create(allPropeties);

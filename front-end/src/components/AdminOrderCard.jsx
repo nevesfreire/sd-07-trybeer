@@ -6,7 +6,8 @@ const AdminOrderCard = (props) => {
   const { data } = props;
   const { key, order } = data;
   const [redirect, setRedirect] = useState(false);
-  const { total_price: price, id, delivery_address: address, status } = order;
+  const { total_price: price, id,
+    delivery_address: address, status, delivery_number: number } = order;
   const accPrice = parseFloat(price).toFixed(2).toString().replace('.', ',');
 
   if (redirect) return <Redirect to={ `/admin/orders/${id}` } />;
@@ -23,7 +24,7 @@ const AdminOrderCard = (props) => {
       tabIndex={ 0 }
     >
       <p data-testid={ `${key}-order-number` }>{`Pedido ${id}`}</p>
-      <p data-testid={ `${key}-order-address` }>{`${address}`}</p>
+      <p data-testid={ `${key}-order-address` }>{`${address}, ${number}`}</p>
       <p data-testid={ `${key}-order-total-value` }>{`R$ ${accPrice}`}</p>
       <p data-testid={ `${key}-order-status` }>{`${status}`}</p>
     </div>);

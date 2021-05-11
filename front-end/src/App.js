@@ -5,11 +5,13 @@ import Register from './pages/Register';
 
 import './App.css';
 import Products from './pages/Products';
-import AdminProfile from './pages/Admin/Profile';
+
 import ClientProfile from './pages/Client/Profile';
 import Orders from './pages/Client/Orders';
 import OrdersDetail from './pages/Client/OrdersDetail';
 import Checkout from './pages/Client/Checkout';
+import AdminProfile from './pages/Admin/Profile';
+import AdminOrders from './pages/Admin/AdminOrders';
 
 const App = () => (
   <BrowserRouter>

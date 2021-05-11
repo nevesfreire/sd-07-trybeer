@@ -1,12 +1,12 @@
 import React from 'react';
+import HeaderAdmin from '../../components/HeaderAdmin';
 import AdminOrdersList from '../../components/AdminOrdersList';
-import Header from '../../components/Header';
 
-const AdminProfile = () => (
+const AdminOrders = () => (
   <div>
-    <Header />
+    <HeaderAdmin />
     <h1>Admin - Pedidos</h1>
     <AdminOrdersList />
   </div>);
 
-export default AdminProfile;
+export default AdminOrders;
