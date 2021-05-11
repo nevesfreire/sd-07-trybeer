@@ -3,7 +3,7 @@ import dateFormat from 'dateformat';
 import { Redirect, useHistory } from 'react-router';
 import { getDetailOrders } from '../services/Api/user';
 
-const ClientDetailOrder = () => {
+const AdminDetailOrder = () => {
   const [products, setProducts] = useState([]);
   const [saleInfo, setSaleInfo] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -78,4 +78,4 @@ const ClientDetailOrder = () => {
   );
 };
 
-export default ClientDetailOrder;
+export default AdminDetailOrder;
