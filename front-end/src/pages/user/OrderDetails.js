@@ -55,6 +55,7 @@ function OrderDetails() {
   return (
     <div>
       <MenuTopMobile />
+      { sideIsActive && <SideBarMobile /> }
       <h1 data-testid="top-title">Detalhes de Pedido</h1>
       { isLoading ? <span>Carregando...</span>
         : (
@@ -99,7 +100,6 @@ function OrderDetails() {
             </span>
           </div>
         )}
-      { sideIsActive && <SideBarMobile /> }
     </div>
   );
 }

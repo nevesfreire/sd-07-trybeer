@@ -44,22 +44,24 @@ function Profile() {
     <div>
       <MenuTopMobile />
       { sideIsActive && <SideBarMobile /> }
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="profile-email-input">
+      <form onSubmit={ handleSubmit } className="main-container">
+        <label htmlFor="profile-email-input" className="email-input-label">
           Email
           <input
             id="profile-email-input"
             data-testid="profile-email-input"
+            className="email-input"
             type="email"
             placeholder={ email }
             readOnly
           />
         </label>
-        <label htmlFor="profile-name-input">
+        <label htmlFor="profile-name-input" className="name-input-label">
           Nome
           <input
             id="profile-name-input"
             data-testid="profile-name-input"
+            className="name-input"
             type="text"
             placeholder={ name }
             onChange={ (e) => setNewName(e.target.value) }
@@ -67,6 +69,7 @@ function Profile() {
         </label>
         <button
           data-testid="profile-save-btn"
+          className="signin-btn"
           type="submit"
           disabled={ !newName }
         >
