@@ -10,9 +10,12 @@ const getSalesByIdService = async (userId) => salesModel.getSalesById(userId);
 
 const getProductsBySaleIdService = async (saleId) => salesModel.getProductsBySaleId(saleId);
 
+const updateStatusBySaleIdService = async (saleId) => salesModel.updateStatusBySaleId(saleId);
+
 module.exports = {
   createSale,
   salesProducts,
   getSalesByIdService,
   getProductsBySaleIdService,
+  updateStatusBySaleIdService,
 };

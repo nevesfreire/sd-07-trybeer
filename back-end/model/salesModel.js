@@ -40,9 +40,15 @@ const getProductsBySaleId = async (saleId) => {
   return result;
 };
 
+const updateStatusBySaleId = async (saleId) => {
+  const ENTREGUE = 'Entregue';
+  await connection.execute('UPDATE sales SET status = ? WHERE id = ?', [ENTREGUE, saleId]);
+};
+
 module.exports = {
   createSale,
   salesProducts,
   getSalesById,
   getProductsBySaleId,
+  updateStatusBySaleId,
 };
