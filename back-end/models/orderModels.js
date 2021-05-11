@@ -17,7 +17,8 @@ const getOrderDetails = async (id) => {
 
 const changeStatus = async (id, situation) => {
   // const tag = 'Entregue';
-  const [result] = await connection.execute('UPDATE sales SET status=? WHERE id=?', [situation, id]);
+  const [result] = await connection.execute('UPDATE sales SET status=? WHERE id=?',
+    [situation, id]);
   console.log(result);
 };
 
