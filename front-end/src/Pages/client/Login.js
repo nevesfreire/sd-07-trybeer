@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [data, setData] = useState('');
   const [isDisable, setIsDisable] = useState(true);
 
   const [logado, setLogado] = useState(false);
@@ -20,7 +21,7 @@ function Login() {
 
 
   const saveInLocalStorage = (data) => {
-    window.localStorage.setItem('user', JSON.stringify(
+    localStorage.setItem('user', JSON.stringify(
       {
         name: data.user.name,
         email: data.user.email,
@@ -42,7 +43,6 @@ function Login() {
     }).then((response) => response.json())
       .then((data) => {
         setData(data);
-        console.log(data);
         saveInLocalStorage(data);
 
       });
