@@ -135,8 +135,8 @@ const ComponentRegister = () => {
       <div className="success-message">
         {
           !user.status && user.messageFailed
-            ? <p>Já existe um usuário com esse e-mail.</p>
-            : user.messageSuccess
+            ? <p>{user.messageFailed}</p>
+            : <p>{user.messageSuccess}</p>
         }
       </div>
 
