@@ -5,14 +5,14 @@ import { Grid } from 'semantic-ui-react';
 
 import TopBarComponent from '../components/TopBarComponent';
 import AdminSideBar from '../components/AdminSideBar';
-import AdminProfileComponent from '../components/AdminProfileComponent';
+import AdminOrdersComponent from '../components/AdminOrdersComponent';
 
 function AdminOrders() {
   return (
     <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
       <Grid.Column style={ { maxWidth: 500 } }>
         <TopBarComponent>Admin Orders</TopBarComponent>
-        <AdminSideBar Component={ AdminProfileComponent } />
+        <AdminSideBar Component={ AdminOrdersComponent } />
       </Grid.Column>
     </Grid>
   );

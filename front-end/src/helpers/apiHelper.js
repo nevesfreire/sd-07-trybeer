@@ -1,4 +1,5 @@
 import { setUser } from './localStorageHelper';
+import ordersReturn from './orders.json';
 
 const applicationType = 'application/json';
 
@@ -92,6 +93,24 @@ export async function fetchUpdateClient(name, id, token) {
   };
   try {
     const response = await fetch(requestTokenUrl, request);
+    const responseJson = await response.json();
+
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getOrders() {
+  const requestOrdersUrl = `http://localhost:3001/sales`;
+  const request = {
+    method: 'GET',
+    headers: {
+      'Content-type': applicationType,
+    },
+  };
+  try {
+    const response = await fetch(requestOrdersUrl, request);
     const responseJson = await response.json();
 
     return responseJson;
