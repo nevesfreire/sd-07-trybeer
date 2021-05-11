@@ -7,5 +7,5 @@ module.exports = {
   MYSQL_USER: process.env.MYSQL_USER,
   MYSQL_PASSWORD: process.env.MYSQL_PASSWORD,
   PORT: process.env.PORT || 3001,
-  SECRET: process.env.SECRET || 'TRYBEER',
+  SECRET: process.env.SECRET || 'banhodechoqueemlindoia',
 };
