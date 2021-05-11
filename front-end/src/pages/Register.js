@@ -60,7 +60,6 @@ export default function Register() {
   }, [registerData]);
 
   return (
-
     <>
       <form onSubmit={ () => handleSubmit() }>
         <label htmlFor="name">
@@ -111,7 +110,6 @@ export default function Register() {
           Cadastrar
         </button>
       </form>
-    </>
 
     <form onSubmit={ () => handleSubmit() }>
       <label htmlFor="name">
@@ -140,7 +138,6 @@ export default function Register() {
           name="password"
           id="password"
           data-testid="signup-password"
-          type="email"
           type="password"
           onChange={ (event) => handleChange(event) }
         />
@@ -163,5 +160,6 @@ export default function Register() {
         Cadastrar
       </button>
     </form>
+  </>
   );
 }

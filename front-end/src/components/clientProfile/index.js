@@ -21,10 +21,10 @@ export default function ClientProfile() {
   };
 
   return (
-    <Form onSubmit={ onSubmitHandler }>
-      <Label>
-        <Span>Name</Span>
-        <Input
+    <form onSubmit={ onSubmitHandler }>
+      <label>
+        <span>Name</span>
+        <input
           value={ name }
           onChange={ (e) => setName(e.target.value) }
           type="name"
@@ -32,28 +32,28 @@ export default function ClientProfile() {
           data-testid="profile-name-input"
           required
         />
-      </Label>
+      </label>
 
-      <Label>
+      <label>
         Email
-        <Input
+        <input
           value={ currentUser.email }
           type="email"
           name="email"
           data-testid="profile-email-input"
           readOnly
         />
-      </Label>
+      </label>
 
-      <Button
+      <button
         type="submit"
         data-testid="profile-save-btn"
         disabled={ profileValidation(name) }
       >
         Salvar
-      </Button>
+      </button>
 
       { nameUpdate && <span>Atualização concluída com sucesso</span> }
-    </Form>
+    </form>
   );
 }

@@ -9,7 +9,7 @@
   }
 };
  */
-export default registerUser = (user) => {
+  const registerUser = (user) => {
   try {
     const url = 'http://localhost:3001/register';
     return fetch(url, {
@@ -23,3 +23,5 @@ export default registerUser = (user) => {
     console.log(error.message);
   }
 };
+
+export default registerUser;
