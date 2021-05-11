@@ -2,9 +2,9 @@ const connection = require('../connection');
 
 const registerPurchaseProducts = async (productsList, saleId) => {
   try {
-    const response = productsList.map((pdt) => connection
+    const response = productsList.map((product) => connection
       .execute('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES(?,?,?)',
-      [saleId, pdt.productId, pdt.quantity]));
+      [saleId, product.id, product.quantity]));
   
     const pdtsList = await Promise.all(response)
       .then((resp) => resp.map((e) => e))

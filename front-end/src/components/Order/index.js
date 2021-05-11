@@ -3,22 +3,27 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function Order({ order, index }) {
+  const fullDate = order.sale_date.split('T');
+  const date = fullDate[0].split('-');
+  const dateFormated = `${date[2]}/${date[1]}`;
+
   return (
     <Link
-      to={ `/orders/${order.delivery_number}` }
+      to={ `/orders/${order.id}` }
       data-testid={ `${index}-order-card-container` }
     >
       <p data-testid={ `${index}-order-number` }>
-        Nro:
-        {order.delivery_number}
+        Pedido
+        {' '}
+        {order.id}
       </p>
       <p data-testid={ `${index}-order-date` }>
         Data:
-        {order.sale_date}
+        {dateFormated}
       </p>
       <p data-testid={ `${index}-order-total-value` }>
         Valor:
-        {order.total_price}
+        {`R$ ${order.total_price.replace(/\./g, ',')}`}
       </p>
     </Link>
   );

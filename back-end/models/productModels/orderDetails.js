@@ -9,7 +9,7 @@ const orderDetails = async (orderId) => {
         + ' ON sales.id = product.sale_id' 
         + ' INNER JOIN products AS products_info'
         + ' ON product.product_id = products_info.id'
-        + ' WHERE sales.delivery_number = ?', [orderId],
+        + ' WHERE sales.id = ?', [orderId],
 );
         
     if (result.length === 0) return null;

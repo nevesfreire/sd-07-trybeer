@@ -3,7 +3,6 @@ const { resolve } = require('path');
 const express = require('express');
 const cors = require('cors');
 
-
 const { CheckoutRoute,
   RegisterRoute,
   loginRoute,
@@ -12,8 +11,6 @@ const { CheckoutRoute,
   allOrders,
   ProductsRoute,
 } = require('./routes');
-
- 
 
 const port = process.env.PORT || 3001;
 

@@ -7,7 +7,6 @@ import { Context } from '../../context';
 function CheckoutPdtCard({ data, index }) {
   const [quantity, setQuantity] = useState(0);
   const { cart, addToCart, removeFromCart } = useContext(Context);
-  console.log(index);
   const {
     id,
     name,

@@ -6,6 +6,7 @@ const orderDetailsServ = async (orderId) => {
         const result = await orderDetails(orderId);
         
         if (!result) return dbSearchReturnedEmpty;
+        
         return { message: result, status: 200 };
     } catch (err) {
         console.log(err);

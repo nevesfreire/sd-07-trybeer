@@ -12,8 +12,12 @@ function OrderDetails({ match }) {
 
   const { id } = match.params;
 
-  const order = orders.find((item) => item.delivery_number === id);
+  const order = orders.find((item) => item.id === Number(id));
   const user = JSON.parse(localStorage.getItem('user')) || { name: null, role: null };
+
+  const fullDate = order.sale_date.split('T');
+  const date = fullDate[0].split('-');
+  const dateFormated = `${date[2]}/${date[1]}`;
 
   const formatPrice = (price) => {
     const priceConverted = Number(price).toFixed(2);
@@ -24,6 +28,7 @@ function OrderDetails({ match }) {
   useEffect(() => {
     setIsLoading(true);
     api.getOrderDetailsById(user.token, id).then((response) => {
+      console.log(response);
       if (response.error) {
         setMessage('Nenhum pedido encontrado');
       } else {
@@ -42,9 +47,9 @@ function OrderDetails({ match }) {
         {id}
       </p>
       <p data-testid="order-date">
-        Data pedido
+        Data pedido:
         {' '}
-        {orders.sale_date}
+        {dateFormated}
       </p>
 
       {
@@ -59,11 +64,11 @@ function OrderDetails({ match }) {
                 formatPrice={ formatPrice }
               />))
       }
-      <h2>{ message }</h2>
+      <h2>{message}</h2>
       <p data-testid="order-total-value">
-        Total
+        Total:
         {' '}
-        { formatPrice(order.total_price) }
+        {formatPrice(order.total_price)}
       </p>
     </div>
   );
