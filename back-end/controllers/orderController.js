@@ -33,9 +33,9 @@ const getOrderDetails = async (request, response) => {
 
 const changeStatus = async (request, response) => {
   try {
-    const { id } = request.params;
+    const { id, situation } = request.body;
     const { authorization } = request.headers;
-    const result = await orderServices.changeStatus(id, authorization);
+    const result = await orderServices.changeStatus(id, situation, authorization);
     response.status(STATUS_CODE.SUCCESS).json(result);
   } catch (error) {
     response.status(STATUS_CODE.BAD_REQUEST).json({ message: error.message });

@@ -10,7 +10,7 @@ router.get('/admin/orders', authMiddleware.checkIfUserIsAuthenticated,
   orderController.getOrdersAdmin);
 router.get('/orders/:id', authMiddleware.checkIfUserIsAuthenticated,
   orderController.getOrderDetails);
-router.put('/orders/status/:id', authMiddleware.checkIfUserIsAuthenticated,
+router.put('/orders/status', authMiddleware.checkIfUserIsAuthenticated,
   orderController.changeStatus);
 
 module.exports = router;

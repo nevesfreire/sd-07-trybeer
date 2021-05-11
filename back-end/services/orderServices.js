@@ -30,10 +30,10 @@ const getOrderDetails = async (id) => {
   return result;
 };
 
-const changeStatus = async (id, token) => {
+const changeStatus = async (id, situation, token) => {
   const decodedToken = decodeToken.decode(token);
   validationsHelper.checkIsAdmin(decodedToken.role);
-  const result = await orderModels.changeStatus(id);
+  const result = await orderModels.changeStatus(id, situation);
   return result;
 };
 
