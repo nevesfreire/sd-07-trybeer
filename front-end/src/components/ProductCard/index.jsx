@@ -42,11 +42,11 @@ export default function ProductCard(props) {
     if (buttonClicked === 'plus') {
       if (!productIsInTheCart()) {
         setProductsCart(
-          [...productsCart, { id, name, quantity, totalPrice: parseFloat(price) }],
+          [...productsCart, { id, name, quantity, price, totalPrice: parseFloat(price) }],
         );
         localStorage.setItem('cart',
           JSON.stringify([...productsCart,
-            { name, quantity, totalPrice: parseFloat(price) }]));
+            { id, price, name, quantity, totalPrice: parseFloat(price) }]));
       } else {
         changeProductQuantity();
       }
