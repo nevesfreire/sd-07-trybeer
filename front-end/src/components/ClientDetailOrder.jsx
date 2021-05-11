@@ -12,7 +12,9 @@ const ClientDetailOrder = () => {
   const history = useHistory();
   const path = history.location.pathname;
   const idPathName = path.split('/')[2];
-  console.log('parametro', idPathName);
+  console.log('parametro', saleInfo);
+
+  const accPrice = (value) => parseFloat(value).toFixed(2).toString().replace('.', ',');
 
   useEffect(() => {
     const getClientOrders = async () => {
@@ -39,17 +41,19 @@ const ClientDetailOrder = () => {
           <h3 data-testid="order-date">{dateFormat(saleDate, 'dd/mm')}</h3>
           {products.map(({ name, key, quantity, price }, index) => (
             <div key={ key }>
-              <h5 data-testid={ `${index}-product-qtd` }>{quantity}</h5>
+              <h5 data-testid={ `${index}-product-qtd` }>{accPrice(quantity)}</h5>
               <h5 data-testid={ `${index}-product-name` }>{name}</h5>
               <h5 data-testid={ `${index}-product-total-value` }>
-                {`R$${
-                  quantity * price
-                }`}
+                {
+                  `R$ ${
+                    accPrice(quantity * price)
+                  }`
+                }
 
               </h5>
             </div>
           ))}
-          <h3 data-testid="order-total-value">{`Total: R$${totalPrice}`}</h3>
+          <h3 data-testid="order-total-value">{`Total: R$ ${accPrice(totalPrice)}`}</h3>
         </div>
       ) : (
         'deu merda'
