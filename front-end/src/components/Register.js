@@ -16,9 +16,9 @@ const ComponentRegister = () => {
   useEffect(() => {
     setName('');
     setEmail('');
-    setPassword('')
+    setPassword('');
     setIsChecked(false);
-  }, [setIsChecked, setName]);
+  }, [setEmail, setIsChecked, setName, setPassword]);
 
   useEffect(() => {
     if (!isValid) {
@@ -59,13 +59,15 @@ const ComponentRegister = () => {
   const handChange = (event) => {
     setIsChecked(event.target.checked);
   };
-  
-  if (user.status){
-    switch(user.role) {
-      case "administrator":
-        return <Redirect to="/admin/orders" />;
-      case "client":
-        return <Redirect to="/products" />;
+
+  if (user.status) {
+    switch (user.role) {
+    case 'administrator':
+      return <Redirect to="/admin/orders" />;
+    case 'client':
+      return <Redirect to="/products" />;
+    default:
+      return <Redirect to="/Not Found" />;
     }
   }
 
@@ -128,11 +130,11 @@ const ComponentRegister = () => {
         </Button>
       </div>
       <div className="success-message">
-      {
-        user.status ? user.messageSuccess : user.messageFailed
-      }
+        {
+          user.status ? user.messageSuccess : user.messageFailed
+        }
       </div>
-      
+
     </FormControl>
   );
 };
