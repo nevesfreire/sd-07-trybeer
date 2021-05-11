@@ -19,8 +19,14 @@ const profileNameUpdate = async (name, email) => {
   return true;
 };
 
+const getUserIdByEmail = async (email) => {
+  const query = 'SELECT id FROM Trybeer.users WHERE email = ?';
+  const [users] = await connection.execute(query, [email]);
+  return users[0].id;
+};
 module.exports = {
   loginUser,
   profileNameUpdate,
   registerUser,
+  getUserIdByEmail,
 };

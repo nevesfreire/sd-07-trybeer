@@ -22,6 +22,14 @@ const notFoundMessage = {
   message: 'image not found',
 };
 
+const userNotFound = {
+  message: 'user not found',
+};
+
+const saleRegisteredMessage = {
+  message: 'Venda Registrada com sucesso',
+};
+
 module.exports = {
   userPasswordMessage,
   updateNameMessageSuccess,
@@ -29,4 +37,6 @@ module.exports = {
   userEmailorName,
   userRegisterSuccess,
   notFoundMessage,
+  userNotFound,
+  saleRegisteredMessage,
 };
