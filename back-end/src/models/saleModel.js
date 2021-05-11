@@ -54,7 +54,7 @@ const getSaleByNumber = async (orderNumber) => {
   ON sp.product_id = p.id
   WHERE sale_id = ${orderNumber};
   `);
-  return {sale, products};
+  return { sale, products };
 };
 
 module.exports = {
