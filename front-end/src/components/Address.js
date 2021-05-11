@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export default function Address({ handleEvent, status, saveOrder }) {
-  const DELAY = 2000;
+  const DELAY = 3000;
   const orderStatus = useSelector(({ order }) => order);
   const dispatch = useDispatch();
 
