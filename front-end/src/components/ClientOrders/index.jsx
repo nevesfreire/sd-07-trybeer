@@ -22,7 +22,7 @@ export default function ClientOrders() {
   }, []);
 
   if (!userSales) {
-    return <p>Loading...</p>
+    return <p>Loading...</p>;
   }
 
   return (
@@ -38,9 +38,11 @@ export default function ClientOrders() {
             onKeyDown={ () => history.push(`/orders/${item.saleId}`) }
             tabIndex={ 0 }
           >
-            <p data-testid={ `${index}-order-number` }>{item.saleId}</p>
+            <p data-testid={ `${index}-order-number` }>{`Pedido ${item.saleId}`}</p>
             <p data-testid={ `${index}-order-date` }>{item.saleDate}</p>
-            <p data-testid={ `${index}-order-total-value` }>{item.totalPrice}</p>
+            <p data-testid={ `${index}-order-total-value` }>
+              {`R$ ${item.totalPrice.replace('.', ',')}`}
+            </p>
           </div>
         ))}
     </div>
