@@ -10,7 +10,7 @@
 };
  */
 
-export default registerUser = (user) => {
+export const registerUser = (user) => {
   try {
     const url = 'http://localhost:3001/register';
     return fetch(url, {
