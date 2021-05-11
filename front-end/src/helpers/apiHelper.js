@@ -1,5 +1,4 @@
-import { setUser } from './localStorageHelper';
-import ordersReturn from './orders.json';
+import { setUser, getUser } from './localStorageHelper';
 
 const applicationType = 'application/json';
 
@@ -79,6 +78,38 @@ export async function fetchImage(name) {
   return image;
 }
 
+export async function fetchCreateSale(
+  userId,
+  totalPrice,
+  delivery,
+  cart,
+) {
+  const { deliveryAddress, deliveryNumber } = delivery;
+  const endpoint = 'http://localhost:3001/sales';
+  const request = {
+    method: 'POST',
+    headers: {
+      'Content-type': applicationType,
+      Authorization: getUser().token,
+    },
+    body: JSON.stringify({
+      userId,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      cart,
+    }),
+  };
+  try {
+    const response = await fetch(endpoint, request);
+    const responseJson = await response.json();
+
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function fetchUpdateClient(name, id, token) {
   const requestTokenUrl = `http://localhost:3001/users/${id}`;
   const request = {
@@ -107,6 +138,7 @@ export async function getOrders() {
     method: 'GET',
     headers: {
       'Content-type': applicationType,
+      Authorization: getUser().token,
     },
   };
   try {
