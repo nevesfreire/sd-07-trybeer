@@ -55,7 +55,27 @@ const findByUserId = async (token) => {
   }
 };
 
+const findSaleDetailsById = async (saleId) => {
+  try {
+    const sale = await Sale.getSaleProducts(saleId);
+    const saleDetails = {
+      id: sale[0].id,
+      saleDate: sale[0].sale_date,
+      total: sale[0].total_price,
+      saleItems: sale.map((item) => ({
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+    };
+    return { statusCode: CODE.OK, saleDetails };
+  } catch (error) {
+    throw new CustomError(CODE.INTERNAL_SERVER_ERROR, 'Erro ao conectar com o banco de dados');
+  }
+};
+
 module.exports = {
   create,
   findByUserId,
+  findSaleDetailsById,
 };
