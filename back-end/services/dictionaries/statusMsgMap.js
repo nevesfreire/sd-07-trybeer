@@ -32,8 +32,8 @@ const statusMsgMap = {
   OK: {
     status: 200, message: false,
   },
-  permitionDenied: {
-    status: 401, message: 'missing auth token', error: true,
+  permissionDenied: {
+    status: 401, message: 'User does not have permission', error: true,
   },
   wrongInput: {
     status: 400, message: 'Invalid entries. Try again.', error: true,
@@ -41,8 +41,7 @@ const statusMsgMap = {
   wrongPassword: {
     status: 401, message: 'Incorrect username or password', error: true,
   },
-  
-erorInDb: {
+  errorInDb: {
     status: 500, message: 'Bad db connection || query', error: true,
   },
 };

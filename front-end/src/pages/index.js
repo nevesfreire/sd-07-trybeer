@@ -5,3 +5,4 @@ export { default as ProductsPage } from './ProductsPage';
 export { default as RegisterPage } from './RegisterPage';
 export { default as CheckoutPage } from './CheckoutPage';
 export { default as ProfileAdmin } from './ProfileAdmin';
+export { default as AdminDetails } from './AdminDetails';

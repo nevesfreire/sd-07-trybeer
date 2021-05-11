@@ -5,8 +5,8 @@ const { getUserByEmail } = require('../models/userModels');
 
 const checkUser = async (email) => {
   const userInDb = await getUserByEmail(email);
-  if (userInDb.err) return errorInDb;
   if (!userInDb) return dbSearchReturnedEmpty;
+  if (userInDb.err) return errorInDb;
   return userInDb;
 };
 

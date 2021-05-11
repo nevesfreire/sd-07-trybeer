@@ -1,6 +1,7 @@
 const checkoutServ = require('./checkoutServ');
 const loginServ = require('./loginServ');
 const productServ = require('./productServ');
+const salesService = require('./salesService');
 const updateUser = require('./updateUser');
 
 module.exports = {
@@ -8,4 +9,5 @@ module.exports = {
   loginServ,
   productServ,
   updateUser,
+  salesService,
 };

@@ -6,8 +6,7 @@ const getUserByEmail = async (email) => {
       .execute('SELECT id, name, password, role FROM users WHERE email=?', [email]);
     return user;
   } catch (err) {
-    console.log(err);
-    return err;
+    return { err };
   }
 };
 

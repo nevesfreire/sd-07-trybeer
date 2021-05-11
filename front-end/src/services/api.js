@@ -64,10 +64,23 @@ async function updateUser(name, token) {
     .then((response) => response.data).catch((error) => error.response.data);
 }
 
+async function fetchOrders(token) {
+  const response = await (await fetch(`${endpoint}/admin/orders`, {
+    method: 'GET',
+    headers: {
+      ...headers,
+      Authorization: token,
+    },
+  })).json();
+
+  return response;
+}
+
 export default {
   getProducts,
   loginUser,
   registerUser,
   registerPurchase,
   updateUser,
+  fetchOrders,
 };

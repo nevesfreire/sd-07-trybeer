@@ -2,11 +2,14 @@ require('dotenv').config();
 const { resolve } = require('path');
 const express = require('express');
 const cors = require('cors');
-const { CheckoutRoute,
+
+const {
+  CheckoutRoute,
   RegisterRoute,
   loginRoute,
   ProductsRoute,
   updateUser,
+  SalesRoute,
 } = require('./routes');
 
 const port = process.env.PORT || 3001;
@@ -22,6 +25,7 @@ app.use('/login', loginRoute);
 app.use('/checkout', CheckoutRoute);
 app.use('/products', ProductsRoute);
 app.use('/profile', updateUser);
+app.use('/admin/orders', SalesRoute);
 
 app.listen(port, () => {
   console.log(`Server inicializado na porta ${port}`);
