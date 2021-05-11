@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 import './ProductCard.css';
+import { BeerContext } from '../../context';
 
 export default function ProductCard(props) {
   const { product, index } = props;
@@ -9,9 +10,98 @@ export default function ProductCard(props) {
   const imageSrc = product.url_image;
 
   const [quantity, setQuantity] = useState(0);
+  const [buttonClicked, setButtonClicked] = useState('');
 
-  const plus = () => setQuantity(quantity + 1);
-  const minus = () => setQuantity(quantity - 1);
+  const {
+    totalCart,
+    setTotalCart,
+    productsCart,
+    setProductsCart,
+  } = useContext(BeerContext);
+
+  const productIsInTheCart = () => {
+    if (productsCart.length === 0) {
+      return false;
+    }
+    return productsCart.some((p) => p.name === name);
+  };
+  const changeProductQuantity = () => {
+    const updatedCart = productsCart.map((p) => {
+      if (p.name === name) {
+        return { name, quantity, totalPrice: (parseFloat(price) * quantity).toFixed(2) };
+      } return p;
+    });
+    setProductsCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  };
+
+  const updateProductAtCart = () => {
+    if (buttonClicked === 'plus') {
+      if (!productIsInTheCart()) {
+        setProductsCart(
+          [...productsCart, { name, quantity, totalPrice: parseFloat(price) }],
+        );
+        localStorage.setItem('cart',
+          JSON.stringify([...productsCart,
+            { name, quantity, totalPrice: parseFloat(price) }]));
+      } else {
+        changeProductQuantity();
+      }
+    }
+    if (buttonClicked === 'minus') {
+      if (quantity === 0) {
+        setProductsCart(productsCart.filter((p) => p.name !== name));
+        localStorage.setItem('cart',
+          JSON.stringify(productsCart.filter((p) => p.name !== name)));
+      } else {
+        changeProductQuantity();
+      }
+    }
+  };
+
+  const sumTotalValue = (() => {
+    if (buttonClicked === 'plus') {
+      setTotalCart(totalCart + parseFloat(price));
+      localStorage.setItem('totalCart', JSON.stringify(totalCart + parseFloat(price)));
+    }
+    if (buttonClicked === 'minus') {
+      setTotalCart(totalCart - parseFloat(price));
+      localStorage.setItem('totalCart', JSON.stringify(totalCart - parseFloat(price)));
+    }
+  });
+
+  useEffect(() => {
+    updateProductAtCart();
+    console.log(quantity);
+    sumTotalValue();
+  }, [quantity, buttonClicked]);
+
+  const minus = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    }
+    setButtonClicked('minus');
+  };
+
+  const plus = () => {
+    setQuantity(quantity + 1);
+    setButtonClicked('plus');
+  };
+
+  const getQuantityFromLocalStorage = () => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if (!cart) return 0;
+    const productFromLocalStorage = cart.find((p) => p.name === name);
+    if (productFromLocalStorage === undefined) return 0;
+    const productQuantity = productFromLocalStorage.quantity;
+    console.log(productQuantity);
+    return productQuantity;
+  };
+
+  const disableMinusButton = () => {
+    if (getQuantityFromLocalStorage() === 0) return true;
+    return false;
+  };
 
   return (
     <Card style={ { width: '18rem' } }>
@@ -34,13 +124,14 @@ export default function ProductCard(props) {
           data-testid={ `${index}-product-minus` }
           onClick={ minus }
           id="num"
+          disabled={ disableMinusButton() }
         >
           -
         </Button>
         <input
           readOnly
           type="text"
-          value={ quantity }
+          value={ getQuantityFromLocalStorage() }
           data-testid={ `${index}-product-qtd` }
         />
         <Button

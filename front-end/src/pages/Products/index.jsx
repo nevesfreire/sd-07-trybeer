@@ -1,12 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import ProductCard from '../../components/ProductCard';
+import { BeerContext } from '../../context';
 
 export default function Products() {
   const [productsList, setProductsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [total, setTotal] = useState(0);
+
+  const { totalCart } = useContext(BeerContext);
+
+  const getTotalCartFromLocalStorage = () => {
+    const totalFromLS = localStorage.getItem('totalCart');
+    if (!totalFromLS) return 0;
+    return parseFloat(totalFromLS).toFixed(2);
+  };
+
+  useEffect(() => {
+    setTotal(getTotalCartFromLocalStorage());
+  }, [totalCart]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,6 +40,7 @@ export default function Products() {
 
     history.push('/checkout');
   };
+
   return isLoading ? (
     <div>Loading...</div>
   )
@@ -48,7 +63,9 @@ export default function Products() {
             // disabled={ !inputValidation() }
           >
             <div data-testid="checkout-bottom-btn">Ver carrinho</div>
-            <div data-testid="checkout-bottom-btn-value">R$ 0,00</div>
+            <div data-testid="checkout-bottom-btn-value">
+              {`R$ ${total.toString().replace('.', ',')}`}
+            </div>
           </Button>
         </main>
       </div>);
