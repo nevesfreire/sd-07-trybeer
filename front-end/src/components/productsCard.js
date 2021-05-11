@@ -1,21 +1,26 @@
-import React, { useContext, useEffect, useCallback } from 'react';
+import React, { useContext, useEffect, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import BeerContext from '../context/beerContext';
 import ProductsButtons from './productsButtons';
+import { getCartQuantity} from '../utils/localStorage';
 
 function ProductsCard(props) {
   const { id, name, price, image, index, updateCart } = props;
-  const { cartQuantity, setCartQuantity } = useContext(BeerContext);
+  const [cartQuantity, setCartQuantity] = useState(0);
 
-  const updateCartQuantity = useCallback(() => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    let thisProduct = [];
-    thisProduct = cart.filter((cartproduct) => cartproduct.id === id);
-    if (thisProduct.length > 0) {
-      setCartQuantity(thisProduct[0].quantity);
-    }
+  // const updateCartQuantity = useCallback(() => {
+  //   const cart = JSON.parse(localStorage.getItem('cart'));
+  //   let thisProduct = [];
+  //   thisProduct = cart.filter((cartproduct) => cartproduct.id === id);
+  //   if (thisProduct.length > 0) {
+  //     setCartQuantity(thisProduct[0].quantity);
+  //   }
+  //   updateCart();
+  // }, [id, setCartQuantity, updateCart]);
+  const updateCartQuantity = () => {
+    setCartQuantity(getCartQuantity(id));
     updateCart();
-  }, [id, setCartQuantity, updateCart]);
+  }
 
   const addCartItem = () => {
     const product = {
@@ -58,7 +63,7 @@ function ProductsCard(props) {
     };
     getCart();
     updateCartQuantity();
-  }, [id, setCartQuantity, updateCartQuantity]);
+  }, []);
 
   const removeCartItem = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
