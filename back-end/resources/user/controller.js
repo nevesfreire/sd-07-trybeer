@@ -11,4 +11,15 @@ const getAll = async (_req, res) => {
   }
 };
 
-module.exports = { getAll };
+const create = async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
+    const { error, message } = await service.create(name, email, password, role);
+    if (error) return res.status(StatusCodes.BAD_REQUEST).json({ error, message });
+    res.status(StatusCodes.CREATED).json({ message });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+};
+
+module.exports = { getAll, create };

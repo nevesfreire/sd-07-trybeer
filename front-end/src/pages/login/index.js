@@ -42,7 +42,6 @@ export default function Login() {
 
   return (
     <div>
-
       <label htmlFor="email">
         Email:
         <input
