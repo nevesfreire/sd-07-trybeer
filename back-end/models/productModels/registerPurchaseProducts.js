@@ -2,6 +2,7 @@ const connection = require('../connection');
 
 const registerPurchaseProducts = async (productsList, saleId) => {
   try {
+    console.log(productsList, saleId)
     const response = productsList.map((pdt) => connection
       .execute('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES(?,?,?)',
       [saleId, pdt.productId, pdt.quantity]));

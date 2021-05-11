@@ -31,7 +31,7 @@ async function loginUser(email, password) {
     .then((response) => response.data).catch((error) => error.response.data);
 }
 
-const registerPurchase = async (cart, number, street, token) => {
+const registerPurchase = async ({ cart, number, street, token }) => {
   const options = {
     method: 'POST',
     url: `${endpoint}/checkout`,

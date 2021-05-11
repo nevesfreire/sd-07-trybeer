@@ -9,12 +9,16 @@ const preCheckFields = (requiredFields, inputs) => {
   return true;
 };
 
-const validateSale = (saleData) => {
-  const mandatoryFields = ['userId', 'totalPrice', 'deliveryAddress', 'deliveryNumber'];
-  return preCheckFields(mandatoryFields, saleData);
+const validateSale = (saleData, user) => {
+  const mandatoryPdtFields = ['id', 'name', 'price', 'quantity'];
+  const mandatoryUserField = ['id'];
+  return preCheckFields(mandatoryPdtFields, saleData)
+    ? false
+    : preCheckFields(mandatoryUserField, user);
 };
 
 const insertPurchase = async (purchase, pdtList) => {
+  console.log(purchase, pdtList)
   const [insertPurchRes] = await registerPurchase(purchase);
   if (insertPurchRes.err) return false;
   const { insertId } = insertPurchRes;
@@ -28,26 +32,29 @@ const insertPurchase = async (purchase, pdtList) => {
   return { insertId, statusCode: statusMsgMap.created.status };
 };
 
-const getFormatedDate = () => {
+const formatInfo = (pdts, usr, ttlPrice) => {
+  const { deliveryAddress, deliveryNumber, status } = pdts;
+  const { id } = usr;
   const date = new Date();
-  return `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
+  const trustedDate = `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
+  return { userId: id, deliveryAddress, deliveryNumber, status, totalPrice: ttlPrice, trustedDate };
 };
 
-const checkoutServ = async (body) => {
+const checkoutServ = async (body, user) => {
   try {
-    const { sale, productsList } = body;
-    if (!validateSale(sale)) return statusMsgMap.allFieldsMustBeFilled;
-    const productsIds = productsList.map((p) => p.productId);
+    const { cart } = body;
+    if (!validateSale(cart, user)) return statusMsgMap.allFieldsMustBeFilled;
+    const productsIds = cart.map((p) => p.productId);
     const productsData = await getProductsData(productsIds);
     const totalPrice = productsData
-      .reduce((acc, p, i) => acc + (p.price * productsList[i].quantity), 0);
-    const { userId, deliveryAddress, deliveryNumber, status } = sale;
-    const saleDate = getFormatedDate();
-    const trustedSale = { userId, deliveryAddress, deliveryNumber, status, totalPrice, saleDate };
-    const insertionRes = await insertPurchase(trustedSale, productsList);
+      .reduce((acc, p, i) => acc + (p.price * cart[i].quantity), 0);
+    const formatedData = formatInfo(cart, user, totalPrice);
+    const { trustedDate } = formatedData;
+    console.log('LINE53: ', formatedData, cart)
+    const insertionRes = await insertPurchase(formatedData, cart);
     if (!insertionRes) return statusMsgMap.erorInDb;
     const { insertId, statusCode } = insertionRes;
-    return { message: { insertId, saleDate }, status: statusCode };
+    return { message: { insertId, trustedDate }, status: statusCode };
   } catch (err) {
     console.log('error: ', err);
     return (err);

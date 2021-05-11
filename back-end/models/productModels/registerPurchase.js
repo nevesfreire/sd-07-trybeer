@@ -2,6 +2,7 @@ const connection = require('../connection');
 
 const registerPurchase = async (purchData) => {
   try {
+    console.log(purchData)
     const { userId, totalPrice, deliveryAddress, deliveryNumber, status, saleDate } = purchData;
     const response = connection
       .execute('INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, '
