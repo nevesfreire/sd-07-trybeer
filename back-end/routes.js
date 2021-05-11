@@ -23,7 +23,7 @@ router.get('/products', productsControler.getAllProducts);
 // "deliveryNumber":"25",
 // "listProducts": {"1":"5","2":"5"}
 // }
-//nesse caso não seria /checkout???
+// nesse caso não seria /checkout???
 // router.post('/sale', saleControler.create);
 router.post('/checkout', saleControler.create);
 
