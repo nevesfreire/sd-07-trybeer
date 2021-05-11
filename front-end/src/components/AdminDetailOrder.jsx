@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dateFormat from 'dateformat';
 import { Redirect, useHistory } from 'react-router';
-import { getDetailOrders } from '../../services/Api/user';
+import { getDetailOrders } from '../services/Api/user';
 
 const AdminDetailOrder = () => {
   const [products, setProducts] = useState([]);
