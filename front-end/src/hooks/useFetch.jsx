@@ -58,7 +58,7 @@ function useFetch() {
         Accept: informationType,
         'Content-Type': informationType,
         Authorization: token,
-      },      
+      },
     });
     const responseAPI = await result.json();
     return responseAPI;

@@ -1,12 +1,12 @@
 import React from 'react';
 import HeaderBurguer from '../components/HeaderBurger';
-import ProductsCard from '../components/ProductCardComponent';
+import ProductsComponent from '../components/ProductsComponent';
 
 function Products() {
   return (
     <>
       <HeaderBurguer titulo="TryBeer" />
-      <ProductsCard />
+      <ProductsComponent />
       Client
     </>
   );

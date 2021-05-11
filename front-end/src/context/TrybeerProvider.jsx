@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import TrybeerContext from './TrybeerContext';
 
@@ -6,25 +6,39 @@ function TrybeerProvider({ children }) {
   const [order, setOrder] = useState([]);
   const [totalValue, setTotalValue] = useState(0);
 
-  const addInCart = (id, name, price) => {
-    const filteredProduct = order.filter((product) => id === product.id);
-    setOrder([...order, { id, name, price }]);
-    setTotalValue(totalValue + price);
+  const addInCart = (id, price, quantity) => {
+    const updatedOrder = order.filter((object) => object.id !== id);
+    setOrder([...updatedOrder, { id, quantity: quantity + 1 }]);
+    setTotalValue(totalValue + Number(price));
   };
 
-  const removeFromCart = (name, price) => {
+  const removeFromCart = (id, price) => {
+    setTotalValue(totalValue - Number(price));
+    const findById = order.find((product) => id === product.id);
 
+    if (findById.quantity <= 1) {
+      const updatedOrder = order.filter((product) => product.id !== id);
+
+      return setOrder(updatedOrder);
+    }
+
+    const updatedOrder = order.map((product) => {
+      if (product.id === id) {
+        return { id, quantity: product.quantity - 1 };
+      }
+      return product;
+    });
+    return setOrder(updatedOrder);
   };
 
-  const getQuantity = (name) => {
-
-  };
+  useEffect(() => {
+    
+  }, [order]);
 
   const context = {
-    addOrder,
     addInCart,
     removeFromCart,
-    getQuantity,
+    totalValue,
   };
 
   return (
