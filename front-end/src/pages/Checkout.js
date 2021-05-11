@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Header } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import CustomCheckout from '../components/CustomCheckout';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
@@ -11,18 +11,19 @@ function Checkout() {
   const history = useHistory();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
 
+  let teste = 0;
   const remButton = (id) => {
-    setCart(cart.filter((item) => item[0] !== id));
+    const cartFilter = cart.filter((item) => item[0] !== id)
+    
+    setCart(cartFilter);
   };
 
   useEffect(() => {
     cart &&
-      cart.map((item) => {
-        setTotalKart(item[1] * item[2]);
-      });
-  }, [totalKart]);
-
-  useEffect(() => {
+    cart.map((item) => {
+      teste += (item[1] * item[2]);
+    });
+    setTotalKart(teste);
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
@@ -55,7 +56,9 @@ function Checkout() {
           <CustomHeader message="Finalizar Pedido" />
         </Grid.Column>
       </Grid>
+      <Container >
       {renderProdutsCart()}
+      </Container>
       <Form size="large">
         <Grid>
           <Grid.Row data-testid="order-total-value">
