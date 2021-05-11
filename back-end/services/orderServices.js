@@ -29,7 +29,8 @@ const getOrdersAdmin = async (token) => {
 const getOrderDetails = async (id, token) => {
   const decodedToken = decodeToken.decode(token);
   const idUser = await getUserIdFromEmail(decodedToken.email);
-  await validationsHelper.checkIfOrderBelongUser(idUser, id);
+  const checkOrder = await orderModels.checkIfOrderBelongUser(idUser, id);
+  await validationsHelper.checkIfOrderBelongUser(checkOrder);
   const result = await orderModels.getOrderDetails(id);
 
   return result;

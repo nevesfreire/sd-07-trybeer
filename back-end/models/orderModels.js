@@ -13,8 +13,11 @@ const getOrdersAdmin = async () => {
 };
 
 const checkIfOrderBelongUser = async (idUser, id) => {
-  await connection.execute('SELECT * FROM sales WHERE (sales.user_id = ? AND sales.id = ?)',
+  const [result] = await connection.execute(`SELECT *
+   FROM sales WHERE (sales.user_id = ? AND sales.id = ?)`,
    [idUser, id]);
+   
+  return result;
 };
 
 const getOrderDetails = async (id) => {
