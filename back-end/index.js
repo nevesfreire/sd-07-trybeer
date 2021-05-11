@@ -5,7 +5,7 @@ const app = express();
 const routes = require('./routes');
 require('dotenv').config();
 
-const { PORT } = process.env;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 
@@ -14,5 +14,4 @@ app.use('/', routes);
 app.use('/login', routes);
 app.use('/register', routes);
 
-app.listen(Number(PORT), () =>
-  console.log(`Server run in port ${PORT}`));
+app.listen(Number(PORT), () => console.log(`Server run in port ${PORT}`));

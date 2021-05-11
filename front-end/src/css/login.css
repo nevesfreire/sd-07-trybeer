@@ -45,6 +45,16 @@
   margin-bottom: 10px;
 }
 
+.disable {
+  background-color: rgba(218, 178, 11, 0.4);
+  border: none;
+  border-radius: 2px;
+  color: black;
+  font-weight: 700;
+  margin-top: 20px;
+  padding: 5px;
+}
+
 .btn-submit-login{
   background-color: rgba(218, 178, 11, 1);
   border: none;
@@ -74,7 +84,7 @@
 .container-form-int {
   box-shadow: 2px 4px 5px rgba(0,0,0,0.5);
   display: flex;
-  margin-top: 10%;
+  margin-top: 5%;
   min-height: 500px;
   width: 1000px;
 }

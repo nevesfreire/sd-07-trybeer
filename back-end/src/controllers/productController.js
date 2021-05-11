@@ -8,7 +8,6 @@ const productController = async (req, res) => {
     const data = await productService.productService(); // melhorar o nome
     res.status(SUCCESS).json(data);
   } catch (error) {
-    //  console.log(`product controler ${error}`);
     res.status(ERRO500).json({ messsage: error.messsage }); // não esta retornando nenhuma mensagem
   }
 };
