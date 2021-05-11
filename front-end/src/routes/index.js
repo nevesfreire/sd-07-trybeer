@@ -23,6 +23,7 @@ const Routes = () => (
       <Route exact path="/products" component={ Products } />
       <Route exact path="/admin/orders" component={ AdminOrders } />
       <Route exact path="/admin/profile" component={ AdminProfile } />
+      <Route exact path="/products" component={ Product } />
     </Switch>
   </Router>
 );
