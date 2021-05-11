@@ -40,18 +40,12 @@ function Details({item, index}) {
               .replace('.', ',')
           }
         </p>
-        Unidade:
-        <p
-          data-testid={ `${index}-product-unit-price` }
-        >
-          { `(R$ ${item.price.replace('.', ',')} un)` }
-        </p>
-
+        {/* 
         <p
           data-testid={ `${index}-product-qtd` }
         >
           {item.quantity}
-        </p>
+        </p> */}
       </div>
     </div>
   );

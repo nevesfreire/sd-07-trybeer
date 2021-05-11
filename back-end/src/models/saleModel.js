@@ -44,11 +44,17 @@ const getAllSales = async () => {
 };
 
 const getSaleByNumber = async (orderNumber) => {
-  const [result] = await conn.query(`
+  const [[sale]] = await conn.query(`
   SELECT * FROM sales
+  WHERE id = ${orderNumber};
+  `);
+  const [products] = await conn.query(`
+  SELECT * FROM sales_products AS sp
+  INNER JOIN products AS p
+  ON sp.product_id = p.id
   WHERE sale_id = ${orderNumber};
   `);
-  return result;
+  return {sale, products};
 };
 
 module.exports = {

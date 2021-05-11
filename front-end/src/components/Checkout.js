@@ -69,6 +69,12 @@ function Checkout() {
           .map((item, index) => (
             <div>
               <Details item={item} index={index} />
+              Unidade:
+              <p
+                data-testid={ `${index}-product-unit-price` }
+              >
+                { `(R$ ${item.price.replace('.', ',')} un)` }
+              </p>
               <button
                 type="button"
                 data-testid={ `${index}-removal-button` }
