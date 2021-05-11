@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.btn-login {
+  background-color: #D07A2D!important;
+  color: #EDE4D7!important;
+}
+
+.btn-create {
+  background-color: #5E3E31!important;
+  color: #EDE4D7!important;
+}

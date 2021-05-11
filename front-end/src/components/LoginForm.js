@@ -30,10 +30,10 @@ function LoginForm() {
 
   return (
     <form className="form">
-      <label htmlFor="email">
+      <label className="form-label mb-3" htmlFor="email">
         Email
         <input
-          className="form-input"
+          className="form-control"
           data-testid="email-input"
           type="email"
           name="email"
@@ -43,10 +43,10 @@ function LoginForm() {
         />
       </label>
 
-      <label htmlFor="password">
+      <label className="form-label mb-5" htmlFor="password">
         Senha
         <input
-          className="form-input"
+          className="form-control"
           data-testid="password-input"
           type="password"
           name="password"
@@ -56,7 +56,7 @@ function LoginForm() {
         />
       </label>
       <button
-        className="form-button"
+        className="btn btn-login mb-3"
         data-testid="signin-btn"
         type="button"
         disabled={ isDisable() }
@@ -65,7 +65,7 @@ function LoginForm() {
         Entrar
       </button>
       <button
-        className="newUserBtn"
+        className="btn btn-create"
         data-testid="no-account-btn"
         type="button"
         onClick={ () => history.push('/register') }
