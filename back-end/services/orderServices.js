@@ -20,7 +20,6 @@ const getOrdersUser = async (token) => {
 
 const getOrdersAdmin = async (token) => {
   const decodedToken = decodeToken.decode(token);
-  console.log(decodedToken);
   validationsHelper.checkIsAdmin(decodedToken.role);
   const result = await orderModels.getOrdersAdmin();
   return result;
@@ -29,10 +28,18 @@ const getOrdersAdmin = async (token) => {
 const getOrderDetails = async (id) => {
   const result = await orderModels.getOrderDetails(id);
   return result;
-}
+};
+
+const changeStatus = async (id, token) => {
+  const decodedToken = decodeToken.decode(token);
+  validationsHelper.checkIsAdmin(decodedToken.role);
+  const result = await orderModels.changeStatus(id);
+  return result;
+};
 
 module.exports = {
   getOrdersUser,
   getOrdersAdmin,
   getOrderDetails,
+  changeStatus,
 };
