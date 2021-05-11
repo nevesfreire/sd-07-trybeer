@@ -4,6 +4,7 @@ import { Prices, Images, Texts, SalesCar } from '../../components/index';
 import Counts from '../../components/Counts';
 import TrybeerContext from '../../context/TrybeerContext';
 import { productList } from '../../service/trybeerApi';
+import TopMenu from '../../components/Header';
 
 import './style.css';
 
@@ -35,8 +36,8 @@ export default function Product() {
   return (
     <div>
       <div>
-        <h2 data-testid="top-title">TryBeer</h2>
         <h3>{ isLoading ? 'Carregando' : '' }</h3>
+        <TopMenu />
       </div>
       <div className="div-card">
         {products && products.map((prod, index) => (

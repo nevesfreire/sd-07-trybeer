@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { nameIsValid, passwordIsValid, emailIsValid } from '../../service/validateInputs';
-import { login } from '../../service/trybeerApi';
-import TopMenu from '../../components/Header';
+import { register, login } from '../../service/trybeerApi';
 
 export default function Register() {
   const [shouldRedirect, setShouldRedirect] = useState('');
@@ -48,7 +47,6 @@ export default function Register() {
 
   return (
     <div>
-      <TopMenu />
       <label htmlFor="name">
         Nome:
         <input
