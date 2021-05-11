@@ -13,6 +13,28 @@ const createSale = async (req, res) => {
   }
 };
 
+const getAllSalesController = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const arrayOfSales = await salesService.getSalesByIdService(userId);
+    res.status(200).json(arrayOfSales);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getProductsBySaleIdController = async (req, res) => {
+  const { saleId } = req.params;
+  try {
+    const arrayOfProducts = await salesService.getProductsBySaleIdService(saleId);
+    res.status(200).json(arrayOfProducts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createSale,
+  getAllSalesController,
+  getProductsBySaleIdController,
 };
