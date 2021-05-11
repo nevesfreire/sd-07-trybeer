@@ -16,9 +16,12 @@ const registerController = async (req, res) => {
     const user = await registerService.register(name, email, password, checked);
 
     if (!user.code) {
-      return res.status(201).json({ name, email, password, role,
+      return res.status(201).json({ name,
+email,
+password,
+role,
         messageSuccess: user.message,
-        status: true,
+status: true,
       });
     }
     res.status(user.code).json({ messageFailed: user.message, status: false });
