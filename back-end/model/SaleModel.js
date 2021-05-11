@@ -19,8 +19,7 @@ const create = async (tudao) => {
 const getAll = async (id) => {
   try {
     const sales = await connection.execute(
-      `SELECT delivery_number,
-      date_format(sale_date, '%d/%m') AS date,total_price FROM sales 
+      `SELECT * FROM sales 
       WHERE user_id = ?
       ORDER BY id`,
       [id],
@@ -54,18 +53,16 @@ const getById = async (id) => {
   }
 };
 
-const getByOrderNumber = async (orderNumber) => {
+const getByOrderNumber = async (idDOPedido) => {
   try {
     const sale = await connection.execute(
       `
-        SELECT ss.delivery_number, date_format(ss.sale_date, '%d/%m') AS date,
-        sp.quantity, p.name, p.price, ss.total_price
-        FROM sales AS ss
-        INNER JOIN sales_products AS sp ON ss.id = sp.sale_id
-        INNER JOIN products AS p ON sp.product_id = p.id
-        WHERE ss.delivery_number = ?
+      select sp.product_id, sp.quantity, p.price, p.name from sales s
+      join sales_products sp on s.id=sp.sale_id
+      join products p on p.id=sp.product_id
+      where s.id=?;
       `,
-     [orderNumber],
+     [idDOPedido],
     );
     return sale[0];
   } catch (error) {
