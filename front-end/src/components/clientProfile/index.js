@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { updateUser } from '../../services/apiServices.js';
-import profileValidation from './profileValidation.js';
+import { updateUser } from '../../services/apiServices';
+import profileValidation from './profileValidation';
 
 export default function ClientProfile() {
   const [name, setName] = useState('');
