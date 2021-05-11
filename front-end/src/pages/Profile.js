@@ -12,7 +12,7 @@ export default function AdminOrders() {
     const { fetchAPI } = fetchs;
     const obj = { name };
     const api = await fetchAPI('/register', 'PUT', obj, user.token);
-    if (api.error) {
+    if (!api.error) {
       user.name = name;
       localStorage.setItem('user', user);
     }
@@ -23,7 +23,6 @@ export default function AdminOrders() {
     <div>
       <TopBar title="Meu perfil" />
       <div>
-        <h1>perfil</h1>
         <input
           data-testid="profile-name-input"
           id="nameProfile"
@@ -41,7 +40,7 @@ export default function AdminOrders() {
           value={ user.email }
         />
         <h4 style={ { visibility: (response.visible ? 'visible' : 'hidden') } }>
-          {response.menssage}
+          {response.message}
         </h4>
         <button
           data-testid="profile-save-btn"
