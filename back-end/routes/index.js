@@ -9,4 +9,6 @@ routes.use('/register', registerRoute);
 routes.use('/products', productsRouter);
 routes.use('/sale', saleRoute);
 
+// routes.use('/validateToken', validateTokenRoute);
+
 module.exports = routes;

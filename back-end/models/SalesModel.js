@@ -26,6 +26,13 @@ const addSaleProducts = async (saleId, productId, quanity) => {
   await conn.execute(query, values);
 };
 
+// const getSaleProducts = async (saleId) => {
+//   const query = 'SELECT s.id, s.sale_date, s.total_price, sp.quantity, p.name, p.price '
+//     + 'FROM sales_products AS sp '
+//     + 'JOIN sales AS s ON sp.sale_id = s.id '
+//     + 'JOIN products AS p ON sp.product_id = p.id';
+// };
+
 module.exports = {
   create,
   findByUserId,

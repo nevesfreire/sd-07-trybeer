@@ -17,10 +17,10 @@ const getUserId = async (token) => {
   // const { id } = await User.findByEmail(userEmail);
   // return id;
 
-  const { payload, message } = verifyToken(token);
-  if (message) throw new CustomError(CODE.UNAUTHORIZED, message);
-
-  const { id } = await User.findByEmail(payload.username);
+  // const { payload, message } = verifyToken(token);
+  // if (message) throw new CustomError(CODE.UNAUTHORIZED, message);
+  const { username } = verifyToken(token);
+  const { id } = await User.findByEmail(username);
   return id;
 };
 
