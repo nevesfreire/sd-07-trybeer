@@ -77,7 +77,7 @@ function Checkout() {
       <MenuTopMobile />
       { sideIsActive && <SideBarMobile /> }
 
-      <div>
+      <div className="checkout-container">
         <h2>Produtos</h2>
 
         { total === 0 && <h2>Não há produtos no carrinho</h2> }
@@ -86,14 +86,16 @@ function Checkout() {
           { total > 0 && Storage.getItem('cart').map((product, index) => (
             <li key={ index }>
               <span data-testid={ `${index}-product-qtd-input` }>
-                {product.quantity}
+                { `${product.quantity} > ` }
               </span>
-              <span data-testid={ `${index}-product-name` }>{product.name}</span>
+              <span data-testid={ `${index}-product-name` }>
+                { `${product.name}  >  `}
+                </span>
               <span data-testid={ `${index}-product-total-value` }>
                 { Number(product.totalItem)
                   .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
               </span>
-              <span data-testid={ `${index}-product-unit-price` }>
+              <span data-testid={ `${index}-product-unit-price` } className="checkout-unit-price">
                 {`(${Number(product.price)
                   .toLocaleString('pt-BR', {
                     style: 'currency', currency: 'BRL' })} un)`}
@@ -113,7 +115,7 @@ function Checkout() {
           {`Total: R$ ${total.toFixed(2).replace('.', ',')}`}
         </h3>
         <h2>Endereço</h2>
-        <form>
+        <form className="form-container">
           <label htmlFor="checkout-street-input">
             Rua:
             <input
@@ -121,15 +123,17 @@ function Checkout() {
               data-testid="checkout-street-input"
               type="text"
               onChange={ (e) => setAddress(e.target.value) }
+              className="checkout-form-input"
             />
           </label>
-          <label htmlFor="checkout-house-number-input">
+          <label htmlFor="checkout-house-number-input" className="checkout-form-label">
             Número da casa:
             <input
               id="checkout-house-number-input"
               data-testid="checkout-house-number-input"
               type="text"
               onChange={ (e) => setAddressNumber(e.target.value) }
+              className="checkout-form-input"
             />
           </label>
         </form>
@@ -138,6 +142,7 @@ function Checkout() {
           data-testid="checkout-finish-btn"
           disabled={ !address || !addressNumber || !total }
           onClick={ handleCheckout }
+          className="checkout-finish-button"
         >
           Finalizar Pedido
         </button>
