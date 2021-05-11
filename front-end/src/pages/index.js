@@ -5,7 +5,6 @@ import Register from './Register';
 import ClientProfile from './ClientProfile';
 import Checkout from './Checkout';
 
-
 export {
   Login,
   Products,
