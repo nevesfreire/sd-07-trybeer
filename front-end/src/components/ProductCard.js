@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +14,6 @@ function ProductCard({ item, index }) {
 
   const add = () => {
     cart.addToCart(item);
-    setQtt(qtt + 1);
   };
   /*   const sumQtt = (element) => {
       setQtt(qtt + 1);
@@ -23,10 +22,18 @@ function ProductCard({ item, index }) {
   const subQtt = () => {
     const zero = 0;
     if (qtt > zero) {
-      setQtt(qtt - 1);
       cart.removeToCart(item);
     }
   };
+
+  const quantityExists = () => {
+    if (cart.cart !== {}) setQtt(cart.cart[index].quantity);
+  };
+
+  useEffect(() => {
+    console.log('Console log do useEffect linha 31', cart.cart);
+    quantityExists();
+  }, [cart]);
 
   return (
     <div>

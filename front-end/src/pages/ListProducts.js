@@ -58,7 +58,7 @@ function Products() {
                 <span
                   data-testid="checkout-bottom-btn-value"
                 >
-                  {`R$ ${(sumItens).toFixed(2)}`}
+                  {`R$ ${(sumItens).toFixed(2).split('.').join(',')}`}
                 </span>
               </button>
             </>
