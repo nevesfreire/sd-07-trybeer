@@ -1,3 +1,4 @@
+
 const REGEX = /\S+@\S+\.\S+/;
 
 const validEmail = (email) => REGEX.test(email);

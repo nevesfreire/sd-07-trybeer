@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { Header } from '../components';
 
 import { useHistory, Link } from 'react-router-dom';
 
@@ -15,7 +16,7 @@ function Products() {
   // const { cart, setCart, addProductsToCart } = useContext(TrybeerContext);
 
   const requestProducts = useCallback(async () => {
-    const user = await acessLocalStorage.getUserLocalStorage();
+    const user = await acessLocalStorage.acessLocalStorage.getUserLocalStorage();
     const resultApi = await getProducts(user.token);
     setproducts(resultApi.data);
     if (resultApi) setLoading(false);
@@ -26,6 +27,10 @@ function Products() {
   }, [requestProducts]);
 
   return (
+    <>
+    <div>
+    <Header title="TryBeer"/>
+    </div>   
     <div>
       {
         loading
@@ -57,12 +62,9 @@ function Products() {
               </button>
             </div>
           )
-      }
-      {/* Link e div somente para passar test req 4.
-      Falta o menu e Link para redirecionar a pagina Client Profile */}
-      <Link to="/profile" data-testid="side-menu-item-my-profile"> Profile </Link>
-      <div data-testid="top-hamburguer"> Menu </div>
+      }     
     </div>
+    </>
   );
 }
 

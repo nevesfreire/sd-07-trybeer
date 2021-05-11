@@ -9,7 +9,7 @@ function ProfileForm() {
   const [inputName, setInputName] = useState('');
   const [notification, setNotification] = useState(true);
 
-  const { email, name, role, token } = services.getUserLocalStorage();
+  const { email, name, role, token } = services.acessLocalStorage.getUserLocalStorage();
 
   const handleClick = async () => {
     const newUser = {
@@ -19,28 +19,14 @@ function ProfileForm() {
       token,
     };
     await updateUser({ name: inputName, email });
-    services.setUserLocalStorage(newUser);
+    services.acessLocalStorage.setUserLocalStorage(newUser);
     setNotification(false);
   };
 
-  return (
-    <>
-      <h1
-        data-testid="top-title"
-      >
-        Meu perfil
-      </h1>
-      <div
-        hidden={ notification }
-      >
-        <p>
-          Atualização concluída com sucesso
-          <Button
-            remove
-            onClick={ () => setNotification(true) }
-          />
-        </p>
-      </div>
+  return (    
+
+       <div>
+         <h1 data-testid="top-title">Meu perfil</h1>      
       <Field>
         <Label>
           Nome
@@ -67,7 +53,17 @@ function ProfileForm() {
           />
         </Control>
       </Field>
-
+      <div
+        hidden={ notification }
+      >
+        <p>
+          Atualização concluída com sucesso
+          <Button
+            remove
+            onClick={ () => setNotification(true) }
+          />
+        </p>
+      </div>
       <Field>
         <Control>
           <Button
@@ -79,7 +75,8 @@ function ProfileForm() {
           </Button>
         </Control>
       </Field>
-    </>
+      </div>
+  
   );
 }
 

@@ -25,3 +25,8 @@ code {
 .nav-list {
   margin-top: 2px;
 }
+
+.button-burguer {
+  background-color: transparent;
+  border: none;
+}

@@ -11,15 +11,15 @@ const burguerViewer = () => {
   showMenu.classList.toggle('is-hidden');
 };
 
-function Header() {
-  const title = 'TryBeer';
+function Header({title}) {
+  
   return (
     <nav
       className="navbar is-warning is-fixed-top"
       role="navigation"
       aria-label="main navigation"
     >
-      <Link to="/" onClick={ () => burguerViewer() }>
+      <button className="button-burguer" onClick={ () => burguerViewer() }>
         <div
           data-testid="top-hamburguer"
           role="button"
@@ -31,7 +31,7 @@ function Header() {
           <span aria-hidden="true" />
           <span aria-hidden="true" />
         </div>
-      </Link>
+      </button>
       <div
         className="side-menu-container
         navbar-item has-dropdown is-hoverable is-hidden"

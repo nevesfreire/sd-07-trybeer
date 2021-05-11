@@ -1,9 +1,12 @@
 import React from 'react';
-import { ProfileForm } from '../components';
+import { ProfileForm, Header } from '../components';
 
 function ClientProfile() {
   return (
+    <>
+    <Header title="Meu Perfil"/>
     <ProfileForm />
+    </>
   );
 }
 
