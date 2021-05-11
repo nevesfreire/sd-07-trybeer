@@ -49,7 +49,9 @@ const profileNameUpdate = async (name, email) => {
 const registerUser = async (name, email, password, role) => {
   let priveleges = 'administrator';
   if (!role) { priveleges = 'client'; }
+  const token = jwt.sign({ name, email, role }, secret, jwtConfig);
   await userModel.registerUser(name, email, password, priveleges);
+  return token;
 };
 
 module.exports = {

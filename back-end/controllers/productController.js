@@ -12,6 +12,18 @@ const getAll = async (req, res) => {
   }
 };
 
+const getImageProduct = async (req, res) => {
+  try {
+    const { params: { name } } = req;
+    const imagePath = `images/${name}`;
+    return res.status(OK).download(imagePath);
+  } catch (error) {
+    console.log(error);
+    return res.status(INTERNAL_SERVER_ERROR).json(error);
+  }
+};
+
 module.exports = {
   getAll,
+  getImageProduct,
 };
