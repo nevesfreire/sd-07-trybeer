@@ -17,7 +17,7 @@ const customAnswer = (message, http = UNAUTHORIZED) => ({
 const secret = process.env.SECRET_JWT || 'trybeer';
 
 const jwtConfig = {
-  expiresIn: 60 * 20,
+  expiresIn: 20,
   algorithm: 'HS256',
 };
 
