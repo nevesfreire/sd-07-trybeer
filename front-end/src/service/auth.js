@@ -6,14 +6,10 @@ export default async function fetchToken(email, password) {
   // const { REACT_APP_CLIENT_SECRET } = process.env;
   // console.log(REACT_APP_CLIENT_SECRET);
 
-
-
   const requestHeader = {
     'Content-Type': 'application/json',
-        // "secret-key": process.env.REACT_APP_SECRET,
+    // "secret-key": process.env.REACT_APP_SECRET,
   };
-
-  
 
   const requestBody = {
     email,
@@ -21,15 +17,16 @@ export default async function fetchToken(email, password) {
   };
 
   try {
-    const res = await axios.post(requestTokenUrl, requestBody, requestHeader);
+    const res = await axios.post(requestTokenUrl, requestBody, { header: requestHeader });
     console.log('auth');
-    console.log(res);
+    console.log('res auth', res);
     const { data } = res;
     if (data) {
       saveToken(data);
       return data;
     }
   } catch (error) {
+    console.log('errou aqui')
     console.error(error);
   }
 }
