@@ -2,7 +2,7 @@ const connection = require('../connection');
 
 const getById = async (id) => {
   try {
-    const [[sale]] = await connection.execute('select * from sales sa ' 
+    const [sale] = await connection.execute('select * from sales sa ' 
     + 'inner join sales_products sp ' 
     + 'on sp.sale_id = sa.id '
     + 'inner join products pr '
