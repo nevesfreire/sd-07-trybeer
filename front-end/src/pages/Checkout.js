@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Address from '../components/Address';
 import Header from '../components/Header';
-import saveOrder from '../services/Order';
+import { update } from '../actions'; 
+import { saveOrder } from '../services/Order';
 
 export default function Checkout() {
   const INITIAL_VALUE = 0;
