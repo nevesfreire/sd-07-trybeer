@@ -26,27 +26,25 @@ function Provider({ children }) {
   };
 
   const removeToCart = (item) => {
-    if (item.lenght === 1) {
-      setCart((old) => {
-        let quantity = 0;
-        let newCart;
-        if (old[item.id]) {
-          quantity = old[item.id].quantity;
-        }
+    setCart((old) => {
+      let quantity = 0;
+      let newCart;
+      if (old[item.id]) {
+        quantity = old[item.id].quantity;
+      }
 
-        if (old[item.id] && old[item.id].quantity > 0) {
-          newCart = {
-            ...old,
-            [item.id]: {
-              quantity: quantity - 1,
-              item,
-            },
-          };
-        }
-        services.acessLocalStorage.setCartLocalStorage(newCart);
-        return newCart;
-      });
-    }
+      if (old[item.id] && old[item.id].quantity > 0) {
+        newCart = {
+          ...old,
+          [item.id]: {
+            quantity: quantity - 1,
+            item,
+          },
+        };
+      }
+      services.acessLocalStorage.setCartLocalStorage(newCart);
+      return newCart;
+    });
   };
 
   useEffect(() => {

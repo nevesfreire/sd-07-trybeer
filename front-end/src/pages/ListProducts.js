@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { Header, ProductCard, Loading } from '../components';
 
 import TrybeerContext from '../store/context';
-import { ProductCard, Loading } from '../components';
 import { getProducts } from '../api';
 import acessLocalStorage from '../services';
 
@@ -38,7 +37,6 @@ function Products() {
       <div>
         <Header title="TryBeer" />
       </div>
-      <pre>{JSON.stringify(cart, null, 2)}</pre>
       {
         loading
           ? <Loading />

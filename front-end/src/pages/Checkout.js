@@ -6,8 +6,6 @@ function Checkout() {
 
   return (
     <div>
-      <pre>{JSON.stringify(cart, null, 2)}</pre>
-      {console.log(cart)}
       <h2>Produtos</h2>
       {
 
@@ -20,7 +18,6 @@ function Checkout() {
             <br />
             <span>{`R$ ${cart[key].item.price}`}</span>
             <br />
-            <prev>{JSON.stringify(cart[key])}</prev>
           </li>
         ))
 
