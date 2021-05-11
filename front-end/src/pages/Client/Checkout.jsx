@@ -32,7 +32,6 @@ const Checkout = () => {
 
   const finalValue = Object.values(localCart).reduce((t, { quantity, product }) => {
     if (!Number.isNaN(parseFloat(product.price))) {
-      console.log(`${t}isthis`, quantity, product.price);
       return t + quantity * parseFloat(product.price);
     }
     return 0;
@@ -44,8 +43,22 @@ const Checkout = () => {
   const timeToGoToProducts = 2000;
 
   const finalizarPedido = async (e) => {
+    const body = {
+      deliveryAddress: street,
+      deliveryNumber: houseNumber,
+      listProducts: localCart.map((product) => ({
+        [product.product.id]: product.quantity,
+      }))
+        .reduce((acc, atual) => {
+          const valor = Object.values(atual)[0];
+          const key = Object.keys(atual);
+          acc[key] = valor;
+          return acc;
+        }, {}),
+    };
+    const token = JSON.parse(localStorage.getItem('token'));
     e.preventDefault();
-    await sendProducts(finalValue, street, houseNumber);
+    await sendProducts(body, token);
     setEndSale(true);
     localStorage.setItem('cart', JSON.stringify({
       0: { product: { price: 0 }, quantity: 0 },

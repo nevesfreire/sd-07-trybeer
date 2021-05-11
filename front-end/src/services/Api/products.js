@@ -5,16 +5,20 @@ const getAllProducts = async () => {
     const result = await instance.get('products');
     return result.data;
   } catch (error) {
-    return ({ error: 'algo deu errado' });
+    return { error: 'algo deu errado' };
   }
 };
 
-const sendProducts = async (tPrice, dAddress, dNumber) => {
+const sendProducts = async (body, token) => {
   try {
-    const result = await instance.post('checkout', { tPrice, dAddress, dNumber });
+    const result = await instance.post('sale', body, {
+      headers: {
+        Authorization: token,
+      },
+    });
     return result;
   } catch (error) {
-    return ({ error: 'não há produtos' });
+    return { error: 'não há produtos' };
   }
 };
 
