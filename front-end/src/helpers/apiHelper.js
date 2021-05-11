@@ -108,7 +108,7 @@ export async function fetchOrderById(id) {
   try {
     const response = await fetch(endpoint, request);
     const responseJson = await response.json();
-    const { sale } = responseJson;
+    const sale = responseJson;
 
     if (sale) {
       return sale;
