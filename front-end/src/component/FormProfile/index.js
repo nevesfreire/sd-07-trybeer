@@ -30,9 +30,9 @@ function FormProfile() {
 
   useEffect(() => {
     try {
-      const { name, email } = getToLocalStorage();  
+      const { name, email } = getToLocalStorage('user');
 
-      setFormProfile({ name, email });    
+      setFormProfile({ name, email });
     } catch (error) {
        history.push('/');
     }

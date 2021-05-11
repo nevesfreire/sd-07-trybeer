@@ -5,7 +5,7 @@ import FormProfile from '../../component/FormProfile';
 export default function Profile() {
   return (
     <>
-      <TopMenu  title="Cliente - Meu Perfil"/>
+      <TopMenu  title="Meu perfil"/>
       <FormProfile />
     </>
     
