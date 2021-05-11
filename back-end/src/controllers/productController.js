@@ -1,17 +1,15 @@
 const productService = require('../services/productService');
+const HttpStatus = require('../helpers/HttpStatus');
 
-const SUCCESS = 200;
-const ERRO500 = 500;
-
-const productController = async (req, res) => {
+const getAllProducts = async (req, res) => {
   try {
-    const data = await productService.productService(); // melhorar o nome
-    res.status(SUCCESS).json(data);
+    const result = await productService.getAllProducts();
+    res.status(result.statusCode).json(result.data);
   } catch (error) {
-    res.status(ERRO500).json({ messsage: error.messsage }); // não esta retornando nenhuma mensagem
+    res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: error.message });
   }
 };
 
 module.exports = {
-  productController,
+  getAllProducts,
 };
