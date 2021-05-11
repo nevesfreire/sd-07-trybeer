@@ -60,9 +60,24 @@ const createUser = async (req, res, next) => {
   }
 };
 
+const alterUser = async (req, res, next) => {
+  try {
+    const { name, email } = req.body;
+    const user = await service.alterUser(name, email);
+    console.log('userController', user);
+    res.status(StatusCodes.OK).json(user); 
+  } catch (error) {
+    next({
+      status: StatusCodes.NO_CONTENT,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllUsers,
   getByUserId,
   createLoginUser,
   createUser,
+  alterUser,
 };

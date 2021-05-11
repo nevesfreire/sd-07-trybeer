@@ -40,7 +40,7 @@ h1, h3 {
 }
 
 .menu-button, .nav-close, .nav-complement {
-  visibility: hidden;
+  visibility: visible;
 }
 
 @media only screen and (orientation:portrait){
