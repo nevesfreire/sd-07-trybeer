@@ -20,6 +20,12 @@ const registerOrder = async ({ userId, totalCart, address, addressNumber, saleDa
   return ({ id: result.insertId, userId, totalCart, address, addressNumber, saleDate, status });
 };
 
+const registerSalesProducts = async (saleId, productId, quantity) => {
+  const query = `INSERT INTO Trybeer.sales_products (sale_id, product_id,
+    quantity) VALUES (?,?,?)`;
+  await connection.execute(query, [saleId, productId, quantity]);
+};
+
 const getOrderByUserId = async (userId) => { 
   const [[order]] = await connection
     .execute('SELECT * FROM Trybeer.sales WHERE user_id=?', [userId]);
@@ -37,8 +43,8 @@ const getDate = async () => {
 };
 const getOrderDetailsById = async (orderId) => {
   const [ordersDetails] = await connection
-    .execute(`select products.name,products.price,sales_products.quantity
-    , sales_products.sale_id
+    .execute(`SELECT products.name,products.price,sales_products.quantity
+    , sales_products.sale_id, sales.status
     FROM  sales
     INNER JOIN sales_products ON sales.id = sales_products.sale_id
     INNER JOIN products ON sales_products.product_id = products.id
@@ -46,10 +52,19 @@ const getOrderDetailsById = async (orderId) => {
     [orderId]);
   return ordersDetails;
 };
+
 const getAllOrders = async () => {
   const [sales] = await connection
     .execute('SELECT * FROM Trybeer.sales');
   return sales;
+};
+
+const updateSale = async (saleId) => {
+  const delivered = 'Entregue';
+  const query = 'UPDATE Trybeer.sales SET status=? WHERE id=?';
+  await connection.execute(query, [delivered, saleId]);
+  const updatedSale = await getOrderDetailsById(saleId);
+  return updatedSale[0].status;
 };
 
 module.exports = {
@@ -61,4 +76,6 @@ module.exports = {
   getOrderDetailsById,
   getOrderByUserId,
   getDate,
+  registerSalesProducts,
+  updateSale,
 };

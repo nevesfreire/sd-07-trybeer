@@ -24,7 +24,7 @@ function App() {
       <Route path="/orders/:id" component={ OrderDetails } />
       <Route exact path="/profile" component={ Profile } />
       <Route path="/checkout" component={ Checkout } />
-      <Route path="/admin/orders" component={ AdminOrders } />
+      <Route exact path="/admin/orders" component={ AdminOrders } />
       <Route path="/admin/orders/:id" component={ AdminOrdersId } />
       <Route path="/admin/profile" component={ AdminProfile } />
     </Switch>
