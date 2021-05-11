@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { Container, Form, Button } from 'react-bootstrap';
 import { validateName, validateFields } from '../../util/validations';
 import { registerUser } from '../../servicesAPI/api';
-import { Container, Form, Button } from 'react-bootstrap';
 
 const Register = () => {
   const [name, setName] = useState('');

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { getUser } from '../../servicesAPI/api';
 import { Button, Form, Container } from 'react-bootstrap';
+import { getUser } from '../../servicesAPI/api';
 import { validateFields } from '../../util/validations';
 import './index.css';
 
