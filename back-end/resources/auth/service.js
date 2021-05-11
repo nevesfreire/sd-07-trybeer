@@ -1,17 +1,18 @@
-const jwt = require('jsonwebtoken');
-const { service } = require('../user');
-const { emailIsValid, passwordIsValid } = require('../../helpers/validations');
+const userTeste = require('../user');
+const { 
+  validations: { emailIsValid, passwordIsValid },
+  token: { generateToken },
+} = require('../../helpers');
 const { userNotFound, emailOrPasswordInvalid } = require('../../helpers/dictonary');
-const { SECRET } = require('../../config/application');
 
-const validateLogin = async (email, password) => {
+const validateLogin = async (email, password) => {  
   if (!emailIsValid(email) || !passwordIsValid(password)) {
     return {
       error: true,
       message: emailOrPasswordInvalid,
     };
-  }
-  const user = await service.getByEmail(email);
+  }  
+  const user = await userTeste.service.getByEmail(email);  
   if (!user) {
     return { error: true, message: userNotFound };
   }
@@ -21,27 +22,8 @@ const validateLogin = async (email, password) => {
   return { error: false, user };
 };
 
-const generateToken = ({ name, email, role }) => {
-  const payload = {
-    name,
-    email,
-    role,
-  };
-
-  return jwt.sign(payload, SECRET);
-};
-
-const tokenIsValid = (token) => {
-  try {
-      jwt.verify(token, SECRET);
-      return true;
-  } catch (error) {
-      return false;
-  }
-};
-
-const login = async (userEmail, password) => {
-  const { error, message, user } = await validateLogin(userEmail, password);
+const login = async (userEmail, password) => {  
+  const { error, message, user } = await validateLogin(userEmail, password);  
   if (error) return { error, message };
   const token = generateToken(user);
 
@@ -49,4 +31,4 @@ const login = async (userEmail, password) => {
   return { error: false, payload: { token, name, email, role } };
 };
 
-module.exports = { login, tokenIsValid };
+module.exports = { login };

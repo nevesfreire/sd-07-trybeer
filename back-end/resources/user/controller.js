@@ -22,4 +22,15 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { getAll, create };
+const update = async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    const { error, message } = await service.update(name, email);
+    if (error) return res.status(StatusCodes.BAD_REQUEST).json({ error, message });
+    res.status(StatusCodes.OK).json({ message });
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+};
+
+module.exports = { getAll, create, update };
