@@ -29,7 +29,7 @@ const createSaleProducts = async (productsSaled) => {
 };
 
 const getSalesByUserId = async (userId) => {
- const [result] = await conn.query(`
+  const [result] = await conn.query(`
   SELECT * FROM sales
   WHERE user_id = ${userId};
   `);
@@ -43,9 +43,18 @@ const getAllSales = async () => {
   return result;
 };
 
-module.exports = { 
+const getSaleByNumber = async (orderNumber) => {
+  const [result] = await conn.query(`
+  SELECT * FROM sales
+  WHERE sale_id = ${orderNumber};
+  `);
+  return result;
+};
+
+module.exports = {
   createSale,
   createSaleProducts,
   getSalesByUserId,
   getAllSales,
+  getSaleByNumber,
 };

@@ -10,4 +10,8 @@ router
   .put(validateJWT)  
   .get(validateJWT, saleController.getSales);
 
+router
+  .route('sales/:orderNumber')
+  .get(saleController.getSaleByNumber);
+
 module.exports = router;
