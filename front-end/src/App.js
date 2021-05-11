@@ -10,9 +10,9 @@ import ClientProfile from './pages/Client/Profile';
 import Orders from './pages/Client/Orders';
 import OrdersDetail from './pages/Client/OrdersDetail';
 import Checkout from './pages/Client/Checkout';
-import AdminDetailOrder from './pages/Admin/AdminDetailOrder';
 import AdminProfile from './pages/Admin/Profile';
 import AdminOrders from './pages/Admin/AdminOrders';
+import AdminDetailOrder from './components/AdminDetailOrder';
 
 const App = () => (
   <BrowserRouter>
