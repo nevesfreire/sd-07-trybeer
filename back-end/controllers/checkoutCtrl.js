@@ -5,9 +5,8 @@ const checkoutCtrl = Router();
 
 checkoutCtrl.post('/', async (req, res, next) => {
   try {
-    const { body } = req;
-    const checkoutRes = await checkoutServ(body);
-    console.log(checkoutRes);
+    const { body, user } = req;
+    const checkoutRes = await checkoutServ(body, user);
     if (checkoutRes.err) return next(checkoutRes);
     const { error, message, status } = checkoutRes;
     return res.status(status).json({ message, error } || { });
