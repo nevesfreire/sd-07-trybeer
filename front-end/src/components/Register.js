@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import fieldValidate from '../helpers/fieldValidate';
-import messageSuccess from '../helpers/MessageSuccess';
 import context from '../context';
 
 const ComponentRegister = () => {
@@ -16,6 +15,8 @@ const ComponentRegister = () => {
 
   useEffect(() => {
     setName('');
+    setEmail('');
+    setPassword('')
     setIsChecked(false);
   }, [setIsChecked, setName]);
 
@@ -49,7 +50,8 @@ const ComponentRegister = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setUser(data.role);
+          console.log('Meus dados', data);
+          setUser(data);
         });
     }
   };
@@ -57,13 +59,14 @@ const ComponentRegister = () => {
   const handChange = (event) => {
     setIsChecked(event.target.checked);
   };
-
-  if (user === 'administrator') {
-    return <Redirect to="/admin/orders" />;
-  }
-
-  if (user === 'client') {
-    return <Redirect to="/products" />;
+  
+  if (user.status){
+    switch(user.role) {
+      case "administrator":
+        return <Redirect to="/admin/orders" />;
+      case "client":
+        return <Redirect to="/products" />;
+    }
   }
 
   return (
@@ -124,9 +127,12 @@ const ComponentRegister = () => {
           Cadastrar
         </Button>
       </div>
-      <div className="succes-message">
-        { user ? null : messageSuccess(user) }
+      <div className="success-message">
+      {
+        user.status ? user.messageSuccess : user.messageFailed
+      }
       </div>
+      
     </FormControl>
   );
 };
