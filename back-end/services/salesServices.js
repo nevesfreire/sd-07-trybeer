@@ -14,17 +14,16 @@ const saleRegister = async (orderData) => {
   const { email, price, address, deliveryNumber, saleDate, salesStatus, products } = orderData;
   const userId = await userModel.getUserIdByEmail(email);
   if (!userId) return customAnswer(userNotFound);
-  // const saleRegistered = await salesModel.saleRegister({
-  //   id: userId,
-  //   price,
-  //   address,
-  //   deliveryNumber,
-  //   saleDate,
-  //   salesStatus,
-  // });
-  // const saleId = saleRegistered.insertId;
-  const testando = await salesModel.saleProductRegister(products);
-  console.log('teste', testando);
+  const saleRegistered = await salesModel.saleRegister({
+    id: userId,
+    price,
+    address,
+    deliveryNumber,
+    saleDate,
+    salesStatus,
+  });
+  const saleId = saleRegistered.insertId;
+  await salesModel.saleProductRegister(products, saleId);
   return customAnswer(saleRegisteredMessage, OK);
 };
 

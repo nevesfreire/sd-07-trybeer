@@ -31,14 +31,16 @@ const getProductIdByName = async (productsList) => {
     const [productId] = await connection.execute(queryProduct, [product.productName]);
     return productId;
   }));
-  return productsIdList;
+  return productsIdList[0];
 };
 
-const saleProductRegister = async (productsList) => {
-    const productId = await getProductIdByName(productsList);
-    
-  // const registeredSale = await connection.execute(queryProductSale, []);
-  return productId;
+const saleProductRegister = async (productsList, saleId) => {
+  const productIdList = await getProductIdByName(productsList);
+  await Promise.all(productsList.map(async (product, i) => {
+    console.log(saleId, productIdList[i].id, product.quantity, i);
+    await connection.execute(queryProductSale, [saleId, productIdList[i].id, product.quantity]);
+  }));
+  return true;
 };
 
 module.exports = {
