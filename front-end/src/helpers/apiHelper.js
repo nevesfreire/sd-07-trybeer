@@ -130,9 +130,10 @@ export async function fetchImage(name) {
 export async function fetchCreateSale(
   userId,
   totalPrice,
-  deliveryAddress,
-  deliveryNumber,
+  delivery,
+  cart,
 ) {
+  const { deliveryAddress, deliveryNumber } = delivery;
   const endpoint = 'http://localhost:3001/sales';
   const request = {
     method: 'POST',
@@ -145,6 +146,7 @@ export async function fetchCreateSale(
       totalPrice,
       deliveryAddress,
       deliveryNumber,
+      cart,
     }),
   };
   try {
