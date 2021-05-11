@@ -29,4 +29,19 @@ const getOrderById = async (request, response) => {
   }
 };
 
-module.exports = { getAllOrders, getOrderById };
+const getOrderDetails = async (request, response) => {
+  try {
+    const { id } = request.params;
+    const order = await orderService.getOrderDetails(id);
+    if (!order) {
+      const ERR_MESSAGE = 'order not found';
+      throw new Error(ERR_MESSAGE);
+    }
+    return response.status(OK).json(order);
+  } catch (error) {
+    const { message } = error;
+    return response.status(ERROR).json({ message });
+  }
+};
+
+module.exports = { getAllOrders, getOrderById, getOrderDetails };

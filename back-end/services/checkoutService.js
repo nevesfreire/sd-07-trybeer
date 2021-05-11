@@ -10,9 +10,9 @@ const getSaleById = async (id) => {
   return sale;
 };
 
-const createSale = async (ObjParams) =>{
-  const sale  = await saleModel.createCheckout(ObjParams);
+const createSale = async (ObjParams) => {
+  const sale = await saleModel.createCheckout(ObjParams);
   return sale;
 };
 
-module.exports = { getAllSales, getSaleById, createSale};
+module.exports = { getAllSales, getSaleById, createSale };
