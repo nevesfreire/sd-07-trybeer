@@ -22,7 +22,6 @@ router.get('/products', productsControler.getAllProducts);
 // "deliveryAddress":"Rua Leopardo Gazela",
 // "deliveryNumber":"25",
 // "listProducts": {"1":"5","2":"5"}
-// }
 
 router.post('/sale', saleControler.create);
 
