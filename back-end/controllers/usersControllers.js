@@ -31,7 +31,7 @@ const registerUser = async (req, res) => {
     const { name, email, password, role } = req.body;
     const tokenLogin = await userServices.registerUser(name, email, password, role);
     console.log(tokenLogin);
-    return res.status(OK).json({ message: userRegisterSuccess, token: tokenLogin});
+    return res.status(OK).json({ message: userRegisterSuccess, token: tokenLogin });
   } catch (error) {
     console.log(error);
     return res.status(INTERNAL_SERVER_ERROR).json(error);
