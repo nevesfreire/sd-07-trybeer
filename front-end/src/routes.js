@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Products from './pages/Products';
 import Admin from './pages/Admin';
 import Client from './pages/Cliente';
+import Profile from './pages/Profile';
 
 const Routes = () => (
   <BrowserRouter>
@@ -17,7 +18,7 @@ const Routes = () => (
       <Route exact path="/home" component={ Admin } />
       <Route exact path="/products" component={ Client } />
       <Route exact path="/admin/orders" component={ Admin } />
-
+      <Route exact path="/profile" component={ Profile } />
     </Switch>
   </BrowserRouter>
 );
