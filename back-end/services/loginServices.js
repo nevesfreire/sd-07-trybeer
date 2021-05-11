@@ -33,7 +33,15 @@ const signUpLogin = async (data) => {
   return token;
 };
 
+const updateUser = async (data) => {
+  const { name } = data;
+  validName(name);
+  const updatedUser = await loginModel.updateUser(data);
+  return updatedUser;
+};
+
 module.exports = {
   signInLogin,
   signUpLogin,
+  updateUser,
 };
