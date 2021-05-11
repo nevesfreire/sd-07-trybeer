@@ -62,7 +62,7 @@ function Checkout() {
           <input
             id="street"
             data-testid="checkout-street-input"
-            placeholders="Av. Atlantica"
+            placeholder="Av. Atlantica"
             type="text"
             onChange={ ({ target }) => setStreet(target.value) }
             value={ street }
@@ -74,7 +74,7 @@ function Checkout() {
             id="number"
             data-testid="checkout-house-number-input"
             placeholder="34"
-            type="number"
+            type="text"
             onChange={ ({ target }) => setHouseNumber(target.value) }
             value={ houseNumber }
           />
