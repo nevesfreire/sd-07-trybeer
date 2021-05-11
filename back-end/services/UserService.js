@@ -11,7 +11,7 @@ const registerUser = async (data) => {
   if (userEmail[0]) throw REGISTEREDEMAIL;
   const newUser = await userModel.registerUser(data);
   const { name, email, role, password } = data;
-  const token = jwt.sign({email, password}, SECRET, jwtConfig);
+  const token = jwt.sign({ email, password }, SECRET, jwtConfig);
   return { token, name, email, role, id: newUser[0].insertId };
 };
 
