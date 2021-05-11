@@ -55,6 +55,9 @@ function OrderDetails() {
             <span data-testid="order-number">
               {`Pedido ${order[0] && order[0].sale_id} - `}
             </span>
+            <span data-testid="order-date">
+              {order.sale_date}
+            </span>
             { order.map((product, index) => (
               <div key={ index }>
                 <span data-testid={ `${index}-product-qtd` }>
