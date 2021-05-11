@@ -16,4 +16,26 @@ const login = async (email, password) => {
   return result;
 };
 
-export default login;
+const userStorage = JSON.parse(localStorage.getItem('user'));
+const { token } = userStorage === null ? '' : userStorage;
+
+const config = {
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: token,
+  },
+};
+
+const productList = async () => {
+  const result = await axios.get('http://localhost:3001/products', config)
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error) return { error: 'Token inválido ou lista não encontrada!' };
+    });
+  return result;
+};
+
+export {
+  login,
+  productList,
+};
