@@ -12,7 +12,7 @@ const ComponentRegister = () => {
   const { isChecked, setIsChecked } = useContext(context);
 
   const isValid = fieldValidate(name, email, password);
-  const REACT_APP_URL = 'http://localhost:3005';
+  const REACT_APP_URL = 'http://localhost:3001';
 
   useEffect(() => {
     setName('');
