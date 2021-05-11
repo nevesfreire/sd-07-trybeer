@@ -13,7 +13,7 @@ const emptyPassword = { email: 'test@teste.com', password: '' };
 const passwordOnly = { password: '123456' };
 const emailOnly = { email: 'tste@teste.com' };
 const shortPassword = { email: 'tete@teste.com', password: '12345' };
-const invalidUser = { email: 'teste@teste.com', password: '123456' };
+const invalidUser = { email: 'invaliduser@invalid.com', password: 'invalidPassword' };
 const validUser = { email: 'tryber@trybe.com.br', password: '123456' };
 
 const emailMustBeValid = { err: { message: '"email" must be a valid email' } };
@@ -25,6 +25,7 @@ const wrongPasswordLength = {
   err: { message: '"password" length must be at least 6 characters long' },
 };
 const userNotRegistered = { err: { message: 'Usuário inválido' } };
+
 const contentType = 'Content-Type';
 const applicationJson = 'application/json';
 
