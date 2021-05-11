@@ -42,11 +42,15 @@ const ClientDetailOrder = () => {
           <span data-testid="order-status">{`${delivered ? status : 'Entregue'}`}</span>
           <h3 data-testid="order-date">{dateFormat(saleDate, 'dd/mm')}</h3>
           {products.map(({ name, key, quantity, price }, index) => (
-            <div key={key}>
-              <h5 data-testid={`${index}-order-unit-price`}>{`R$ ${accPrice(price)}`}</h5>
-              <h5 data-testid={`${index}-product-qtd`}>{accPrice(quantity)}</h5>
-              <h5 data-testid={`${index}-product-name`}>{name}</h5>
-              <h5 data-testid={`${index}-product-total-value`}>
+            <div key={ key }>
+              <h5
+                data-testid={ `${index}-order-unit-price` }
+              >
+                { `R$ ${accPrice(price)}` }
+              </h5>
+              <h5 data-testid={ `${index}-product-qtd` }>{ accPrice(quantity) }</h5>
+              <h5 data-testid={ `${index}-product-name` }>{name}</h5>
+              <h5 data-testid={ `${index}-product-total-value` }>
                 {
                   `R$ ${accPrice(quantity * price)
                   }`
@@ -58,17 +62,18 @@ const ClientDetailOrder = () => {
           <h3 data-testid="order-total-value">{`Total: R$ ${accPrice(totalPrice)}`}</h3>
           <div>
             <button
-              onClick={() => setDelivered(true)}
-             data-testid="mark-as-delivered-btn"
-             disabled={delivered}
+              type="button"
+              onClick={ () => setDelivered(true) }
+              data-testid="mark-as-delivered-btn"
+              disabled={ delivered }
             >
               Marcar como entregue
             </button>
           </div>
         </div>
       ) : (
-          'deu merda'
-        )}
+        'deu merda'
+      )}
     </div>
   );
 };
