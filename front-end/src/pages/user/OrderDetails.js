@@ -31,7 +31,6 @@ function OrderDetails() {
         },
       });
       const ordersList = await response.json();
-      console.log(ordersList);
       setOrder(ordersList);
       setIsLoading(false);
     };
@@ -43,11 +42,12 @@ function OrderDetails() {
       * Number(actual.quantity)) + totalItem, 0);
     setTotal(sumProduct);
   }, [order]);
+  const NINEAdicionaZero = 9;
   function adicionaZero(numero) {
     if (numero <= NINEAdicionaZero) return `0${numero}`;
     return numero;
   }
-  const date = new Date(order[0].sale_date);
+  const date = new Date(order[0] && order[0].sale_date);
   const day = adicionaZero(date.getUTCDate());
   const month = adicionaZero(date.getUTCMonth() + 1);
   const orderDate = `${day}/${month}`;
