@@ -12,6 +12,6 @@ router
 
 router
   .route('sales/:orderNumber')
-  .get(saleController.getSaleByNumber)
+  .get(saleController.getSaleByNumber);
 
 module.exports = router;

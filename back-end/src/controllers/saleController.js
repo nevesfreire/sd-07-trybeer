@@ -41,7 +41,7 @@ const getSales = async (req, res) => {
 
 const getSaleByNumber = async (req, res) => {
   try {
-    const {orderNumber} = req.params;
+    const { orderNumber } = req.params;
     const result = await saleService.getSaleByNumber(orderNumber);
     res.status(201).json(result);
   } catch (error) {
@@ -56,8 +56,6 @@ const getSaleByNumber = async (req, res) => {
     });
   }
 };
-
-
 
 module.exports = { 
   createSale,

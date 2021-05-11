@@ -51,8 +51,6 @@ const getSaleByNumber = async (orderNumber) => {
   return result;
 };
 
-
-
 module.exports = {
   createSale,
   createSaleProducts,

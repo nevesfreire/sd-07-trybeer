@@ -14,13 +14,11 @@ const getSales = async (userId, role) => {
   if (role === 'client') return saleModel.getSalesByUserId(userId);
 };
 
-const getSaleByNumber = async( orderNumber) => {
-  return saleModel.getSaleByNumber(orderNumber);
-}
+const getSaleByNumber = async (orderNumber) => saleModel.getSaleByNumber(orderNumber);
 
 module.exports = {
   createSale,
   getSales,
-  getSaleByNumber
+  getSaleByNumber,
 
 };
