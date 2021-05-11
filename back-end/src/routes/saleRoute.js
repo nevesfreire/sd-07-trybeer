@@ -12,6 +12,7 @@ router
 
 router
   .route('/sales/:orderNumber')
-  .get(validateJWT, saleController.getSaleByNumber);
+  .get(validateJWT, saleController.getSaleByNumber)
+  .put(validateJWT, saleController.changeSaleStatus);
 
 module.exports = router;

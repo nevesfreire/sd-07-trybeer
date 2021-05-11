@@ -57,8 +57,27 @@ const getSaleByNumber = async (req, res) => {
   }
 };
 
+const changeSaleStatus = async (req, res) => {
+  try {
+    const { orderNumber } = req.params;
+    const result = await saleService.changeSaleStatus(orderNumber);
+    res.status(201).json({ message: result });
+  } catch (error) {
+    const { message, code } = error;
+    if (code) {
+      return res.status(code).json({
+        message,
+      });
+    }
+    return res.status(500).json({
+      message,
+    });
+  }
+};
+
 module.exports = { 
   createSale,
   getSales,
   getSaleByNumber,
+  changeSaleStatus,
 };
