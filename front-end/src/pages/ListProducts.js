@@ -19,18 +19,18 @@ function Products() {
     if (resultApi) setLoading(false);
   }, [setproducts]);
 
-  const sumItens = Object.keys(cart)
+  const sumItens = cart ? Object.keys(cart)
     .reduce(
       (acc, value) => (
         acc + (parseFloat(cart[value].item.price)) * (cart[value].quantity)
       ), 0,
-    );
+    ): 0;
 
   useEffect(() => {
     requestProducts();
   }, [requestProducts]);
 
-  console.log(Object.values(cart));
+
   return (
     <div>
       <pre>{JSON.stringify(cart, null, 2)}</pre>
