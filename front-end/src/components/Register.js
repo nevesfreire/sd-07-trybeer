@@ -29,6 +29,7 @@ const ComponentRegister = () => {
     }
   }, [isValid, setIsOk]);
 
+  console.log(user.status);
   const handleSubmit = async (e) => {
     const payload = {
       name,
@@ -133,7 +134,7 @@ const ComponentRegister = () => {
       </div>
       <div className="success-message">
         {
-          !user.status
+          !user.status && user.messageFailed
             ? <p>Já existe um usuário com esse e-mail.</p>
             : user.messageSuccess
         }
