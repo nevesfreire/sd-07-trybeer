@@ -9,10 +9,13 @@ const { registerController } = require('./src/controllers');
 const { getUser } = require('./src/controllers');
 const { productController } = require('./src/controllers');
 const { fieldValidator } = require('./src/middlewares');
+const { updateUser } = require('./src/controllers/userController');
 
 app.post('/login', loginMiddleware, loginController);
 
 app.get('/', getUser);
+
+app.put('/user', updateUser )
 
 app.post(
   '/',

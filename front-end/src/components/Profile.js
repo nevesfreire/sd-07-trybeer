@@ -7,15 +7,11 @@ import context from '../context';
 
 const ComponentProfile = () => {
 
-  const [getNameEmail, setgetNameEmail] = useState({});
-  const { user } = useContext(context);
+  const { user, setName, setEmail, name  } = useContext(context);
   const REACT_APP_URL = 'http://localhost:3000';
 
   const handleSubmit = async (e) => {
 
-    const payload = {
-      
-      };
   
       e.preventDefault();
       fetch(`${REACT_APP_URL}/register`, {
@@ -23,7 +19,7 @@ const ComponentProfile = () => {
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify({ ...payload }),
+        body: JSON.stringify(name),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -69,7 +65,7 @@ const ComponentProfile = () => {
             color="primary"
             variant="contained"
             className="RegisterBtn"
-            //   onClick={ handleSubmit }
+            onClick={ handleSubmit }
             >
             Salvar
             </Button>
