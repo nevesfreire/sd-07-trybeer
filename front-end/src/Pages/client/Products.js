@@ -6,73 +6,79 @@ import ListCardsProduts from "../../Components/ListCardsProduts";
 function Products() {
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState("");
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
     fetch("http://localhost:3001/products")
       .then((response) => response.json())
-      .then((books) => {
-        setProducts(books);
+      .then((products) => {
+        setProducts(products);
+
+        const initialCart = () => {
+          if (localStorage.getItem("cart") !== null)
+            return JSON.parse(localStorage.getItem("cart"));
+
+          let array = [];
+          for (let id = 1; id <= products.length; id++) {
+            array.push({ id, qtd: 0 });
+          }
+          return array;
+        };
+
+        setCart(initialCart());
+
+        
+
         setIsLoading(false);
       });
   }, []);
 
-  const initialCart = () => {
-    if (localStorage.getItem("cart")) return localStorage.getItem("cart");
-    let array = [];
-    for (let id = 0; id < products.length; id++) {
-      array.push({ id, qtd: 0 });
-    }
-    return array;
-  };
 
-  // console.log('initialCart',  initialCart())
 
-  const [cart, setCart] = useState([]);
-
-  const [total, setTotal] = useState("");
 
   const history = useHistory();
 
+
+
   function addQuantity(id) {
     let add = cart.find((product) => product.id === id);
-    console.log("add", add);
-    if (add) {
-      add.qtd += 1;
-      setCart([...cart.filter((product) => product.id !== id), add]);
-    } else {
-      console.log('passou aqui')
-      add = {
-        id,
-        qtd: 1,
-      };
-      console.log(add);
-      console.log(cart);
-      setCart([add])
-      console.log(cart);
-    }
-
+    add.qtd += 1;
+    setCart([...cart.filter((product) => product.id !== id), add]);
     localStorage.setItem("cart", JSON.stringify(cart));
+
+    let sum = 0;
+
+    products.map((product, index) => {
+      sum += (parseFloat(product.price) * getQtd(product.id))
+    })
+
+    setTotal(sum);
+
   }
 
   function subQuantity(id) {
-    let add = cart.find((product) => product.id === id);
-    if (add && add.qtd > 0) add.qtd -= 1;
-    else
-      add = {
-        id,
-        qtd: 0,
-      };
+    const add = cart.find((product) => product.id === id);
+    if (add.qtd > 0) add.qtd -= 1;
     setCart([...cart.filter((product) => product.id !== id), add]);
     localStorage.setItem("cart", JSON.stringify(cart));
+
+    let sum = 0;
+
+    products.map((product, index) => {
+      sum += (parseFloat(product.price) * getQtd(product.id))
+    })
+
+    setTotal(sum);
   }
 
   function getQtd(id) {
-    if (cart) return 0;
-    let add = cart.find((product) => product.id === id);
-    if (add) return add.qtd;
-    else return 0;
+    const add = cart.find((product) => product.id === id);
+    return add.qtd;
   }
+
+
 
   return (
     <div>
@@ -86,7 +92,7 @@ function Products() {
           <div className="App" key={e.id}>
             <img
               data-testid={`${index}-product-img`}
-              src="/images/Becks 330ml.jpg"
+              src="Becks.jpg"
             />
             <div>{e.url_image}</div>
             <div data-testid={`${index}-product-name`}>{e.name}</div>
@@ -110,7 +116,7 @@ function Products() {
             />
 
             <button
-              data-testid={`${index}-product-plus`}
+              data-testid={`${index}-product-minus`}
               name={"plus ".concat(e.id)}
               onClick={() => {
                 subQuantity(e.id);
@@ -129,31 +135,11 @@ function Products() {
         }}
       >
         <div>
-          Ver carrinho R$:{" "}
-          <div data-testid="checkout-bottom-btn-value">{total}</div>
+          Ver carrinho R$:{" "}<div data-testid="checkout-bottom-btn-value">{ parseFloat(total).toFixed(2) }</div>
         </div>
       </button>
     </div>
   );
-  /*const [allProducts, setAllProducts] = useState();
-
-  fetch('http://localhost:3001/products', {
-      method: 'GET',
-    }).then((response) => response.json())
-      .then((data) => {
-        setAllProducts(data);
-      });
-  
-  return (
-    <div>
-      <Header />
-      <div className="cards">
-      {allProducts.map((product) => (
-          <ListCardsProduts name={product.name} price={product.price} img={product.url_image} />
-        ))}
-      </div>
-    </div>
-  );*/
 }
 
 export default Products;
