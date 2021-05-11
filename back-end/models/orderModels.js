@@ -17,13 +17,12 @@ const getOrderDetails = async (id) => {
       status: result[0].status,
       saleDate: result[0].sale_date,
       products: 
-      result.map((product) => {
-        return {
+      result.map((product) => ({
           name: product.product_name,
           quantity: product.quantity,
           price: product.price,
-        };    
-      }),
+        }
+      )),
   };
 };
 
