@@ -12,6 +12,14 @@ const create = async (userId, total, deliveryAddress, deliveryNumber) => {
   await conn.execute(query, values);
 };
 
+const findByUserId = async (userId) => {
+  const query = 'SELECT id, total_price, sale_date FROM sales WHERE user_id=?';
+  const values = [userId];
+  const [sale] = await conn.execute(query, values);
+  return sale;
+};
+
 module.exports = {
   create,
+  findByUserId,
 };

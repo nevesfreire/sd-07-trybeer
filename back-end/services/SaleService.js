@@ -24,6 +24,26 @@ const create = async (token, total, deliveryAddress, deliveryNumber) => {
   }
 };
 
+const findByUserId = async (token) => {
+  if (!token) throw new CustomError(CODE.UNAUTHORIZED, 'Necessário realizar autenticação');
+
+  let userEmail;
+  try {
+    const { username } = verifyToken(token);
+    userEmail = username;
+  } catch (error) {
+    throw new CustomError(error.status, error.message);
+  }
+  const { id } = await User.findByEmail(userEmail);
+  try {
+    const sales = await Sale.findByUserId(id);
+    return { statusCode: CODE.OK, sales };
+  } catch (error) {
+    throw new CustomError(CODE.INTERNAL_SERVER_ERROR, 'Erro ao conectar com o banco de dados');
+  }
+};
+
 module.exports = {
   create,
+  findByUserId,
 };

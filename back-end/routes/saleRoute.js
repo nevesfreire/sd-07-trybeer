@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Sale = require('../controllers/saleController');
 
 router.route('/')
-  .get()
+  .get(Sale.findByUserId)
   .post(Sale.create)
   .put()
   .delete();

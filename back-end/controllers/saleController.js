@@ -13,6 +13,18 @@ const create = async (req, res, next) => {
   }
 };
 
+const findByUserId = async (req, res, next) => {
+  const token = req.headers.authorization;
+
+  try {
+    const { statusCode, sales } = await Sale.findByUserId(token);
+    res.status(statusCode).json({ statusCode, sales });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
+  findByUserId,
 };
