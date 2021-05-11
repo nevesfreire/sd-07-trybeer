@@ -47,7 +47,7 @@ function LoginForm() {
   }, [email, password]);
 
   return (
-    <>
+    <div className="login-form is-flex-mobile">
       <Field>
         <Label>
           Email
@@ -106,7 +106,7 @@ function LoginForm() {
       >
         Ainda não tenho conta
       </Link>
-    </>
+    </div>
   );
 }
 

@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-
 import { Button, Card, Media, Image, Heading } from 'react-bulma-components';
+import TrybeerContext from '../store/context';
 
 function ProductCard({ item, index }) {
+  const { addProductsToCart } = useContext(TrybeerContext);
   const { name, urlImage } = item;
   let { price } = item;
   price = price.split('.').join(',');
   const [qtt, setQtt] = useState(0);
 
-  const sumQtt = () => {
+  const sumQtt = (element) => {
     setQtt(qtt + 1);
+    addProductsToCart(element, { qtt: qtt + 1 });
   };
   const subQtt = () => {
     const zero = 0;
@@ -45,7 +47,7 @@ function ProductCard({ item, index }) {
         </Card.Content>
         <Button
           data-testid={ `${index}-product-plus` }
-          onClick={ () => sumQtt() }
+          onClick={ () => sumQtt(item) }
         >
           <FontAwesomeIcon icon={ faPlus } fixedWidth />
         </Button>
