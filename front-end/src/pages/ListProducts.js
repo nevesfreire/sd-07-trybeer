@@ -6,6 +6,8 @@ import { ProductCard, Loading } from '../components';
 import { getProducts } from '../api';
 import acessLocalStorage from '../services';
 
+// teste
+
 function Products() {
   const [products, setproducts] = useState([]);
   const [loading, setLoading] = useState(true);
