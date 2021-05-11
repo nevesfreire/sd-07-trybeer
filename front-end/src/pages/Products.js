@@ -5,11 +5,24 @@ import CustomProductCard from '../components/CustomProductCard';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
 import { Card, Grid } from 'semantic-ui-react';
-// import fetchProducts from '../service/products';
+
+
 function Products() {
-  const { totalKart } = useContext(CentralContext);
-  useEffect(() => {}, [totalKart]); // recarregar valor do carrinho
+  const { totalKart, setTotalKart} = useContext(CentralContext);
+
+  useEffect(() => {
+    let localtotal = 0 
+    const total = JSON.parse(localStorage.getItem('cart'));
+    total && total.map(item => {
+      localtotal = localtotal + item[1] * item[2] 
+    })
+    setTotalKart(localtotal)
+  }, []);
+
+  useEffect(() => {}, [totalKart]);
+
   const history = useHistory();
+
   const renderIngredients = () => {
     const products = JSON.parse(localStorage.getItem('product'));
     // fiz com a função do helper antes mas deu erro
