@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router';
-import { useHistory } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 import Header from '../../components/Header';
 import { BeerContext } from '../../context/BeerContext';
 import { sendProducts } from '../../services/Api/products';
@@ -41,14 +40,16 @@ const Checkout = () => {
 
   const accPrice = (price) => parseFloat(price).toFixed(2).toString().replace('.', ',');
 
-  const backToProducts = () => push('/products')
+  const backToProducts = () => push('/products');
   const timeToGoToProducts = 2000;
 
   const finalizarPedido = async (e) => {
     e.preventDefault();
     await sendProducts(finalValue, street, houseNumber);
-    setEndSale(true)
-    localStorage.setItem('cart', JSON.stringify({ 0: { product: { price: 0 }, quantity: 0 } }));
+    setEndSale(true);
+    localStorage.setItem('cart', JSON.stringify({
+      0: { product: { price: 0 }, quantity: 0 },
+    }));
     setTimeout(backToProducts, timeToGoToProducts);
   };
 
