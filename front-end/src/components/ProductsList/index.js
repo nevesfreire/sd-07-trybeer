@@ -21,11 +21,7 @@ export default function ProductsList() {
       }
       setProducts(response.map((item) => ({ ...item, productQtt: 0 })));
     };
-    const productsLocalStorage = JSON.parse(localStorage.getItem('productsList'));
 
-    if (!productsLocalStorage || productsLocalStorage.length === 0) {
-      localStorage.setItem('productsList', JSON.stringify([]));
-    }
     fetchProducts();
   }, []);
 
@@ -38,14 +34,7 @@ export default function ProductsList() {
     const floatPrice = parseFloat(searchedProduct.price);
     setProducts(newArr);
     localStorage.setItem('newProdList', JSON.stringify(newArr));
-    const { name, productQtt } = newArr[index];
-    const productsArray = JSON.parse(localStorage.getItem('productsList'));
-    const totalPrice = floatPrice * productQtt;
-    localStorage.setItem(
-      'productsList',
-      JSON.stringify([...productsArray, { name, totalPrice, productQtt }]),
-    );
-    localStorage.setItem('total', totalValue + floatPrice);
+    localStorage.setItem('total', (totalValue + floatPrice).toFixed(2));
     setTotalValue(totalValue + floatPrice);
   };
 
@@ -60,16 +49,7 @@ export default function ProductsList() {
     const floatPrice = parseFloat(searchedProduct.price);
     setProducts(newArr);
     localStorage.setItem('newProdList', JSON.stringify(newArr));
-    const { name, productQtt } = newArr[index];
-    const productsArray = JSON.parse(localStorage.getItem('productsList'));
-    const totalPrice = floatPrice * productQtt;
-    localStorage.setItem(
-      'productsList',
-      JSON.stringify(
-        [...productsArray, { name, totalPrice: totalPrice / productQtt, productQtt }],
-      ),
-    );
-    localStorage.setItem('total', totalValue - floatPrice);
+    localStorage.setItem('total', (totalValue - floatPrice).toFixed(2));
     setTotalValue(totalValue - floatPrice);
   };
 

@@ -8,6 +8,7 @@ import Products from '../../pages/Products';
 import AdminHome from '../../pages/AdminHome';
 import ClientOrdersPage from '../../pages/ClientOrders';
 import ClientOrderDetailsPage from '../../pages/ClientOrderDetails';
+import Checkout from '../../pages/Checkout';
 
 function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ function AppRoutes() {
       <Route exact path="/orders" component={ ClientOrdersPage } />
       <Route path="/admin/profile" component={ AdminProfilePage } />
       <Route path="/products" component={ Products } />
+      <Route path="/checkout" component={ Checkout } />
       <Route path="/admin/orders" component={ AdminHome } />
     </Switch>
   );
