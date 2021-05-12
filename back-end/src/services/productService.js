@@ -1,10 +1,12 @@
-const modelProduct = require('../models/Product');
+const productModel = require('../models/Product');
+const { messageSuccess } = require('../helpers/responseMessage');
+const httpStatus = require('../helpers/HttpStatus');
 
-const productService = async () => {
-  const data = await modelProduct.modelProduct();
-  return data;
+const getAllProducts = async () => {
+  const data = await productModel.getAllProducts();
+  return messageSuccess(data, httpStatus.OK);
 };
 
 module.exports = {
-  productService,
+  getAllProducts,
 };
