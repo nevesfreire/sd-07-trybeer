@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 export default function Sidebar({ openAndClose }) {
   const [shouldRedirect, setShouldRedirect] = useState('');
-
+  console.log(openAndClose);
   return (
     <aside className="side-menu-container">
       { shouldRedirect !== '' && <Redirect to={ shouldRedirect } /> }
@@ -45,4 +46,8 @@ export default function Sidebar({ openAndClose }) {
       )}
     </aside>
   );
+
+  Sidebar.propTypes = {
+    openAndClose: PropTypes.func.isRequired,
+  };
 }

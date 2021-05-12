@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { update } from '../actions';
@@ -10,10 +11,10 @@ export default function Address({ handleEvent, status, saveOrder }) {
 
   const handleSuccess = () => {
     setTimeout(() => {
-      return 'Compra realizada com sucesso!';
+      'Compra realizada com sucesso!';
     }, DELAY);
     dispatch(update([]));
-    return <Redirect to="/products" />
+    return <Redirect to="/products" />;
   };
 
   return (
@@ -47,7 +48,17 @@ export default function Address({ handleEvent, status, saveOrder }) {
           Finalizar Pedido
         </button>
       </form>
-      <span>{ orderStatus === 'success' ? handleSuccess() : 'Impossível finalizar a compra.' }</span>
+      <span>
+        {
+          orderStatus === 'success' ? handleSuccess() : 'Impossível finalizar a compra.'
+        }
+      </span>
     </>
   );
+
+  Address.propTypes = {
+    handleEvent: PropTypes.objectOf.isRequired,
+    status: PropTypes.bool.isRequired,
+    saveOrder: PropTypes.func.isRequired,
+  };
 }

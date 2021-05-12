@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-=======
-import React, { useState, useEffect, useSelector } from 'react';
-import { useDispatch } from 'react-redux';
->>>>>>> 002bdfb60cf49a5ca8e12c3beb18e28e23dfa2fe
 import { update } from '../actions';
 
 export default function Card({ product, position }) {
@@ -13,7 +9,6 @@ export default function Card({ product, position }) {
   const ADD_ITEM = 1;
   const REMOVE_ITEM = -1;
   const cartList = useSelector(({ cart }) => cart);
-  /*   const [cartQuantity, setCartQuantity] = useState(INITIAL_VALUE); */
   const dispatch = useDispatch();
 
   const manageQuantity = (productFound, cart) => {
@@ -115,4 +110,13 @@ export default function Card({ product, position }) {
       </div>
     </div>
   );
+
+  Card.propTypes = {
+    product: PropTypes.objectOf.isRequired,
+    name: PropTypes.objectOf.isRequired,
+    position: PropTypes.objectOf.isRequired,
+    url_image: PropTypes.objectOf.isRequired,
+    price: PropTypes.objectOf.isRequired,
+    id: PropTypes.number.isRequired,
+  };
 }

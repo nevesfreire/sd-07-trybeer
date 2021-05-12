@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Sidebar from './Sidebar';
 
 export default function Header({ title }) {
@@ -22,4 +23,8 @@ export default function Header({ title }) {
       <Sidebar openAndClose={ checked } />
     </>
   );
+
+  Header.propTypes = {
+    title: PropTypes.string.isRequired,
+  };
 }

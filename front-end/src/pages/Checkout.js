@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-import React, {useState, useEffect} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Address from '../components/Address';
-import Header from '../components/Header';
-import saveOrder from '../services/Order';
-import { update } from '../actions';
-=======
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Address from '../components/Address';
 import Header from '../components/Header';
-import { update } from '../actions'; 
-import { saveOrder } from '../services/Order';
->>>>>>> 002bdfb60cf49a5ca8e12c3beb18e28e23dfa2fe
+import { update } from '../actions';
+import saveOrder from '../services/Order';
 
 export default function Checkout() {
   const INITIAL_VALUE = 0;
@@ -38,22 +29,28 @@ export default function Checkout() {
   };
 
   const renderBody = () => {
-    return cartList.map((item, index) => (
-    <div>
-      <tr key={ index }>
-        <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
-        <td data-testid={ `${index}-product-name` }>{ item.name }</td>
-        <td data-testid={ `${index}-product-unit-price` }>{ `R$ ${item.price.toFixed(ROUNDING_OPTION)}` }</td>
-        <td data-testid={ `${index}-product-total-value` }>{ `R$ ${item.totalPrice.toFixed(ROUNDING_OPTION)}` }</td>
-      </tr>
-      <button
-        type="button"
-        data-testid={ `${index}-removal-button` }
-        onClick={ () => removeItem(item) }
-      >
+    cartList.map((item, index) => (
+      <div key={ index }>
+        <tr>
+          <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
+          <td data-testid={ `${index}-product-name` }>{ item.name }</td>
+          <td data-testid={ `${index}-product-unit-price` }>
+            {
+              `R$ ${item.price.toFixed(ROUNDING_OPTION)}`
+            }
+          </td>
+          <td data-testid={ `${index}-product-total-value` }>
+            { `R$ ${item.totalPrice.toFixed(ROUNDING_OPTION)}` }
+          </td>
+        </tr>
+        <button
+          type="button"
+          data-testid={ `${index}-removal-button` }
+          onClick={ () => removeItem(item) }
+        >
         -
-      </button>
-    </div>));
+        </button>
+      </div>));
   };
 
   const handleChange = ({ target }) => {
@@ -100,7 +97,9 @@ export default function Checkout() {
       </table>
       <div>
         <span>Valor total do pedido</span>
-        <span data-testid="order-total-value">{ `R$ ${totalValue.toFixed(ROUNDING_OPTION)}` }</span>
+        <span data-testid="order-total-value">
+          { `R$ ${totalValue.toFixed(ROUNDING_OPTION)}` }
+        </span>
       </div>
       <Address
         handleEvent={ (event) => handleChange(event) }
