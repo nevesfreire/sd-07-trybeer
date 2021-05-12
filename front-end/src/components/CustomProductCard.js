@@ -5,44 +5,34 @@ import { loadItemsToLocalStorage} from '../helpers/localStorage'
 
 export default function CustomProductCard({ index, beer }) {
   const { totalKart, setTotalKart } = useContext(CentralContext);
- 
-let result = 0 
-let result2 = 0
 
-console.log("beer", beer)
-  //const products = JSON.parse(localStorage.getItem('product'));
-  const kart = JSON.parse(localStorage.getItem('cart'));
-  kart && kart.map(test => {
-    if(test[0] == beer.id ){
-    result =test[2]
-    if(test[2] !== 0) result2 = result2 + (result * Number(beer.price));
-    
-  }})
-  console.log("aqui", result2)
-  setTotalKart(result2)
-
-  const [qtdProduct, setQtdProduct] = useState(result)
+  const [qtdProduct, setQtdProduct] = useState(0)
 
  
   const saveToLocalMore = (beer, qtdProduct) => {
-    const { id, price } = beer
+    const { id, price, name, url_image } = beer
     const qtd = qtdProduct + 1
-    console.log("des", id, price, qtd)
-    loadItemsToLocalStorage(id, price, qtd )
+    loadItemsToLocalStorage(id, price, qtd, name, url_image )
   }
   
   const saveToLocalLess = (beer, qtdProduct) => {
-    const { id, price } = beer
+    const { id, price, name, url_image } = beer
     const qtd = qtdProduct - 1
-    console.log("des", id, price, qtd)
-    loadItemsToLocalStorage(id, price, qtd )
+    loadItemsToLocalStorage(id, price, qtd, name, url_image )
   }
 
-  //useEffect(() => {
-    // FUNC RECUP LOCALSTORAGE
-  //}, []);
+  useEffect(() => {
+    let localQnt = 0 
+    const kart = JSON.parse(localStorage.getItem('cart'));
+    kart && kart.map(item => {
+      if(item[0] == beer.id ){
+        localQnt =item[2]
+      }
+    })
+    setQtdProduct(localQnt)
+  }, []);
 
-  useEffect(() => {}, [qtdProduct, result2]);
+  useEffect(() => {}, [qtdProduct]);
 
  // const addMore = () => { 
  //   const more = Number(beer.price);
@@ -87,9 +77,7 @@ console.log("beer", beer)
             <Card.Meta data-testid={`${index}-product-name`}>
               {beer.name}
             </Card.Meta>
-            <Card.Meta data-testid={`${index}-product-qtd`}
-            onChange={ () => { setTotalKart( totalKart + (qtdProduct*Number(beer.price)))}}
-            >
+            <Card.Meta data-testid={`${index}-product-qtd`}>
               {qtdProduct}
             </Card.Meta>
           </Card.Content>
@@ -101,7 +89,7 @@ console.log("beer", beer)
                 data-testid={`${index}-product-plus`}
                 onClick={() => {
                   setQtdProduct(qtdProduct + 1);
-                  // setTotalKart(totalKart + Number(beer.price));
+                  setTotalKart(totalKart + Number(beer.price));
                   saveToLocalMore(beer, qtdProduct);
                 }}
                 size="mini"
@@ -114,8 +102,8 @@ console.log("beer", beer)
                 data-testid={`${index}-product-minus`}
                 onClick={() => {
                   (qtdProduct > 0) && setQtdProduct(qtdProduct - 1) ;
-                  // (qtdProduct > 0) && setTotalKart(totalKart - Number(beer.price));
-                  saveToLocalLess(beer, qtdProduct);
+                  (qtdProduct > 0) && setTotalKart(totalKart - Number(beer.price));
+                  (qtdProduct > 0) && saveToLocalLess(beer, qtdProduct);
                 }}
                 size="mini"
               >

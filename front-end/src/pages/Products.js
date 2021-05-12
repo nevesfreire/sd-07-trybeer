@@ -4,38 +4,48 @@ import { Header } from 'semantic-ui-react';
 import CustomProductCard from '../components/CustomProductCard';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
-import { Card, Grid } from 'semantic-ui-react';
-// import fetchProducts from '../service/products';
+import { Card, Grid, Button, Segment } from 'semantic-ui-react';
+import { getProduct } from '../helpers/localStorage';
 function Products() {
-  const { totalKart } = useContext(CentralContext);
-  useEffect(() => {}, [totalKart]); // recarregar valor do carrinho
+  const { totalKart, setTotalKart } = useContext(CentralContext);
+
+  useEffect(() => {
+    const total = JSON.parse(localStorage.getItem('cart'));
+    total &&
+      total.map((item) => {
+        setTotalKart(item[1] * item[2]);
+      });
+  }, []);
+
+  useEffect(() => {}, [totalKart]);
+
   const history = useHistory();
+
   const renderIngredients = () => {
-    const products = JSON.parse(localStorage.getItem('product'));
-    // fiz com a função do helper antes mas deu erro
+    const products = getProduct();
     return (
-      <div>
-        <Card.Group stackable="true">
-          {products &&
-            products.map((beer, index) => (
-              <CustomProductCard key={beer.id} index={index} beer={beer} />
-            ))}
-        </Card.Group>
-      </div>
+      <Card.Group stackable="true">
+        {products &&
+          products.map((beer, index) => (
+            <CustomProductCard key={beer.id} index={index} beer={beer} />
+          ))}
+      </Card.Group>
     );
   };
   return (
     <div>
-      <Grid container >
-      <Grid.Column>
-      <CustomHeader message='TryBeer'/>
-      </Grid.Column>
-      <Header  as="h1" color="orange" textAlign="center">
-      </Header>
-      </Grid>
       <Grid>
+        <Grid.Column>
+          <CustomHeader message="TryBeer" />
+        </Grid.Column>
+        <Header as="h1" color="orange" textAlign="center"></Header>
+      </Grid>
       {renderIngredients()}
-        <button
+      <Segment textAlign="center">
+        <Button
+          circular="true"
+          size="big"
+          color="orange"
           data-testid="checkout-bottom-btn"
           disabled={!totalKart}
           onClick={() => history.push('/checkout')}
@@ -44,8 +54,8 @@ function Products() {
           <p data-testid="checkout-bottom-btn-value">{`R$ ${totalKart
             .toFixed(2)
             .replace('.', ',')}`}</p>
-        </button>
-        </Grid>
+        </Button>
+      </Segment>
     </div>
   );
 }
