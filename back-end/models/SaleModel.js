@@ -11,13 +11,12 @@ const createSaleProduct = async (saleId, productId, quantity) =>
 connect.execute(
   `INSERT INTO Trybeer.sales_products
   VALUES ("${saleId}", "${productId}", "${quantity}")`,
-).catch((err) => console.log(err.message));
+);
 
 const getSaleByUserId = (userId) => 
   connect.execute(`SELECT id, sale_date, total_price 
     FROM Trybeer.sales WHERE user_id = "${userId}"`)
-  .then((sale) => sale[0])
-  .catch((error) => error.message);
+  .then((sale) => sale[0]);
 
 const getSaleById = async (userId, saleId) => 
   connect.execute(`SELECT sale_id, sale_date, quantity, name, price, total_price, user_id 
@@ -26,12 +25,10 @@ const getSaleById = async (userId, saleId) =>
   INNER JOIN Trybeer.products AS p ON p.id = sp.product_id
   GROUP BY p.name, sp.sale_id
   HAVING sale_id = "${saleId}" AND user_id = "${userId}"`)
-  .then((response) => response[0])
-  .catch((err) => console.log(err.message));
+  .then((response) => response[0]);
 
 const getAllSales = async () =>
-  connect.execute('SELECT * FROM Trybeer.sales')
-  .catch((error) => error);
+  connect.execute('SELECT * FROM Trybeer.sales');
 
 const updateSaleStatus = async (id, status) =>
   connect.execute(`UPDATE Trybeer.sales
