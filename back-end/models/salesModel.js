@@ -43,7 +43,7 @@ const getProductIdByName = async (productsList) => {
 };
 
 const saleProductRegister = async (productsList, saleId) => {
-  console.log(productsList, saleId)
+  console.log(productsList, saleId);
   const productIdList = await getProductIdByName(productsList);
   await Promise.all(
     productsList.map(async (product, i) => {
