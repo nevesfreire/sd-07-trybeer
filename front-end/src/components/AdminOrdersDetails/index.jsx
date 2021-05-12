@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+// import { getAdminSalesDetails } from '../../services/apiService';
 import { getUserSaleDetails } from '../../services/apiService';
 
 export default function ClientOrderDetails() {
@@ -8,44 +9,38 @@ export default function ClientOrderDetails() {
   const [sale, setSale] = useState(null);
   // const [totalValue, setTotalValue] = useState(0 || sale[0].total_price)
 
-  console.log(sale);
+  // console.log(sale);
+
+  // O numero do pedido deverá conter a seguinte classe data-testid="order-number"
+  // O status do pedido deverá conter a seguinte classe data-testid="order-status"
+  // A quantidade do produto deverá conter a seguinte classe data-testid="0-product-qtd"
+  // O nome do produto deverá conter a seguinte classe data-testid="0-product-name"
+  // O valor total do produto deverá conter a seguinte classe data-testid="0-product-total-value"
+  // O preço unitário do produto deverá conter a seguinte classe data-testid="0-order-unit-price"
+  // O valor total do pedido deverá conter a seguinte classe data-testid="order-total-value"
+  // O botão 'Marcar como entregue' deverá conter a seguinte classe data-testid="mark-as-delivered-btn"
 
   useEffect(() => {
     const fetchSale = async () => {
       const currentUser = JSON.parse(localStorage.getItem('user'));
       if (!currentUser) return null;
+      // const response = await getAdminSalesDetails(currentUser.token, id)
       const response = await getUserSaleDetails(currentUser.token, id)
         .then((apiResponse) => apiResponse);
+      console.log(response);
       setSale(response);
     };
     fetchSale();
   }, [id]);
 
-  // O título do top 'Detalhes de Pedido' deverá conter a tag data-testid="top-title"
-  // O número do pedido deverá conter a tag data-testid="order-number"
-  // A data do pedido deverá conter a tag data-testid="order-date"
-  // A quantidade do produto deverá conter a tag data-testid="0-product-qtd"
-  // O nome do produto deverá conter a tag data-testid="0-product-name"
-  // O valor total do produto deverá conter a tag data-testid="0-product-total-value"
-  // O valor total da compra deverá conter a tag data-testid="order-total-value"
-
-  // https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript
-  const dateFormate = (date) => {
-    date = new Date(date);
-    const DAY_PARAM = 9;
-    const monthd = date.getMonth() + 1;
-    const day = date.getDate() <= DAY_PARAM ? `0${date.getDate()}` : date.getDate();
-    const month = monthd <= DAY_PARAM ? `0${monthd}` : monthd + 1;
-    return `${day}/${month}`;
-  };
-
+  console.log(sale);
   return (
     <div style={ { display: 'flex', justifyContent: 'center' } }>
-      <h2>Informações de Detalhes</h2>
+      <h2>Detalhes Admin</h2>
       <div>
         <p data-testid="order-number">{`Pedido ${id}`}</p>
         <p data-testid="order-date">
-          {sale ? dateFormate(sale[0].sale_date) : null }
+          {/* {status} */}
         </p>
         { sale ? sale.map((item, index) => {
         // totalValue = item.total_price;
