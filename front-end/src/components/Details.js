@@ -29,6 +29,16 @@ function Details({ item, index }) {
       >
         {item.name}
       </p>
+      <p
+        data-testid={ `${index}-order-unit-price` }
+      >
+        (
+        {`R$ ${parseFloat(item.price)
+          .toFixed(2)
+          .toString()
+          .replace('.', ',')}`}
+        )
+      </p>
       Subtotal:
       <p
         data-testid={ `${index}-product-total-value` }
