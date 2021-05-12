@@ -15,7 +15,7 @@ app.post('/login', loginMiddleware, loginController);
 
 app.get('/', getUser);
 
-app.put('/user', updateUser )
+app.put('/user', updateUser);
 
 app.post(
   '/',
@@ -26,7 +26,7 @@ app.post(
   registerController,
 );
 
-app.get('/products', productController);
+app.get('/products', productController.getAllProducts);
 
 app.post(
   '/',

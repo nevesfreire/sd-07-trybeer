@@ -3,7 +3,7 @@ body {
     font: 500 1rem Inter, sans-serif;
  }
 
- .form-registration  {
+ .formRegistration  {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -12,46 +12,52 @@ body {
     background-color: rgb(170, 172, 177);
  }
   
- .registration-input{
+ .formRegistration > .registrationInput {
     top: 7rem;
     width: 20rem;
+    margin: 5px;
     background-color: #ffff;
     font-size: 30px;
     border-radius: 5px;
  }
 
- .RegisterBtn {
+ .saveBtn {
     top: 0.01rem;
  }
  
- .register-btn-group > .RegisterBtn {
+ .registerBtnGroup > .saveBtn {
     width: 20rem;
     height: 3rem;
     text-align: center;
     border-radius: 0.5rem;
     background-color: rgba(10, 19, 39, 1);
     font-size: 25px;
-    margin-bottom: 20px;
     box-shadow: 2px 4px 5px rgba(0,0,0,0.5);
  }
  
  .label-register {
     margin-right: 18rem;
  }
+
+ .successMessage {
+   height: 3rem;
+   color: rgb(15, 119, 5);
+   transition: 0.5s;
+}
  
- hr {
+ .profileHr {
     width: 23rem;
     border: 1px solid #00010250;
     margin-bottom: 3rem;
-    margin-top: 9rem;
+    margin-top: 10rem;
  }
  
- .nav-register{
-    text-decoration: none;
-    color: rgba(0, 0, 0, 0.877);
-    margin-top: 30rem;
- }
- 
+   /* .nav-register{
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.877);
+      margin-top: 30rem;
+   } */
+  
  :root {
     --white: #fff;
  

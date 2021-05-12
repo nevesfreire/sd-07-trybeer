@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 // import fieldValidate from '../helpers/fieldValidate';
@@ -42,7 +41,7 @@ const ComponentProfile = () => {
   }, []);
 
   return (
-    <FormControl className="form-registration">
+    <FormControl className="formRegistration">
       {/* { user.role === 'administrator' && <Redirect to="/admin/orders" /> }
       { user.role === 'client' && <Redirect to="/products" /> } */}
       <h1 data-testid="top-title">Cliente - Meu Perfil</h1>

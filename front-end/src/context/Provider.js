@@ -9,6 +9,11 @@ const Provider = (props) => {
   const [isChecked, setIsChecked] = useState(false);
   const [isOk, setIsOk] = useState(true);
   const [user, setUser] = useState({});
+  const [menuState, setMenuState] = useState(false);
+
+  const actionMenu = () => {
+    setMenuState(true);
+  };
 
   const contexto = {
     name,
@@ -23,6 +28,9 @@ const Provider = (props) => {
     setIsOk,
     user,
     setUser,
+    actionMenu,
+    menuState,
+    setMenuState,
   };
 
   const { children } = props;
