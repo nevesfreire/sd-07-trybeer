@@ -1,54 +1,37 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import Global from '../context/index';
 import '../css/menu.css';
-import IconMenu from '../image/icon-menu.svg';
 
-const Menu = (aplicationName) => {
-  const { menuState, setStateMenu } = useState(false);
-
-  const actionMenu = () => {
-    setStateMenu(true);
-  };
-
+const Menu = () => {
+  const { menuState } = useContext(Global);
   return (
     <div
       className={
         menuState
-          ? `side-menu-container ${aside - menu - show}`
-          : `side-menu-container ${aside - menu - show}`
+          ? 'side-menu-container aside-menu-show'
+          : 'side-menu-container aside-menu-hide'
       }
     >
-      <div className="menu-int">
-        <Link
-          to="/products"
-          className="item-menu"
-          data-testid="side-menu-item-products"
-        >
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        <Link to="/products" data-testid="side-menu-item-products">
           Produtos
         </Link>
-        <Link
-          to="/pedidos"
-          className="item-menu"
-          data-testid="side-menu-item-my-orders"
-        >
-          Meus Pedidos
-        </Link>
-        <Link
-          to="/perfil"
-          className="item-menu"
-          data-testid="side-menu-item-my-profile"
-        >
-          Meu Perfil
-        </Link>
-        <Link to="/" className="item-menu" data-testid="side-menu-item-logout">
-          Sair
+      </div>
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        <Link to="/myOrders" data-testid="side-menu-item-my-orders">
+          Meus pedidos
         </Link>
       </div>
-      <h1 data-testid="top-title">{aplicationName}</h1>
-      <div className="hambuger-menu">
-        <buttom type="buttom" onClick={ () => actionMenu() }>
-          <img src={ IconMenu } alt="Menu" className="hamburguer-menu" />
-        </buttom>
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        <Link to="/myProfile" data-testid="side-menu-item-my-profile">
+          Meu perfil
+        </Link>
+      </div>
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        <Link to="/" data-testid="side-menu-item-logout">
+          Sair
+        </Link>
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ app.post(
   registerController,
 );
 
-app.get('/products', productController);
+app.get('/products', productController.getAllProducts);
 
 app.post(
   '/',
