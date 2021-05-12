@@ -1,76 +1,95 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import fieldValidate from '../helpers/fieldValidate';
 import context from '../context';
 
 const ComponentProfile = () => {
 
-  const { user, setName, setEmail, name  } = useContext(context);
-  const REACT_APP_URL = 'http://localhost:3000';
+  const [updateUserName, setUpdateUserName] = useState({});
+  const [successMessage, setSuccessMessage] = useState({});
+  const { isOk, setIsOk } = useContext(context);
+
+  const REACT_APP_URL = 'http://localhost:3001';
+  const sessionStorageUser = JSON.parse(sessionStorage.getItem('user'));
+
+ if (sessionStorageUser.name === updateUserName) {
+    setIsOk(true);
+ } else {
+    setIsOk(false);
+ }
+  
+  useEffect(() => {
+    setUpdateUserName(sessionStorageUser.name);
+  },[]);
 
   const handleSubmit = async (e) => {
-
-  
+    const payload = {
+      name: updateUserName,
+      email: sessionStorageUser.email
+    };
+    
+    sessionStorage.setItem('user', JSON.stringify(payload));
+    
       e.preventDefault();
-      fetch(`${REACT_APP_URL}/register`, {
-        method: 'POST',
+      fetch(`${REACT_APP_URL}/user`, {
+        method: 'PUT',
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify(name),
+        body: JSON.stringify({ ...payload }),
       })
         .then((response) => response.json())
         .then((data) => {
-          setgetNameEmail(data);
+          console.log(data);
+          setSuccessMessage(data);
         });
     }
 
   return (
-    <FormControl className="form-registration">
+    <FormControl className="formRegistration">
       {/* { user.role === 'administrator' && <Redirect to="/admin/orders" /> }
       { user.role === 'client' && <Redirect to="/products" /> } */}
       {/* <h1>Cadastro</h1> */}
  
-     {/* <div className="main-container"> */}
         <TextField
             id="userName"
-            data-testid="signup-name"
+            data-testid="profile-name-input"
             label="Nome"
             type="text"
-            value={ user.name }
-            className="registration-input"
+            value={ updateUserName }
+            className="registrationInput"
             variant="outlined"
             placeholder="Monteiro Lobato"
-            onChange={ (event) => setName(event.target.value) }
+            onChange={ (event) => setUpdateUserName(event.target.value) }
         />
 
         <TextField
             id="email"
-            data-testid="signup-email"
+            data-testid="profile-email-input"
             label="Email"
-            className="registration-input"
-            value={ user.email }
+            className="registrationInput"
+            value={ sessionStorageUser.email }
             variant="outlined"
             inputProps={{ readOnly: Boolean(true) }}
             placeholder="lobato@lobato.com"
-            onChange={ (event) => setEmail(event.target.value) }
         />
 
-        <hr />
-        <div className="register-btn-group">
+        <hr className="profileHr"/>
+        <div className="registerBtnGroup">
             <Button
-            data-testid="signup-btn"
-            color="primary"
-            variant="contained"
-            className="RegisterBtn"
-            onClick={ handleSubmit }
+              data-testid="profile-save-btn"
+              color="primary"
+              variant="contained"
+              className="saveBtn"
+              disabled={isOk}
+              onClick={ handleSubmit }
             >
             Salvar
             </Button>
         </div>
-    {/* </div> */}
+        { successMessage.message && isOk ? 
+            <p className="successMessage">{ successMessage.message }</p> : null 
+        }
     </FormControl>
   );
 };

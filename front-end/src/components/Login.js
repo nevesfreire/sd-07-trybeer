@@ -25,6 +25,7 @@ const ComponentLogin = () => {
       .post('/login', params)
       .then((dataUser) => {
         localStorage.setItem('token', dataUser.data.token);
+        sessionStorage.setItem('user', JSON.stringify(dataUser.data.data));
         setData(dataUser.data.data);
       })
       .catch((err) => console.log(`Error in login process: ${err}`));
