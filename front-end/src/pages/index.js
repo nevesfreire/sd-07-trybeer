@@ -1,9 +1,17 @@
 import Login from './login';
 import Register from './register';
-import Product from './products';
+import Orders from './orders';
+import Profile from './profile';
+import Products from './products';
+import AdminOrders from './adminOrders';
+import AdminProfile from './adminProfile';
 
 export {
   Login,
   Register,
-  Product,
+  Orders,
+  Profile,
+  Products,
+  AdminOrders,
+  AdminProfile,
 };
