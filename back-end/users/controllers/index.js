@@ -10,7 +10,7 @@ const getAllUsers = async (req, res, next) => {
   } catch (error) {
     console.error(error);
     next({
-      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      status: StatusCodes.NOT_FOUND,
       message: error.message,
     });
   }
@@ -40,7 +40,7 @@ const createLoginUser = async (req, res, next) => {
   } catch (error) {
     console.error(error);
     next({
-      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      status: StatusCodes.BAD_REQUEST,
       message: error.message,
     });
   }

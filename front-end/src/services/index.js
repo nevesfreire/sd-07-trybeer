@@ -31,10 +31,21 @@ const requestAlterUserAPI = (user) => {
 const requestGetProductsAPI = () => {
   const endpoint = `${urlAPI}/products`;
   const { token } = getToLocalStorage('user');
-  console.log(token, 'token');
+  // console.log(token, 'token');
   const headersAxios = { headers: { Authorization: token } };
   return axios
     .get(endpoint, headersAxios)
+    .then((response) => response)
+    .catch((error) => error.response);
+};
+
+const requestCreateSaleAPI = (body) => {
+  const endpoint = `${urlAPI}/products/sale`;
+  const { token } = getToLocalStorage('user');
+  console.log(token, 'token');
+  const headersAxios = { headers: { Authorization: token } };
+  return axios
+    .post(endpoint, body, headersAxios)
     .then((response) => response)
     .catch((error) => error.response);
 };
@@ -44,4 +55,5 @@ export {
   requestCreateUserAPI,
   requestAlterUserAPI,
   requestGetProductsAPI,
+  requestCreateSaleAPI,
 };
