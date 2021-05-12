@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const { wrongPassword, dbSearchReturnedEmpty, errorInDb } = require('./dictionaries/statusMsgMap');
+const { allFieldsMustBeFilled,
+  dbSearchReturnedEmpty,
+  errorInDb,
+  wrongPassword } = require('./dictionaries/statusMsgMap');
 const { getUserByEmail } = require('../models/userModels');
 
 const checkUser = async (email) => {
@@ -10,14 +13,19 @@ const checkUser = async (email) => {
   return userInDb;
 };
 
+const preValidateFields = async ({ email, password }) => {
+  if (!email || !password) return allFieldsMustBeFilled;
+  const checkUserRes = await checkUser(email);
+  if (!checkUserRes) return dbSearchReturnedEmpty;
+  if (password !== checkUserRes.password) return wrongPassword;
+  return checkUserRes;
+};
+
 const loginServ = async (body) => {
   try {
-    const { email, password } = body;
-    const checkUserRes = await checkUser(email);
-    if (!checkUserRes) return dbSearchReturnedEmpty;
-    const { id, name, role } = checkUserRes;
-    if (password !== checkUserRes.password) return wrongPassword;
-
+    const userData = await preValidateFields(body);
+    const { email, id, name, role } = userData;
+    if (!id) return userData;
     const payload = { id, role };
     const token = jwt.sign(payload, process.env.SECRET || '12345');
     const msgRes = { name, email, role, token };
