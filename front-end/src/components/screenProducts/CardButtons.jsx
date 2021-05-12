@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useLocalStorage } from '../../hooks';
 
-export default function CardButtons({ id }) {
+export default function CardButtons({ id, index }) {
   const [storageState, setStorage] = useLocalStorage('shoppingCart');
 
   const increment = () => {
@@ -28,11 +28,15 @@ export default function CardButtons({ id }) {
 
   return (
     <div>
-      <button type="button" onClick={ increment } data-testid={ `${id}-product-plus` }>
+      <button type="button" onClick={ increment } data-testid={ `${index}-product-plus` }>
         +
       </button>
-      <span data-testid={ `${id}-product-qtd` }>{ quantity }</span>
-      <button type="button" onClick={ decrement } data-testid={ `${id}-product-minus` }>
+      <span data-testid={ `${index}-product-qtd` }>{ quantity }</span>
+      <button
+        type="button"
+        onClick={ decrement }
+        data-testid={ `${index}-product-minus` }
+      >
         -
       </button>
     </div>
@@ -41,4 +45,5 @@ export default function CardButtons({ id }) {
 
 CardButtons.propTypes = {
   id: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
 };

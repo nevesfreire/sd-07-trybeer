@@ -16,10 +16,10 @@ export default function Products() {
     <div>
       <TopBar />
       {
-        productState.products.map((product) => (
-          <div className="cardContainer" key={ product.id }>
-            <Card product={ product } />
-            <CardButtons id={ product.id } />
+        productState.products.map((product, index) => (
+          <div className="cardContainer" key={ product.id - 1 }>
+            <Card product={ product } index={ index } />
+            <CardButtons id={ product.id } index={ index } />
           </div>
         ))
       }
