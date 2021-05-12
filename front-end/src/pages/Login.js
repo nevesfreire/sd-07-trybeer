@@ -13,8 +13,6 @@ function Login() {
   } = useContext(BeerContext);
 
   const [isLogged, setIsLogged] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [role, setRole] = useState('');
   const [isDisable, setIsDisable] = useState(true);
 
   const handleClick = async () => {
@@ -23,10 +21,10 @@ function Login() {
     const ok = 200;
     if (status === ok) {
       const { token } = response.data;
-      console.log('token', token)
+      console.log('token', token);
       localStorage.setItem('token', token);
       const payload = jwtDecode(token);
-      console.log(payload)
+      console.log(payload);
       setRole(payload.role);
       return setIsLogged(true);
     }
