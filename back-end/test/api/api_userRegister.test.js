@@ -36,8 +36,31 @@ describe('Check register POST route', () => {
     await frisby
       .post(URL, {
         email: USERS[0].email,
+        name: USERS[0].name,
+        password: USERS[0].password,
+        role: USERS[0].role,
+      })
+      .expect('status', 200);
+  });
+  it('Check user re-registration attempt', async () => {
+    await frisby
+      .post(URL, {
+        email: USERS[0].email,
+        password: USERS[0].password,
+      });
+    await frisby
+      .post(URL, {
+        email: USERS[0].email,
+        password: 'ranD0mp@$$worD',
+      })
+      .expect('status', 409);
+  });
+  it('Check user registration', async () => {
+    await frisby
+      .post(URL, {
+        email: USERS[0].email,
         password: USERS[0].password,
       })
-      .expect()
-  })
+      .expect('status', 200);
+  });
 });

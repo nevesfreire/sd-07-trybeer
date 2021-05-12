@@ -29,6 +29,7 @@ describe('POST into login route', () => {
   const URL = 'http://localhost:3001/login';
 
   beforeEach(async (done) => {
+    await connection.execute('DELETE FROM users');
     await connection.execute('INSERT INTO users (name, email, password, role) ' 
       + 'VALUES (?, ?, ?, ?), (?, ?, ?, ?)',
       [USERS[0].name, USERS[0].email, USERS[0].password, USERS[0].role,
