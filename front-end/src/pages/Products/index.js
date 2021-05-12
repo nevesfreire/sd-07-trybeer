@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { StatusCodes } from 'http-status-codes';
+// import { system } from 'faker';
 import BeerAppContext from '../../context/BeerAppContext';
 import { requestGetProductsAPI } from '../../services';
 import ProductCard from '../../component/ProductCard';
