@@ -48,9 +48,9 @@ function AdminDetailsComponent() {
     <Sidebar.Pusher>
       <Segment basic>
         <span data-testid="order-number">{`Pedido ${id} - `}</span>
-        <span data-testid="order-status">
+        <p data-testid="order-status">
           {showStatus(sale[0].status)}
-        </span>
+        </p>
         {renderProductList()}
         <span data-testid="order-total-value">
           {`R$ ${sale[0].total_price.replace('.', ',')}`}

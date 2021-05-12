@@ -7,7 +7,7 @@ import TopBarComponent from '../components/ClientBars/TopBarComponent';
 import AdminSideBar from '../components/AdminSideBar';
 import AdminDetailsComponent from '../components/AdminDetailsComponent';
 
-function OrderDetails() {
+function AdminDetails() {
   return (
     <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
       <Grid.Column style={ { maxWidth: 500 } }>
@@ -18,4 +18,4 @@ function OrderDetails() {
   );
 }
 
-export default OrderDetails;
+export default AdminDetails;
