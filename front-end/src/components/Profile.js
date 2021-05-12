@@ -29,44 +29,46 @@ function LoginForm() {
   };
 
   return (
-    <div>
-      <label htmlFor="profile">
-        Nome
-        <input
-          className="name-input"
-          data-testid="profile-name-input"
-          type="text"
-          name="name"
-          id="name-profile"
-          placeholder="Nome"
-          value={ name }
-          onChange={ (event) => setName(event.target.value) }
-        />
-      </label>
+    <div className="product-container">
+      <div className="profile">
+        <label className="form-label" htmlFor="profile">
+          Nome
+          <input
+            className="form-control"
+            data-testid="profile-name-input"
+            type="text"
+            name="name"
+            id="name-profile"
+            placeholder="Nome"
+            value={ name }
+            onChange={ (event) => setName(event.target.value) }
+          />
+        </label>
 
-      <label htmlFor="email-profile">
-        Email
-        <input
-          className="form-input"
-          data-testid="profile-email-input"
-          type="email"
-          name="email"
-          id="email-profile"
-          placeholder="E-mail"
-          value={ email }
-          readOnly
-        />
-      </label>
-      <button
-        className="form-button"
-        data-testid="profile-save-btn"
-        type="button"
-        disabled={ name === startingName }
-        onClick={ () => handleSubmit() }
-      >
-        Salvar
-      </button>
-      <h3 hidden={ atualizado }>Atualização concluída com sucesso</h3>
+        <label className="form-label" htmlFor="email-profile">
+          Email
+          <input
+            className="form-control"
+            data-testid="profile-email-input"
+            type="email"
+            name="email"
+            id="email-profile"
+            placeholder="E-mail"
+            value={ email }
+            readOnly
+          />
+        </label>
+        <button
+          className="btn btn-login"
+          data-testid="profile-save-btn"
+          type="button"
+          disabled={ name === startingName }
+          onClick={ () => handleSubmit() }
+        >
+          Salvar
+        </button>
+        <h3 hidden={ atualizado }>Atualização concluída com sucesso</h3>
+      </div>
     </div>
   );
 }
