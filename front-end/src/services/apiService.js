@@ -60,9 +60,7 @@ const getAdminSales = (token) => fetch('http://localhost:3001/sales/admin', {
   .then((response) => response.json())
   .catch((error) => console.log(error));
 
-const getAdminSalesDetails = (token, saleId, params) => fetch(`http://localhost:3001/sales/admin/${saleId}`, {
-  method: params,
-  // body: {token.id{}},
+const getAdminSalesDetails = (token, saleId) => fetch(`http://localhost:3001/sales/admin/${saleId}`, {
   headers: { ...contentType, authorization: token },
 })
   .then((response) => response.json())
