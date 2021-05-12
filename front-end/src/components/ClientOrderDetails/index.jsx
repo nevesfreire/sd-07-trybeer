@@ -43,25 +43,28 @@ export default function ClientOrderDetails() {
     <div style={ { display: 'flex', justifyContent: 'center' } }>
       <h2>Informações de Detalhes</h2>
       <div>
-        <p data-testid="order-number">{id}</p>
+        <p data-testid="order-number">{`Pedido ${id}`}</p>
         <p data-testid="order-date">
           {sale ? dateFormate(sale[0].sale_date) : null }
         </p>
         { sale ? sale.map((item, index) => {
         // totalValue = item.total_price;
-          const productTotalValue = item.price * item.quantity;
+          const productTotalValue = (item.price * item.quantity).toFixed(2);
 
           return (
             <div key={ item.name }>
               <p data-testid={ `${index}-product-qtd` }>{item.quantity}</p>
               <p data-testid={ `${index}-product-name` }>{item.name}</p>
-              <p data-testid={ `${index}-total-value` }>{productTotalValue}</p>
-              <p data-testid={ `${index}-product-name` }>{item.name}</p>
+              <p data-testid={ `${index}-product-total-value` }>
+                {`R$ ${String(productTotalValue).replace('.', ',')}`}
+              </p>
             </div>
           );
         }) : null }
       </div>
-      <p data-testid="order-total-value">{sale ? sale[0].total_price : 0}</p>
+      <p data-testid="order-total-value">
+        {sale ? `R$ ${sale[0].total_price.replace('.', ',')}` : 'R$ 0,00'}
+      </p>
     </div>
   );
 }
