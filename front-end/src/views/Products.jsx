@@ -16,11 +16,15 @@ export default function Products() {
     <div>
       <TopBar />
       {
-        productState.products.map(({ id, price, name, url_image }) => (
+        productState.products.map(({ id, price, name, url_image: urlImage }) => (
           <div className="cardContainer" key={ id }>
-            <h4 data-testid={`${id}-product-name`} >{ name }</h4>
-            <h5 data-testid={`${id}-product-price`}>{ price }</h5>
-            <img src={ url_image } alt="foto da bebida" data-testid={`${id}-product-img`} />
+            <h4 data-testid={ `${id}-product-name` }>{ name }</h4>
+            <h5 data-testid={ `${id}-product-price` }>{ price }</h5>
+            <img
+              src={ urlImage }
+              alt="foto da bebida"
+              data-testid={ `${id}-product-img` }
+            />
             <CardButtons id={ id } />
           </div>
         ))

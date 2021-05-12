@@ -18,7 +18,7 @@ export default function useLocalStorage(key) {
   }, [key]);
 
   useEffect(() => {
-    setStorage(() => handleStorage.get(key) || {})
+    setStorage(() => handleStorage.get(key) || {});
   }, []);
 
   return [storage, update];

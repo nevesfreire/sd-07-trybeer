@@ -15,8 +15,9 @@ export default function ViewCart() {
 
   return (
     <div>
-      <button type="button" disabled={!total} data-testid="checkout-bottom-btn">
-        Ver carrinho R$<span data-testid="checkout-bottom-btn-value">{ total.toFixed(2) }</span>
+      <button type="button" disabled={ !total } data-testid="checkout-bottom-btn">
+        Ver carrinho R$
+        <span data-testid="checkout-bottom-btn-value">{ total.toFixed(2) }</span>
       </button>
     </div>
   );
