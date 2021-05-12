@@ -34,13 +34,14 @@ router.get('/images/:name', productController.getImageProduct);
 
 router.post(
   '/checkout',
-  // priceValidationMiddleware,
-  // addressValidationMiddleware,
-  // deliveryNumberValidationMiddleware,
-  // saleDateValidationMiddleware,
-  // salesStatusValidationMiddleware,
-  // productsValidationMiddleware,
-  // productsCampsValidationMiddleware,
+  emailValidationMiddleware,
+  priceValidationMiddleware,
+  addressValidationMiddleware,
+  deliveryNumberValidationMiddleware,
+  saleDateValidationMiddleware,
+  salesStatusValidationMiddleware,
+  productsValidationMiddleware,
+  productsCampsValidationMiddleware,
   salesController.saleRegister,
 );
 

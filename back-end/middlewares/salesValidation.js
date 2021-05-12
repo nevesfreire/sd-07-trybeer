@@ -70,15 +70,17 @@ const productsValidationMiddleware = (req, res, next) => {
 };
 
 const productsCampsValidationMiddleware = (req, res, next) => {
-  const {
-    products: { productName, quantity },
-  } = req.body;
-  if (!productName || productName === '') {
-    return res.status(UNAUTHORIZED).json(productsCampSaleMessage);
-  }
-  if (!quantity || quantity === '') {
-    return res.status(UNAUTHORIZED).json(productsCampSaleMessage);
-  }
+  const { products } = req.body;
+  products.map((product) => {
+    const { productName, quantity } = product;
+    if (!productName || productName === '') {
+      return res.status(UNAUTHORIZED).json(productsCampSaleMessage);
+    }
+    if (!quantity || quantity === '') {
+      return res.status(UNAUTHORIZED).json(productsCampSaleMessage);
+    }
+  return null;
+  });
   next();
 };
 
