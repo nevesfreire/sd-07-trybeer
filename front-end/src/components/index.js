@@ -1,3 +1,5 @@
+import TopMenu from './Header';
+import AdminSideBar from './AdminSideBar';
 import Prices from './Prices';
 import Buttons from './Buttons';
 import Images from './Images';
@@ -10,4 +12,6 @@ export {
   Images,
   Texts,
   SalesCar,
+  TopMenu,
+  AdminSideBar,
 };

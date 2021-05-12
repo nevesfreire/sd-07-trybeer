@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../service/trybeerApi';
+import TrybeerContext from '../../context/TrybeerContext';
 
 export default function Login() {
+  const { setIsLogged } = useContext(TrybeerContext);
   const [shouldRedirect, setShouldRedirect] = useState('');
   const [loginException, setLoginException] = useState();
   const [loginInfo, setLoginInfo] = useState({
@@ -29,6 +31,7 @@ export default function Login() {
     const { email, password } = loginInfo;
     const result = await login(email, password);
     if (!result.error) {
+      setIsLogged(true);
       return setShouldRedirect(result.role);
     }
     setLoginException(<p>{result.error}</p>);
