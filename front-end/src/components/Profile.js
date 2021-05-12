@@ -2,75 +2,87 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import fieldValidate from '../helpers/fieldValidate';
+// import fieldValidate from '../helpers/fieldValidate';
 import context from '../context';
+import api from '../services/api';
 
 const ComponentProfile = () => {
-
-  const { user, setName, setEmail, name  } = useContext(context);
-  const REACT_APP_URL = 'http://localhost:3000';
+  const { setName } = useContext(context);
+  const [localName, setLocalName] = useState('name');
+  const [actualName, setActualName] = useState('actName');
+  const [localEmail, setLocalEmail] = useState('email');
+  const REACT_APP_URL = 'http://localhost:3001';
 
   const handleSubmit = async (e) => {
+    const OK = 200;
+    e.preventDefault();
+    const objSend = {
+      name: localName,
+      old: actualName,
+    };
 
-  
-      e.preventDefault();
-      fetch(`${REACT_APP_URL}/register`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(name),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setgetNameEmail(data);
-        });
-    }
+    console.log(objSend);
+    api.put(`${REACT_APP_URL}/user`, objSend)
+      .then((res) => {
+        if (res.status === OK) {
+          setActualName(localName);
+          setName(localName);
+          const tempStorage = JSON.parse(localStorage.getItem('data'));
+          tempStorage.name = localName;
+          localStorage.setItem(JSON.stringify(tempStorage));
+        }
+      });
+  };
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('data'));
+    setLocalName(data.name);
+    setActualName(data.name);
+    setLocalEmail(data.email);
+  }, []);
 
   return (
     <FormControl className="form-registration">
       {/* { user.role === 'administrator' && <Redirect to="/admin/orders" /> }
       { user.role === 'client' && <Redirect to="/products" /> } */}
-      {/* <h1>Cadastro</h1> */}
- 
-     {/* <div className="main-container"> */}
-        <TextField
-            id="userName"
-            data-testid="signup-name"
-            label="Nome"
-            type="text"
-            value={ user.name }
-            className="registration-input"
-            variant="outlined"
-            placeholder="Monteiro Lobato"
-            onChange={ (event) => setName(event.target.value) }
-        />
+      <h1 data-testid="top-title">Cliente - Meu Perfil</h1>
 
-        <TextField
-            id="email"
-            data-testid="signup-email"
-            label="Email"
-            className="registration-input"
-            value={ user.email }
-            variant="outlined"
-            inputProps={{ readOnly: Boolean(true) }}
-            placeholder="lobato@lobato.com"
-            onChange={ (event) => setEmail(event.target.value) }
-        />
+      {/* <div className="main-container"> */}
+      <TextField
+        id="userName"
+        data-testid="profile-name-input"
+        label="Nome"
+        type="text"
+        value={ localName }
+        className="registration-input"
+        variant="outlined"
+        placeholder="Monteiro Lobato"
+        onChange={ (event) => setLocalName(event.target.value) }
+      />
 
-        <hr />
-        <div className="register-btn-group">
-            <Button
-            data-testid="signup-btn"
-            color="primary"
-            variant="contained"
-            className="RegisterBtn"
-            onClick={ handleSubmit }
-            >
-            Salvar
-            </Button>
-        </div>
-    {/* </div> */}
+      <TextField
+        id="email"
+        data-testid="signup-email"
+        label="Email"
+        className="profile-email-input"
+        value={ localEmail }
+        variant="outlined"
+        readOnly
+      />
+
+      <hr />
+      <div className="register-btn-group">
+        <Button
+          data-testid="profile-save-btn"
+          color="primary"
+          variant="contained"
+          className="RegisterBtn"
+          disabled={ actualName === localName }
+          onClick={ (e) => handleSubmit(e) }
+        >
+          Salvar
+        </Button>
+      </div>
     </FormControl>
   );
 };

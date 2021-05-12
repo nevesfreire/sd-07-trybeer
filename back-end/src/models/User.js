@@ -5,7 +5,7 @@ const updateUser = async (name, oldName) => {
   const [id] = await connection.execute(
     `SELECT * FROM Trybeer.users WHERE name = "${oldName}"`,
   );
-  
+
   await connection.execute(
     `UPDATE Trybeer.users SET users.name = '${name}' WHERE id = '${id[0].id}'`,
   );
@@ -14,5 +14,5 @@ const updateUser = async (name, oldName) => {
 };
 
 module.exports = {
-  updateUser
+  updateUser,
 };
