@@ -127,12 +127,7 @@ export async function fetchImage(name) {
   return image;
 }
 
-export async function fetchCreateSale(
-  userId,
-  totalPrice,
-  delivery,
-  cart,
-) {
+export async function fetchCreateSale(userId, totalPrice, delivery, cart) {
   const { deliveryAddress, deliveryNumber } = delivery;
   const endpoint = 'http://localhost:3001/sales';
   const request = {
@@ -170,6 +165,25 @@ export async function fetchUpdateClient(name, id, token) {
     body: JSON.stringify({
       name,
     }),
+  };
+  try {
+    const response = await fetch(requestTokenUrl, request);
+    const responseJson = await response.json();
+
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchChangeStatus(id) {
+  const requestTokenUrl = `http://localhost:3001/sales/${id}`;
+  const request = {
+    method: 'PUT',
+    headers: {
+      'Content-type': applicationType,
+      Authorization: getUser().token,
+    },
   };
   try {
     const response = await fetch(requestTokenUrl, request);

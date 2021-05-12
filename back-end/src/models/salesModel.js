@@ -56,4 +56,12 @@ const createSale = async (userId, totalPrice, delivery, cart) => {
   };
 };
 
-module.exports = { getAllSales, createSale, getSaleById };
+const changeSaleStatus = async (id) => {
+  const updatedSale = await connection.execute(
+    'UPDATE sales SET status=? where id=?',
+    ['entregue', id],
+  );
+  return updatedSale;
+};
+
+module.exports = { getAllSales, createSale, getSaleById, changeSaleStatus };

@@ -47,4 +47,15 @@ const createSale = async (userId, totalPrice, delivery, cart) => {
   }
 };
 
-module.exports = { getAllSales, createSale, getSaleById };
+const changeSaleStatus = async (id) => {
+  try {
+    verifyEntries(id, null, null, null);
+
+    const updatedSale = await salesModel.changeSaleStatus(id);
+    return updatedSale;
+  } catch (error) {
+    return error.message;
+  }
+};
+
+module.exports = { getAllSales, createSale, getSaleById, changeSaleStatus };
