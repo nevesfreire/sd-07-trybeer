@@ -26,18 +26,13 @@ const checkoutButton = async () => {
   const { id } = JSON.parse(localStorage.getItem('token'))
   const userId = id
   const totalPrice = totalKart
-  const kart = cart.map((kart) => {
-    [{
-      product_id: kart[0],
-      quantity: kart[2],
-    }]
-  })
+
   const msg = await checkout(
     userId,
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    kart
+    cart
   )
   sucess()
   setTimeout(function(){
