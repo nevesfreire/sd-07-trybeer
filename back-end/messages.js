@@ -30,35 +30,35 @@ const saleRegisteredMessage = {
   message: 'Venda Registrada com sucesso',
 };
 
-const emailRegisterMessage = {
+const emailSaleMessage = {
   message: 'Email incorreto',
 };
 
-const priceRegisterMessage = {
+const priceSaleMessage = {
   message: 'Preço incorreto',
 };
 
-const addressRegisterMessage = {
+const addressSaleMessage = {
   message: 'Endereço incorreto',
 };
 
-const deliveryNumberRegisterMessage = {
+const deliveryNumberSaleMessage = {
   message: 'Número de entrega incorreto',
 };
 
-const dateRegisterMessage = {
+const dateSaleMessage = {
   message: 'Data incorreta',
 };
 
-const statusRegisterMessage = {
+const statusSaleMessage = {
   message: 'Status incorreto',
 };
 
-const productsRegisterMessage = {
+const productsSaleMessage = {
   message: 'Sem produtos na venda',
 };
 
-const productsCampRegisterMessage = {
+const productsCampSaleMessage = {
   message: 'Nome e/ou Quantidade incorreta',
 };
 
@@ -71,12 +71,12 @@ module.exports = {
   notFoundMessage,
   userNotFound,
   saleRegisteredMessage,
-  emailRegisterMessage,
-  priceRegisterMessage,
-  addressRegisterMessage,
-  deliveryNumberRegisterMessage,
-  dateRegisterMessage,
-  statusRegisterMessage,
-  productsRegisterMessage,
-  productsCampRegisterMessage,
+  emailSaleMessage,
+  priceSaleMessage,
+  addressSaleMessage,
+  deliveryNumberSaleMessage,
+  dateSaleMessage,
+  statusSaleMessage,
+  productsSaleMessage,
+  productsCampSaleMessage,
 };
