@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import dateFormat from 'dateformat';
 import { Redirect, useHistory } from 'react-router';
 import { getDetailOrders } from '../services/Api/user';
+import { updateOrderStatus } from '../services/Api/orders';
 
 const AdminDetailOrder = () => {
   const [products, setProducts] = useState([]);
@@ -16,6 +17,11 @@ const AdminDetailOrder = () => {
   console.log('parametro', saleInfo);
 
   const accPrice = (value) => parseFloat(value).toFixed(2).toString().replace('.', ',');
+
+  const finalizeOrder = async () => {
+    await updateOrderStatus(id);
+    setDelivered(true);
+  };
 
   useEffect(() => {
     const getClientOrders = async () => {
@@ -62,7 +68,7 @@ const AdminDetailOrder = () => {
           <div>
             <button
               type="button"
-              onClick={ () => setDelivered(true) }
+              onClick={ () => finalizeOrder() }
               data-testid="mark-as-delivered-btn"
               disabled={ delivered }
             >
