@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { getCartItems, getCartTotalPrice, deleteFromCart } from '../utils/localStorage';
 
 function CartList(props) {
@@ -8,12 +8,6 @@ function CartList(props) {
     totalCartPrice,
     setTotalCartPrice,
   } = props;
-  // let stringTotal = `${totalCartPrice}`;
-  // const ZERO = 0;
-  // if (totalCartPrice > ZERO) {
-  //   stringTotal = stringTotal.replace('.', ',');
-  // }
-  console.log(totalCartPrice);
   return (
     <>
       { totalCartPrice < 1 && <h4>Não há produtos no carrinho</h4> }
@@ -29,15 +23,13 @@ function CartList(props) {
               </p>
               <p data-testid={ `${index}-product-unit-price` }>
                 (R$
-                {`${cartItems.price}`.replace('.', ',')}
-                {' '}
-                un)
+                {`(R$ ${cartItems.price} un)`.replace('.', ',')}
               </p>
               <p data-testid={ `${index}-product-total-value` }>
-                R$
-                {`${totalPrice.toFixed(2)}`.replace('.', ',')}
+                {`R$ ${totalPrice.toFixed(2)}`.replace('.', ',')}
               </p>
               <button
+                type="button"
                 data-testid={ `${index}-removal-button` }
                 onClick={ () => {
                   deleteFromCart(cartItems.id);
@@ -52,12 +44,17 @@ function CartList(props) {
         })}
       </ul>
       <p data-testid="order-total-value">
-        Total: R$
-        {' '}
-        {`${totalCartPrice}`.replace('.', ',')}
+        {`Total: R$ ${totalCartPrice}`.replace('.', ',')}
       </p>
     </>
   );
 }
+
+CartList.propTypes = {
+  cart: PropTypes.Array.isRequired,
+  setCart: PropTypes.func.isRequired,
+  totalCartPrice: PropTypes.number.isRequired,
+  setTotalCartPrice: PropTypes.func.isRequired,
+};
 
 export default CartList;

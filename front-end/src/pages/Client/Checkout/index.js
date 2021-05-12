@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import moment from 'moment';
 import { getCartItems, getCartTotalPrice } from '../../../utils/localStorage';
 import CartList from '../../../components/cartList';
-import moment from 'moment';
 
 import TopMenu from '../../../commons/simple/TopMenu';
 
@@ -16,6 +16,7 @@ function Checkout() {
   const [requestSuccess, setRequestSuccess] = useState(false);
   const [isRedirected, setIsRedirected] = useState(false);
   const history = useHistory();
+  const PORT = 3000;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,10 +50,10 @@ function Checkout() {
       salesStatus: 'Pendente',
       products: productlist,
     };
-    console.log(order)
+    console.log(order);
     const request = await axios.post('http://localhost:3001/checkout', order);
     const CREATED = 201;
-    if (request.status === CREATED) {
+    if (request.status === CREATED && !requestSuccess) {
       setRequestSuccess(true);
       localStorage.setItem('cart', '[]');
     }
@@ -61,7 +62,7 @@ function Checkout() {
   const redirectTimeOut = () => {
     setTimeout(() => {
       history.push('/products');
-    }, 3000);
+    }, PORT);
   };
   useEffect(() => {
     const getToken = () => {
@@ -84,37 +85,40 @@ function Checkout() {
         setTotalCartPrice={ setTotalCartPrice }
       />
       { isRedirected
-        ? <h1>Compra realizada com sucesso!</h1>
-        : <>
-          <h3>Endereço</h3>
-          <label htmlFor="address">
-            Rua:
-            <input
-              type="text"
-              name="address"
-              data-testid="checkout-street-input"
-              value={ address }
-              onChange={ handleChange }
-            />
-          </label>
-          <label htmlFor="number">
-            Número da casa:
-            <input
-              type="text"
-              name="number"
-              data-testid="checkout-house-number-input"
-              value={ number }
-              onChange={ handleChange }
-            />
-          </label>
-          <button
-            data-testid="checkout-finish-btn"
-            disabled={ isDisabled() }
-            onClick={ submitOrder }
-          >
-            Finalizar Pedido
-          </button>
-        </>}
+        ? (<h1>Compra realizada com sucesso!</h1>)
+        : (
+          <section>
+            <h3>Endereço</h3>
+            <label htmlFor="address">
+              Rua:
+              <input
+                type="text"
+                name="address"
+                data-testid="checkout-street-input"
+                value={ address }
+                onChange={ handleChange }
+              />
+            </label>
+            <label htmlFor="number">
+              Número da casa:
+              <input
+                type="text"
+                name="number"
+                data-testid="checkout-house-number-input"
+                value={ number }
+                onChange={ handleChange }
+              />
+            </label>
+            <button
+              type="button"
+              data-testid="checkout-finish-btn"
+              disabled={ isDisabled() }
+              onClick={ submitOrder }
+            >
+              Finalizar Pedido
+            </button>
+          </section>
+        )}
       { isRedirected && redirectTimeOut() }
     </>
   );

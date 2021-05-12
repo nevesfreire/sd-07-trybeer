@@ -11,7 +11,8 @@ export const updateCart = (cart) => {
 export const addCartItem = (product) => {
   product.quantity = 1;
   const cart = getCartItems();
-  const productAlreadyExists = cart.filter((cartproduct) => cartproduct.id === product.id);
+  const productAlreadyExists = cart
+    .filter((cartproduct) => cartproduct.id === product.id);
   if (!cart || cart.length < 1) {
     cart.push(product);
   } else if (!productAlreadyExists) {
