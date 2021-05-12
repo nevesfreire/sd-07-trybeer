@@ -1,93 +1,87 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+// import fieldValidate from '../helpers/fieldValidate';
 import context from '../context';
+import api from '../services/api';
 
 const ComponentProfile = () => {
-  const [updateUserName, setUpdateUserName] = useState({});
-  const [successMessage, setSuccessMessage] = useState({});
-  const { isOk, setIsOk } = useContext(context);
-
+  const { setName } = useContext(context);
+  const [localName, setLocalName] = useState('name');
+  const [actualName, setActualName] = useState('actName');
+  const [localEmail, setLocalEmail] = useState('email');
   const REACT_APP_URL = 'http://localhost:3001';
-  const sessionStorageUser = JSON.parse(sessionStorage.getItem('user'));
-
-  if (sessionStorageUser.name === updateUserName) {
-    setIsOk(true);
-  } else {
-    setIsOk(false);
-  }
-
-  useEffect(() => {
-    setUpdateUserName(sessionStorageUser.name);
-  }, [sessionStorageUser.name]);
 
   const handleSubmit = async (e) => {
-    const payload = {
-      name: updateUserName,
-      email: sessionStorageUser.email,
+    const OK = 200;
+    e.preventDefault();
+    const objSend = {
+      name: localName,
+      old: actualName,
     };
 
-    sessionStorage.setItem('user', JSON.stringify(payload));
-
-    e.preventDefault();
-    fetch(`${REACT_APP_URL}/user`, {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({ ...payload }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setSuccessMessage(data);
+    console.log(objSend);
+    api.put(`${REACT_APP_URL}/user`, objSend)
+      .then((res) => {
+        if (res.status === OK) {
+          setActualName(localName);
+          setName(localName);
+          const tempStorage = JSON.parse(localStorage.getItem('data'));
+          tempStorage.name = localName;
+          localStorage.setItem(JSON.stringify(tempStorage));
+        }
       });
   };
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('data'));
+    setLocalName(data.name);
+    setActualName(data.name);
+    setLocalEmail(data.email);
+  }, []);
 
   return (
     <FormControl className="formRegistration">
       {/* { user.role === 'administrator' && <Redirect to="/admin/orders" /> }
       { user.role === 'client' && <Redirect to="/products" /> } */}
-      {/* <h1>Cadastro</h1> */}
+      <h1 data-testid="top-title">Cliente - Meu Perfil</h1>
 
+      {/* <div className="main-container"> */}
       <TextField
         id="userName"
         data-testid="profile-name-input"
         label="Nome"
         type="text"
-        value={ updateUserName }
-        className="registrationInput"
+        value={ localName }
+        className="registration-input"
         variant="outlined"
         placeholder="Monteiro Lobato"
-        onChange={ (event) => setUpdateUserName(event.target.value) }
+        onChange={ (event) => setLocalName(event.target.value) }
       />
 
       <TextField
         id="email"
-        data-testid="profile-email-input"
+        data-testid="signup-email"
         label="Email"
-        className="registrationInput"
-        value={ sessionStorageUser.email }
+        className="profile-email-input"
+        value={ localEmail }
         variant="outlined"
-        inputProps={ { readOnly: Boolean(true) } }
-        placeholder="lobato@lobato.com"
+        readOnly
       />
 
-      <hr className="profileHr" />
-      <div className="registerBtnGroup">
+      <hr />
+      <div className="register-btn-group">
         <Button
           data-testid="profile-save-btn"
           color="primary"
           variant="contained"
-          className="saveBtn"
-          disabled={ isOk }
-          onClick={ handleSubmit }
+          className="RegisterBtn"
+          disabled={ actualName === localName }
+          onClick={ (e) => handleSubmit(e) }
         >
           Salvar
         </Button>
       </div>
-      { successMessage.message && isOk
-        ? <p className="successMessage">{ successMessage.message }</p> : null}
     </FormControl>
   );
 };

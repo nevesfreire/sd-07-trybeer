@@ -25,7 +25,13 @@ const ComponentLogin = () => {
       .post('/login', params)
       .then((dataUser) => {
         localStorage.setItem('token', dataUser.data.token);
-        sessionStorage.setItem('user', JSON.stringify(dataUser.data.data));
+        localStorage.setItem(
+          'data',
+          JSON.stringify({
+            name: dataUser.data.data.name,
+            email: dataUser.data.data.email,
+          }),
+        );
         setData(dataUser.data.data);
       })
       .catch((err) => console.log(`Error in login process: ${err}`));
@@ -33,15 +39,13 @@ const ComponentLogin = () => {
 
   return (
     <div className="container-login">
-      { data.role === 'administrator' && <Redirect to="/admin/orders" /> }
-      { data.role === 'client' && <Redirect to="/products" /> }
+      {data.role === 'administrator' && <Redirect to="/admin/orders" />}
+      {data.role === 'client' && <Redirect to="/products" />}
       <div>
         <h3 className="form-login-title">Login</h3>
       </div>
       <div>
-        <form
-          className="container-int-login"
-        >
+        <form className="container-int-login">
           <label htmlFor="email" className="form-login">
             Email
             <input
