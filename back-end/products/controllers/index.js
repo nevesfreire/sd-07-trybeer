@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const model = require('../models');
-// const service = require('../services');
+const service = require('../services');
 
 const getAllProducts = async (req, res, next) => {
   try {
@@ -15,9 +15,18 @@ const getAllProducts = async (req, res, next) => {
   }
 };
 
-const createOrdersProducts = async (req, res, next) => {
+const createSalesProducts = async (req, res, next) => {
   try {
-    const order = await 
+    const { userId } = req;
+    const { totalProducts, street, houseNumber, shopCart } = req.body;
+    const order = await service.validateFieldsSale(
+      userId,
+      totalProducts,
+      street,
+      houseNumber,
+      'pendente',
+      shopCart,
+    );
     res.status(StatusCodes.CREATED).json(order);
   } catch (error) {
     console.error(error);
@@ -30,5 +39,5 @@ const createOrdersProducts = async (req, res, next) => {
 
 module.exports = {
   getAllProducts,
-  createOrdersProducts,
+  createSalesProducts,
 };

@@ -25,9 +25,17 @@ function Provider({ children }) {
     const ADD_ONE = 1;
     if (productIndex > NOT_EXIST) {
       updateList[productIndex].qtd += ADD_ONE;
-      updateList[productIndex].totalPrice = convertPrice(Math.round(price * updateList[productIndex].qtd * 100) / 100);
+      updateList[productIndex].totalPrice = convertPrice(
+        Math.round(price * updateList[productIndex].qtd * 100) / 100,
+      );
     } else {
-      updateList.push({ id, name, qtd: ADD_ONE, price, totalPrice: convertPrice(price) });
+      updateList.push({
+        id,
+        name,
+        qtd: ADD_ONE,
+        price,
+        totalPrice: convertPrice(price),
+      });
     }
     setShopCart(updateList);
   };
@@ -41,19 +49,27 @@ function Provider({ children }) {
     if (productIndex > NOT_EXIST) {
       if (updateList[productIndex].qtd > MIN_QTD) {
         updateList[productIndex].qtd -= SUBTRACT_ONE;
-        updateList[productIndex].totalPrice = convertPrice(Math.round(price * updateList[productIndex].qtd * 100) / 100);
+        updateList[productIndex].totalPrice = convertPrice(
+          Math.round(price * updateList[productIndex].qtd * 100) / 100,
+        );
       }
     } else {
-      updateList.push({ id, name, qtd: MIN_QTD, price, totalPrice: convertPrice(price) });
+      updateList.push({
+        id,
+        name,
+        qtd: MIN_QTD,
+        price,
+        totalPrice: convertPrice(price),
+      });
     }
     setShopCart(updateList);
   };
 
   const deleteProduct = (id) => {
-    const products = [ ...shopCart ];
-    const filterProducts = products.filter((item) => item.id !== id);
+    const productList = [...shopCart];
+    const filterProducts = productList.filter((item) => item.id !== id);
     setShopCart(filterProducts);
-  }
+  };
 
   const handlePrice = useCallback(() => {
     let price = 0;

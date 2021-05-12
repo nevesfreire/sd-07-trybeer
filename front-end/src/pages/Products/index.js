@@ -15,6 +15,13 @@ function ProductsCards() {
   } = useContext(BeerAppContext);
   const history = useHistory();
 
+  const validateToken = () => {
+    const user = getToLocalStorage('user');
+    // console.log(user);
+    if (!user || !user.token) return false;
+    return true;
+  };
+
   const HandleRequestGetProducts = async () => {
     if (!validateToken()) {
       return history.push('/login');
@@ -26,16 +33,9 @@ function ProductsCards() {
     if (productsList.status === StatusCodes.OK) setProducts(data);
   };
 
-  const validateToken = () => {
-    const user = getToLocalStorage('user');
-    // console.log(user);
-    if (!user || !user.token) return false;
-    return true;
-  };
-
   useEffect(() => {
     HandleRequestGetProducts();
-  }, []);
+  }, [HandleRequestGetProducts]);
 
   if (!products.length) return <h1>LOADING...</h1>;
 
@@ -52,7 +52,7 @@ function ProductsCards() {
         disabled={ totalProducts === 'R$ 0,00' }
       >
         Ver Carrinho
-        <span data-testid="checkout-bottom-btn-value">{ totalProducts}</span>
+        <span data-testid="checkout-bottom-btn-value">{` ${totalProducts}`}</span>
       </button>
     </div>
   );
