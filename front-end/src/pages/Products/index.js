@@ -18,6 +18,7 @@ function ProductsCards() {
 
   const validateToken = () => {
     const user = getToLocalStorage('user');
+    // console.log(user);
     if (!user || !user.token) return false;
     return true;
   };
@@ -28,14 +29,14 @@ function ProductsCards() {
     }
     const productsList = await requestGetProductsAPI();
     const { data } = productsList;
-
+    // console.log(productsList);
     if (productsList.status === StatusCodes.UNAUTHORIZED) history.push('/login');
     if (productsList.status === StatusCodes.OK) setProducts(data);
   };
 
   useEffect(() => {
     HandleRequestGetProducts();
-  }, []);
+  }, [HandleRequestGetProducts]);
 
   if (!products.length) return <h1>LOADING...</h1>;
 
@@ -52,7 +53,7 @@ function ProductsCards() {
         disabled={ totalProducts === 'R$ 0,00' }
       >
         Ver Carrinho
-        <span data-testid="checkout-bottom-btn-value">{ totalProducts}</span>
+        <span data-testid="checkout-bottom-btn-value">{` ${totalProducts}`}</span>
       </button>
     </div>
   );

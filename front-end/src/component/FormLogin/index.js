@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import FormWrapper from './styles';
 import { requestLoginAPI } from '../../services';
 import { setToLocalStorage } from '../../utils/localStorage';
@@ -12,7 +12,7 @@ const defaultForm = {
 function FormLogin() {
   const [formLogin, setFormLogin] = useState(defaultForm);
   const [buttonState, setButtonState] = useState(true);
-  const history = useHistory();
+  const [roleUser, setRoleUser] = useState('');
 
   const handleInputChange = (event, name) => {
     const { value } = event.target;
@@ -46,9 +46,11 @@ function FormLogin() {
       setToLocalStorage('user', data);
 
       if (role === 'administrator') {
-        history.push('/admin/orders');
+        setRoleUser('administrator');
+        // history.push('/admin/orders');
       } else {
-        history.push('/products');
+        setRoleUser('client');
+        // history.push('/products');
       }
     }
   };
@@ -56,6 +58,16 @@ function FormLogin() {
   useEffect(() => {
     handleButtonState();
   }, [formLogin, handleButtonState]);
+
+  if (roleUser === 'client') {
+    return (
+      <Redirect to="/products" />
+    );
+  } if (roleUser === 'administrator') {
+    return (
+      <Redirect to="/admin/orders" />
+    );
+  }
 
   return (
     <FormWrapper>
