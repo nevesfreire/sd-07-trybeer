@@ -44,19 +44,25 @@ function AdminOrdersId() {
   };
 
   return (
-    <div>
+    <div className="div-container">
       <SideBarAdmin />
       { isLoading ? <span>Carregando...</span>
         : (
-          <div>
-            <span data-testid="order-number">
+          <div className="admin-container-order">
+            <span data-testid="order-number" className="admin-orders-span font-style">
               {`Pedido ${order[0] && order[0].sale_id} - `}
             </span>
-            <span data-testid="order-status">
+            <span
+              data-testid="order-status"
+              className={
+                `${status === 'Pendente' ? 'admin-orders-span pendente'
+                  : 'admin-orders-span entregue'}`
+              }
+            >
               {status}
             </span>
             { order.map((product, index) => (
-              <div key={ index }>
+              <div key={ index } className="admin-container-order">
                 <span data-testid={ `${index}-product-qtd` }>
                   {product.quantity}
                 </span>
@@ -67,12 +73,18 @@ function AdminOrdersId() {
                   {`R$ ${(Number(product.price) * Number(product.quantity))
                     .toFixed(2).replace('.', ',')}`}
                 </span>
-                <span data-testid={ `${index}-order-unit-price` }>
+                <span
+                  data-testid={ `${index}-order-unit-price` }
+                  className="details-price"
+                >
                   {`(R$ ${Number(product.price).toFixed(2).replace('.', ',')})`}
                 </span>
               </div>
             ))}
-            <span data-testid="order-total-value">
+            <span
+              data-testid="order-total-value"
+              className="admin-orders-span font-style"
+            >
               {`R$ ${total.toFixed(2).replace('.', ',')}`}
             </span>
             <button
@@ -80,6 +92,7 @@ function AdminOrdersId() {
               type="button"
               onClick={ () => handleClick() }
               hidden={ hidden }
+              className={ status === 'Pendente' && 'checkout-button' }
             >
               Marcar como entregue
             </button>

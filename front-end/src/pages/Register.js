@@ -60,40 +60,44 @@ function Register() {
   const isDisabled = () => !validateName() || !validateEmail() || !validatePassword();
 
   return (
-    <form onSubmit={ handleSubmit }>
-      <label htmlFor="signup-name">
+    <form onSubmit={ handleSubmit } className="main-container">
+      <label htmlFor="signup-name" className="name-input-label">
         Nome
         <input
           id="signup-name"
           data-testid="signup-name"
           type="text"
           onChange={ (e) => setName(e.target.value) }
+          className="name-input"
         />
       </label>
-      <label htmlFor="signup-email">
+      <label htmlFor="signup-email" className="email-input-label">
         Email
         <input
           id="signup-email"
           data-testid="signup-email"
           type="email"
           onChange={ (e) => setEmail(e.target.value) }
+          className="email-input"
         />
       </label>
-      <label htmlFor="signup-password">
+      <label htmlFor="signup-password" className="password-input-label">
         Senha
         <input
           id="signup-password"
           data-testid="signup-password"
           type="password"
           onChange={ (e) => setPassword(e.target.value) }
+          className="password-input"
         />
       </label>
-      <label htmlFor="signup-seller">
+      <label htmlFor="signup-seller" className="seller-input-label">
         Quero vender
         <input
           id="signup-seller"
           data-testid="signup-seller"
           type="checkbox"
+          className="seller-input"
           onChange={ (e) => setRole(e.target.checked === true
             ? 'administrator' : 'client') }
         />
@@ -102,6 +106,7 @@ function Register() {
         data-testid="signup-btn"
         type="submit"
         disabled={ isDisabled() }
+        className="signin-btn"
       >
         Cadastrar
       </button>

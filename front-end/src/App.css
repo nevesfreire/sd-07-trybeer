@@ -6,7 +6,10 @@
   margin-top: 5vw;
 }
 
-.email-input-label, .password-input-label {
+.email-input-label,
+.password-input-label,
+.name-input-label,
+.seller-input-label {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -14,7 +17,10 @@
   margin: 1vw 20vw;
 }
 
-.email-input, .password-input {
+.email-input,
+.password-input,
+.name-input,
+.seller-input {
   padding: 2vw;
   width: 60vw;
 }
@@ -116,4 +122,130 @@
     justify-content: center;
     color: #FFFFFF;
   }
+}
+
+.div-container, .details-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.div-container-card {
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #100F0F;
+  border-radius: 1vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 0;
+  width: 28vw;
+  height: 33vw;
+}
+
+.img-card {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 25vw;
+}
+
+.name-card, .price-unit-card {
+  margin-bottom: 1vw;
+}
+
+.quantity-button-span-card {
+  display: flex;
+  justify-content: space-evenly;
+  width: 10vw;
+}
+
+.checkout-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.checkout-button {
+  align-items: center;
+  background-color: #1CD118;
+  display: flex;
+  height: 3vw;
+  justify-content: center;
+  margin-bottom: 1vw;
+  width: 40vw;
+}
+
+.checkout-button, .checkout-button-text, .checkout-finish-button {
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 700;
+  font-size: 1.4vw;
+}
+
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1vw;
+}
+
+.checkout-unit-price {
+  margin: 0 0.5vw;
+  font-size: 1.1vw;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-form-label {
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+
+.checkout-quantity, .checkout-name, .checkout-value, .checkout-form-input {
+  margin-left: 1vw;
+}
+
+.checkout-finish-button {
+  background-color: #1CD118;
+  margin-top: 2vw;
+  margin-left: 5vw;
+  margin-bottom: 2vw;
+  width: 15vw;
+}
+
+.details-container-order {
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #100F0F;
+  border-radius: 1vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 0;
+  width: 18vw;
+  height: 18vw;
+}
+
+.details-container {
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #100F0F;
+  border-radius: 1vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1vw;
+}
+
+.details-container-span {
+  margin: 0.2vw 0;
+}
+
+.details-price {
+  font-size: 1.1vw;
 }

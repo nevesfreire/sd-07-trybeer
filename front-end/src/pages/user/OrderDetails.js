@@ -55,10 +55,11 @@ function OrderDetails() {
   return (
     <div>
       <MenuTopMobile />
+      { sideIsActive && <SideBarMobile /> }
       <h1 data-testid="top-title">Detalhes de Pedido</h1>
       { isLoading ? <span>Carregando...</span>
         : (
-          <div>
+          <div className="details-container-order">
             <span data-testid="order-number">
               {`Pedido ${order[0] && order[0].sale_id} - `}
             </span>
@@ -66,18 +67,30 @@ function OrderDetails() {
               {orderDate}
             </span>
             { order.map((product, index) => (
-              <div key={ index }>
-                <span data-testid={ `${index}-product-qtd` }>
+              <div key={ index } className="details-container">
+                <span
+                  data-testid={ `${index}-product-qtd` }
+                  className="details-container-span"
+                >
                   {product.quantity}
                 </span>
-                <span data-testid={ `${index}-product-name` }>
+                <span
+                  data-testid={ `${index}-product-name` }
+                  className="details-container-span"
+                >
                   {product.name}
                 </span>
-                <span data-testid={ `${index}-product-total-value` }>
+                <span
+                  data-testid={ `${index}-product-total-value` }
+                  className="details-container-span"
+                >
                   {`R$ ${(Number(product.price) * Number(product.quantity))
                     .toFixed(2).replace('.', ',')}`}
                 </span>
-                <span data-testid={ `${index}-order-unit-price` }>
+                <span
+                  data-testid={ `${index}-order-unit-price` }
+                  className="details-container-span details-price"
+                >
                   {`(R$ ${Number(product.price).toFixed(2).replace('.', ',')})`}
                 </span>
               </div>
@@ -87,7 +100,6 @@ function OrderDetails() {
             </span>
           </div>
         )}
-      { sideIsActive && <SideBarMobile /> }
     </div>
   );
 }

@@ -38,11 +38,13 @@ function Orders() {
     <div>
       <MenuTopMobile />
       { sideIsActive && <SideBarMobile /> }
-      {orders.map((order, index) => (<OrderCard
-        key={ index }
-        order={ order }
-        index={ index }
-      />))}
+      <div className="container-order-card">
+        {orders.map((order, index) => (<OrderCard
+          key={ index }
+          order={ order }
+          index={ index }
+        />))}
+      </div>
 
     </div>
   );
