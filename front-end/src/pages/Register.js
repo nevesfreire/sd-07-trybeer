@@ -5,6 +5,7 @@ import { registerUser } from '../services/User';
 export default function Register() {
   const [disabled, setDisabled] = useState(true);
   const [checkboxValue, setCheckboxValue] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [registerData, setRegisterData] = useState({
     name: '',
     email: '',
@@ -18,7 +19,8 @@ export default function Register() {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const { name, email, password } = registerData;
     let newRegister = {
       name,
@@ -33,7 +35,7 @@ export default function Register() {
     }
     newRegister = { ...newRegister, role: 'client' };
     await registerUser(JSON.stringify(newRegister));
-    return <Redirect to="/products" />;
+    setShouldRedirect(true);
   };
 
   // const verifyEmail = async (email) => {

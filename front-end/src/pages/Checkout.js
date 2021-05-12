@@ -28,30 +28,23 @@ export default function Checkout() {
     dispatch(update(filteredCart));
   };
 
-  const renderBody = () => {
-    cartList.map((item, index) => (
-      <div key={ index }>
-        <tr>
-          <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
-          <td data-testid={ `${index}-product-name` }>{ item.name }</td>
-          <td data-testid={ `${index}-product-unit-price` }>
-            {
-              `R$ ${item.price.toFixed(ROUNDING_OPTION)}`
-            }
-          </td>
-          <td data-testid={ `${index}-product-total-value` }>
-            { `R$ ${item.totalPrice.toFixed(ROUNDING_OPTION)}` }
-          </td>
-        </tr>
-        <button
-          type="button"
-          data-testid={ `${index}-removal-button` }
-          onClick={ () => removeItem(item) }
-        >
+
+  const renderBody = () => cartList.map((item, index) => (
+    <div>
+      <tr key={ index }>
+        <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
+        <td data-testid={ `${index}-product-name` }>{ item.name }</td>
+        <td data-testid={ `${index}-product-unit-price` }>{ `R$ ${item.price.toFixed(ROUNDING_OPTION)}` }</td>
+        <td data-testid={ `${index}-product-total-value` }>{ `R$ ${item.totalPrice.toFixed(ROUNDING_OPTION)}` }</td>
+      </tr>
+      <button
+        type="button"
+        data-testid={ `${index}-removal-button` }
+        onClick={ () => removeItem(item) }
+      >
         -
-        </button>
-      </div>));
-  };
+      </button>
+    </div>));
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
