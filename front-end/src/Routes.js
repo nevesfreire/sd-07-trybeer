@@ -8,7 +8,7 @@ import Products from './pages/Products';
 import Checkout from './pages/Checkout';
 import ClientOrders from './pages/ClientOrders';
 import OrderDetails from './pages/OrderDetails';
-// import Admin from './components/AdminComponent';
+import AdminDetails from './pages/AdminDetails';
 import AdminProfile from './pages/AdminProfile';
 import AdminOrders from './pages/AdminOrders';
 
@@ -22,7 +22,7 @@ const Routes = () => (
     <Route path="/checkout" component={ Checkout } />
     <Route path="/orders/:id" component={ OrderDetails } />
     <Route path="/orders" component={ ClientOrders } />
-    {/* <Route path="/admin/orders/:id" component={ Admin } /> */}
+    <Route path="/admin/orders/:id" component={ AdminDetails } />
     <Route path="/admin/profile" component={ AdminProfile } />
     <Route path="/admin/orders" component={ AdminOrders } />
   </Switch>

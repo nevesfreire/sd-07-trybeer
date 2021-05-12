@@ -17,6 +17,10 @@ function AdminOrdersComponent() {
     });
   }, []);
 
+  const showStatus = (string) => (string === 'pendente'
+    ? string.replace('p', 'P')
+    : string.replace('e', 'E'));
+
   const renderOrderList = () => orders.map((order, index) => {
     const {
       id,
@@ -35,7 +39,7 @@ function AdminOrdersComponent() {
           <p data-testid={ `${index}-order-total-value` }>
             {`R$ ${totalPrice.replace('.', ',')}`}
           </p>
-          <p data-testid={ `${index}-order-status` }>{status.replace('p', 'P')}</p>
+          <p data-testid={ `${index}-order-status` }>{showStatus(status)}</p>
           <br />
         </div>
       </Link>

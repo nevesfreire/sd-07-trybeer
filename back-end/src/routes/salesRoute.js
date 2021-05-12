@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/sales', authMiddleware, rescue(salesController.getAllSales));
 router.get('/sales/:id', authMiddleware, rescue(salesController.getSaleById));
+router.put('/sales/:id', authMiddleware, rescue(salesController.changeSaleStatus));
 router.post('/sales', authMiddleware, rescue(salesController.createSale));
 
 module.exports = router;

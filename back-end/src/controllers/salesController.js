@@ -41,4 +41,16 @@ const createSale = async (req, res) => {
   }
 };
 
-module.exports = { getAllSales, createSale, getSaleById };
+const changeSaleStatus = async (req, res) => {
+  const { id } = req.params;
+
+  const result = await salesService.changeSaleStatus(id);
+
+  if (typeof result === 'string') {
+    res.status(STATUS_BAD_REQUEST).json({ message: result });
+  } else {
+    res.status(STATUS_CREATED).json({ message: 'Alterado status com sucesso' });
+  }
+};
+
+module.exports = { getAllSales, createSale, getSaleById, changeSaleStatus };
