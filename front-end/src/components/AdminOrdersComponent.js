@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Segment, Sidebar } from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
 import { getUser } from '../helpers/localStorageHelper';
-import { getOrders } from '../helpers/apiHelper';
+import { fetchOrders } from '../helpers/apiHelper';
 
 function AdminOrdersComponent() {
   const [orders, setOrders] = useState([]);
@@ -11,13 +11,10 @@ function AdminOrdersComponent() {
   const renderLoading = () => <h1>LOADING...</h1>;
 
   useEffect(() => {
-    getOrders().then((data) => {
-      console.log('chamado', data);
-      setOrders(data.sales);
+    fetchOrders().then((data) => {
+      setOrders(data);
       setIsLoading(false);
     });
-    // setOrders(ordersReturn.sales);
-    // setIsLoading(false);
   }, []);
 
   const renderOrderList = () => orders.map((order, index) => {
