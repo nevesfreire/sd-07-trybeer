@@ -53,5 +53,4 @@ const changeSaleStatus = async (req, res) => {
   }
 };
 
-
 module.exports = { getAllSales, createSale, getSaleById, changeSaleStatus };
