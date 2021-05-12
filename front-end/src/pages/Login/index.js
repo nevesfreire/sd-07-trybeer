@@ -1,16 +1,15 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FormLogin from '../../component/FormLogin';
 import LoginWrapper from './styles';
 
 function Login() {
-
   return (
     <LoginWrapper>
       <FormLogin />
       <Link
         id="btn_new_user"
-        type="button"        
+        type="button"
         data-testid="no-account-btn"
         to="/register"
       >
