@@ -1,5 +1,5 @@
 .login-page {
-  background-color: #20181A;
+  background-color: #FBC248;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,11 +16,15 @@
 }
 
 .btn-login {
-  background-color: #D07A2D!important;
+  background-color: #8BACDC!important;
   color: #EDE4D7!important;
 }
 
 .btn-create {
   background-color: #5E3E31!important;
   color: #EDE4D7!important;
+}
+
+.logo {
+  margin-left: 100px;
 }

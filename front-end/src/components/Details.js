@@ -14,40 +14,40 @@ function Details({ item, index }) {
   }, []);
 
   return (
-    <div>
-      <div
-        key={ index }
+    <div
+      className="item-details"
+      key={ index }
+    >
+      <p
+        className="item-quantity"
+        data-testid={ productQtd }
       >
-        <p
-          data-testid={ productQtd }
-        >
-          { item.quantity }
-        </p>
-        <p
-          data-testid={ `${index}-product-name` }
-        >
-          {item.name}
-        </p>
-        Subtotal:
-        <p
-          data-testid={ `${index}-product-total-value` }
-        >
-          R$
-          {' '}
-          {
-            (parseFloat(item.price) * parseFloat(item.quantity))
-              .toFixed(2)
-              .toString()
-              .replace('.', ',')
-          }
-        </p>
-        {/*
-        <p
-          data-testid={ `${index}-product-qtd` }
-        >
-          {item.quantity}
-        </p> */}
-      </div>
+        { item.quantity }
+      </p>
+      <p
+        data-testid={ `${index}-product-name` }
+      >
+        {item.name}
+      </p>
+      Subtotal:
+      <p
+        data-testid={ `${index}-product-total-value` }
+      >
+        R$
+        {' '}
+        {
+          (parseFloat(item.price) * parseFloat(item.quantity))
+            .toFixed(2)
+            .toString()
+            .replace('.', ',')
+        }
+      </p>
+      {/*
+      <p
+        data-testid={ `${index}-product-qtd` }
+      >
+        {item.quantity}
+      </p> */}
     </div>
   );
 }

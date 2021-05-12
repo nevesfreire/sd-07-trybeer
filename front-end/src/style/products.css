@@ -1,5 +1,5 @@
 .products-page {
-  background-color: #20181A;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,7 @@ img {
 }
 
 .qtd-button-container button {
+  background-color: #FBC248;
   border-radius: 50%;
   border: none;
 }
@@ -46,7 +47,7 @@ img {
 }
 
 .qtd {
-  background-color: #EDE4D7;
+  background-color: white;
   padding: 3px 10px;
   border-radius: 10%;
 }

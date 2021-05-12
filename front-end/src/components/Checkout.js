@@ -62,31 +62,34 @@ function Checkout() {
   };
 
   const generateProducts = useCallback(() => (
-    <div>
+    <div class="main-container mt-5">
       {productList.length === zero
         ? (<h3>Não há produtos no carrinho</h3>)
         : productList
           .map((item, index) => (
-            <div key={ index }>
+            <div className="item-container mb-3" key={ index }>
               <Details item={ item } index={ index } />
-              Unidade:
-              <p
-                data-testid={ `${index}-product-unit-price` }
-              >
-                { `(R$ ${item.price.replace('.', ',')} un)` }
-              </p>
-              <button
-                type="button"
-                data-testid={ `${index}-removal-button` }
-                onClick={ () => {
-                  const list = [...productList];
-                  list.splice(index, 1);
-                  setProductList(list);
-                  localStorage.setItem('cartList', JSON.stringify(list));
-                } }
-              >
-                Remover
-              </button>
+              <div class="unt-dlt">
+                Unidade:
+                <p
+                  data-testid={ `${index}-product-unit-price` }
+                >
+                  { `(R$ ${item.price.replace('.', ',')} un)` }
+                </p>
+                <button
+                  className="btn btn-login"
+                  type="button"
+                  data-testid={ `${index}-removal-button` }
+                  onClick={ () => {
+                    const list = [...productList];
+                    list.splice(index, 1);
+                    setProductList(list);
+                    localStorage.setItem('cartList', JSON.stringify(list));
+                  } }
+                >
+                  Remover
+                </button>
+              </div>
             </div>
           )) }
       Total:
@@ -99,14 +102,14 @@ function Checkout() {
       {!showMessage
         ? (<p hidden={ showMessage }> Compra realizada com sucesso!</p>)
         : (
-          <form>
+          <form className="checkout-form">
             Endereço para entrega:
             {' '}
             <br />
-            <label htmlFor="street">
+            <label className="form-label" htmlFor="street">
               Rua:
               <input
-                className="form-input"
+                className="form-control"
                 data-testid="checkout-street-input"
                 type="text"
                 name="street"
@@ -117,10 +120,10 @@ function Checkout() {
             </label>
             <br />
 
-            <label htmlFor="number">
+            <label className="form-label mb-3" htmlFor="number">
               Número:
               <input
-                className="form-input"
+                className="form-control"
                 data-testid="checkout-house-number-input"
                 type="text"
                 name="number"
@@ -131,6 +134,7 @@ function Checkout() {
             </label>
 
             <button
+              className="btn btn-login"
               type="button"
               data-testid="checkout-finish-btn"
               disabled={
@@ -153,7 +157,8 @@ function Checkout() {
   }, [generateTotal]);
 
   return (
-    <div style={ { marginLeft: `${two}em` } }>
+    <div className="cart" style={ { marginLeft: `${two}em` } }>
+      <h2>Produtos</h2>
       {generateProducts()}
     </div>
   );
