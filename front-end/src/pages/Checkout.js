@@ -13,9 +13,10 @@ function Checkout() {
   const [ deliveryNumber, setDeliveryNumber] = useState('');
   const history = useHistory();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
+  const [finish, setFinish] = useState(false)
 
   let cumTotal = 0;
-  let finish = false;
+
   
   const remButton = (id) => {
     const cartFilter = cart.filter((item) => item[0] !== id)
@@ -36,12 +37,13 @@ const checkoutButton = async () => {
   )
   sucess()
   setTimeout(function(){
-    history.push('/Products')
+    setFinish(false)    
+    history.push('/products')
   }, 2000);
 }
 
 const sucess = () => {
-  return finish = true
+  setFinish(true)
 }
 
   useEffect(() => {
