@@ -14,7 +14,7 @@ function TopMenu({ children }) {
         data-testid="top-hamburguer"
         onClick={ () => setShowSideBar(!showSideBar) }
       >
-        Boar
+        <img alt="hambeuger menu" src="https://img.icons8.com/ios-filled/50/000000/menu--v1.png" />
       </button>
       <h2
         data-testid="top-title"
