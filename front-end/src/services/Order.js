@@ -12,7 +12,7 @@ export const saveOrder = (dispatch, order) => {
       .then((json) => json)
       .then(() => dispatch(finish('success')));
   } catch (error) {
-    dispatch(finish('fail'))
+    dispatch(finish('fail'));
     console.log(error.message);
   }
 };

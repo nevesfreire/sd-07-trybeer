@@ -12,6 +12,7 @@ const PORT = 3001;
 
 app.use(express.json()); // Reconhecer o body do "request"
 app.use(cors());
+app.use('/images', express.static('images')); 
 
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (_request, response) => {
