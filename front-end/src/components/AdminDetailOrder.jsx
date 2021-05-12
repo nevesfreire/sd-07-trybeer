@@ -38,7 +38,7 @@ const AdminDetailOrder = () => {
       {!loading ? (
         <div>
           <h2 data-testid="order-number">{`Pedido  ${id}`}</h2>
-          <span data-testid="order-status">{`${delivered ? status : 'Entregue'}`}</span>
+          <span data-testid="order-status">{`${!delivered ? status : 'Entregue'}`}</span>
           <h3 data-testid="order-date">{dateFormat(saleDate, 'dd/mm')}</h3>
           {products.map(({ name, key, quantity, price }, index) => (
             <div key={ key }>
