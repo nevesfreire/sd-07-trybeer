@@ -5,7 +5,7 @@ const usersController = require('../controllers/userController');
 const router = express.Router();
 
 router.post('/', usersController.userCreate);
-
+// retirar esse comentário
 router.put('/:id', validateToken, usersController.userUpdate); // incluir validateToken
 
 module.exports = router;
