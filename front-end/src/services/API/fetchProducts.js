@@ -12,5 +12,5 @@ export default function fetchProducts() {
     },
   };
 
-  return fetchApi('/products', body, token).then((products) => products.json());
+  return fetchApi('/products', body).then((products) => products.json());
 }
