@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import api from '../services/api';
 import numbers from '../helpers/Numbers';
 import Card from './Card';
 
 const ComponentBeers = () => {
   const history = useHistory();
+  const token = localStorage.getItem('token');
+  console.log(token);
+
   const [isLoading, setIsLoading] = useState(false);
   const [priceTotal, setPriceTotal] = useState(
     JSON.parse(localStorage.getItem('productPriceTotals')) || { value: 0.00 },
@@ -13,12 +16,6 @@ const ComponentBeers = () => {
   const [Beers, setBeers] = useState([]);
 
   useEffect(() => {
-    // const storage = JSON.parse(localStorage.getItem('token')) || {};
-    //
-    // if (!storage.token) {
-    //   history.push('/login');
-    // }
-
     setIsLoading(true);
     const getBeers = async () => {
       const { data } = await api.get('/products');
@@ -38,6 +35,8 @@ const ComponentBeers = () => {
 
   return (
     <div className="product-list-container">
+      {/* {console.log(token)} */}
+      {!token && <Redirect to="/login" />}
       {/* {console.log(`Render beer: ${Beers}`)} */}
       <button
         data-testid="checkout-bottom-btn"

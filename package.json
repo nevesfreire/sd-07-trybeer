@@ -10,7 +10,8 @@
     "install-front": "npm --prefix front-end/ install",
     "start-front": "npm --prefix front-end/ run start&",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cy": "cypress"
   },
   "repository": {
     "type": "git",
