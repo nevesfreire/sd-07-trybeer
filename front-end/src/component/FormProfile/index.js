@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { getToLocalStorage } from '../../utils/localStorage';
 import { requestAlterUserAPI } from '../../services';
-import { useHistory } from 'react-router';
-
 
 const FormDefault = {
   name: '',
@@ -34,9 +33,9 @@ function FormProfile() {
 
       setFormProfile({ name, email });
     } catch (error) {
-       history.push('/');
+      history.push('/');
     }
-  }, []);
+  }, [history]);
 
   return (
     <>

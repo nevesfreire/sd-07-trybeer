@@ -15,6 +15,13 @@ function ProductsCards() {
   } = useContext(BeerAppContext);
   const history = useHistory();
 
+  const validateToken = useCallback(() => {
+    const user = getToLocalStorage('user');
+    // console.log(user);
+    if (!user || !user.token) return false;
+    return true;
+  }, []);
+
   const HandleRequestGetProducts = useCallback(async () => {
     if (!validateToken()) {
       return history.push('/login');
@@ -24,18 +31,11 @@ function ProductsCards() {
     console.log(productsList);
     if (productsList.status === StatusCodes.UNAUTHORIZED) history.push('/login');
     if (productsList.status === StatusCodes.OK) setProducts(data);
-  }, [setProducts]);
-
-  const validateToken = useCallback(() => {
-    const user = getToLocalStorage('user');
-    // console.log(user);
-    if (!user || !user.token) return false;
-    return true;
-  }, [history]);
+  }, [history, setProducts, validateToken]);
 
   useEffect(useCallback(() => {
     HandleRequestGetProducts();
-  }, [HandleRequestGetProducts, validateToken]));
+  }, [HandleRequestGetProducts]));
 
   if (!products.length) return <h1>LOADING...</h1>;
 
