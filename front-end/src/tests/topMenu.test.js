@@ -132,4 +132,3 @@ describe('2 - [PÁGINA DE REGISTER] Testa se todas as rotas de SideBar redirecio
     expect(history.location.pathname).toBe('/login');
   });
 })
-
