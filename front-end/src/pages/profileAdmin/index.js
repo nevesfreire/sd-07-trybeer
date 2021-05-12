@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import TopMenu from '../../components/Header';
+import AdminSideBar from '../../components/AdminSideBar';
 
 export default function ProfileAdmin() {
   const data = JSON.parse(localStorage.getItem('user')) || { name: '', email: '' };
@@ -13,7 +13,8 @@ export default function ProfileAdmin() {
 
   return (
     <div>
-      <TopMenu>Perfil</TopMenu>
+      <AdminSideBar />
+      <h1>Perfil</h1>
       <p data-testid="profile-name">{`Nome:${profileInfo.name}`}</p>
       <p data-testid="profile-email">{`Nome:${profileInfo.email}`}</p>
     </div>
