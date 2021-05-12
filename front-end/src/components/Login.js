@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import api from '../services/api';
-import context from '../context';
 
 const regexEmail = /\S+@\S+\.\S+/;
 const passwordMinLength = 6;
