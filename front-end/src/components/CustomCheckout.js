@@ -5,7 +5,7 @@ export default function CustomCheckout({ index, beer, removeButton }) {
   return (
     <Grid>
       {!beer ? (
-        <span>'Não há produtos no carrinho'</span>
+       null
       ) : (
         <Card>
           <Card.Content>

@@ -5,34 +5,69 @@ import CustomCheckout from '../components/CustomCheckout';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
 import { Grid, Button, Form, Segment } from 'semantic-ui-react';
+import checkout from '../service/checkout';
 
 function Checkout() {
   const { totalKart, setTotalKart } = useContext(CentralContext);
+  const [ deliveryAddress , setDeliveryAddress ] = useState('');
+  const [ deliveryNumber, setDeliveryNumber] = useState('');
   const history = useHistory();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
 
-  let teste = 0;
+  let cumTotal = 0;
+  let finish = false;
+  
   const remButton = (id) => {
     const cartFilter = cart.filter((item) => item[0] !== id)
-    
     setCart(cartFilter);
   };
+
+const checkoutButton = async () => {
+  const { id } = JSON.parse(localStorage.getItem('token'))
+  const userId = id
+  const totalPrice = totalKart
+  const kart = cart.map((kart) => {
+    [{
+      product_id: kart[0],
+      quantity: kart[2],
+    }]
+  })
+  const msg = checkout(
+    userId,
+    totalPrice,
+    deliveryAddress,
+    deliveryNumber,
+    kart
+  )
+  sucess()
+  setTimeout(function(){
+    history.push('/Products')
+  }, 2000);
+}
+
+const sucess = () => {
+  return finish = true
+}
 
   useEffect(() => {
     cart &&
     cart.map((item) => {
-      teste += (item[1] * item[2]);
+      cumTotal += (item[1] * item[2]);
     });
-    setTotalKart(teste);
+    setTotalKart(cumTotal);
     localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+  }, [cart, finish]);
+
+useEffect(() => {}, [finish])
 
   const renderProdutsCart = () => {
     return (
       <div>
         <Grid columns="4">
-          {(cart === [] || !cart) ? (
-            <span>'Não há produtos no carrinho'</span>
+          
+          {totalKart === 0 ? <span>'Não há produtos no carrinho'</span> : null }
+          { !cart? (
+            null
           ) : (
             cart.map((beer, index) => (
               <Grid.Column>
@@ -73,25 +108,30 @@ function Checkout() {
             label="Rua"
             placeholder="Endereço"
             name="street"
+            onChange={ (e) => setDeliveryAddress(e.target.value) }
+            
           />
           <Form.Input
             data-testid="checkout-house-number-input"
             fluid
             label="Número da casa"
-            placeholder="Senha"
+            placeholder="Número da casa"
             type="text"
             name="numHouse"
+            onChange={ (e) => setDeliveryNumber(e.target.value) }
+            
           />
 
           <Button
             data-testid="checkout-finish-btn"
-            disabled={!totalKart}
-            onClick={() => history.push('/checkout')}
+            disabled={!totalKart || !deliveryNumber || !deliveryAddress} 
+            onClick={() =>  checkoutButton() }
             color="orange"
             size="large"
           >
             Finalizar pedido
           </Button>
+          { finish ? <span>'Compra realizada com sucesso!'</span> : null}
         </Segment>
       </Form>
     </div>
