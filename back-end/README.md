@@ -5,7 +5,7 @@ MYSQL_USER=root
 MYSQL_PASSWORD=
 PORT=3001
 
-# Mensagens de erro
+## Mensagens de erro
 
 Todas as mensagens de erro seguem o seguinte formato:
 
@@ -201,6 +201,40 @@ O header deve conter o seguinte:
 authorization: token
 
 Passar o id da compra como parâmetro ex: localhost:3001/sales/users/1
+
+Caso exista uma compra com o id buscado, será retornado o JSON:
+
+[
+  {
+    "sale_id": 1,
+    "sale_date": "2021-05-07T18:21:30.000Z",
+    "quantity": "21",
+    "name": "Skol Lata 250ml",
+    "price": "2.20",
+    "total_price": "343.98",
+    "user_id": 3
+  },
+  {
+    "sale_id": 1,
+    "sale_date": "2021-05-07T18:21:30.000Z",
+    "quantity": "21",
+    "name": "Brahma 600ml",
+    "price": "7.50",
+    "total_price": "343.98",
+    "user_id": 3
+  }
+]
+
+## Consultando detalhes da compra (Administrador)
+
+Rota: localhost:/3001/sales/admin/:saleid
+Metodo: GET
+
+O header deve conter o seguinte:
+authorization: token
+O usuário deve ser um administrador
+
+Passar o id da compra como parâmetro ex: localhost:3001/sales/admin/1
 
 Caso exista uma compra com o id buscado, será retornado o JSON:
 
