@@ -18,7 +18,7 @@ export default function Product() {
     setIsLoading(true);
     const productData = await productList();
     if (productData.error) {
-      window.location.reload();
+      // window.location.reload();
       return setProducts([]);
     }
     setProducts(productData);
