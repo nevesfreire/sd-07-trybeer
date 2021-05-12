@@ -34,12 +34,10 @@ const Routes = () => (
     <Route exact path="/login" component={ Login } />
     <Route exact path="/" component={ Login } />
     <PrivateRouter exact path="/products" component={ Products } />
-    <Route exact path="/admin/orders" />
     <PrivateRouter exact path="/checkout" component={ Checkout }/>
     <Route exact path="/admin" />
     <Route exact path="/admin/orders" component={ Admin }/>
     <Route exact path="/admin/profile" component={ AdminProfile }/>
-    <Route exact path="/checkout" />
   </Switch>
 );
 

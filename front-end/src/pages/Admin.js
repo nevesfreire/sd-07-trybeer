@@ -4,7 +4,9 @@ import CustomSideBarAdmin from '../components/CustomSideBarAdmin';
 function Admin() {
   return (
     <div>
+
       <CustomSideBarAdmin />
+      
     </div>
   );
 }

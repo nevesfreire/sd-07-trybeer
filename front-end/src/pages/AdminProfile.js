@@ -9,10 +9,10 @@ function AdminProfile() {
   const [formDataUpdate, setFormDataUpdate] = useState(new Map());
   const history = useHistory();
   const userObject = getToken() || {};
-  const { name, email, token } = userObject;
+  const { name, email, token, role } = userObject;
 
   useEffect(() => {
-    if(!token ) return history.push('/login');
+    if(!token || role === "client" ) return history.push('/login');
   }, [])
 
   return (
