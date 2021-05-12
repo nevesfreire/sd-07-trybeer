@@ -5,10 +5,10 @@ const updateUser = async (name, email) => {
   const [user] = await connection.execute(
     `UPDATE Trybeer.users SET users.name = '${name}' WHERE email = '${email}'`,
   );
-  console.log(user) 
+  console.log(user); 
   return 'Atualização concluída com sucesso';
 };
 
 module.exports = {
-  updateUser
+  updateUser,
 };
