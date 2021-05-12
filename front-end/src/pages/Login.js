@@ -40,7 +40,7 @@ function Login() {
     };
 
     verifyUserData();
-  }, [email, password, setIsDisable]);
+  }, [email, password]);
 
   return (
     <>

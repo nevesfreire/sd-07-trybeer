@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import BeerContext from '../context/beerContext';
 import ProductsButtons from './productsButtons';
-import { getCartQuantity} from '../utils/localStorage';
+import { getCartQuantity } from '../utils/localStorage';
 
 function ProductsCard(props) {
   const { id, name, price, image, index, updateCart } = props;
@@ -17,10 +17,10 @@ function ProductsCard(props) {
   //   }
   //   updateCart();
   // }, [id, setCartQuantity, updateCart]);
-  const updateCartQuantity = () => {
+  const updateCartQuantity = useCallback(() => {
     setCartQuantity(getCartQuantity(id));
     updateCart();
-  }
+  });
 
   const addCartItem = () => {
     const product = {
@@ -63,7 +63,7 @@ function ProductsCard(props) {
     };
     getCart();
     updateCartQuantity();
-  }, []);
+  }, [id, updateCartQuantity]);
 
   const removeCartItem = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
