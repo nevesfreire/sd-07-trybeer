@@ -53,6 +53,13 @@ const createSale = (token, products) => fetch('http://localhost:3001/sales/users
   .then((response) => response.json())
   .catch((error) => console.log(error));
 
+const getAdminSales = (token) => fetch('http://localhost:3001/sales/admin', {
+  method: 'GET',
+  headers: { ...contentType, authorization: token },
+})
+  .then((response) => response.json())
+  .catch((error) => console.log(error));
+
 export {
   userLogin,
   registerUser,
@@ -61,4 +68,5 @@ export {
   getUserSalesInfo,
   getUserSaleDetails,
   createSale,
+  getAdminSales,
 };

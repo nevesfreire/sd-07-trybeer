@@ -5,7 +5,7 @@ import Register from '../../pages/Register';
 import ClientProfilePage from '../../pages/ClientProfile';
 import AdminProfilePage from '../../pages/AdminProfile';
 import Products from '../../pages/Products';
-import AdminHome from '../../pages/AdminHome';
+import AdminOrdersPage from '../../pages/AdminOrders';
 import ClientOrdersPage from '../../pages/ClientOrders';
 import ClientOrderDetailsPage from '../../pages/ClientOrderDetails';
 import Checkout from '../../pages/Checkout';
@@ -24,7 +24,7 @@ function AppRoutes() {
       <Route path="/admin/profile" component={ AdminProfilePage } />
       <Route path="/products" component={ Products } />
       <Route path="/checkout" component={ Checkout } />
-      <Route path="/admin/orders" component={ AdminHome } />
+      <Route path="/admin/orders" component={ AdminOrdersPage } />
     </Switch>
   );
 }
