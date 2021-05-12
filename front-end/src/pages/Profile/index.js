@@ -5,9 +5,9 @@ import FormProfile from '../../component/FormProfile';
 export default function Profile() {
   return (
     <>
-      <TopMenu  title="Meu perfil"/>
+      <TopMenu title="Meu perfil" />
       <FormProfile />
     </>
-    
+
   );
 }
