@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import AdminSideBar from '../../components/AdminSideBar';
 
 export default function ProfileAdmin() {
   const data = JSON.parse(localStorage.getItem('user')) || { name: '', email: '' };
-  const [profileInfo] = useState({
-    name: data.name,
-    email: data.email,
-  });
 
   if (!data.token) return <Redirect to="/login" />;
 
@@ -15,8 +11,8 @@ export default function ProfileAdmin() {
     <div>
       <AdminSideBar />
       <h1>Perfil</h1>
-      <p data-testid="profile-name">{`Nome:${profileInfo.name}`}</p>
-      <p data-testid="profile-email">{`Nome:${profileInfo.email}`}</p>
+      <p data-testid="profile-name">{`Nome:${data.name}`}</p>
+      <p data-testid="profile-email">{`Nome:${data.email}`}</p>
     </div>
   );
 }
