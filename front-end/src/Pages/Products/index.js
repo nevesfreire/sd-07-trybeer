@@ -43,11 +43,6 @@ const Products = () => {
   return (
     <div>
       <TopBar />
-      <Container className="product-cards-container">
-        { isLoading ? <div>Carregando</div> : products.map((product, index) => (
-          <ProductCard product={ product } index={ index } key={ index } />
-        ))}
-      </Container>
       <Link to="/checkout" className="button-link">
         <Button
           className="cart-btn"
@@ -63,6 +58,11 @@ const Products = () => {
           </div>
         </Button>
       </Link>
+      <Container className="product-cards-container">
+        { isLoading ? <div>Carregando</div> : products.map((product, index) => (
+          <ProductCard product={ product } index={ index } key={ index } />
+        ))}
+      </Container>
     </div>
   );
 };

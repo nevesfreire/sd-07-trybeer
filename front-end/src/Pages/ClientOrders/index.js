@@ -29,7 +29,12 @@ const ClientOrders = () => {
           { !isLoading && sales
             .map(({ id, sale_date: date, total_price: price }, index) => (
               <tr key={ id } data-testid={ `${index}-order-card-container` }>
-                <td data-testid={ `${index}-order-number` }>{ `Pedido ${id}` }</td>
+                <td
+                  style={ { textAlign: 'center' } }
+                  data-testid={ `${index}-order-number` }
+                >
+                  <Link key={ id } to={ `/orders/${id}` }>{ `Pedido ${id}` }</Link>
+                </td>
                 <td data-testid={ `${index}-order-date` }>{ date }</td>
                 <td
                   data-testid={ `${index}-order-total-value` }
