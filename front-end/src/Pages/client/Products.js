@@ -31,7 +31,6 @@ function Products() {
 
         setIsLoading(false);
       });
-
   }, [products.length]);
 
   function getQtd(id) {
@@ -70,7 +69,6 @@ function Products() {
 
     sumTotal(products);
   }, [cart, getQtd, products, sumTotal]);
-
 
   const history = useHistory();
 
