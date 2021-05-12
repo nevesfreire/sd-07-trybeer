@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Header from '../../Components/Header';
+import SidebarAdm from '../../Components/SidebarAdm';
 
 function AdmProfile() {
   const { email, name } = JSON.parse(localStorage.getItem('user'));
@@ -11,7 +11,7 @@ function AdmProfile() {
 
   return (
     <div>
-      <Header name="Perfil" />
+      <SidebarAdm name="Perfil" />
       <label htmlFor="profile-name">
         Name
         <input
