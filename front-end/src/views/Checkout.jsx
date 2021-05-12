@@ -1,8 +1,30 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
 import TopBar from '../components/menuSideBar/Menu';
 import CardButtons from '../components/screenCheckout/ItenCard';
 import { useLocalStorage } from '../hooks';
-import { GlobalContext } from '../services';
+import { GlobalContext, actionType, fetchProducts } from '../services';
+import fetchApi from '../hooks/fetchApi';
+import CODE from '../utils/statusCode';
+
+function transformation(localStorage) {
+  const arrayKeys = Object.keys(localStorage);
+  const arrayMaster = arrayKeys.map((key) => ({
+    productId: Number(key),
+    quantity: localStorage[key],
+  }));
+  return arrayMaster;
+}
+
+function total(objarray) {
+  if (!objarray) return (0.00);
+  let sum = 0;
+  for (let i = 0; i < objarray.length; i += 1) {
+    const num = objarray[i].price * objarray[i].quantity;
+    sum += num;
+  }
+  return (sum.toFixed(2));
+}
 
 function horaDeMorfar(storageState, products) {
   const arrayKeys = Object.keys(storageState);
@@ -15,22 +37,60 @@ function horaDeMorfar(storageState, products) {
 }
 
 export default function Checkout() {
+  const history = useHistory();
+  const [message, setMessage] = useState('');
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
   const [storageState] = useLocalStorage('shoppingCart');
-  const { productState } = useContext(GlobalContext);
-  const PowerRangers = horaDeMorfar(storageState, productState.products);
+  const { token } = JSON.parse(window.localStorage.getItem('user'));
+  const { productsDispatch, productState } = useContext(GlobalContext);
+
+  useEffect(() => {
+    fetchProducts().then(({ products }) => {
+      productsDispatch({ type: actionType.REQUEST_PRODUCTS, payload: products });
+    });
+  }, [productsDispatch]);
+
+  async function finalizar() {
+    const arrayitems = transformation(storageState);
+    const conta = total(horaDeMorfar(storageState, productState.products));
+    const obj = {
+      orderDetails: {
+        total: conta,
+        deliveryAddress: storageState,
+        deliveryNumber: houseNumber,
+      },
+      orderItems: arrayitems,
+    };
+    const register = await fetchApi('/sale', 'POST', obj, token);
+    setMessage(register.message);
+    if (register.statusCode === CODE.CREATED) {
+      const time = 2500;
+      window.localStorage.removeItem('shoppingCart');
+      setTimeout(() => history.push('/products'), time);
+    }
+  }
+
   return (
     <div>
       <TopBar title="Finalizar Pedido" />
       {
-        PowerRangers.length ? PowerRangers.map((obj, i) => (<CardButtons
+        productState.products.length ? horaDeMorfar(
+          storageState,
+          productState.products,
+        ).map((obj, i) => (<CardButtons
           key={ i }
           obj={ obj }
           index={ i }
         />))
           : <h4>Não há produtos no carrinho</h4>
       }
+      <h4 data-testid="order-total-value">
+        {`R$ ${total(horaDeMorfar(
+          storageState,
+          productState.products,
+        )).replace('.', ',')}`}
+      </h4>
       <label htmlFor="streetCheckout">
         <h4>Rua:</h4>
         <input
@@ -53,10 +113,17 @@ export default function Checkout() {
           value={ houseNumber }
         />
       </label>
+      <h4 style={ { visibility: ((message.length > 0) ? 'visible' : 'hidden') } }>
+        {message}
+      </h4>
       <button
         data-testid="checkout-finish-btn"
-        disabled={ !PowerRangers.length || houseNumber.length < 1 || street.length < 1 }
-        // onClick={ handleRegister }
+        disabled={
+          !horaDeMorfar(storageState, productState.products).length
+          || houseNumber.length < 1
+          || street.length < 1
+        }
+        onClick={ finalizar }
         type="button"
       >
         Finalizar Pedido
