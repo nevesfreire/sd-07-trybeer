@@ -29,7 +29,6 @@ const ComponentRegister = () => {
     }
   }, [isValid, setIsOk]);
 
-  console.log(user.status);
   const handleSubmit = async (e) => {
     const payload = {
       name,
@@ -53,6 +52,18 @@ const ComponentRegister = () => {
         .then((data) => {
           setUser(data);
         });
+      fetch(`${REACT_APP_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+        // no endpoint do trello está email e senha, tem que unificar
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          localStorage.setItem('token', data.token);
+        });
     }
   };
 
@@ -73,8 +84,8 @@ const ComponentRegister = () => {
 
   return (
     <FormControl className="form-registration">
-      { user.role === 'administrator' && <Redirect to="/admin/orders" /> }
-      { user.role === 'client' && <Redirect to="/products" /> }
+      {user.role === 'administrator' && <Redirect to="/admin/orders" />}
+      {user.role === 'client' && <Redirect to="/products" />}
       <h1>Cadastro</h1>
       <TextField
         id="userName"
@@ -133,11 +144,8 @@ const ComponentRegister = () => {
         </Button>
       </div>
       <div className="success-message">
-        {
-          !user.status && <p>{user.messageFailed}</p>
-        }
+        {!user.status && <p>{user.messageFailed}</p>}
       </div>
-
     </FormControl>
   );
 };

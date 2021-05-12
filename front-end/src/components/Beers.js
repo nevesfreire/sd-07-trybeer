@@ -7,6 +7,7 @@ import Card from './Card';
 const ComponentBeers = () => {
   const history = useHistory();
   const token = localStorage.getItem('token');
+  console.log(token);
 
   const [isLoading, setIsLoading] = useState(false);
   const [priceTotal, setPriceTotal] = useState(
@@ -34,6 +35,7 @@ const ComponentBeers = () => {
 
   return (
     <div className="product-list-container">
+      {/* {console.log(token)} */}
       {!token && <Redirect to="/login" />}
       {/* {console.log(`Render beer: ${Beers}`)} */}
       <button
