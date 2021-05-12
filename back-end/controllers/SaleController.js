@@ -68,7 +68,7 @@ const adminGetSaleById = async (req, res) => {
     res.status(200).json(response);
   } catch (error) {
     if (error.message === NOTADMINISTRATOR.message) code = FORBIDDEN;
-    res.status(code).json(error);
+    res.status(code).json({ err: { message: error.message } });
   }
 };
 
