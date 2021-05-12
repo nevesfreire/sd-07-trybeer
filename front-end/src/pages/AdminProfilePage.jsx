@@ -1,10 +1,10 @@
 import React from 'react';
 import HeaderBurguer from '../components/HeaderBurger';
 
-function PendingOrders() {
+function AdminProfile() {
   return (
     <>
-      <HeaderBurguer titulo="Detalhes de Pedido" isAdmin />
+      <HeaderBurguer titulo="Perfil" isAdmin />
       <div>
         admin
       </div>
@@ -12,4 +12,4 @@ function PendingOrders() {
   );
 }
 
-export default PendingOrders;
+export default AdminProfile;
