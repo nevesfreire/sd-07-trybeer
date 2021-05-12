@@ -56,8 +56,12 @@ export default function () {
         </Button>
         <Navbar.Brand className="title" data-testid="top-title">{ title }</Navbar.Brand>
       </Navbar>
-      <div hidden={ !isClicked }>
-        <SideBar role={ userRole } />
+      <div className={ isClicked ? 'magic-container open' : 'magic-container' }>
+        <div className="sidebar-left">
+          <div className="sidebar-shrink">
+            <SideBar role={ userRole } />
+          </div>
+        </div>
       </div>
     </Container>
   );

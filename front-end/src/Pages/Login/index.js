@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { Button, Form, Container } from 'react-bootstrap';
 import { getUser } from '../../servicesAPI/api';
 import { validateFields } from '../../util/validations';
+import logo from '../../images/beer-1.1s-200px (2).svg';
 import './index.css';
 
 export default function Login() {
@@ -32,6 +33,7 @@ export default function Login() {
 
   return (
     <Container className="container-forms">
+      <img src={ logo } alt="" />
       <Form>
         <Form.Group>
           <Form.Label>Email</Form.Label>
