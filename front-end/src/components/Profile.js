@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-// import fieldValidate from '../helpers/fieldValidate';
 import context from '../context';
 import api from '../services/api';
 
 const ComponentProfile = () => {
   const { setName } = useContext(context);
+  const [modified, setModified] = useState(false);
   const [localName, setLocalName] = useState('name');
   const [actualName, setActualName] = useState('actName');
   const [localEmail, setLocalEmail] = useState('email');
   const REACT_APP_URL = 'http://localhost:3001';
 
   const handleSubmit = async (e) => {
+    setModified(true);
     const OK = 200;
     e.preventDefault();
     const objSend = {
@@ -47,23 +48,23 @@ const ComponentProfile = () => {
       <h1 data-testid="top-title">Cliente - Meu Perfil</h1>
 
       {/* <div className="main-container"> */}
-      <TextField
+      <input
         id="userName"
         data-testid="profile-name-input"
-        label="Nome"
+        // label="Nome"
         type="text"
         value={ localName }
         className="registration-input"
-        variant="outlined"
+        // variant="outlined"
         placeholder="Monteiro Lobato"
         onChange={ (event) => setLocalName(event.target.value) }
       />
 
       <TextField
         id="email"
-        data-testid="signup-email"
+        data-testid="profile-email-input"
         label="Email"
-        className="profile-email-input"
+        className="signup-email"
         value={ localEmail }
         variant="outlined"
         readOnly
@@ -82,6 +83,7 @@ const ComponentProfile = () => {
           Salvar
         </Button>
       </div>
+      { modified && <p>Atualização concluída com sucesso</p> }
     </FormControl>
   );
 };

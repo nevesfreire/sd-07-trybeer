@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 import Menu from '../image/icon-menu.svg';
 import Global from '../context/index';
 
-function Header(title) {
+function Header({ title }) {
   const CurrentDate = format(new Date(), 'EEEEEE, d, MMMM', { locale: ptBR });
   const { setMenuState, menuState } = useContext(Global);
   return (
@@ -27,5 +28,9 @@ function Header(title) {
     </header>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default Header;
