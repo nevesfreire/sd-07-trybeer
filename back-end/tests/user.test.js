@@ -14,6 +14,11 @@ const validName = 'Joao Siqueira da Silva';
 const validEmail = 'teste@teste.com';
 const validPassword = '1234567';
 const validRole = 'client';
+const tryberAdmin = { 
+  name: 'Tryber Admin', email: 'tryber@trybe.com.br', password: '123456', role: 'administrator' };
+const newUser = {
+  name: 'New User Test', email: 'new@user.com', password: '123456', role: 'administrator',
+};
 
 const nameRequired = { err: { message: '"name" is required' } };
 const emailRequired = { err: { message: '"email" is required' } };
@@ -24,6 +29,7 @@ const invalidEmailType = { err: { message: '"email" must be a valid email' } };
 const invalidPasswordLength = { 
   err: { message: '"password" length must be at least 6 characters long' } };
 const invalidRoleName = { err: { message: '"role" must be one of [client, administrator]' } };
+const emailTaken = { err: { message: 'Já existe um usuário com esse e-mail.' } };
 
 it('Não é possível cadastrar um usuário sem o campo name', (done) => request(app)
     .post('/user')
@@ -83,3 +89,19 @@ it('Não é possível cadastrar um usuário que a role não seja administrator o
     .set('Accept', applicationJson)
     .expect(contentType, /json/)
     .expect(400, invalidRoleName, done));
+
+it('Não é possível cadastrar um email que já existe no banco', (done) => 
+  request(app)
+    .post('/user')
+    .send(tryberAdmin)
+    .set('Accept', applicationJson)
+    .expect(contentType, /json/)
+    .expect(400, emailTaken, done));
+
+it('Não é possível cadastrar um email que já existe no banco', (done) => 
+  request(app)
+    .post('/user')
+    .send(tryberAdmin)
+    .set('Accept', applicationJson)
+    .expect(contentType, /json/)
+    .expect(400, emailTaken, done));
