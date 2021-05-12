@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Context } from '../../context';
 
+import './styles.css';
+
 const AdminSidebar = () => {
   const { setMenuOpen } = useContext(Context);
   const history = useHistory();
@@ -14,6 +16,7 @@ const AdminSidebar = () => {
   };
   return (
     <div className="admin-side-bar-container">
+      <h1>Trybeer</h1>
       <button
         type="button"
         data-testid="side-menu-item-orders"

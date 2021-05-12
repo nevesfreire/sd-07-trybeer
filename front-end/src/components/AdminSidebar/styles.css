@@ -1,0 +1,28 @@
+.admin-side-bar-container {
+  align-items: flex-start;
+  background: var(--text-primary);
+  border-top: 2px solid var(--box-shadow);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 15px 30px;
+  height: 100%;
+  max-width: 300px;
+  padding: 10px 15px;
+  top: 64px;
+  width: 90%;
+}
+
+.admin-side-bar-container > button {
+  background: transparent;
+  border: 0;
+  color: white;
+  font-size: 1.2rem;
+  padding: 5px 0;
+  width: 100%;
+  text-align: left;
+}
+
+.admin-side-bar-container > button:hover {
+  text-decoration: underline;
+}

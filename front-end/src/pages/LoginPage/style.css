@@ -81,8 +81,8 @@
 .form-container > label > input {
   border: 1px solid var(--box-border);
   border-radius: 2px;
-  height: 36px;
   color: var(--text-secondary);
+  height: 36px;
   margin-top: 5px;
   padding: 5px;
 }
