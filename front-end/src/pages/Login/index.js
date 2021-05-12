@@ -5,10 +5,6 @@ import LoginWrapper from './styles';
 
 function Login() {
 
-  const redirectToRegister = () => {    
-    return <Redirect to="/register" />
-  }
-
   return (
     <LoginWrapper>
       <FormLogin />
