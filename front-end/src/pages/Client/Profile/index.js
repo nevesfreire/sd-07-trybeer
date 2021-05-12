@@ -21,7 +21,7 @@ function Profile() {
   useEffect(() => {
     const verifyNameInput = () => {
       const minNameLenght = 12;
-      if (userName.length >= minNameLenght && userName !== newName) {
+      if (userName && userName.length >= minNameLenght && userName !== newName) {
         setIsDisable(false);
       } else setIsDisable(true);
     };
