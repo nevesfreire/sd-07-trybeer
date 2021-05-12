@@ -2,10 +2,14 @@ const connection = require('./connection');
 require('dotenv').config();
 
 const updateUser = async (name, oldName) => {
-  const [user] = await connection.execute(
-    `UPDATE Trybeer.users SET users.name = '${name}' WHERE name = '${oldName}'`,
+  const [id] = await connection.execute(
+    `SELECT * FROM Trybeer.users WHERE name = "${oldName}"`,
   );
-  console.log(user) 
+  
+  await connection.execute(
+    `UPDATE Trybeer.users SET users.name = '${name}' WHERE id = '${id[0].id}'`,
+  );
+  // console.log(user) 
   return 'update Sucess';
 };
 
