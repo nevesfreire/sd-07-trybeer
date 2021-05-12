@@ -21,8 +21,10 @@ function Login() {
     const ok = 200;
     if (status === ok) {
       const { token } = response.data;
+      console.log('token', token);
       localStorage.setItem('token', token);
       const payload = jwtDecode(token);
+      console.log(payload);
       setRole(payload.role);
       return setIsLogged(true);
     }
