@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import TopBar from '../components/menuSideBar/Menu';
 import CardButtons from '../components/screenCheckout/ItenCard';
 import { useLocalStorage } from '../hooks';
@@ -10,20 +10,20 @@ import CODE from '../utils/statusCode';
 function transformation(localStorage) {
   const arrayKeys = Object.keys(localStorage);
   const arrayMaster = arrayKeys.map((key) => ({
-    productId: Number(key),
+    productId: key,
     quantity: localStorage[key],
   }));
   return arrayMaster;
 }
 
 function total(objarray) {
-  if (!objarray) return (0.00);
+  if (!objarray.length) return ('0,00');
   let sum = 0;
   for (let i = 0; i < objarray.length; i += 1) {
     const num = objarray[i].price * objarray[i].quantity;
     sum += num;
   }
-  return (sum.toFixed(2));
+  return (sum.toFixed(2).replace('.', ','));
 }
 
 function horaDeMorfar(storageState, products) {
@@ -47,18 +47,16 @@ export default function Checkout() {
 
   useEffect(() => {
     fetchProducts().then((response) => {
-      console.log(response);
       productsDispatch({ type: actionType.REQUEST_PRODUCTS, payload: response.products });
-    }).catch(() => {
-      productsDispatch({ type: actionType.USER_INVALID });
-    });
-  }, [productsDispatch]);
-
-  if (!productState.isUserValid) return <Redirect to="/" />;
+    }).catch(() => history.push('/'));
+  }, [productsDispatch, history]);
 
   async function finalizar() {
     const arrayitems = transformation(storageState);
-    const conta = total(horaDeMorfar(storageState, productState.products));
+    const conta = total(horaDeMorfar(
+      storageState,
+      productState.products,
+    )).replace(',', '.');
     const obj = {
       orderDetails: {
         total: conta,
@@ -75,12 +73,14 @@ export default function Checkout() {
       setTimeout(() => history.push('/products'), time);
     }
   }
-
+  const verify = (productState.products.length && horaDeMorfar(
+    storageState, productState.products,
+  ).length);
   return (
     <div>
       <TopBar title="Finalizar Pedido" />
       {
-        productState.products.length ? horaDeMorfar(
+        verify ? horaDeMorfar(
           storageState,
           productState.products,
         ).map((obj, i) => (<CardButtons
@@ -94,7 +94,7 @@ export default function Checkout() {
         {`R$ ${total(horaDeMorfar(
           storageState,
           productState.products,
-        )).replace('.', ',')}`}
+        ))}`}
       </h4>
       <label htmlFor="streetCheckout">
         <h4>Rua:</h4>

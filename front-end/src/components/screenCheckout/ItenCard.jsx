@@ -14,6 +14,7 @@ export default function CardButtons({ obj, index }) {
   };
 
   const total = storageState[id] * price;
+  const preco = price.replace('.', ',');
 
   return (
     <div>
@@ -23,7 +24,7 @@ export default function CardButtons({ obj, index }) {
         { `R$ ${total.toFixed(2).replace('.', ',')}` }
       </h4>
       <h4 data-testid={ `${index}-product-unit-price` }>
-        { `R$ ${price.replace('.', ',')} un` }
+        { `(R$ ${preco} un)` }
       </h4>
       <button
         type="button"
