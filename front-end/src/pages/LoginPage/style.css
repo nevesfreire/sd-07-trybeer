@@ -1,0 +1,123 @@
+.login-wrapper {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.login-placeholder {
+  flex: 1;
+  height: 100%;
+
+  /* Imagem placeholder */
+  background: url('https://img2.goodfon.com/wallpaper/nbig/5/d4/beer-barley-alcohol-different.jpg');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.form-wrapper {
+  box-shadow: 30px 0 15px var(--box-shadow);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  max-width: 450px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.form-wrapper::before {
+  background: var(--primary-color);
+  border-radius: 50%;
+  content: '';
+  height: 50px;
+  position: absolute;
+  right: 103px;
+  top: 33px;
+  width: 50px;
+}
+
+.form-wrapper::after {
+  background: var(--primary-color);
+  border-radius: 50%;
+  content: '';
+  height: 100px;
+  position: absolute;
+  right: -35px;
+  top: -29px;
+  width: 100px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px 30px;
+}
+
+.form-container > h1 {
+  color: var(--text-primary);
+  font-size: 1.8rem;
+  user-select: none;
+}
+
+.form-container > p {
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.form-container > label {
+  display: flex;
+  flex-direction: column;
+  font-size: .95rem;
+}
+
+.form-container > label > input {
+  border: 1px solid var(--box-border);
+  border-radius: 2px;
+  height: 36px;
+  color: var(--text-secondary);
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-container > button {
+  background: transparent;
+  border: 1px solid var(--box-border);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  height: 36px;
+  font-size: 1rem;
+}
+
+.form-container > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.form-container > button[type=submit] {
+  background: var(--primary-color);
+  border: 0;
+  color: white;
+  font-weight: bold;
+}
+
+@media (max-width: 720px) {
+  .login-wrapper {
+    flex-direction: column;
+  }
+
+  .form-wrapper {
+    max-width: none;
+  }
+}
