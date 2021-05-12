@@ -8,8 +8,8 @@ import { fetchProducts } from '../actions';
 export default function Products() {
   const INITIAL_VALUE = 0;
   const [shouldRedirect, setShouldRedirect] = useState(false);
-  const productsList = useSelector(({ products }) => products);
-  const cartList = useSelector(({ cart }) => cart);
+  const productsList = useSelector(({ products }) => products.products);
+  const cartList = useSelector(({ cart }) => cart.cart);
 
   const totalValue = cartList
     .map((item) => item.totalPrice)
@@ -26,7 +26,7 @@ export default function Products() {
       <Header title="TryBeer" />
       { shouldRedirect && <Redirect to="/checkout" /> }
       { productsList
-        .map((item, index) => <Card key={ item } product={ item } position={ index } />) }
+        .map((item, index) => <Card key={ index } product={ item } position={ index } />) }
       <div>
         <button
           type="button"

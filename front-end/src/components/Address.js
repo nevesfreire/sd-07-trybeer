@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { update } from '../actions';
 
 export default function Address({ handleEvent, status, saveOrder }) {
   const DELAY = 2000;
@@ -8,11 +9,9 @@ export default function Address({ handleEvent, status, saveOrder }) {
   const dispatch = useDispatch();
 
   const handleSuccess = () => {
-    setTimeout(() => {
-      return 'Compra realizada com sucesso!';
-    }, DELAY);
+    setTimeout(() => 'Compra realizada com sucesso!', DELAY);
     dispatch(update([]));
-    return <Redirect to="/products" />
+    return <Redirect to="/products" />;
   };
 
   return (

@@ -11,7 +11,7 @@ const userLogin = async (req, res) => {
       algorithm: 'HS256',
     };
     const { email, password } = req.body;
-    const token = jwt.sign({ data: email }, secret, jwtConfig);
+    const token = jwt.sign({ email }, secret, jwtConfig);
     const login = await loginService(email, password);
     const loginInfo = {
       name: login.name, role: login.role, email: login.email,

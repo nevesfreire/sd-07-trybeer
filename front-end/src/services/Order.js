@@ -2,7 +2,7 @@ import { finish } from '../actions';
 
 export const saveOrder = (dispatch, order) => {
   try {
-    /* const url = 'http://localhost:3001/...'; */
+    const url = 'http://localhost:3001/orders';
     return fetch(url, {
       method: 'POST',
       body: order,
@@ -12,7 +12,7 @@ export const saveOrder = (dispatch, order) => {
       .then((json) => json)
       .then(() => dispatch(finish('success')));
   } catch (error) {
-    dispatch(finish('fail'))
+    dispatch(finish('fail'));
     console.log(error.message);
   }
 };
