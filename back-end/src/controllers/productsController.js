@@ -17,4 +17,16 @@ const requireProducts = async (_request, response) => {
   }
 };
 
-module.exports = { requireProducts };
+const getImagesProducts = (req, res) => {
+  try {
+    const { nameProduct } = req.params;
+    return res.status(StatusCodes.OK).download(`images/${nameProduct}`);
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST);
+  }  
+};
+
+module.exports = { 
+  requireProducts,
+  getImagesProducts,
+};
