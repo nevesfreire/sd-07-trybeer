@@ -64,3 +64,41 @@ header .menuToggle.active {
 .leave {
   margin-top: 5rem;
 }
+
+.admin-side-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: flex-end; */
+  height: 100vh;
+  width: 200px;
+  background-color: black;
+}
+
+.title {
+  color: #fff;
+  margin-top: 15px;
+}
+
+.menu-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.item-menu {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.side-exit {
+  margin-top: 300px;
+}

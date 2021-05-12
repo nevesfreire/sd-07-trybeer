@@ -5,6 +5,8 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
+import Admin from './pages/Admin';
+import AdminProfile from './pages/AdminProfile';
 
 const isAuthenticated = () => localStorage.getItem('token');
 
@@ -24,6 +26,7 @@ export const PrivateRouter = ({component: Component, ...rest}) => {
 }
 
 
+
 const Routes = () => (
   <Switch>
     <Route exact path="/register" component={ SignUpForm } />
@@ -33,6 +36,10 @@ const Routes = () => (
     <PrivateRouter exact path="/products" component={ Products } />
     <Route exact path="/admin/orders" />
     <PrivateRouter exact path="/checkout" component={ Checkout }/>
+    <Route exact path="/admin" />
+    <Route exact path="/admin/orders" component={ Admin }/>
+    <Route exact path="/admin/profile" component={ AdminProfile }/>
+    <Route exact path="/checkout" />
   </Switch>
 );
 

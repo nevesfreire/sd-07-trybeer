@@ -3,7 +3,6 @@ const modelUser = require('../models/userModel');
 
 const validateToken = async (request, response, next) => {
   const token = request.headers.authorization;
-  console.log(token)
   if (!token) {
     const ERROR = 401;
     return response.status(ERROR).json({ message: 'missing auth token' });
