@@ -5,7 +5,12 @@ const createSale = async (req, res) => {
 const sucessMessage = { message: 'pedido cadastrado com sucesso' };
 const errorMessage = { message: 'erro ao cadastrar pedido' };
   try {
-  const { totalPrice, deliveryAddress, deliveryNumber } = req.body;
+  const { 
+    total_price: totalPrice, 
+    delivery_address: deliveryAddress, 
+    delivery_number: deliveryNumber
+  } = req.body;
+  console.log(req.body);
   const { id: userId } = req.user;
   const saleDate = new Date();
   const status = 'SALVO';
