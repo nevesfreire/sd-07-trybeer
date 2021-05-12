@@ -33,7 +33,7 @@ function ProductCard({ product }) {
       <h2 data-testid={ `${product.id - 1}-product-name` }>{product.name}</h2>
       <button
         type="button"
-        onClick={ () => subtractProductQtd(product.id, product.price) }
+        onClick={ () => subtractProductQtd(product.id, product.price, product.name) }
         data-testid={ `${product.id - 1}-product-minus` }
       >
         -
@@ -41,7 +41,7 @@ function ProductCard({ product }) {
       <p data-testid={ `${product.id - 1}-product-qtd` }>{getQtd()}</p>
       <button
         type="button"
-        onClick={ () => addProductQtd(product.id, product.price) }
+        onClick={ () => addProductQtd(product.id, product.price, product.name) }
         data-testid={ `${product.id - 1}-product-plus` }
       >
         +

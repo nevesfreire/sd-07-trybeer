@@ -6,6 +6,12 @@ const getAll = async () => {
   return data;
 };
 
+const createOrder = async (street, houseNumber, shopCart, totalProducts) => {
+  const query = 'SELECT * FROM products;';
+  const [data] = await conn.execute(query);
+  return data;
+};
+
 module.exports = {
   getAll,
 };

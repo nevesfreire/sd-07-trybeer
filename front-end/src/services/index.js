@@ -30,7 +30,7 @@ const requestAlterUserAPI = (user) => {
 const requestGetProductsAPI = () => {
   const endpoint = `${urlAPI}/products`;
   const token = getToLocalStorage('user').token;
-  console.log(token, 'token');
+  // console.log(token, 'token');
   const headersAxios = { headers: { Authorization: token } };
   return axios
     .get(endpoint, headersAxios)

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useCallback } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { StatusCodes } from 'http-status-codes';
 import BeerAppContext from '../../context/BeerAppContext';
@@ -15,27 +15,27 @@ function ProductsCards() {
   } = useContext(BeerAppContext);
   const history = useHistory();
 
-  const HandleRequestGetProducts = useCallback(async () => {
+  const HandleRequestGetProducts = async () => {
     if (!validateToken()) {
       return history.push('/login');
     }
     const productsList = await requestGetProductsAPI();
     const { data } = productsList;
-    console.log(productsList);
+    // console.log(productsList);
     if (productsList.status === StatusCodes.UNAUTHORIZED) history.push('/login');
     if (productsList.status === StatusCodes.OK) setProducts(data);
-  }, [setProducts]);
+  };
 
-  const validateToken = useCallback(() => {
+  const validateToken = () => {
     const user = getToLocalStorage('user');
     // console.log(user);
     if (!user || !user.token) return false;
     return true;
-  }, [history]);
+  };
 
-  useEffect(useCallback(() => {
+  useEffect(() => {
     HandleRequestGetProducts();
-  }, [HandleRequestGetProducts, validateToken]));
+  }, []);
 
   if (!products.length) return <h1>LOADING...</h1>;
 

@@ -9,7 +9,20 @@ const getAllProducts = async (req, res, next) => {
   } catch (error) {
     console.error(error);
     next({
-      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      status: StatusCodes.NOT_FOUND,
+      message: error.message,
+    });
+  }
+};
+
+const createOrdersProducts = async (req, res, next) => {
+  try {
+    const order = await 
+    res.status(StatusCodes.CREATED).json(order);
+  } catch (error) {
+    console.error(error);
+    next({
+      status: StatusCodes.BAD_REQUEST,
       message: error.message,
     });
   }
@@ -17,4 +30,5 @@ const getAllProducts = async (req, res, next) => {
 
 module.exports = {
   getAllProducts,
+  createOrdersProducts,
 };
