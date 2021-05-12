@@ -2,6 +2,7 @@ const request = require('supertest');
 const express = require('express');
 const { user } = require('../routes');
 const connect = require('../models/connection');
+const generateToken = require('./generateToken');
 
 const app = express();
 app.use(express.json());
@@ -9,6 +10,8 @@ app.use(user);
 
 const contentType = 'Content-Type';
 const applicationJson = 'application/json';
+const tokenNew = generateToken();
+const validToken = { authorization: tokenNew.token, applicationJson };
 
 const validName = 'Joao Siqueira da Silva';
 const validEmail = 'teste@teste.com';
@@ -61,6 +64,14 @@ it('Não é possível cadastrar um usuário sem o campo role', (done) => request
   .expect(contentType, /json/)
   .expect(400, roleIsRequired, done));
 
+it('Não é possível cadastrar um com usuário o campo name contendo numeros ou simbulos', (done) => 
+  request(app)
+    .post('/user')
+    .send({ name: 'Joao Amaral 1940', email: validEmail, password: validPassword, role: validRole })
+    .set('Accept', applicationJson)
+    .expect(contentType, /json/)
+    .expect(400, /fails to match the required pattern/, done));
+
 it('Não é possível cadastrar um com usuário o campo name menor que 12 caracteres', (done) => 
   request(app)
     .post('/user')
@@ -100,7 +111,7 @@ it('Não é possível cadastrar um email que já existe no banco', (done) =>
     .expect(contentType, /json/)
     .expect(400, emailTaken, done));
 
-it('Não é possível cadastrar um email que já existe no banco', (done) => 
+it(' É possível cadastrar um novo usuario', (done) => 
   request(app)
     .post('/user')
     .send(newUser)
@@ -113,4 +124,42 @@ it('Não é possível cadastrar um email que já existe no banco', (done) =>
       done();
     }));
 
-afterAll(async () => connect.end());
+it('Não é possível atualizar o nome do usuario sem um token valido.', (done) => 
+  request(app)
+    .put('/user')
+    .send({ name: 'Testando Novo Nome' })
+    .set('Accept', applicationJson)
+    .expect(contentType, /json/)
+    .expect(401, /jwt must be provided/, done));
+ 
+it('Deve ser possivel atualizar o nome do usuario.', (done) => 
+  request(app)
+    .put('/user')
+    .send({ name: 'Testando Novo Usuario' })
+    .set(validToken)
+    .set('Accept', applicationJson)
+    .expect(contentType, /json/)
+    .expect(200, done));
+
+it('Caso seja o mesmo nome, o usuario não deve ser atualizado.', (done) => 
+  request(app)
+    .put('/user')
+    .send({ name: 'Testando Novo Usuario' })
+    .set(validToken)
+    .set('Accept', applicationJson)
+    .expect(contentType, /json/)
+    .expect(400, /Nome do usuário não atualizado/, done));
+
+it('O nome do usuario não pode conter numeros ou caracteres especiais.', (done) => 
+  request(app)
+    .put('/user')
+    .send({ name: 'Testando Novo 1' })
+    .set(validToken)
+    .set('Accept', applicationJson)
+    .expect(contentType, /json/)
+    .expect(400, /fails to match the required pattern/, done));
+
+afterAll(async () => {
+  await connect.execute('UPDATE Trybeer.users SET name = "testuser" WHERE email = "user@test.com"');
+  return connect.end();
+});
