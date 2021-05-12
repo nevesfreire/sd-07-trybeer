@@ -6,10 +6,13 @@ export const REQUEST_PRODUCTS_SUCCESS = 'REQUEST_PRODUCTS_SUCCESS';
 export const REQUEST_PRODUCTS_FAIL = 'REQUEST_PRODUCTS_FAIL';
 export const SAVE_ORDER = 'SAVE_ORDER';
 
-export const update = (cart) => ({
-  type: UPDATE_QUANTITY,
-  cart,
-});
+export const update = (cart) => {
+  console.log(cart);
+  return ({
+    type: UPDATE_QUANTITY,
+    cart,
+  });
+};
 
 export const requestProducts = () => ({
   type: REQUEST_PRODUCTS,

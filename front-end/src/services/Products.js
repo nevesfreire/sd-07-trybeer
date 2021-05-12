@@ -1,6 +1,6 @@
-/* export const getProducts = () => {
+export const getProducts = () => {
   try {
-    const url = '';
+    const url = 'http://localhost:3001/products';
     return fetch(url)
       .then((response) => response.json())
       .then((json) => json);
@@ -8,4 +8,3 @@
     console.log(error.message);
   }
 };
- */
