@@ -15,11 +15,11 @@ export default function useLocalStorage(key) {
       handleStorage.set(key, callback);
       setStorage(callback);
     }
-  }, [key]);
+  }, [key, setStorage]);
 
   useEffect(() => {
-    setStorage(() => handleStorage.get(key) || {})
-  }, []);
+    setStorage(() => handleStorage.get(key) || {});
+  }, [key, setStorage]);
 
   return [storage, update];
 }

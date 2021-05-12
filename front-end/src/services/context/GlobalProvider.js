@@ -11,7 +11,9 @@ export default function GlobalProvider({ children }) {
   const [productState, productsDispatch] = useReducer(globalReducer, INITIAL_STATE);
   const [storage, setStorage] = useState({});
   return (
-    <GlobalContext.Provider value={ { productsDispatch, productState, storage, setStorage } }>
+    <GlobalContext.Provider
+      value={ { productsDispatch, productState, storage, setStorage } }
+    >
       {children}
     </GlobalContext.Provider>
   );

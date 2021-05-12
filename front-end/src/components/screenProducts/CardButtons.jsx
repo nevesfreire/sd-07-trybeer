@@ -23,14 +23,18 @@ export default function CardButtons({ id }) {
       });
     }
   };
-  
+
   const quantity = storageState[id] || 0;
 
   return (
     <div>
-      <button type="button" onClick={ increment } data-testid={`${id}-product-plus`} >+</button>
-      <span data-testid={`${id}-product-qtd`}>{ quantity }</span>
-      <button type="button" onClick={ decrement } data-testid={`${id}-product-minus`}>-</button>
+      <button type="button" onClick={ increment } data-testid={ `${id}-product-plus` }>
+        +
+      </button>
+      <span data-testid={ `${id}-product-qtd` }>{ quantity }</span>
+      <button type="button" onClick={ decrement } data-testid={ `${id}-product-minus` }>
+        -
+      </button>
     </div>
   );
 }
