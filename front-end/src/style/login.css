@@ -15,7 +15,7 @@
   width: 300px;
 }
 
-.btn-login {
+.btn-login, .btn-generic {
   background-color: #8BACDC!important;
   color: #EDE4D7!important;
 }

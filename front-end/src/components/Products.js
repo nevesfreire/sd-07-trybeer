@@ -83,6 +83,12 @@ function Products() {
               >
                 &uArr;
               </button>
+              <h3
+                className="qtd mt-3"
+                data-testid={ `${index}-product-qtd` }
+              >
+                { item.quantity || 0 }
+              </h3>
               <button
               type="button"
               data-testid={ `${index}-product-minus` }
@@ -99,12 +105,6 @@ function Products() {
               &dArr;
             </button>
             </div>
-            <h3
-              className="qtd mt-3"
-              data-testid={ `${index}-product-qtd` }
-            >
-              { item.quantity || 0 }
-            </h3>
           </div>
         ))}
       </div>

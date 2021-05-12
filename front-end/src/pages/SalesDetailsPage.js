@@ -67,7 +67,7 @@ function SalesDetailsPage() {
           </p>
         </div>
         <button
-          className="checkout-bottom-btn"
+          className="btn btn-generic"
           type="button"
           hidden={ sale.status === 'Entregue' }
           onClick={ () => confirmDelivery() }

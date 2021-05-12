@@ -14,8 +14,7 @@
 }
 
 .products {
-  margin: 0 3%; 
-  margin-top: 100px;
+  margin: 100px 3%; 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; 
@@ -27,6 +26,7 @@
   color: #20181A;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 10px;
 }
 
@@ -41,14 +41,18 @@ img {
   border-radius: 10%;
 }
 
+.qtd-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+}
+
 .qtd-button-container button {
   background-color: #FBC248;
   border-radius: 50%;
   border: none;
-}
-
-.qtd-first-button {
-  margin-right: 10px;
+  height: 40px;
 }
 
 .qtd {
@@ -58,9 +62,11 @@ img {
 }
 
 .checkout-bottom-btn {
-  background-color: #D07A2D;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background-color: #8BACDC;
   color: #EDE4D7;
-  margin-bottom: 20px;
   border: none;
   width: 100%;
 }
