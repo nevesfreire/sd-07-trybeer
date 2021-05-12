@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 import TopBar from '../components/menuSideBar/Menu';
 import CardButtons from '../components/screenCheckout/ItenCard';
 import { useLocalStorage } from '../hooks';
@@ -46,10 +46,15 @@ export default function Checkout() {
   const { productsDispatch, productState } = useContext(GlobalContext);
 
   useEffect(() => {
-    fetchProducts().then(({ products }) => {
-      productsDispatch({ type: actionType.REQUEST_PRODUCTS, payload: products });
+    fetchProducts().then((response) => {
+      console.log(response);
+      productsDispatch({ type: actionType.REQUEST_PRODUCTS, payload: response.products });
+    }).catch(() => {
+      productsDispatch({ type: actionType.USER_INVALID });
     });
   }, [productsDispatch]);
+
+  if (!productState.isUserValid) return <Redirect to="/" />;
 
   async function finalizar() {
     const arrayitems = transformation(storageState);
