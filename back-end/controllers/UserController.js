@@ -8,7 +8,6 @@ const createUser = async (req, res) => {
     const userData = await userService.registerUser(data);
     res.status(CREATED).json(userData);
   } catch (error) {
-    console.log(error);
     res.status(BADREQUEST).json({ err: { message: error.message } });
   }
 };

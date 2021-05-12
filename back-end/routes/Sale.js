@@ -17,6 +17,7 @@ router.route('/sales/admin')
   .get(validateTokenMiddleware, saleController.getAllSales);
 
 router.route('/sales/admin/:saleid')
-  .put(validateTokenMiddleware, saleController.updateSaleStatus);
+  .put(validateTokenMiddleware, saleController.updateSaleStatus)
+  .get(validateTokenMiddleware, saleController.adminGetSaleById);
 
 module.exports = router;
