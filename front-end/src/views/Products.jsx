@@ -18,7 +18,7 @@ export default function Products() {
       {
         productState.products.map((product) => (
           <div className="cardContainer" key={ product.id }>
-            <Card product={ product }/>
+            <Card product={ product } />
             <CardButtons id={ product.id } />
           </div>
         ))
