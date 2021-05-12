@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getCartItems, getCartTotalPrice, deleteFromCart } from '../utils/localStorage';
 
 function CartList(props) {
@@ -8,6 +9,7 @@ function CartList(props) {
     totalCartPrice,
     setTotalCartPrice,
   } = props;
+  console.log(cart);
   return (
     <>
       { totalCartPrice < 1 && <h4>Não há produtos no carrinho</h4> }
@@ -51,9 +53,17 @@ function CartList(props) {
 }
 
 CartList.propTypes = {
-  cart: PropTypes.Array.isRequired,
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      quantity: PropTypes.number.isRequired,
+    }).isRequired,
+  ).isRequired,
   setCart: PropTypes.func.isRequired,
-  totalCartPrice: PropTypes.number.isRequired,
+  totalCartPrice: PropTypes.node.isRequired,
   setTotalCartPrice: PropTypes.func.isRequired,
 };
 
