@@ -13,9 +13,7 @@ function OrderDetailsCardComponent({ sale, index }) {
         <Card.Description data-testid={ `${index}-product-qtd` }>
           {quantity}
         </Card.Description>
-        <Card.Description
-          data-testid={ `${index}-product-name` }
-        >
+        <Card.Description data-testid={ `${index}-product-name` }>
           {name}
         </Card.Description>
         <Card.Description data-testid={ `${index}-product-total-value` }>
@@ -30,11 +28,11 @@ function OrderDetailsCardComponent({ sale, index }) {
 OrderDetailsCardComponent.propTypes = {
   index: PropTypes.number.isRequired,
   sale: PropTypes.shape({
-    delivery_number: PropTypes.number,
+    delivery_number: PropTypes.string,
     id: PropTypes.number,
-    name: PropTypes.any,
-    price: PropTypes.any,
-    quantity: PropTypes.any,
+    name: PropTypes.string,
+    price: PropTypes.string,
+    quantity: PropTypes.string,
     sale_date: PropTypes.string,
     total_price: PropTypes.string,
   }).isRequired,

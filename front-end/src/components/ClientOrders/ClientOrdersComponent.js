@@ -6,8 +6,8 @@ import { Segment, Sidebar } from 'semantic-ui-react';
 
 import OrderCardComponent from './OrderCardComponent';
 
-import * as API from '../helpers/apiHelper';
-import * as STORAGE from '../helpers/localStorageHelper';
+import * as API from '../../helpers/apiHelper';
+import * as STORAGE from '../../helpers/localStorageHelper';
 
 function ClientOrdersComponent() {
   const [isLoading, setIsLoading] = useState(true);

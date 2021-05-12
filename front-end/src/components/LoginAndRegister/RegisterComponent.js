@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
 import React, { useState, useContext } from 'react';
 import { Button, Form, Segment } from 'semantic-ui-react';
-import MessageComponent from './MessageComponent';
-import BeerContext from '../context/BeerContext';
+import MessageComponent from '../MessageComponent';
+import BeerContext from '../../context/BeerContext';
 
 function RegisterComponent({
   formData: { name, email, password },

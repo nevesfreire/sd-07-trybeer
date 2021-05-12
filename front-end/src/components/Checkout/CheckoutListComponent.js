@@ -4,8 +4,8 @@ import { useHistory, Redirect } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import { Sidebar, Segment, Button, Form } from 'semantic-ui-react';
 
-import * as STORAGE from '../helpers/localStorageHelper';
-import * as API from '../helpers/apiHelper';
+import * as STORAGE from '../../helpers/localStorageHelper';
+import * as API from '../../helpers/apiHelper';
 
 function CheckoutListComponent() {
   const [cart, setCart] = useState([]);

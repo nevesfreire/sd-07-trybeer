@@ -6,8 +6,8 @@ import { Segment, Sidebar, Button } from 'semantic-ui-react';
 
 import CardComponent from './CardComponent';
 
-import * as API from '../helpers/apiHelper';
-import * as STORAGE from '../helpers/localStorageHelper';
+import * as API from '../../helpers/apiHelper';
+import * as STORAGE from '../../helpers/localStorageHelper';
 
 function Products() {
   const [products, setProducts] = useState([]);

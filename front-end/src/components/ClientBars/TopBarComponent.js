@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { Menu, Icon } from 'semantic-ui-react';
-import BeerContext from '../context/BeerContext';
+import BeerContext from '../../context/BeerContext';
 
 const TopBarComponent = ({ children }) => {
   const { toggleSideBar, setToggleSideBar } = useContext(BeerContext);

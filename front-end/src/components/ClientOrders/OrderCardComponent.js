@@ -45,7 +45,7 @@ function OrderCardComponent({ sale }) {
 OrderCardComponent.propTypes = {
   sale: PropTypes.shape({
     id: PropTypes.number,
-    delivery_number: PropTypes.number,
+    delivery_number: PropTypes.string,
     sale_date: PropTypes.string,
     total_price: PropTypes.string,
   }).isRequired,

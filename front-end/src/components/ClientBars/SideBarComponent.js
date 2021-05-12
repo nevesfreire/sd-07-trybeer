@@ -7,7 +7,7 @@ import {
   Segment,
   Sidebar,
 } from 'semantic-ui-react';
-import BeerContext from '../context/BeerContext';
+import BeerContext from '../../context/BeerContext';
 
 const ClientSideBar = ({ Component }) => {
   const history = useHistory();
@@ -53,7 +53,7 @@ const ClientSideBar = ({ Component }) => {
               data-testid="side-menu-item-my-profile"
               onClick={ () => {
                 setToggleSideBar(!toggleSideBar);
-                history.push('/profile')
+                history.push('/profile');
               } }
             >
               Meu Perfil
