@@ -1,116 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import TopMenu from '../../../commons/simple/TopMenu';
 import { nameChangeRequest } from '../../../services/usersApi';
 
-import SideBar from '../../../commons/composed/SideBar';
-
 function Profile() {
+  const tokenUser = localStorage.getItem('token');
+  const userData = jwtDecode(tokenUser);
+  const { name: userNameReq, email: userEmailReq } = userData;
+  let newName = localStorage.getItem('newName');
   const OK = 200;
-  const [userRole, setUserRole] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [userEmail, setUserEmail] = useState(null);
-  const [userName, setUserName] = useState(null);
-  const [newName, setNewName] = useState(null);
+
+  const [userEmail] = useState(userEmailReq);
+  const [userName, setUserName] = useState(newName || userNameReq);
   const [isDisable, setIsDisable] = useState(true);
   const [messageRequest, setMessageRequest] = useState('');
-
-  const history = useHistory();
-
   useEffect(() => {
     const verifyNameInput = () => {
       const minNameLenght = 12;
-      if (userName && userName.length >= minNameLenght && userName !== newName) {
+      if (userName.length >= minNameLenght && userName !== (userNameReq)) {
         setIsDisable(false);
       } else setIsDisable(true);
     };
 
     verifyNameInput();
-  }, [userName, newName]);
+  }, [userName, userNameReq]);
 
   const nameChange = async (name, email) => {
     const response = await nameChangeRequest(name, email);
     if (response.status === OK) {
-      localStorage.setItem('newName', name);
+      newName = localStorage.setItem('newName', name);
       return setMessageRequest(response.data.message);
     }
     return console.log(response);
   };
 
-  useEffect(() => {
-    const getToken = async () => {
-      let token = {};
-      try {
-        token = await localStorage.getItem('token');
-        const userData = jwtDecode(token);
-        const { name, email, role } = userData;
-        setUserName(name);
-        setNewName(name);
-        setUserEmail(email);
-        setUserRole(role);
-        setIsLoading(false);
-        return;
-      } catch (error) {
-        return history.push('/login');
-      }
-    };
-    getToken();
-  }, [history]);
-
-  if (!isLoading && userRole !== 'administrator') {
-    return (
-      <div>
-        <TopMenu title="Meu perfil" />
-        <label htmlFor="name-user">
-          Name
-          <input
-            id="name-user"
-            value={ newName || userName }
-            onChange={ ({ target }) => setNewName(target.value) }
-            data-testid="profile-name-input"
-          />
-        </label>
-        <label htmlFor="email-user">
-          Email
-          <input
-            id="email-user"
-            readOnly
-            value={ userEmail }
-            data-testid="profile-email-input"
-            disabled={ isDisable }
-          />
-        </label>
-        <button
-          type="button"
-          onClick={ () => nameChange(newName, userEmail) }
-          disabled={ isDisable }
-          data-testid="profile-save-btn"
-        >
-          Salvar
-        </button>
-        <h3>{messageRequest}</h3>
-      </div>
-    );
-  } if (!isLoading && userRole === 'administrator') {
-    return (
-      <div>
-        <SideBar isAdmin />
-        <label htmlFor="profile-name">
-          Name
-          <h1 data-testid="profile-name">{userName}</h1>
-        </label>
-        <label htmlFor="profile-email">
-          Email
-          <h1 data-testid="profile-email">{userEmail}</h1>
-        </label>
-      </div>
-    );
-  }
+  console.log(isDisable);
   return (
     <div>
-      <h1>Loading...</h1>
-
+      <TopMenu title="Meu perfil" />
+      <h1>My Profile</h1>
+      <label htmlFor="name-user">
+        Name
+        <input
+          id="name-user"
+          value={ userName }
+          onChange={ ({ target }) => setUserName(target.value) }
+          data-testid="profile-name-input"
+        />
+      </label>
+      <label htmlFor="email-user">
+        Email
+        <input
+          id="email-user"
+          readOnly
+          value={ userEmail }
+          data-testid="profile-email-input"
+        />
+      </label>
+      <button
+        type="button"
+        onClick={ () => nameChange(userName, userEmail) }
+        disabled={ isDisable }
+        data-testid="profile-save-btn"
+      >
+        Salvar
+      </button>
+      <h3>{messageRequest}</h3>
     </div>
   );
 }

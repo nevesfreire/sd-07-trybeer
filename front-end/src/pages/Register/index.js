@@ -35,7 +35,7 @@ function Register({ history }) {
   async function onRegisterNewUser() {
     const success = 200;
     const { status, data } = await registerNewUser(
-      name, email, password, isChecked ? 'administrator' : null,
+      name, email, password, isChecked ? 'admin' : 'client',
     );
     if (status === success) {
       const { token } = data;
