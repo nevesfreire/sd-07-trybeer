@@ -12,7 +12,7 @@ function AdminOrdersComponent() {
 
   useEffect(() => {
     getOrders().then((data) => {
-      console.log('chamado', data)
+      console.log('chamado', data);
       setOrders(data.sales);
       setIsLoading(false);
     });
@@ -20,18 +20,26 @@ function AdminOrdersComponent() {
     // setIsLoading(false);
   }, []);
 
-  const renderOrderList = () =>
-    orders.map((order) => {
-      const { id, delivery_address, delivery_number, total_price } = order;
-      return (
-        <div>
-          <p>Pedido: {id}</p>
-          <p>{`${delivery_address}, ${delivery_number}`}</p>
-          <p>R${total_price}</p>
-          <br></br>
-        </div>
-      );
-    });
+  const renderOrderList = () => orders.map((order, index) => {
+    const { id, delivery_address, delivery_number, total_price, status } = order;
+    return (
+      <div key={ id }>
+        <p data-testid={ `${index}-order-number` }>
+          Pedido {id}
+        </p>
+        <p data-testid={ `${index}-order-address` }>
+          {`${delivery_address}, ${delivery_number}`}
+        </p>
+        <p data-testid={ `${index}-order-total-value` }>
+          R$
+          {' '}
+          {total_price.replace('.', ',')}
+        </p>
+        <p data-testid={ `${index}-order-status` }>{status}</p>
+        <br />
+      </div>
+    );
+  });
 
   if (getUser() === null || getUser().role !== 'administrator') {
     return <Redirect to="/login" />;
