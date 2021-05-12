@@ -19,8 +19,12 @@ export default function CardButtons({ obj, index }) {
     <div>
       <h4 data-testid={ `${index}-product-qtd-input` }>{ storageState[id] }</h4>
       <h4 data-testid={ `${index}-product-name` }>{ name }</h4>
-      <h4 data-testid={ `${index}-product-total-value` }>{ `R$ ${total.toFixed(2)}` }</h4>
-      <h4 data-testid={ `${index}-product-unit-price` }>{ `R$ ${price} un` }</h4>
+      <h4 data-testid={ `${index}-product-total-value` }>
+        { `R$ ${total.toFixed(2).replace('.', ',')}` }
+      </h4>
+      <h4 data-testid={ `${index}-product-unit-price` }>
+        { `R$ ${price.replace('.', ',')} un` }
+      </h4>
       <button
         type="button"
         onClick={ decrement }
