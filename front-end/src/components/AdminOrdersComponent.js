@@ -21,13 +21,14 @@ function AdminOrdersComponent() {
   }, []);
 
   const renderOrderList = () =>
-    orders.map((order) => {
-      const { id, delivery_address, delivery_number, total_price } = order;
+    orders.map((order, index) => {
+      const { id, delivery_address, delivery_number, total_price, status } = order;
       return (
         <div>
-          <p>Pedido: {id}</p>
-          <p>{`${delivery_address}, ${delivery_number}`}</p>
-          <p>R${total_price}</p>
+          <p data-testid={`${index}-order-number`} >Pedido: {id}</p>
+          <p data-testid={`${index}-order-address`}>{`${delivery_address}, ${delivery_number}`}</p>
+          <p data-testid={`${index}-order-total-value`}>R$ {total_price.replace('.', ',')}</p>
+          <p data-testid={`${index}-order-status`}>{status}</p>
           <br></br>
         </div>
       );
