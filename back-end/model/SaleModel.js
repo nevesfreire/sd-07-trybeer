@@ -79,8 +79,31 @@ const getByOrderNumber = async (idDOPedido) => {
       );
     return orders[0];
     } catch (error) {
-    throw new Error(error);
+      throw new Error(error);
     }
   };
 
-module.exports = { create, getAll, getByOrderNumber, getAllOrders, getById, getReallyAll };
+  const updateSale = async (idDoPedido) => {
+    try {
+      const orders = await connection.execute(
+        `
+        UPDATE sales
+        SET status = 'Entregue'
+        WHERE id = ?;
+        `,
+        [idDoPedido],
+      );
+    return orders[0];
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+module.exports = { 
+create, 
+getAll,
+getByOrderNumber,
+getAllOrders,
+getById,
+getReallyAll,
+updateSale };

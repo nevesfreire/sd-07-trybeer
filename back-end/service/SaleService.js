@@ -48,4 +48,16 @@ const getAllOrders = async () => {
   return orders;
 };
 
-module.exports = { create, getAll, getSaleByOrderNumber, getAllOrders, getById, getReallyAll };
+const saleUpdate = async (idDoPedido) => {
+  const sale = await SaleModel.updateSale(idDoPedido);
+  return sale;
+};
+
+module.exports = { 
+create, 
+getAll,
+getSaleByOrderNumber,
+getAllOrders,
+getById,
+getReallyAll,
+saleUpdate };
