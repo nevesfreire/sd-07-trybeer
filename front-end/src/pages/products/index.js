@@ -9,7 +9,7 @@ import TopMenu from '../../components/Header';
 import './style.css';
 
 export default function Product() {
-  const { priceCar } = useContext(TrybeerContext);
+  const { priceCar, isLogged, setIsLogged } = useContext(TrybeerContext);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const userStorage = JSON.parse(localStorage.getItem('user'));
@@ -18,7 +18,6 @@ export default function Product() {
     setIsLoading(true);
     const productData = await productList();
     if (productData.error) {
-      window.location.reload();
       return setProducts([]);
     }
     setProducts(productData);
@@ -27,9 +26,10 @@ export default function Product() {
 
   useEffect(() => {
     listProducts();
-  }, []);
+  }, [isLogged]);
 
   if (userStorage === null) {
+    setIsLogged(false);
     return (<Redirect to="/login" />);
   }
 
