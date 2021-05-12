@@ -1,0 +1,32 @@
+.main-nav {
+  align-items: center;
+  background: var(--bg-black);
+  border-bottom: 2px solid var(--box-shadow);
+  color: white;
+  display: flex;
+  height: 64px;
+  padding: 10px 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.main-nav > button {
+  background: transparent;
+  border: 0;
+  height: 24px;
+  padding: 0;
+  width: 24px;
+}
+
+.main-nav > button > svg {
+  fill: white;
+  height: 100%;
+  width: 100%;
+}
+
+.main-nav > h1 {
+  margin-left: 20px;
+  font-size: 1.5rem;
+}

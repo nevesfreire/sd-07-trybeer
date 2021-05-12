@@ -4,16 +4,23 @@ import { Context } from '../../context';
 
 import { handleLogout } from '../../services/localStorage';
 
+import './styles.css';
+
 const ClientSidebar = () => {
-  const { setMenuOpen } = useContext(Context);
+  const { menuOpen, setMenuOpen } = useContext(Context);
   const history = useHistory();
+
+  const menu = 'side-menu-container';
+  const menuActive = 'side-menu-container side-menu-active';
+
   const handleRoute = (path) => {
     if (path === '/login') handleLogout();
     history.push(path);
     setMenuOpen(false);
   };
+
   return (
-    <div className="side-menu-container">
+    <div className={ menuOpen ? menuActive : menu }>
       <button
         type="button"
         data-testid="side-menu-item-products"

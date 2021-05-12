@@ -5,8 +5,9 @@
 :root {
   --box-border: #DDD;
   --box-shadow: rgba(0, 0, 0, 0.1);
+  --bg-black: black;
   --error: #D62839;
-  --primary-color: #E3B505;
+  --primary-color: #FFBC21;
   --text-primary: #333;
   --text-secondary: #666;
 }
@@ -27,4 +28,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
 }
