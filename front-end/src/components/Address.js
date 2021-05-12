@@ -9,11 +9,9 @@ export default function Address({ handleEvent, status, saveOrder }) {
   const dispatch = useDispatch();
 
   const handleSuccess = () => {
-    setTimeout(() => {
-      return 'Compra realizada com sucesso!';
-    }, DELAY);
+    setTimeout(() => 'Compra realizada com sucesso!', DELAY);
     dispatch(update([]));
-    return <Redirect to="/products" />
+    return <Redirect to="/products" />;
   };
 
   return (
