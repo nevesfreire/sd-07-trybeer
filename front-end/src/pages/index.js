@@ -5,6 +5,7 @@ import Register from './Register';
 import ClientProfile from './ClientProfile';
 import Checkout from './Checkout';
 import AdminProfile from './AdminProfile';
+import Orders from './Orders';
 
 export {
   Login,
@@ -14,4 +15,5 @@ export {
   ClientProfile,
   Checkout,
   AdminProfile,
+  Orders,
 };

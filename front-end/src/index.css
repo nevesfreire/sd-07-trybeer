@@ -30,3 +30,7 @@ code {
   background-color: transparent;
   border: none;
 }
+
+.start-component {
+  margin-top: 68px;
+}
