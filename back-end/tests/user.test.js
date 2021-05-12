@@ -1,7 +1,7 @@
 const request = require('supertest');
 const express = require('express');
-
 const { user } = require('../routes');
+const connect = require('../models/connection');
 
 const app = express();
 app.use(express.json());
@@ -30,6 +30,8 @@ const invalidPasswordLength = {
   err: { message: '"password" length must be at least 6 characters long' } };
 const invalidRoleName = { err: { message: '"role" must be one of [client, administrator]' } };
 const emailTaken = { err: { message: 'Já existe um usuário com esse e-mail.' } };
+
+beforeAll(async () => connect.execute('DELETE FROM Trybeer.users WHERE email = \'new@user.com\''));
 
 it('Não é possível cadastrar um usuário sem o campo name', (done) => request(app)
     .post('/user')
@@ -101,7 +103,14 @@ it('Não é possível cadastrar um email que já existe no banco', (done) =>
 it('Não é possível cadastrar um email que já existe no banco', (done) => 
   request(app)
     .post('/user')
-    .send(tryberAdmin)
+    .send(newUser)
     .set('Accept', applicationJson)
     .expect(contentType, /json/)
-    .expect(400, emailTaken, done));
+    .expect(201)
+    .then(({ body }) => {
+      const { token, name, email, role, id } = body;
+      expect(body).toMatchObject({ token, name, email, role, id });
+      done();
+    }));
+
+afterAll(async () => connect.end());

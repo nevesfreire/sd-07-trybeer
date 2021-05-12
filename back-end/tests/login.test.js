@@ -1,5 +1,6 @@
 const request = require('supertest');
 const express = require('express');
+const connect = require('../models/connection');
 
 const { login } = require('../routes');
 
@@ -90,3 +91,5 @@ it('Ao realizar login com sucesso deve ser retornado um objeto com token, name, 
       expect(body).toMatchObject({ token, name, email, role, id });
       done();
     }));
+
+afterAll(async () => connect.end());
