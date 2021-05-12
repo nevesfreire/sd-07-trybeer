@@ -182,7 +182,7 @@ export async function fetchUpdateClient(name, id, token) {
 }
 
 export async function getOrders() {
-  const requestOrdersUrl = `http://localhost:3001/sales`;
+  const requestOrdersUrl = 'http://localhost:3001/sales';
   const request = {
     method: 'GET',
     headers: {

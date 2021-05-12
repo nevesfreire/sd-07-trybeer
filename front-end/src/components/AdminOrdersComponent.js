@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Segment, Sidebar } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { getUser } from '../helpers/localStorageHelper';
 import { getOrders } from '../helpers/apiHelper';
 
@@ -12,7 +12,7 @@ function AdminOrdersComponent() {
 
   useEffect(() => {
     getOrders().then((data) => {
-      console.log('chamado', data)
+      console.log('chamado', data);
       setOrders(data.sales);
       setIsLoading(false);
     });
@@ -20,19 +20,26 @@ function AdminOrdersComponent() {
     // setIsLoading(false);
   }, []);
 
-  const renderOrderList = () =>
-    orders.map((order, index) => {
-      const { id, delivery_address, delivery_number, total_price, status } = order;
-      return (
-        <div>
-          <p data-testid={`${index}-order-number`} >Pedido: {id}</p>
-          <p data-testid={`${index}-order-address`}>{`${delivery_address}, ${delivery_number}`}</p>
-          <p data-testid={`${index}-order-total-value`}>R$ {total_price.replace('.', ',')}</p>
-          <p data-testid={`${index}-order-status`}>{status}</p>
-          <br></br>
-        </div>
-      );
-    });
+  const renderOrderList = () => orders.map((order, index) => {
+    const { id, delivery_address, delivery_number, total_price, status } = order;
+    return (
+      <Link to={`/admin/orders/${id}`} >
+      <div key={ index }>
+        <p data-testid={ `${index}-order-number` }>
+          Pedido
+          {id}
+        </p>
+        <p data-testid={ `${index}-order-address` }>{`${delivery_address}, ${delivery_number}`}</p>
+        <p data-testid={ `${index}-order-total-value` }>
+          R$
+          {total_price.replace('.', ',')}
+        </p>
+        <p data-testid={ `${index}-order-status` }>{status}</p>
+        <br />
+      </div>
+      </Link>
+    );
+  });
 
   if (getUser() === null || getUser().role !== 'administrator') {
     return <Redirect to="/login" />;
