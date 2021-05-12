@@ -29,7 +29,7 @@ function Details({ item, index }) {
           {item.name}
         </p>
         <p
-        data-testid={`${index}-order-unit-price`}
+          data-testid={ `${index}-order-unit-price` }
         >
           {
             `R$ ${parseFloat(item.price)
@@ -37,7 +37,7 @@ function Details({ item, index }) {
               .toString()
               .replace('.', ',')}`
           }
-          </p>
+        </p>
         Subtotal:
         <p
           data-testid={ `${index}-product-total-value` }
