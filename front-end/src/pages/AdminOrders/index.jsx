@@ -5,7 +5,7 @@ import { MainDiv, FormWrapper, H1 } from './styles';
 import AuthVerification from '../../components/AuthVerification';
 
 const AdminOrdersPage = () => {
-  // AuthVerification();
+  AuthVerification();
 
   return (
     <MainDiv>

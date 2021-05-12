@@ -26,8 +26,6 @@ export default function AdminOrders() {
   }
 
   return (
-    
-    
     <div style={ { display: 'flex', justifyContent: 'center' } }>
       { adminSales.err ? <p>{adminSales.err.message}</p>
         : adminSales.map((item, index) => (
@@ -36,16 +34,18 @@ export default function AdminOrders() {
             type="button"
             data-testid={ `${index}-order-card-container}` }
             key={ item.id }
-            onClick={ () => history.push(`/orders/${item.id}`) }
+            onClick={ () => history.push(`/admin/orders/${item.id}`) }
             role="button"
-            onKeyDown={ () => history.push(`/orders/${item.id}`) }
+            onKeyDown={ () => history.push(`/admin/orders/${item.id}`) }
             tabIndex={ 0 }
           >
             <p data-testid={ `${index}-order-number` }>{`Pedido ${item.id}`}</p>
-            <p data-testid={ `${index}-order-date` }>{item.sale_date}</p>
+            <p data-testid={ `${index}-order-address` }>
+              {`${item.delivery_address.concat(', ', item.delivery_number)}`}
+            </p>
+            <p data-testid={ `${index}-order-status` }>{item.status}</p>
             <p data-testid={ `${index}-order-total-value` }>
-              {/* {`R$ ${item.totalPrice.replace('.', ',')}`} */}
-              {`R$ ${item.total_price}`}
+              {`R$ ${item.total_price.replace('.', ',')}`}
             </p>
           </div>
         ))}
