@@ -14,7 +14,7 @@ const authRequired = (token) => {
 
 const isAdmin = (token) => {
   const { admin } = verifyToken(token);
-  if (!admin) throw new CustomError(CODE.UNAUTHORIZED, 'Usuário sem premissão');
+  if (!admin) throw new CustomError(CODE.UNAUTHORIZED, 'Usuário sem permissão');
 };
 
 const serializeOrder = (order) => ({
@@ -41,6 +41,20 @@ const getOrderDetails = async (token, orderId) => {
   }
 };
 
+const closeOrder = async (token, orderId) => {
+  try {
+    authRequired(token);
+    isAdmin(token);
+    const update = await Order.closeOrder(orderId);
+    if (update < 1) throw new CustomError(CODE.CONFLICT, 'Não foi possível atualizar o status');
+    return { statusCode: CODE.ACCEPTED, message: 'Pedido entregue com sucesso' };
+  } catch (error) {
+    if (error.status) throw error;
+    throw new CustomError(CODE.INTERNAL_SERVER_ERROR, 'Erro ao conectar com o banco de dados');
+  }
+};
+
 module.exports = {
   getOrderDetails,
+  closeOrder,
 };

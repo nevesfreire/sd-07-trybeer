@@ -10,7 +10,7 @@ router.route('/')
 router.route('/:id')
   .get(Order.getOrderDetails)
   .post()
-  .put()
+  .put(Order.closeOrder)
   .delete();
 
 module.exports = router;

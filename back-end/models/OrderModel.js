@@ -11,6 +11,14 @@ const getOrderDetails = async (orderId) => {
   return order;
 };
 
+const closeOrder = async (orderId) => {
+  const query = 'UPDATE sales SET status="Entregue" WHERE id=?';
+  const values = [orderId];
+  const [ResultSetHeader] = await conn.execute(query, values);
+  return ResultSetHeader.changedRows;
+};
+
 module.exports = {
   getOrderDetails,
+  closeOrder,
 };
