@@ -38,13 +38,11 @@ const login = async (req, res) => {
   if (user === undefined || user.password !== password) {
     return res.status(404).json({ message: 'usuário ou senha incorreto' });
   }
-  const userJWT = {
-    email: user.email,
-    role: user.role,
-  };
+  const userJWT = { email: user.email, role: user.role };
   const token = usersService.generateToken(userJWT);
   try {
     return res.status(200).json({
+      id: user.id,
       name: user.name,
       email: user.email,
       token,

@@ -5,6 +5,7 @@ import ProfileUser from './ProfileUser';
 import Products from './Products';
 import OrdersAdmin from './OrdersAdmin';
 import ProfileAdmin from './ProfileAdmin';
+import CheckoutUser from './CheckoutUser';
 
 export {
   Login,
@@ -14,4 +15,5 @@ export {
   Products,
   OrdersAdmin,
   ProfileAdmin,
+  CheckoutUser,
 };

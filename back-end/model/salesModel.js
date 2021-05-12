@@ -1,7 +1,7 @@
 const connection = require('../config/connection');
 
 const createSale = async (userId, totalPrice, deliveryAddress, deliveryNumber) => {
-  const pendente = 'pendente';
+  const pendente = 'Pendente';
   await
     connection.execute(
       ` INSERT INTO sales

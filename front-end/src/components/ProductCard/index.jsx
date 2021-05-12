@@ -29,6 +29,7 @@ export default function ProductCard(props) {
     const updatedCart = productsCart.map((p) => {
       if (p.name === name) {
         return { id,
+          price,
           name,
           quantity,
           totalPrice: (parseFloat(price) * quantity).toFixed(2) };
@@ -42,11 +43,16 @@ export default function ProductCard(props) {
     if (buttonClicked === 'plus') {
       if (!productIsInTheCart()) {
         setProductsCart(
-          [...productsCart, { id, name, quantity, totalPrice: parseFloat(price) }],
+          [...productsCart, {
+            id,
+            name,
+            quantity,
+            price,
+            totalPrice: parseFloat(price).toFixed(2) }],
         );
         localStorage.setItem('cart',
           JSON.stringify([...productsCart,
-            { name, quantity, totalPrice: parseFloat(price) }]));
+            { id, price, name, quantity, totalPrice: parseFloat(price).toFixed(2) }]));
       } else {
         changeProductQuantity();
       }
@@ -97,7 +103,6 @@ export default function ProductCard(props) {
     const productFromLocalStorage = cart.find((p) => p.name === name);
     if (productFromLocalStorage === undefined) return '0';
     const productQuantity = productFromLocalStorage.quantity.toString();
-    console.log(productQuantity);
     return productQuantity;
   };
 
