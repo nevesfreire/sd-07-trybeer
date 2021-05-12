@@ -8,8 +8,12 @@ import logo from '../img/logo.svg';
 
 const burguerViewer = () => {
   const showMenu = document.querySelector('#navMenu');
-  showMenu.classList.toggle('is-active');
   showMenu.classList.toggle('is-hidden');
+  showMenu.classList.toggle('is-active');
+};
+
+const logout = async () => {
+  await localStorage.removeItem('user');
 };
 
 function HeaderAdmin({ title }) {
@@ -58,7 +62,7 @@ function HeaderAdmin({ title }) {
             to="/login"
             className="navbar-item"
             data-testid="side-menu-item-logout"
-            onClick={ () => burguerViewer() }
+            onClick={ () => logout() }
           >
             Sair
           </Link>
