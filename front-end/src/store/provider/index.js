@@ -54,34 +54,53 @@ function Provider({ children }) {
     }
   };
 
+  const deleteItem = (item) => {
+    const newCart = services.acessLocalStorage.getCartLocalStorage();
+    delete newCart[item.id];
+    services.acessLocalStorage.setCartLocalStorage(newCart);
+    setCart(newCart);
+    // setCart((old) => {
+    //   let newCart;
+    //   if (old[item.id] === item.id.toString()) {
+    //     newCart = {
+    //       ...old,
+    //     };
+    //     console.log('Antes', newCart);
+    //     delete newCart[item.id];
+    //     console.log('depois', newCart);
+    //   }
+    //   services.acessLocalStorage.setCartLocalStorage(newCart);
+    //   return newCart;
+    // });
+  };
   /* Rever lógica \/ - 12/05
-   const removeToCart = (item) => {
+           const removeToCart = (item) => {
 
-    setCart((old) => {
-      // console.log(cart);
-      let newCart = {};
-      // console.log('item', old[item.id].quantity);
-      if (old[item.id].quantity > 0) {
-        newCart = {
-          ...old,
-          [item.id]: {
-            quantity: old[item.id].quantity - 1,
-            item,
-          },
-        };
-        services.acessLocalStorage.setCartLocalStorage(newCart);
-        return newCart;
-      }
-      Object.keys(old).forEach((id) => {
-        if (id !== item.id) {
-          newCart[id] = old[id];
-        }// console.log(id);
-        console.log('n >>>>', old);
-      });
-      services.acessLocalStorage.setCartLocalStorage(newCart);
-      return newCart;
-    });
-  }; */
+            setCart((old) => {
+              // console.log(cart);
+              let newCart = {};
+              // console.log('item', old[item.id].quantity);
+              if (old[item.id].quantity > 0) {
+                newCart = {
+                  ...old,
+                  [item.id]: {
+                    quantity: old[item.id].quantity - 1,
+                    item,
+                  },
+                };
+                services.acessLocalStorage.setCartLocalStorage(newCart);
+                return newCart;
+              }
+              Object.keys(old).forEach((id) => {
+                if (id !== item.id) {
+                  newCart[id] = old[id];
+                }// console.log(id);
+                console.log('n >>>>', old);
+              });
+              services.acessLocalStorage.setCartLocalStorage(newCart);
+              return newCart;
+            });
+          }; */
 
   useEffect(() => {
     const cartLocal = services.acessLocalStorage.getCartLocalStorage();
@@ -91,19 +110,19 @@ function Provider({ children }) {
   }, []);
 
   /*  const addToCart = (product) => {
-    let quantity = 0;
-    if (old[product.id]) {
-      quantity = old[product.id].quantity;
-    }
-    const newCart = {
-      ...old,
-      [product.id]: {
-        quantity: quantity + 1,
-        product,
-      },
-    };
-    window.localStorage.setItem('cart', JSON.stringify(newCart));
-  }; */
+            let quantity = 0;
+            if (old[product.id]) {
+              quantity = old[product.id].quantity;
+            }
+            const newCart = {
+              ...old,
+              [product.id]: {
+                quantity: quantity + 1,
+                product,
+              },
+            };
+            window.localStorage.setItem('cart', JSON.stringify(newCart));
+          }; */
 
   // const addProductsToCart = async (product, qtt) => {
   // const teste = await cart.reduce((object, item) => {
@@ -127,6 +146,7 @@ function Provider({ children }) {
     setCart,
     addToCart,
     removeToCart,
+    deleteItem,
   };
 
   return (
