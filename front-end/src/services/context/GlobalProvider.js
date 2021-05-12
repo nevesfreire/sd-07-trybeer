@@ -5,6 +5,7 @@ import GlobalContext from './GlobalContext';
 
 const INITIAL_STATE = {
   products: [],
+  isUserValid: true,
 };
 
 export default function GlobalProvider({ children }) {
