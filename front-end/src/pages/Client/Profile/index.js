@@ -15,7 +15,7 @@ function Profile() {
   const [newName, setNewName] = useState(null);
   const [isDisable, setIsDisable] = useState(true);
   const [messageRequest, setMessageRequest] = useState('');
-  // const [isLogged, setIsLogged] = useState(false)
+
   const history = useHistory();
 
   useEffect(() => {
@@ -40,20 +40,21 @@ function Profile() {
 
   useEffect(() => {
     const getToken = async () => {
-      const token = await localStorage.getItem('token');
-      console.log('jwt', jwtDecode(token));
-      if (!token) return history.push('/login');
-      const userData = jwtDecode(token);
-      console.log(token);
-      const { name, email, role } = userData;
-      console.log('Aquiiii', userData);
-      setUserName(name);
-      setNewName(name);
-      setUserEmail(email);
-      setUserRole(role);
-      setIsLoading(false);
+      let token = {};
+      try {
+        token = await localStorage.getItem('token');
+        const userData = jwtDecode(token);
+        const { name, email, role } = userData;
+        setUserName(name);
+        setNewName(name);
+        setUserEmail(email);
+        setUserRole(role);
+        setIsLoading(false);
+        return;
+      } catch (error) {
+        return history.push('/login');
+      }
     };
-
     getToken();
   }, [history]);
 
