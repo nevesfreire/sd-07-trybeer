@@ -79,6 +79,9 @@ export default function Checkout() {
   return (
     <div>
       <TopBar title="Finalizar Pedido" />
+      <h4 style={ { visibility: ((message.length > 0) ? 'visible' : 'hidden') } }>
+        {message}
+      </h4>
       {
         verify ? horaDeMorfar(
           storageState,
@@ -118,9 +121,6 @@ export default function Checkout() {
           value={ houseNumber }
         />
       </label>
-      <h4 style={ { visibility: ((message.length > 0) ? 'visible' : 'hidden') } }>
-        {message}
-      </h4>
       <button
         data-testid="checkout-finish-btn"
         disabled={
