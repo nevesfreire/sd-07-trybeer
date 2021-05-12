@@ -47,7 +47,20 @@ function useFetch() {
       body: JSON.stringify({ email, name }),
     });
     const responseAPI = await result.json();
-    console.log('responseAPI', responseAPI);
+    return responseAPI;
+  }
+
+  async function getOrdersByEmail(email, token) {
+    const result = await fetch('http://localhost:3001/orders', {
+      method: 'GET',
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+        Authorization: token,
+      },
+      body: JSON.stringify({ email }),
+    });
+    const responseAPI = await result.json();
     return responseAPI;
   }
 
@@ -56,6 +69,7 @@ function useFetch() {
       login,
       updateProfileName,
       register,
+      getOrdersByEmail,
     }
   );
 }
