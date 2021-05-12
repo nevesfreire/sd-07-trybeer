@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
+
 .hamburger-btn {
   width: 60px;
 }
@@ -7,4 +9,14 @@
 }
 .side-bar {
   visibility: hidden;
+}
+.title {
+  font-family: 'Roboto';
+  font-size: 35px;
+  margin-left: 3rem;
+}
+.top-bar-container {
+  display: flex;
+  margin-bottom: 100px;
+  width: 100%;
 }

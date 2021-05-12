@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState, useContext } from 'react';
+import { Button, Container, Form } from 'react-bootstrap';
 import TryBeerContext from '../../context/TryBeerContext';
 import { addSale } from '../../servicesAPI/api';
+import './index.css';
 
 const CheckoutForm = ({ finishSale }) => {
   const zero = 0;
@@ -29,32 +31,35 @@ const CheckoutForm = ({ finishSale }) => {
   };
 
   return (
-    <form>
-      <label htmlFor="checkout-street-input">
-        Rua:
-        <input
-          id="checkout-street-input"
-          data-testid="checkout-street-input"
-          onChange={ (e) => setAddress(e.target.value) }
-        />
-      </label>
-      <label htmlFor="checkout-house-number-input">
-        Número da casa:
-        <input
-          id="checkout-house-number-input"
-          data-testid="checkout-house-number-input"
-          onChange={ (e) => setHouseNumber(e.target.value) }
-        />
-      </label>
-      <button
-        data-testid="checkout-finish-btn"
-        type="button"
-        disabled={ !address || !houseNumber || !Number(totalPrice) }
-        onClick={ checkoutSubmit }
-      >
-        Finalizar Pedido
-      </button>
-    </form>
+    <Container className="checkout-form-container">
+      <Form>
+        <Form.Group>
+          <Form.Label>
+            Rua:
+          </Form.Label>
+          <Form.Control
+            data-testid="checkout-street-input"
+            onChange={ (e) => setAddress(e.target.value) }
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>
+            Número da casa:
+          </Form.Label>
+          <Form.Control
+            data-testid="checkout-house-number-input"
+            onChange={ (e) => setHouseNumber(e.target.value) }
+          />
+        </Form.Group>
+        <Button
+          data-testid="checkout-finish-btn"
+          disabled={ !address || !houseNumber || !Number(totalPrice) }
+          onClick={ checkoutSubmit }
+        >
+          Finalizar Pedido
+        </Button>
+      </Form>
+    </Container>
   );
 };
 

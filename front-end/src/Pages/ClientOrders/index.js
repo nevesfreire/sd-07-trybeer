@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Table } from 'react-bootstrap';
 import TopBar from '../../Components/TopBar';
 import { getSalesByUser } from '../../servicesAPI/api';
 
@@ -23,19 +24,28 @@ const ClientOrders = () => {
   return (
     <div>
       <TopBar />
-      { !isLoading && sales.map(({ id, sale_date: date, total_price: price }, index) => (
-        <Link key={ id } to={ `/orders/${id}` }>
-          <div key={ id } data-testid={ `${index}-order-card-container` }>
-            <p data-testid={ `${index}-order-number` }>{ `Pedido ${id}` }</p>
-            <p data-testid={ `${index}-order-date` }>{ date }</p>
-            <p
-              data-testid={ `${index}-order-total-value` }
-            >
-              {`R$ ${(Number(price)).toFixed(2).replace('.', ',')}`}
-            </p>
-          </div>
-        </Link>
-      )) }
+      <Table>
+        <tbody>
+          { !isLoading && sales
+            .map(({ id, sale_date: date, total_price: price }, index) => (
+              <tr key={ id } data-testid={ `${index}-order-card-container` }>
+                <td
+                  style={ { textAlign: 'center' } }
+                  data-testid={ `${index}-order-number` }
+                >
+                  <Link key={ id } to={ `/orders/${id}` }>{ `Pedido ${id}` }</Link>
+                </td>
+                <td data-testid={ `${index}-order-date` }>{ date }</td>
+                <td
+                  data-testid={ `${index}-order-total-value` }
+                >
+                  {`R$ ${(Number(price)).toFixed(2).replace('.', ',')}`}
+                </td>
+                <td><Link key={ id } to={ `/orders/${id}` }>detalhes</Link></td>
+              </tr>
+            )) }
+        </tbody>
+      </Table>
     </div>
   );
 };

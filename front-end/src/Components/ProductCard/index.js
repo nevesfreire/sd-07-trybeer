@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import propTypes from 'prop-types';
+import { Card, Button } from 'react-bootstrap';
 import TryBeerContext from '../../context/TryBeerContext';
+import './index.css';
 
 const ProductCard = ({ product, index }) => {
   const one = 1;
@@ -19,40 +21,46 @@ const ProductCard = ({ product, index }) => {
   };
 
   return (
-    <div>
-      <h4 data-testid={ `${index}-product-name` }>{ name }</h4>
+    <Card className="product-card">
 
-      <img
+      <Card.Img
+        className={ `beverage-img img-${index} ` }
         src={ product.url_image }
         alt={ name }
         data-testid={ `${index}-product-img` }
-        width="200px"
       />
+      <Card.Body>
+        <Card.Title data-testid={ `${index}-product-name` }>{ name }</Card.Title>
+        <Card.Text
+          className="price"
+          data-testid={ `${index}-product-price` }
+        >
+          { `R$ ${price.replace('.', ',')}` }
+        </Card.Text>
+      </Card.Body>
+      <div className="plus-and-minus-container">
+        <Button
+          className="plus-and-minus-button"
+          variant="secondary"
+          onClick={ () => quantity > 0 && handleMinus() }
+          data-testid={ `${index}-product-minus` }
+        >
+          -
+        </Button>
 
-      <div
-        data-testid={ `${index}-product-price` }
-      >
-        { `R$ ${price.replace('.', ',')}` }
+        <p data-testid={ `${index}-product-qtd` }>{ quantity }</p>
+
+        <Button
+          className="plus-and-minus-button"
+          variant="secondary"
+          onClick={ () => handlePlus() }
+          data-testid={ `${index}-product-plus` }
+        >
+          +
+        </Button>
       </div>
 
-      <button
-        type="button"
-        onClick={ () => quantity > 0 && handleMinus() }
-        data-testid={ `${index}-product-minus` }
-      >
-        -
-      </button>
-
-      <div data-testid={ `${index}-product-qtd` }>{ quantity }</div>
-
-      <button
-        type="button"
-        onClick={ () => handlePlus() }
-        data-testid={ `${index}-product-plus` }
-      >
-        +
-      </button>
-    </div>
+    </Card>
   );
 };
 
