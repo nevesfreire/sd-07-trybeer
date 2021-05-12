@@ -17,9 +17,9 @@ const Routes = () => (
       <Route exact path="/home" component={ Admin } />
       <Route exact path="/products" component={ Client } />
       <Route exact path="/admin/orders" component={ Admin } />
-
     </Switch>
   </BrowserRouter>
 );
+// Teste
 
 export default Routes;

@@ -1,0 +1,40 @@
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import Global from '../context/index';
+import '../css/menu.css';
+
+const Menu = () => {
+  const { menuState } = useContext(Global);
+  return (
+    <div
+      className={
+        menuState
+          ? 'side-menu-container aside-menu-show'
+          : 'side-menu-container aside-menu-hide'
+      }
+    >
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        <Link to="/products" data-testid="side-menu-item-products">
+          Produtos
+        </Link>
+      </div>
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        <Link to="/myOrders" data-testid="side-menu-item-my-orders">
+          Meus pedidos
+        </Link>
+      </div>
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        <Link to="/myProfile" data-testid="side-menu-item-my-profile">
+          Meu perfil
+        </Link>
+      </div>
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        <Link to="/" data-testid="side-menu-item-logout">
+          Sair
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Menu;
