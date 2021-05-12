@@ -4,7 +4,7 @@ const httpStatus = require('./httpStatus');
 
 const secret = 'meusegredoparajwt';
 
-const userLogin = async (req, res) => {
+const userLogin = async (req, res) => { 
   try {
     const jwtConfig = {
       expiresIn: '7d',
@@ -13,7 +13,6 @@ const userLogin = async (req, res) => {
     const { email, password } = req.body;
     const token = jwt.sign({ email }, secret, jwtConfig);
     const login = await loginService(email, password);
-    console.log(login);
     const loginInfo = {
       name: login.name, role: login.role, email: login.email,
     };
@@ -27,4 +26,5 @@ const userLogin = async (req, res) => {
 
 module.exports = {
   userLogin,
+  secret,
 };
