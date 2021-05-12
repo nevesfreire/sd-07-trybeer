@@ -43,10 +43,10 @@ function RegisterForm() {
 
   return (
     <form className="form">
-      <label htmlFor="name">
+      <label className="form-label mb-3" htmlFor="name">
         Nome
         <input
-          className="name-input"
+          className="form-control"
           data-testid="signup-name"
           type="text"
           name="name"
@@ -56,10 +56,10 @@ function RegisterForm() {
         />
       </label>
 
-      <label htmlFor="email-register">
+      <label className="form-label mb-3" htmlFor="email-register">
         Email
         <input
-          className="form-input"
+          className="form-control"
           data-testid="signup-email"
           type="email"
           name="email"
@@ -69,10 +69,10 @@ function RegisterForm() {
         />
       </label>
 
-      <label htmlFor="password-register">
+      <label className="form-label mb-3" htmlFor="password-register">
         Senha
         <input
-          className="form-input"
+          className="form-control"
           data-testid="signup-password"
           type="password"
           name="password"
@@ -82,7 +82,7 @@ function RegisterForm() {
         />
       </label>
 
-      <label htmlFor="checkbox-register">
+      <label className="form-label mb-3" htmlFor="checkbox-register">
         <input
           type="checkbox"
           data-testid="signup-seller"
@@ -95,7 +95,7 @@ function RegisterForm() {
         Quero vender
       </label>
       <button
-        className="form-button"
+        className="btn btn-login mb-3"
         data-testid="signup-btn"
         type="button"
         disabled={ isDisable() }

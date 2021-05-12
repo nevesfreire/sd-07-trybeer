@@ -47,7 +47,7 @@ function OrderCard({ order, isAdmin, index }) {
         >
           { `R$ ${totalPrice.replace('.', ',')}` }
         </div>
-        <div className="card-text" hidden={ !isAdmin } data-testid={ `${index}-order-status` }>{ status }</div>
+        <div className={`card-text ${status}`} hidden={ !isAdmin } data-testid={ `${index}-order-status` }>{ status }</div>
       </div>
     </Link>
   );

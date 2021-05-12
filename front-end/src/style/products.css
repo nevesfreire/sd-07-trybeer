@@ -61,10 +61,47 @@ img {
   background-color: #D07A2D;
   color: #EDE4D7;
   margin-bottom: 20px;
-  margin-right: 2em;
   border: none;
+  width: 100%;
 }
 
 .checkout-bottom-btn:disabled {
   opacity: 0.5; 
+}
+
+.admin-container {
+  margin-top: 100px;
+  margin-left: 350px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  color: #20181A;
+}
+
+.adm-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.adm-total {
+  align-self: flex-end;
+}
+
+.order-data {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.Entregue {
+  color: green;
+}
+
+.Pendente {
+  color: red;
+}
+
+.order-date {
+  align-self: flex-end;
 }

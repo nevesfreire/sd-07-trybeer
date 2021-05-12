@@ -32,10 +32,6 @@
   justify-content: space-between;
 }
 
-.item-quantity {
-  border: solid #EDE4D7 1px;
-}
-
 .unt-dlt {
   font-size: 0.8em;
   display: flex;

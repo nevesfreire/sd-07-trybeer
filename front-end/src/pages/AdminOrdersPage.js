@@ -4,9 +4,11 @@ import Orders from '../components/Orders';
 
 function AdminOrdersPage() {
   return (
-    <div>
+    <div className="products-page">
       <MenuTop />
+      <div className="admin-container">
       <Orders />
+      </div>
     </div>
   );
 }

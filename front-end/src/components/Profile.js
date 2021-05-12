@@ -59,7 +59,7 @@ function LoginForm() {
           />
         </label>
         <button
-          className="btn btn-login"
+          className="checkout-bottom-btn"
           data-testid="profile-save-btn"
           type="button"
           disabled={ name === startingName }

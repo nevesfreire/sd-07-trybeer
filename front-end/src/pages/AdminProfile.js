@@ -19,10 +19,13 @@ function AdminProfile() {
   }, [history]);
 
   return (
-    <div className="form-page">
+    <div className="form-page products-page">
       <MenuTop />
-      <div data-testid="profile-name">{ name }</div>
-      <div data-testid="profile-email">{ email }</div>
+      <div className="admin-container">
+        <h2>Perfil</h2>
+        <div data-testid="profile-name">{ `Nome: ${name}` }</div>
+        <div data-testid="profile-email">{ `E-mail: ${email}` }</div>
+      </div>
     </div>
   );
 }

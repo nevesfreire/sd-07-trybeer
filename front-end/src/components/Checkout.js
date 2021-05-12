@@ -133,7 +133,7 @@ function Checkout() {
             </label>
 
             <button
-              className="btn btn-login"
+              className="checkout-bottom-btn"
               type="button"
               data-testid="checkout-finish-btn"
               disabled={

@@ -39,19 +39,21 @@ function Details({ item, index }) {
           .replace('.', ',')}`}
         )
       </p>
-      Subtotal:
-      <p
-        data-testid={ `${index}-product-total-value` }
-      >
-        R$
-        {' '}
-        {
-          (parseFloat(item.price) * parseFloat(item.quantity))
-            .toFixed(2)
-            .toString()
-            .replace('.', ',')
-        }
+      <div>
+        Subtotal:
+        <p
+          data-testid={ `${index}-product-total-value` }
+        >
+          R$
+          {' '}
+          {
+            (parseFloat(item.price) * parseFloat(item.quantity))
+              .toFixed(2)
+              .toString()
+              .replace('.', ',')
+          }
       </p>
+      </div>
       {/*
       <p
         data-testid={ `${index}-product-qtd` }
