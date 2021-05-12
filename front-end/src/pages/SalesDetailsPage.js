@@ -62,8 +62,9 @@ function SalesDetailsPage() {
         type="button"
         hidden={ sale.status === 'Entregue' }
         onClick={ () => confirmDelivery() }
+        data-testid="mark-as-delivered-btn"
       >
-        Marcar pedido como entregue
+        Marcar como entregue
       </button>
 
     </div>
