@@ -4,7 +4,7 @@ import {
   Login,
   Register,
   Orders,
-  Profile,
+  ProfileClient,
   Products,
   AdminOrders,
   ProfileAdmin,
@@ -19,11 +19,10 @@ const Routes = () => (
       <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ Register } />
       <Route exact path="/orders" component={ Orders } />
-      <Route exact path="/profile" component={ Profile } />
+      <Route exact path="/profile" component={ ProfileClient } />
       <Route exact path="/products" component={ Products } />
       <Route exact path="/admin/orders" component={ AdminOrders } />
       <Route exact path="/admin/profile" component={ ProfileAdmin } />
-
     </Switch>
   </Router>
 );

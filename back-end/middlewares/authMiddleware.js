@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { service } = require('../resources/auth');
+const { token: { tokenIsValid } } = require('../helpers');
 
 const authMiddleware = (req, res, next) => {
     const token = req.headers.authorization;
@@ -8,7 +8,7 @@ const authMiddleware = (req, res, next) => {
         return res.status(StatusCodes.UNAUTHORIZED).send();
     }
 
-    if (service.tokenIsValid(token)) {
+    if (tokenIsValid(token)) {
         return next();
     }
 
