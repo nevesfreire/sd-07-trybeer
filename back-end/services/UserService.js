@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+const { jwtConfig, SECRET } = require('../config/jwt');
 const { userModel } = require('../models');
 const { validateUserData, validadeUserName } = require('./validations/UserValidations');
 const { REGISTEREDEMAIL, SAMEUSERNAME } = require('./errors/UserMessage');
@@ -7,8 +9,10 @@ const registerUser = async (data) => {
   if (error) throw error;
   const [userEmail] = await userModel.getUserEmail(data);
   if (userEmail[0]) throw REGISTEREDEMAIL;
-  await userModel.registerUser(data);
-  return { message: 'Usuário cadastrado com sucesso' };
+  const newUser = await userModel.registerUser(data);
+  const { name, email, role, password } = data;
+  const token = jwt.sign({ email, password }, SECRET, jwtConfig);
+  return { token, name, email, role, id: newUser[0].insertId };
 };
 
 const updateUser = async (name, email) => {

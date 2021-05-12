@@ -1,0 +1,217 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 2,
+    "pending": 0,
+    "failures": 4,
+    "start": "2021-05-11T22:20:15.739Z",
+    "end": "2021-05-11T22:21:20.581Z",
+    "duration": 64842,
+    "testsRegistered": 6,
+    "passPercent": 33.33333333333333,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b4905d13-bf1d-419d-a475-8b56d03652a4",
+      "title": "",
+      "fullFile": "cypress/integration/req08-orderDetailsClient.spec.js",
+      "file": "cypress/integration/req08-orderDetailsClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9a95db3a-0cf6-438d-a4ef-cd2fc73fe2d0",
+          "title": "8 - Criar tela de detalhes pedidos",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do detalhe do pedido",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível acessar a tela do detalhe do pedido",
+              "timedOut": null,
+              "duration": 3226,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/orders/1\"));",
+              "err": {},
+              "uuid": "7ea7396d-ddda-4ab9-b27a-cbd7c76c634a",
+              "parentUUID": "9a95db3a-0cf6-438d-a4ef-cd2fc73fe2d0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 12506,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-date\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-qtd\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-name\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-total-value\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-total-value\"]');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"order-number\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"order-number\"]`, but never found it.\n    at verifyElementVisible (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:175:19)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:358:42)",
+                "diff": null
+              },
+              "uuid": "c9f2c638-1389-476f-a32e-9e389d0c007e",
+              "parentUUID": "9a95db3a-0cf6-438d-a4ef-cd2fc73fe2d0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver que tem número do pedido e a data da compra",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível ver que tem número do pedido e a data da compra",
+              "timedOut": null,
+              "duration": 12415,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "var date = (0, _actionBase.getDateAndMonth)();\n(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-date\"]', date);",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"order-number\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"order-number\"]`, but never found it.\n    at verifyElementContainsText (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:143:6)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:371:47)",
+                "diff": null
+              },
+              "uuid": "c0990754-f82b-4c90-8631-648d54eb9ccb",
+              "parentUUID": "9a95db3a-0cf6-438d-a4ef-cd2fc73fe2d0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver que o produto tem quantidade, nome e valor total do produto",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível ver que o produto tem quantidade, nome e valor total do produto",
+              "timedOut": null,
+              "duration": 17255,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-qtd\"]', '1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-name\"]', 'Skol Lata 250ml');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-total-value\"]', 'R$ 2,20');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find content: '1' within the element: <p> but never did.",
+                "estack": "AssertionError: Timed out retrying: Expected to find content: '1' within the element: <p> but never did.\n    at verifyElementContainsText (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:143:19)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:379:47)",
+                "diff": null
+              },
+              "uuid": "79927882-b274-4534-8419-d2424da29d78",
+              "parentUUID": "9a95db3a-0cf6-438d-a4ef-cd2fc73fe2d0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver o valor total do pedido",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível ver o valor total do pedido",
+              "timedOut": null,
+              "duration": 15816,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyProducts)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-qtd\"]', '2');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-name\"]', 'Skol Lata 250ml');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-total-value\"]', 'R$ 4,40');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find content: '2' within the element: <p> but never did.",
+                "estack": "AssertionError: Timed out retrying: Expected to find content: '2' within the element: <p> but never did.\n    at verifyElementContainsText (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:143:19)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:388:47)",
+                "diff": null
+              },
+              "uuid": "7031c1dd-a0a3-4d9f-b051-c25f9dcaf0f2",
+              "parentUUID": "9a95db3a-0cf6-438d-a4ef-cd2fc73fe2d0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "timedOut": null,
+              "duration": 614,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"\".concat(Cypress.config().baseUrl, \"/orders/1\"));\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {},
+              "uuid": "0287a5a9-5cd5-4d8d-a683-b52d857397bd",
+              "parentUUID": "9a95db3a-0cf6-438d-a4ef-cd2fc73fe2d0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7ea7396d-ddda-4ab9-b27a-cbd7c76c634a",
+            "0287a5a9-5cd5-4d8d-a683-b52d857397bd"
+          ],
+          "failures": [
+            "c9f2c638-1389-476f-a32e-9e389d0c007e",
+            "c0990754-f82b-4c90-8631-648d54eb9ccb",
+            "79927882-b274-4534-8419-d2424da29d78",
+            "7031c1dd-a0a3-4d9f-b051-c25f9dcaf0f2"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 61832,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

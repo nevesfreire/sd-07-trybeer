@@ -36,8 +36,8 @@ function CreateUserForm() {
     if (response.err) return setUserExists(true);
     setUserExists(false);
 
-    if (response.message) {
-      localStorage.setItem('user', JSON.stringify({ name, email, role }));
+    if (response) {
+      localStorage.setItem('user', JSON.stringify(response));
     }
 
     if (role === 'administrator') {

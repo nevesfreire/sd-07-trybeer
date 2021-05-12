@@ -31,6 +31,20 @@ const getProducts = (token) => fetch('http://localhost:3001/products', {
   .then((response) => response.json())
   .catch((error) => console.log(error));
 
+const getUserSalesInfo = (token) => fetch('http://localhost:3001/sales/users', {
+  method: 'GET',
+  headers: { ...contentType, authorization: token },
+})
+  .then((response) => response.json())
+  .catch((error) => console.log(error));
+
+const getUserSaleDetails = (token, saleId) => fetch(`http://localhost:3001/sales/users/${saleId}`, {
+  method: 'GET',
+  headers: { ...contentType, authorization: token },
+})
+  .then((response) => response.json())
+  .catch((error) => console.log(error));
+
 const createSale = (token, products) => fetch('http://localhost:3001/sales/users', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json', authorization: token },
@@ -44,5 +58,7 @@ export {
   registerUser,
   updateUser,
   getProducts,
+  getUserSalesInfo,
+  getUserSaleDetails,
   createSale,
 };
