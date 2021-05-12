@@ -1,21 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
+import Header from '../../components/Header';
 import { fetchFinishSale } from '../../services';
+import { BeerContext } from '../../context';
 
 export default function CheckoutUser() {
   const [cartItems, setCartItems] = useState([]);
   const [emptyCart, setEmptyCart] = useState(true);
   const [address, setAddress] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
-  const [totalCart, setTotalCart] = useState('');
+  const [total, setTotal] = useState('');
   const [alertController, setAlertController] = useState(false);
 
+  const { totalCart, setTotalCart } = useContext(BeerContext);
+
+  const history = useHistory();
   useEffect(() => {
-    const localStorageCart = JSON.parse(localStorage.getItem('cart'));
-    const localStorageTotalCart = JSON.parse(localStorage.getItem('totalCart'));
-    setCartItems(localStorageCart);
-    setTotalCart(localStorageTotalCart);
+    const localStorageUser = JSON.parse(localStorage.getItem('user'));
+    if (localStorageUser === null) {
+      history.push('/login');
+    } else {
+      const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+      const localStorageTotalCart = JSON.parse(localStorage.getItem('totalCart'));
+      setCartItems(localStorageCart);
+      setTotalCart(localStorageTotalCart.toFixed(2));
+    }
   }, []);
 
   useEffect(() => {
@@ -25,6 +35,16 @@ export default function CheckoutUser() {
       setEmptyCart(false);
     }
   }, [cartItems]);
+
+  const getTotalCartFromLocalStorage = () => {
+    const totalFromLS = localStorage.getItem('totalCart');
+    if (!totalFromLS) return '0,00';
+    return parseFloat(totalFromLS).toFixed(2);
+  };
+
+  useEffect(() => {
+    setTotal(getTotalCartFromLocalStorage());
+  }, [totalCart]);
 
   const timeoutMessage = 5000;
 
@@ -44,8 +64,6 @@ export default function CheckoutUser() {
     setTotalCart(totalCart - atualItem.totalPrice);
   };
 
-  const history = useHistory();
-
   const finishButton = async (event) => {
     event.preventDefault();
     const { id } = JSON.parse(localStorage.getItem('user'));
@@ -56,14 +74,20 @@ export default function CheckoutUser() {
     await fetchFinishSale(id, totalCart, addressObject, cartItems);
     setAlertController(true);
     setTimeout(() => {
-      localStorage.setItem('totalCart', '0,00');
+      localStorage.setItem('totalCart', 0);
       localStorage.setItem('cart', JSON.stringify([]));
       setAlertController(false);
       history.push('/products');
     }, timeoutMessage);
   };
+  const disableFinishButton = () => {
+    if (emptyCart || address === '' || houseNumber === '') return true;
+    return false;
+  };
+
   return (
     <div>
+      <Header namePage="Finalizar Pedido" />
       <ul>
         Produtos
         {emptyCart ? <h2>Não há produtos no carrinho</h2>
@@ -72,12 +96,14 @@ export default function CheckoutUser() {
               <div data-testid={ `${index}-product-qtd-input` }>{product.quantity}</div>
               <div data-testid={ `${index}-product-name` }>{product.name}</div>
               <div data-testid={ `${index}-product-total-value` }>
-                {product.totalPrice}
+                {`R$ ${product.totalPrice.toString().replace('.', ',')}`}
               </div>
-              <div data-testid={ `${index}-product-unit-price` }>{product.price}</div>
+              <div data-testid={ `${index}-product-unit-price` }>
+                {`(R$ ${product.price.toString().replace('.', ',')} un)`}
+              </div>
               <button
                 type="button"
-                data-testid={ `${index}-product-removal-button` }
+                data-testid={ `${index}-removal-button` }
                 onClick={ () => removeItemFromCart(product.id) }
               >
                 X
@@ -85,7 +111,9 @@ export default function CheckoutUser() {
             </li>
           ))}
       </ul>
-      <div data-testid="order-total-value">{ totalCart }</div>
+      <div data-testid="order-total-value">
+        {`R$ ${total.toString().replace('.', ',')}`}
+      </div>
       <Form className="form__login">
         <h2>Endereço: </h2>
         <Form.Group controlId="formBasicEmail">
@@ -111,11 +139,11 @@ export default function CheckoutUser() {
           type="button"
           className="form__login__btn"
           onClick={ (event) => finishButton(event) }
-          // disabled={ !inputValidation() }
+          disabled={ disableFinishButton() }
         >
           Finalizar Pedido
         </Button>
-        { alertController && <p>Compra realizada com sucesso</p> }
+        { alertController && <p>Compra realizada com sucesso!</p> }
       </Form>
     </div>
   );
