@@ -4,6 +4,7 @@ import Profile from './Profile';
 import Register from './Register';
 import ClientProfile from './ClientProfile';
 import Checkout from './Checkout';
+import AdminProfile from './AdminProfile';
 
 export {
   Login,
@@ -12,4 +13,5 @@ export {
   Register,
   ClientProfile,
   Checkout,
+  AdminProfile,
 };
