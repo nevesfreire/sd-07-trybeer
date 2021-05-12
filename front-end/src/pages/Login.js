@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
-import LoginComponent from '../components/LoginComponent';
+import LoginComponent from '../components/LoginAndRegister/LoginComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { fetchToken } from '../helpers/apiHelper';
 

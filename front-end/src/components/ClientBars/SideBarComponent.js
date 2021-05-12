@@ -7,11 +7,11 @@ import {
   Segment,
   Sidebar,
 } from 'semantic-ui-react';
-import BeerContext from '../context/BeerContext';
+import BeerContext from '../../context/BeerContext';
 
-const SideBarComponent = ({ Component }) => {
+const ClientSideBar = ({ Component }) => {
   const history = useHistory();
-  const { toggleSideBar } = useContext(BeerContext);
+  const { toggleSideBar, setToggleSideBar } = useContext(BeerContext);
 
   return (
     <Grid columns={ 1 }>
@@ -31,21 +31,30 @@ const SideBarComponent = ({ Component }) => {
             <Menu.Item
               as="a"
               data-testid="side-menu-item-products"
-              onClick={ () => history.push('/products') }
+              onClick={ () => {
+                setToggleSideBar(!toggleSideBar);
+                history.push('/products');
+              } }
             >
               Produtos
             </Menu.Item>
             <Menu.Item
               as="a"
               data-testid="side-menu-item-my-orders"
-              onClick={ () => history.push('/orders') }
+              onClick={ () => {
+                setToggleSideBar(!toggleSideBar);
+                history.push('/orders');
+              } }
             >
               Meus Pedidos
             </Menu.Item>
             <Menu.Item
               as="a"
               data-testid="side-menu-item-my-profile"
-              onClick={ () => history.push('/profile') }
+              onClick={ () => {
+                setToggleSideBar(!toggleSideBar);
+                history.push('/profile');
+              } }
             >
               Meu Perfil
             </Menu.Item>
@@ -54,6 +63,7 @@ const SideBarComponent = ({ Component }) => {
               data-testid="side-menu-item-logout"
               onClick={ () => {
                 localStorage.clear();
+                setToggleSideBar(!toggleSideBar);
                 history.push('/');
               } }
             >
@@ -67,8 +77,8 @@ const SideBarComponent = ({ Component }) => {
   );
 };
 
-SideBarComponent.propTypes = {
+ClientSideBar.propTypes = {
   Component: PropTypes.func.isRequired,
 };
 
-export default SideBarComponent;
+export default ClientSideBar;

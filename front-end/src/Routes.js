@@ -6,7 +6,8 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
-// import Orders from './pages/Orders';
+import ClientOrders from './pages/ClientOrders';
+import OrderDetails from './pages/OrderDetails';
 // import Admin from './components/AdminComponent';
 import AdminProfile from './pages/AdminProfile';
 import AdminOrders from './pages/AdminOrders';
@@ -19,12 +20,11 @@ const Routes = () => (
     <Route path="/profile" component={ Profile } />
     <Route path="/products" component={ Products } />
     <Route path="/checkout" component={ Checkout } />
-    { /* <Route path="/order/:id" component={ Orders } /> */ }
-    { /* <Route path="/order" component={ Orders } /> */ }
-    { /* <Route path="/admin/orders/:id" component={ Admin } /> */ }
+    <Route path="/orders/:id" component={ OrderDetails } />
+    <Route path="/orders" component={ ClientOrders } />
+    {/* <Route path="/admin/orders/:id" component={ Admin } /> */}
     <Route path="/admin/profile" component={ AdminProfile } />
     <Route path="/admin/orders" component={ AdminOrders } />
-    {/* <Route path="/admin/orders/:id" component={ Admin } /> */}
   </Switch>
 );
 

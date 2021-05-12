@@ -5,17 +5,17 @@ import { Grid } from 'semantic-ui-react';
 
 import TopBarComponent from '../components/ClientBars/TopBarComponent';
 import SideBarComponent from '../components/ClientBars/SideBarComponent';
-import CheckoutListComponent from '../components/Checkout/CheckoutListComponent';
+import OrderDetailsComp from '../components/ClientOrdersDetails/OrderDetailsComponent';
 
-function Checkout() {
+function OrderDetails() {
   return (
     <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
       <Grid.Column style={ { maxWidth: 500 } }>
-        <TopBarComponent>Finalizar Pedido</TopBarComponent>
-        <SideBarComponent Component={ CheckoutListComponent } />
+        <TopBarComponent>Detalhes de Pedido</TopBarComponent>
+        <SideBarComponent Component={ OrderDetailsComp } />
       </Grid.Column>
     </Grid>
   );
 }
 
-export default Checkout;
+export default OrderDetails;
