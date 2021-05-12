@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Segment, Sidebar } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import ClientProfileComponent from './ClientProfileComponent';
-import { fetchUpdateClient } from '../helpers/apiHelper';
-import { getUser, setUser } from '../helpers/localStorageHelper';
-import BeerContext from '../context/BeerContext';
+import { fetchUpdateClient } from '../../helpers/apiHelper';
+import { getUser, setUser } from '../../helpers/localStorageHelper';
+import BeerContext from '../../context/BeerContext';
 
 function Profile() {
   const [formData, setFormData] = useState({});

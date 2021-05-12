@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import 'semantic-ui-css/semantic.min.css';
 import { Card, Image, Button } from 'semantic-ui-react';
 
-import * as STORAGE from '../helpers/localStorageHelper';
-import * as API from '../helpers/apiHelper';
+import * as STORAGE from '../../helpers/localStorageHelper';
+import * as API from '../../helpers/apiHelper';
 
 function CardComponent({ product, sumTotal }) {
   const { id, name, price } = product;

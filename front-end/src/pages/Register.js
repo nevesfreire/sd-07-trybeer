@@ -3,7 +3,7 @@ import { Grid } from 'semantic-ui-react';
 import { Link, useHistory } from 'react-router-dom';
 import MessageComponent from '../components/MessageComponent';
 import HeaderComponent from '../components/HeaderComponent';
-import RegisterComponent from '../components/RegisterComponent';
+import RegisterComponent from '../components/LoginAndRegister/RegisterComponent';
 import { fetchRegister } from '../helpers/apiHelper';
 import BeerContext from '../context/BeerContext';
 
