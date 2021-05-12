@@ -11,15 +11,17 @@ import acessLocalStorage from '../services';
 function Products() {
   const [products, setproducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  // const [noHaveProduct, setNoHaveProduct] = useState(true);
   const history = useHistory();
   const { cart } = useContext(TrybeerContext);
 
   const requestProducts = useCallback(async () => {
     const user = await acessLocalStorage.acessLocalStorage.getUserLocalStorage();
+    if (!user) return history.push('/login');
     const resultApi = await getProducts(user.token);
     setproducts(resultApi.data);
     if (resultApi) setLoading(false);
-  }, [setproducts]);
+  }, [setproducts, history]);
 
   const sumItens = cart ? Object.keys(cart)
     .reduce(
@@ -31,6 +33,10 @@ function Products() {
   useEffect(() => {
     requestProducts();
   }, [requestProducts]);
+
+  // useEffect(() => {
+  //   if (cart === {}) setNoHaveProduct(false);
+  // }, [cart]);
 
   return (
     <div>
@@ -54,6 +60,7 @@ function Products() {
                 type="button"
                 data-testid="checkout-bottom-btn"
                 onClick={ () => history.push('/checkout') }
+                disabled={ sumItens === 0 }
               >
 
                 Ver Carrinho

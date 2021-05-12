@@ -11,7 +11,8 @@ function ProductCard({ item, index }) {
   let { price } = item;
   price = price.split('.').join(',');
 
-  const verifyQuantity = cart.cart[item.id] ? cart.cart[item.id].quantity : 0;
+  const verifyQuantity = cart.cart && cart.cart[item.id]
+    ? cart.cart[item.id].quantity : 0;
 
   const add = () => {
     cart.addToCart(item);

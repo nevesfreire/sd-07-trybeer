@@ -10,7 +10,7 @@ function Provider({ children }) {
   const addToCart = (item) => {
     setCart((old) => {
       let quantity = 0;
-      if (old[item.id]) {
+      if (old && old[item.id]) {
         quantity = old[item.id].quantity;
       }
       const newCart = {
@@ -26,26 +26,62 @@ function Provider({ children }) {
   };
 
   const removeToCart = (item) => {
-    setCart((old) => {
-      let quantity = 0;
-      let newCart;
-      if (old[item.id]) {
-        quantity = old[item.id].quantity;
-      }
+    // const inlocal = services.acessLocalStorage.getCartLocalStorage();
+    const alreadyInTheCart = Object.keys(cart).some((id) => id === item.id.toString());
+    // console.log('inLocal', inlocal);
+    // console.log('itemID', item.id.toString());
+    // console.log(alreadyInTheCart, cart, item.id.toString());
+    if (alreadyInTheCart) {
+      setCart((old) => {
+        let newCart;
+        if (old[item.id].quantity >= 0) {
+          newCart = {
+            ...old,
+            [item.id]: {
+              quantity: old[item.id].quantity - 1,
+              item,
+            },
+          };
+          if (newCart[item.id].quantity === 0) {
+            console.log(newCart[item.id].quantity);
+            delete newCart[item.id];
+            console.log(newCart);
+          }
+        }
+        services.acessLocalStorage.setCartLocalStorage(newCart);
+        return newCart;
+      });
+    }
+  };
 
-      if (old[item.id] && old[item.id].quantity > 0) {
+  /* Rever lógica \/ - 12/05
+   const removeToCart = (item) => {
+
+    setCart((old) => {
+      // console.log(cart);
+      let newCart = {};
+      // console.log('item', old[item.id].quantity);
+      if (old[item.id].quantity > 0) {
         newCart = {
           ...old,
           [item.id]: {
-            quantity: quantity - 1,
+            quantity: old[item.id].quantity - 1,
             item,
           },
         };
+        services.acessLocalStorage.setCartLocalStorage(newCart);
+        return newCart;
       }
+      Object.keys(old).forEach((id) => {
+        if (id !== item.id) {
+          newCart[id] = old[id];
+        }// console.log(id);
+        console.log('n >>>>', old);
+      });
       services.acessLocalStorage.setCartLocalStorage(newCart);
       return newCart;
     });
-  };
+  }; */
 
   useEffect(() => {
     const cartLocal = services.acessLocalStorage.getCartLocalStorage();
