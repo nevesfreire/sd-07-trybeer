@@ -54,7 +54,12 @@ describe('POST into login route', () => {
         email: USERS[0].email,
         password: '',
       })
-      .expect('status', 400);
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
   });
   it('Check how login route handle an empty email', async () => {
     await frisby
@@ -62,21 +67,36 @@ describe('POST into login route', () => {
         email: '',
         password: 'somePassword',
       })
-      .expect('status', 400);
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
   });
   it('Check how login route handle a missing password field', async () => {
     await frisby
       .post(URL, {
         password: 'somePass',
       })
-      .expect('status', 400);
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
   });
   it('Check how login route handle a missing email field', async () => {
     await frisby
       .post(URL, {
         email: 'user@domain.com',
       })
-      .expect('status', 400);
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
   });
   it('Check the return of a jwt formed with id and user role returned when login-in', async () => {
     await frisby

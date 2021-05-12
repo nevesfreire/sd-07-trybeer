@@ -47,16 +47,112 @@ describe('Check register POST route', () => {
         isSeller: USERS[1].isSeller,
         password: 'ranD0mp@$$worD',
       })
-      .expect('status', 409);
+      .expect('status', 409)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('Email already registered');
+      });
   });
-  it('Check user registration', async () => {
+  it('Check user registration with email missing', async () => {
+    await frisby
+      .post(URL, {
+        name: USERS[1].name,
+        password: USERS[1].password,
+        isSeller: USERS[1].isSeller,
+      })
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
+  });
+  it('Check user registration with an empty email', async () => {
+    await frisby
+      .post(URL, {
+        email: '',
+        name: USERS[1].name,
+        password: USERS[1].password,
+        isSeller: USERS[1].isSeller,
+      })
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
+  });
+  it('Check user registration with name missing', async () => {
+    await frisby
+      .post(URL, {
+        email: USERS[1].email,
+        password: USERS[1].password,
+        isSeller: USERS[1].isSeller,
+      })
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
+  });
+  it('Check user registration with an empty name', async () => {
+    await frisby
+      .post(URL, {
+        email: USERS[1].email,
+        name: '',
+        password: USERS[1].password,
+        isSeller: USERS[1].isSeller,
+      })
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
+  });
+  it('Check user registration with password missing', async () => {
+    await frisby
+      .post(URL, {
+        email: USERS[1].email,
+        name: USERS[1].name,
+        isSeller: USERS[1].isSeller,
+      })
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
+  });
+  it('Check user registration with an empty password', async () => {
+    await frisby
+      .post(URL, {
+        email: USERS[1].email,
+        name: USERS[1].name,
+        password: '',
+        isSeller: USERS[1].isSeller,
+      })
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
+  });
+  it('Check user registration with role (isSeller) missing', async () => {
     await frisby
       .post(URL, {
         email: USERS[1].email,
         name: USERS[1].name,
         password: USERS[1].password,
-        isSeller: USERS[1].isSeller,
       })
-      .expect('status', 201);
+      .expect('status', 400)
+      .then((resp) => {
+        const { body } = resp;
+        const parsed = JSON.parse(body);
+        expect(parsed.message).toBe('All fields must be filled');
+      });
   });
 });
