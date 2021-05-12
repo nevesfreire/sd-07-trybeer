@@ -22,6 +22,46 @@ const notFoundMessage = {
   message: 'image not found',
 };
 
+const userNotFound = {
+  message: 'user not found',
+};
+
+const saleRegisteredMessage = {
+  message: 'Venda Registrada com sucesso',
+};
+
+const emailSaleMessage = {
+  message: 'Email incorreto',
+};
+
+const priceSaleMessage = {
+  message: 'Preço incorreto',
+};
+
+const addressSaleMessage = {
+  message: 'Endereço incorreto',
+};
+
+const deliveryNumberSaleMessage = {
+  message: 'Número de entrega incorreto',
+};
+
+const dateSaleMessage = {
+  message: 'Data incorreta',
+};
+
+const statusSaleMessage = {
+  message: 'Status incorreto',
+};
+
+const productsSaleMessage = {
+  message: 'Sem produtos na venda',
+};
+
+const productsCampSaleMessage = {
+  message: 'Nome e/ou Quantidade incorreta',
+};
+
 module.exports = {
   userPasswordMessage,
   updateNameMessageSuccess,
@@ -29,4 +69,14 @@ module.exports = {
   userEmailorName,
   userRegisterSuccess,
   notFoundMessage,
+  userNotFound,
+  saleRegisteredMessage,
+  emailSaleMessage,
+  priceSaleMessage,
+  addressSaleMessage,
+  deliveryNumberSaleMessage,
+  dateSaleMessage,
+  statusSaleMessage,
+  productsSaleMessage,
+  productsCampSaleMessage,
 };
