@@ -35,6 +35,15 @@ const updateSaleStatus = async (id, status) =>
   SET status = '${status}'
   WHERE id = '${id}'`);
 
+const adminGetSaleById = async (saleId) => 
+  connect.execute(`SELECT sale_id, sale_date, quantity, name, price, total_price, user_id 
+  FROM Trybeer.sales AS s
+  INNER JOIN Trybeer.sales_products AS sp ON sp.sale_id = s.id
+  INNER JOIN Trybeer.products AS p ON p.id = sp.product_id
+  GROUP BY p.name, sp.sale_id
+  HAVING sale_id = "${saleId}"`)
+  .then((response) => response[0]);
+
 module.exports = {
   createSale,
   createSaleProduct,
@@ -42,4 +51,5 @@ module.exports = {
   getSaleById,
   getAllSales,
   updateSaleStatus,
+  adminGetSaleById,
 };
