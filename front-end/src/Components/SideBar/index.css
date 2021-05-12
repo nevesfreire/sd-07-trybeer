@@ -7,3 +7,12 @@
   width: 20%;
   z-index: 1;
 }
+
+.side-menu-container-admin {
+  background-color: whitesmoke;
+  font-size: 18px;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  width: 25%;
+}

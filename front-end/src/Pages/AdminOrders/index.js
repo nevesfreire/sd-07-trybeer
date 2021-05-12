@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Table } from 'react-bootstrap';
 import SideBar from '../../Components/SideBar';
 import { getSales } from '../../servicesAPI/api';
+import "./index.css";
 
 const AdminOrders = () => {
   const role = 'administrator';
@@ -25,28 +27,50 @@ const AdminOrders = () => {
     <div>
       <SideBar role={ role } />
       { isLoading ? <div>Loading</div> : (
-        <div>
+        <div className="container-admin-order">
           <h2>Pedidos</h2>
-          { sales.map((sale, index) => (
-            <Link to={ `/admin/orders/${sale.saleId}` } key={ index }>
-              <div
-                data-testid={ `${index}-order-number` }
-              >
-                { `Pedido ${sale.saleId}` }
-              </div>
-              <div
-                data-testid={ `${index}-order-address` }
-              >
-                { `${sale.deliveryAddress}, ${sale.deliveryNumber}` }
-              </div>
-              <span
-                data-testid={ `${index}-order-total-value` }
-              >
-                { `R$ ${sale.totalPrice.replace('.', ',')}` }
-              </span>
-              <span data-testid={ `${index}-order-status` }>{ sale.status }</span>
-            </Link>
-          ))}
+          <Table>
+              <thead>
+                <tr>
+                  <th>Pedido</th>
+                  <th>Endereço</th>
+                  <th>Valor Total</th>
+                  <th>Status</th>
+                  <th> </th>
+                </tr>
+              </thead>
+              <tbody>
+                { sales.map((sale, index) => (
+                    <tr key={ index }>
+                      <td>
+                        <Link
+                          data-testid={ `${index}-order-number` }
+                          to={ `/admin/orders/${sale.saleId}` }
+                          style={{ textDecoration: "none", color: "black" }}
+                        >
+                          { `Pedido ${sale.saleId}` }
+                        </Link>
+                      </td>
+                      <td
+                        data-testid={ `${index}-order-address` }
+                      >
+                        { `${sale.deliveryAddress}, ${sale.deliveryNumber}` }
+                      </td>
+                      <td
+                        data-testid={ `${index}-order-total-value` }
+                      >
+                        { `R$ ${sale.totalPrice.replace('.', ',')}` }
+                      </td>
+                      <td data-testid={ `${index}-order-status` }>{ sale.status }</td>
+                      <td>
+                        <Link to={ `/admin/orders/${sale.saleId}` }>
+                          detalhes
+                        </Link>
+                      </td>
+                    </tr>
+                ))}
+            </tbody>
+          </Table>
         </div>
       )}
     </div>

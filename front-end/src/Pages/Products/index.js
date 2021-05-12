@@ -43,6 +43,11 @@ const Products = () => {
   return (
     <div>
       <TopBar />
+      <Container className="product-cards-container">
+        { isLoading ? <div>Carregando</div> : products.map((product, index) => (
+          <ProductCard product={ product } index={ index } key={ index } />
+        ))}
+      </Container>
       <Link to="/checkout" className="button-link">
         <Button
           className="cart-btn"
@@ -51,18 +56,13 @@ const Products = () => {
           disabled={ totalPrice === 0 }
           data-testid="checkout-bottom-btn"
         >
-          Ver Carrinho
-          <div data-testid="checkout-bottom-btn-value">
-            {totalPrice === 0 ? 'R$ 0,00'
-              : `R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`}
-          </div>
+          <span>Ver Carrinho</span>
+          <span data-testid="checkout-bottom-btn-value">
+            {totalPrice === 0 ? '  R$ 0,00'
+              : `  R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`}
+          </span>
         </Button>
       </Link>
-      <Container className="product-cards-container">
-        { isLoading ? <div>Carregando</div> : products.map((product, index) => (
-          <ProductCard product={ product } index={ index } key={ index } />
-        ))}
-      </Container>
     </div>
   );
 };

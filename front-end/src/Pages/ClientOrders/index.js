@@ -33,7 +33,13 @@ const ClientOrders = () => {
                   style={ { textAlign: 'center' } }
                   data-testid={ `${index}-order-number` }
                 >
-                  <Link key={ id } to={ `/orders/${id}` }>{ `Pedido ${id}` }</Link>
+                  <Link
+                    style={ { textDecoration: 'none', color: 'black'} }
+                    key={ id }
+                    to={ `/orders/${id}` }
+                  >
+                    { `Pedido ${id}` }
+                  </Link>
                 </td>
                 <td data-testid={ `${index}-order-date` }>{ date }</td>
                 <td

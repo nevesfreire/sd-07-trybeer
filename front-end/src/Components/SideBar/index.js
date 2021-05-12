@@ -21,7 +21,7 @@ export default function SideBar({ role }) {
       <Nav
         fixed="left"
         data-testid="side-bar-container"
-        className="side-menu-container flex-column"
+        className="side-menu-container-admin flex-column"
       >
         <Nav.Link data-testid="side-menu-item-orders" href="/admin/orders">
           Pedidos
