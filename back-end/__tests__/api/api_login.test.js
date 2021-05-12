@@ -11,8 +11,6 @@ const connection = mysql.createPool({
   database: 'Trybeer',
 });
 
-module.exports = connection;
-
 // eslint-disable-next-line max-lines-per-function
 describe('POST into login route', () => {
   const USERS = [{
