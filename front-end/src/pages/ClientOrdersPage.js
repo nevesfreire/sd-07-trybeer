@@ -4,7 +4,7 @@ import Orders from '../components/Orders';
 
 function OrdersPage() {
   return (
-    <div>
+    <div className="products-page">
       <MenuTop title="Meus Pedidos" />
       <Orders />
     </div>

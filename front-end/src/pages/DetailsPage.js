@@ -32,23 +32,31 @@ function DetailsPage() {
   const { sale, products } = order;
   console.log(sale.total_price);
   return (
-    <div className="form-page">
+    <div className="form-page checkout-page">
       <MenuTop title="Detalhes de Pedido" />
-      <p data-testid="order-number">
-        Pedido
-        {' '}
-        {` ${sale.id}`}
-      </p>
-      <p data-testid="order-date">{getDate(sale.sale_date)}</p>
-      {products.map((product, index) => (
-        <Details key={ index } item={ product } index={ index } />
-      ))}
-      Total:
-      <p data-testid="order-total-value">
-        R$
-        {' '}
-        {sale.total_price.toString().replace('.', ',')}
-      </p>
+      <div className="cart">
+        <div>
+          <p data-testid="order-number">
+            Pedido
+            {' '}
+            {` ${sale.id}`}
+          </p>
+          <p data-testid="order-date">{getDate(sale.sale_date)}</p>
+        </div>
+        <div className="main-container mt-5">
+          <div className="item-container mb-3">
+            {products.map((product, index) => (
+              <Details key={ index } item={ product } index={ index } />
+            ))}
+          </div>
+          Total:
+          <p data-testid="order-total-value">
+            R$
+            {' '}
+            {sale.total_price.toString().replace('.', ',')}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

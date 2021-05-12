@@ -14,11 +14,11 @@
 }
 
 .products {
+  margin: 0 3%; 
   margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin-right: 2em;
+  justify-content: space-between; 
 }
 
 .card {
@@ -28,6 +28,11 @@
   display: flex;
   align-items: center;
   padding: 10px;
+}
+
+.card, .card:hover, .card:focus, .card:active {
+  text-decoration: none;
+  color: #20181A;
 }
 
 img {

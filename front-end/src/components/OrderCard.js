@@ -21,28 +21,34 @@ function OrderCard({ order, isAdmin, index }) {
 
   return (
     <Link
+      className="card"
       to={ `${adminRoute}/orders/${id}` }
       data-testid={ `${index}-order-card-container` }
     >
-      <div data-testid={ `${index}-order-number` }>{ `Pedido ${id}` }</div>
-      <div
-        hidden={ !isAdmin }
-        data-testid={ `${index}-order-address` }
-      >
-        { `${deliveryAddress}, ${deliveryNumber}` }
+      <div className="card-body">
+        <div className="card-title" data-testid={ `${index}-order-number` }>{ `Pedido ${id}` }</div>
+        <div
+          className="card-text"
+          hidden={ !isAdmin }
+          data-testid={ `${index}-order-address` }
+        >
+          { `${deliveryAddress}, ${deliveryNumber}` }
+        </div>
+        <div
+          className="card-text"
+          hidden={ isAdmin }
+          data-testid={ `${index}-order-date` }
+        >
+          { getDate(saleDate) }
+        </div>
+        <div
+          className="card-text"
+          data-testid={ `${index}-order-total-value` }
+        >
+          { `R$ ${totalPrice.replace('.', ',')}` }
+        </div>
+        <div className="card-text" hidden={ !isAdmin } data-testid={ `${index}-order-status` }>{ status }</div>
       </div>
-      <div
-        hidden={ isAdmin }
-        data-testid={ `${index}-order-date` }
-      >
-        { getDate(saleDate) }
-      </div>
-      <div
-        data-testid={ `${index}-order-total-value` }
-      >
-        { `R$ ${totalPrice.replace('.', ',')}` }
-      </div>
-      <div hidden={ !isAdmin } data-testid={ `${index}-order-status` }>{ status }</div>
     </Link>
   );
 }

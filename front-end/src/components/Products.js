@@ -4,7 +4,6 @@ import { fetchProductList } from '../services/api';
 
 function Products() {
   const zero = 0;
-  const two = 2;
   const history = useHistory();
   const [productList, setProductList] = useState([]);
   const [valorTotal, setValorTotal] = useState('0,00');
@@ -44,7 +43,6 @@ function Products() {
   const generateProducts = () => (
     <div
       className="product-container"
-      style={ { marginLeft: `${two}em` } }
     >
       <div className="products">
       { productList.length === zero

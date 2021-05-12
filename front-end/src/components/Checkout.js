@@ -6,7 +6,6 @@ import Details from './Details';
 function Checkout() {
   const twoSeconds = 2000;
   const zero = 0;
-  const two = 2;
   const history = useHistory();
   const [productList, setProductList] = useState([]);
   const [number, setNumber] = useState('');
@@ -157,7 +156,7 @@ function Checkout() {
   }, [generateTotal]);
 
   return (
-    <div className="cart" style={ { marginLeft: `${two}em` } }>
+    <div className="cart">
       <h2>Produtos</h2>
       {generateProducts()}
     </div>

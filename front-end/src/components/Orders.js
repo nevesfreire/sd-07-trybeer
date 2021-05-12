@@ -25,7 +25,7 @@ function Orders() {
   }, []);
 
   return (
-    <div>
+    <div className="products">
       {
         (orders.length)
           ? orders
