@@ -1,5 +1,5 @@
 const express = require('express');
-const { login, user, image, product, sale } = require('./routes');
+const { login, user, product, sale } = require('./routes');
 
 require('dotenv').config();
 
@@ -8,9 +8,11 @@ app.use(express.json());
 
 const PORT = 3001;
 
+app.use('/images', express.static(`${__dirname}/images`));
+
 app.use(login);
 app.use(user);
-app.use(image);
+// app.use(image);
 app.use(product);
 app.use(sale);
 
