@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+import { Redirect } from 'react-router-dom';
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-  const [data, setData] = useState('');
+  const [resul, setResult] = useState();
+  const [logado, setLogado] = useState(false);
 
   const verifyData = () => {
     const six = 6;
@@ -13,8 +16,22 @@ function Login() {
     else setIsDisable(true);
   };
 
+  const saveInLocalStorage = (res) => {
+    localStorage.setItem('user', JSON.stringify(
+      {
+        name: res.user.name,
+        email: res.user.email,
+        token: res.token,
+        role: res.user.role,
+      },
+    ));
+
+    setResult(res);
+
+    if (res.token) setLogado(true);
+  };
+
   const handleSubmit = async () => {
-    console.log({email, password})
     fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
@@ -23,8 +40,7 @@ function Login() {
       body: JSON.stringify({ email, password }),
     }).then((response) => response.json())
       .then((data) => {
-        setData(data)
-        console.log(data)
+        saveInLocalStorage(data);
       });
   };
 
@@ -34,30 +50,39 @@ function Login() {
 
   return (
     <div>
-      <input
-        type="email"
-        data-testid="email-input"
-        name="email"
-        autoComplete="off"
-        className="inputLogin"
-        value={ email }
-        onChange={ ({ target }) => setEmail(target.value) }
-      />
-      <input
-        type="password"
-        data-testid="password-input"
-        name="password"
-        value={ password }
-        onChange={ ({ target }) => setPassword(target.value) }
-      />
+      <label htmlFor="email-input">
+        Email
+        <input
+          type="email"
+          data-testid="email-input"
+          name="email"
+          autoComplete="off"
+          className="inputLogin"
+          value={ email }
+          onChange={ ({ target }) => setEmail(target.value) }
+        />
+      </label>
+      <label htmlFor="password-input">
+        Senha
+        <input
+          type="password"
+          data-testid="password-input"
+          name="password"
+          value={ password }
+          onChange={ ({ target }) => setPassword(target.value) }
+        />
+      </label>
       <button
         type="button"
         data-testid="signin-btn"
         disabled={ isDisable }
-        onClick={ handleSubmit } // tirei () do handleSubmit 
+        onClick={ handleSubmit }
       >
         Entrar
       </button>
+      { logado && resul.user.role === 'client' && <Redirect to="/products" /> }
+      { logado && resul.user.role === 'administrator' && <Redirect to="/admin/orders" /> }
+
       <a href="/register" data-testid="no-account-btn">Ainda não tenho conta</a>
     </div>
   );

@@ -1,9 +1,11 @@
 import React from 'react';
+import Header from '../../Components/Header';
 
 function AdmProfile() {
   return (
     <div>
-      <h1>Aqui é o perfil do ADM</h1>
+      <h1>ADM Profile</h1>
+      <Header />
     </div>
   );
 }
