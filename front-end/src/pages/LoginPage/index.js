@@ -63,7 +63,7 @@ function LoginPage() {
               onChange={ ({ target }) => setPassword(target.value) }
             />
           </label>
-          <p>{messageError}</p>
+          <p className="error">{messageError}</p>
           <button
             type="submit"
             data-testid="signin-btn"

@@ -104,7 +104,7 @@ function RegisterPage() {
             />
             Quero vender
           </label>
-          <p>{ error }</p>
+          <p className="error">{ error }</p>
           <button type="submit" data-testid="signup-btn" disabled={ !isValid }>
             Cadastrar
           </button>

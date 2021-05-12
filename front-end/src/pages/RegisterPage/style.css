@@ -5,6 +5,32 @@
   width: 100%;
 }
 
+.register-wrapper > .form-wrapper {
+  box-shadow: 30px 0 15px var(--box-shadow);
+}
+
+.register-wrapper > .form-wrapper::before {
+  background: var(--primary-color);
+  border-radius: 50%;
+  content: '';
+  height: 50px;
+  position: absolute;
+  right: 103px;
+  top: 33px;
+  width: 50px;
+}
+
+.register-wrapper > .form-wrapper::after {
+  background: var(--primary-color);
+  border-radius: 50%;
+  content: '';
+  height: 100px;
+  position: absolute;
+  right: -35px;
+  top: -29px;
+  width: 100px;
+}
+
 .form-container > .checkbox {
   align-items: center;
   cursor: pointer;
