@@ -14,20 +14,18 @@ const getSaleById = async (id) => {
 
 const createCheckout = async (ObjParams) => {
   const { userId, totalPrice, deliveryAddress, deliveryNumber, cart } = ObjParams;
-
-  console.log('totalPrice', totalPrice);
   const [checkout] = await connection.execute(
     'INSERT INTO sales'
     + '(user_id, total_price, delivery_address, delivery_number, sale_date, status)'
     + 'VALUES (?, ?, ?, ?, now(), "Pendente")',
     [userId, totalPrice, deliveryAddress, deliveryNumber],
   );
-  for (let i = 0; i < cart.length; i += 1) {
-    connection.execute(
-      'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
-      [checkout.insertId, cart[i].product_id, cart[i].quantity],
-    );
-  }
+    cart.map(sale => {
+      connection.execute(
+        'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+        [checkout.insertId, sale[0], sale[2]],
+      );
+    })
   return { message: 'Pedido Enviado', checkout };
 };
 
