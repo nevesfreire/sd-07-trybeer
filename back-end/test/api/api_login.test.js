@@ -1,17 +1,8 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const mysql = require('mysql2/promise');
 const frisby = require('frisby');
+const connection = require('./tstHelper/connection')
 
-const connection = mysql.createPool({
-  // eslint-disable-next-line no-irregular-whitespace
-  host: process.env.HOSTNAME || '127.0.0.1',
-  user: process.env.MYSQL_USER || 'root', 
-  password: process.env.MYSQL_PASSWORD || '12345',
-  database: 'Trybeer',
-});
-
-// eslint-disable-next-line max-lines-per-function
 describe('POST into login route', () => {
   const USERS = [{
     name: 'Pedro Risso',

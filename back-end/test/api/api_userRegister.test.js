@@ -1,31 +1,21 @@
 require('dotenv').config();
-const mysql = require('mysql2/promise');
+const connection = require('./tstHelper/connection');
 const frisby = require('frisby');
 
-const connection = mysql.createPool({
-  host: process.env.HOSTNAME || '127.0.0.1',
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || '12345',
-  database: 'Trybeer',
-});
-
-// eslint-disable-next-line max-lines-per-function
 describe('Check register POST route', () => {
   const USERS = [{
     name: 'Pedro Risso',
     email: 'prisso@gmail.com',
     password: '1234567',
-    role: 'administrator',
+    isSeller: true,
   }, {
     name: 'Risso',
     email: 'risso@domain.com',
     password: '123test',
-    role: 'client',
+    isSeller: false,
   }];
 
-  const sectret = process.env.SECRET || '12345';
-
-  const URL = 'http://localhost:3001/login';
+  const URL = 'http://localhost:3001/register';
 
   beforeEach(async (done) => {
     await connection.execute('DELETE FROM users');
@@ -35,22 +25,26 @@ describe('Check register POST route', () => {
   it('Check user registration', async () => {
     await frisby
       .post(URL, {
-        email: USERS[0].email,
-        name: USERS[0].name,
-        password: USERS[0].password,
-        role: USERS[0].role,
+        email: USERS[1].email,
+        name: USERS[1].name,
+        password: USERS[1].password,
+        isSeller: USERS[1].isSeller,
       })
-      .expect('status', 200);
+      .expect('status', 201);
   });
   it('Check user re-registration attempt', async () => {
     await frisby
       .post(URL, {
-        email: USERS[0].email,
-        password: USERS[0].password,
+        email: USERS[1].email,
+        name: USERS[1].name,
+        password: USERS[1].password,
+        isSeller: USERS[1].isSeller,
       });
     await frisby
       .post(URL, {
-        email: USERS[0].email,
+        email: USERS[1].email,email: USERS[1].email,
+        name: USERS[1].name,
+        isSeller: USERS[1].isSeller,
         password: 'ranD0mp@$$worD',
       })
       .expect('status', 409);
@@ -58,9 +52,11 @@ describe('Check register POST route', () => {
   it('Check user registration', async () => {
     await frisby
       .post(URL, {
-        email: USERS[0].email,
-        password: USERS[0].password,
+        email: USERS[1].email,
+        name: USERS[1].name,
+        password: USERS[1].password,
+        isSeller: USERS[1].isSeller,
       })
-      .expect('status', 200);
+      .expect('status', 201);
   });
 });
