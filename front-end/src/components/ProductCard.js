@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -6,19 +6,26 @@ import { Button, Card, Media, Image, Heading } from 'react-bulma-components';
 import TrybeerContext from '../store/context';
 
 function ProductCard({ item, index }) {
-  const { addProductsToCart } = useContext(TrybeerContext);
+  const cart = useContext(TrybeerContext);
   const { name, urlImage } = item;
   let { price } = item;
   price = price.split('.').join(',');
-  const [qtt, setQtt] = useState(0);
 
-  const sumQtt = (element) => {
-    setQtt(qtt + 1);
-    addProductsToCart(element, { qtt: qtt + 1 });
+  const verifyQuantity = cart.cart && cart.cart[item.id]
+    ? cart.cart[item.id].quantity : 0;
+
+  const add = () => {
+    cart.addToCart(item);
   };
+  /*   const sumQtt = (element) => {
+      setQtt(qtt + 1);
+      addProductsToCart(element, { qtt: qtt + 1 });
+    }; */
   const subQtt = () => {
-    const zero = 0;
-    if (qtt > zero) setQtt(qtt - 1);
+    // const zero = 0;
+    // if (qtt > zero) {
+    cart.removeToCart(item);
+    // }
   };
 
   return (
@@ -38,23 +45,23 @@ function ProductCard({ item, index }) {
               data-testid={ `${index}-product-name` }
               size={ 4 }
             >
-              { name }
+              {name}
             </Heading>
             <Heading subtitle size={ 6 } data-testid={ `${index}-product-price` }>
-              { `R$ ${price}` }
+              {`R$ ${price}`}
             </Heading>
           </Media.Item>
         </Card.Content>
         <Button
           data-testid={ `${index}-product-plus` }
-          onClick={ () => sumQtt(item) }
+          onClick={ () => add() }
         >
           <FontAwesomeIcon icon={ faPlus } fixedWidth />
         </Button>
         <div
           data-testid={ `${index}-product-qtd` }
         >
-          { qtt }
+          {verifyQuantity}
         </div>
         <Button
           data-testid={ `${index}-product-minus` }
@@ -72,6 +79,7 @@ ProductCard.propTypes = {
     name: PropTypes.string,
     price: PropTypes.string,
     urlImage: PropTypes.string,
+    id: PropTypes.number,
   }).isRequired,
   index: PropTypes.number.isRequired,
 };
