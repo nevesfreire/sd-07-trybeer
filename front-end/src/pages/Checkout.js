@@ -32,7 +32,7 @@ const checkoutButton = async () => {
       quantity: kart[2],
     }]
   })
-  const msg = checkout(
+  const msg = await checkout(
     userId,
     totalPrice,
     deliveryAddress,
