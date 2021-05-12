@@ -22,18 +22,13 @@ const nameEdi = async (name, email) => {
 
 const getProducts = async () => ClientModel.allProducts();
 
-const savSale = async (userId,
-  totalPrice,
-  deliveryAddress,
-  deliveryNumber,
-  products) => ClientModel.saveSales(
-    userId,
+const savSale = async (infoUser, totalPrice, products) => ClientModel.saveSales(
+    infoUser,
     totalPrice,
-    deliveryAddress,
-    deliveryNumber,
-    products);
+    products,
+);
 
-const salesAll = async (id) => ClientModel.salesA( id );
+const salesAll = async (id) => ClientModel.salesA(id);
 
 module.exports = {
   resLogin,

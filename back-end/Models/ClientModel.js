@@ -9,11 +9,12 @@ const getEmailUser = async (email, password) => {
 
   console.log(data.length);
   if (!data.length) return null;
+
   return {
     name: data[0].name,
     email: data[0].email,
     role: data[0].role,
-    id: data[0].id
+    id: data[0].id,
   };
 };
 
@@ -73,7 +74,7 @@ const allProducts = async () => {
   return aProducts;
 };
 
-async function saveSales(userId, totalPrice, deliveryAddress, deliveryNumber, products) {
+async function saveSales(infoUser, totalPrice, products) {
   const saleCad = await connect
   .execute(`
   INSERT INTO sales
@@ -82,13 +83,22 @@ async function saveSales(userId, totalPrice, deliveryAddress, deliveryNumber, pr
     delivery_address,
     delivery_number,
     sale_date, status) VALUES
-    (?, ?, ?, ?, now(), 'pendente')`, [userId, totalPrice, deliveryAddress, deliveryNumber]);
+    (?, ?, ?, ?, now(), 'pendente')`, [infoUser.userId,
+      totalPrice,
+      infoUser.deliveryAddress,
+      infoUser.deliveryNumber]);
 
   const saleId = saleCad[0].insertId;
   const result = await connect
   .query('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES ?',
     [products.map((product) => [saleId, product.id, product.quantity])]);
-  return (result, 'deu tudo certo :D');
+
+    const obj = {
+      saleId: saleId,
+      products: products,
+      userId: infoUser.userId,
+    }
+  return (obj);
 }
 
 const salesA = async (id) => {
