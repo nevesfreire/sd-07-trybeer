@@ -4,6 +4,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { getCartItems, getCartTotalPrice } from '../../../utils/localStorage';
 import CartList from '../../../components/cartList';
+import moment from 'moment';
 
 import TopMenu from '../../../commons/simple/TopMenu';
 
@@ -33,35 +34,35 @@ function Checkout() {
   };
   const submitOrder = async () => {
     const productlist = cart.map((cartItem) => ({
-      name: cartItem.name,
+      productName: cartItem.name,
       quantity: cartItem.quantity,
     }));
     const token = localStorage.getItem('token');
     const tokenPayload = jwtDecode(token);
-    const today = new Date();
+    const today = moment().format('YYYY-MM-DD h:mm:ss');
     const order = {
       email: tokenPayload.email,
       price: totalCartPrice,
       address,
       deliveryNumber: number,
-      saleDate: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
+      saleDate: today,
       salesStatus: 'Pendente',
       products: productlist,
     };
-    const request = await axios.post('localhost:3000/checkout', order);
+    console.log(order)
+    const request = await axios.post('http://localhost:3001/checkout', order);
     const CREATED = 201;
     if (request.status === CREATED) {
       setRequestSuccess(true);
-      localStorage.setItem('cart', []);
+      localStorage.setItem('cart', '[]');
     }
     setIsRedirected(true);
   };
-  // const redirect = () => {
-  //   setTimeout(
-  //     history.push('/products'),
-  //     3000
-  //   );
-  // }
+  const redirectTimeOut = () => {
+    setTimeout(() => {
+      history.push('/products');
+    }, 3000);
+  };
   useEffect(() => {
     const getToken = () => {
       const token = localStorage.getItem('token');
@@ -72,15 +73,6 @@ function Checkout() {
     setTotalCartPrice(getCartTotalPrice());
   }, [history]);
 
-  // if(requestSuccess) {
-  //   return (
-  //     <>
-  //       <h1>Compra realizada com sucesso!</h1>
-  //       {redirect()}
-  //     </>
-  //   );
-
-  // }
   return (
     <>
       <TopMenu title="Finalizar Pedido" />
@@ -123,7 +115,7 @@ function Checkout() {
             Finalizar Pedido
           </button>
         </>}
-      { isRedirected && <Redirect to="/products" /> }
+      { isRedirected && redirectTimeOut() }
     </>
   );
 }
