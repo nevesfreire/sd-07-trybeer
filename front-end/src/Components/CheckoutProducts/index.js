@@ -87,6 +87,4 @@ const CheckoutProducts = () => {
   );
 };
 
-// Checkout.propTypes = {};
-
 export default CheckoutProducts;

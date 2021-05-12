@@ -18,7 +18,7 @@ const AdminProfile = () => {
   return (
     <div>
       <SideBar role={ role } />
-      <Container style={{ marginLeft: '26%'}}>
+      <Container style={ { marginLeft: '26%' } }>
         <h1>Perfil</h1>
         <p data-testid="profile-name">{`Nome: ${user.name}`}</p>
         <p data-testid="profile-email">{`Email: ${user.email}`}</p>

@@ -3,7 +3,7 @@ import { Button, Table } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import SideBar from '../../Components/SideBar';
 import { getSaleById, updateSale } from '../../servicesAPI/api';
-import "./index.css";
+import './index.css';
 
 const AdminOrderDetail = () => {
   const role = 'administrator';
@@ -51,7 +51,8 @@ const AdminOrderDetail = () => {
             </thead>
             <tbody>
               { sale.products.map(({ price, quantity, name }, index) => {
-                const total = (Math.round((Number(price) * Number(quantity)) * 100)) / 100;
+                const total = (Math
+                  .round((Number(price) * Number(quantity)) * 100)) / 100;
                 return (
                   <tr key={ index }>
                     <td data-testid={ `${index}-product-qtd` }>{ quantity }</td>
@@ -73,7 +74,7 @@ const AdminOrderDetail = () => {
           </Table>
           <div
             data-testid="order-total-value"
-            style={{ fontWeight: "bold", position: "fixed", right: "20px" }}
+            style={ { fontWeight: 'bold', position: 'fixed', right: '20px' } }
           >
             { `Total: R$ ${sale.totalPrice.replace('.', ',')}` }
           </div>

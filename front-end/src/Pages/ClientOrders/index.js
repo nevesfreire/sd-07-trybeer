@@ -34,7 +34,7 @@ const ClientOrders = () => {
                   data-testid={ `${index}-order-number` }
                 >
                   <Link
-                    style={ { textDecoration: 'none', color: 'black'} }
+                    style={ { textDecoration: 'none', color: 'black' } }
                     key={ id }
                     to={ `/orders/${id}` }
                   >
