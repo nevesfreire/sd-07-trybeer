@@ -12,7 +12,7 @@ import OrdersDetail from './pages/Client/OrdersDetail';
 import Checkout from './pages/Client/Checkout';
 import AdminProfile from './pages/Admin/Profile';
 import AdminOrders from './pages/Admin/AdminOrders';
-import AdminDetailOrder from './components/AdminDetailOrder';
+import AdminDetailOrder from './pages/Admin/OrdersDetail';
 
 const App = () => (
   <BrowserRouter>
