@@ -1,13 +1,17 @@
 import Login from './login';
 import Register from './register';
-import ProfileClient from './profileClient';
 import Orders from './orders';
-import Product from './products';
+import ProfileClient from './profileClient';
+import Products from './products';
+import AdminOrders from './adminOrders';
+import ProfileAdmin from './profileAdmin';
 
 export {
   Login,
   Register,
-  ProfileClient,
   Orders,
-  Product,
+  ProfileClient,
+  Products,
+  AdminOrders,
+  ProfileAdmin,
 };
