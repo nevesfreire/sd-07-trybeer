@@ -4,8 +4,9 @@ const {
   nameEdi,
   getProducts,
   savSale,
+  salesAll,
 } = require('../Services/ClienteServices');
-const { error1 } = require('../error/index')
+const { error1 } = require('../error/index');
 
 const login = async (req, res) => {
   const resOK = 200;
@@ -73,7 +74,20 @@ const saleSave = async (req, res) => {
       message: err.message,
     });
   }
+};
 
+const sales = async (req, res) => {
+  const resOK = 200;
+  const { id } = req.body;
+
+  try {
+    const allSales = await salesAll(id);
+    res.status(resOK).json(allSales);
+  } catch (err) {
+    res.status(err.code).json({
+      message: err.message,
+    });
+  }
 };
 
 module.exports = {
@@ -82,4 +96,5 @@ module.exports = {
   updateUserName,
   getAllProducts,
   saleSave,
+  sales,
 };
