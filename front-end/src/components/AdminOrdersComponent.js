@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Segment, Sidebar } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { getUser } from '../helpers/localStorageHelper';
 import { getOrders } from '../helpers/apiHelper';
 
@@ -21,23 +21,27 @@ function AdminOrdersComponent() {
   }, []);
 
   const renderOrderList = () => orders.map((order, index) => {
-    const { id, delivery_address, delivery_number, total_price, status } = order;
+    const {
+      id,
+      delivery_address: deliveryAddress,
+      delivery_number: deliveryNumber,
+      total_price: totalPrice,
+      status,
+    } = order;
     return (
-      <div key={ id }>
-        <p data-testid={ `${index}-order-number` }>
-          Pedido {id}
-        </p>
-        <p data-testid={ `${index}-order-address` }>
-          {`${delivery_address}, ${delivery_number}`}
-        </p>
-        <p data-testid={ `${index}-order-total-value` }>
-          R$
-          {' '}
-          {total_price.replace('.', ',')}
-        </p>
-        <p data-testid={ `${index}-order-status` }>{status}</p>
-        <br />
-      </div>
+      <Link to={ `/admin/orders/${id}` } key={ index }>
+        <div>
+          <p data-testid={ `${index}-order-number` }>{`Pedido ${id}`}</p>
+          <p data-testid={ `${index}-order-address` }>
+            {`${deliveryAddress}, ${deliveryNumber}`}
+          </p>
+          <p data-testid={ `${index}-order-total-value` }>
+            {`R$ ${totalPrice.replace('.', ',')}`}
+          </p>
+          <p data-testid={ `${index}-order-status` }>{status.replace('p', 'P')}</p>
+          <br />
+        </div>
+      </Link>
     );
   });
 
