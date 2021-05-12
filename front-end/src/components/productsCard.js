@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import BeerContext from '../context/beerContext';
 import ProductsButtons from './productsButtons';
 import { getCartQuantity } from '../utils/localStorage';
 
