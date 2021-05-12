@@ -5,9 +5,9 @@ const {
   nameEdi,
   getProducts,
   savSale,
+  salesAll,
 } = require('../Services/ClienteServices');
-const { error1 } = require('../error/index')
-
+const { error1 } = require('../error/index');
 
 const login = async (req, res) => {
   const resOK = 200;
@@ -62,22 +62,36 @@ const getAllProducts = async (req, res) => {
 
 const saleSave = async (req, res) => {
   const resOK = 200;
-  const { userId,
+  const { infoUser, totalPrice, products } = req.body;
+  /* const { userId,
     totalPrice,
     deliveryAddress,
     deliveryNumber,
     products,
-  } = req.body;
+  } = req.body; */
 
   try {
-    const cadSale = await savSale(userId, totalPrice, deliveryAddress, deliveryNumber, products);
+    const cadSale = await savSale(infoUser, totalPrice, products);
     res.status(resOK).json(cadSale);
   } catch (err) {
     res.status(err.code).json({
       message: err.message,
     });
   }
+};
 
+const sales = async (req, res) => {
+  const resOK = 200;
+  const { id } = req.body;
+
+  try {
+    const allSales = await salesAll(id);
+    res.status(resOK).json(allSales);
+  } catch (err) {
+    res.status(err.code).json({
+      message: err.message,
+    });
+  }
 };
 
 module.exports = {
@@ -86,4 +100,5 @@ module.exports = {
   updateUserName,
   getAllProducts,
   saleSave,
+  sales,
 };

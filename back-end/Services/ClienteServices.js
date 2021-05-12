@@ -8,12 +8,11 @@ const resLogin = async (email, password) => {
 };
 
 const cadUser = async (newName, newEmail, newPassword, newRole) => {
-  
   const userOK = await ClientModel.getEmailUser(newEmail, newPassword);
   console.log(userOK);
-  if(userOK) return error3.message;
+  if (userOK) return error3.message;
   return ClientModel.newUser(newName, newEmail, newPassword, newRole);
-}
+};
 
 const nameEdi = async (name, email) => {
   const userLocalizado = await ClientModel.getUserForName(name, email);
@@ -21,13 +20,15 @@ const nameEdi = async (name, email) => {
   return ClientModel.editName(name, email);
 };
 
-const getProducts = async () => {
-  return ClientModel.allProducts();
-}
+const getProducts = async () => ClientModel.allProducts();
 
-const savSale = async (userId, totalPrice, deliveryAddress, deliveryNumber, products) => {
-  return ClientModel.saveSales(userId, totalPrice, deliveryAddress, deliveryNumber, products);
-};
+const savSale = async (infoUser, totalPrice, products) => ClientModel.saveSales(
+    infoUser,
+    totalPrice,
+    products,
+);
+
+const salesAll = async (id) => ClientModel.salesA(id);
 
 module.exports = {
   resLogin,
@@ -35,4 +36,5 @@ module.exports = {
   nameEdi,
   getProducts,
   savSale,
+  salesAll,
 };

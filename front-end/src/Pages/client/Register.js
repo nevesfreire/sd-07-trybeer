@@ -7,29 +7,28 @@ function Register() {
   const [newPassword, setNewPassword] = useState('');
   const [newRole, setNewRole] = useState('client');
   const [isDisable, setIsDisable] = useState(true);
-  const [newUser, setNewUser] = useState('')
   const [forClient, setForClient] = useState(false);
   const [forAdm, setForAdm] = useState(false);
-  const [userCad, setUserCad] = useState(false)
+  const [userCad, setUserCad] = useState(false);
 
   const verifyData = () => {
     const six = 6;
     const doze = 12;
     const regex = /\S+@\S+\.\S+/;
     const regex2 = /^[a-z\s]+$/i;
-    if (regex2.test(newName) &&
-      newName.length >= doze &&
-      regex.test(newEmail) &&
-      newPassword.length >= six ) setIsDisable(false);
+    if (regex2.test(newName)
+      && newName.length >= doze
+      && regex.test(newEmail)
+      && newPassword.length >= six) setIsDisable(false);
     else setIsDisable(true);
   };
 
   const saveInLocalStorage = (data) => {
     window.localStorage.setItem('cadUser', data.newRole);
     const role = localStorage.getItem('cadUser');
-    if (role === "client") setForClient(true);
+    if (role === 'client') setForClient(true);
 
-    if(role === "administrator") setForAdm(true);
+    if (role === 'administrator') setForAdm(true);
   };
 
   const handleSubmit = async () => {
@@ -42,11 +41,11 @@ function Register() {
       body: JSON.stringify({ newName, newEmail, newPassword, newRole }),
     }).then((response) => response.json())
       .then((data) => {
-        if(data === err) {
-        return setUserCad(true);
+        if (data === err) {
+          return setUserCad(true);
         }
 
-        saveInLocalStorage(data)
+        saveInLocalStorage(data);
       });
   };
 
@@ -61,48 +60,49 @@ function Register() {
       >
         Nome
         <input
-        type="text"
-        data-testid="signup-name"
-        name="name"
-        autocomplete="off"
-        className="inputRegister"
-        value={ newName }
-        min="12"
-        onChange={ ({ target }) => setNewName(target.value) }
-      />
+          type="text"
+          data-testid="signup-name"
+          name="name"
+          autoComplete="off"
+          className="inputRegister"
+          value={ newName }
+          min="12"
+          onChange={ ({ target }) => setNewName(target.value) }
+        />
       </label>
       <label
         htmlFor="signup-email"
       >
         Email
 
-      <input
-        type="email"
-        data-testid="signup-email"
-        name="email"
-        autocomplete="off"
-        className="inputRegister"
-        value={ newEmail }
-        onChange={ ({ target }) => setNewEmail(target.value) }
-      />
+        <input
+          type="email"
+          data-testid="signup-email"
+          name="email"
+          autoComplete="off"
+          className="inputRegister"
+          value={ newEmail }
+          onChange={ ({ target }) => setNewEmail(target.value) }
+        />
       </label>
       <label
         htmlFor="signup-password"
       >
         Senha
-      <input
-        type="password"
-        data-testid="signup-password"
-        name="password"
-        value={ newPassword }
-        onChange={ ({ target }) => setNewPassword(target.value) }
-      />
+        <input
+          type="password"
+          data-testid="signup-password"
+          name="password"
+          value={ newPassword }
+          onChange={ ({ target }) => setNewPassword(target.value) }
+        />
       </label>
       <label
-        onClick={ () => setNewRole('administrator')}
-        htmlFor="signup-seller">
+        htmlFor="signup-seller"
+      >
         Quero vender
         <input
+          onClick={ () => setNewRole('administrator') }
           type="checkbox"
           data-testid="signup-seller"
           name="seller"

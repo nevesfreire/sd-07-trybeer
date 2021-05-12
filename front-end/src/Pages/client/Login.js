@@ -2,15 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import { Redirect } from 'react-router-dom';
 
-
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [data, setData] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-
+  const [resul, setResult] = useState();
   const [logado, setLogado] = useState(false);
-
 
   const verifyData = () => {
     const six = 6;
@@ -19,18 +16,19 @@ function Login() {
     else setIsDisable(true);
   };
 
-
-  const saveInLocalStorage = (data) => {
+  const saveInLocalStorage = (res) => {
     localStorage.setItem('user', JSON.stringify(
       {
-        name: data.user.name,
-        email: data.user.email,
-        token: data.token,
-        role: data.user.role,
+        name: res.user.name,
+        email: res.user.email,
+        token: res.token,
+        role: res.user.role,
       },
     ));
 
-    if (data.token) setLogado(true);
+    setResult(res);
+
+    if (res.token) setLogado(true);
   };
 
   const handleSubmit = async () => {
@@ -42,9 +40,7 @@ function Login() {
       body: JSON.stringify({ email, password }),
     }).then((response) => response.json())
       .then((data) => {
-        setData(data);
         saveInLocalStorage(data);
-
       });
   };
 
@@ -84,8 +80,8 @@ function Login() {
       >
         Entrar
       </button>
-      { logado && data.user.role === 'client' && <Redirect to="/products" /> }
-      { logado && data.user.role === 'administrator' && <Redirect to="/admin/orders" /> }
+      { logado && resul.user.role === 'client' && <Redirect to="/products" /> }
+      { logado && resul.user.role === 'administrator' && <Redirect to="/admin/orders" /> }
 
       <a href="/register" data-testid="no-account-btn">Ainda não tenho conta</a>
     </div>
