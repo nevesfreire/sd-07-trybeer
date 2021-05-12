@@ -26,7 +26,26 @@ const getImagesProducts = (req, res) => {
   }  
 };
 
+const getById = async (request, response) => {
+  try {
+    const { id } = request.params;
+    const product = await productsModel.getById(id);
+
+    if (!product) {
+      return response.status(StatusCodes.NOT_FOUND)
+        .json({ message: 'nenhum produto encontrado' });
+    }
+    response.status(StatusCodes.OK).json(product);
+  } catch (error) {
+    console.error(error);
+    return response.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+};
+
+
 module.exports = { 
   requireProducts,
   getImagesProducts,
+  getById,
 };

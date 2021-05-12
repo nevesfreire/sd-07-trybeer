@@ -64,12 +64,33 @@ function useFetch() {
     return responseAPI;
   }
 
+  async function postSales(status, user, address, total, localStorageSalved) {
+    const result = await fetch('http://localhost:3001/sales', {
+      method: 'POST',
+      headers: {
+        Authorization: user.token, 
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        totalPrice: total,
+        deliveryAddress: address.deliveryAddress,
+        deliveryNumber: address.deliveryNumber,
+        status: status,
+        listproducts: localStorageSalved,
+      }),
+    });
+    const data = await result.json();
+    return data;
+  }
+
   return (
     {
       login,
       updateProfileName,
       register,
       getProducts,
+      postSales
     }
   );
 }
