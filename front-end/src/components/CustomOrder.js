@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Grid } from 'semantic-ui-react';
+import { fetchOrderDetails } from '../service/order';
 
 
 export default function CustomOrder({ index, beer }) {
+    fetchOrderDetails(beer.id)
   return (
     <Link to={`/orders/${beer.id}`}>
     <Grid>

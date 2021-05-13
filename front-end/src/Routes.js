@@ -8,6 +8,7 @@ import Checkout from './pages/Checkout';
 import Admin from './pages/Admin';
 import AdminProfile from './pages/AdminProfile';
 import Order from './pages/Order';
+import Details from './pages/Details';
 
 const isAuthenticated = () => localStorage.getItem('token');
 
@@ -37,7 +38,7 @@ const Routes = () => (
     <PrivateRouter exact path="/products" component={ Products } />
     <PrivateRouter exact path="/checkout" component={ Checkout }/>
     <PrivateRouter exact path="/orders" component={ Order }/>
-    <PrivateRouter exact path="/orders/:" />
+    <PrivateRouter exact path="/orders/:id" component={ Details }/>
     <Route exact path="/admin/orders" component={ Admin }/>
     <Route exact path="/admin/profile" component={ AdminProfile }/>
   </Switch>

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import CustomCheckout from '../components/CustomCheckout';
 import CentralContext from '../context/Context';
@@ -12,6 +12,7 @@ function Checkout() {
   const { totalKart, setTotalKart } = useContext(CentralContext);
   const [ deliveryAddress , setDeliveryAddress ] = useState('');
   const [ deliveryNumber, setDeliveryNumber] = useState('');
+  const history = useHistory();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
   const [finish, setFinish] = useState(false)
 
@@ -38,9 +39,9 @@ const checkoutButton = async () => {
   sucess()
   fetchOrderById()
   setTimeout(function(){
-    setFinish(false)    
-    return < Redirect to='/products'/>
-  }, 1000);
+    return history.push('/products')
+  }, 2000);
+  
 }
 
 const sucess = () => {

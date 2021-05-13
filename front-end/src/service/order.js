@@ -44,8 +44,8 @@ async function fetchOrderById() {
     }
   }
 
-  async function fetchOrderDetails() {
-    const { id }  = getOrderById()
+  async function fetchOrderDetails(id) {
+    //const { id }  = getOrderById()
     const requestProductsUrl = `http://localhost:3001/orders/details/${id}`;
   
     const requestHeader = {
