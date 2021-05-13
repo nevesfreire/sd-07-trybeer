@@ -30,6 +30,11 @@ const getSalesById = async (userId) => {
   return result;
 };
 
+const getDetailsById = async (saleId) => {
+  const [[result]] = await connection.execute('SELECT * FROM sales WHERE id = ?', [saleId]);
+  return result;
+};
+
 const getProductsBySaleId = async (saleId) => {
   const [result] = await connection.execute(`SELECT sales_products.quantity as qtd, 
   products.name as nome, 
@@ -51,4 +56,5 @@ module.exports = {
   getSalesById,
   getProductsBySaleId,
   updateStatusBySaleId,
+  getDetailsById,
 };
