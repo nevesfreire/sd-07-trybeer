@@ -50,10 +50,21 @@ const requestCreateSaleAPI = (body) => {
     .catch((error) => error.response);
 };
 
+const requestGetOrdersAPI = () => {
+  const endpoint = `${urlAPI}/orders`;
+  const { token } = getToLocalStorage('user');
+  const headersAxios = { headers: { Authorization: token } };
+  return axios
+    .get(endpoint, headersAxios)
+    .then((response) => response)
+    .catch((error) => error.response);
+};
+
 export {
   requestLoginAPI,
   requestCreateUserAPI,
   requestAlterUserAPI,
   requestGetProductsAPI,
   requestCreateSaleAPI,
+  requestGetOrdersAPI,
 };

@@ -98,6 +98,7 @@ function Provider({ children }) {
     addProductQtd,
     subtractProductQtd,
     deleteProduct,
+    convertPrice,
   };
 
   return (
