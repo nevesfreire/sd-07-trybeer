@@ -13,14 +13,14 @@ const SideBarAdmin = () => {
       <S.Title data-testid="top-title">TryBeer</S.Title>
       <S.WrapperButtons>
         <S.Button
-          dataTestId="side-menu-item-orders"
+          data-testid="side-menu-item-orders"
           onClick={ () => handleRoute('/admin/orders') }
         >
           Pedidos
 
         </S.Button>
         <S.Button
-          dataTestId="side-menu-item-profile"
+          data-testid="side-menu-item-profile"
           onClick={ () => handleRoute('/admin/profile') }
         >
           Perfil
@@ -30,7 +30,7 @@ const SideBarAdmin = () => {
       <S.ButtonLeave>
         <S.Button
           color="#b5179e"
-          dataTestId="side-menu-item-logout"
+          data-testid="side-menu-item-logout"
           onClick={ () => handleRoute('/') }
         >
           Sair
