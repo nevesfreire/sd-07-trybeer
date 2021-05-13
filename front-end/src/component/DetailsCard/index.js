@@ -1,9 +1,11 @@
 function DetailsCard() {
-  return ( 
-  <p>
-    <span></span>
-    <span></span>
-    <span></span>
-  </p>
-  )
+  return (
+    <p>
+      <span />
+      <span />
+      <span />
+    </p>
+  );
 }
+
+export default DetailsCard;

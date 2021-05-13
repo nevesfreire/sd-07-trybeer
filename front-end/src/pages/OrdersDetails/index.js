@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { StatusCodes } from 'http-status-codes';
 import TopMenu from '../../component/TopMenu';
-import { StatusCodes } from 'http-status-codes'
 import { requestGetOrderAPI } from '../../services';
 import { getToLocalStorage } from '../../utils/localStorage';
 
@@ -15,25 +15,25 @@ function OrderDetails() {
     if (!user || !user.token) return false;
     return true;
   };
-  
+
   const handleRequestOrder = async () => {
     !validateToken() && history.push('/login');
-    const result = await requestGetOrderAPI(id)
-    result.status !== StatusCodes.OK ? history.push('/') :
-    setProducts(result.data);
-  }
+    const result = await requestGetOrderAPI(id);
+    result.status !== StatusCodes.OK ? history.push('/')
+      : setProducts(result.data);
+  };
 
-  useEffect(()=> {
-    handleRequestOrder()
-  },[])
+  useEffect(() => {
+    handleRequestOrder();
+  }, [handleRequestOrder]);
 
   return (
     <>
-      <TopMenu title='Detalhes de Pedido' />
+      <TopMenu title="Detalhes de Pedido" />
       <div>
         <p data-testid="order-number">Pedido</p>
         <p data-testid="order-date">Data</p>
-        {products.length && products.map((item)=> <DetailsCard  key={item.id} product={item} />)}
+        {products.length && products.map((item) => <DetailsCard key={ item.id } product={ item } />)}
         <p data-testid="order-total-value">Total</p>
       </div>
     </>

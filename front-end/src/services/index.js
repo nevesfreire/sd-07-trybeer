@@ -70,7 +70,6 @@ const requestGetOrderAPI = (id) => {
     .catch((error) => error.response);
 };
 
-
 export {
   requestLoginAPI,
   requestCreateUserAPI,
