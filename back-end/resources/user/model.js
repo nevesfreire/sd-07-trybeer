@@ -19,4 +19,22 @@ const create = async (name, email, password, role) => conn.execute(
     (?, ?, ?, ?)`, [name, email, password, role],
 );
 
-module.exports = { getAll, getByEmail, create };
+const getOrders = async (emailForGetId) => {
+  const [[ordersByEmail]] = await conn.execute(
+    'SELECT CLT.id AS "userId", SALE.sale_date AS "dateOrder", SALE.total_price AS "totalPrice", SALE.id AS "orderId" FROM users AS CLT INNER JOIN sales AS SALE ON CLT.id = SALE.user_id AND CLT.email = ?;', [emailForGetId],
+  );
+  return ordersByEmail;
+};
+
+module.exports = { getAll, getByEmail, create, getOrders };
+
+/*
+SELECT CLT.id AS "userId",
+SALE.sale_date AS "dateOrder",
+SALE.total_price AS "totalPrice",
+SALE.id AS "orderId"
+FROM users AS CLT
+INNER JOIN sales AS SALE
+ON CLT.id = SALE.user_id
+AND CLT.email = ?;
+*/

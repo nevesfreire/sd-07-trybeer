@@ -11,6 +11,16 @@ const getAll = async (_req, res) => {
   }
 };
 
+const getOrders = async (_req, res) => {
+  try {
+    const { q } = req.query;
+    const orders = await service.getOrders(q);
+    res.status(StatusCodes.OK).json(orders);
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+};
+
 const create = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
@@ -22,4 +32,4 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { getAll, create };
+module.exports = { getAll, create, getOrders };

@@ -14,4 +14,6 @@ const create = async (name, email, password, role) => {
   return { error: false, message: 'usuário cadastrado com sucesso' };
 };
 
-module.exports = { getAll, getByEmail, create };
+const getOrders = async (emailForGetId) => (model.getOrders(emailForGetId));
+
+module.exports = { getAll, getByEmail, create, getOrders };
