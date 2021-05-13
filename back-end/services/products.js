@@ -20,7 +20,6 @@ const getProductByIdService = async (id) => {
   return product;
 };
 
-
 module.exports = {
   getAllProductsService,
   getProductByIdService,

@@ -4,7 +4,7 @@ const createSale = async (userId, deliveryAddress, deliveryNumber, salesProducts
   const saleDate = new Date();
   const status = 'PENDENTE';
   
-  const totalPrice = await salesProducts.reduce(async(acc, item) => {
+  const totalPrice = await salesProducts.reduce(async (acc, item) => {
     const productId = parseInt(item.productId, 10);
     const productQuantity = parseInt(item.quantity, 10);
     const productUnityPrice = await checkoutModel.productPrice(productId);
