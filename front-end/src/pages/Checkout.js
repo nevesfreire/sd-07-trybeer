@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Address from '../components/Address';
 import Header from '../components/Header';
-import { update } from '../actions';
-import { saveOrder } from '../services/Order';
+import { update, finish } from '../actions';
+import { saveOrder } from '../services/order';
 
 export default function Checkout() {
   const INITIAL_VALUE = 0;
@@ -20,8 +21,8 @@ export default function Checkout() {
     street: '',
     number: '',
   });
-
   const [disabled, setDisabled] = useState(true);
+  const [shouldRedirect, setShouldRedirect] = useState('');
 
   const removeItem = (item) => {
     const filteredCart = cartList.filter((product) => product.id !== item.id);
@@ -29,12 +30,16 @@ export default function Checkout() {
   };
 
   const renderBody = () => cartList.map((item, index) => (
-    <div>
-      <tr key={ index }>
+    <div key={ index }>
+      <tr>
         <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
         <td data-testid={ `${index}-product-name` }>{ item.name }</td>
-        <td data-testid={ `${index}-product-unit-price` }>{ `R$ ${item.price.toFixed(ROUNDING_OPTION)}` }</td>
-        <td data-testid={ `${index}-product-total-value` }>{ `R$ ${item.totalPrice.toFixed(ROUNDING_OPTION)}` }</td>
+        <td data-testid={ `${index}-product-unit-price` }>
+          { `R$ ${item.price.toFixed(ROUNDING_OPTION)}` }
+        </td>
+        <td data-testid={ `${index}-product-total-value` }>
+          { `R$ ${item.totalPrice.toFixed(ROUNDING_OPTION)}` }
+        </td>
       </tr>
       <button
         type="button"
@@ -62,17 +67,23 @@ export default function Checkout() {
     }
   }, [address, totalValue]);
 
+  useEffect(() => {
+    const userToken = JSON.parse(localStorage.getItem('user'));
+    if (!userToken) setShouldRedirect('/login');
+  }, []);
+
   const handleSubmit = async () => {
     const userOrder = {
       cartList,
       totalValue,
       address,
     };
-    await saveOrder(dispatch, userOrder);
+    await saveOrder(dispatch, finish, userOrder);
   };
 
   return (
     <>
+      { shouldRedirect && <Redirect to={ shouldRedirect } /> }
       <Header title="Finalizar Pedido" />
       <table>
         <thead>
@@ -89,7 +100,9 @@ export default function Checkout() {
       </table>
       <div>
         <span>Valor total do pedido</span>
-        <span data-testid="order-total-value">{ `R$ ${totalValue.toFixed(ROUNDING_OPTION)}` }</span>
+        <span data-testid="order-total-value">
+          { `R$ ${totalValue.toFixed(ROUNDING_OPTION)}` }
+        </span>
       </div>
       <Address
         handleEvent={ (event) => handleChange(event) }

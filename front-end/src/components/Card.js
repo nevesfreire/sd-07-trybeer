@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { update } from '../actions';
 
 export default function Card({ product, position }) {
@@ -52,9 +53,8 @@ export default function Card({ product, position }) {
   };
 
   const handleClick = (type, value, productSelected) => {
-    if (type === 'remove' && getValue(productSelected.id) !== 0) {
-      manageNewProductInfo(value, productSelected);
-    } else if (type === 'add') {
+    if ((getValue(productSelected.id) !== 0 && type === 'remove')
+      || type === 'add') {
       manageNewProductInfo(value, productSelected);
     }
   };
@@ -94,3 +94,12 @@ export default function Card({ product, position }) {
     </div>
   );
 }
+
+Card.propTypes = {
+  product: PropTypes.objectOf.isRequired,
+  position: PropTypes.objectOf.isRequired,
+  url_image: PropTypes.objectOf.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+};

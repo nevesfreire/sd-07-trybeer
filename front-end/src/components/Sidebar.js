@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function Sidebar({ openAndClose }) {
   const [shouldRedirect, setShouldRedirect] = useState('');
@@ -46,3 +47,7 @@ export default function Sidebar({ openAndClose }) {
     </aside>
   );
 }
+
+Sidebar.propTypes = {
+  openAndClose: PropTypes.objectOf.isRequired,
+};

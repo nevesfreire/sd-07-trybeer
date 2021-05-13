@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { update } from '../actions';
 
 export default function Address({ handleEvent, status, saveOrder }) {
   const DELAY = 3000;
   const orderStatus = useSelector(({ order }) => order);
+  const [shouldRedirect, setShouldRedirect] = useState('');
   const dispatch = useDispatch();
 
-  const handleSuccess = () => {
-    setTimeout(() => 'Compra realizada com sucesso!', DELAY);
-    
+  const isSuccess = () => {
+    setTimeout(() => <p>Compra realizada com sucesso!</p>, DELAY);
     dispatch(update([]));
-    return <Redirect to="/products" />;
+    setShouldRedirect('/products');
   };
 
   return (
     <>
+      { shouldRedirect && <Redirect to={ shouldRedirect } />}
       <form onSubmit={ () => saveOrder() }>
         <label htmlFor="street">
           Rua
@@ -46,7 +48,13 @@ export default function Address({ handleEvent, status, saveOrder }) {
           Finalizar Pedido
         </button>
       </form>
-      <span>{ orderStatus === 'success' ? handleSuccess() : 'Impossível finalizar a compra.' }</span>
+      { orderStatus === 'success' ? isSuccess() : <p>Impossível realizar a compra</p> }
     </>
   );
 }
+
+Address.propTypes = {
+  handleEvent: PropTypes.objectOf.isRequired,
+  status: PropTypes.bool.isRequired,
+  saveOrder: PropTypes.func.isRequired,
+};

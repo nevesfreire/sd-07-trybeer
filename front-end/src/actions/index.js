@@ -1,18 +1,22 @@
-import { getProducts } from '../services/Products';
+import getProducts from '../services/products';
+import { getOrders, getOrder } from '../services/order';
 
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS';
 export const REQUEST_PRODUCTS_SUCCESS = 'REQUEST_PRODUCTS_SUCCESS';
 export const REQUEST_PRODUCTS_FAIL = 'REQUEST_PRODUCTS_FAIL';
+export const REQUEST_ORDERS = 'REQUEST_ORDERS';
+export const REQUEST_ORDERS_SUCCESS = 'REQUEST_ORDERS_SUCCESS';
+export const REQUEST_ORDERS_FAIL = 'REQUEST_ORDERS_FAIL';
 export const SAVE_ORDER = 'SAVE_ORDER';
+export const REQUEST_ORDER = 'REQUEST_ORDER';
+export const REQUEST_ORDER_SUCCESS = 'REQUEST_ORDER_SUCCESS';
+export const REQUEST_ORDER_FAIL = 'REQUEST_ORDER_FAIL';
 
-export const update = (cart) => {
-  console.log(cart);
-  return ({
-    type: UPDATE_QUANTITY,
-    cart,
-  });
-};
+export const update = (cart) => ({
+  type: UPDATE_QUANTITY,
+  cart,
+});
 
 export const requestProducts = () => ({
   type: REQUEST_PRODUCTS,
@@ -33,14 +37,66 @@ export const finish = (message) => ({
   message,
 });
 
-export function fetchProducts() {
+export const requestOrders = () => ({
+  type: REQUEST_ORDERS,
+});
+
+export const requestOrdersSuccess = (orders) => ({
+  type: REQUEST_ORDERS_SUCCESS,
+  orders,
+});
+
+export const requestOrdersFail = (error) => ({
+  type: REQUEST_ORDERS_FAIL,
+  error,
+});
+
+export const requestOrder = () => ({
+  type: REQUEST_ORDER,
+});
+
+export const requestOrderSuccess = (order) => ({
+  type: REQUEST_ORDER_SUCCESS,
+  order,
+});
+
+export const requestOrderFail = (error) => ({
+  type: REQUEST_ORDER_FAIL,
+  error,
+});
+
+export function fetchProducts(token) {
   return async (dispatch) => {
     try {
       dispatch(requestProducts());
-      const products = await getProducts();
+      const products = await getProducts(token);
       dispatch(requestProductsSuccess(products));
     } catch (error) {
-      dispatch(requestProductsFail(error));
+      dispatch(requestProductsFail(error.message));
+    }
+  };
+}
+
+export function fetchOrders(email, token) {
+  return async (dispatch) => {
+    try {
+      dispatch(requestOrders());
+      const orders = await getOrders(email, token);
+      dispatch(requestOrdersSuccess(orders));
+    } catch (error) {
+      dispatch(requestOrdersFail(error.message));
+    }
+  };
+}
+
+export function fetchOrder(id, token) {
+  return async (dispatch) => {
+    try {
+      dispatch(requestOrder());
+      const order = await getOrder(id, token);
+      dispatch(requestOrderSuccess(order));
+    } catch (error) {
+      dispatch(requestOrderFail(error.message));
     }
   };
 }

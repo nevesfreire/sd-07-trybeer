@@ -7,9 +7,9 @@ export default function AdminSidebar() {
   return (
     <aside className="admin-side-bar-container">
       <h1>TryBeer</h1>
-      
+
       { shouldRedirect !== '' && <Redirect to={ shouldRedirect } /> }
-      
+
       <div>
         <button
           data-testid="side-menu-item-orders"

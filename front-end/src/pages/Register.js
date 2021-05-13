@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { registerUser } from '../services/User';
+import registerUser from '../services/user';
 
 export default function Register() {
   const [disabled, setDisabled] = useState(true);
