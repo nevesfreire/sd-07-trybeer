@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Table } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import SideBar from '../../Components/SideBar';
 import { getSaleById, updateSale } from '../../servicesAPI/api';
+import './index.css';
 
 const AdminOrderDetail = () => {
   const role = 'administrator';
@@ -34,44 +36,56 @@ const AdminOrderDetail = () => {
     <div>
       <SideBar role={ role } />
       {isLoading ? <div>Carregando</div> : (
-        <div>
+        <div className="container-admin-order-detail">
           <h3>
             <span data-testid="order-number">{ `Pedido ${sale.saleID}` }</span>
             <span> - </span>
             <span data-testid="order-status">{ status }</span>
           </h3>
-          { sale.products.map(({ price, quantity, name }, index) => {
-            const total = (Math.round((Number(price) * Number(quantity)) * 100)) / 100;
-            return (
-              <div key={ index }>
-                <span data-testid={ `${index}-product-qtd` }>{ quantity }</span>
-                <span data-testid={ `${index}-product-name` }>{ name }</span>
-                <span
-                  data-testid={ `${index}-order-unit-price` }
-                >
-                  { `(R$ ${price.replace('.', ',')})` }
-                </span>
-                <span
-                  data-testid={ `${index}-product-total-value` }
-                >
-                  { `R$ ${total.toFixed(2).replace('.', ',')}` }
-                </span>
-              </div>
-            );
-          })}
+          <Table>
+            <thead>
+              <th>Quantidade</th>
+              <th>Descrição</th>
+              <th>Preço unitário</th>
+              <th>Preço total</th>
+            </thead>
+            <tbody>
+              { sale.products.map(({ price, quantity, name }, index) => {
+                const total = (Math
+                  .round((Number(price) * Number(quantity)) * 100)) / 100;
+                return (
+                  <tr key={ index }>
+                    <td data-testid={ `${index}-product-qtd` }>{ quantity }</td>
+                    <td data-testid={ `${index}-product-name` }>{ name }</td>
+                    <td
+                      data-testid={ `${index}-order-unit-price` }
+                    >
+                      { `(R$ ${price.replace('.', ',')})` }
+                    </td>
+                    <td
+                      data-testid={ `${index}-product-total-value` }
+                    >
+                      { `R$ ${total.toFixed(2).replace('.', ',')}` }
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
           <div
             data-testid="order-total-value"
+            style={ { fontWeight: 'bold', position: 'fixed', right: '20px' } }
           >
             { `Total: R$ ${sale.totalPrice.replace('.', ',')}` }
           </div>
-          <button
-            type="button"
+          <Button
+            variant="success"
             data-testid="mark-as-delivered-btn"
             hidden={ status === 'Entregue' }
             onClick={ () => markAsDelivered() }
           >
             Marcar como entregue
-          </button>
+          </Button>
         </div>
       )}
     </div>

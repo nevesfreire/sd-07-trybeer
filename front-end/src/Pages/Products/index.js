@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { Button, Container } from 'react-bootstrap';
 import verifyUserLocalStorage from '../../util/changeLocalStorage';
 import TryBeerContext from '../../context/TryBeerContext';
 import TopBar from '../../Components/TopBar';
 import { getProducts } from '../../servicesAPI/api';
 import ProductCard from '../../Components/ProductCard';
+import './index.css';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -41,21 +43,25 @@ const Products = () => {
   return (
     <div>
       <TopBar />
-      { isLoading ? <div>Carregando</div> : products.map((product, index) => (
-        <ProductCard product={ product } index={ index } key={ index } />
-      ))}
-      <Link to="/checkout">
-        <button
+      <Container className="product-cards-container" style={ { marginTop: '100px' } }>
+        { isLoading ? <div>Carregando</div> : products.map((product, index) => (
+          <ProductCard product={ product } index={ index } key={ index } />
+        ))}
+      </Container>
+      <Link to="/checkout" className="button-link">
+        <Button
+          className="cart-btn"
+          variant="success"
           type="button"
           disabled={ totalPrice === 0 }
           data-testid="checkout-bottom-btn"
         >
-          Ver Carrinho
-          <div data-testid="checkout-bottom-btn-value">
-            {totalPrice === 0 ? 'R$ 0,00'
-              : `R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`}
-          </div>
-        </button>
+          <span>Ver Carrinho</span>
+          <span data-testid="checkout-bottom-btn-value">
+            {totalPrice === 0 ? '  R$ 0,00'
+              : `  R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`}
+          </span>
+        </Button>
       </Link>
     </div>
   );

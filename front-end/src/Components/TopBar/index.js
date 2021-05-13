@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Container, Navbar } from 'react-bootstrap';
 import SideBar from '../SideBar';
 import './index.css';
 import burguerBtn from '../../images/menu-svgrepo-com.svg';
@@ -41,23 +41,29 @@ export default function () {
     const { data: { role } } = JSON.parse(localStorage.getItem('user'));
     setRole(role);
     getTitle();
-  }, [getTitle, history]);
+  }, []);
 
   return (
     <div>
-      <nav>
-        <button
-          className="hamburger-btn"
-          data-testid="top-hamburguer"
-          type="button"
-          onClick={ () => setIsClicked(!isClicked) }
-        >
-          <img className="hamburger-icon" src={ burguerBtn } alt="" />
-        </button>
-        <h1 data-testid="top-title">{ title }</h1>
-      </nav>
-      <div hidden={ !isClicked }>
-        <SideBar role={ userRole } />
+      <Container className="top-bar-container">
+        <Navbar fixed="top" bg="light" variant="light">
+          <Button
+            variant="light"
+            className="hamburger-btn"
+            data-testid="top-hamburguer"
+            onClick={ () => setIsClicked(!isClicked) }
+          >
+            <img className="hamburger-icon" src={ burguerBtn } alt="" />
+          </Button>
+          <Navbar.Brand className="title" data-testid="top-title">{ title }</Navbar.Brand>
+        </Navbar>
+      </Container>
+      <div className={ isClicked ? 'magic-container open' : 'magic-container' }>
+        <div className="sidebar-left">
+          <div className="sidebar-shrink">
+            <SideBar role={ userRole } />
+          </div>
+        </div>
       </div>
     </div>
   );

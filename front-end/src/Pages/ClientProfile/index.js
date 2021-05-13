@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { Button, Form, Container } from 'react-bootstrap';
 import TopBar from '../../Components/TopBar';
 import verifyUserLocalStorage from '../../util/changeLocalStorage';
 import { updateNameUser } from '../../servicesAPI/api';
-// import PropTypes from 'prop-types';
 
 const ClientProfile = () => {
   const [user, setUser] = useState({ name: '', email: '' });
@@ -42,38 +42,37 @@ const ClientProfile = () => {
   return (
     <div>
       <TopBar />
-      <form>
-        <label htmlFor="name">
-          Nome
-          <input
-            value={ user.name }
-            data-testid="profile-name-input"
-            onChange={ ({ target }) => handleChange(target) }
-          />
-        </label>
-        <label htmlFor="email">
-          Email
-          <input
-            readOnly
-            data-testid="profile-email-input"
-            type="email"
-            value={ user.email }
-          />
-        </label>
-        <button
-          type="button"
-          data-testid="profile-save-btn"
-          disabled={ !wasChange }
-          onClick={ updateName }
-        >
-          Salvar
-        </button>
-        { showMessage && <p>Atualização concluída com sucesso</p>}
-      </form>
+      <Container style={ { marginTop: '100px' } }>
+        <Form>
+          <Form.Group>
+            <Form.Label>Nome</Form.Label>
+            <Form.Control
+              value={ user.name }
+              data-testid="profile-name-input"
+              onChange={ ({ target }) => handleChange(target) }
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              readOnly
+              data-testid="profile-email-input"
+              type="email"
+              value={ user.email }
+            />
+          </Form.Group>
+          <Button
+            data-testid="profile-save-btn"
+            disabled={ !wasChange }
+            onClick={ updateName }
+          >
+            Salvar
+          </Button>
+          { showMessage && <p>Atualização concluída com sucesso</p>}
+        </Form>
+      </Container>
     </div>
   );
 };
-
-// ClientProfile.propTypes = {};
 
 export default ClientProfile;

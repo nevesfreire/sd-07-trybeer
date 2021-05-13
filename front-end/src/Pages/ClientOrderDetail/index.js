@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { Table } from 'react-bootstrap';
 import TopBar from '../../Components/TopBar';
 import { getSaleById } from '../../servicesAPI/api';
+import './index.css';
 
 const ClientOrderDetail = () => {
   const { id } = useParams();
@@ -25,29 +27,48 @@ const ClientOrderDetail = () => {
     <div>
       <TopBar />
       {isLoading ? <div>Carregando</div> : (
-        <div>
+        <div className="container">
           <h1 data-testid="order-number">{ `Pedido ${sale.saleID}` }</h1>
           <div data-testid="order-date">{ sale.saleDate }</div>
-          { sale.products.map(({ price, quantity, name }, index) => {
-            const total = (Math.round((Number(price) * Number(quantity)) * 100)) / 100;
-            return (
-              <div key={ index }>
-                <span data-testid={ `${index}-product-qtd` }>{ quantity }</span>
-                <span data-testid={ `${index}-product-name` }>{ name }</span>
-                <span>{ `R$ ${price.replace('.', ',')}` }</span>
-                <span
-                  data-testid={ `${index}-product-total-value` }
+          <Table>
+            <thead>
+              <tr>
+                <th>Quantidade</th>
+                <th>Produto</th>
+                <th>Preço unitário</th>
+                <th>Preço total</th>
+              </tr>
+            </thead>
+            <tbody>
+              { sale.products.map(({ price, quantity, name }, index) => {
+                const total = (Math
+                  .round((Number(price) * Number(quantity)) * 100)) / 100;
+                return (
+                  <tr key={ index }>
+                    <td data-testid={ `${index}-product-qtd` }>{ quantity }</td>
+                    <td data-testid={ `${index}-product-name` }>{ name }</td>
+                    <td>{ `R$ ${price.replace('.', ',')}` }</td>
+                    <td
+                      data-testid={ `${index}-product-total-value` }
+                    >
+                      { `R$ ${total.toFixed(2).replace('.', ',')}` }
+                    </td>
+                  </tr>
+                );
+              })}
+              <tr style={ { border: 'none' } }>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td
+                  className="order-total-value"
+                  data-testid="order-total-value"
                 >
-                  { `R$ ${total.toFixed(2).replace('.', ',')}` }
-                </span>
-              </div>
-            );
-          })}
-          <div
-            data-testid="order-total-value"
-          >
-            { `Total: R$ ${sale.totalPrice.replace('.', ',')}` }
-          </div>
+                  { `Total: R$ ${sale.totalPrice.replace('.', ',')}` }
+                </td>
+              </tr>
+            </tbody>
+          </Table>
         </div>
       )}
     </div>

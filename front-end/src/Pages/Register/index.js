@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-// import PropTypes from 'prop-types';
+import { Container, Form, Button } from 'react-bootstrap';
 import { validateName, validateFields } from '../../util/validations';
 import { registerUser } from '../../servicesAPI/api';
 
@@ -31,51 +31,50 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <form>
-        <label htmlFor="name">
-          Nome
-          <input
+    <Container>
+      <Form>
+        <Form.Group>
+          <Form.Label>Nome</Form.Label>
+          <Form.Control
             data-testid="signup-name"
+            type="text"
             onChange={ (e) => setName(e.target.value) }
           />
-        </label>
-        <label htmlFor="email">
-          Email
-          <input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             data-testid="signup-email"
             type="email"
             onChange={ (e) => setEmail(e.target.value) }
           />
-        </label>
-        <label htmlFor="password">
-          Senha
-          <input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Senha</Form.Label>
+          <Form.Control
             data-testid="signup-password"
             type="password"
             onChange={ (e) => setPassword(e.target.value) }
           />
-        </label>
-        <label htmlFor="seller">
-          <input
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Quero vender</Form.Label>
+          <Form.Check
             type="checkbox"
-            id="seller"
             data-testid="signup-seller"
             onClick={ () => setIsSeller(!isSeller) }
           />
-          Quero vender
-        </label>
-        <button
-          type="button"
+        </Form.Group>
+        <Button
           data-testid="signup-btn"
           disabled={ !isValid }
           onClick={ createUser }
         >
           Cadastrar
-        </button>
+        </Button>
         { showMessage && <p>Já existe um usuário com esse e-mail.</p>}
-      </form>
-    </div>
+      </Form>
+    </Container>
   );
 };
 
