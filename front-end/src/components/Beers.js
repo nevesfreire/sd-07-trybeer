@@ -7,13 +7,19 @@ import Card from './Card';
 const ComponentBeers = () => {
   const history = useHistory();
   const token = localStorage.getItem('token');
-  console.log(token);
+  // console.log(token);
 
   const [isLoading, setIsLoading] = useState(false);
   const [priceTotal, setPriceTotal] = useState(
-    JSON.parse(localStorage.getItem('productPriceTotals')) || { value: 0.00 },
+    JSON.parse(localStorage.getItem('productPriceTotals')) || { value: 0.0 },
   );
   const [Beers, setBeers] = useState([]);
+
+  // cart mockado
+  const cart = [
+    { nome: 'cerva1', preco: 10.0, quantidade: 3 },
+    { nome: 'cerva2', preco: 5.0, quantidade: 6 },
+  ];
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,11 +32,18 @@ const ComponentBeers = () => {
   }, [history]);
 
   const priceTotalReduced = Object.values(priceTotal).reduce(
-    (curr, next) => curr + next, numbers.ZERO,
+    (curr, next) => curr + next,
+    numbers.ZERO,
   );
 
   const redirectToCheckout = () => {
     history.push('/checkout');
+    localStorage.setItem(
+      'cart',
+      JSON.stringify({
+        cart,
+      }),
+    );
   };
 
   return (
@@ -49,12 +62,13 @@ const ComponentBeers = () => {
       <div>
         Valor total do carrinho
         <p data-testid="checkout-bottom-btn-value">
-          { `R$ ${priceTotalReduced.toFixed(2).replace('.', ',')}` }
+          {`R$ ${priceTotalReduced.toFixed(2).replace('.', ',')}`}
         </p>
       </div>
       {isLoading ? (
         <span>Carregando ...</span>
       ) : (
+        // console.log(`Beerscomponent Beers: ${typeof(Beers)}`),
         Beers.map((beer, index) => (
           <Card
             key={ index }
