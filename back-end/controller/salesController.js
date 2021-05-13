@@ -43,9 +43,24 @@ const updateStatusBySaleIdController = async (req, res) => {
   }
 };
 
+const getDetailsByIdController = async (req, res) => {
+  const { saleId } = req.params;
+  try {
+    const saleDetail = await salesService.getDetailsByIdService(saleId);
+    const products = await salesService.getProductsBySaleIdService(saleId);
+    res.status(200).json({
+      saleDetail,
+      products,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createSale,
   getAllSalesController,
   getProductsBySaleIdController,
   updateStatusBySaleIdController,
+  getDetailsByIdController,
 };

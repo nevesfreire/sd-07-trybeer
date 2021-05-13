@@ -30,9 +30,15 @@ const getSalesById = async (userId) => {
   return result;
 };
 
+const getDetailsById = async (saleId) => {
+  const [[result]] = await connection.execute('SELECT * FROM sales WHERE id = ?', [saleId]);
+  return result;
+};
+
 const getProductsBySaleId = async (saleId) => {
   const [result] = await connection.execute(`SELECT sales_products.quantity as qtd, 
-  products.name as nome, 
+  products.price as price, 
+  products.name as nome,
   (sales_products.quantity * products.price) as total 
   FROM sales_products
   INNER JOIN products ON sales_products.product_id = products.id
@@ -51,4 +57,5 @@ module.exports = {
   getSalesById,
   getProductsBySaleId,
   updateStatusBySaleId,
+  getDetailsById,
 };
