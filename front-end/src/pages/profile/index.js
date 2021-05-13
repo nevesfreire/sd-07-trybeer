@@ -1,10 +1,10 @@
 import React from 'react';
-import TopMenu from '../../components/Header';
+import TopMenu from '../../components';
 
 export default function Profile() {
   return (
     <div>
-      <TopMenu>Meu perfil</TopMenu>
+      <TopMenu topTitle="Meu perfil" />
       PROFILE PAGE
     </div>
   );

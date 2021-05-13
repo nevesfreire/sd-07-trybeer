@@ -1,3 +1,4 @@
 import useLocalStorage from './useLocalStorage';
+import useReducerCart from './useReducerCart';
 
-export default useLocalStorage;
+export { useLocalStorage, useReducerCart };

@@ -1,35 +1,38 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Prices, Images, Texts, SalesCar } from '../../components/index';
-import Counts from '../../components/Counts';
+import {
+  Prices,
+  Images,
+  Texts,
+  ShowCartButton, TopMenu, Counts } from '../../components';
 import TrybeerContext from '../../context/TrybeerContext';
 import { productList } from '../../service/trybeerApi';
-import TopMenu from '../../components/Header';
 
 import './style.css';
 
 export default function Product() {
-  const { getTotalShoppingCart, cartState } = useContext(TrybeerContext);
+  const { getTotalShoppingCart, shoppingCart } = useContext(TrybeerContext);
   const [totalPriceCart, setTotalPriceCart] = useState(getTotalShoppingCart());
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const listProducts = async () => {
-    setIsLoading(true);
     const productData = await productList();
     if (productData.error) {
       return setProducts([]);
     }
     setProducts(productData);
-    setIsLoading(false);
   };
 
   useEffect(() => {
-    listProducts();
+    setIsLoading(true);
+    listProducts().then(() => {
+      setIsLoading(false);
+    });
   }, []);
 
   useEffect(() => {
     setTotalPriceCart(getTotalShoppingCart());
-  }, [cartState, getTotalShoppingCart]);
+  }, [shoppingCart, getTotalShoppingCart]);
 
   return (
     <div>
@@ -50,7 +53,7 @@ export default function Product() {
         ))}
         <br />
         <div className="div-salesCar">
-          <SalesCar value={ totalPriceCart } />
+          <ShowCartButton totalPrice={ totalPriceCart } />
         </div>
       </div>
     </div>

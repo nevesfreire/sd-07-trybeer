@@ -1,50 +1,53 @@
-import React, { useState, useContext } from 'react';
-import { Buttons } from './index';
+import React, { useState, useContext/* , useEffect */ } from 'react';
 import TrybeerContext from '../context/TrybeerContext';
 
 export default function Counts(props) {
-  const [countsState] = useState(props);
-  const { product, index } = countsState;
-  const { dispatchShoppingCart } = useContext(TrybeerContext);
-  const [count, setCount] = useState(0);
-  const INC_NUMBER = 1;
+  const [propsState/* , setPropsState */] = useState(props);
+  const { product, index } = propsState;
+  const { dispatchShoppingCart, getQuantityByProductId } = useContext(TrybeerContext);
+
+  /* useEffect(() => {
+    setPropsState(props);
+  }, [props]); */
 
   const incCount = () => {
     dispatchShoppingCart({
-      type: count === 0 ? 'addProduct' : 'incrementProduct',
+      type: getQuantityByProductId(product.id) === 0 ? 'addProduct' : 'incrementProduct',
       payload: product,
     });
-    setCount(count + INC_NUMBER);
   };
 
   const decCouunt = () => {
-    if (!count) return;
+    if (!getQuantityByProductId(product.id)) return;
     dispatchShoppingCart({
-      type: count === 1 ? 'delProduct' : 'decrementProduct',
+      type: getQuantityByProductId(product.id) === 1 ? 'delProduct' : 'decrementProduct',
       payload: product,
     });
-    setCount(count - INC_NUMBER);
   };
 
   return (
     <div>
-      <Buttons
-        testid={ `${index}-product-minus` }
-        value="-"
-        countClick={ decCouunt }
-      />
+      <button
+        type="button"
+        data-testid={ `${index}-product-minus` }
+        onClick={ () => decCouunt() }
+      >
+        -
+      </button>
       {' '}
       <span
         data-testid={ `${index}-product-qtd` }
       >
-        { count }
+        { getQuantityByProductId(product.id) }
       </span>
       {' '}
-      <Buttons
-        testid={ `${index}-product-plus` }
-        value="+"
-        countClick={ incCount }
-      />
+      <button
+        type="button"
+        data-testid={ `${index}-product-plus` }
+        onClick={ () => incCount() }
+      >
+        +
+      </button>
     </div>
   );
 }

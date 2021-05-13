@@ -1,10 +1,10 @@
 import React from 'react';
-import TopMenu from '../../components/Header';
+import { TopMenu } from '../../components';
 
 export default function Orders() {
   return (
     <div>
-      <TopMenu>Meus Pedidos</TopMenu>
+      <TopMenu topTitle="Meus Pedidos" />
       ORDERS PAGE
     </div>
   );

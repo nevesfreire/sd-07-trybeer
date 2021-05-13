@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import propTypes from 'prop-types';
-import SideBar from './SideBar';
+import SideBar from '../SideBar';
 
-function TopMenu({ children }) {
+export default function TopMenu(props) {
+  const [stateProps, setStateProps] = useState(props);
   const [showSideBar, setShowSideBar] = useState(false);
+
+  const { topTitle } = stateProps;
+
   useEffect(() => {
-    // console.log(showSideBar);
-  }, [showSideBar]);
+    setStateProps(props);
+  }, [props]);
+
   return (
     <div>
       <button
@@ -19,15 +23,9 @@ function TopMenu({ children }) {
       <h2
         data-testid="top-title"
       >
-        {children === 'Produtos' || children === undefined ? 'TryBeer' : children}
+        { topTitle || 'TryBeer' }
       </h2>
       {showSideBar ? <SideBar /> : <div />}
     </div>
   );
 }
-
-TopMenu.propTypes = {
-  children: propTypes.node.isRequired,
-};
-
-export default TopMenu;
