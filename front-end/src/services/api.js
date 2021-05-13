@@ -76,6 +76,30 @@ async function fetchOrders(token) {
   return response;
 }
 
+async function fetchOrderById(token, id) {
+  const response = await (await fetch(`${endpoint}/admin/orders/${id}`, {
+    method: 'GET',
+    headers: {
+      ...headers,
+      Authorization: token,
+    },
+  })).json();
+
+  return response;
+}
+
+async function updateStatusById(token, id) {
+  const response = await (await fetch(`${endpoint}/admin/orders/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      Authorization: token,
+    },
+  })).json();
+
+  return response;
+}
+
 export default {
   getProducts,
   loginUser,
@@ -83,4 +107,6 @@ export default {
   registerPurchase,
   updateUser,
   fetchOrders,
+  fetchOrderById,
+  updateStatusById,
 };
