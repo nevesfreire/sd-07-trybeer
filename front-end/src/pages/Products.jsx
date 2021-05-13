@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import Header from '../components/Header';
+import HeaderAdmin from '../components/HeaderAdmin';
 import ProductsList from '../components/ProductsList';
 import { BeerContext } from '../context/BeerContext';
 
@@ -31,10 +32,10 @@ const Products = () => {
   }, 0);
 
   const accPrice = parseFloat(value).toFixed(2).toString().replace('.', ',');
-
+  const admin = JSON.parse(localStorage.getItem('role'));
   return (
     <div>
-      <Header />
+      {admin === 'administrator' ? <HeaderAdmin /> : <Header />}
       <h1>Página produtos</h1>
       <ProductsList />
       <button

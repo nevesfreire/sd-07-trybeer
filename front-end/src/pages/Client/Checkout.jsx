@@ -20,10 +20,12 @@ const Checkout = () => {
   const [endSale, setEndSale] = useState(false);
 
   useEffect(() => {
-    setLocalCart(JSON.parse(localStorage.getItem('cart')));
-    const cart1 = JSON.parse(localStorage.getItem('cart'));
-    setLocalCart(Object.values(cart1)
-      .filter((product) => product.quantity > 0 && product.product.id));
+    if (localStorage.getItem('token')) {
+      setLocalCart(JSON.parse(localStorage.getItem('cart')));
+      const cart1 = JSON.parse(localStorage.getItem('cart'));
+      setLocalCart(Object.values(cart1)
+        .filter((product) => product.quantity > 0 && product.product.id));
+    }
   }, [cart]);
 
   if (!localStorage.getItem('token')) {

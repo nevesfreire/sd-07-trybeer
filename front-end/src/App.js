@@ -12,6 +12,7 @@ import OrdersDetail from './pages/Client/OrdersDetail';
 import Checkout from './pages/Client/Checkout';
 import AdminProfile from './pages/Admin/Profile';
 import AdminOrders from './pages/Admin/AdminOrders';
+import AdminDetailOrder from './pages/Admin/OrdersDetail';
 
 const App = () => (
   <BrowserRouter>
@@ -25,6 +26,7 @@ const App = () => (
     <Route exact path="/orders/:numeroDoPedido" component={ OrdersDetail } />
     <Route exact path="/profile" component={ ClientProfile } />
     <Route exact path="/checkout" component={ Checkout } />
+    <Route exact path="/admin/orders/:id" component={ AdminDetailOrder } />
   </BrowserRouter>
 );
 

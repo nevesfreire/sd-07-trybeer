@@ -32,7 +32,17 @@ const getAllOrders = async (token) => {
   }
 };
 
+const updateOrderStatus = async (id) => {
+  try {
+    await instance.put(`admin/orders/${id}`);
+  } catch (error) {
+    console.log(error);
+    return ({ error: 'Erro' });
+  }
+};
+
 module.exports = {
   getOrdersFromId,
   getAllOrders,
+  updateOrderStatus,
 };
