@@ -17,9 +17,13 @@ export default function TopMenu({ title }) {
   }
 
   function role() {
-    const role = getToLocalStorage('user').role;
-    if (role === 'administrator') return 0;
-    return 1;
+    try {
+      const role = getToLocalStorage('user').role;
+      if (role === 'administrator') return 0;
+      return 1;
+    } catch (_err) {
+      return 1;
+    }
   }
 
   const twentySeven = 27;
