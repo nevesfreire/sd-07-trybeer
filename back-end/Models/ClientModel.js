@@ -78,26 +78,22 @@ async function saveSales(infoUser, totalPrice, products) {
   const saleCad = await connect
   .execute(`
   INSERT INTO sales
-  ( user_id,
-    total_price,
-    delivery_address,
-    delivery_number,
-    sale_date, status) VALUES
+  ( user_id, total_price,
+    delivery_address, delivery_number, sale_date, status) VALUES
     (?, ?, ?, ?, now(), 'pendente')`, [infoUser.userId,
-      totalPrice,
-      infoUser.deliveryAddress,
+      totalPrice, infoUser.deliveryAddress,
       infoUser.deliveryNumber]);
 
   const saleId = saleCad[0].insertId;
-  const result = await connect
+  await connect
   .query('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES ?',
     [products.map((product) => [saleId, product.id, product.quantity])]);
 
     const obj = {
-      saleId: saleId,
-      products: products,
+      saleId,
+      products,
       userId: infoUser.userId,
-    }
+    };
   return (obj);
 }
 
@@ -109,6 +105,32 @@ const salesA = async (id) => {
   return sales;
 };
 
+const detSales = async (id) => {
+  const [result] = await connect
+  .execute(`select product_id, quantity, name, price, url_image from Trybeer.sales_products AS sp
+  INNER JOIN Trybeer.products as p
+  on p.id = sp.product_id
+  where sp.sale_id = ?`, [id]);
+
+  const [[res]] = await connect
+  .execute(`select * from Trybeer.sales 
+  where id = ?`, [id]);
+
+  return ({
+    sale: res,
+    products: result,
+  });
+};
+
+const allSalesAdm = async () => {
+  const [salesADM] = await connect
+  .execute(`Select id, total_price, delivery_address,
+  delivery_number, status
+  from Trybeer.sales`);
+
+  return (salesADM);
+};
+
 module.exports = {
   getEmailUser,
   token,
@@ -118,4 +140,6 @@ module.exports = {
   allProducts,
   saveSales,
   salesA,
+  detSales,
+  allSalesAdm,
 };
