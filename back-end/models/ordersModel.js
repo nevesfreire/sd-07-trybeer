@@ -11,7 +11,7 @@ const readAllSales = (sales, products) => {
 const createProductsSale = async (prods) => {
   const { insertId, productId, quantity } = prods;
   const [saleProduct] = await connection.execute(
-    'INSERT INTO sales (sale_id, product_id, quantity) VALUES (?,?,?)', 
+    'INSERT INTO product_sales (sale_id, product_id, quantity) VALUES (?,?,?)', 
     [insertId, productId, quantity],
   );
   console.log('Model Create Product Sale: ', insertId, productId, quantity);
@@ -41,7 +41,8 @@ const readOneSale = async (id) => {
 const getSales = async () => {
   const [sales] = await connection.query(
     `SELECT u.name AS user, u.id AS userId, s.delivery_address AS address,
-     s.id AS sale, s.total_price AS total_price, s.status AS status
+     s.delivery_number AS number, s.id AS sale, s.total_price AS total_price,
+     s.status AS status
       FROM users AS u
       INNER JOIN sales as s
       ON s.user_id = u.id

@@ -4,6 +4,7 @@ const url = 'http://localhost:3001/';
 const login = 'login';
 const register = 'login/register';
 const products = 'products';
+const orders = 'orders';
 
 async function requestToken(userData) {
   try {
@@ -43,4 +44,14 @@ async function updateUser(userData) {
   }
 }
 
-export { requestToken, registerUser, getProducts, updateUser };
+async function getOrders(token) {
+  try {
+    const response = await axios
+      .get(`${url}${orders}`, { headers: { Authorization: token } });
+    return response;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
+export { requestToken, registerUser, getProducts, updateUser, getOrders };
