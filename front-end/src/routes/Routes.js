@@ -8,6 +8,8 @@ import {
   Profile,
   Orders,
   OrdersDetails,
+  AdminProfile,
+  AdminOrders,
 } from '../pages';
 
 function Routes() {
@@ -20,6 +22,8 @@ function Routes() {
         <Route path="/profile" component={ Profile } />
         <Route path="/products" component={ Products } />
         <Route path="/checkout" component={ Checkout } />
+        <Route path="/admin/profile" component={ AdminProfile } />
+        <Route path="/admin/orders" component={ AdminOrders } />
         <Route path="/orders/:id" component={ OrdersDetails } />
         <Route path="/orders" component={ Orders } />
       </Switch>

@@ -16,18 +16,22 @@ export default function TopMenu({ title }) {
     sideBarComplement.classList.toggle('nav-complement-show');
   }
 
+  function getRole() {
+    try {
+      const { role } = getToLocalStorage('user');
+      if (role === 'administrator') return 0;
+      return 1;
+    } catch (_err) {
+      return 1;
+    }
+  }
+
   const handleClick = () => {
     if (document.getElementsByClassName('nav-complement')[0]
       .classList[1] === 'nav-complement-show') {
       handleMenuToggle();
     }
   };
-
-  function getRole() {
-    const { role } = getToLocalStorage('user');
-    if (role === 'administrator') return 0;
-    return 1;
-  }
 
   const twentySeven = 27;
 
