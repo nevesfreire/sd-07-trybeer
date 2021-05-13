@@ -8,7 +8,6 @@ const userNotFound = { message: 'Erro ao procurar usuário do token.' };
 
 const validateToken = async (req, res, next) => { 
   const token = req.headers.authorization;
-  console.log(token)
   if (!token) return res.status(httpStatus.UNAUTHORIZED).json(noTokenMessage);
   try {
     const decoded = jwt.verify(token, secret.secret);

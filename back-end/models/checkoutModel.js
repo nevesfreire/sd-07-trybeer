@@ -9,11 +9,18 @@ const createSale = async (data) => {
     saleDate,
     status,
   } = data;
-  const query = 'INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, sale_date, status) VALUES (?, ?, ?, ?, ?, ?)';
+
   const values = [userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status];
-  await connect.execute(query, values);
+  await connect.execute(`INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, sale_date, status)
+  VALUES(?, ?, ?, ?, ?, ?)`, values);
+};
+
+const productPrice = async (productId) => {
+  const [[{price}]] = await connect.execute('SELECT price FROM products WHERE id = ?', [productId]);
+  return price;
 };
 
 module.exports = {
   createSale,
+  productPrice,
 };
