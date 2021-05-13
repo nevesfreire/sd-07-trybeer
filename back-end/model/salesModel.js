@@ -14,6 +14,11 @@ const createSale = async (userId, totalPrice, deliveryAddress, deliveryNumber) =
   return lastSale;
 };
 
+const getAllSales = async () => {
+  const [result] = await connection.execute('SELECT * FROM sales');
+  return result;
+};
+
 const salesProducts = async (saleId, arrayProducts) => {
   const arrayWithId = arrayProducts.map((product) => {
     const { id, quantity } = product;
@@ -53,6 +58,7 @@ const updateStatusBySaleId = async (saleId) => {
 
 module.exports = {
   createSale,
+  getAllSales,
   salesProducts,
   getSalesById,
   getProductsBySaleId,
