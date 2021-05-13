@@ -10,5 +10,6 @@ router.put('/profile', ClienteController.updateUserName);
 router.get('/products', ClienteController.getAllProducts);
 router.post('/savedSale', ClienteController.saleSave);
 router.get('/sales', myMiddleware, ClienteController.sales);
+router.get('/detailSales/:id', ClienteController.detailSale);
 
 module.exports = router;
