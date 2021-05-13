@@ -21,14 +21,13 @@ export default function Orders() {
       return history.push('/login');
     }
     const ordersList = await requestGetOrdersAPI();
-    console.log('ordersList', ordersList);
     if (ordersList.status !== StatusCodes.OK) return history.push('/login');
     setOders(ordersList.data);
   };
 
   useEffect(() => {
     handleRequestGetOrdersAPI();
-  }, [handleRequestGetOrdersAPI]);
+  }, []);
 
   if (!orders.length) return <h3>Loading...</h3>;
 
