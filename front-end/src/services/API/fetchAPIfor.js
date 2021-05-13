@@ -14,7 +14,6 @@ export default function fetchAPIfor(URI) {
   };
   return fetchApi(URI, body)
     .then((response) => response.json()).then((response) => {
-      console.log(response);
       if (response.statusCode > StatusError) {
         throw new Error('A requisição deu errado');
       } else {
