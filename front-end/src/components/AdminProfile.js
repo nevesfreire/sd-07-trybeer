@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ClientProfile() {
+export default function AdminProfile() {
   const currentUser = JSON.parse(localStorage.getItem('user'));
 
   return (
