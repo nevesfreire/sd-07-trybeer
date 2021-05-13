@@ -7,6 +7,7 @@ const {
   salesAll,
   saleDetail,
   getAdmSales,
+  finallyO,
 } = require('../Services/ClienteServices');
 const { error1 } = require('../error/index');
 
@@ -115,6 +116,20 @@ const salesAdm = async (req, res) => {
   }
 };
 
+const updateStatus = async (req, res) => {
+  const resOK = 200;
+  const { id } = req.params;
+
+  try {
+    const finallyOrder = await finallyO(id);
+    res.status(resOK).json(finallyOrder);
+  } catch (err) {
+    res.status(err.code).json({
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   login,
   addUser,
@@ -124,4 +139,5 @@ module.exports = {
   sales,
   detailSale,
   salesAdm,
+  updateStatus,
 };
