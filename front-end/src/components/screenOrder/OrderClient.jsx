@@ -7,9 +7,9 @@ export default function OrderClient({ index, order }) {
   return (
     <Link to={ `/orders/${order.id}` } data-testid={ `${index}-order-card-container` }>
       <h5 data-testid={ `${index}-order-number` }>{`Pedido ${order.id}`}</h5>
-      <h3 data-testid={ `${index}-order-date` }>{dateFormat(order.sale_date)}</h3>
+      <h2 data-testid={ `${index}-order-date` }>{dateFormat(order.sale_date)}</h2>
       <span data-testid={ `${index}-order-total-value` }>
-        {`R$ ${order.total_price.replace('.', ',')}`}
+        { `R$ ${order.total_price.replace('.', ',')}` }
       </span>
     </Link>
   );
