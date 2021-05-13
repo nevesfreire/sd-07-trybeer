@@ -46,13 +46,13 @@ export default function AdminDetails() {
               <p data-testid={ `${index}-product-name` }>
                 {product.name}
               </p>
+              <p data-testid={ `${index}-product-total-value` }>
+                {`R$ ${(product.unitPrice * product.qtd).toFixed(2).replace('.', ',')}`}
+              </p>
               <p data-testid={ `${index}-order-unit-price` }>
                 <strong>
                   {`(R$ ${product.unitPrice.toFixed(2).replace('.', ',')})`}
                 </strong>
-              </p>
-              <p data-testid={ `${index}-product-total-value` }>
-                {`R$ ${(product.unitPrice * product.qtd).toFixed(2).replace('.', ',')}`}
               </p>
             </div>
           </div>
