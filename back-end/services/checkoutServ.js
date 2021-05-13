@@ -60,12 +60,8 @@ const formatInfo = (pdts, { userId, street, houseNumber, totalPrice }) => {
 const checkoutServ = async (body, user) => {
   try {
     const { cart, street, houseNumber } = body;
-    console.log(cart, user)
-    console.log(validateSale(cart, houseNumber, street, user))
     if (!validateSale(cart, houseNumber, street, user)) return statusMsgMap.allFieldsMustBeFilled;
     const productsIds = cart.map((product) => product.id);
-    console.log('LINE 66:', productsIds)
-    console.log(cart)
     const productsData = await getProductsData(productsIds);
     const totalPrice = productsData
       .reduce((acc, p, i) => acc + (p.price * cart[i].quantity), 0).toFixed(2);
