@@ -12,6 +12,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/login', route.loginRoute);
 app.use('/products', route.productRoute);
+app.use('/orders', route.ordersRoute);
 
 app.use(errorMiddleware);
 
