@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+:root {
+  --roxo: violet;
+  --strokes: #C4C4C4;
+  --trybe: #208167;
+  --trybe-stroke: #0e4939;
+  --beer: #F3CA42;
+  --error: rgb(226, 62, 33);
+  --error-stroke: rgb(158, 38, 17);
+  --scnd-color: #767676;
+  --prmy-color: #252525;
+}
+
+html, body, input, textarea, button {
+  font: 500 1rem 'Roboto', sans-serif;
+}
+
+
+h1, h2, h3, h4, h5, h6, button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: var(--prmy-color);
+}
+
+button {
+  cursor: pointer;
+}

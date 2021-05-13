@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as api from '../../services/api';
 import { setStorage } from '../../services/localStorage';
+import styles from './styles.module.scss';
 
 function Register() {
   const [name, setName] = useState('');
@@ -50,9 +51,12 @@ function Register() {
   }
 
   return (
-    <div>
+    <div className={ styles.main }>
       <h2>Página de registro</h2>
       <form>
+        { existUser && (
+          <div className={ styles.error }>Já existe um usuário com esse e-mail.</div>
+        )}
         <label htmlFor="name-input">
           <h6>Nome</h6>
           <input
@@ -83,7 +87,7 @@ function Register() {
             value={ password }
           />
         </label>
-        <label htmlFor="checkbox-input">
+        <div className={ styles.customCheckbox }>
           <input
             type="checkbox"
             id="checkbox-input"
@@ -91,9 +95,10 @@ function Register() {
             onClick={ () => setIsSeller(!isSeller) }
             defaultChecked={ isSeller }
           />
-          Quero vender
-        </label>
+          <label htmlFor="checkbox-input">Quero vender</label>
+        </div>
         <button
+          className={ styles.signup }
           type="submit"
           data-testid="signup-btn"
           onClick={ handleSubmit }
@@ -101,7 +106,6 @@ function Register() {
         >
           Cadastrar
         </button>
-        { existUser && <p>Já existe um usuário com esse e-mail.</p> }
       </form>
     </div>
   );

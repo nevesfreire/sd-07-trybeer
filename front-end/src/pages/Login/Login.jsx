@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as API from '../../services/api';
 import { setStorage } from '../../services/localStorage';
+import styles from './styles.module.scss';
 
 function Login() {
   const history = useHistory();
@@ -30,41 +31,47 @@ function Login() {
   };
 
   return (
-    <div>
-      { userNotFound && <p style={ { color: 'red' } }>Usúario não cadastrado</p>}
-      <label htmlFor="email">
-        <h6>Email</h6>
-        <input
-          placeholder="E-mail"
-          type="email"
-          data-testid="email-input"
-          onChange={ ({ target }) => setEmail(target.value) }
-        />
-      </label>
-      <label htmlFor="password">
-        <h6>Senha</h6>
-        <input
-          placeholder="Senha"
-          type="password"
-          data-testid="password-input"
-          onChange={ ({ target }) => setPassword(target.value) }
-        />
-      </label>
-      <button
-        type="button"
-        data-testid="signin-btn"
-        disabled={ disabled }
-        onClick={ handleButton }
-      >
-        Entrar
-      </button>
-      <button
-        type="button"
-        data-testid="no-account-btn"
-        onClick={ () => history.push('/register') }
-      >
-        Ainda não tenho conta
-      </button>
+    <div className={ styles.main }>
+      <div className={ styles.logo }>Logo</div>
+      <form>
+        { userNotFound && <div className={ styles.error }>Usúario não cadastrado</div>}
+        <label htmlFor="email">
+          <h6>Email</h6>
+          <input
+            placeholder="E-mail"
+            type="email"
+            data-testid="email-input"
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+        </label>
+        <label htmlFor="password">
+          <h6>Senha</h6>
+          <input
+            placeholder="Senha"
+            type="password"
+            data-testid="password-input"
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+        </label>
+        <br />
+        <button
+          className={ styles.signin }
+          type="button"
+          data-testid="signin-btn"
+          disabled={ disabled }
+          onClick={ handleButton }
+        >
+          Entrar
+        </button>
+        <button
+          className={ styles.newAcc }
+          type="button"
+          data-testid="no-account-btn"
+          onClick={ () => history.push('/register') }
+        >
+          Ainda não tenho conta
+        </button>
+      </form>
     </div>
   );
 }

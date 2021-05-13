@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getStorage, setStorage } from '../../services/localStorage';
 import { Header } from '../../components';
+import styles from './styles.module.scss';
 
 function ClientProfile() {
   const [userData, setUserData] = useState({});
@@ -27,9 +28,10 @@ function ClientProfile() {
   }
 
   return (
-    <div>
+    <div className={ styles.main }>
       <Header>Meu perfil</Header>
       <form>
+        { updateUser && <div className={ styles.updatedUser }>Atualização concluída com sucesso</div> }
         <label htmlFor="name-input">
           <h6>Nome</h6>
           <input
@@ -50,6 +52,7 @@ function ClientProfile() {
             readOnly
           />
         </label>
+        <br />
         <button
           type="submit"
           data-testid="profile-save-btn"
@@ -58,7 +61,6 @@ function ClientProfile() {
         >
           Salvar
         </button>
-        { updateUser && <p>Atualização concluída com sucesso</p> }
       </form>
     </div>
   );

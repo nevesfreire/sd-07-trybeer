@@ -1,0 +1,96 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .logo {
+    font-size: 1.5rem;
+    margin: 80px auto;
+  }
+  form {
+    height: 100%;
+    max-height: 430px;
+
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    .error {
+      border: 2px solid var(--error-stroke);
+      border-radius: 4px;
+      background-color: var(--error);
+      color: var(--error-stroke);
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    label {
+      h6 {
+        color: var(--scnd-color);
+        font-size: 1.1rem;
+      }
+
+      input {
+        border: 1.5px solid var(--strokes);
+        padding: 8px 16px;
+        margin-bottom: 24px;
+
+        font-family: 'Robot condensed', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+      }
+    }
+    .signin {
+      width: 100%;
+      margin-top: 32px;
+
+      background-color: transparent;
+      border: 2px solid var(--beer);
+      border-radius: 4px;
+      padding: 6px;   
+
+      color: var(--beer);
+      font-size: 1.4rem;
+      font-weight: 700;
+      transition: 0.1s ease-in-out;
+
+      &:hover {
+        background-color: var(--beer);
+        color: white;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        border: 2px solid tomato;
+        color: tomato;
+
+        &:hover {
+          background-color: tomato;
+          color: white;
+        }
+      }
+    }
+
+    .newAcc {
+      width: 100%;
+      border: none;
+      color: var(--trybe);
+      background-color: transparent;
+      margin-top: 48px;
+
+      &:hover {
+        filter: brightness(80%);
+      }
+    }
+  } 
+}

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getStorage, setStorage } from '../../services/localStorage';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import format from '../../util/format';
+import styles from './styles.module.scss';
 
 function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
   const [productQuantity, setProductQuantity] = useState(0);
@@ -41,29 +42,36 @@ function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
   }, [productQuantity, setCart]);
 
   return (
-    <div>
-      <img
-        data-testid={ `${id - 1}-product-img` }
-        src={ urlImage }
-        alt={ name }
-      />
-      <h5 data-testid={ `${id - 1}-product-price` }>{ format(price) }</h5>
-      <h6 data-testid={ `${id - 1}-product-name` }>{ name }</h6>
-      <button
-        type="button"
-        data-testid={ `${id - 1}-product-minus` }
-        onClick={ () => changeQuantity('minus') }
-      >
-        -
-      </button>
-      <span data-testid={ `${id - 1}-product-qtd` }>{ productQuantity }</span>
-      <button
-        type="button"
-        data-testid={ `${id - 1}-product-plus` }
-        onClick={ () => changeQuantity('plus') }
-      >
-        +
-      </button>
+    <div className={ styles.card }>
+      <div className={ styles.cardImg }>
+        <img
+          data-testid={ `${id - 1}-product-img` }
+          src="https://diageo.vtexassets.com/arquivos/ids/159616-1200-auto?width=1200&height=auto&aspect=true"
+          alt="img do produto"
+        />
+      </div>
+      <hr />
+      <div className={ styles.cardInfos }>
+        <h5 data-testid={ `${id - 1}-product-name` }>{ name }</h5>
+        <h6 data-testid={ `${id - 1}-product-price` }>{ format(price) }</h6>
+        <div className={ styles.buttons }>
+          <button
+            type="button"
+            data-testid={ `${id - 1}-product-minus` }
+            onClick={ () => changeQuantity('minus') }
+          >
+            -
+          </button>
+          <span data-testid={ `${id - 1}-product-qtd` }>{ productQuantity }</span>
+          <button
+            type="button"
+            data-testid={ `${id - 1}-product-plus` }
+            onClick={ () => changeQuantity('plus') }
+          >
+            +
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

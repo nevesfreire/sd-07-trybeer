@@ -1,0 +1,11 @@
+.main {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

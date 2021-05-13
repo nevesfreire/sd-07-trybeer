@@ -1,0 +1,46 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--strokes); 
+  box-shadow: 0 4px 10px var(--strokes);
+  border-radius: 6px;
+  background-color: transparent;
+  width: 150px;
+  height: 245px;
+  margin-left: 24px;
+  margin-bottom: 24px;
+
+  text-align: center;
+
+  img {
+    max-width: 140px;
+    justify-self: flex-start;
+    align-self: center;
+  }
+
+  hr {
+    border: 0.2px solid var(--strokes);
+    margin-bottom: 6px;
+  }
+
+  h6 {
+    margin-top: 4px;
+    font-size: 1rem;
+  }
+
+  .buttons {
+    button {
+      border: 1px solid var(--strokes);
+      background-color: var(--strokes);
+      color: white;
+      margin-top: 6px;
+      padding: 2px 4px;
+    }
+
+    span {
+      border: 1px solid var(--strokes);
+      padding: 2px 4px;
+    }
+  }
+}
+
