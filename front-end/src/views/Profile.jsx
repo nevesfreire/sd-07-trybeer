@@ -24,22 +24,28 @@ export default function Profile() {
       <TopBar title="Meu perfil" />
       <div>
         <h1>perfil</h1>
-        <input
-          data-testid="profile-name-input"
-          id="nameProfile"
-          name="name"
-          onChange={ ({ target: { value } }) => setName(value) }
-          type="text"
-          value={ name }
-        />
-        <input
-          data-testid="profile-email-input"
-          id="emailProfile"
-          name="email"
-          readOnly
-          type="email"
-          value={ user.email }
-        />
+        <label htmlFor="nameProfile">
+          <h4>Name</h4>
+          <input
+            data-testid="profile-name-input"
+            id="nameProfile"
+            name="name"
+            onChange={ ({ target: { value } }) => setName(value) }
+            type="text"
+            value={ name }
+          />
+        </label>
+        <label htmlFor="emailProfile">
+          <h4>Email</h4>
+          <input
+            data-testid="profile-email-input"
+            id="emailProfile"
+            name="email"
+            readOnly
+            type="email"
+            value={ user.email }
+          />
+        </label>
         <h4 style={ { visibility: ((response.SC) ? 'visible' : 'hidden') } }>
           {response.message}
         </h4>
