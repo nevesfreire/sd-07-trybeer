@@ -17,40 +17,45 @@ function OrdersCard({ order }) {
   };
 
   const verifyRoleUser = () => {
-    const role = getToLocalStorage('user').role;
-    return role;
+    const roleUser = getToLocalStorage('user').role;
+    return roleUser;
   };
 
   if (verifyRoleUser() === 'administrator') {
     return (
       <button
         type="button"
-        data-testid={`${order.id - 1}-order-card-container`}
-        onClick={() => history.push(`/admin/orders/${order.id}`)}
+        data-testid={ `${order.id - 1}-order-card-container` }
+        onClick={ () => history.push(`/admin/orders/${order.id}`) }
       >
-        <p data-testid={`${order.id - 1}-order-number`}>
+        <p data-testid={ `${order.id - 1}-order-number` }>
           {`Pedido ${order.id}`}
         </p>
-        <p data-testid={`${order.id - 1}-order-address`}>{`${order.delivery_address}, ${order.delivery_number}`}</p>
-        <p data-testid={`${order.id - 1}-order-total-value`}>
+        <p data-testid={ `${order.id - 1}-order-address` }>
+          {`${order.delivery_address}, ${order.delivery_number}`}
+        </p>
+        <p data-testid={ `${order.id - 1}-order-total-value` }>
           {convertPrice(order.total_price)}
         </p>
-        <p data-testid={`${order.id - 1}-order-status`}>{order.status}</p>
+        <p data-testid={ `${order.id - 1}-order-status` }>{order.status}</p>
       </button>
     );
   }
 
   return (
-    <div data-testid={`${order.id - 1}-order-card-container`}>
+    <div data-testid={ `${order.id - 1}-order-card-container` }>
       <button
-        data-testid={`${order.id - 1}-order-number`}
-        type='button'
-        onClick={() => history.push(`/orders/${order.id}`)}>
+        data-testid={ `${order.id - 1}-order-number` }
+        type="button"
+        onClick={ () => history.push(`/orders/${order.id}`) }
+      >
         {`Pedido ${order.id}`}
       </button>
-      <p data-testid={`${order.id - 1}-order-date`}>{date()}</p>
-      <p data-testid={`${order.id - 1}-order-total-value`}>
-        {convertPrice(order.total_price)}
+      <p data-testid={ `${order.id - 1}-order-date` }>
+        { date() }
+      </p>
+      <p data-testid={ `${order.id - 1}-order-total-value` }>
+        { convertPrice(order.total_price) }
       </p>
     </div>
   );
@@ -61,6 +66,9 @@ OrdersCard.propTypes = {
     id: PropTypes.number,
     total_price: PropTypes.string,
     sale_date: PropTypes.string,
+    delivery_address: PropTypes.string,
+    delivery_number: PropTypes.string,
+    status: PropTypes.string,
   }).isRequired,
 };
 

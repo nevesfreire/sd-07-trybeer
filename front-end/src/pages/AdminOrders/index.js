@@ -32,11 +32,11 @@ function AdminOrders() {
 
   return (
     <div>
-      <TopMenu title='Meus Pedidos' />
+      <TopMenu title="Meus Pedidos" />
       {!orders.length ? (
         <h3>Você não tem pedidos ainda :(</h3>
       ) : (
-        orders.map(order => <OrdersCard key={order.id} order={order} />)
+        orders.map((order) => <OrdersCard key={ order.id } order={ order } />)
       )}
     </div>
   );
