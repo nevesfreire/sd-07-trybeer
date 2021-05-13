@@ -1,38 +1,37 @@
-import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
 import { Buttons } from './index';
 import TrybeerContext from '../context/TrybeerContext';
 
-export default function Counts({ price, index }) {
-  const { priceCar, setPriceCar } = useContext(TrybeerContext);
+export default function Counts(props) {
+  const [countsState] = useState(props);
+  const { product, index } = countsState;
+  const { dispatchShoppingCart } = useContext(TrybeerContext);
   const [count, setCount] = useState(0);
-  const AUX_NUMBER = 1;
+  const INC_NUMBER = 1;
 
-  const countSum = () => {
-    setCount(count + AUX_NUMBER);
-    setPriceCar(priceCar + (AUX_NUMBER * price));
+  const incCount = () => {
+    dispatchShoppingCart({
+      type: count === 0 ? 'addProduct' : 'incrementProduct',
+      payload: product,
+    });
+    setCount(count + INC_NUMBER);
   };
 
-  const countSub = () => {
-    if (count > 0) {
-      setCount(count - 1);
-      return setPriceCar(priceCar - (AUX_NUMBER * price));
-    }
-
-    setCount(0);
+  const decCouunt = () => {
+    if (!count) return;
+    dispatchShoppingCart({
+      type: count === 1 ? 'delProduct' : 'decrementProduct',
+      payload: product,
+    });
+    setCount(count - INC_NUMBER);
   };
-
-  useEffect(() => {
-    localStorage.setItem('car', priceCar < 0 ? -AUX_NUMBER * priceCar : priceCar);
-    setPriceCar(Number.parseFloat(localStorage.getItem('car')));
-  }, [count]);
 
   return (
     <div>
       <Buttons
         testid={ `${index}-product-minus` }
         value="-"
-        countClick={ countSub }
+        countClick={ decCouunt }
       />
       {' '}
       <span
@@ -44,13 +43,8 @@ export default function Counts({ price, index }) {
       <Buttons
         testid={ `${index}-product-plus` }
         value="+"
-        countClick={ countSum }
+        countClick={ incCount }
       />
     </div>
   );
 }
-
-Counts.propTypes = {
-  price: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-};

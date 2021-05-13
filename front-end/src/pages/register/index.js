@@ -32,7 +32,6 @@ export default function Register() {
     const role = (seller === false ? 'client' : 'administrator');
     const result = await register(name, email, password, role);
     await login(email, password);
-    console.log(result);
     if (!result.error) {
       setShouldRedirect(role);
     }

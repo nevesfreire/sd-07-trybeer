@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Register, Product } from '../pages';
+import PrivateRoute from './PrivateRoute';
+import { Login, Register, Product, CHeckout } from '../pages';
 
 const Routes = () => (
   <Router>
@@ -10,7 +11,8 @@ const Routes = () => (
       </Route>
       <Route exact path="/login" component={ Login } />
       <Route exact path="/register" component={ Register } />
-      <Route exact path="/products" component={ Product } />
+      <PrivateRoute exact path="/products" component={ Product } />
+      <PrivateRoute exact path="/checkout" component={ CHeckout } />
     </Switch>
   </Router>
 );
