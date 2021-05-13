@@ -116,7 +116,7 @@ function Products() {
     sumTotal(products);
   }
 
-  if (!localStorage.getItem('user')) {
+  if (!localStorage.getItem('user') && !localStorage.getItem('cadUser')) {
     return <Redirect to="/login" />;
   }
 

@@ -32,6 +32,8 @@ const salesAll = async (id) => ClientModel.salesA(id);
 
 const saleDetail = async (id) => ClientModel.detSales(id);
 
+const getAdmSales = async () => ClientModel.allSalesAdm();
+
 module.exports = {
   resLogin,
   cadUser,
@@ -40,4 +42,5 @@ module.exports = {
   savSale,
   salesAll,
   saleDetail,
+  getAdmSales,
 };
