@@ -42,10 +42,12 @@ const verifyToken = (token) => {
     const payload = jwt.verify(token, SECRET);
     return payload;
   } catch (error) {
-    const { TokenExpiredError, JsonWebTokenErro } = error;
-    if (TokenExpiredError) throw new CustomError(CODE.UNAUTHORIZED, 'Token expirado!');
-    if (JsonWebTokenErro) throw new CustomError(CODE.UNAUTHORIZED, 'Token inválido!');
-    throw error;
+    if (error.name === 'TokenExpiredError') error.message = 'Token expirado!';
+    if (error.name === 'JsonWebTokenError') error.message = 'Token inválido!';
+    // const { TokenExpiredError, JsonWebTokenError } = error;
+    // if (TokenExpiredError) throw new CustomError(CODE.UNAUTHORIZED, 'Token expirado!');
+    // if (JsonWebTokenError) throw new CustomError(CODE.UNAUTHORIZED, 'Token inválido!');
+    throw new CustomError(CODE.UNAUTHORIZED, error.message);
   }
 };
 
