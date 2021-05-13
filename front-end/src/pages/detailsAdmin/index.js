@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 // import TrybeerContext from '../../context/TrybeerContext';
 import AdminSideBar from '../../components/AdminSideBar';
+import { updateSaleStatus } from '../../service/trybeerApi';
+
+const ENTREGUE = 'Entregue';
 
 export default function AdminDetails() {
   // const {  } = useContext(TrybeerContext);
   const [orderId] = useState('1');
-  const [orderStatus] = useState('Pendente');
-  const [products] = useState([
+  const [orderStatus, setOrderStatus] = useState('Pendente');
+  const [order] = useState([
     {
       qtd: 1,
       name: 'Skol Lata 250ml',
@@ -21,6 +24,24 @@ export default function AdminDetails() {
     },
   ]);
 
+  const handleClick = () => {
+    updateSaleStatus(ENTREGUE);
+    setOrderStatus(ENTREGUE);
+  };
+
+  const shouldButtonRender = () => {
+    const button = (
+      <button
+        type="button"
+        data-testid="mark-as-delivered-btn"
+        onClick={ handleClick }
+      >
+        Marcar como entregue
+      </button>
+    );
+    return orderStatus !== ENTREGUE ? button : '';
+  };
+
   return (
     <div>
       <AdminSideBar />
@@ -29,7 +50,7 @@ export default function AdminDetails() {
         <p data-testid="order-status">{`${orderStatus}`}</p>
       </h1>
       <div>
-        {products && products.map((product, index) => (
+        {order && order.map((product, index) => (
           <div
             key={ index }
           >
@@ -58,6 +79,7 @@ export default function AdminDetails() {
           </div>
         ))}
       </div>
+      { shouldButtonRender() }
     </div>
   );
 }

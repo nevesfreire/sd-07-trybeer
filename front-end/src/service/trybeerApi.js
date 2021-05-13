@@ -60,9 +60,21 @@ const updateClient = async (name, email) => {
   return result;
 };
 
+const updateSaleStatus = async (status) => {
+  const result = await axios.put(`${URL}/admin/orders/:id`, {
+    status,
+  })
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error) return { error: error.message };
+    });
+  return result;
+};
+
 export {
   login,
   productList,
   register,
   updateClient,
+  updateSaleStatus,
 };

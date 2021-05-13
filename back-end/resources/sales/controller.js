@@ -2,11 +2,11 @@ const { StatusCodes } = require('http-status-codes');
 
 const service = require('./service');
 
-const update = async (req, res) => {
+const updateStatus = async (req, res) => {
   try {
     const { status } = req.body;
     const { id } = req.params;
-    const { error, message } = await service.update(status, id);
+    const { error, message } = await service.updateStatus(status, id);
     if (error) return res.status(StatusCodes.BAD_REQUEST).json({ error, message });
     res.status(StatusCodes.OK).json({ message });
   } catch (error) {
@@ -14,4 +14,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { update };
+module.exports = { updateStatus };
