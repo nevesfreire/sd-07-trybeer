@@ -22,8 +22,8 @@ export default function OrdersID() {
     };
     fetch(`http://localhost:3001${endpoint}`, requestOptions)
       .then((request) => request.json())
-      .then((data) => setResponse(data));
-    setLoad(false);
+      .then((data) => setResponse(data))
+      .then(() => setLoad(false));
   }, [id, push, user]);
 
   return (
