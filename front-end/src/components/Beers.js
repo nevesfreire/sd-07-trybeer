@@ -40,9 +40,9 @@ const ComponentBeers = () => {
     history.push('/checkout');
     localStorage.setItem(
       'cart',
-      JSON.stringify({
+      JSON.stringify(
         cart,
-      }),
+      ),
     );
   };
 
