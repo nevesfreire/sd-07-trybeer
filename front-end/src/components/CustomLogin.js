@@ -36,9 +36,7 @@ const CustomLogin = ({
         value={ password }
         onChange={ (e) => onInputChange(e) }
       />
-
-      {console.log(isValid())}
-      <Button
+      <button
         data-testid="signin-btn"
         color="orange"
         fluid
@@ -47,7 +45,7 @@ const CustomLogin = ({
         disabled={ isValid() }
       >
         Entrar
-      </Button>
+      </button>
     </Segment>
     <Button
       data-testid="no-account-btn"

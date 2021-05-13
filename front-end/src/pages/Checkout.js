@@ -1,11 +1,12 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import CustomCheckout from '../components/CustomCheckout';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
 import { Grid, Button, Form, Segment } from 'semantic-ui-react';
 import checkout from '../service/checkout';
+import { fetchOrderById } from '../service/order';
 
 function Checkout() {
   const { totalKart, setTotalKart } = useContext(CentralContext);
@@ -35,15 +36,13 @@ const checkoutButton = async () => {
     deliveryNumber,
     cart
   )
-  sucess()
+  setFinish(true) 
+  fetchOrderById()
   setTimeout(function(){
-    setFinish(false)    
-    history.push('/products')
-  }, 2000);
-}
-
-const sucess = () => {
-  setFinish(true)
+  setFinish(true) 
+  history.push('/products')
+  }, 4500)
+  
 }
 
   useEffect(() => {
