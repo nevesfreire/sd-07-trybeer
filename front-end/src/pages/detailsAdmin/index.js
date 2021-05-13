@@ -55,36 +55,24 @@ export default function AdminDetails() {
     <div>
       <AdminSideBar />
       <h1>
-        <p data-testid="order-number">{`Pedido ${orderId}`}</p>
-        <p data-testid="order-status">{`${orderStatus}`}</p>
+        <span data-testid="order-number">{`Pedido ${orderId} -`}</span>
+        <span data-testid="order-status">{` ${orderStatus}`}</span>
       </h1>
       <div>
         {order && order.map((product, index) => (
           <div
             key={ index }
           >
-            <div>
-              <img
-                src={ product.image }
-                alt={ product.name }
-              />
-            </div>
-            <div>
-              <p data-testid={ `${index}-product-qtd` }>
-                {product.qtd}
-              </p>
-              <p data-testid={ `${index}-product-name` }>
-                {product.name}
-              </p>
-              <p data-testid={ `${index}-product-total-value` }>
-                {`R$ ${(product.unitPrice * product.qtd).toFixed(2).replace('.', ',')}`}
-              </p>
-              <p data-testid={ `${index}-order-unit-price` }>
-                <strong>
-                  {`(R$ ${product.unitPrice.toFixed(2).replace('.', ',')})`}
-                </strong>
-              </p>
-            </div>
+            <span data-testid={ `${index}-product-qtd-input` }>{product.qtd}</span>
+            <span data-testid={ `${index}-product-name` }>{ ` ${product.name} ` }</span>
+            <span data-testid={ `${index}-product-total-value` }>
+              { ` R$ ${(product.qtd * parseFloat(product.unitPrice))
+                .toFixed(2).split('.').join(',')} ` }
+            </span>
+            <span data-testid={ `${index}-product-unit-price` }>
+              { ` (R$ ${parseFloat(product.unitPrice)
+                .toFixed(2).split('.').join(',')} un) ` }
+            </span>
           </div>
         ))}
       </div>
