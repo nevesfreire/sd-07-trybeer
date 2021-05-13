@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import TrybeerContext from '../../context/TrybeerContext';
 import { nameIsValid, passwordIsValid, emailIsValid } from '../../service/validateInputs';
 import { register, login } from '../../service/trybeerApi';
 
 export default function Register() {
+  const { login: loginAction } = useContext(TrybeerContext);
   const [shouldRedirect, setShouldRedirect] = useState('');
   const [loginException, setLoginException] = useState();
   const [registerInfo, setRegisterInfo] = useState({
@@ -30,12 +32,13 @@ export default function Register() {
   const handleClick = async () => {
     const { name, email, password, seller } = registerInfo;
     const role = (seller === false ? 'client' : 'administrator');
-    const result = await register(name, email, password, role);
-    await login(email, password);
-    if (!result.error) {
+    const RegisterResult = await register(name, email, password, role);
+    const loginResult = await login(email, password);
+    if (!RegisterResult.error) {
+      loginAction({ ...loginResult });
       setShouldRedirect(role);
     }
-    setLoginException(<p>{result.error}</p>);
+    setLoginException(<p>{RegisterResult.error}</p>);
   };
 
   if (shouldRedirect) {
