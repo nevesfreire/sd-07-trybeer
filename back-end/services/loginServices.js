@@ -16,7 +16,6 @@ const signInLogin = async (data) => {
   if (!user) throw errors.invalidData;
   delete user.password;
   const token = tokenServices.generateToken({ data: user });
-  delete user.id;
   return { token, user };
 };
 

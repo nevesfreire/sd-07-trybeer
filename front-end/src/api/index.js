@@ -54,4 +54,14 @@ async function getOrders(token) {
   }
 }
 
-export { requestToken, registerUser, getProducts, updateUser, getOrders };
+async function createNewSale(sale, token) {
+  try {
+    const response = await axios
+      .post(`${url}${orders}`, sale, { headers: { Authorization: token } });
+    return response;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
+export { requestToken, registerUser, getProducts, updateUser, getOrders, createNewSale };
