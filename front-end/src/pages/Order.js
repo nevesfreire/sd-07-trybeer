@@ -5,7 +5,7 @@ import { fetchOrderById } from '../service/order';
 import { getOrderById } from '../helpers/localStorage';
 import { Grid } from 'semantic-ui-react';
 
-function Admin() {
+function Order() {
 
 const [order, _setOrder] = useState(getOrderById())
 
@@ -46,4 +46,4 @@ const renderOrderById = () => {
   );
 }
 
-export default Admin;
+export default Order;

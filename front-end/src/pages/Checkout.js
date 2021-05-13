@@ -36,16 +36,13 @@ const checkoutButton = async () => {
     deliveryNumber,
     cart
   )
-  sucess()
+  setFinish(true) 
   fetchOrderById()
   setTimeout(function(){
-    return history.push('/products')
-  }, 2000);
+  setFinish(true) 
+  history.push('/products')
+  }, 3000)
   
-}
-
-const sucess = () => {
-  setFinish(true)
 }
 
   useEffect(() => {

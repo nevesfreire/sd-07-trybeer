@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
-
+import { fetchAllOrders } from '../service/order'
 import CustomLogin from '../components/CustomLogin';
 import CustomHeader from '../components/CustomHeader';
 import fetchToken from '../service/auth';
@@ -43,6 +43,7 @@ function Login() {
     await fetchProducts(); // mudança do local do fetch
     const { role } = user;
     if (role === 'client') return history.push('/products');
+    await fetchAllOrders();
     history.push('/admin/orders');
   };
 
