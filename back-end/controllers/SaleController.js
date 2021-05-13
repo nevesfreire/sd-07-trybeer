@@ -60,10 +60,24 @@ const updateSaleStatus = async (req, res) => {
   }
 };
 
+const adminGetSaleById = async (req, res) => {
+  try {
+    const { saleid } = req.params;
+    const { user } = req;
+    const response = await saleService.adminGetSaleById(saleid, user);
+    res.status(200).json(response);
+  } catch (error) {
+    let code = BADREQUEST;
+    if (error.message === NOTADMINISTRATOR.message) code = FORBIDDEN;
+    res.status(code).json(error);
+  }
+};
+
 module.exports = {
   createSale,
   getSaleByUserId,
   getSaleProducts,
   getAllSales,
   updateSaleStatus,
+  adminGetSaleById,
 };

@@ -69,10 +69,17 @@ const updateSaleStatus = async (id, status, token) => {
   return { message: `Pedido registrado como ${status}` };
 };
 
+const adminGetSaleById = async (saleId, token) => {
+  if (token[0].role !== 'administrator') throw NOTADMINISTRATOR;
+  const result = await saleModel.adminGetSaleById(saleId);
+  return result;
+};
+
 module.exports = {
   createSale,
   getSaleByUserId,
   getSaleProducts,
   getAllSales,
   updateSaleStatus,
+  adminGetSaleById,
 };
