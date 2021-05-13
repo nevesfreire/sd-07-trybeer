@@ -16,8 +16,15 @@ export default function TopMenu({ title }) {
     sideBarComplement.classList.toggle('nav-complement-show');
   }
 
-  function role() {
-    const role = getToLocalStorage('user').role;
+  const handleClick = () => {
+    if (document.getElementsByClassName('nav-complement')[0]
+      .classList[1] === 'nav-complement-show') {
+      handleMenuToggle();
+    }
+  };
+
+  function getRole() {
+    const { role } = getToLocalStorage('user');
     if (role === 'administrator') return 0;
     return 1;
   }
@@ -44,7 +51,7 @@ export default function TopMenu({ title }) {
     }
   }, [title]);
 
-  if (role()) {
+  if (getRole()) {
     return (
       <div className="header">
         <div id="title" className="header-title" data-testid="top-title">
@@ -52,12 +59,7 @@ export default function TopMenu({ title }) {
         </div>
         <div
           className="nav-complement nav-complement-hide"
-          onClick={ () => {
-            if (document.getElementsByClassName('nav-complement')[0]
-              .classList[1] === 'nav-complement-show') {
-              handleMenuToggle();
-            }
-          } }
+          onClick={ () => handleClick() }
           onKeyDown={ (e) => getKeyCode(e) }
           aria-hidden="true"
         />
@@ -128,12 +130,7 @@ export default function TopMenu({ title }) {
       </div>
       <div
         className="nav-complement nav-complement-hide"
-        onClick={ () => {
-          if (document.getElementsByClassName('nav-complement')[0]
-            .classList[1] === 'nav-complement-show') {
-            handleMenuToggle();
-          }
-        } }
+        onClick={ () => handleClick() }
         onKeyDown={ (e) => getKeyCode(e) }
         aria-hidden="true"
       />

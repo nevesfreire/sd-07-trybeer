@@ -3,6 +3,8 @@ import Register from './Register';
 import Profile from './Profile';
 import Products from './Products';
 import Checkout from './Checkout';
+import Orders from './Orders';
+import OrdersDetails from './OrdersDetails';
 
 export {
   Login,
@@ -10,4 +12,6 @@ export {
   Profile,
   Products,
   Checkout,
+  Orders,
+  OrdersDetails,
 };
