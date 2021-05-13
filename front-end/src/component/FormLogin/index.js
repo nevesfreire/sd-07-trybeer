@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import FormWrapper from './styles';
 import { requestLoginAPI } from '../../services';
 import { setToLocalStorage } from '../../utils/localStorage';
+import Container from './style';
 
 const defaultForm = {
   email: '',
@@ -58,36 +58,50 @@ function FormLogin() {
   }, [formLogin, handleButtonState]);
 
   return (
-    <FormWrapper>
-      <label htmlFor="email">
-        Email
-        <input
-          id="email"
-          type="email"
-          data-testid="email-input"
-          value={ formLogin.email }
-          onChange={ (event) => handleInputChange(event, 'email') }
-        />
-      </label>
-      <label htmlFor="password">
-        Senha
-        <input
-          id="password"
-          type="password"
-          data-testid="password-input"
-          value={ formLogin.password }
-          onChange={ (event) => handleInputChange(event, 'password') }
-        />
-      </label>
-      <button
-        type="submit"
-        data-testid="signin-btn"
-        disabled={ buttonState }
-        onClick={ (event) => handleSubmit(event) }
-      >
-        Entrar
-      </button>
-    </FormWrapper>
+    <Container>
+      <div className="page-body">
+        <h1 className="title">TryBeer</h1>
+        <div className="form-container">
+          <h2>EMAIL:</h2>
+          <input
+            id="email"
+            type="email"
+            data-testid="email-input"
+            value={ formLogin.email }
+            onChange={ (event) => handleInputChange(event, 'email') }
+          />
+          <h2>SENHA:</h2>
+          <input
+              id="password"
+              type="password"
+              data-testid="password-input"
+              value={ formLogin.password }
+              onChange={ (event) => handleInputChange(event, 'password') }
+            />
+          <div className="btn-container">
+            <button
+              id="btn-submit"
+              type="submit"
+              className="form-btn"
+              data-testid="signin-btn"
+              disabled={ buttonState }
+              onClick={ (event) => handleSubmit(event) }
+            >
+              ENTRAR
+            </button>
+            <button
+              id="btn-new-user"
+              className="form-btn"
+              type="button"
+              onClick={ () => { history.push('/register'); } }
+              data-testid="no-account-btn"
+            >
+              AINDA NÃO TENHO CONTA
+            </button>
+          </div>
+        </div>
+      </div>
+    </Container>
   );
 }
 

@@ -1,4 +1,6 @@
-@font-face {font-family: "Apercu"; src: url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.eot"); src: url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.woff") format("woff"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.svg#Apercu") format("svg"); }
+import styled from 'styled-components';
+
+const Container = styled.div`
 
 .page-body {
   align-items: center;
@@ -7,6 +9,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow-x: hidden;
   width: 100vw;
 }
 
@@ -17,6 +20,7 @@
   margin: 10vh auto 7vh;
   top: 0;
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -46,7 +50,6 @@ input {
 
 input:focus {
   border-bottom: 2px solid #777;
-  transition: border-bottom 0.3s ease;
 }
 
 .btn-container {
@@ -88,18 +91,39 @@ input:focus {
   background-color: #888;
 }
 
-@media(max-width: 400px) {
-  .page-title {
+@media(max-width: 470px) {
+  .page-body {
     background-color: #252525;
+    background-image: none;
+    height: 100vh;
+    width: 100vw;
   }
 
   .title {
-    margin: 3vh 0 3vh;
+    margin: 5vh 0 10vh;
   }
 
   .form-container {
     border-radius: 0;
     height: 100vh;
-    width: 100vw;
+    margin: 0 10px;
+    padding: 0  60px;
+    width: 85vw;
+  }
+
+  input {
+    border-bottom: 1px solid #444;
+  }
+
+  input:focus {
+    border-bottom: 1px solid #777;
+  }
+
+  .form-btn {
+    box-shadow: none;
   }
 }
+
+`;
+
+export default Container;

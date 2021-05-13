@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { StatusCodes } from 'http-status-codes';
 import { requestCreateUserAPI, requestLoginAPI } from '../../services';
 import { setToLocalStorage } from '../../utils/localStorage';
+import Container from './style.js';
 
 const defaultForm = {
   name: '',
@@ -108,62 +109,63 @@ function FormRegister() {
   }, [formRegister, handleButtonState]);
 
   return (
-    <form>
-      <label htmlFor="name">
-        Nome
-        <input
-          type="text"
-          id="name"
-          name="name"
-          data-testid="signup-name"
-          value={ formRegister.name }
-          onChange={ (e) => handleImputChange(e) }
-        />
-      </label>
-      <label htmlFor="email">
-        Email
-        <input
-          type="email"
-          id="email"
-          name="email"
-          data-testid="signup-email"
-          value={ formRegister.email }
-          onChange={ (e) => handleImputChange(e) }
-        />
-      </label>
-      { errorState && <p>Já existe um usuário com esse e-mail.</p> }
-      <label htmlFor="password">
-        Senha
-        <input
-          type="password"
-          id="password"
-          name="password"
-          data-testid="signup-password"
-          value={ formRegister.password }
-          onChange={ (e) => handleImputChange(e) }
-        />
-      </label>
-      <div>
-        <label htmlFor="checkbox">
+    <Container>
+      <div className="page-body">
+        <h1 className="title">TryBeer</h1>
+        <div className="form-container">
+          <h2>NOME:</h2>
           <input
-            type="checkbox"
-            id="checkbox"
-            name="checkbox"
-            data-testid="signup-seller"
+              type="text"
+              id="name"
+              name="name"
+              data-testid="signup-name"
+              value={ formRegister.name }
+              onChange={ (e) => handleImputChange(e) }
+            />
+          <h2>EMAIL:</h2>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            data-testid="signup-email"
+            value={ formRegister.email }
             onChange={ (e) => handleImputChange(e) }
           />
-          Quero vender
-        </label>
+          { errorState && <p>Já existe um usuário com esse e-mail.</p> }
+          <h2>SENHA:</h2>
+          <input
+              type="password"
+              id="password"
+              name="password"
+              data-testid="signup-password"
+              value={ formRegister.password }
+              onChange={ (e) => handleImputChange(e) }
+            />
+          <div className="box">
+            <label htmlFor="checkbox"><h2>QUERO VENDER</h2></label>
+            <input
+              type="checkbox"
+              id="checkbox"
+              name="checkbox"
+              data-testid="signup-seller"
+              onChange={ (e) => handleImputChange(e) }
+            />
+            <span className="check"></span>
+          </div>
+          <div className="btn-container">
+            <button
+              className="form-btn"
+              type="submit"
+              data-testid="signup-btn"
+              disabled={ buttonState }
+              onClick={ (e) => handleSubmit(e) }
+            >
+              CADASTRAR
+            </button>
+          </div>
+        </div>
       </div>
-      <button
-        type="submit"
-        data-testid="signup-btn"
-        disabled={ buttonState }
-        onClick={ (e) => handleSubmit(e) }
-      >
-        Cadastrar
-      </button>
-    </form>
+    </Container>
   );
 }
 

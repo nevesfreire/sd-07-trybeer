@@ -1,3 +1,9 @@
+@font-face {font-family: "FF Tisa"; src: url("//db.onlinewebfonts.com/t/aef726001a07788d4c639a835fa10360.eot"); src: url("//db.onlinewebfonts.com/t/aef726001a07788d4c639a835fa10360.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/aef726001a07788d4c639a835fa10360.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/aef726001a07788d4c639a835fa10360.woff") format("woff"), url("//db.onlinewebfonts.com/t/aef726001a07788d4c639a835fa10360.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/aef726001a07788d4c639a835fa10360.svg#FF Tisa") format("svg"); }
+@font-face {font-family: "LuloCleanW01-OneBold"; src: url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.eot"); src: url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.woff") format("woff"), url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.svg#LuloCleanW01-OneBold") format("svg"); }
+@font-face {font-family: "ITCMedeaW01-ExtraBold"; src: url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.eot"); src: url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.woff") format("woff"), url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.svg#ITCMedeaW01-ExtraBold") format("svg"); }
+@font-face {font-family: "Apercu"; src: url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.eot"); src: url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.woff") format("woff"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.svg#Apercu") format("svg"); }
+
+
 .App {
   text-align: center;
 }
@@ -35,4 +41,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

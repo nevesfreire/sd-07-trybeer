@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './style.css';
 
 export default function TopMenu({ title }) {
   const history = useHistory();
