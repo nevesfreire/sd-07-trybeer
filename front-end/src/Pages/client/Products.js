@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import Header from '../../Components/Header';
-// import trybeerContext from "../../Context/TrybeerContext";
 
 function Products() {
   const [products, setProducts] = useState([]);
   const num = 0;
   const [isLoading, setIsLoading] = useState(false);
-
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(num);
   const [logado] = useState(true);
@@ -51,8 +49,11 @@ function Products() {
     return add.qtd;
   }
 
-  useEffect(() => {
-    let sum = 0;
+  function getQtd(id) {
+    if (cart.length === 0) {
+      return 0;
+    }
+    const add = cart.find((product) => product.id === id);
 
     products.map((product) => {
       sum += parseFloat(product.price) * getQtd(product.id);
@@ -82,15 +83,6 @@ function Products() {
     localStorage.setItem('cart', JSON.stringify(cart));
 
     sumTotal(products);
-
-    // let sum = 0;
-
-    // products.map((product) => {
-    //   sum += parseFloat(product.price) * getQtd(product.id);
-    // });
-
-    // setTotal(sum);
-    // return 0;
   }
 
   function subQuantity(id) {
@@ -100,17 +92,9 @@ function Products() {
     localStorage.setItem('cart', JSON.stringify(cart));
 
     sumTotal(products);
-
-    // let sum = 0;
-
-    // products.map((product) => {
-    //   sum += parseFloat(product.price) * getQtd(product.id);
-    // });
-
-    // setTotal(sum);
   }
 
-  if (!localStorage.getItem('user')) {
+  if (!localStorage.getItem('user') && !localStorage.getItem('cadUser')) {
     return <Redirect to="/login" />;
   }
 
@@ -187,12 +171,58 @@ function Products() {
               <div data-testid="checkout-bottom-btn-value">
                 R$
                 {' '}
-                {parseFloat(total).toFixed(2).replaceAll('.', ',')}
+                {e.price.replaceAll('.', ',')}
               </div>
+              <button
+                type="button"
+                data-testid={ `${index}-product-plus` }
+                name={ 'plus '.concat(e.id) }
+                onClick={ () => {
+                  addQuantity(e.id);
+                } }
+              >
+                +
+              </button>
+              <span
+                data-testid={ `${index}-product-qtd` }
+                type="number"
+                name={ 'quantity'.concat(e.id) }
+              >
+                {getQtd(e.id)}
+              </span>
+
+              <button
+                type="button"
+                data-testid={ `${index}-product-minus` }
+                name={ 'plus '.concat(e.id) }
+                onClick={ () => {
+                  subQuantity(e.id);
+                } }
+              >
+                -
+              </button>
+              <hr />
             </div>
-          </button>
-        </div>
-      )}
+          ))
+        )}
+        <button
+          type="button"
+          disabled={ total === 0 }
+          data-testid="checkout-bottom-btn"
+          onClick={ () => {
+            history.push('/checkout');
+          } }
+        >
+          <div>
+            Ver Carrinho
+            <div data-testid="checkout-bottom-btn-value">
+              R$
+              {' '}
+              {parseFloat(total).toFixed(2).replaceAll('.', ',')}
+            </div>
+          </div>
+        </button>
+      </div>
     </div>
   );
 }
