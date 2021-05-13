@@ -9,14 +9,14 @@ const CheckoutBody = () => {
   // console.log(token);
 
   // ainda está mockado no Beer.js
-  // const cart = JSON.parse(localStorage.getItem('cart'));
+  const { cart } = JSON.parse(localStorage.getItem('cart'));
 
   // cart mockado
-  const cart = [
-    { nome: 'cerva1', preco: 10.0, quantidade: 3 },
-    { nome: 'cerva2', preco: 5.0, quantidade: 6 },
-  ];
-  console.log(`CheckoutBody cart: ${cart}`);
+  // const cart = [
+  //   { nome: 'cerva1', preco: 10.0, quantidade: 3 },
+  //   { nome: 'cerva2', preco: 5.0, quantidade: 6 },
+  // ];
+  console.log(`CheckoutBody cart: ${typeof (cart)}`);
 
   const [priceTotal, setPriceTotal] = useState(
     JSON.parse(localStorage.getItem('productPriceTotals')) || { value: 0.0 },
