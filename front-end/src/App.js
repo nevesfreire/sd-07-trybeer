@@ -13,13 +13,13 @@ import './App.css';
 function App() {
   return (
     <Switch>
+      <Route path="/products" component={ Products } />
       <Route path="/admin/orders" component={ Orders } />
-      <Route path="/orders/:id" component={ OrdersDetails } />
+      <Route path="/orders/:id" component={ OrdersDetails }/>
       <Route path="/orders" component={ Orders } />
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/profile" component={ Profile } />
-      <Route path="/products" component={ Products } />
       <Route path="/admin/profile" component={ Profile } />
       <Route path="/checkout" component={ Checkout } />
       <Redirect from="/" to="/login" />
