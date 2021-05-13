@@ -7,6 +7,7 @@ import OrdersAdmin from './OrdersAdmin';
 import ProfileAdmin from './ProfileAdmin';
 import CheckoutUser from './CheckoutUser';
 import OrderDetailsUser from './OrderDetailsUser';
+import OrderDetailsAdmin from './OrderDetailsAdmin';
 
 export {
   Login,
@@ -18,4 +19,5 @@ export {
   ProfileAdmin,
   CheckoutUser,
   OrderDetailsUser,
+  OrderDetailsAdmin,
 };

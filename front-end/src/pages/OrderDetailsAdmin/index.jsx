@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import { Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Header from '../../components/Header';
 
-export default function OrderDetailsUser(props) {
-  const { match: { params: { orderId } } } = props;
+export default function OrderDetailsAdmin(props) {
+  const { match: { params: { id } } } = props;
 
   const [order, setOrder] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
@@ -17,7 +18,7 @@ export default function OrderDetailsUser(props) {
       history.push('/login');
     } else {
       setIsLoading(true);
-      fetch(`http://localhost:3001/sales/products/${orderId}`)
+      fetch(`http://localhost:3001/sales/products/${id}`)
         .then((response) => response.json())
         .then((products) => {
           setOrder(products);
@@ -25,7 +26,13 @@ export default function OrderDetailsUser(props) {
           setIsLoading(false);
         });
     }
-  }, [history, orderId, setIsLoading]);
+  }, [history, id, setIsLoading]);
+
+  const handleDeliveredButton = (event) => {
+    event.preventDefault();
+
+    history.push('/checkout');
+  };
 
   return isLoading ? (
     <div>Loading...</div>
@@ -37,6 +44,9 @@ export default function OrderDetailsUser(props) {
           <h2 data-testid="order-number">
             {`Pedido ${orderId}`}
           </h2>
+          <h2 data-testid="order-status">
+            Status
+          </h2>
           <p data-testid="order-date">
             Data do pedido
           </p>
@@ -45,7 +55,8 @@ export default function OrderDetailsUser(props) {
               <li key={ index }>
                 <div data-testid={ `${index}-product-qtd` }>{product.qtd}</div>
                 <div data-testid={ `${index}-product-name` }>{product.nome}</div>
-                <div data-testid={ `${index}-product-total-value` }>
+                <div data-testid={ `${index}-product-name` }>{product.nome}</div>
+                <div data-testid={ `${index}-order-unit-price` }>
                   {`R$ ${product.total.toString().replace('.', ',')}`}
                 </div>
               </li>
@@ -54,14 +65,24 @@ export default function OrderDetailsUser(props) {
           <div data-testid="order-total-value">
             Total do pedido
           </div>
+          <Button
+            data-testid="mark-as-delivered-btn"
+            variant="primary"
+            type="button"
+            className="form__login__btn"
+            onClick={ (event) => handleDeliveredButton(event) }
+            disabled={ disableCartButton() }
+          >
+            Marcar como entregue
+          </Button>
         </main>
       </div>);
 }
 
-OrderDetailsUser.propTypes = {
+OrderDetailsAdmin.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      orderId: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };
