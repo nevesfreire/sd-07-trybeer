@@ -37,8 +37,8 @@ function Checkout() {
       totalPrice: sumItens.toFixed(2),
       status: 'Pendente',
       products: [{
-        ...cart
-      }]
+        ...cart,
+      }],
     };
     const { token } = userState;
     const sendSaleToDb = await createNewSale(saleToSend, token);

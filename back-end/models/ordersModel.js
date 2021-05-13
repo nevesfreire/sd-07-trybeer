@@ -15,19 +15,19 @@ const setProductsInTable = async (product) => {
     [insertId, productId, quantity],
   );
   return saleProduct;
-}
+};
 
 const createProductsSale = async (prods) => {
-  const { insertId, products} = prods;
+  const { insertId, products } = prods;
   const productsReceived = Object.values(products[0]);
-  const result = Promise.all(productsReceived.map( async (cur) => {
+  const result = Promise.all(productsReceived.map(async (cur) => {
     const insertProduct = {
       insertId,
       productId: cur.item.id,
       quantity: cur.quantity,
     };
     const set = await setProductsInTable(insertProduct);
-    return set;
+    return { set, result };
   }));
 };
 
@@ -87,14 +87,15 @@ const getSalesByUser = async (user) => {
 
 const createSale = async (data) => {
   const {
-    userId, totalPrice, deliveryAddress, deliveryNumber, status, products }
-    = data;
-    let { saleDate } = data;
-    saleDate = saleDate.split('T').join('-').split('.')[0];
+    userId, totalPrice, deliveryAddress, deliveryNumber, status, products,
+  } = data;
+    const { saleDate } = data;
+    const date = saleDate.split('T').join('-').split('.')[0];
     const [sale] = await connection.execute(
-      `INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, sale_date, status)
+      `INSERT INTO sales (user_id, total_price, delivery_address,
+        delivery_number, sale_date, status)
         VALUES (?,?,?,?,?,?)`, 
-        [userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status],
+        [userId, totalPrice, deliveryAddress, deliveryNumber, date, status],
     );
     const { insertId } = Object.assign(sale);
     if (!insertId) return sale;

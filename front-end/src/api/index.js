@@ -62,6 +62,6 @@ async function createNewSale(sale, token) {
   } catch (error) {
     return error.response.status;
   }
-};
+}
 
 export { requestToken, registerUser, getProducts, updateUser, getOrders, createNewSale };
