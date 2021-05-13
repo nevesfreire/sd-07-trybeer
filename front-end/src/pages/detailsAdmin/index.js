@@ -14,13 +14,11 @@ export default function AdminDetails() {
       qtd: 1,
       name: 'Skol Lata 250ml',
       unitPrice: 2.20,
-      image: 'http://localhost:3001/images/Skol Lata 350ml.jpg',
     },
     {
       qtd: 1,
       name: 'Heineken 600ml',
       unitPrice: 7.50,
-      image: 'http://localhost:3001/images/Heineken 600ml.jpg',
     },
   ]);
 
