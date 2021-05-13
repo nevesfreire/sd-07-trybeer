@@ -63,7 +63,7 @@ function Checkout() {
     if (!validateToken()) {
       return history.push('/login');
     }
-  }, [history]);
+  }, []);
 
   return (
     <div>

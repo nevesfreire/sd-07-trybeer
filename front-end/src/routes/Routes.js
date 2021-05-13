@@ -10,6 +10,7 @@ import {
   OrdersDetails,
   AdminProfile,
   AdminOrders,
+  AdminOrdersDetails,
 } from '../pages';
 
 function Routes() {
@@ -17,15 +18,16 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ Login } />
-        <Route path="/login" component={ Login } />
-        <Route path="/register" component={ Register } />
-        <Route path="/profile" component={ Profile } />
-        <Route path="/products" component={ Products } />
-        <Route path="/checkout" component={ Checkout } />
-        <Route path="/admin/profile" component={ AdminProfile } />
-        <Route path="/admin/orders" component={ AdminOrders } />
-        <Route path="/orders/:id" component={ OrdersDetails } />
-        <Route path="/orders" component={ Orders } />
+        <Route exact path="/login" component={ Login } />
+        <Route exact path="/register" component={ Register } />
+        <Route exact path="/profile" component={ Profile } />
+        <Route exact path="/products" component={ Products } />
+        <Route exact path="/checkout" component={ Checkout } />
+        <Route exact path="/orders/:id" component={ OrdersDetails } />
+        <Route exact path="/orders" component={ Orders } />
+        <Route exact path="/admin/profile" component={ AdminProfile } />
+        <Route exact path="/admin/orders/:id" component={ AdminOrdersDetails } />
+        <Route exact path="/admin/orders" component={ AdminOrders } />
       </Switch>
     </BrowserRouter>
   );

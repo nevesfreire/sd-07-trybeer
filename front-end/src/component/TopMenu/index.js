@@ -152,7 +152,7 @@ export default function TopMenu({ title }) {
         <div
           className="nav-item"
           data-testid="side-menu-item-orders"
-          onClick={ () => link('/orders') }
+          onClick={ () => link('/admin/orders') }
           onKeyDown={ (e) => getKeyCode(e) }
           aria-hidden="true"
         >
