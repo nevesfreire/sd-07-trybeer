@@ -131,6 +131,16 @@ const allSalesAdm = async () => {
   return (salesADM);
 };
 
+const orderFinal = async (id) => {
+  await connect
+  .execute('update Trybeer.sales set status = \'Entregue\' where id = ?', [id]);
+
+  return {
+    message: 'Entregue',
+    status: 200,
+  };
+};
+
 module.exports = {
   getEmailUser,
   token,
@@ -142,4 +152,5 @@ module.exports = {
   salesA,
   detSales,
   allSalesAdm,
+  orderFinal,
 };

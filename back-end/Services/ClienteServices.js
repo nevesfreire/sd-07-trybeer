@@ -34,6 +34,8 @@ const saleDetail = async (id) => ClientModel.detSales(id);
 
 const getAdmSales = async () => ClientModel.allSalesAdm();
 
+const finallyO = async (id) => ClientModel.orderFinal(id);
+
 module.exports = {
   resLogin,
   cadUser,
@@ -43,4 +45,5 @@ module.exports = {
   salesAll,
   saleDetail,
   getAdmSales,
+  finallyO,
 };
