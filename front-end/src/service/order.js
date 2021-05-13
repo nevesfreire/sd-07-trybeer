@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { saveAllOrders, getToken, saveOrderById, getOrderById, saveOrderDetails } from '../helpers/localStorage';
+import {
+  saveAllOrders,
+  getToken,
+  saveOrderById,
+  getOrderById,
+  saveOrderDetails,
+} from '../helpers/localStorage';
 
 async function fetchAllOrders() {
   const requestProductsUrl = 'http://localhost:3001/orders';
@@ -23,52 +29,79 @@ async function fetchAllOrders() {
 }
 
 async function fetchOrderById() {
-    const { id }  = getToken()
-    const requestProductsUrl = `http://localhost:3001/orders/${id}`;
-  
-    const requestHeader = {
-      'Content-Type': 'application/json',
-    };
-  
-    try {
-      const res = await axios.get(requestProductsUrl, requestHeader);
-      console.log('res', res);
-      const { data } = res;
-      if (data) {
-            saveOrderById(data);
-        return data;
-      }
-    } catch (error) {
-      console.error(error);
-      return error.message;
-    }
-  }
+  const { id } = getToken();
+  const requestProductsUrl = `http://localhost:3001/orders/${id}`;
 
-  async function fetchOrderDetails(id) {
-    //const { id }  = getOrderById()
-    const requestProductsUrl = `http://localhost:3001/orders/details/${id}`;
-  
-    const requestHeader = {
-      'Content-Type': 'application/json',
-    };
-  
-    try {
-      const res = await axios.get(requestProductsUrl, requestHeader);
-      console.log('res', res);
-      const { data } = res;
-      if (data) {
-            saveOrderDetails(data);
-        return data;
-      }
-    } catch (error) {
-      console.error(error);
-      return error.message;
-    }
-  }
-  
-  export {
-    fetchAllOrders,
-    fetchOrderById,
-    fetchOrderDetails,
+  const requestHeader = {
+    'Content-Type': 'application/json',
   };
-  
+
+  try {
+    const res = await axios.get(requestProductsUrl, requestHeader);
+    console.log('res', res);
+    const { data } = res;
+    if (data) {
+      saveOrderById(data);
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    return error.message;
+  }
+}
+
+async function fetchOrderDetails(id) {
+  //const { id }  = getOrderById()
+  const requestProductsUrl = `http://localhost:3001/orders/details/${id}`;
+
+  const requestHeader = {
+    'Content-Type': 'application/json',
+  };
+
+  try {
+    const res = await axios.get(requestProductsUrl, requestHeader);
+    console.log('res', res);
+    const { data } = res;
+    if (data) {
+      saveOrderDetails(data);
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    return error.message;
+  }
+}
+
+async function fetchOrderDeliveryId(id) {
+  const requestProductsUrl = `http://localhost:3001/checkout`;
+  const requestHeader = {
+    'Content-Type': 'application/json',
+  };
+  console.log('fetttt', id)
+  const requestBody = {
+    id: id,
+  };
+  try {
+    const res = await axios.patch(
+      requestProductsUrl,
+      requestBody,
+      requestHeader
+    );
+    console.log('res', res);
+    const { data } = res;
+    if (data) {
+      saveOrderDetails(data);
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+    return error.message;
+  }
+}
+
+export {
+  fetchAllOrders,
+  fetchOrderById,
+  fetchOrderDetails,
+  fetchOrderDeliveryId,
+};
