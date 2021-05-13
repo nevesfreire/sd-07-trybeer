@@ -8,7 +8,7 @@ const checkCreatingUserFields = (req, _res, next) => {
     next();
   } catch (error) {
     next({
-      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      status: StatusCodes.BAD_REQUEST,
       message: error.message,
     });    
   }

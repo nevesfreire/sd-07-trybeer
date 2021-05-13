@@ -2,7 +2,7 @@ const JWT = require('jsonwebtoken');
 const { StatusCodes } = require('http-status-codes');
 const model = require('../users/models');
 
-const { SECRET } = process.env;
+const SECRET = process.env.SECRET || 'grupo09';
 
 const validateCreateLoginToken = async (userEmail) => {
   const user = await model.getByEmail(userEmail);

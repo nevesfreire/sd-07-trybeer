@@ -4,7 +4,7 @@ import './style.css';
 
 function Login() {
   return (
-    <FormLogin />
+      <FormLogin />
   );
 }
 

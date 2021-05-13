@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { getToLocalStorage } from '../../utils/localStorage';
+import './style.css';
 
 export default function TopMenu({ title }) {
   const history = useHistory();
@@ -13,6 +15,23 @@ export default function TopMenu({ title }) {
     sideBarComplement.classList.toggle('nav-complement-hide');
     sideBarComplement.classList.toggle('nav-complement-show');
   }
+
+  function getRole() {
+    try {
+      const { role } = getToLocalStorage('user');
+      if (role === 'administrator') return 0;
+      return 1;
+    } catch (_err) {
+      return 1;
+    }
+  }
+
+  const handleClick = () => {
+    if (document.getElementsByClassName('nav-complement')[0]
+      .classList[1] === 'nav-complement-show') {
+      handleMenuToggle();
+    }
+  };
 
   const twentySeven = 27;
 
@@ -36,6 +55,78 @@ export default function TopMenu({ title }) {
     }
   }, [title]);
 
+  if (getRole()) {
+    return (
+      <div className="header">
+        <div id="title" className="header-title" data-testid="top-title">
+          { title }
+        </div>
+        <div
+          className="nav-complement nav-complement-hide"
+          onClick={ () => handleClick() }
+          onKeyDown={ (e) => getKeyCode(e) }
+          aria-hidden="true"
+        />
+        <div
+          className="side-menu-container"
+        >
+          <div
+            className="nav-close"
+            onClick={ () => handleMenuToggle() }
+            onKeyDown={ (e) => getKeyCode(e) }
+            aria-hidden="true"
+          >
+            <h3>&#9587;</h3>
+          </div>
+          <div
+            className="nav-item"
+            data-testid="side-menu-item-products"
+            onClick={ () => link('/products') }
+            onKeyDown={ (e) => getKeyCode(e) }
+            aria-hidden="true"
+          >
+            Produtos
+          </div>
+          <div
+            className="nav-item"
+            data-testid="side-menu-item-my-orders"
+            onClick={ () => link('/orders') }
+            onKeyDown={ (e) => getKeyCode(e) }
+            aria-hidden="true"
+          >
+            Meus Pedidos
+          </div>
+          <div
+            className="nav-item"
+            data-testid="side-menu-item-my-profile"
+            onClick={ () => link('/profile') }
+            onKeyDown={ (e) => getKeyCode(e) }
+            aria-hidden="true"
+          >
+            Meu Perfil
+          </div>
+          <div
+            className="logoff-button"
+            data-testid="side-menu-item-logout"
+            onClick={ () => link('/') }
+            onKeyDown={ (e) => getKeyCode(e) }
+            aria-hidden="true"
+          >
+            Sair
+          </div>
+        </div>
+        <div
+          className="menu-button"
+          data-testid="top-hamburguer"
+          onClick={ () => handleMenuToggle() }
+          onKeyDown={ (e) => getKeyCode(e) }
+          aria-hidden="true"
+        >
+          <h3>&#9776;</h3>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="header">
       <div id="title" className="header-title" data-testid="top-title">
@@ -43,17 +134,12 @@ export default function TopMenu({ title }) {
       </div>
       <div
         className="nav-complement nav-complement-hide"
-        onClick={ () => {
-          if (document.getElementsByClassName('nav-complement')[0]
-            .classList[1] === 'nav-complement-show') {
-            handleMenuToggle();
-          }
-        } }
+        onClick={ () => handleClick() }
         onKeyDown={ (e) => getKeyCode(e) }
         aria-hidden="true"
       />
       <div
-        className="side-menu-container"
+        className="side-menu-container admin-side-bar-container"
       >
         <div
           className="nav-close"
@@ -65,16 +151,7 @@ export default function TopMenu({ title }) {
         </div>
         <div
           className="nav-item"
-          data-testid="side-menu-item-products"
-          onClick={ () => link('/products') }
-          onKeyDown={ (e) => getKeyCode(e) }
-          aria-hidden="true"
-        >
-          Produtos
-        </div>
-        <div
-          className="nav-item"
-          data-testid="side-menu-item-my-orders"
+          data-testid="side-menu-item-orders"
           onClick={ () => link('/orders') }
           onKeyDown={ (e) => getKeyCode(e) }
           aria-hidden="true"
@@ -83,8 +160,8 @@ export default function TopMenu({ title }) {
         </div>
         <div
           className="nav-item"
-          data-testid="side-menu-item-my-profile"
-          onClick={ () => link('/profile') }
+          data-testid="side-menu-item-profile"
+          onClick={ () => link('/admin/profile') }
           onKeyDown={ (e) => getKeyCode(e) }
           aria-hidden="true"
         >
