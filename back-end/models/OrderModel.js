@@ -2,10 +2,10 @@ const conn = require('../database');
 
 const getOrder = async () => {
   const query = 'SELECT '
-    + 'id, user_id, total_price, delivery_address,delivery_number, sale_date, status '
+    + 'id, total_price, delivery_address,delivery_number, status '
     + 'FROM sales';
-  const [order] = await conn.execute(query);
-  return order;
+  const [orders] = await conn.execute(query);
+  return orders;
 };
 
 const getOrderDetails = async (orderId) => {

@@ -3,8 +3,8 @@ const Order = require('../services/OrderService');
 const getOrder = async (req, res, next) => {
   const token = req.headers.authorization;
   try {
-    const { statusCode, order } = await Order.getOrder(token);
-    res.status(statusCode).json({ statusCode, order });
+    const { statusCode, orders } = await Order.getOrder(token);
+    res.status(statusCode).json({ statusCode, orders });
   } catch (error) {
     next(error);
   }

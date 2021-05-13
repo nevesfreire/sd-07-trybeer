@@ -34,9 +34,8 @@ const getOrder = async (token) => {
   try {
     authRequired(token);
     isAdmin(token);
-    const order = serializeOrder(await Order.getOrder());
-    // const order = serializeOrder(order);
-    return { statusCode: CODE.OK, order };
+    const orders = await Order.getOrder();
+    return { statusCode: CODE.OK, orders };
   } catch (error) {
     if (error.status) throw error;
     throw new CustomError(CODE.INTERNAL_SERVER_ERROR, MESSAGE_ERROR_CONN_DB);
