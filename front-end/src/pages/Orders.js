@@ -10,11 +10,11 @@ export default function Orders() {
   const [shouldRedirect, setShouldRedirect] = useState('');
   const { isLoadind, orders, error } = ordersList;
   const sortedOrders = orders.sort((a, b) => a.id - b.id);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
     dispatch(fetchOrders(user.email, user.token));
   }, [dispatch]);
 
@@ -22,7 +22,7 @@ export default function Orders() {
     <>
       <Header title="Meus pedidos" />
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
-      { error && setShouldRedirect('/login')
+      { (error || !user) && setShouldRedirect('/login')
         && localStorage.removeItem('user') }
       { isLoadind === true ? 'Carregando...' : sortedOrders
         .map((item, i) => <OrderCard key={ i } order={ item } position={ i } />) }

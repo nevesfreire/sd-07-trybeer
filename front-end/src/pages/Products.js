@@ -10,6 +10,7 @@ export default function Products() {
   const [shouldRedirect, setShouldRedirect] = useState('');
   const productsList = useSelector(({ products }) => products);
   const cartList = useSelector(({ cart }) => cart.cart);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const totalValue = cartList
     .map((item) => item.totalPrice)
@@ -18,15 +19,15 @@ export default function Products() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const userToken = (JSON.parse(localStorage.getItem('user'))).token;
-    dispatch(fetchProducts(userToken));
+    
+    dispatch(fetchProducts(user.token));
   }, [dispatch]);
 
   return (
     <>
       <Header title="TryBeer" />
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
-      { productsList.error && setShouldRedirect('/login')
+      { (productsList.error || !user) && setShouldRedirect('/login')
         && localStorage.removeItem('user') }
       { productsList.products
         .map((item, i) => <Card key={ i } product={ item } position={ i } />) }

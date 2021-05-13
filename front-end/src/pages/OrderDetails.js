@@ -8,20 +8,20 @@ export default function OrderDetails() {
   const params = useParams();
   const dispatch = useDispatch();
   const orderSelected = useSelector(({ order }) => order);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [shouldRedirect, setShouldRedirect] = useState('');
   const ROUNDING_OPTION = 2;
 
   useEffect(() => {
-    const userToken = (JSON.parse(localStorage.getItem('user'))).token;
-    dispatch(fetchOrder(params.id, userToken));
+    dispatch(fetchOrder(params.id, user.token));
   }, [dispatch, params.id]);
 
   return (
     <>
       <Header title="Detalhes de Pedido" />
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
-      { orderSelected.error && setShouldRedirect('/login')
+      { (orderSelected.error || !user) && setShouldRedirect('/login')
         && localStorage.removeItem('user') }
       <span data-testid="order-number">{ orderSelected.id }</span>
       <span data-testid="order-date">

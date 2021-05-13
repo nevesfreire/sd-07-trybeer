@@ -68,8 +68,8 @@ export default function Checkout() {
   }, [address, totalValue]);
 
   useEffect(() => {
-    const userToken = JSON.parse(localStorage.getItem('user'));
-    if (!userToken) setShouldRedirect('/login');
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) setShouldRedirect('/login');
   }, []);
 
   const handleSubmit = async () => {
