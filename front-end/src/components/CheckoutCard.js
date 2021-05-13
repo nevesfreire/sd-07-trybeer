@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
-import numbers from '../helpers/Numbers';
 
-const CheckoutCard = ({ cartItem, index, priceTotal, setPriceTotal }) => {
-  const [quantity, setQuantity] = useState(0);
-
-  const setInQuantity = async (value) => {
-    setQuantity(value);
-    const newPriceTotal = { ...priceTotal, [index]: value * cartItem.preco };
-    localStorage.setItem('productPriceTotals', JSON.stringify(newPriceTotal));
-    setPriceTotal(newPriceTotal);
+const CheckoutCard = ({ cartItem, index, cart, setCart }) => {
+  const removeCartItem = () => {
+    const filteredCart = cart.filter((e) => e.id !== cartItem.id);
+    localStorage.setItem('cart', JSON.stringify(filteredCart));
+    setCart(filteredCart);
   };
 
   return (
@@ -25,13 +21,13 @@ const CheckoutCard = ({ cartItem, index, priceTotal, setPriceTotal }) => {
       <div>
         Quantidade
         <p data-testid={ `${index}-product-qtd-input` }>
-          {priceTotal[index] / cartItem.preco || quantity}
+          {cartItem.quantidade}
         </p>
       </div>
       <button
         type="button"
         data-testid={ `${index}-removal-button` }
-        onClick={ () => setInQuantity(quantity + numbers.UM) }
+        onClick={ removeCartItem }
       >
         retirar
       </button>
@@ -42,8 +38,8 @@ const CheckoutCard = ({ cartItem, index, priceTotal, setPriceTotal }) => {
 CheckoutCard.propTypes = {
   cartItem: PropTypes.shape().isRequired,
   index: PropTypes.number.isRequired,
-  priceTotal: PropTypes.number.isRequired,
-  setPriceTotal: PropTypes.func.isRequired,
+  cart: PropTypes.number.isRequired,
+  setCart: PropTypes.func.isRequired,
 };
 
 export default CheckoutCard;

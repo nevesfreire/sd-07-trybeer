@@ -11,7 +11,7 @@ const CheckoutBody = () => {
   // ainda está mockado no Beer.js
   // const cart = JSON.parse(localStorage.getItem('cart'));
 
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
 
@@ -25,13 +25,9 @@ const CheckoutBody = () => {
 
   console.log(`CheckoutBody cart: ${typeof cart}`);
 
-  const [priceTotal, setPriceTotal] = useState(
-    JSON.parse(localStorage.getItem('productPriceTotals')) || { value: 0.0 },
-  );
-
-  const priceTotalReduced = Object.values(priceTotal).reduce(
-    (curr, next) => curr + next,
-    numbers.ZERO,
+  const priceTotalReduced = cart.reduce(
+    (curr, next) => curr + next.total,
+    numbers.ZERO_REAL,
   );
 
   const redirectToProduct = () => {
@@ -67,8 +63,8 @@ const CheckoutBody = () => {
             key={ index }
             cartItem={ cartItem }
             index={ index }
-            setPriceTotal={ setPriceTotal }
-            priceTotal={ priceTotal }
+            setCart={ setCart }
+            cart={ cart }
           />
         ))
       )}
@@ -96,11 +92,6 @@ const CheckoutBody = () => {
             onChange={ (event) => setHouseNumber(event.target.value) }
           />
         </label>
-        {priceTotalReduced === 0 ? (
-          <span>Não há produtos no carrinho</span>
-        ) : (
-          <p />
-        )}
       </form>
     </div>
   );
