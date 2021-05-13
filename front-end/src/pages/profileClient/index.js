@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import TrybeerContext from '../../context/TrybeerContext';
 import { nameIsValid } from '../../service/validateInputs';
 import { TopMenu } from '../../components';
 import { updateClient } from '../../service/trybeerApi';
 
 export default function ProfileClient() {
-  const data = JSON.parse(localStorage.getItem('user')) || { name: '', email: '' };
+  const { userLogged, setUserLogged } = useContext(TrybeerContext);
   const [text, setText] = useState();
   const [profileInfo, setProfileInfo] = useState({
-    name: data.name,
-    email: data.email,
+    name: userLogged.name,
+    email: userLogged.email,
   });
-
-  if (!data.token) return <Redirect to="/login" />;
 
   const verifyInput = () => {
     const { name } = profileInfo;
-    return name !== data.name && nameIsValid(name);
+    return name !== userLogged.name && nameIsValid(name);
   };
 
   const handleChange = ({ target: { name, value } }) => {
@@ -29,7 +27,7 @@ export default function ProfileClient() {
   const handleClick = async () => {
     const TWO_THOUSAND = 2000;
     const newData = {
-      ...data,
+      ...userLogged,
       name: profileInfo.name,
     };
     const result = await updateClient(newData.name, newData.email);
@@ -39,7 +37,7 @@ export default function ProfileClient() {
         setText();
       }, TWO_THOUSAND);
     }
-    localStorage.setItem('user', JSON.stringify(newData));
+    setUserLogged(newData);
     setText(result.message);
 
     setTimeout(() => {
@@ -49,7 +47,7 @@ export default function ProfileClient() {
 
   return (
     <div>
-      <TopMenu>Meu perfil</TopMenu>
+      <TopMenu topTitle="Meu perfil" />
       <label htmlFor="name">
         Nome:
         <input

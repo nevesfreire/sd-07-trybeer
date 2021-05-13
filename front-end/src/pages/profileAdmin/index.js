@@ -1,11 +1,13 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import TrybeerContext from '../../context/TrybeerContext';
 import AdminSideBar from '../../components/AdminSideBar';
 
 export default function ProfileAdmin() {
-  const data = JSON.parse(localStorage.getItem('user')) || { name: '', email: '' };
-
-  if (!data.token) return <Redirect to="/login" />;
+  const { userLogged } = useContext(TrybeerContext);
+  const [profileInfo] = useState({
+    name: userLogged.name,
+    email: userLogged.email,
+  });
 
   return (
     <div>
