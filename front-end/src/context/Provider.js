@@ -1,21 +1,45 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import TrybeerContext from './TrybeerContext';
+import { useLocalStorage, useReducerCart } from '../hooks';
 
-export default function Provider({ children }) {
-  const [state, setstate] = useState('');
-  const getLocal = Number.parseFloat(localStorage.getItem('car'));
-  const [priceCar, setPriceCar] = useState(Number.isNaN(getLocal) ? 0 : getLocal);
-  const [isLogged, setIsLogged] = useState(false);
+export default function Provider(props) {
+  const [provideProps] = useState(props); // Props of Provide
+
+  // ABOUT SHOPPING CART
+  const [shoppingCart, dispatchShoppingCart] = useReducerCart();
+  const getTotalShoppingCart = () => shoppingCart
+    .reduce((sum, { quantity, price }) => sum + (parseFloat(price) * quantity), 0.0);
+  const getQuantityByProductId = (productId) => {
+    if (!shoppingCart.length) return 0;
+    const product = shoppingCart.find(({ id }) => id === productId);
+    if (!product || !product.quantity) return 0;
+    return product.quantity;
+  };
+  // ****************************************************************
+
+  // ABOUT LOGIN | LOGOUT | AND USER
+  const USER_KEY_LOCALSTORAGE = 'user';
+  const [userLogged, setUserLogged] = useLocalStorage(USER_KEY_LOCALSTORAGE, {});
+  const login = ({ role, name, email, token }) => {
+    setUserLogged({ role, name, email, token });
+    dispatchShoppingCart({ type: 'reset' });
+  };
+  const logout = () => setUserLogged({});
+  const userIsLogged = () => userLogged && Object.entries(userLogged).length !== 0;
+  // ****************************************************************
 
   const context = {
-    state,
-    setstate,
-    priceCar,
-    setPriceCar,
-    isLogged,
-    setIsLogged,
+    userLogged,
+    login,
+    logout,
+    userIsLogged,
+    shoppingCart,
+    dispatchShoppingCart,
+    getTotalShoppingCart,
+    getQuantityByProductId,
   };
+
+  const { children } = provideProps;
 
   return (
     <TrybeerContext.Provider
@@ -25,7 +49,3 @@ export default function Provider({ children }) {
     </TrybeerContext.Provider>
   );
 }
-
-Provider.propTypes = {
-  children: PropTypes.node.isRequired,
-};

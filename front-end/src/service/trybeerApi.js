@@ -7,10 +7,7 @@ const login = async (email, password) => {
     email,
     password,
   })
-    .then((response) => {
-      localStorage.setItem('user', JSON.stringify(response.data));
-      return response.data;
-    })
+    .then((response) => response.data)
     .catch((error) => {
       if (error) return { error: 'Usuário ou senha inválido!' };
     });
@@ -44,10 +41,7 @@ const register = async (name, email, password, role) => {
     password,
     role,
   })
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    })
+    .then((response) => response.data)
     .catch((error) => {
       if (error) return { error: 'Já existe um usuário com esse e-mail.' };
     });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { nameIsValid } from '../../service/validateInputs';
-import TopMenu from '../../components/Header';
+import { TopMenu } from '../../components';
 import { updateClient } from '../../service/trybeerApi';
 
 export default function ProfileClient() {

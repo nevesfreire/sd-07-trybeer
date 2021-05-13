@@ -1,37 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Prices, Images, Texts, SalesCar } from '../../components/index';
-import Counts from '../../components/Counts';
+import {
+  Prices,
+  Images,
+  Texts,
+  ShowCartButton,
+  TopMenu,
+  Counts,
+} from '../../components';
 import TrybeerContext from '../../context/TrybeerContext';
 import { productList } from '../../service/trybeerApi';
-import TopMenu from '../../components/Header';
 
 import './style.css';
 
 export default function Product() {
-  const { priceCar, isLogged, setIsLogged } = useContext(TrybeerContext);
+  const { getTotalShoppingCart, shoppingCart } = useContext(TrybeerContext);
+  const [totalPriceCart, setTotalPriceCart] = useState(getTotalShoppingCart());
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const userStorage = JSON.parse(localStorage.getItem('user'));
 
   const listProducts = async () => {
-    setIsLoading(true);
     const productData = await productList();
     if (productData.error) {
       return setProducts([]);
     }
     setProducts(productData);
-    setIsLoading(false);
   };
 
   useEffect(() => {
-    listProducts();
-  }, [isLogged]);
+    setIsLoading(true);
+    listProducts().then(() => {
+      setIsLoading(false);
+    });
+  }, []);
 
-  if (userStorage === null) {
-    setIsLogged(false);
-    return (<Redirect to="/login" />);
-  }
+  useEffect(() => {
+    setTotalPriceCart(getTotalShoppingCart());
+  }, [shoppingCart, getTotalShoppingCart]);
 
   return (
     <div>
@@ -47,12 +51,12 @@ export default function Product() {
             <Prices index={ index } value={ prod.price } />
             <Images index={ index } value={ prod.url_image } />
             <Texts index={ index } value={ prod.name } />
-            <Counts index={ index } price={ prod.price } />
+            <Counts index={ index } product={ prod } />
           </div>
         ))}
         <br />
         <div className="div-salesCar">
-          <SalesCar value={ priceCar } />
+          <ShowCartButton totalPrice={ totalPriceCart } />
         </div>
       </div>
     </div>
