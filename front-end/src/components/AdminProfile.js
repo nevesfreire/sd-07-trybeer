@@ -5,7 +5,7 @@ export default function AdminProfile() {
 
   return (
     <form>
-      <label>
+      <label htmlFor="name">
         <h1>Nome:</h1>
         <input
           value={ currentUser.name }
@@ -16,7 +16,7 @@ export default function AdminProfile() {
         />
       </label>
 
-      <label>
+      <label htmlFor="email">
         Email:
         <input
           value={ currentUser.email }

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { registerUser } from '../services/User';
+import registerUser from '../services/User';
 
 export default function Register() {
   const [disabled, setDisabled] = useState(true);
   const [checkboxValue, setCheckboxValue] = useState(false);
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [setShouldRedirect] = useState(false);
   const [registerData, setRegisterData] = useState({
     name: '',
     email: '',

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 export default function Sidebar({ openAndClose }) {
@@ -46,3 +47,7 @@ export default function Sidebar({ openAndClose }) {
     </aside>
   );
 }
+
+Sidebar.propTypes = {
+  openAndClose: PropTypes.objectOf.isRequired,
+};
