@@ -19,7 +19,7 @@ const createSale = async (data) => {
 
 const productPrice = async (productId) => {
   const [[{ price }]] = await connect.execute(
-    'SELECT price FROM products WHERE id = ?', [productId]
+    'SELECT price FROM products WHERE id = ?', [productId],
   );
   return price;
 };
