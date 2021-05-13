@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function Register() {
   const [newName, setNewName] = useState('');
@@ -10,6 +10,7 @@ function Register() {
   const [forClient, setForClient] = useState(false);
   const [forAdm, setForAdm] = useState(false);
   const [userCad, setUserCad] = useState(false);
+  const history = useHistory();
 
   const verifyData = () => {
     const six = 6;
@@ -117,8 +118,8 @@ function Register() {
       >
         Cadastrar
       </button>
-      { forClient && <Redirect to="/products" /> }
-      { forAdm && <Redirect to="/admin/orders" /> }
+      { forClient && history.push('/products') }
+      { forAdm && history.push('/admin/orders') }
       { userCad && <h3>Já existe um usuário com esse e-mail.</h3>}
     </div>
   );

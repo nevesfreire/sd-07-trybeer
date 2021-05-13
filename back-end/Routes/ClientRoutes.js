@@ -11,5 +11,6 @@ router.get('/products', ClienteController.getAllProducts);
 router.post('/savedSale', ClienteController.saleSave);
 router.get('/sales', myMiddleware, ClienteController.sales);
 router.get('/detailSales/:id', ClienteController.detailSale);
+router.get('/salesAdm', ClienteController.salesAdm);
 
 module.exports = router;

@@ -122,6 +122,15 @@ const detSales = async (id) => {
   });
 };
 
+const allSalesAdm = async () => {
+  const [salesADM] = await connect
+  .execute(`Select id, total_price, delivery_address,
+  delivery_number, status
+  from Trybeer.sales`);
+
+  return (salesADM);
+};
+
 module.exports = {
   getEmailUser,
   token,
@@ -132,4 +141,5 @@ module.exports = {
   saveSales,
   salesA,
   detSales,
+  allSalesAdm,
 };

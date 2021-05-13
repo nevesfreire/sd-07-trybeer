@@ -6,6 +6,7 @@ const {
   savSale,
   salesAll,
   saleDetail,
+  getAdmSales,
 } = require('../Services/ClienteServices');
 const { error1 } = require('../error/index');
 
@@ -102,6 +103,18 @@ const detailSale = async (req, res) => {
   }
 };
 
+const salesAdm = async (req, res) => {
+  const resOK = 200;
+  try {
+    const salesadm = await getAdmSales();
+    res.status(resOK).json(salesadm);
+  } catch (err) {
+    res.status(err.code).json({
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   login,
   addUser,
@@ -110,4 +123,5 @@ module.exports = {
   saleSave,
   sales,
   detailSale,
+  salesAdm,
 };
