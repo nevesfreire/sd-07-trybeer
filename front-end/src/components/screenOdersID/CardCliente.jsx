@@ -18,9 +18,7 @@ function dinheiro(dindin) {
 
 export default function Card(prop) {
   const { push } = useHistory();
-  const { statusCode } = prop.obj;
-  const codeValid = 200;
-  if (statusCode !== codeValid) {
+  if (prop.obj.message) {
     const { message } = prop.obj;
     if (message.indexOf('Token') > 0) return push('/');
     return (
