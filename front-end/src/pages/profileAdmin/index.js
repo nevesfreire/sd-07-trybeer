@@ -13,8 +13,8 @@ export default function ProfileAdmin() {
     <div>
       <AdminSideBar />
       <h1>Perfil</h1>
-      <p data-testid="profile-name">{`Nome:${data.name}`}</p>
-      <p data-testid="profile-email">{`Nome:${data.email}`}</p>
+      <p data-testid="profile-name">{`Nome:${profileInfo.name}`}</p>
+      <p data-testid="profile-email">{`Nome:${profileInfo.email}`}</p>
     </div>
   );
 }

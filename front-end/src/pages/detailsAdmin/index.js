@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+// import TrybeerContext from '../../context/TrybeerContext';
 import AdminSideBar from '../../components/AdminSideBar';
 
 export default function AdminDetails() {
+  // const {  } = useContext(TrybeerContext);
   const [orderId] = useState('1');
   const [orderStatus] = useState('Pendente');
   const [products] = useState([
