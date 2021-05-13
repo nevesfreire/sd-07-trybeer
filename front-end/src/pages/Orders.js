@@ -3,7 +3,7 @@ import { HeaderAdmin } from '../components';
 
 function Orders() {
   return (
-    <HeaderAdmin title="Admin - Perfil" />
+    <HeaderAdmin title="Admin - Pedidos" />
   );
 }
 

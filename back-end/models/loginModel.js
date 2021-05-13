@@ -21,6 +21,7 @@ const createUser = async (data) => {
     'INSERT INTO users (name, email, password, role) VALUES (?,?,?,?)', 
   [name, email, password, role],
 );
+    console.log('Insert User', user.insertId);
   return user;
 };
 
