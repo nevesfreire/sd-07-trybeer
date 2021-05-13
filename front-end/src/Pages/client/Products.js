@@ -127,7 +127,7 @@ function Products() {
           ) : (
             products.map((e, index) => (
               <div className="App" key={ e.id }>
-                {/* <img data-testid={ `${index}-product-img` } src="Becks.jpg" /> */}
+                <img data-testid={ `${index}-product-img` } src="Becks.jpg" />
                 <div>{e.url_image}</div>
                 <div data-testid={ `${index}-product-name` }>{e.name}</div>
                 <div data-testid={ `${index}-product-price` }>
