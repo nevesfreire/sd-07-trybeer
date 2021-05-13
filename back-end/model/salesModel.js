@@ -37,7 +37,8 @@ const getDetailsById = async (saleId) => {
 
 const getProductsBySaleId = async (saleId) => {
   const [result] = await connection.execute(`SELECT sales_products.quantity as qtd, 
-  products.name as nome, 
+  products.price as price, 
+  products.name as nome,
   (sales_products.quantity * products.price) as total 
   FROM sales_products
   INNER JOIN products ON sales_products.product_id = products.id
