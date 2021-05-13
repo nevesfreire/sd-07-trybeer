@@ -45,7 +45,7 @@ export default function Checkout() {
   const user = JSON.parse(window.localStorage.getItem('user'));
   const { productsDispatch, productState } = useContext(GlobalContext);
 
-  if (user) history.push('/');
+  if (!user) history.push('/');
 
   useEffect(() => {
     fetchProducts().then((response) => {
