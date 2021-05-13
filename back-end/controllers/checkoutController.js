@@ -7,7 +7,7 @@ const CONFLICT = 409;
 
 const getAllSales = async (request, response) => {
   try {
-      const sale = await checkoutService.getAllSales();
+    const sale = await checkoutService.getAllSales();
     return response.status(OK).json(sale);
   } catch (error) {
     console.error(error);
@@ -45,4 +45,17 @@ const createSale = async (request, response) => {
   }
 };
 
-module.exports = { getAllSales, getSaleById, createSale };
+const confirmDelivery = async (request, response) => {
+  const { id } = request.body;
+  try {
+    const delivery = await checkoutService.confirmDelivery(id);
+    return response.status(CREATE).json(delivery);
+  } catch (error) {
+    console.error(error);
+
+    const { message } = error;
+    response.status(ERROR).json({ message });
+  }
+};
+
+module.exports = { getAllSales, getSaleById, createSale, confirmDelivery };
