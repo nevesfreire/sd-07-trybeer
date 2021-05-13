@@ -45,4 +45,7 @@ router.post(
   salesController.saleRegister,
 );
 
+router.get('/orders', salesController.getAllSalesData);
+router.get('/orders/:id', salesController.getSalesDataById);
+
 module.exports = router;
