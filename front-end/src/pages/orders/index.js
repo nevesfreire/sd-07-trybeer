@@ -5,7 +5,13 @@ export default function Orders() {
   return (
     <div>
       <TopMenu>Meus Pedidos</TopMenu>
-      ORDERS PAGE
+      <div className="div-order-card">
+        {orders && orders.map((order) => (
+          <div key={ order.id }>
+            <OrderCard />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
