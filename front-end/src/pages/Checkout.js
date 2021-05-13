@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-import React, {useState, useEffect} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Address from '../components/Address';
-import Header from '../components/Header';
-import saveOrder from '../services/Order';
-import { update } from '../actions';
-=======
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Address from '../components/Address';
 import Header from '../components/Header';
-import { update } from '../actions'; 
+import { update } from '../actions';
 import { saveOrder } from '../services/Order';
->>>>>>> 002bdfb60cf49a5ca8e12c3beb18e28e23dfa2fe
 
 export default function Checkout() {
   const INITIAL_VALUE = 0;
@@ -37,8 +28,7 @@ export default function Checkout() {
     dispatch(update(filteredCart));
   };
 
-  const renderBody = () => {
-    return cartList.map((item, index) => (
+  const renderBody = () => cartList.map((item, index) => (
     <div>
       <tr key={ index }>
         <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
@@ -54,7 +44,6 @@ export default function Checkout() {
         -
       </button>
     </div>));
-  };
 
   const handleChange = ({ target }) => {
     const { name, value } = target;

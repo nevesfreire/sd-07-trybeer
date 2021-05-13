@@ -1,8 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
+import AdminSidebar from '../components/AdminSidebar';
 
 export default function AdminOrders() {
   return (
-    <Header title="Pedidos Pendentes" />
+    <>
+      <h1>Pedidos Pendentes</h1>
+      <AdminSidebar />
+    </>
   );
 }

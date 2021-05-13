@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-=======
-import React, { useState, useEffect, useSelector } from 'react';
-import { useDispatch } from 'react-redux';
->>>>>>> 002bdfb60cf49a5ca8e12c3beb18e28e23dfa2fe
 import { update } from '../actions';
 
 export default function Card({ product, position }) {
@@ -12,46 +7,37 @@ export default function Card({ product, position }) {
   const ROUNDING_OPTION = 2;
   const ADD_ITEM = 1;
   const REMOVE_ITEM = -1;
-  const cartList = useSelector(({ cart }) => cart);
-  /*   const [cartQuantity, setCartQuantity] = useState(INITIAL_VALUE); */
+  const cartList = useSelector(({ cart }) => cart.cart);
   const dispatch = useDispatch();
 
   const manageQuantity = (productFound, cart) => {
-    const amountToSplice = 1;
     if (productFound.quantity !== 0) {
-      const newPosition = cart.findIndex((item) => item.id === productFound.id);
-      cart.splice(newPosition, amountToSplice, productFound);
-      /*       setCartQuantity(cart); */
-      dispatch(update(cart));
+      const filteredCart = cart.filter((item) => item.id !== productFound.id);
+      dispatch(update([...filteredCart, productFound]));
     } else {
       const filteredCart = cart.filter((item) => item.id !== productFound.id);
-      /*       setCartQuantity(filteredCart); */
       dispatch(update(filteredCart));
     }
   };
 
   const getNewQuantity = (newProduct) => {
-    /*     const cartCopy = [...cartQuantity]; */
     const cartCopy = [...cartList];
     const productFound = cartCopy.find((item) => item.id === newProduct.id);
     if (productFound) {
-      manageQuantity(productFound, cartCopy);
+      manageQuantity(newProduct, cartCopy);
     } else {
-      /*       const newCart = [...cartQuantity, newProduct]; */
       const newCart = [...cartList, newProduct];
-      /*       setCartQuantity(newCart); */
       dispatch(update(newCart));
     }
   };
 
   const getValue = (id) => {
-    /*     const isPresent = cartQuantity.find((item) => item.id === id); */
     const isPresent = cartList.find((item) => item.id === id);
     if (isPresent) return isPresent.quantity;
     return INITIAL_VALUE;
   };
 
-  const manageNewProductInfo = (type, value, productSelected) => {
+  const manageNewProductInfo = (value, productSelected) => {
     const { id, name, price } = productSelected;
     const newProductInfo = {
       id,
@@ -60,26 +46,21 @@ export default function Card({ product, position }) {
       quantity: 0,
       totalPrice: 0,
     };
-    if (type === 'input') {
-      newProductInfo.quantity = value;
-      newProductInfo.totalPrice = value * price;
-    } else {
-      newProductInfo.quantity = getValue(productSelected.id) + value;
-      newProductInfo.totalPrice = value * price;
-    }
+    newProductInfo.quantity = getValue(productSelected.id) + value;
+    newProductInfo.totalPrice = value * price;
     getNewQuantity(newProductInfo);
   };
 
-  const handleChange = (type, value, productSelected) => {
-    manageNewProductInfo(type, value, productSelected);
-  };
-
   const handleClick = (type, value, productSelected) => {
-    manageNewProductInfo(type, value, productSelected);
+    if (type === 'remove' && getValue(productSelected.id) !== 0) {
+      manageNewProductInfo(value, productSelected);
+    } else if (type === 'add') {
+      manageNewProductInfo(value, productSelected);
+    }
   };
 
   return (
-    <div key={ position }>
+    <div>
       <img
         data-testid={ `${position}-product-img` }
         src={ product.url_image }
@@ -87,7 +68,7 @@ export default function Card({ product, position }) {
       />
       <h4 data-testid={ `${position}-product-name` }>{ product.name }</h4>
       <span data-testid={ `${position}-product-price` }>
-        { `R$ ${product.price.toFixed(ROUNDING_OPTION)}` }
+        { `R$ ${Number(product.price).toFixed(ROUNDING_OPTION)}` }
       </span>
       <div>
         <button
@@ -97,14 +78,11 @@ export default function Card({ product, position }) {
         >
           -
         </button>
-        <input
-          type="number"
-          name="quantity"
+        <p
           data-testid={ `${position}-product-qtd` }
-          defaultValue={ getValue(product.id) }
-          min={ INITIAL_VALUE }
-          onChange={ (event) => handleChange('input', event.target.value, product) }
-        />
+        >
+          { getValue(product.id) }
+        </p>
         <button
           type="button"
           data-testid={ `${position}-product-plus` }

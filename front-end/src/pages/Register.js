@@ -5,6 +5,7 @@ import { registerUser } from '../services/User';
 export default function Register() {
   const [disabled, setDisabled] = useState(true);
   const [checkboxValue, setCheckboxValue] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [registerData, setRegisterData] = useState({
     name: '',
     email: '',
@@ -18,7 +19,8 @@ export default function Register() {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const { name, email, password } = registerData;
     let newRegister = {
       name,
@@ -33,7 +35,7 @@ export default function Register() {
     }
     newRegister = { ...newRegister, role: 'client' };
     await registerUser(JSON.stringify(newRegister));
-    return <Redirect to="/products" />;
+    setShouldRedirect(true);
   };
 
   // const verifyEmail = async (email) => {
@@ -60,58 +62,6 @@ export default function Register() {
   }, [registerData]);
 
   return (
-    <>
-      <form onSubmit={ () => handleSubmit() }>
-        <label htmlFor="name">
-          Nome
-          <input
-            name="name"
-            id="name"
-            data-testid="signup-name"
-            type="text"
-            onChange={ (event) => handleChange(event) }
-          />
-        </label>
-        <label htmlFor="email">
-          Email
-          <input
-            name="email"
-            id="email"
-            data-testid="signup-email"
-            type="email"
-            onChange={ (event) => handleChange(event) }
-          />
-        </label>
-        <label htmlFor="password">
-          Senha
-          <input
-            name="password"
-            id="password"
-            data-testid="signup-password"
-            type="email"
-            onChange={ (event) => handleChange(event) }
-          />
-        </label>
-        <label htmlFor="checkbox">
-          Quero vender
-          <input
-            checked={ checkboxValue }
-            id="checkbox"
-            data-testid="signup-seller"
-            onChange={ () => setCheckboxValue(!checkboxValue) }
-            type="checkbox"
-          />
-        </label>
-        <button
-          data-testid="signup-btn"
-          type="submit"
-          disabled={ disabled }
-        >
-          Cadastrar
-        </button>
-      </form>
-<<<<<<< HEAD
-
     <form onSubmit={ () => handleSubmit() }>
       <label htmlFor="name">
         Nome
@@ -161,9 +111,5 @@ export default function Register() {
         Cadastrar
       </button>
     </form>
-  </>
-=======
-    </>
->>>>>>> 002bdfb60cf49a5ca8e12c3beb18e28e23dfa2fe
   );
 }

@@ -5,7 +5,6 @@ const loginModel = async (email) => {
     'SELECT * FROM users WHERE email = ?',
     [email],
   );
-  
   return login[0];
 };
 
