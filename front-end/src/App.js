@@ -8,7 +8,6 @@ import Login from './Pages/client/Login';
 import Register from './Pages/client/Register';
 import Profile from './Pages/client/Profile';
 import Products from './Pages/client/Products';
-
 import Checkout from './Pages/client/Checkout';
 import Orders from './Pages/client/Orders';
 import OrderDetail from './Pages/client/OrderDetail';
@@ -22,7 +21,6 @@ function App() {
       <Provider>
         <Switch>
           <Route exact path="/login" component={ Login } />
-
           <Route exact path="/register" component={ Register } />
           <Route exact path="/profile" component={ Profile } />
           <Route exact path="/products" component={ Products } />
