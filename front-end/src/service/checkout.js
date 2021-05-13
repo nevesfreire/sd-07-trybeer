@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { saveToken } from '../helpers/localStorage';
 
 export default async function fetchUser(
     userId,
