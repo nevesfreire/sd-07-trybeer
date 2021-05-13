@@ -12,7 +12,6 @@ const createSale = async (salesData) => {
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    saleDate,
     status,
   } = salesData;
 
@@ -21,7 +20,6 @@ const createSale = async (salesData) => {
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    saleDate,
     status,
   ]);
 

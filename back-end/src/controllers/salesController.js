@@ -12,7 +12,6 @@ const sales = async (request, response) => {
       totalPrice: request.body.totalPrice,
       deliveryAddress: request.body.deliveryAddress,
       deliveryNumber: request.body.deliveryNumber,
-      saleDate: request.body.saleDate,
       status: request.body.status,
     };
     const sale = await salesModel.createSale(salesData);
