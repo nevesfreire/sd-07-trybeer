@@ -1,7 +1,7 @@
 const request = require('supertest');
 const express = require('express');
 const connect = require('../models/connection');
-
+const { loginModel } = require('../models');
 const { login } = require('../routes');
 
 const app = express();
@@ -29,6 +29,13 @@ const userNotRegistered = { err: { message: 'Usuário inválido' } };
 
 const contentType = 'Content-Type';
 const applicationJson = 'application/json';
+
+it('São retornados todos os usuários cadastrados', async (done) => {
+    const [result] = await loginModel.getUser();
+    const { name, email, password, role, id } = result[0];
+    expect(result[0]).toMatchObject({ name, email, password, role, id });
+    done();
+});
 
 it('Não é possível fazer login com um email inválido', (done) => request(app)
     .post('/login')

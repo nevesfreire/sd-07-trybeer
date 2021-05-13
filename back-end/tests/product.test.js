@@ -2,7 +2,7 @@ const request = require('supertest');
 const express = require('express');
 const { product } = require('../routes');
 const connect = require('../models/connection');
-const generateToken = require('./generateToken');
+const { generateToken } = require('./generateToken');
 
 const app = express();
 app.use(express.json());
@@ -12,7 +12,7 @@ const token = generateToken();
 const contentType = 'Content-Type';
 const applicationJson = 'application/json';
 const validToken = { authorization: token.token, applicationJson };
-const invalidToken = { err: { name: 'JsonWebTokenError', message: 'jwt must be provided' } };
+const invalidToken = { err: { message: 'jwt must be provided' } };
 
 it('Não é deve ser possivel acessar a rota sem ter um token válido', (done) => 
   request(app)

@@ -2,7 +2,7 @@ const request = require('supertest');
 const express = require('express');
 const { user } = require('../routes');
 const connect = require('../models/connection');
-const generateToken = require('./generateToken');
+const { generateToken } = require('./generateToken');
 
 const app = express();
 app.use(express.json());
@@ -147,8 +147,7 @@ it('Caso seja o mesmo nome, o usuario não deve ser atualizado.', (done) =>
     .send({ name: 'Testando Novo Usuario' })
     .set(validToken)
     .set('Accept', applicationJson)
-    .expect(contentType, /json/)
-    .expect(400, /Nome do usuário não atualizado/, done));
+    .expect(304, done));
 
 it('O nome do usuario não pode conter numeros ou caracteres especiais.', (done) => 
   request(app)

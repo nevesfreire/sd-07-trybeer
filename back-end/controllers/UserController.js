@@ -1,6 +1,6 @@
 const { userService } = require('../services');
 const { OK, CREATED, NOTMODIFIED, BADREQUEST } = require('./HttpCodes');
-const { SAMESTATUS } = require('../services/errors/SaleMessages');
+const { SAMEUSERNAME } = require('../services/errors/UserMessage');
 
 const createUser = async (req, res) => {
   try {
@@ -19,9 +19,10 @@ const updateUser = async (req, res) => {
     const response = await userService.updateUser(name, email);
     res.status(OK).json(response);
   } catch (error) {
-    let code = BADREQUEST;
-    if (error.message === SAMESTATUS.message) code = NOTMODIFIED;
-    res.status(code).json({ err: { message: error.message } });
+    if (error.message === SAMEUSERNAME.message) {
+      return res.status(NOTMODIFIED).json({ err: { message: error.message } });
+    }
+    res.status(BADREQUEST).json({ err: { message: error.message } });
   }
 };
 
