@@ -6,10 +6,10 @@ import { getToLocalStorage } from '../../utils/localStorage';
 const userDefault = {
   name: '',
   email: '',
-}
+};
 
 function AdminProfile() {
-  const [ userInfo, setUserInfo ] = useState(userDefault);
+  const [userInfo, setUserInfo] = useState(userDefault);
   const history = useHistory();
 
   const validateToken = () => {
@@ -23,12 +23,12 @@ function AdminProfile() {
     const user = getToLocalStorage('user');
     const { name, email } = user;
     setUserInfo({ ...userInfo, name, email });
-  }
+  };
 
   useEffect(() => {
     if (!validateToken()) return history.push('/login');
     getLocalStorageUser();
-  }, [])
+  }, [getLocalStorageUser, history]);
 
   return (
     <div>
@@ -39,7 +39,7 @@ function AdminProfile() {
         <h3 data-testid="profile-email">{`Email: ${userInfo.email}`}</h3>
       </div>
     </div>
-  )
+  );
 }
 
 export default AdminProfile;

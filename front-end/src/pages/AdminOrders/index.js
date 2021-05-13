@@ -17,7 +17,7 @@ function AdminOrders() {
     if (!validateToken()) {
       return history.push('/login');
     }
-  }, [])
+  }, [history]);
 
   return (
     <div>
@@ -26,7 +26,7 @@ function AdminOrders() {
         <h1>ADMIN  ORDERS</h1>
       </div>
     </div>
-  )
+  );
 }
 
 export default AdminOrders;

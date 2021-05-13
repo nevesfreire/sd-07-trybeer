@@ -18,7 +18,7 @@ export default function TopMenu({ title }) {
 
   function role() {
     try {
-      const role = getToLocalStorage('user').role;
+      const { role } = getToLocalStorage('user');
       if (role === 'administrator') return 0;
       return 1;
     } catch (_err) {
