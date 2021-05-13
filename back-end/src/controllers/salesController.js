@@ -23,4 +23,16 @@ const sales = async (request, response) => {
   }
 };
 
-module.exports = { sales };
+const getAllSales = async (request, response) => {
+  try {
+    const token = request.headers.authorization;
+    const user = await checkToken(token);
+    if (user) salesModel.getAllSales;
+    return response.status(StatusCodes.OK).json();
+  } catch (error) {
+    return response.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+};
+
+module.exports = { sales, getAllSales };

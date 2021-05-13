@@ -1,3 +1,4 @@
+const { StatusCodes } = require('http-status-codes');
 const { connection } = require('../config/conn');
 
 const insertOne = `INSERT INTO sales (user_id, total_price,
@@ -5,6 +6,8 @@ const insertOne = `INSERT INTO sales (user_id, total_price,
 
 const insetSaleProduct = `INSERT INTO sales_products (sale_id, product_id, quantity)
 VALUES (?,?,?)`;
+
+const selectSales = 'SELECT * FROM sales';
 
 const createSale = async (salesData) => {
   const {
@@ -35,7 +38,19 @@ const createSalesProducts = async (salesId, listproducts) => {
      );
 };
 
+const getAllSales = async (request, response) => {
+  try {
+    const [result] = await connection.execute(selectSales);
+    return response.status(StatusCodes.OK).json();
+    return result;
+  } catch (error) {
+    response.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+}
+
 module.exports = {
   createSale,
   createSalesProducts,
+  getAllSales,
 };
