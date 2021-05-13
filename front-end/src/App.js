@@ -8,6 +8,7 @@ import Login from './Pages/client/Login';
 import Register from './Pages/client/Register';
 import Profile from './Pages/client/Profile';
 import Products from './Pages/client/Products';
+
 import Checkout from './Pages/client/Checkout';
 import Orders from './Pages/client/Orders';
 import OrderDetail from './Pages/client/OrderDetail';
