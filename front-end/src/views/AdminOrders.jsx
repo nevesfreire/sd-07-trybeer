@@ -1,19 +1,13 @@
 import React from 'react';
-import { useHistory } from 'react-router';
+import SideBarAdmin from '../components/sideBarAdmin';
+import Menu from './style/AdminOrders';
 
 export default function AdminOrders() {
-  const history = useHistory();
   return (
     <div>
-      <h1>Admin-pedidos</h1>
-      {/* Botão para requisito 10 - REMOVER */}
-      <button
-        type="button"
-        data-testid="side-menu-item-profile"
-        onClick={ () => history.push('/admin/profile') }
-      >
-        Perfil
-      </button>
+      <Menu>
+        <SideBarAdmin />
+      </Menu>
     </div>
   );
 }
