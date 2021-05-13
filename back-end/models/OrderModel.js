@@ -1,5 +1,13 @@
 const conn = require('../database');
 
+const getOrder = async () => {
+  const query = 'SELECT '
+    + 'id, total_price, delivery_address,delivery_number, status '
+    + 'FROM sales';
+  const [orders] = await conn.execute(query);
+  return orders;
+};
+
 const getOrderDetails = async (orderId) => {
   const query = 'SELECT s.id, s.status, s.total_price, sp.quantity, p.name, p.price '
     + 'FROM sales_products AS sp '
@@ -19,6 +27,7 @@ const closeOrder = async (orderId) => {
 };
 
 module.exports = {
+  getOrder,
   getOrderDetails,
   closeOrder,
 };

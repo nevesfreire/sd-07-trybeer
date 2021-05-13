@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Order = require('../controllers/orderController');
 
 router.route('/')
-  .get()
+  .get(Order.getOrder)
   .post()
   .put()
   .delete();

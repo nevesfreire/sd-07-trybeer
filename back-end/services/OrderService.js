@@ -3,6 +3,8 @@ const CustomError = require('../helper/CustomError');
 const { verifyToken } = require('../helper/AuthValidation');
 const CODE = require('../helper/statusCodes');
 
+const MESSAGE_ERROR_CONN_DB = 'Erro ao conectar com o banco de dados';
+
 const authRequired = (token) => {
   if (!token) throw new CustomError(CODE.UNAUTHORIZED, 'Necessário realizar autenticação');
   try {
@@ -28,6 +30,18 @@ const serializeOrder = (order) => ({
   })),
 });
 
+const getOrder = async (token) => {
+  try {
+    authRequired(token);
+    isAdmin(token);
+    const orders = await Order.getOrder();
+    return { statusCode: CODE.OK, orders };
+  } catch (error) {
+    if (error.status) throw error;
+    throw new CustomError(CODE.INTERNAL_SERVER_ERROR, MESSAGE_ERROR_CONN_DB);
+  }
+};
+
 const getOrderDetails = async (token, orderId) => {
   try {
     authRequired(token);
@@ -37,7 +51,7 @@ const getOrderDetails = async (token, orderId) => {
     return { statusCode: CODE.OK, orderDetails };
   } catch (error) {
     if (error.status) throw error;
-    throw new CustomError(CODE.INTERNAL_SERVER_ERROR, 'Erro ao conectar com o banco de dados');
+    throw new CustomError(CODE.INTERNAL_SERVER_ERROR, MESSAGE_ERROR_CONN_DB);
   }
 };
 
@@ -50,11 +64,12 @@ const closeOrder = async (token, orderId) => {
     return { statusCode: CODE.ACCEPTED, message: 'Pedido entregue com sucesso' };
   } catch (error) {
     if (error.status) throw error;
-    throw new CustomError(CODE.INTERNAL_SERVER_ERROR, 'Erro ao conectar com o banco de dados');
+    throw new CustomError(CODE.INTERNAL_SERVER_ERROR, MESSAGE_ERROR_CONN_DB);
   }
 };
 
 module.exports = {
+  getOrder,
   getOrderDetails,
   closeOrder,
 };
