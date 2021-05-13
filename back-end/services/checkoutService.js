@@ -15,4 +15,10 @@ const createSale = async (ObjParams) => {
   return sale;
 };
 
-module.exports = { getAllSales, getSaleById, createSale };
+const confirmDelivery = async (idSaleDelivery) => {
+  const delivery = await saleModel.confirmDelivery(idSaleDelivery);
+  return delivery;
+};
+
+
+module.exports = { getAllSales, getSaleById, createSale, confirmDelivery };
