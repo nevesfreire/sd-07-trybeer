@@ -22,9 +22,11 @@ function LoginForm() {
     if (response === errorCode) {
       return setNotification(false);
     }
-    const { token, user: { name, role } } = response.data;
+    const { token, user: { name, role, id } } = response.data;
     if (response) {
-      services.acessLocalStorage.setUserLocalStorage({ name,
+      services.acessLocalStorage.setUserLocalStorage({
+        id,
+        name,
         email,
         token,
         role,

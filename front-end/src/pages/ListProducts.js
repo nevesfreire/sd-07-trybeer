@@ -22,7 +22,7 @@ function Products() {
     setproducts(resultApi.data);
     if (resultApi) setLoading(false);
   }, [setproducts, history]);
-
+  
   const sumItens = cart ? Object.keys(cart)
     .reduce(
       (acc, value) => (

@@ -8,14 +8,27 @@ const readAllSales = (sales, products) => {
   return result;
 };
 
-const createProductsSale = async (prods) => {
-  const { insertId, productId, quantity } = prods;
+const setProductsInTable = async (product) => {
+  const { insertId, productId, quantity } = product;
   const [saleProduct] = await connection.execute(
-    'INSERT INTO product_sales (sale_id, product_id, quantity) VALUES (?,?,?)', 
+    'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?,?,?)', 
     [insertId, productId, quantity],
   );
-  console.log('Model Create Product Sale: ', insertId, productId, quantity);
   return saleProduct;
+}
+
+const createProductsSale = async (prods) => {
+  const { insertId, products} = prods;
+  const productsReceived = Object.values(products[0]);
+  const result = Promise.all(productsReceived.map( async (cur) => {
+    const insertProduct = {
+      insertId,
+      productId: cur.item.id,
+      quantity: cur.quantity,
+    };
+    const set = await setProductsInTable(insertProduct);
+    return set;
+  }));
 };
 
 const readOneSale = async (id) => {
@@ -74,18 +87,20 @@ const getSalesByUser = async (user) => {
 
 const createSale = async (data) => {
   const {
-    userId,
-    totalPrice, deliveryAddress, deliveryNumber, saleDate, status, productId, quantity } = data;
-  const [sale] = await connection.execute(
-    `INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, sale_date, status)
-      VALUES (?,?,?,?,?,?)`, 
-      [userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status],
-  );
-  const { insertId } = Object.assign(sale);
-  if (!insertId) return sale;
-  const setProductsSale = { insertId, productId, quantity };
-  const prodsSetOnSale = await createProductsSale(setProductsSale);
-  return { ...sale, prodsSetOnSale };
+    userId, totalPrice, deliveryAddress, deliveryNumber, status, products }
+    = data;
+    let { saleDate } = data;
+    saleDate = saleDate.split('T').join('-').split('.')[0];
+    const [sale] = await connection.execute(
+      `INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, sale_date, status)
+        VALUES (?,?,?,?,?,?)`, 
+        [userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status],
+    );
+    const { insertId } = Object.assign(sale);
+    if (!insertId) return sale;
+    const setProductsSale = { insertId, products };
+    const prodsSetOnSale = await createProductsSale(setProductsSale);
+    return { ...sale, prodsSetOnSale };
 };
 
 module.exports = {

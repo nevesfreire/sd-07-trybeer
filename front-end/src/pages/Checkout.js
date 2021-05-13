@@ -3,26 +3,21 @@ import { useHistory } from 'react-router-dom';
 import { Header } from '../components';
 import TrybeerContext from '../store/context';
 import acessLocalStorage from '../services';
+import { createNewSale } from '../api';
 
 function Checkout() {
-  const [adress, setAdress] = useState();
+  const [address, setAddress] = useState();
   const [number, setNumber] = useState();
   const [notification, setNotification] = useState(false);
+  const [userState, setUserState] = useState({});
   const { cart, deleteItem } = useContext(TrybeerContext);
   const history = useHistory();
 
   useEffect(() => {
     const user = acessLocalStorage.acessLocalStorage.getUserLocalStorage();
     if (!user) return history.push('/login');
+    setUserState(user);
   }, [history]);
-
-  const handleClick = () => {
-    const TIME = 3000;
-    setNotification(!notification);
-    setTimeout(() => {
-      history.push('/products');
-    }, TIME);
-  };
 
   const sumItens = cart ? Object.keys(cart)
     .reduce(
@@ -30,6 +25,30 @@ function Checkout() {
         acc + (parseFloat(cart[value].item.price)) * (cart[value].quantity)
       ), 0,
     ) : 0;
+
+  const handleClick = async () => {
+    const TIME = 3000;
+
+    const saleToSend = {
+      userId: userState.id,
+      deliveryAddress: address,
+      deliveryNumber: number,
+      saleDate: new Date(),
+      totalPrice: sumItens.toFixed(2),
+      status: 'Pendente',
+      products: [{
+        ...cart
+      }]
+    };
+    const { token } = userState;
+    const sendSaleToDb = await createNewSale(saleToSend, token);
+
+    if (!sendSaleToDb) return;
+    setNotification(!notification);
+    setTimeout(() => {
+      history.push('/products');
+    }, TIME);
+  };
 
   return (
     <div>
@@ -92,7 +111,7 @@ function Checkout() {
         Rua
         <br />
         <input
-          onChange={ (e) => setAdress(e.target.value) }
+          onChange={ (e) => setAddress(e.target.value) }
           data-testid="checkout-street-input"
           id="streetinput"
           name="streetinput"
@@ -119,7 +138,7 @@ function Checkout() {
       }
       <button
         onClick={ () => handleClick() }
-        disabled={ !((adress && number && sumItens !== 0)) }
+        disabled={ !((address && number && sumItens !== 0)) }
         data-testid="checkout-finish-btn"
         type="button"
       >
