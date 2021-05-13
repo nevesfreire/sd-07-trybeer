@@ -21,9 +21,9 @@ function AdminHome() {
   return (
     <div className="admin-home-container">
       <AdminSidebar />
-      <section>
+      <section className="admin-container">
         { isLoading
-          ? <h1>Carregando</h1>
+          ? <h1 className="loading">Carregando</h1>
           : products.map((product) => <AdminCard key={ product.id } data={ product } />)}
       </section>
     </div>

@@ -2,8 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import './styles.css';
+
 function AdminCard({ data }) {
   const history = useHistory();
+  const wasDelivered = 'delivered';
 
   const {
     id,
@@ -17,16 +20,22 @@ function AdminCard({ data }) {
 
   return (
     <button
+      className="admin-card"
       type="button"
       onClick={ () => history.push(`/admin/orders/${id}`) }
     >
       <main>
-        <strong data-testid={ `${id - 1}-order-number` }>{`Pedido ${id}`}</strong>
+        <h3 data-testid={ `${id - 1}-order-number` }>{`Pedido ${id}`}</h3>
         <p data-testid={ `${id - 1}-order-address` }>{`${address}, ${number}`}</p>
       </main>
       <footer>
         <strong data-testid={ `${id - 1}-order-total-value` }>{priceFormat}</strong>
-        <h3 data-testid={ `${id - 1}-order-status` }>{status}</h3>
+        <h3
+          className={ status === 'Entregue' ? wasDelivered : '' }
+          data-testid={ `${id - 1}-order-status` }
+        >
+          {status}
+        </h3>
       </footer>
     </button>
   );
