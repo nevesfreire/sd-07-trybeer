@@ -61,7 +61,16 @@ const getAdminSales = (token) => fetch('http://localhost:3001/sales/admin', {
   .catch((error) => console.log(error));
 
 const getAdminSalesDetails = (token, saleId) => fetch(`http://localhost:3001/sales/admin/${saleId}`, {
+  method: 'GET',
   headers: { ...contentType, authorization: token },
+})
+  .then((response) => response.json())
+  .catch((error) => console.log(error));
+
+const updateSalesStatus = (token, status, saleId) => fetch(`http://localhost:3001/sales/admin/${saleId}`, {
+  method: 'PUT',
+  headers: { ...contentType, authorization: token },
+  body: JSON.stringify({ status }),
 })
   .then((response) => response.json())
   .catch((error) => console.log(error));
@@ -76,4 +85,5 @@ export {
   createSale,
   getAdminSales,
   getAdminSalesDetails,
+  updateSalesStatus,
 };

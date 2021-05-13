@@ -21,15 +21,7 @@ export default function ClientOrderDetails() {
     fetchSale();
   }, [id]);
 
-  // O título do top 'Detalhes de Pedido' deverá conter a tag data-testid="top-title"
-  // O número do pedido deverá conter a tag data-testid="order-number"
-  // A data do pedido deverá conter a tag data-testid="order-date"
-  // A quantidade do produto deverá conter a tag data-testid="0-product-qtd"
-  // O nome do produto deverá conter a tag data-testid="0-product-name"
-  // O valor total do produto deverá conter a tag data-testid="0-product-total-value"
-  // O valor total da compra deverá conter a tag data-testid="order-total-value"
-
-  // https://stackoverflow.com/questions/25159330/convert-an-iso-date-to-the-date-format-yyyy-mm-dd-in-javascript
+  // https://stackoverflow.com/questions/25159330/
   const dateFormate = (date) => {
     date = new Date(date);
     const DAY_PARAM = 9;
