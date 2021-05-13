@@ -73,10 +73,14 @@ export default function Checkout() {
   }, []);
 
   const handleSubmit = async () => {
+    const newList = cartList.map((item) => { //Testar lógica
+      const { id, quantity } = item;
+      return { id, quantity };
+    })
     const userOrder = {
-      cartList,
-      totalValue,
-      address,
+      deliveryAddress: address.street,
+      deliveryNumber: address.number,
+      salesProducts: [...newList],
     };
     await saveOrder(dispatch, finish, userOrder);
   };
