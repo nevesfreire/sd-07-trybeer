@@ -1,7 +1,7 @@
 const { connection } = require('../config/conn');
 
 const insertOne = `INSERT INTO sales (user_id, total_price,
-  delivery_address,delivery_number, sale_date, status) VALUES (?,?,?,?,?,?)`;
+  delivery_address,delivery_number,status, sale_date) VALUES (?,?,?,?,?,CURRENT_TIMESTAMP())`;
 
 const insetSaleProduct = `INSERT INTO sales_products (sale_id, product_id, quantity)
 VALUES (?,?,?)`;
@@ -12,7 +12,6 @@ const createSale = async (salesData) => {
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    saleDate,
     status,
   } = salesData;
 
@@ -21,7 +20,6 @@ const createSale = async (salesData) => {
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    saleDate,
     status,
   ]);
 
