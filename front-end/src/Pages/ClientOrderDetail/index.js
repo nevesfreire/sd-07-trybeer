@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { Table } from 'react-bootstrap';
 import TopBar from '../../Components/TopBar';
 import { getSaleById } from '../../servicesAPI/api';
+import './index.css';
 
 const ClientOrderDetail = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ const ClientOrderDetail = () => {
     <div>
       <TopBar />
       {isLoading ? <div>Carregando</div> : (
-        <div>
+        <div className="container">
           <h1 data-testid="order-number">{ `Pedido ${sale.saleID}` }</h1>
           <div data-testid="order-date">{ sale.saleDate }</div>
           <Table>

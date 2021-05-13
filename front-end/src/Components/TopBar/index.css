@@ -15,7 +15,6 @@
 }
 .top-bar-container {
   display: flex;
-  margin-bottom: 100px;
   width: 100%;
 }
 
@@ -28,12 +27,13 @@
 .sidebar-left {
   -webkit-transform: translate3d(-100%, 0px, 0px);
   transform: translate3d(-130%, 0px, 0px);
-  visibility: visible;
+  visibility: hidden;
   transition: all 0.5s ease 0s;
   -webkit-transition: all 0.5s ease 0s;
   height: 900px;
   background-color: whitesmoke;
 }
+
 .open .sidebar-left {
   -webkit-transform: translate3d(0px, 0px, 0px);
   transform: translate3d(-20px, 0px, 0px);
@@ -41,16 +41,18 @@
   height: 900px;
   background-color: whitesmoke;
 }
+
 .magic-container {
   position: absolute;
+  height: 0px;
   z-index: 1;
 }
 
 @media only screen and (min-width: 650px) {
   .sidebar-left {
-    transform: translate3d(-170%, 0px, 0px);
+    transform: translate3d(-100%, 0px, 0px);
   }
   .open .sidebar-left {
-    transform: translate3d(-70%, 0px, 0px);
+    transform: translate3d(0%, 0px, 0px);
   }
 }

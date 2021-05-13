@@ -32,7 +32,7 @@ const CheckoutProducts = () => {
   };
 
   return (
-    <div>
+    <div style={ { marginTop: '100px' } }>
       { cart.length === zero ? (
         <h3>Não há produtos no carrinho</h3>
       ) : (

@@ -12,7 +12,7 @@ const createSale = async (data) => {
 };
 
 const createSaleProduct = async (products, saleID) => {
-    await products.map(async (product) => {
+    await products.map(async (product) => { 
         await connection
         .execute(`INSERT INTO 
         Trybeer.sales_products (sale_id, product_id, quantity) VALUES 

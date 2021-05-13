@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { Container } from 'react-bootstrap';
 import SideBar from '../../Components/SideBar';
 import verifyUserLocalStorage from '../../util/changeLocalStorage';
+import './index.css';
 
 const AdminProfile = () => {
   const [user, setUser] = useState({ name: '', email: '' });

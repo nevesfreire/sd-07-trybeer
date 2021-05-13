@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("./images/beer7.png");
+  background-image: url("./images/lupuloBG.png");
+  background-size: cover;
 }
 
 code {

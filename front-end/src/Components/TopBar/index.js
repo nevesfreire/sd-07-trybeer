@@ -44,18 +44,20 @@ export default function () {
   }, []);
 
   return (
-    <Container className="top-bar-container">
-      <Navbar fixed="top" bg="light" variant="light">
-        <Button
-          variant="light"
-          className="hamburger-btn"
-          data-testid="top-hamburguer"
-          onClick={ () => setIsClicked(!isClicked) }
-        >
-          <img className="hamburger-icon" src={ burguerBtn } alt="" />
-        </Button>
-        <Navbar.Brand className="title" data-testid="top-title">{ title }</Navbar.Brand>
-      </Navbar>
+    <div>
+      <Container className="top-bar-container">
+        <Navbar fixed="top" bg="light" variant="light">
+          <Button
+            variant="light"
+            className="hamburger-btn"
+            data-testid="top-hamburguer"
+            onClick={ () => setIsClicked(!isClicked) }
+          >
+            <img className="hamburger-icon" src={ burguerBtn } alt="" />
+          </Button>
+          <Navbar.Brand className="title" data-testid="top-title">{ title }</Navbar.Brand>
+        </Navbar>
+      </Container>
       <div className={ isClicked ? 'magic-container open' : 'magic-container' }>
         <div className="sidebar-left">
           <div className="sidebar-shrink">
@@ -63,6 +65,6 @@ export default function () {
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 }

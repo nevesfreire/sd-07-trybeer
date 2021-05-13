@@ -42,7 +42,7 @@ const ClientProfile = () => {
   return (
     <div>
       <TopBar />
-      <Container>
+      <Container style={ { marginTop: '100px' } }>
         <Form>
           <Form.Group>
             <Form.Label>Nome</Form.Label>
@@ -74,7 +74,5 @@ const ClientProfile = () => {
     </div>
   );
 };
-
-// ClientProfile.propTypes = {};
 
 export default ClientProfile;

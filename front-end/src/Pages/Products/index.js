@@ -43,7 +43,7 @@ const Products = () => {
   return (
     <div>
       <TopBar />
-      <Container className="product-cards-container">
+      <Container className="product-cards-container" style={ { marginTop: '100px' } }>
         { isLoading ? <div>Carregando</div> : products.map((product, index) => (
           <ProductCard product={ product } index={ index } key={ index } />
         ))}

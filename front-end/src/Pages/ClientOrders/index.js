@@ -24,34 +24,36 @@ const ClientOrders = () => {
   return (
     <div>
       <TopBar />
-      <Table>
-        <tbody>
-          { !isLoading && sales
-            .map(({ id, sale_date: date, total_price: price }, index) => (
-              <tr key={ id } data-testid={ `${index}-order-card-container` }>
-                <td
-                  style={ { textAlign: 'center' } }
-                  data-testid={ `${index}-order-number` }
-                >
-                  <Link
-                    style={ { textDecoration: 'none', color: 'black' } }
-                    key={ id }
-                    to={ `/orders/${id}` }
+      <div style={ { marginTop: '100px' } }>
+        <Table>
+          <tbody>
+            { !isLoading && sales
+              .map(({ id, sale_date: date, total_price: price }, index) => (
+                <tr key={ id } data-testid={ `${index}-order-card-container` }>
+                  <td
+                    style={ { textAlign: 'center' } }
+                    data-testid={ `${index}-order-number` }
                   >
-                    { `Pedido ${id}` }
-                  </Link>
-                </td>
-                <td data-testid={ `${index}-order-date` }>{ date }</td>
-                <td
-                  data-testid={ `${index}-order-total-value` }
-                >
-                  {`R$ ${(Number(price)).toFixed(2).replace('.', ',')}`}
-                </td>
-                <td><Link key={ id } to={ `/orders/${id}` }>detalhes</Link></td>
-              </tr>
-            )) }
-        </tbody>
-      </Table>
+                    <Link
+                      style={ { textDecoration: 'none', color: 'black' } }
+                      key={ id }
+                      to={ `/orders/${id}` }
+                    >
+                      { `Pedido ${id}` }
+                    </Link>
+                  </td>
+                  <td data-testid={ `${index}-order-date` }>{ date }</td>
+                  <td
+                    data-testid={ `${index}-order-total-value` }
+                  >
+                    {`R$ ${(Number(price)).toFixed(2).replace('.', ',')}`}
+                  </td>
+                  <td><Link key={ id } to={ `/orders/${id}` }>detalhes</Link></td>
+                </tr>
+              )) }
+          </tbody>
+        </Table>
+      </div>
     </div>
   );
 };

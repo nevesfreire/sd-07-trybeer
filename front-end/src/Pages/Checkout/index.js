@@ -19,7 +19,9 @@ const Checkout = () => {
   return (
     <div>
       <TopBar />
-      { showMessage ? (<span>Compra realizada com sucesso!</span>) : (
+      { showMessage ? (
+        <div style={ { marginTop: '100px' } }>Compra realizada com sucesso!</div>
+      ) : (
         <div>
           <CheckoutProducts />
           <CheckoutForm finishSale={ finishSale } />
