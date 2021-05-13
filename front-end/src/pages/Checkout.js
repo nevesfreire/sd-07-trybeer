@@ -41,7 +41,7 @@ const checkoutButton = async () => {
   setTimeout(function(){
   setFinish(true) 
   history.push('/products')
-  }, 3000)
+  }, 4500)
   
 }
 
