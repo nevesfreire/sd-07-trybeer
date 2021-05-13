@@ -20,10 +20,34 @@ const loadItemsToLocalStorage = (id, price, qtd, name , url_image) => {
     localStorage.setItem('cart', JSON.stringify(newItemSaved));
 }};
 
+const saveAllOrders = (allOrders) => localStorage.setItem(
+  'allOrders', JSON.stringify(allOrders),
+);
+
+const getAllOrders = () => JSON.parse(localStorage.getItem('allOrders'));
+
+const saveOrderById = (orderById) => localStorage.setItem(
+  'orderById', JSON.stringify(orderById),
+);
+
+const getOrderById = () => JSON.parse(localStorage.getItem('orderById'));
+
+const saveOrderDetails = (orderDetails) => localStorage.setItem(
+  'orderDetails', JSON.stringify(orderDetails),
+);
+
+const getOrderDetails = () => JSON.parse(localStorage.getItem('orderDetails'));
+
 export {
   getToken,
   saveToken,
   saveProduct,
   getProduct,
   loadItemsToLocalStorage,
+  saveAllOrders,
+  getAllOrders,
+  saveOrderById,
+  getOrderById,
+  saveOrderDetails,
+  getOrderDetails,
 };

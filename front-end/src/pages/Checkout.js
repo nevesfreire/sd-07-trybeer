@@ -1,17 +1,17 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import CustomCheckout from '../components/CustomCheckout';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
 import { Grid, Button, Form, Segment } from 'semantic-ui-react';
 import checkout from '../service/checkout';
+import { fetchOrderById } from '../service/order';
 
 function Checkout() {
   const { totalKart, setTotalKart } = useContext(CentralContext);
   const [ deliveryAddress , setDeliveryAddress ] = useState('');
   const [ deliveryNumber, setDeliveryNumber] = useState('');
-  const history = useHistory();
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
   const [finish, setFinish] = useState(false)
 
@@ -36,10 +36,11 @@ const checkoutButton = async () => {
     cart
   )
   sucess()
+  fetchOrderById()
   setTimeout(function(){
     setFinish(false)    
-    history.push('/products')
-  }, 2000);
+    return < Redirect to='/products'/>
+  }, 1000);
 }
 
 const sucess = () => {
