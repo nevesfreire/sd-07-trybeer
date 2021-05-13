@@ -60,7 +60,7 @@ export default function Checkout() {
     const obj = {
       orderDetails: {
         total: conta,
-        deliveryAddress: storageState,
+        deliveryAddress: street,
         deliveryNumber: houseNumber,
       },
       orderItems: arrayitems,
