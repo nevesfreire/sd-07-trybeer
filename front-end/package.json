@@ -8,6 +8,7 @@
     "@testing-library/user-event": "7.2.1",
     "axios": "0.19.2",
     "bootstrap": "^4.6.0",
+    "dateformat": "^4.5.1",
     "eslint-config-trybe-frontend": "1.2.0",
     "jquery": "1.9.1",
     "react": "16.13.1",

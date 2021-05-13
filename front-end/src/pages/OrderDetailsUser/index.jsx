@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import dateFormat from 'dateformat';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import { Button } from 'react-bootstrap';
@@ -13,6 +14,13 @@ export default function OrderDetailsUser(props) {
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
+
+  function fdate(date) {
+    const newDate = new Date(date);
+    const day = dateFormat(newDate, 'dd/mm');
+    return day;
+  }
+
   useEffect(() => {
     const localStorageUser = JSON.parse(localStorage.getItem('user'));
     if (localStorageUser === null) {
@@ -22,7 +30,7 @@ export default function OrderDetailsUser(props) {
       fetch(`http://localhost:3001/sales/details/${orderId}`)
         .then((response) => response.json())
         .then((order) => {
-          setOrderDate(order.sale_date);
+          setOrderDate(fdate(order.saleDetail.sale_date));
           setTotalPrice(order.saleDetail.total_price);
           setProducts(order.products);
           console.log(order);

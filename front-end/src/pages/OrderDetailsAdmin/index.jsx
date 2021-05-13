@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import dateFormat from 'dateformat';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
@@ -14,6 +15,12 @@ export default function OrderDetailsAdmin(props) {
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
+
+  function fdate(date) {
+    const newDate = new Date(date);
+    const day = dateFormat(newDate, 'dd/mm');
+    return day;
+  }
   useEffect(() => {
     const localStorageUser = JSON.parse(localStorage.getItem('user'));
     if (localStorageUser === null) {
@@ -25,7 +32,7 @@ export default function OrderDetailsAdmin(props) {
         .then((order) => {
           setTotalPrice(order.saleDetail.total_price);
           setProducts(order.products);
-          setOrderDate(order.saleDetail.sale_date);
+          setOrderDate(fdate(order.saleDetail.sale_date));
           setOrderStatus(order.saleDetail.status);
           console.log(order);
           setIsLoading(false);
@@ -35,8 +42,7 @@ export default function OrderDetailsAdmin(props) {
 
   const handleDeliveredButton = (event) => {
     event.preventDefault();
-
-    history.push('/checkout');
+    setOrderStatus('Entregue');
   };
 
   return isLoading ? (
