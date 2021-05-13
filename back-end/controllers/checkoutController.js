@@ -8,7 +8,7 @@ const errorMessage = { message: 'erro ao cadastrar pedido' };
   const { 
     total_price: totalPrice, 
     delivery_address: deliveryAddress, 
-    delivery_number: deliveryNumber
+    delivery_number: deliveryNumber,
   } = req.body;
   console.log(req.body);
   const { id: userId } = req.user;

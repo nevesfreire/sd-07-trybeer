@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Card from '../components/Card';
 import { fetchProducts } from '../actions';
 
-export default function Products() {
+function Products() {
   const INITIAL_VALUE = 0;
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const productsList = useSelector(({ products }) => products.products);
@@ -26,7 +26,13 @@ export default function Products() {
       <Header title="TryBeer" />
       { shouldRedirect && <Redirect to="/checkout" /> }
       { productsList
-        .map((item, index) => <Card key={ index } product={ item } position={ index } />) }
+        .map(
+          (item, index) => (<Card
+            key={ index }
+            product={ item }
+            position={ index }
+          />),
+        )}
       <div>
         <button
           type="button"
@@ -44,3 +50,5 @@ export default function Products() {
     </>
   );
 }
+
+export default Products;

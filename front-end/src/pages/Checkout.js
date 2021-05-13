@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Address from '../components/Address';
 import Header from '../components/Header';
 import { update } from '../actions';
-import { saveOrder } from '../services/Order';
+import saveOrder from '../services/Order';
 
 export default function Checkout() {
   const INITIAL_VALUE = 0;
@@ -29,12 +29,16 @@ export default function Checkout() {
   };
 
   const renderBody = () => cartList.map((item, index) => (
-    <div>
+    <div key={ index }>
       <tr key={ index }>
         <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
         <td data-testid={ `${index}-product-name` }>{ item.name }</td>
-        <td data-testid={ `${index}-product-unit-price` }>{ `R$ ${item.price.toFixed(ROUNDING_OPTION)}` }</td>
-        <td data-testid={ `${index}-product-total-value` }>{ `R$ ${item.totalPrice.toFixed(ROUNDING_OPTION)}` }</td>
+        <td data-testid={ `${index}-product-unit-price` }>
+          { `R$ ${item.price.toFixed(ROUNDING_OPTION)}` }
+        </td>
+        <td data-testid={ `${index}-product-total-value` }>
+          { `R$ ${item.totalPrice.toFixed(ROUNDING_OPTION)}` }
+        </td>
       </tr>
       <button
         type="button"
@@ -89,7 +93,9 @@ export default function Checkout() {
       </table>
       <div>
         <span>Valor total do pedido</span>
-        <span data-testid="order-total-value">{ `R$ ${totalValue.toFixed(ROUNDING_OPTION)}` }</span>
+        <span data-testid="order-total-value">
+          { `R$ ${totalValue.toFixed(ROUNDING_OPTION)}` }
+        </span>
       </div>
       <Address
         handleEvent={ (event) => handleChange(event) }

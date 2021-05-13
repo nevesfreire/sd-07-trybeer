@@ -1,6 +1,6 @@
 import { finish } from '../actions';
 
-export const saveOrder = (dispatch, order) => {
+const saveOrder = (dispatch, order) => {
   try {
     const url = 'http://localhost:3001/orders';
     return fetch(url, {
@@ -16,3 +16,5 @@ export const saveOrder = (dispatch, order) => {
     console.log(error.message);
   }
 };
+
+export default saveOrder;

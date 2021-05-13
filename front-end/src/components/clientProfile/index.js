@@ -23,7 +23,7 @@ export default function ClientProfile() {
 
   return (
     <form onSubmit={ onSubmitHandler }>
-      <label>
+      <label htmlFor="name">
         <span>Name</span>
         <input
           value={ name }
@@ -35,7 +35,7 @@ export default function ClientProfile() {
         />
       </label>
 
-      <label>
+      <label htmlFor="email">
         Email
         <input
           value={ currentUser.email }

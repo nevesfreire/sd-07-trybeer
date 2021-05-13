@@ -16,7 +16,7 @@ const registerUser = ({ name, email, password, role }) => fetch('http://localhos
   .then((response) => response.json())
   .catch((error) => console.log(error));
 
-const updateUser = ({ name, email, token}) => fetch('http://localhost:3001/profile', {
+const updateUser = ({ name, email, token }) => fetch('http://localhost:3001/profile', {
   method: 'PATCH',
   headers: { ...contentType, authorization: token },
   body: JSON.stringify({ name, email }),
