@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Login, Register, Products, Checkout, Profile } from '../pages';
+import AdminOrders from '../pages/AdminOrders';
+import AdminProfile from '../pages/AdminProfile';
 
 function Routes() {
   return (
@@ -12,6 +14,8 @@ function Routes() {
         <Route path="/profile" component={ Profile } />
         <Route path="/products" component={ Products } />
         <Route path="/checkout" component={ Checkout } />
+        <Route path="/admin/profile" component={ AdminProfile } />
+        <Route path="/admin/orders" component={ AdminOrders } />
       </Switch>
     </BrowserRouter>
   );
