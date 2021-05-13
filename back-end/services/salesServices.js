@@ -27,6 +27,21 @@ const saleRegister = async (orderData) => {
   return customAnswer(saleRegisteredMessage, OK);
 };
 
+const getAllSalesData = async () => {
+  const sales = await salesModel.getAllSalesData();
+  if (!sales) {
+    return customAnswer([], OK);
+  }
+  return customAnswer(sales, OK);
+};
+
+const getSalesDataById = async (id) => {
+  const orderDetail = await salesModel.getSalesDataById(id);
+  return customAnswer(orderDetail, OK);
+};
+
 module.exports = {
   saleRegister,
+  getAllSalesData,
+  getSalesDataById,
 };

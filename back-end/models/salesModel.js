@@ -6,6 +6,19 @@ const querySale = 'INSERT INTO sales (user_id, total_price, delivery_address, de
 const queryProductSale = 'INSERT INTO sales_products (sale_id, product_id, quantity) '
   + 'VALUES (?, ?, ?)';
 
+const queryGetSaleId = `SELECT sal.id AS "orderNumber",
+sal.sale_date AS "orderDate",
+sal.total_price AS "totalPrice",
+salp.quantity AS "productQuantity",
+pro.name AS "productName",
+ROUND((pro.price * salp.quantity), 2) AS "totalProductPrice"
+FROM Trybeer.sales AS sal
+INNER JOIN Trybeer.sales_products AS salp
+ON sal.id = salp.sale_id
+INNER JOIN Trybeer.products AS pro
+ON salp.product_id = pro.id
+WHERE sal.id = ?`;
+
 const saleRegister = async ({
   id,
   price,
@@ -55,8 +68,22 @@ const saleProductRegister = async (productsList, saleId) => {
   return true;
 };
 
+const getAllSalesData = async () => {
+  const query = 'SELECT id,sale_date,total_price FROM Trybeer.sales;';
+  const [sales] = await connection.execute(query);
+  return sales;
+};
+
+const getSalesDataById = async (id) => {
+  const [orderDetail] = await connection.execute(queryGetSaleId, [id]);
+  console.log(orderDetail);
+  return orderDetail;
+};
+
 module.exports = {
   saleRegister,
   saleProductRegister,
   getProductIdByName,
+  getAllSalesData,
+  getSalesDataById,
 };
