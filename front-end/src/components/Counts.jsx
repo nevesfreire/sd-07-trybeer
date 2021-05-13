@@ -1,56 +1,53 @@
-import React, { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
-import { Buttons } from './index';
+import React, { useState, useContext/* , useEffect */ } from 'react';
 import TrybeerContext from '../context/TrybeerContext';
 
-export default function Counts({ price, index }) {
-  const { priceCar, setPriceCar } = useContext(TrybeerContext);
-  const [count, setCount] = useState(0);
-  const AUX_NUMBER = 1;
+export default function Counts(props) {
+  const [propsState/* , setPropsState */] = useState(props);
+  const { product, index } = propsState;
+  const { dispatchShoppingCart, getQuantityByProductId } = useContext(TrybeerContext);
 
-  const countSum = () => {
-    setCount(count + AUX_NUMBER);
-    setPriceCar(priceCar + (AUX_NUMBER * price));
+  /* useEffect(() => {
+    setPropsState(props);
+  }, [props]); */
+
+  const incCount = () => {
+    dispatchShoppingCart({
+      type: getQuantityByProductId(product.id) === 0 ? 'addProduct' : 'incrementProduct',
+      payload: product,
+    });
   };
 
-  const countSub = () => {
-    if (count > 0) {
-      setCount(count - 1);
-      return setPriceCar(priceCar - (AUX_NUMBER * price));
-    }
-
-    setCount(0);
+  const decCouunt = () => {
+    if (!getQuantityByProductId(product.id)) return;
+    dispatchShoppingCart({
+      type: getQuantityByProductId(product.id) === 1 ? 'delProduct' : 'decrementProduct',
+      payload: product,
+    });
   };
-
-  useEffect(() => {
-    localStorage.setItem('car', priceCar < 0 ? -AUX_NUMBER * priceCar : priceCar);
-    setPriceCar(Number.parseFloat(localStorage.getItem('car')));
-  }, [count]);
 
   return (
     <div>
-      <Buttons
-        testid={ `${index}-product-minus` }
-        value="-"
-        countClick={ countSub }
-      />
+      <button
+        type="button"
+        data-testid={ `${index}-product-minus` }
+        onClick={ () => decCouunt() }
+      >
+        -
+      </button>
       {' '}
       <span
         data-testid={ `${index}-product-qtd` }
       >
-        { count }
+        { getQuantityByProductId(product.id) }
       </span>
       {' '}
-      <Buttons
-        testid={ `${index}-product-plus` }
-        value="+"
-        countClick={ countSum }
-      />
+      <button
+        type="button"
+        data-testid={ `${index}-product-plus` }
+        onClick={ () => incCount() }
+      >
+        +
+      </button>
     </div>
   );
 }
-
-Counts.propTypes = {
-  price: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-};
