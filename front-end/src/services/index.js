@@ -1,2 +1,2 @@
-export { fetchApi, fetchProducts } from './API';
+export { fetchApi, fetchAPIfor } from './API';
 export { GlobalContext, GlobalProvider, actionType } from './context';
