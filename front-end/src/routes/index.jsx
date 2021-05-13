@@ -9,6 +9,7 @@ import {
   OrdersAdmin,
   ProfileAdmin,
   CheckoutUser } from '../pages';
+import OrdersUser from '../pages/OrdersUser';
 
 const Routes = () => (
   <Switch>
@@ -20,6 +21,7 @@ const Routes = () => (
     <Route exact path="/products" component={ Products } />
     <Route exact path="/register" component={ Register } />
     <Route exact path="/checkout" component={ CheckoutUser } />
+    <Route exact path="/orders" component={ OrdersUser } />
   </Switch>
 );
 
