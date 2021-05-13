@@ -5,7 +5,7 @@ import { getStorage, setStorage } from '../../services/localStorage';
 import { Creators } from '../../store/ducks/reducers/clientInfo';
 import { format } from '../../util';
 
-function ListItem({ product: { name, price, id, quantity, image } }) {
+function ListItem({ product: { name, price, id, quantity, url_image: image } }) {
   const { updateCart } = Creators;
 
   const dispatch = useDispatch();
@@ -36,6 +36,7 @@ function ListItem({ product: { name, price, id, quantity, image } }) {
         </td>
         <td>
           <strong>{format(price * quantity)}</strong>
+          <h5>{`(${format(price)} un)`}</h5>
         </td>
         <td>
           <div>

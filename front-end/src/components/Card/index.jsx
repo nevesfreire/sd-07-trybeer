@@ -6,7 +6,7 @@ import { Creators } from '../../store/ducks/reducers/clientInfo';
 import format from '../../util/format';
 import styles from './styles.module.scss';
 
-function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
+function Card({ product: { url_image: image, name, price, id, quantity } }) {
   const [productQuantity, setProductQuantity] = useState(0);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ function Card({ product: { url_image: urlImage, name, price, id, quantity } }) {
       <div className={ styles.cardImg }>
         <img
           data-testid={ `${id - 1}-product-img` }
-          src="https://diageo.vtexassets.com/arquivos/ids/159616-1200-auto?width=1200&height=auto&aspect=true"
+          src={ image }
           alt="img do produto"
         />
       </div>
