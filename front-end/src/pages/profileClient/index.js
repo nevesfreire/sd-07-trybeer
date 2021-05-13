@@ -49,7 +49,7 @@ export default function ProfileClient() {
 
   return (
     <div>
-      <TopMenu>Meu perfil</TopMenu>
+      <TopMenu topTitle="Meu perfil" />
       <label htmlFor="name">
         Nome:
         <input
