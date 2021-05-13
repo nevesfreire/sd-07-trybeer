@@ -23,7 +23,7 @@ function AdminOrders() {
     <div>
       <TopMenu title="TryBeer" />
       <div>
-        <h1>ADMIN ORDERS</h1>
+        <h1>ADMIN  ORDERS</h1>
       </div>
     </div>
   )
