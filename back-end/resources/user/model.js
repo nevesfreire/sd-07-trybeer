@@ -7,11 +7,25 @@ const getAll = async () => {
   return users;
 };
 
-const getByEmail = async (email) => {
+const getByEmail = async (email) => {  
   const [[user]] = await conn.execute(
     'SELECT * FROM users WHERE users.email = ?;', [email],
-  );
+  );  
   return user;
 };
 
-module.exports = { getAll, getByEmail };
+const create = async (name, email, password, role) => conn.execute(
+  `INSERT INTO users (name, email, password, role) 
+  VALUES (?, ?, ?, ?)`, [name, email, password, role],
+);
+
+const update = async (name, email) => conn.execute(
+  'update users SET name = ? WHERE email = ?', [name, email],
+);
+
+module.exports = { 
+  getAll, 
+  getByEmail,
+  create,
+  update,
+};
