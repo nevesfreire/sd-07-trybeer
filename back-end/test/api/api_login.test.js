@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const frisby = require('frisby');
 const connection = require('./tstHelper/connection')
 
-describe('POST into login route', () => {
+describe('login POST route', () => {
   const USERS = [{
     name: 'Pedro Risso',
     email: 'prisso@gmail.com',
@@ -32,6 +32,12 @@ describe('POST into login route', () => {
     await connection.execute('DELETE FROM users');
     done();
   });
+
+  // afterAll(async done => {
+  //   // await connection.destroy();
+  //   done();
+  // });
+
   it('Check if client login route is a POST, is available and working', async () => {
     await frisby
       .post(URL, {
@@ -110,5 +116,5 @@ describe('POST into login route', () => {
         const parsedBody = JSON.parse(body);
         expect(Object.keys(jwt.verify(parsedBody.message.token, secret))).toContain('id', 'role');
       });
+    });
   });
-});

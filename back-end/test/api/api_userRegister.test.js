@@ -2,7 +2,7 @@ require('dotenv').config();
 const connection = require('./tstHelper/connection');
 const frisby = require('frisby');
 
-describe('Check register POST route', () => {
+describe('register POST route', () => {
   const USERS = [{
     name: 'Pedro Risso',
     email: 'prisso@gmail.com',
@@ -21,6 +21,11 @@ describe('Check register POST route', () => {
     await connection.execute('DELETE FROM users');
     done();
   });
+
+  // afterAll(async done => {
+  //   // await connection.destroy();
+  //   done();
+  // });
 
   it('Check user registration', async () => {
     await frisby
