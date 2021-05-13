@@ -1,8 +1,8 @@
 import { handleStorage } from '../../utils';
 import fetchApi from './fetchAPI';
 
-const StatusError = 401;
-export default function fetchProducts() {
+const StatusError = 300;
+export default function fetchAPIfor(URI) {
   const { token } = handleStorage.get('user') || { token: '' };
 
   const body = {
@@ -12,9 +12,10 @@ export default function fetchProducts() {
       Authorization: token,
     },
   };
-  return fetchApi('/products', body)
-    .then((products) => products.json()).then((response) => {
-      if (response.statusCode === StatusError) {
+  return fetchApi(URI, body)
+    .then((response) => response.json()).then((response) => {
+      console.log(response);
+      if (response.statusCode > StatusError) {
         throw new Error('A requisição deu errado');
       } else {
         return response;

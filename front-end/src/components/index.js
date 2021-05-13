@@ -4,3 +4,4 @@ export { default as NameInput } from './NameInput';
 export { default as ViewCart } from './screenProducts/ViewCart';
 export { default as CardButtons } from './screenProducts/CardButtons';
 export { default as Card } from './screenProducts/Card';
+export { default as OrderClient } from './screenOrder/OrderClient';
