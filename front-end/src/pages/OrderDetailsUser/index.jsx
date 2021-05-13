@@ -7,7 +7,9 @@ import Header from '../../components/Header';
 export default function OrderDetailsUser(props) {
   const { match: { params: { orderId } } } = props;
 
-  const [order, setOrder] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [orderDate, setOrderDate] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
@@ -17,11 +19,13 @@ export default function OrderDetailsUser(props) {
       history.push('/login');
     } else {
       setIsLoading(true);
-      fetch(`http://localhost:3001/sales/products/${orderId}`)
+      fetch(`http://localhost:3001/sales/details/${orderId}`)
         .then((response) => response.json())
-        .then((products) => {
-          setOrder(products);
-          console.log(products);
+        .then((order) => {
+          setOrderDate(order.sale_date);
+          setTotalPrice(order.saleDetail.total_price);
+          setProducts(order.products);
+          console.log(order);
           setIsLoading(false);
         });
     }
@@ -39,12 +43,16 @@ export default function OrderDetailsUser(props) {
           </h2>
           <p data-testid="order-date">
             Data do pedido
+            {orderDate}
           </p>
           <ul>
-            {order.map((product, index) => (
+            {products.map((product, index) => (
               <li key={ index }>
                 <div data-testid={ `${index}-product-qtd` }>{product.qtd}</div>
                 <div data-testid={ `${index}-product-name` }>{product.nome}</div>
+                <div data-testid={ `${index}-product-total-value` }>
+                  {`R$ ${product.price.toString().replace('.', ',')}`}
+                </div>
                 <div data-testid={ `${index}-product-total-value` }>
                   {`R$ ${product.total.toString().replace('.', ',')}`}
                 </div>
@@ -52,7 +60,7 @@ export default function OrderDetailsUser(props) {
             ))}
           </ul>
           <div data-testid="order-total-value">
-            Total do pedido
+            {`R$ ${totalPrice.toString().replace('.', ',')}`}
           </div>
         </main>
       </div>);

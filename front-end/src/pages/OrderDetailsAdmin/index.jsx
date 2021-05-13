@@ -7,8 +7,10 @@ import Header from '../../components/Header';
 export default function OrderDetailsAdmin(props) {
   const { match: { params: { id } } } = props;
 
-  const [order, setOrder] = useState([]);
-
+  const [products, setProducts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [orderDate, setOrderDate] = useState('');
+  const [orderStatus, setOrderStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
@@ -18,11 +20,14 @@ export default function OrderDetailsAdmin(props) {
       history.push('/login');
     } else {
       setIsLoading(true);
-      fetch(`http://localhost:3001/sales/products/${id}`)
+      fetch(`http://localhost:3001/sales/details/${id}`)
         .then((response) => response.json())
-        .then((products) => {
-          setOrder(products);
-          console.log(products);
+        .then((order) => {
+          setTotalPrice(order.saleDetail.total_price);
+          setProducts(order.products);
+          setOrderDate(order.saleDetail.sale_date);
+          setOrderStatus(order.saleDetail.status);
+          console.log(order);
           setIsLoading(false);
         });
     }
@@ -42,16 +47,16 @@ export default function OrderDetailsAdmin(props) {
         <Header namePage="Detalhes de Pedido" />
         <main>
           <h2 data-testid="order-number">
-            {`Pedido ${orderId}`}
+            {`Pedido ${id}`}
           </h2>
           <h2 data-testid="order-status">
-            Status
+            {orderStatus}
           </h2>
           <p data-testid="order-date">
-            Data do pedido
+            {orderDate}
           </p>
           <ul>
-            {order.map((product, index) => (
+            {products.map((product, index) => (
               <li key={ index }>
                 <div data-testid={ `${index}-product-qtd` }>{product.qtd}</div>
                 <div data-testid={ `${index}-product-name` }>{product.nome}</div>
@@ -63,7 +68,7 @@ export default function OrderDetailsAdmin(props) {
             ))}
           </ul>
           <div data-testid="order-total-value">
-            Total do pedido
+            {`R$ ${totalPrice.toString().replace('.', ',')}`}
           </div>
           <Button
             data-testid="mark-as-delivered-btn"
@@ -71,7 +76,6 @@ export default function OrderDetailsAdmin(props) {
             type="button"
             className="form__login__btn"
             onClick={ (event) => handleDeliveredButton(event) }
-            disabled={ disableCartButton() }
           >
             Marcar como entregue
           </Button>
