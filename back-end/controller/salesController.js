@@ -14,6 +14,15 @@ const createSale = async (req, res) => {
 };
 
 const getAllSalesController = async (req, res) => {
+  try {
+    const arrayOfProducts = await salesService.getAllSalesService();
+    res.status(200).json(arrayOfProducts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getAllSalesByUserIdController = async (req, res) => {
   const { userId } = req.params;
   try {
     const arrayOfSales = await salesService.getSalesByIdService(userId);
@@ -60,6 +69,7 @@ const getDetailsByIdController = async (req, res) => {
 module.exports = {
   createSale,
   getAllSalesController,
+  getAllSalesByUserIdController,
   getProductsBySaleIdController,
   updateStatusBySaleIdController,
   getDetailsByIdController,
