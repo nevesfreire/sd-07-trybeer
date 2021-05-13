@@ -12,7 +12,7 @@ loginCtrl.post('/', async (req, res, next) => {
     return res.status(status).json({ message, error } || { });
   } catch (err) {
     console.log('controller: ', err);
-    return next({ err, status: 'internal server error' });
+    return next({ error: err, status: 'internal server error' });
   }
 });
 
