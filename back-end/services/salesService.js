@@ -19,4 +19,13 @@ const getById = async (id) => {
   }
 };
 
-module.exports = { getAll, getById };
+const updateStatus = async (id) => {
+  try {
+    await salesModel.updateStatus(id);
+    return OK;
+  } catch (error) {
+    return errorInDb;
+  }
+};
+
+module.exports = { getAll, getById, updateStatus };
