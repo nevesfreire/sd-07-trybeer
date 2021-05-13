@@ -60,6 +60,15 @@ const updateClient = async (name, email) => {
   return result;
 };
 
+const saleById = async () => {
+  const result = await axios.get(`${URL}/admin/orders/:id`)
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error) return { error: 'Pedido não encontrado' };
+    });
+  return result;
+};
+
 const updateSaleStatus = async (status) => {
   const result = await axios.put(`${URL}/admin/orders/:id`, {
     status,
@@ -76,5 +85,6 @@ export {
   productList,
   register,
   updateClient,
+  saleById,
   updateSaleStatus,
 };

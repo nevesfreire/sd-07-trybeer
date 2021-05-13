@@ -24,6 +24,15 @@ export default function AdminDetails() {
     },
   ]);
 
+  /* useEffect(() => {
+    const fetchSale = async () => {
+      const orderData = await saleById(orderId);
+      setOrder(orderData);
+    };
+    fetchSale();
+  }, [orderStatus, orderId]);
+  */
+
   const handleClick = () => {
     updateSaleStatus(ENTREGUE);
     setOrderStatus(ENTREGUE);
