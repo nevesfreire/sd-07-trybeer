@@ -6,7 +6,8 @@ const getAllProducts = async () => {
     'SELECT * FROM Trybeer.products',
   );
 
-  return data.map(({ url_image: imagem, name, price }) => ({
+  return data.map(({ id, url_image: imagem, name, price }) => ({
+    id,
     imagem,
     nome: name,
     preco: price,
