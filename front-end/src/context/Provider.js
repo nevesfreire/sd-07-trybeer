@@ -33,6 +33,7 @@ export default function Provider(props) {
     login,
     logout,
     userIsLogged,
+    setUserLogged,
     shoppingCart,
     dispatchShoppingCart,
     getTotalShoppingCart,
