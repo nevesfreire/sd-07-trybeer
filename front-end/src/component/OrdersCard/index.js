@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BeerAppContext from '../../context/BeerAppContext';
+import { getToLocalStorage } from '../../utils/localStorage';
 
 function OrdersCard({ order }) {
   const { convertPrice } = useContext(BeerAppContext);
@@ -14,21 +15,41 @@ function OrdersCard({ order }) {
     const day = dateList.split('-')[2];
     return `${day}/${month}`;
   };
-  return (
-    <div
-      data-testid={ `${order.id - 1}-order-card-container` }
-    >
+
+  const verifyRoleUser = () => {
+    const role = getToLocalStorage('user').role;
+    return role;
+  };
+
+  if (verifyRoleUser() === 'administrator') {
+    return (
       <button
-        data-testid={ `${order.id - 1}-order-number` }
         type="button"
-        onClick={ () => history.push(`/orders/${order.id}`) }
+        data-testid={`${order.id - 1}-order-card-container`}
+        onClick={() => history.push(`/admin/orders/${order.id}`)}
       >
+        <p data-testid={`${order.id - 1}-order-number`}>
+          {`Pedido ${order.id}`}
+        </p>
+        <p data-testid={`${order.id - 1}-order-address`}>{`${order.delivery_address}, ${order.delivery_number}`}</p>
+        <p data-testid={`${order.id - 1}-order-total-value`}>
+          {convertPrice(order.total_price)}
+        </p>
+        <p data-testid={`${order.id - 1}-order-status`}>{order.status}</p>
+      </button>
+    );
+  }
+
+  return (
+    <div data-testid={`${order.id - 1}-order-card-container`}>
+      <button
+        data-testid={`${order.id - 1}-order-number`}
+        type='button'
+        onClick={() => history.push(`/orders/${order.id}`)}>
         {`Pedido ${order.id}`}
       </button>
-      <p data-testid={ `${order.id - 1}-order-date` }>
-        {date()}
-      </p>
-      <p data-testid={ `${order.id - 1}-order-total-value` }>
+      <p data-testid={`${order.id - 1}-order-date`}>{date()}</p>
+      <p data-testid={`${order.id - 1}-order-total-value`}>
         {convertPrice(order.total_price)}
       </p>
     </div>

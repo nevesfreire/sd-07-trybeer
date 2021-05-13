@@ -25,10 +25,10 @@ function AdminProfile() {
     setUserInfo({ ...userInfo, name, email });
   };
 
-  useEffect(() => {
-    if (!validateToken()) return history.push('/login');
-    getLocalStorageUser();
-  }, [getLocalStorageUser, history]);
+  // useEffect(() => {
+  //   if (!validateToken()) return history.push('/login');
+  //   getLocalStorageUser();
+  // }, []);
 
   return (
     <div>
