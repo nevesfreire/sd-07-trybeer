@@ -42,8 +42,10 @@ export default function Checkout() {
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
   const [storageState] = useLocalStorage('shoppingCart');
-  const { token } = JSON.parse(window.localStorage.getItem('user'));
+  const user = JSON.parse(window.localStorage.getItem('user'));
   const { productsDispatch, productState } = useContext(GlobalContext);
+
+  if (user) {history.push('/')}
 
   useEffect(() => {
     fetchProducts().then((response) => {
@@ -65,7 +67,7 @@ export default function Checkout() {
       },
       orderItems: arrayitems,
     };
-    const register = await fetchApi('/sale', 'POST', obj, token);
+    const register = await fetchApi('/sale', 'POST', obj, user.token);
     setMessage(register.message);
     if (register.statusCode === CODE.CREATED) {
       const time = 2500;
