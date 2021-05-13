@@ -13,7 +13,7 @@ export const MainDiv = styled.div`
 export const FormWrapper = styled.div`
   flex: 1;
   padding: 1.5em 0em;
-  width: 100%;
+  width: 50%;
   height: 15em;
   background-color: gray;
   border: solid 0.8px black;
