@@ -10,36 +10,37 @@ function Products() {
 
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(num);
-  const [logado, setLogado] = useState(true);
+  const [logado] = useState(true);
 
+  const initialCart = () => {
+    if (localStorage.getItem('cart') !== null) {
+      return JSON.parse(localStorage.getItem('cart'));
+    }
+
+    const array = [];
+    for (let id = 1; id <= products.length; id += 1) {
+      array.push({
+        id,
+        qtd: 0,
+        name: products[id - 1].name,
+        price: products[id - 1].price,
+      });
+    }
+    return array;
+  };
   useEffect(() => {
     fetch('http://localhost:3001/products')
       .then((response) => response.json())
       .then((products1) => {
         setProducts(products1);
 
-        const initialCart = () => {
-          if (localStorage.getItem('cart') !== null) {
-            return JSON.parse(localStorage.getItem('cart'));
-          }
-
-          const array = [];
-          for (let id = 1; id <= products.length; id += 1) {
-            array.push({
-              id,
-              qtd: 0,
-              name: products[id - 1].name,
-              price: products[id - 1].price,
-            });
-          }
-          return array;
-        };
+        initialCart();
 
         setCart(initialCart());
 
         setIsLoading(false);
       });
-  }, [products]);
+  }, [initialCart, products]);
 
   function getQtd(id) {
     if (cart.length === 0) {
@@ -127,7 +128,13 @@ function Products() {
           ) : (
             products.map((e, index) => (
               <div className="App" key={ e.id }>
-                <img data-testid={ `${index}-product-img` } src="Becks.jpg" />
+                <img
+                  data-testid={
+                    `${index}-product-img`
+                  }
+                  src="Becks.jpg"
+                  alt="Becks.jpg"
+                />
                 <div>{e.url_image}</div>
                 <div data-testid={ `${index}-product-name` }>{e.name}</div>
                 <div data-testid={ `${index}-product-price` }>

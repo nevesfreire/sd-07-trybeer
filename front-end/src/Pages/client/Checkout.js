@@ -32,7 +32,9 @@ function Checkout() {
 
     const valorInicial = 0;
     const sum = products.reduce(
-      (accumulator, product) => parseFloat(accumulator + product.price * getQtd(product.id)),
+      (accumulator, prod) => parseFloat(
+        accumulator + prod.price * getQtd(prod.id),
+      ),
       valorInicial,
     );
 
@@ -51,9 +53,12 @@ function Checkout() {
   useEffect(() => {
     const valorInicial = 0;
     const sum = products.reduce(
-      (accumulator, product) => parseFloat(accumulator + product.price * getQtd(product.id)),
+      (accumulator, pdt) => parseFloat(
+        accumulator + pdt.price * getQtd(pdt.id),
+      ),
       valorInicial,
     );
+    console.log(sum);
   }, [cart, getQtd, logado, products]);
 
   if (localStorage.getItem('user') === null) {
