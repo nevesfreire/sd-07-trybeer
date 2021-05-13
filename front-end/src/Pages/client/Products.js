@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import Header from '../../Components/Header';
+import trybeerContext from '../../Context/TrybeerContext'
 
 function Products() {
-  const num = 999;
-  const [isLoading, setIsLoading] = useState(false);
+
   const [products, setProducts] = useState([]);
+  const num = 0;
+  const [isLoading, setIsLoading] = useState(false);
+
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(num);
   const [logado, setLogado] = useState(true);
