@@ -43,7 +43,6 @@ const getById = async (request, response) => {
   }
 };
 
-
 module.exports = { 
   requireProducts,
   getImagesProducts,
