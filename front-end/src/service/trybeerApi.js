@@ -71,7 +71,7 @@ const updateClient = async (name, email) => {
   return result;
 };
 
-const saleById = async (id) => {
+const orderById = async (id) => {
   const result = await axios.get(`${URL}/admin/orders/${id}`)
     .then((response) => response.data)
     .catch((error) => {
@@ -134,6 +134,7 @@ export {
   register,
   updateClient,
   saleById,
+  orderById,
   updateSaleStatus,
   saveSale,
   getAllSales,
