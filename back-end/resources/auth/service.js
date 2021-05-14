@@ -27,8 +27,8 @@ const login = async (userEmail, password) => {
   if (error) return { error, message };
   const token = generateToken(user);
 
-  const { email, name, role } = user;
-  return { error: false, payload: { token, name, email, role } };
+  const { email, name, role, id } = user;
+  return { error: false, payload: { token, name, email, role, id } };
 };
 
 module.exports = { login };
