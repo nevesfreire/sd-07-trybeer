@@ -6,6 +6,9 @@ import Products from './Products';
 import OrdersAdmin from './OrdersAdmin';
 import ProfileAdmin from './ProfileAdmin';
 import CheckoutUser from './CheckoutUser';
+import OrderDetailsUser from './OrderDetailsUser';
+import OrderDetailsAdmin from './OrderDetailsAdmin';
+import OrdersUser from './OrdersUser';
 
 export {
   Login,
@@ -16,4 +19,7 @@ export {
   OrdersAdmin,
   ProfileAdmin,
   CheckoutUser,
+  OrderDetailsUser,
+  OrderDetailsAdmin,
+  OrdersUser,
 };

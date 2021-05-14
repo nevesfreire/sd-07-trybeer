@@ -112,6 +112,21 @@ const fetchFinishSale = async (userId, totalPrice, addressObject, arrayProducts)
     });
 };
 
+const fetchUpdateStatus = async (saleId) => {
+  await fetch('http://localhost:3001/sales/status/', {
+    method: METHOD_PUT,
+    headers: {
+      'Content-type': CONTENT_TYPE,
+    },
+    body: JSON.stringify({
+      saleId,
+    }),
+  }).then((response) => response.json())
+    .then((responseJSON) => {
+      console.log(responseJSON);
+    });
+};
+
 export {
   loginFetch,
   pathRedirectByRole,
@@ -120,4 +135,5 @@ export {
   updateNameFetch,
   fetchProducts,
   fetchFinishSale,
+  fetchUpdateStatus,
 };
