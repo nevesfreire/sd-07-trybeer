@@ -4,7 +4,8 @@ const getOrderById = async (id) => {
   const [sale] = await conn.execute(
     `SELECT sp.quantity AS "qtd",
     p.name AS "name",
-    p.price AS "unitPrice"
+    p.price AS "unitPrice",
+    s.status AS "status"
     FROM products AS p
     INNER JOIN sales_products AS sp ON p.id = sp.product_id
     INNER JOIN sales AS s ON s.id = sp.sale_id

@@ -15,6 +15,7 @@ export default function AdminDetails() {
     const fetchSale = async () => {
       const orderData = await saleById(orderId);
       setOrder(orderData);
+      setOrderStatus(orderData[0].status || 'Pendente');
     };
     fetchSale();
   }, [orderId]);
