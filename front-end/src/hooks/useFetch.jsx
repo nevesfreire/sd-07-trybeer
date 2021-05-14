@@ -64,12 +64,26 @@ function useFetch() {
     return responseAPI;
   }
 
+  async function getOrders(token) {
+    const result = await fetch('http://localhost:3001/sales', {
+      method: 'GET',
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+        Authorization: token,
+      },
+    });
+    const responseAPI = await result.json();
+    return responseAPI;
+  }
+
   return (
     {
       login,
       updateProfileName,
       register,
       getProducts,
+      getOrders,
     }
   );
 }
