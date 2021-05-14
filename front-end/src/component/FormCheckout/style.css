@@ -1,0 +1,23 @@
+.form-checkout-container {
+  padding: 0;
+  margin: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  /* width: 100%; */
+}
+
+form {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+form label {
+  text-align: center;
+}
+
+form input {
+  padding: 10px;
+  margin: auto 5px;
+}

@@ -8,7 +8,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  position: fixed;
+  // position: fixed;
   top: 0;
   width: 100%;
 }
