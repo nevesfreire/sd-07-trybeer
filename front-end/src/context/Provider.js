@@ -20,8 +20,8 @@ export default function Provider(props) {
   // ABOUT LOGIN | LOGOUT | AND USER
   const USER_KEY_LOCALSTORAGE = 'user';
   const [userLogged, setUserLogged] = useLocalStorage(USER_KEY_LOCALSTORAGE, {});
-  const login = ({ role, name, email, token }) => {
-    setUserLogged({ role, name, email, token });
+  const login = ({ role, name, email, token, id }) => {
+    setUserLogged({ role, name, email, token, id });
     dispatchShoppingCart({ type: 'reset' });
   };
   const logout = () => setUserLogged({});

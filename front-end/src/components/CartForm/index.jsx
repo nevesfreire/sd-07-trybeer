@@ -1,13 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import TrybeerContext from '../../context/TrybeerContext';
+import { saveSale } from '../../service/trybeerApi';
 
 export default function CartForm() {
   const {
     getTotalShoppingCart,
-    cartState,
-    dispatchShoppingCart } = useContext(TrybeerContext);
-  const [totalPriceCart, setTotalPriceCart] = useState(getTotalShoppingCart());
+    dispatchShoppingCart,
+    userLogged,
+    shoppingCart } = useContext(TrybeerContext);
+  const [
+    totalPriceCart,
+    setTotalPriceCart] = useState(getTotalShoppingCart());
   const [showFinishMessage, setShowFinishMessage] = useState(false);
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const history = useHistory();
@@ -19,7 +23,7 @@ export default function CartForm() {
 
   useEffect(() => {
     setTotalPriceCart(getTotalShoppingCart());
-  }, [cartState, getTotalShoppingCart]);
+  }, [getTotalShoppingCart, setTotalPriceCart]);
 
   useEffect(() => {
     if (showFinishMessage) {
@@ -47,7 +51,13 @@ export default function CartForm() {
 
   const handleClick = async () => {
     const { street, houseNumber } = salesInfo;
-    console.log(street, houseNumber);
+    const sale = {
+      userId: userLogged.id,
+      street,
+      houseNumber,
+      totalPrice: getTotalShoppingCart(),
+    };
+    await saveSale(sale, shoppingCart);
     setShowFinishMessage(true);
   };
 

@@ -74,7 +74,21 @@ const updateSaleStatus = async (status) => {
     status,
   })
     .then((response) => response.data)
-    .catch((error) => {
+      .catch((error) => {
+      if (error) return { error: error.message };
+    });
+  return result;
+};
+
+const saveSale = async (sale, products) => {
+  const result = await axios.post(`${URL}/sales`,
+    { sale, products },
+    { headers: {
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+    }).then(() => console.log('Pedido Finalizado'))
+      .catch((error) => {
       if (error) return { error: error.message };
     });
   return result;
@@ -87,4 +101,5 @@ export {
   updateClient,
   saleById,
   updateSaleStatus,
+  saveSale,
 };
