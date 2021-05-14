@@ -46,7 +46,7 @@ const getAllSales = async (_request, response) => {
     response.status(StatusCodes.BAD_REQUEST)
       .json({ message: error.message });
   }
-}
+};
 
 module.exports = {
   createSale,
