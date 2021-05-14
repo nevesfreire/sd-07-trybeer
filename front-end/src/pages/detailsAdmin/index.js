@@ -1,38 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import TrybeerContext from '../../context/TrybeerContext';
 import AdminSideBar from '../../components/AdminSideBar';
-import { updateSaleStatus } from '../../service/trybeerApi';
+import { updateSaleStatus, saleById } from '../../service/trybeerApi';
 
 const ENTREGUE = 'Entregue';
 
 export default function AdminDetails() {
   // const {  } = useContext(TrybeerContext);
-  const [orderId] = useState('1');
+  const [orderId] = useState(1);
   const [orderStatus, setOrderStatus] = useState('Pendente');
-  const [order] = useState([
-    {
-      qtd: 1,
-      name: 'Skol Lata 250ml',
-      unitPrice: 2.20,
-    },
-    {
-      qtd: 1,
-      name: 'Heineken 600ml',
-      unitPrice: 7.50,
-    },
-  ]);
+  const [order, setOrder] = useState([]);
 
-  /* useEffect(() => {
+  useEffect(() => {
     const fetchSale = async () => {
       const orderData = await saleById(orderId);
       setOrder(orderData);
     };
     fetchSale();
-  }, [orderStatus, orderId]);
-  */
+  }, [orderId]);
 
   const handleClick = () => {
-    updateSaleStatus(ENTREGUE);
+    updateSaleStatus(ENTREGUE, orderId);
     setOrderStatus(ENTREGUE);
   };
 

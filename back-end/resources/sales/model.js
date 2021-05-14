@@ -1,7 +1,7 @@
 const conn = require('../../config/connect');
 
 const getOrderById = async (id) => {  
-  const [[sale]] = await conn.execute(
+  const [sale] = await conn.execute(
     `SELECT sp.quantity AS "qtd",
     p.name AS "name",
     p.price AS "unitPrice"

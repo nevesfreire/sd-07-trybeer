@@ -5,8 +5,12 @@ const service = require('./service');
 const getOrderById = async (req, res) => {
   try {
     const { id } = req.params;
-    const sale = await service.getById(id);
+    const sale = await service.getOrderById(id);
     res.status(StatusCodes.OK).json(sale);
+  } catch (error) {
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+};
   
 const getAll = async (_req, res) => {
   try {

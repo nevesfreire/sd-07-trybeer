@@ -3,7 +3,7 @@ const { statusIsValid } = require('../../helpers/validations');
 const { invalidData, statusUpdated, saleNotFound } = require('../../helpers/dictonary');
 
 const getOrderById = async (id) => {
- const sale = await model.getById(id);
+ const sale = await model.getOrderById(id);
  if (!sale) return { error: true, message: saleNotFound };
  return sale;
 };
