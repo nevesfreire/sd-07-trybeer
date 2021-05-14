@@ -1,5 +1,23 @@
 const conn = require('../../config/connect');
 
+const getOrderById = async (id) => {  
+  const [sale] = await conn.execute(
+    `SELECT sp.quantity AS "qtd",
+    p.name AS "name",
+    p.price AS "unitPrice",
+    s.status AS "status"
+    FROM products AS p
+    INNER JOIN sales_products AS sp ON p.id = sp.product_id
+    INNER JOIN sales AS s ON s.id = sp.sale_id
+    WHERE s.id = ?`, [id],
+  );  
+  return sale;
+};
+
+const updateStatus = async (status, id) => conn.execute(
+  'update sales SET status = ? WHERE id = ?', [status, id],
+);
+
 const getAll = async () => {
   const [sales] = await conn.execute(
     'SELECT * FROM sales;',
@@ -45,7 +63,9 @@ const create = async (sale, products) => {
 module.exports = { 
   getAll, 
   getAllByUserId, 
-  getById, 
+  getById,
+  getOrderById,
+  updateStatus,
   create,
 };
 

@@ -7,4 +7,6 @@ const nameIsValid = (name = '') => {
 
 const passwordIsValid = (password) => password && password.length >= 6;
 
-module.exports = { emailIsValid, passwordIsValid, nameIsValid };
+const statusIsValid = (status) => status === 'Pendente' || status === 'Entregue';
+
+module.exports = { emailIsValid, passwordIsValid, nameIsValid, statusIsValid };
