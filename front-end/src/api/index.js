@@ -48,6 +48,18 @@ async function getOrders(token) {
   try {
     const response = await axios
       .get(`${url}${orders}`, { headers: { Authorization: token } });
+    console.log(response);
+    return response;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
+async function getOrdersById(token, id) {
+  try {
+    const response = await axios
+      .get(`${url}${orders}/${id}`, { headers: { Authorization: token } });
+    console.log('resposta api', response);
     return response;
   } catch (error) {
     return error.response.status;
@@ -64,4 +76,12 @@ async function createNewSale(sale, token) {
   }
 }
 
-export { requestToken, registerUser, getProducts, updateUser, getOrders, createNewSale };
+export {
+  requestToken,
+  registerUser,
+  getProducts,
+  updateUser,
+  getOrders,
+  getOrdersById,
+  createNewSale,
+};

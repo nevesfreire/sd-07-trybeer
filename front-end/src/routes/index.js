@@ -11,6 +11,7 @@ const Router = () => (
     <Route path="/admin/profile" component={ pages.AdminProfile } />
     <Route path="/profile" component={ pages.ClientProfile } />
     <Route path="/checkout" component={ pages.Checkout } />
+    <Route path="/orders/:id" component={ pages.OrdersDetails } />
     <Route exact path="/" component={ pages.Login } />
   </Switch>
 );
