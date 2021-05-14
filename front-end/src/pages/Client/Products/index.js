@@ -60,8 +60,8 @@ function Products() {
   return (
     <>
       { role !== 'administrator' ? <TopMenu title="TryBeer" />
-      : <SideBar isAdmin /> }
-      
+        : <SideBar isAdmin /> }
+
       { isFetching && <h1>Loading...</h1>}
       { !isFetching && products.map((product, index) => (<ProductsCard
         key={ product.id }
