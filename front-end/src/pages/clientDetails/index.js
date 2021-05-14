@@ -16,20 +16,19 @@ export default function ClientDetails() {
     day: '2-digit', month: '2-digit',
   };
 
-  const salesProducts = async () => {
-    const result = await saleById(orderNumber);
-    const order = await getSaleByOrderId(orderNumber);
-    const dateOrder = new Intl.DateTimeFormat('pt-BR', options)
-      .format(Date.parse(order[0].sale_date));
-    if (!dateOrder) return setErrors(<h3>Pedido não encontrado</h3>);
-
-    setOrderDate(dateOrder);
-    setOrderDetail(result);
-  };
-
   useEffect(() => {
+    const salesProducts = async () => {
+      const result = await saleById(orderNumber);
+      const order = await getSaleByOrderId(orderNumber);
+      const dateOrder = new Intl.DateTimeFormat('pt-BR', options)
+        .format(Date.parse(order[0].sale_date));
+      if (!dateOrder) return setErrors(<h3>Pedido não encontrado</h3>);
+
+      setOrderDate(dateOrder);
+      setOrderDetail(result);
+    };
     salesProducts();
-  }, []);
+  }, [options, orderNumber]);
 
   return (
     <div>
