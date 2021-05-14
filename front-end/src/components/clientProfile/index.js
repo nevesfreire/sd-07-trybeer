@@ -13,6 +13,7 @@ export default function ClientProfile() {
     const user = {
       name,
       email: currentUser.email,
+      token: currentUser.token,
     };
     // req da api enviando:
     const response = await updateUser(user).then((apiResponse) => apiResponse);
@@ -22,7 +23,7 @@ export default function ClientProfile() {
 
   return (
     <form onSubmit={ onSubmitHandler }>
-      <label>
+      <label htmlFor="name">
         <span>Name</span>
         <input
           value={ name }
@@ -34,7 +35,7 @@ export default function ClientProfile() {
         />
       </label>
 
-      <label>
+      <label htmlFor="email">
         Email
         <input
           value={ currentUser.email }

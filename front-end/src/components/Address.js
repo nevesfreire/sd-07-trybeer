@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { update } from '../actions';
 
 export default function Address({ handleEvent, status, saveOrder }) {
-  const DELAY = 2000;
+  const DELAY = 3000;
   const orderStatus = useSelector(({ order }) => order);
   const dispatch = useDispatch();
 
@@ -45,7 +46,15 @@ export default function Address({ handleEvent, status, saveOrder }) {
           Finalizar Pedido
         </button>
       </form>
-      <span>{ orderStatus === 'success' ? handleSuccess() : 'Impossível finalizar a compra.' }</span>
+      <span>
+        { orderStatus === 'success' ? handleSuccess() : 'Impossível finalizar a compra.' }
+      </span>
     </>
   );
 }
+
+Address.propTypes = {
+  handleEvent: PropTypes.objectOf.isRequired,
+  status: PropTypes.bool.isRequired,
+  saveOrder: PropTypes.func.isRequired,
+};

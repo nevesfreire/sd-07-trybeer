@@ -26,6 +26,7 @@ const productPrice = async (productId) => {
     'SELECT price FROM products WHERE id = ?', [productId],
   );
   return price;
+
 };
 
 module.exports = {

@@ -1,4 +1,4 @@
-import { getProducts } from '../services/Products';
+import getProducts from '../services/Products';
 
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS';
