@@ -99,21 +99,21 @@ function CartItems() {
     if (listProducts.length > 0 && localStorageSalved.length > 0) {
       return (localStorageSalved.map((product, index) => (
         <div key={ product.id }>
-          <span data-testid={ `${index}-product-qtd-input` }>{product.quantity}</span>
-          <span data-testid={ `${index}-product-name` }>{`${product.name} `}</span>
-          <span
+          <div data-testid={ `${index}-product-qtd-input` }>{product.quantity}</div>
+          <div data-testid={ `${index}-product-name` }>{`${product.name} `}</div>
+          <div
             data-testid={ `${index}-product-total-value` }
           >
             {
               `R$ ${(product.quantity * product.price)
                 .toFixed(2).toString().replace('.', ',')} `
             }
-          </span>
-          <span
+          </div>
+          <div
             data-testid={ `${index}-product-unit-price` }
           >
             {`(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')} un) `}
-          </span>
+          </div>
           <button
             type="button"
             data-testid={ `${index}-removal-button` }
