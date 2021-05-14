@@ -9,7 +9,7 @@ VALUES (?,?,?)`;
 
 const selectSales = 'SELECT * FROM Trybeer.sales';
 
-const saleById = `SELECT sp.sale_id, p.name, p.price, sp.quantity, s.status
+const saleById = `SELECT sp.sale_id, p.name, p.price, sp.quantity, s.status, s.sale_date
 FROM Trybeer.sales_products as sp
 INNER JOIN Trybeer.products as p on p.id  = sp.product_id
 INNER JOIN Trybeer.sales as s WHERE sp.sale_id = ?`;
