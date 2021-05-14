@@ -9,7 +9,7 @@ id INT NOT NULL AUTO_INCREMENT,
     password VARCHAR(20) NOT NULL,
     role VARCHAR(20) NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE KEY "email_un" (email)
+    UNIQUE KEY email_un (email)
 );`,
 createSales: `CREATE TABLE IF NOT EXISTS sales (
     id INT NOT NULL AUTO_INCREMENT,
@@ -38,7 +38,7 @@ createSaleProducts: `CREATE TABLE IF NOT EXISTS sales_products (
     FOREIGN KEY(sale_id) REFERENCES sales(id),
     FOREIGN KEY(product_id) REFERENCES products(id)
 );`,
-insetUsers: `INSERT INTO users (id, name, email, password, role) VALUES
+insertUsers: `INSERT INTO users (id, name, email, password, role) VALUES
     ('1', 'Tryber Admin', 'tryber@trybe.com.br', '123456', 'administrator'),
     ('2', 'testuser', 'user@test.com', 'test123', 'client');`,
 
@@ -54,7 +54,7 @@ insertProducts: `INSERT INTO products (id, name, price, url_image) VALUES
 ('9','Becks 600ml',8.89, 'http://localhost:3001/images/Becks 600ml.jpg'),
 ('10','Skol Beats Senses 269ml',3.57, 'http://localhost:3001/images/Skol Beats Senses 269ml.jpg'),
 ('11','Stella Artois 275ml',3.49, 'http://localhost:3001/images/Stella Artois 275ml.jpg');`,
-dropSaleTables: 'DROP TABLE Trybeer.sales, Trybeer.sales_products;',
+dropSaleTables: 'DROP TABLE IF EXISTS sales, sales_products;',
 };
 
 module.exports = db;
