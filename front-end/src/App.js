@@ -14,6 +14,7 @@ import ClientProfile from './pages/ClientProfilePage';
 import OrdersDetails from './pages/OrdersDetailsPage';
 import AdminProfile from './pages/AdminProfilePage';
 import GlobalStyle from './global';
+import AdminOrdersDetails from './pages/AdminOrdersDetailsPage';
 
 const theme = {
   primaryDark: '#0D0C1D',
@@ -39,6 +40,7 @@ function App() {
             <Route exact path="/profile" component={ ClientProfile } />
             <Route exact path="/checkout" component={ Checkout } />
             <Route exact path="/admin/profile" component={ AdminProfile } />
+            <Route exact path="/admin/orders/:numero-do-pedido" component={ AdminOrdersDetails } />
           </Switch>
         </ThemeProvider>
       </TrybeerProvider>
