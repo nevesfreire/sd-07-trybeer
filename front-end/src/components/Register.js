@@ -81,7 +81,7 @@ const ComponentRegister = () => {
   //     return <Redirect to="/Not Found" />;
   //   }
   // }
-
+  console.log(user);
   return (
     <FormControl className="form-registration">
       {user.role === 'administrator' && <Redirect to="/admin/orders" />}

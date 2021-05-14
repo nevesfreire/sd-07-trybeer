@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import numbers from '../helpers/Numbers';
 import CheckoutCard from './CheckoutCard';
+import api from '../services/api';
 
 const CheckoutBody = () => {
   const history = useHistory();
@@ -9,27 +10,51 @@ const CheckoutBody = () => {
   // console.log(token);
 
   // ainda está mockado no Beer.js
-  const { cart } = JSON.parse(localStorage.getItem('cart'));
+  // const cart = JSON.parse(localStorage.getItem('cart'));
+
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem('cart')) || [],
+  );
+  const [street, setStreet] = useState('');
+  const [houseNumber, setHouseNumber] = useState('');
+  const [saleFinished, setSaleFinished] = useState(true);
 
   // cart mockado
   // const cart = [
   //   { nome: 'cerva1', preco: 10.0, quantidade: 3 },
   //   { nome: 'cerva2', preco: 5.0, quantidade: 6 },
   // ];
-  console.log(`CheckoutBody cart: ${typeof (cart)}`);
 
-  const [priceTotal, setPriceTotal] = useState(
-    JSON.parse(localStorage.getItem('productPriceTotals')) || { value: 0.0 },
-  );
+  // saida: userId, totalPrice, deliveryAddress, deliveryNumber, status
 
-  const priceTotalReduced = Object.values(priceTotal).reduce(
-    (curr, next) => curr + next,
-    numbers.ZERO,
+  // console.log(`CheckoutBody cart: ${typeof cart}`);
+
+  const priceTotalReduced = cart.reduce(
+    (curr, next) => curr + next.total,
+    numbers.ZERO_REAL,
   );
 
   const redirectToProduct = () => {
-    history.push('/products');
+    setSaleFinished(true);
+    const time = 5000;
+    const params = {
+      userId: 1,
+      totalPrice: priceTotalReduced,
+      deliveryAddress: street,
+      deliveryNumber: houseNumber,
+      status: 'Pendente',
+    };
+    const postSale = async () => {
+      const { data } = await api.post('/checkout', params);
+      console.log(`redirectToProduct ${data}`); // deixar
+    };
+    postSale();
+    setCart([]);
+    setTimeout(() => history.push('/products'), time);
   };
+
+  // requisição do ?post
+  // const { userId, totalPrice, deliveryAddress, deliveryNumber, status } = req.body;
 
   return (
     <div className="checkout-list-container">
@@ -38,9 +63,9 @@ const CheckoutBody = () => {
       {/* {console.log(`Render beer: ${Beers}`)} */}
       <h3 data-testid="top-title">Finalizar Pedido</h3>
       <button
-        data-testid="checkout-bottom-btn"
+        data-testid="checkout-finish-btn"
         type="button"
-        disabled={ !priceTotalReduced }
+        disabled={ !priceTotalReduced || street === '' || houseNumber === '' }
         onClick={ redirectToProduct }
       >
         Finalizar Pedido
@@ -51,15 +76,45 @@ const CheckoutBody = () => {
           {`R$ ${priceTotalReduced.toFixed(2).replace('.', ',')}`}
         </p>
       </div>
-      {cart.map((cartItem, index) => (
-        <CheckoutCard
-          key={ index }
-          cartItem={ cartItem }
-          index={ index }
-          setPriceTotal={ setPriceTotal }
-          priceTotal={ priceTotal }
-        />
-      ))}
+      {priceTotalReduced === 0 ? (
+        <h3>Não há produtos no carrinho</h3>
+      ) : (
+        cart.map((cartItem, index) => (
+          <CheckoutCard
+            key={ index }
+            cartItem={ cartItem }
+            index={ index }
+            setCart={ setCart }
+            cart={ cart }
+          />
+        ))
+      )}
+      <form className="form-checkout">
+        <label htmlFor="street" className="form-checkout-street">
+          Rua
+          <input
+            data-testid="checkout-street-input"
+            id="street"
+            type="street"
+            name="street"
+            className="label-login"
+            onChange={ (event) => setStreet(event.target.value) }
+          />
+        </label>
+
+        <label htmlFor="houseNumber" className="form-checkout-address">
+          Número da casa
+          <input
+            data-testid="checkout-house-number-input"
+            id="houseNumber"
+            type="houseNumber"
+            name="houseNumber"
+            className="label-login"
+            onChange={ (event) => setHouseNumber(event.target.value) }
+          />
+        </label>
+      </form>
+      {saleFinished ? <h3>Compra realizada com sucesso!</h3> : ''}
     </div>
   );
 };
