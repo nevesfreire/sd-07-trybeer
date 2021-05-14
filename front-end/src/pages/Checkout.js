@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import React, { useEffect, useContext, useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Container, Grid, Button, Form, Segment } from 'semantic-ui-react';
 import CustomCheckout from '../components/CustomCheckout';
 import CentralContext from '../context/Context';
@@ -16,8 +16,6 @@ function Checkout() {
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
   const [finish, setFinish] = useState(false);
 
-  let cumTotal = 0;
-
   const remButton = (id) => {
     const cartFilter = cart.filter((item) => item[0] !== id);
     setCart(cartFilter);
@@ -28,7 +26,7 @@ function Checkout() {
     const userId = id;
     const totalPrice = totalKart;
 
-    const msg = await checkout({
+    await checkout({
       userId,
       totalPrice,
       deliveryAddress,
@@ -37,35 +35,41 @@ function Checkout() {
     });
     setFinish(true);
     fetchOrderById();
+    const time = 8000;
     setTimeout(() => {
       setFinish(true);
       history.push('/products');
-    }, 8000);
+    }, time);
   };
 
   useEffect(() => {
-    cart
-    && cart.map((item) => {
-      cumTotal += (item[1] * item[2]);
-    });
+    let cumTotal = 0;
+    if (cart) {
+      cart.map((item) => {
+        const price = item[1];
+        const quantity = item[2];
+        cumTotal += (price * quantity);
+        return cumTotal;
+      });
+    }
+
     setTotalKart(cumTotal);
     localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart, finish]);
+  }, [cart, finish, setTotalKart]);
 
   useEffect(() => {}, [finish]);
 
-  const renderProdutsCart = () => (
+  const renderProdutsCart = useCallback(() => (
     <div>
       <Grid columns="4">
 
-        {totalKart === 0 ? <span>'Não há produtos no carrinho'</span> : null }
+        {totalKart === 0 ? <span>Não há produtos no carrinho</span> : null }
         { !cart ? (
           null
         ) : (
           cart.map((beer, index) => (
-            <Grid.Column>
+            <Grid.Column key={ beer.id }>
               <CustomCheckout
-                key={ beer.id }
                 index={ index }
                 beer={ beer }
                 removeButton={ remButton }
@@ -75,7 +79,7 @@ function Checkout() {
         )}
       </Grid>
     </div>
-  );
+  ), [cart, remButton, totalKart]);
   return (
     <div>
       <Grid container>
@@ -123,7 +127,7 @@ function Checkout() {
           >
             Finalizar pedido
           </Button>
-          { finish ? <span>'Compra realizada com sucesso!'</span> : null}
+          { finish ? <span>Compra realizada com sucesso!</span> : null}
         </Segment>
       </Form>
     </div>

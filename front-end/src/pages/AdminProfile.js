@@ -12,8 +12,8 @@ function AdminProfile() {
   const { name, email, token, role } = userObject;
 
   useEffect(() => {
-    if(!token || role === "client" ) return history.push('/login');
-  }, [])
+    if (!token || role === 'client') return history.push('/login');
+  }, [history, role, token]);
 
   return (
     <div>

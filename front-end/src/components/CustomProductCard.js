@@ -24,13 +24,18 @@ export default function CustomProductCard({ index, beer }) {
   useEffect(() => {
     let localQnt = 0;
     const kart = JSON.parse(localStorage.getItem('cart'));
-    kart && kart.map((item) => {
-      if (item[0] == beer.id) {
-        localQnt = item[2];
-      }
-    });
+    if (kart) {
+      kart.map((item) => {
+        const { id } = beer;
+        if (item[0] === id) {
+          const quantity = item[2];
+          localQnt = quantity;
+        }
+        return localQnt;
+      });
+    }
     setQtdProduct(localQnt);
-  }, []);
+  }, [beer.id]);
 
   useEffect(() => {}, [qtdProduct]);
 
@@ -44,18 +49,18 @@ export default function CustomProductCard({ index, beer }) {
             <Image
               data-testid={ `${index}-product-img` }
               floated="right"
-              size={ beer.name === 'Skol Lata 250ml' ? 'mini' : 'tiny' }
+              size={ beer.name === 'Skol Lata 250ml' ? 'mini' : 'tiny'}
               src={ beer.url_image }
               alt="imagem de uma bebida"
             />
-            <Card.Header data-testid={ `${index}-product-price` }>
+            <Card.Header data-testid={`${index}-product-price`}>
               {' '}
               {`R$ ${beer.price.replace('.', ',')}`}
             </Card.Header>
-            <Card.Meta data-testid={ `${index}-product-name` }>
+            <Card.Meta data-testid={`${index}-product-name`}>
               {beer.name}
             </Card.Meta>
-            <Card.Meta data-testid={ `${index}-product-qtd` }>
+            <Card.Meta data-testid={`${index}-product-qtd`}>
               {qtdProduct}
             </Card.Meta>
           </Card.Content>
@@ -64,12 +69,12 @@ export default function CustomProductCard({ index, beer }) {
               <Button
                 basic
                 color="green"
-                data-testid={ `${index}-product-plus` }
-                onClick={ () => {
+                data-testid={`${index}-product-plus`}
+                onClick={() => {
                   setQtdProduct(qtdProduct + 1);
                   setTotalKart(totalKart + Number(beer.price));
                   saveToLocalMore(beer, qtdProduct);
-                } }
+                }}
                 size="mini"
               >
                 +
@@ -77,12 +82,13 @@ export default function CustomProductCard({ index, beer }) {
               <Button
                 basic
                 color="red"
-                data-testid={ `${index}-product-minus` }
-                onClick={ () => {
-                  (qtdProduct > 0) && setQtdProduct(qtdProduct - 1) ;
-                  (qtdProduct > 0) && setTotalKart(totalKart - Number(beer.price));
-                  (qtdProduct > 0) && saveToLocalLess(beer, qtdProduct);
-                } }
+                data-testid={`${index}-product-minus`}
+                onClick={() => {
+                  qtdProduct > 0 && setQtdProduct(qtdProduct - 1);
+                  qtdProduct > 0 &&
+                    setTotalKart(totalKart - Number(beer.price));
+                  qtdProduct > 0 && saveToLocalLess(beer, qtdProduct);
+                }}
                 size="mini"
               >
                 -
