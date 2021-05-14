@@ -50,22 +50,26 @@ function AdminOrdersDetails() {
     <>
       <TopMenu title={ `Admin - Detalhes de Pedido - ${title}` } />
       <div>
-        <p data-testid="order-number">{products.length && `Pedido ${products[0].id}`}</p>
+        <p data-testid="order-number">
+          {products.length && `Pedido ${products[0].id}`}
+        </p>
         <p data-testid="order-status">{products.length && `${title}`}</p>
         {products.length
-          && products.map((item) =>
-           <DetailsCard key={ item.id } product={ item } role={ roleUser } />)}
+          && products.map((item) => (
+            <DetailsCard key={ item.id } product={ item } role={ roleUser } />
+          ))}
         <p data-testid="order-total-value">
           {products.length && `Total: ${convertPrice(products[0].total_price)}`}
         </p>
-        { title === 'Pendente'
-          && <button
+        {title === 'Pendente' && (
+          <button
             data-testid="mark-as-delivered-btn"
             type="button"
             onClick={ () => handleToDelivery() }
           >
             Marcar como entregue
-         </button>}
+          </button>
+        )}
       </div>
     </>
   );

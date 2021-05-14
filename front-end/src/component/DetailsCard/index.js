@@ -14,9 +14,11 @@ function DetailsCard({ product, role }) {
       <span data-testid={ `${product.id - 1}-product-total-value` }>
         {convertPrice(totalValue)}
       </span>
-      { role && <span data-testid={ `${product.id - 1}-order-unit-price` }>
-        {`(${convertPrice(product.price)})`}
-         </span>}
+      {role && (
+        <span data-testid={ `${product.id - 1}-order-unit-price` }>
+          {`(${convertPrice(product.price)})`}
+        </span>
+      )}
     </p>
   );
 }
