@@ -89,5 +89,5 @@ export {
   requestCreateSaleAPI,
   requestGetOrdersAPI,
   requestGetOrderAPI,
-  requestChangeStatusAPI
+  requestChangeStatusAPI,
 };

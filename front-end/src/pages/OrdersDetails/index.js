@@ -39,7 +39,7 @@ function OrderDetails() {
 
   useEffect(() => {
     handleRequestOrder();
-  }, []);
+  }, [handleRequestOrder]);
 
   return (
     <>
