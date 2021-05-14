@@ -48,6 +48,15 @@ const register = async (name, email, password, role) => {
   return result;
 };
 
+const saleById = async (id) => {
+  const result = await axios.get(`${URL}/admin/orders/${ id }`)
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error) return { error: 'Pedido não encontrado' };
+    });
+  return result;
+};
+
 const updateClient = async (name, email) => {
   const result = await axios.put(`${URL}/profile`, {
     name,
