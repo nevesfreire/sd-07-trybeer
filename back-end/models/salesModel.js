@@ -74,8 +74,11 @@ const saleProductRegister = async (productsList, saleId) => {
 const getAllSalesData = async () => {
   const query = `SELECT id,
   sale_date AS saleDate,
-  total_price AS totalPrice
-  FROM Trybeer.sales`; 
+  total_price AS totalPrice,
+  delivery_address AS deliveryAddress,
+  delivery_number AS deliveryNumber,
+  status
+  FROM Trybeer.sales;`; 
   const [sales] = await connection.execute(query);
   return sales;
 };
