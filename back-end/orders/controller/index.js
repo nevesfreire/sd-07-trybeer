@@ -25,7 +25,21 @@ const getAllSalesProducts = async (_req, res, next) => {
   }
 };
 
+const getOrder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const order = await model.getOrder(id);
+    res.status(StatusCodes.OK).json(order);
+  } catch (error) {
+    next({
+      status: StatusCodes.NOT_FOUND,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllOrders,
   getAllSalesProducts,
+  getOrder,
 };
