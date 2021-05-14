@@ -74,3 +74,25 @@ export const getOrder = (id, token) => {
     console.log(error.message);
   }
 };
+
+export const getAdminOrders = () => {
+  try {
+    /* const url = 'http://localhost:3001/orders'; */
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        ...contentType,
+      },
+    })
+      .then((response) => {
+        if (response.status !== REQUEST_OK) {
+          throw new Error();
+        } else {
+          return response.json()
+            .then((json) => json);
+        }
+      });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
