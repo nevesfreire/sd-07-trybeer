@@ -8,6 +8,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   overflow: hidden;
+  position: fixed;
+  top: 0;
   width: 100%;
 }
 
@@ -32,6 +34,7 @@ h1, h3 {
 
 .nav-item, .logoff-button {
   cursor: pointer;
+  font-family: 'Acumin Variable Concept';
   margin: auto 30px;
 }
 
@@ -43,7 +46,7 @@ h1, h3 {
   visibility: visible;
 }
 
-@media only screen and (orientation:portrait){
+@media (orientation:portrait), (max-width: 500px){
   .header-title {
     font-size: 30px;
     margin: auto;

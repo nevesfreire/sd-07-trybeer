@@ -32,7 +32,8 @@ const Container = styled.div`
 
 h2 {
   font-family: 'Apercu';
-  font-size: 20px
+  font-size: 20px;
+  font-weight: 500;
 }
 
 input {
@@ -149,7 +150,7 @@ input:focus {
   }
 }
 
-@media(max-width: 470px) {
+@media (orientation:portrait), (max-width: 500px) {
   .page-body {
     background-color: #252525;
     background-image: none;

@@ -7,6 +7,7 @@ import { requestGetProductsAPI } from '../../services';
 import ProductCard from '../../component/ProductCard';
 import TopMenu from '../../component/TopMenu';
 import { getToLocalStorage } from '../../utils/localStorage';
+import Container from './style';
 
 function ProductsCards() {
   const {
@@ -36,26 +37,33 @@ function ProductsCards() {
 
   useEffect(() => {
     HandleRequestGetProducts();
-  }, [HandleRequestGetProducts]);
+  }, []);
 
   if (!products.length) return <h1>LOADING...</h1>;
 
   return (
-    <div>
+    <Container>
       <TopMenu title="TryBeer" />
-      {products.map((product) => (
-        <ProductCard key={ product.id } product={ product } />
-      ))}
-      <button
-        type="button"
-        data-testid="checkout-bottom-btn"
-        onClick={ () => history.push('/checkout') }
-        disabled={ totalProducts === 'R$ 0,00' }
-      >
-        Ver Carrinho
-        <span data-testid="checkout-bottom-btn-value">{` ${totalProducts}`}</span>
-      </button>
-    </div>
+      <div className="page-body">
+        <div className="cards-container">
+          <div className="grid">
+            {products.map((product) => (
+              <ProductCard key={ product.id } product={ product } />
+            ))}
+          </div>
+        </div>
+        <button
+          className="total-btn"
+          type="button"
+          data-testid="checkout-bottom-btn"
+          onClick={ () => history.push('/checkout') }
+          disabled={ totalProducts === 'R$ 0,00' }
+        >
+          Ver Carrinho
+          <span data-testid="checkout-bottom-btn-value">{` ${totalProducts}`}</span>
+        </button>
+      </div>
+    </Container>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import BeerAppContext from '../../context/BeerAppContext';
+import Container from './style';
 
 function ProductCard({ product }) {
   const { addProductQtd, subtractProductQtd, shopCart } = useContext(BeerAppContext);
@@ -20,33 +21,36 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div key={ product.id }>
-      <p data-testid={ `${product.id - 1}-product-price` }>
-        {convertPrice(product.price)}
-      </p>
+    <Container key={ product.id }>
       <img
+        className="image"
         src={ product.url_image }
         alt={ product.name }
         width="100"
         data-testid={ `${product.id - 1}-product-img` }
       />
       <h2 data-testid={ `${product.id - 1}-product-name` }>{product.name}</h2>
-      <button
-        type="button"
-        onClick={ () => subtractProductQtd(product.id, product.price, product.name) }
-        data-testid={ `${product.id - 1}-product-minus` }
-      >
-        -
-      </button>
-      <p data-testid={ `${product.id - 1}-product-qtd` }>{getQtd()}</p>
-      <button
-        type="button"
-        onClick={ () => addProductQtd(product.id, product.price, product.name) }
-        data-testid={ `${product.id - 1}-product-plus` }
-      >
-        +
-      </button>
-    </div>
+      <p data-testid={ `${product.id - 1}-product-price` }>
+        {convertPrice(product.price)}
+      </p>
+      <div className="quantity-box">
+        <button
+          type="button"
+          onClick={ () => addProductQtd(product.id, product.price, product.name) }
+          data-testid={ `${product.id - 1}-product-plus` }
+        >
+          <h3>+</h3>
+        </button>
+        <p data-testid={ `${product.id - 1}-product-qtd` }>{getQtd()}</p>
+        <button
+          type="button"
+          onClick={ () => subtractProductQtd(product.id, product.price, product.name) }
+          data-testid={ `${product.id - 1}-product-minus` }
+        >
+          <h3>-</h3>
+        </button>
+      </div>
+    </Container>
   );
 }
 

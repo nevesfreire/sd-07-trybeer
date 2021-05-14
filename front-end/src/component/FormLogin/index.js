@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { requestLoginAPI } from '../../services';
 import { setToLocalStorage } from '../../utils/localStorage';
 import Container from './style';
@@ -13,6 +13,7 @@ function FormLogin() {
   const [formLogin, setFormLogin] = useState(defaultForm);
   const [buttonState, setButtonState] = useState(true);
   const [roleUser, setRoleUser] = useState('');
+  const history = useHistory();
 
   const handleInputChange = (event, name) => {
     const { value } = event.target;

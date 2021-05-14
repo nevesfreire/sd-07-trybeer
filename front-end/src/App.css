@@ -2,7 +2,7 @@
 @font-face {font-family: "LuloCleanW01-OneBold"; src: url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.eot"); src: url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.woff") format("woff"), url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/39a2c7f346d5cfae7045aeb2fb50d9ad.svg#LuloCleanW01-OneBold") format("svg"); }
 @font-face {font-family: "ITCMedeaW01-ExtraBold"; src: url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.eot"); src: url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.woff") format("woff"), url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/661bf1532b87a1df22906f51cfe17e93.svg#ITCMedeaW01-ExtraBold") format("svg"); }
 @font-face {font-family: "Apercu"; src: url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.eot"); src: url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.woff") format("woff"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/0a086e32e41c5e5960b26626757f07f3.svg#Apercu") format("svg"); }
-
+@font-face {font-family: "Acumin Variable Concept"; src: url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.eot"); src: url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.woff") format("woff"), url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/066ce24dae3730ed6c648b09efaea93a.svg#Acumin Variable Concept") format("svg"); }
 
 .App {
   text-align: center;
@@ -48,14 +48,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #252525;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #191919;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #252525;
 }
