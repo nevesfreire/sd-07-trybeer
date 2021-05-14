@@ -74,10 +74,20 @@ const saveSale = async (sale, products) => {
   return result;
 };
 
+const getSaleByUserId = async (userId) => {
+  const result = await axios.get(`${URL}/sales/user/${userId}`, config)
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error) return { error: 'Token inválido ou lista não encontrada!' };
+    });
+  return result;
+};
+
 export {
   login,
   productList,
   register,
   updateClient,
   saveSale,
+  getSaleByUserId,
 };

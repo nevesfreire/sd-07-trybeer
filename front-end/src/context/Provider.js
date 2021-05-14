@@ -28,6 +28,13 @@ export default function Provider(props) {
   const userIsLogged = () => userLogged && Object.entries(userLogged).length !== 0;
   // ****************************************************************
 
+  // ABOUT USER SALES
+  const [saleId, setSaleId] = useState();
+  const [saleDate, setSaleDate] = useState();
+  const [totalPrice, setTotalPrice] = useState();
+
+  // ****************************************************************
+
   const context = {
     userLogged,
     login,
@@ -38,6 +45,12 @@ export default function Provider(props) {
     dispatchShoppingCart,
     getTotalShoppingCart,
     getQuantityByProductId,
+    saleId,
+    setSaleId,
+    saleDate,
+    setSaleDate,
+    totalPrice,
+    setTotalPrice,
   };
 
   const { children } = provideProps;
