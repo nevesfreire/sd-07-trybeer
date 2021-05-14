@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import TopBar from '../components/menuSideBar/Menu';
 import CardButtons from '../components/screenCheckout/ItenCard';
 import { useLocalStorage } from '../hooks';
-import { GlobalContext, actionType, fetchProducts } from '../services';
+import { GlobalContext, actionType, fetchAPIfor } from '../services';
 import fetchApi from '../hooks/fetchApi';
 import CODE from '../utils/statusCode';
 
@@ -48,7 +48,7 @@ export default function Checkout() {
   if (!user) history.push('/');
 
   useEffect(() => {
-    fetchProducts().then((response) => {
+    fetchAPIfor('/products').then((response) => {
       productsDispatch({ type: actionType.REQUEST_PRODUCTS, payload: response.products });
     }).catch(() => history.push('/'));
   }, [productsDispatch, history]);

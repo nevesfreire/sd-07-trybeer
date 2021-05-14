@@ -5,6 +5,8 @@ import GlobalContext from './GlobalContext';
 
 const INITIAL_STATE = {
   products: [],
+  orders: [],
+  sales: [],
   isUserValid: true,
 };
 

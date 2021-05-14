@@ -2,14 +2,13 @@ import React, { useContext, useEffect } from 'react';
 import { Redirect } from 'react-router';
 import { ViewCart, CardButtons, Card } from '../components';
 import TopBar from '../components/menuSideBar/Menu';
-import { GlobalContext, actionType, fetchProducts } from '../services';
+import { GlobalContext, actionType, fetchAPIfor } from '../services';
 
 export default function Products() {
   const { productsDispatch, productState } = useContext(GlobalContext);
 
   useEffect(() => {
-    fetchProducts().then((response) => {
-      console.log(response);
+    fetchAPIfor('/products').then((response) => {
       productsDispatch({ type: actionType.REQUEST_PRODUCTS, payload: response.products });
     }).catch(() => {
       productsDispatch({ type: actionType.USER_INVALID });
