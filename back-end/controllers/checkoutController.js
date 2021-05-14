@@ -5,19 +5,16 @@ const createSale = async (req, res) => {
 const sucessMessage = { message: 'pedido cadastrado com sucesso' };
 const errorMessage = { message: 'erro ao cadastrar pedido' };
   try {
-  const { 
-    total_price: totalPrice, 
-    delivery_address: deliveryAddress, 
-    delivery_number: deliveryNumber,
-  } = req.body;
-  console.log(req.body);
-  const { id: userId } = req.user;
-  const saleDate = new Date();
-  const status = 'SALVO';
-  const data = {
-    userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status };
-  await checkoutService.createSale(data);
-  
+    const { 
+      deliveryAddress: dAddress, 
+      deliveryNumber: dNumber,
+      salesProducts,
+    } = req.body;
+
+    const { id: userId } = req.user;
+      await checkoutService.createSale(userId, dAddress, dNumber, salesProducts);
+
+
   res.status(httpStatus.CREATED).json(sucessMessage);
 } catch (error) {
   res.status(httpStatus.BAD_REQUEST).json(errorMessage);

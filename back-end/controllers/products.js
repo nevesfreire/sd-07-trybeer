@@ -1,5 +1,5 @@
 const httpStatus = require('./httpStatus');
-const { getAllProductsService } = require('../services/products');
+const { getAllProductsService, getProductByIdService } = require('../services/products');
 
 const getAllProducts = async (req, res) => {
   try {
@@ -12,6 +12,19 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const getProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await getProductByIdService(id);
+    res.status(httpStatus.OK).json(product);
+  } catch (error) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllProducts,
+  getProductById,
 };
