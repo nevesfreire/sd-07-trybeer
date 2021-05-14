@@ -1,11 +1,13 @@
 const {
   resLogin,
-
   cadUser,
   nameEdi,
   getProducts,
   savSale,
   salesAll,
+  saleDetail,
+  getAdmSales,
+  finallyO,
 } = require('../Services/ClienteServices');
 const { error1 } = require('../error/index');
 
@@ -63,12 +65,6 @@ const getAllProducts = async (req, res) => {
 const saleSave = async (req, res) => {
   const resOK = 200;
   const { infoUser, totalPrice, products } = req.body;
-  /* const { userId,
-    totalPrice,
-    deliveryAddress,
-    deliveryNumber,
-    products,
-  } = req.body; */
 
   try {
     const cadSale = await savSale(infoUser, totalPrice, products);
@@ -94,6 +90,46 @@ const sales = async (req, res) => {
   }
 };
 
+const detailSale = async (req, res) => {
+  const resOK = 200;
+  const { id } = req.params;
+
+  try {
+    const detSale = await saleDetail(id);
+    res.status(resOK).json(detSale);
+  } catch (err) {
+    res.status(err.code).json({
+      message: err.message,
+    });
+  }
+};
+
+const salesAdm = async (req, res) => {
+  const resOK = 200;
+  try {
+    const salesadm = await getAdmSales();
+    res.status(resOK).json(salesadm);
+  } catch (err) {
+    res.status(err.code).json({
+      message: err.message,
+    });
+  }
+};
+
+const updateStatus = async (req, res) => {
+  const resOK = 200;
+  const { id } = req.params;
+
+  try {
+    const finallyOrder = await finallyO(id);
+    res.status(resOK).json(finallyOrder);
+  } catch (err) {
+    res.status(err.code).json({
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   login,
   addUser,
@@ -101,4 +137,7 @@ module.exports = {
   getAllProducts,
   saleSave,
   sales,
+  detailSale,
+  salesAdm,
+  updateStatus,
 };
