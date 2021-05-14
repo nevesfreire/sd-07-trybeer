@@ -6,14 +6,14 @@ export default async function fetchUpdate(email, name, id) {
   // const { REACT_APP_CLIENT_SECRET } = process.env;
   // console.log(REACT_APP_CLIENT_SECRET);
 
-  const token = getToken()
+  const token = getToken();
 
   const requestHeader = {
     'Content-Type': 'application/json',
-    'Authorization': token.token
+    Authorization: token.token,
 
   };
-  console.log(requestHeader)
+  console.log(requestHeader);
 
   const requestBody = {
     email,

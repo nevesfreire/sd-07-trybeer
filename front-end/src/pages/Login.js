@@ -1,9 +1,8 @@
-import React, { useState, useCallback } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
-import { fetchAllOrders } from '../service/order'
+import { fetchAllOrders } from '../service/order';
 import CustomLogin from '../components/CustomLogin';
-import CustomHeader from '../components/CustomHeader';
 import fetchToken from '../service/auth';
 import fetchProducts from '../service/products';
 
@@ -31,7 +30,7 @@ function Login() {
     return false;
   };
 
-  const handleInputChange = useCallback(({ target: { name, value } }) => {
+  const handleInputChange = (({ target: { name, value } }) => {
     setFormData((prevState) => new Map(prevState).set(name, value));
   }, []);
 
@@ -50,7 +49,6 @@ function Login() {
   return (
     <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
       <Grid.Column style={ { maxWidth: 500 } }>
-  
 
         <CustomLogin
           formData={ formData }

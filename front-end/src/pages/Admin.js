@@ -6,7 +6,7 @@ function Admin() {
     <div>
 
       <CustomSideBarAdmin />
-      
+
     </div>
   );
 }

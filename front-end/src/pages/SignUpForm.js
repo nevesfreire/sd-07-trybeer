@@ -48,12 +48,6 @@ function SignUp() {
     return false;
   };
 
-  // const isExistEmail = async (user) => {
-  //   console.log('user', user)
-  //   if(user === 'Request failed with status code 409') return false;
-  //   return true;
-  // }
-
   const handleSubmit = async () => {
     const name = formData.get('name');
     // const userName = formData.get('userName');

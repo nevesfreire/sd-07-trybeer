@@ -3,15 +3,15 @@ import {
   saveAllOrders,
   getToken,
   saveOrderById,
-  getOrderById,
   saveOrderDetails,
 } from '../helpers/localStorage';
 
+const contentApplication = 'application/json';
+
 async function fetchAllOrders() {
   const requestProductsUrl = 'http://localhost:3001/orders';
-
   const requestHeader = {
-    'Content-Type': 'application/json',
+    'Content-Type': contentApplication,
   };
 
   try {
@@ -33,7 +33,7 @@ async function fetchOrderById() {
   const requestProductsUrl = `http://localhost:3001/orders/${id}`;
 
   const requestHeader = {
-    'Content-Type': 'application/json',
+    'Content-Type': contentApplication,
   };
 
   try {
@@ -51,11 +51,11 @@ async function fetchOrderById() {
 }
 
 async function fetchOrderDetails(id) {
-  //const { id }  = getOrderById()
+  // const { id }  = getOrderById()
   const requestProductsUrl = `http://localhost:3001/orders/details/${id}`;
 
   const requestHeader = {
-    'Content-Type': 'application/json',
+    'Content-Type': contentApplication,
   };
 
   try {
@@ -73,19 +73,19 @@ async function fetchOrderDetails(id) {
 }
 
 async function fetchOrderDeliveryId(id) {
-  const requestProductsUrl = `http://localhost:3001/checkout`;
+  const requestProductsUrl = 'http://localhost:3001/checkout';
   const requestHeader = {
-    'Content-Type': 'application/json',
+    'Content-Type': contentApplication,
   };
-  console.log('fetttt', id)
+  console.log('fetttt', id);
   const requestBody = {
-    id: id,
+    id,
   };
   try {
     const res = await axios.patch(
       requestProductsUrl,
       requestBody,
-      requestHeader
+      requestHeader,
     );
     console.log('res', res);
     const { data } = res;

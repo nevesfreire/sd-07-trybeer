@@ -6,14 +6,14 @@ import CustomAdminProfile from '../components/CustomAdminProfile';
 import './pagesStyles.css';
 
 function AdminProfile() {
-  const [formDataUpdate, setFormDataUpdate] = useState(new Map());
+  const [formDataUpdate] = useState(new Map());
   const history = useHistory();
   const userObject = getToken() || {};
   const { name, email, token, role } = userObject;
 
   useEffect(() => {
-    if(!token || role === "client" ) return history.push('/login');
-  }, [])
+    if (!token || role === 'client') return history.push('/login');
+  }, [history, role, token]);
 
   return (
     <div>

@@ -1,46 +1,42 @@
 import React, { useEffect, useState } from 'react';
+import { Grid } from 'semantic-ui-react';
 import CustomAdminOrders from '../components/CustomAdminOrders';
 import CustomSideBarAdmin from '../components/CustomSideBarAdmin';
 import { fetchAllOrders } from '../service/order';
 import { getAllOrders } from '../helpers/localStorage';
-import { Grid, Segment } from 'semantic-ui-react';
 
 function AdminOrders() {
-  const [allOrders, setAllOrders] = useState(getAllOrders());
+  const [allOrders] = useState(getAllOrders());
 
   useEffect(() => {
     fetchAllOrders();
   }, []);
 
   useEffect(() => {
-    renderAllOrders();
-  }, []);
-
-  const renderAllOrders = () => {
-    return (
+    const renderAllOrders = () => (
       <div>
         {!allOrders
           ? null
           : allOrders.map((beer, index) => (
-              <Grid.Column>
-                <CustomAdminOrders key={beer.id} index={index} beer={beer} />
-              </Grid.Column>
-            ))}
+            <Grid.Column key={ beer.id }>
+              <CustomAdminOrders index={ index } beer={ beer } />
+            </Grid.Column>
+          ))}
       </div>
     );
-  };
-  return (
-    <div className="container-order-details">
-      <sidebar>
-        <CustomSideBarAdmin />
-      </sidebar>
-      <main>
-        <header>{ 'Pedidos' }</header>
-        {renderAllOrders()}
-      </main>
-    </div>
-
-  );
+    return (
+      <div className="container-order-details">
+        <sidebar>
+          <CustomSideBarAdmin />
+        </sidebar>
+        <main>
+          <header>Pedidos</header>
+          {renderAllOrders()}
+        </main>
+      </div>
+    );
+  }, [allOrders]);
 }
+renderAllOrders();
 
 export default AdminOrders;

@@ -10,11 +10,29 @@ function CustomSideBarAdmin() {
         </div>
         <div className="menu-container">
           <div className="side-menu">
-            <Link to="/admin/orders" className="item-menu" data-testid="side-menu-item-orders">Pedidos</Link>
-            <Link to="/admin/profile" className="item-menu" data-testid="side-menu-item-profile">Perfil</Link>
+            <Link
+              to="/admin/orders"
+              className="item-menu"
+              data-testid="side-menu-item-orders"
+            >
+              Pedidos
+            </Link>
+            <Link
+              to="/admin/profile"
+              className="item-menu"
+              data-testid="side-menu-item-profile"
+            >
+              Perfil
+            </Link>
           </div>
           <div className="side-exit">
-            <Link to="/login" className="item-menu" data-testid="side-menu-item-logout">Sair</Link>
+            <Link
+              to="/login"
+              className="item-menu"
+              data-testid="side-menu-item-logout"
+            >
+              Sair
+            </Link>
           </div>
         </div>
       </div>
