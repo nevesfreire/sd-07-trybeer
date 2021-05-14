@@ -32,20 +32,21 @@ export default function AdminOrders() {
       onClick={ () => history.push(`/admin/orders/${sale.id}`) }
     >
       <div className="div-cards">
-        <h4 data-testid={ `${index}-product-price` }>
+        <h4 data-testid={ `${index}-order-number` }>
           {`Pedido ${sale.id}`}
         </h4>
 
         <h4 data-testid={ `${index}-order-address` }>
-          {`Rua: ${sale.delivery_address}`}
-        </h4>
-
-        <h4 data-testid={ `${index}-order-number` }>
-          {`Nº ${sale.delivery_number}`}
+          {
+            `${sale.delivery_address}, ${sale.delivery_number}`
+          }
         </h4>
 
         <h3 data-testid={ `${index}-order-total-value` }>
-          {`R$${sale.total_price}`}
+          {
+            `R$ ${parseFloat(sale.total_price)
+              .toFixed(2).split('.').join(',')}`
+          }
         </h3>
 
         <h4 data-testid={ `${index}-order-status` }>

@@ -55,10 +55,10 @@ export default function AdminDetails() {
   return (
     <div>
       <AdminSideBar />
-      <h1>
-        <span data-testid="order-number">{`Pedido ${orderId} -`}</span>
-        <span data-testid="order-status">{` ${orderStatus}`}</span>
-      </h1>
+      <div>
+        <h4 data-testid="order-number">{`Pedido ${orderId}`}</h4>
+        <h4 data-testid="order-status">{` ${orderStatus}`}</h4>
+      </div>
       <div>
         {order && order.map((product, index) => (
           <div
@@ -67,21 +67,22 @@ export default function AdminDetails() {
             <span data-testid={ `${index}-product-qtd` }>{product.qtd}</span>
             <span data-testid={ `${index}-product-name` }>{ ` ${product.name} ` }</span>
             <span data-testid={ `${index}-product-total-value` }>
-              { ` R$ ${(product.qtd * parseFloat(product.unitPrice))
-                .toFixed(2).split('.').join(',')} ` }
+              { `R$ ${(product.qtd * parseFloat(product.unitPrice))
+                .toFixed(2).split('.').join(',')}` }
             </span>
-            <span data-testid={ `${index}-product-unit-price` }>
-              { ` (R$ ${parseFloat(product.unitPrice)
-                .toFixed(2).split('.').join(',')} un) ` }
+            <span data-testid={ `${index}-order-unit-price` }>
+              { `(R$ ${parseFloat(product.unitPrice)
+                .toFixed(2).split('.').join(',')})` }
             </span>
+
           </div>
         ))}
       </div>
-      <h4 data-testid="order-total-value">
+      <span data-testid="order-total-value">
         {
-          `Total: ${totalPrice}`
+          `Total: R$ ${parseFloat(totalPrice).toFixed(2).split('.').join(',')}`
         }
-      </h4>
+      </span>
       { shouldButtonRender() }
     </div>
   );
