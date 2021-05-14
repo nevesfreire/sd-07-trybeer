@@ -66,6 +66,7 @@ function Checkout() {
   };
 
   const handleCheckout = async () => {
+    const timeToRedirect = 5000;
     const args = {
       status: 'Pendente',
       user,
@@ -79,6 +80,9 @@ function Checkout() {
     localStorage.clear();
     localStorage.setItem('user', userLS);
     setLocalStorageSalved([]);
+    setTimeout(() => {
+      window.location.href = 'http://localhost:3000/products';
+    }, timeToRedirect);
   };
 
   const removeProduct = (id) => {
@@ -91,41 +95,46 @@ function Checkout() {
     setLocalStorageSalved(list);
   };
 
+  const handleProducts = () => {
+    if (listProducts.length === 0 && localStorageSalved.length > 0) return ('Loading...');
+    if (listProducts.length > 0 && localStorageSalved.length > 0) {
+      return (localStorageSalved.map((product, index) => (
+        <div key={ product.id }>
+          <span data-testid={ `${index}-product-qtd-input` }>{product.quantity}</span>
+          <span data-testid={ `${index}-product-name` }>{`${product.name} `}</span>
+          <span
+            data-testid={ `${index}-product-total-value` }
+          >
+            {
+              `R$ ${(product.quantity * product.price)
+                .toFixed(2).toString().replace('.', ',')} `
+            }
+          </span>
+          <span
+            data-testid={ `${index}-product-unit-price` }
+          >
+            {`(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')} un) `}
+          </span>
+          <button
+            type="button"
+            data-testid={ `${index}-removal-button` }
+            onClick={ () => removeProduct(product.id) }
+          >
+            X
+          </button>
+        </div>
+      )));
+    }
+    return ('Não há produtos no carrinho.');
+  };
+
   return (
     <>
       <HeaderBurguer
         titulo="Finalizar Pedido"
         data-testid="top-title"
       />
-      { (listProducts.length > 0 && localStorageSalved.length > 0)
-        ? (localStorageSalved.map((product, index) => (
-          <div key={ product.id }>
-            <span data-testid={ `${index}-product-qtd-input` }>{product.quantity}</span>
-            <span data-testid={ `${index}-product-name` }>{`${product.name} `}</span>
-            <span
-              data-testid={ `${index}-product-total-value` }
-            >
-              {
-                `R$ ${(product.quantity * product.price)
-                  .toFixed(2).toString().replace('.', ',')} `
-              }
-            </span>
-            <span
-              data-testid={ `${index}-product-unit-price` }
-            >
-              {`(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')} un) `}
-            </span>
-            <button
-              type="button"
-              data-testid={ `${index}-removal-button` }
-              onClick={ () => removeProduct(product.id) }
-            >
-              X
-            </button>
-          </div>
-        )))
-        : (<div> Loading... </div>)}
-
+      <div>{handleProducts()}</div>
       <div data-testid="order-total-value">
         Total:
         {totalPrice.toFixed(2).toString().replace('.', ',')}
