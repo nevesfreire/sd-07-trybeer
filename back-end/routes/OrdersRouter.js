@@ -1,5 +1,8 @@
 const express = require('express');
-const { getAllOrders, getAllSalesProducts, getOrder, updateStatus } = require('../orders/controller');
+const { getAllOrders,
+  getAllSalesProducts,
+  getOrder,
+  updateStatus } = require('../orders/controller');
 
 const OrdersRouter = express.Router();
 

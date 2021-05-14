@@ -27,11 +27,11 @@ const updateStatus = async (id) => {
   + ' Where S.id = ?;';
   await conn.execute(query, [status, id]);
   return { status };
-}
+};
 
 module.exports = {
   getAll,
   getAllSalesProducts,
   getOrder,
-  updateStatus
+  updateStatus,
 };

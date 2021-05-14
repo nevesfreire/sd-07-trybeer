@@ -55,5 +55,5 @@ module.exports = {
   getAllOrders,
   getAllSalesProducts,
   getOrder,
-  updateStatus
+  updateStatus,
 };
