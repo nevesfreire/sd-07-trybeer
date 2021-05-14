@@ -6,6 +6,6 @@ module.exports = {
   HOSTNAME: process.env.HOSTNAME,
   MYSQL_USER: process.env.MYSQL_USER,
   MYSQL_PASSWORD: process.env.MYSQL_PASSWORD,
-  PORT: process.env.PORT || 3001,
+  PORT: process.env.PORT || 3000,
   SECRET: process.env.SECRET || 'banhodechoqueemlindoia',
 };
