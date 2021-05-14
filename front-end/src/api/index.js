@@ -44,7 +44,17 @@ async function updateUser(userData) {
   }
 }
 
-async function getOrders(token) {
+async function getOrdersForUser(token, id) {
+  try {
+    const response = await axios
+      .get(`${url}${orders}/user/${id}`, { headers: { Authorization: token } });
+    return response;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
+async function getOrdersForAdmin(token) {
   try {
     const response = await axios
       .get(`${url}${orders}`, { headers: { Authorization: token } });
@@ -83,5 +93,7 @@ export {
   updateUser,
   getOrders,
   getOrdersById,
+  getOrdersForUser,
+  getOrdersForAdmin,
   createNewSale,
 };
