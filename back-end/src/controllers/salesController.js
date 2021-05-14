@@ -23,4 +23,14 @@ const sales = async (request, response) => {
   }
 };
 
-module.exports = { sales };
+const getAllSales = async (request, response) => {
+  try {
+    const result = await salesModel.getAllSales();
+    return response.status(StatusCodes.OK).json(result);
+  } catch (error) {
+    return response.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+};
+
+module.exports = { sales, getAllSales };
