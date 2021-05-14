@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Card } from 'react-bulma-components';
 import { Header } from '../components';
 import TrybeerContext from '../store/context';
 import acessLocalStorage from '../services';
@@ -62,48 +63,50 @@ function Checkout() {
 
             Object.keys(cart).map((key, index) => (
               // const { quantity, item} = cart[key];
-              <li key={ key }>
-                <span
-                  data-testid={ `${index}-product-qtd-input` }
-                >
-                  {cart[key].quantity}
-                </span>
-                <br />
-                <span
-                  data-testid={ `${index}-product-name` }
-                >
-                  {cart[key].item.name}
-                </span>
-                <br />
-                <span
-                  data-testid={ `${index}-product-unit-price` }
-                >
-                  {`(R$ ${cart[key].item.price.split('.').join(',')} un)`}
-                </span>
-                <br />
-                <span
-                  data-testid={ `${index}-product-total-value` }
-                >
-                  {`R$ ${(cart[key].item.price * cart[key].quantity)
-                    .toFixed(2).split('.').join(',')}`}
-                </span>
-                <br />
-                <button
-                  data-testid={ `${index}-removal-button` }
-                  type="button"
-                  onClick={ () => deleteItem(cart[key].item) }
-                >
-                  X
-                </button>
-              </li>
+              <Card key={ key }>
+                <Card.Content>
+                  <span
+                    data-testid={ `${index}-product-qtd-input` }
+                  >
+                    {`Quantidade: ${cart[key].quantity}`}
+                  </span>
+                  <br />
+                  <span
+                    data-testid={ `${index}-product-name` }
+                  >
+                    {`Produto: ${cart[key].item.name}`}
+                  </span>
+                  <br />
+                  <span
+                    data-testid={ `${index}-product-unit-price` }
+                  >
+                    {`(R$ ${cart[key].item.price.split('.').join(',')} un)`}
+                  </span>
+                  <br />
+                  <span
+                    data-testid={ `${index}-product-total-value` }
+                  >
+                    {`R$ ${(cart[key].item.price * cart[key].quantity)
+                      .toFixed(2).split('.').join(',')}`}
+                  </span>
+                  <br />
+                  <button
+                    data-testid={ `${index}-removal-button` }
+                    type="button"
+                    onClick={ () => deleteItem(cart[key].item) }
+                  >
+                    X
+                  </button>
+                </Card.Content>
+              </Card>
             ))
           )
       }
-      <span
+      <h2
         data-testid="order-total-value"
       >
-        {`R$ ${(sumItens).toFixed(2).split('.').join(',')}`}
-      </span>
+        {`Total: R$ ${(sumItens).toFixed(2).split('.').join(',')}`}
+      </h2>
       <br />
       <label
         htmlFor="streetinput"

@@ -5,6 +5,7 @@ import Loading from './Loading/Loading';
 import ProfileForm from './ProfileForm';
 import Header from './Header';
 import HeaderAdmin from './HeaderAdm';
+import OrderCard from './OrderCard';
 import OrdersClientCard from './OrdersClientCard';
 
 export {
@@ -15,5 +16,6 @@ export {
   ProfileForm,
   Header,
   HeaderAdmin,
+  OrderCard,
   OrdersClientCard,
 };
