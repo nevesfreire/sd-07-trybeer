@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { HeaderAdmin, OrdersCard } from '../components';
+import { HeaderAdmin, OrdersCard } from '.';
 import { getOrders } from '../api';
 
 import ls from '../services';
