@@ -21,7 +21,7 @@ function AdminOrders() {
       return history.push('/login');
     }
     const ordersList = await requestGetOrdersAPI();
-    console.log('ordersList', ordersList);
+    // console.log('ordersList', ordersList);
     if (ordersList.status !== StatusCodes.OK) return history.push('/login');
     setOders(ordersList.data);
   };

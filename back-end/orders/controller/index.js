@@ -38,8 +38,22 @@ const getOrder = async (req, res, next) => {
   }
 };
 
+const updateStatus = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const order = await model.updateStatus(id);
+    res.status(StatusCodes.OK).json(order);
+  } catch (error) {
+    next({
+      status: StatusCodes.NOT_FOUND,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllOrders,
   getAllSalesProducts,
   getOrder,
+  updateStatus
 };
