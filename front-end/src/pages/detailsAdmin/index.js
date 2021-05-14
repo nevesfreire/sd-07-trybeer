@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 // import TrybeerContext from '../../context/TrybeerContext';
 import AdminSideBar from '../../components/AdminSideBar';
 import { updateSaleStatus, saleById } from '../../service/trybeerApi';
@@ -7,7 +8,8 @@ const ENTREGUE = 'Entregue';
 
 export default function AdminDetails() {
   // const {  } = useContext(TrybeerContext);
-  const [orderId] = useState(1);
+  const { id } = useParams();
+  const [orderId] = useState(id);
   const [orderStatus, setOrderStatus] = useState('Pendente');
   const [order, setOrder] = useState([]);
 
