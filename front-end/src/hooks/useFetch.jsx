@@ -75,8 +75,8 @@ function useFetch() {
     });
     const responseAPI = await result.json();
     return responseAPI;
-  };
-  
+  }
+
   async function postSales(args) {
     const { status, user, address, total, localStorageSalved } = args;
     const { token } = user;
@@ -111,6 +111,6 @@ function useFetch() {
       postSales,
     }
   );
-};
+}
 
 export default useFetch;
