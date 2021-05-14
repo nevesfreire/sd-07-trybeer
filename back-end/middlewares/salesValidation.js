@@ -6,7 +6,6 @@ const {
   priceSaleMessage,
   addressSaleMessage,
   deliveryNumberSaleMessage,
-  dateSaleMessage,
   statusSaleMessage,
   productsSaleMessage,
   productsCampSaleMessage,
@@ -41,14 +40,6 @@ const deliveryNumberValidationMiddleware = (req, res, next) => {
   const { deliveryNumber } = req.body;
   if (!deliveryNumber || deliveryNumber === '') {
     return res.status(UNAUTHORIZED).json(deliveryNumberSaleMessage);
-  }
-  next();
-};
-
-const saleDateValidationMiddleware = (req, res, next) => {
-  const { saleDate } = req.body;
-  if (!saleDate || saleDate === '') {
-    return res.status(UNAUTHORIZED).json(dateSaleMessage);
   }
   next();
 };
@@ -89,7 +80,6 @@ module.exports = {
   priceValidationMiddleware,
   addressValidationMiddleware,
   deliveryNumberValidationMiddleware,
-  saleDateValidationMiddleware,
   salesStatusValidationMiddleware,
   productsValidationMiddleware,
   productsCampsValidationMiddleware,

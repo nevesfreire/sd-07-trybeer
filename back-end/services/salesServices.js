@@ -11,7 +11,7 @@ const customAnswer = (message, http = UNAUTHORIZED) => ({
 });
 
 const saleRegister = async (orderData) => {
-  const { email, price, address, deliveryNumber, saleDate, salesStatus, products } = orderData;
+  const { email, price, address, deliveryNumber, salesStatus, products } = orderData;
   const userId = await userModel.getUserIdByEmail(email);
   if (!userId) return customAnswer(userNotFound);
   const saleRegistered = await salesModel.saleRegister({
@@ -19,7 +19,6 @@ const saleRegister = async (orderData) => {
     price,
     address,
     deliveryNumber,
-    saleDate,
     salesStatus,
   });
   const saleId = saleRegistered.insertId;

@@ -1,7 +1,7 @@
 const connection = require('./connection');
 
 const querySale = 'INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, '
-  + 'sale_date, status) VALUES (?, ?, ?, ?, ?, ?)';
+  + 'sale_date, status) VALUES (?, ?, ?, ?, NOW(), ?)';
 
 const queryProductSale = 'INSERT INTO sales_products (sale_id, product_id, quantity) '
   + 'VALUES (?, ?, ?)';
@@ -24,7 +24,6 @@ const saleRegister = async ({
   price,
   address,
   deliveryNumber,
-  saleDate,
   salesStatus,
 }) => {
   const registeredSale = await connection.execute(querySale, [
@@ -32,7 +31,6 @@ const saleRegister = async ({
     price,
     address,
     deliveryNumber,
-    saleDate,
     salesStatus,
   ]);
   console.log(registeredSale);

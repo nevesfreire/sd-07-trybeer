@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import moment from 'moment';
+// import moment from 'moment';
 import { getCartItems, getCartTotalPrice } from '../../../utils/localStorage';
 import CartList from '../../../components/cartList';
 
@@ -40,17 +40,16 @@ function Checkout() {
     }));
     const token = localStorage.getItem('token');
     const tokenPayload = jwtDecode(token);
-    const today = moment().format('YYYY-MM-DD h:mm:ss');
+    // const today = moment().format('YYYY-MM-DD h:mm:ss');
     const order = {
       email: tokenPayload.email,
       price: totalCartPrice,
       address,
       deliveryNumber: number,
-      saleDate: today,
+      // saleDate: today,
       salesStatus: 'Pendente',
       products: productlist,
     };
-    console.log(order);
     const request = await axios.post('http://localhost:3001/checkout', order);
     const CREATED = 201;
     if (request.status === CREATED && !requestSuccess) {
@@ -74,6 +73,8 @@ function Checkout() {
     setTotalCartPrice(getCartTotalPrice());
   }, [history]);
 
+  const vamosla = new Date();
+  console.log('APARECE NO LOG FILHO', vamosla);
   return (
     <>
       <TopMenu title="Finalizar Pedido" />
@@ -113,7 +114,7 @@ function Checkout() {
               type="button"
               data-testid="checkout-finish-btn"
               disabled={ isDisabled() }
-              onClick={ submitOrder }
+              onClick={ () => submitOrder() }
             >
               Finalizar Pedido
             </button>

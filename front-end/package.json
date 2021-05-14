@@ -12,6 +12,7 @@
     "jquery": "1.9.1",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-router-dom": "5.2.0",
