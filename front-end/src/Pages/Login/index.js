@@ -34,6 +34,7 @@ export default function Login() {
   return (
     <Container className="container-forms">
       <img src={ logo } alt="" />
+      <h3><b>Beer or not to Beer</b></h3>
       <Form>
         <Form.Group>
           <Form.Label>Email</Form.Label>

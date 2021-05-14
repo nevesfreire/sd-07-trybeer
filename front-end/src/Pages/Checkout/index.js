@@ -3,11 +3,12 @@ import { useHistory } from 'react-router';
 import TopBar from '../../Components/TopBar';
 import CheckoutProducts from '../../Components/CheckoutProducts';
 import CheckoutForm from '../../Components/CheckoutForm';
+import BrindeChope from '../../images/BrindeChope.gif';
 
 const Checkout = () => {
   const history = useHistory();
   const [showMessage, setShowMessage] = useState(false);
-  const twoSec = 2000;
+  const twoSec = 5000;
 
   const finishSale = () => {
     setShowMessage(true);
@@ -20,7 +21,16 @@ const Checkout = () => {
     <div>
       <TopBar />
       { showMessage ? (
-        <div style={ { marginTop: '100px' } }>Compra realizada com sucesso!</div>
+        <div>
+          <div style={ { marginTop: '100px' } }>
+            <b>Compra realizada com sucesso!</b>
+          </div>
+          <img
+            src={ BrindeChope }
+            alt="Brinde!"
+            style={ { marginTop: '10px', borderRadius: '50%' } }
+          />
+        </div>
       ) : (
         <div>
           <CheckoutProducts />
