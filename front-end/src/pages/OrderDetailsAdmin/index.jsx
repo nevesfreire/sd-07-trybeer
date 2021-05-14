@@ -3,7 +3,8 @@ import dateFormat from 'dateformat';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
-import Header from '../../components/Header';
+import HeaderAdmin from '../../components/HeaderAdmin';
+import { fetchUpdateStatus } from '../../services';
 
 export default function OrderDetailsAdmin(props) {
   const { match: { params: { id } } } = props;
@@ -13,6 +14,7 @@ export default function OrderDetailsAdmin(props) {
   const [orderDate, setOrderDate] = useState('');
   const [orderStatus, setOrderStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [visibility, setVisibility] = useState(true);
 
   const history = useHistory();
 
@@ -40,9 +42,11 @@ export default function OrderDetailsAdmin(props) {
     }
   }, [history, id, setIsLoading]);
 
-  const handleDeliveredButton = (event) => {
+  const handleDeliveredButton = async (event) => {
     event.preventDefault();
+    await fetchUpdateStatus(id);
     setOrderStatus('Entregue');
+    setVisibility(false);
   };
 
   return isLoading ? (
@@ -50,7 +54,7 @@ export default function OrderDetailsAdmin(props) {
   )
     : (
       <div>
-        <Header namePage="Detalhes de Pedido" />
+        <HeaderAdmin namePage="Admin - Detalhe de Pedido" />
         <main>
           <h2 data-testid="order-number">
             {`Pedido ${id}`}
@@ -66,9 +70,12 @@ export default function OrderDetailsAdmin(props) {
               <li key={ index }>
                 <div data-testid={ `${index}-product-qtd` }>{product.qtd}</div>
                 <div data-testid={ `${index}-product-name` }>{product.nome}</div>
-                <div data-testid={ `${index}-product-name` }>{product.nome}</div>
                 <div data-testid={ `${index}-order-unit-price` }>
-                  {`R$ ${product.total.toString().replace('.', ',')}`}
+                  {`(R$ ${product.price.toString().replace('.', ',')})`}
+                </div>
+                <div data-testid={ `${index}-product-total-value` }>
+                  {`R$ ${parseFloat(product.total)
+                    .toFixed(2).toString().replace('.', ',')}`}
                 </div>
               </li>
             ))}
@@ -76,15 +83,18 @@ export default function OrderDetailsAdmin(props) {
           <div data-testid="order-total-value">
             {`R$ ${totalPrice.toString().replace('.', ',')}`}
           </div>
-          <Button
-            data-testid="mark-as-delivered-btn"
-            variant="primary"
-            type="button"
-            className="form__login__btn"
-            onClick={ (event) => handleDeliveredButton(event) }
-          >
-            Marcar como entregue
-          </Button>
+          {visibility ? (
+            <Button
+              data-testid="mark-as-delivered-btn"
+              variant="primary"
+              type="button"
+              className="form__login__btn"
+              visibility={ visibility }
+              onClick={ (event) => handleDeliveredButton(event) }
+            >
+              Marcar como entregue
+            </Button>)
+            : (<div />)}
         </main>
       </div>);
 }
