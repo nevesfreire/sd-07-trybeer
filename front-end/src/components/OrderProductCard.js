@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bulma-components';
 
-const OrderCard = ({ product, index }) => (
+const OrderProductCard = ({ product, index }) => (
   <Card>
     <Card.Content>
       <span
@@ -30,7 +30,7 @@ const OrderCard = ({ product, index }) => (
 
 );
 
-OrderCard.propTypes = {
+OrderProductCard.propTypes = {
   product: PropTypes.shape({
     product: PropTypes.string,
     unit_price: PropTypes.string,
@@ -39,4 +39,4 @@ OrderCard.propTypes = {
   index: PropTypes.number.isRequired,
 };
 
-export default OrderCard;
+export default OrderProductCard;

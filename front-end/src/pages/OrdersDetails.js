@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { HeaderAdmin, OrderCard } from '../components';
+import { HeaderAdmin, OrderProductCard } from '../components';
 import { getOrdersById } from '../api';
 
 import ls from '../services';
@@ -53,7 +53,7 @@ function OrdersDetails() {
             {
               order.products
                 .map(
-                  (product, index) => (<OrderCard
+                  (product, index) => (<OrderProductCard
                     product={ product }
                     key={ index }
                     index={ index }
