@@ -7,6 +7,7 @@ import './pagesStyles.css';
 
 function AdminProfile() {
   const [formDataUpdate, setFormDataUpdate] = useState(new Map());
+  console.log(setFormDataUpdate);
   const history = useHistory();
   const userObject = getToken() || {};
   const { name, email, token, role } = userObject;

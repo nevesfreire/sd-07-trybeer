@@ -20,12 +20,13 @@ const createCheckout = async (ObjParams) => {
     + 'VALUES (?, ?, ?, ?, now(), "Pendente")',
     [userId, totalPrice, deliveryAddress, deliveryNumber],
   );
-    cart.map(sale => {
+    cart.map((sale) => {
       connection.execute(
         'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
         [checkout.insertId, sale[0], sale[2]],
       );
-    })
+      return null;
+    });
   return { message: 'Pedido Enviado', checkout };
 };
 
@@ -34,7 +35,7 @@ const createCheckout = async (ObjParams) => {
  // )
   
 const confirmDelivery = async (idSaleDelivery) => {
-  console.log(idSaleDelivery)
+  console.log(idSaleDelivery);
   await connection.execute(
     'UPDATE sales SET status = "Entregue" WHERE id = ?', [idSaleDelivery],
   );
@@ -44,10 +45,9 @@ const confirmDelivery = async (idSaleDelivery) => {
   return { message: 'Pedido Enviado', delivery };
 };
 
-
 module.exports = {
   createCheckout,
   getAllSales,
   getSaleById,
-  confirmDelivery
+  confirmDelivery,
 };

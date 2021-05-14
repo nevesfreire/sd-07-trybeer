@@ -8,8 +8,10 @@ function Details() {
   const [detail, setDetail] = useState(getOrderDetails());
   console.log(detail, setDetail);
   let sumTotal = 0;
-  detail.map((total) => (sumTotal = total.total + sumTotal));
-  useEffect(() => {}, []);
+  detail.map((total) => {
+    (sumTotal = total.total + sumTotal);
+    return sumTotal;
+  });
 
   const detailHeader = useCallback(() => (
     <Segment>
@@ -34,13 +36,16 @@ function Details() {
       {!detail
         ? null
         : detail.map((beer, index) => (
-          <Grid.Column>
-            <CustomDetails key={ beer.id } index={ index } beer={ beer } />
+          <Grid.Column key={ beer.id }>
+            <CustomDetails
+              index={ index }
+              beer={ beer }
+            />
           </Grid.Column>
         ))}
     </div>
-  ));
-  
+  ), [detail]);
+
   useEffect(() => {
     detailHeader();
     renderOrderDetail();
