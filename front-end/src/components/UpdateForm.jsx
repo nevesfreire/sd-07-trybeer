@@ -11,7 +11,6 @@ function UpdateForm() {
 
   const getClient = () => {
     const client = JSON.parse(localStorage.getItem('user'));
-    console.log(client);
     setUserEmail(client.email);
     setUserName(client.name);
     setInitialName(client.name);

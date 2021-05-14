@@ -30,7 +30,6 @@ const validatePassword = (password) => {
 
 const existEmail = async (email) => {
   const user = await usersModel.findByEmail(email);
-  console.log('user Service', user);
   if (user === false) return false;
 
   return true;
