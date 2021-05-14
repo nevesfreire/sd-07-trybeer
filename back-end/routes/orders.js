@@ -8,4 +8,8 @@ router.get('/orders',
 middlewares.validateToken,
 ordersController.getOrdersByUser);
 
+router.get('/orders/:id',
+middlewares.validateToken,
+ordersController.getOrderById);
+
 module.exports = router;
