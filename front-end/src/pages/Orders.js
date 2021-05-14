@@ -1,16 +1,16 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { HeaderAdmin, Header, OrdersClientCard } from '../components';
+import { HeaderAdmin, Header, OrdersClientCard, Loading } from '../components';
 import { getOrdersForAdmin, getOrdersForUser } from '../api';
 
 import ls from '../services';
 
 function Orders() {
-  const [ordersState, setOrdersState] = useState([]);
   const history = useHistory();
 
   const [user, setUser] = useState();
   const [orders, setOrders] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   const getOrdersByRole = async (token, role, id) => {
     if (role === 'administrator') {
@@ -29,34 +29,42 @@ function Orders() {
     if (!dataUser) return history.push('/login');
     setUser(dataUser);
     const { token, role, id } = dataUser;
-    await getOrdersByRole(token, role, id);
-  }, [history]);
+    const getOreders = await getOrdersByRole(token, role, id);
+    if (getOreders) setIsLoading(false);
+  }, [history, setUser]);
 
   useEffect(() => {
     getUserLogged();
   }, [getUserLogged]);
 
   return (
-    <div className="first-div">
-      {
-        user && user.role === 'administrator'
-          ? <HeaderAdmin title="Admin - Pedidos" />
-          : (
-            <>
-              <Header title="Meus Pedidos" />
-              <div>
-                {
-                  orders && orders.map((item, index) => (<OrdersClientCard
-                    key={ index }
-                    order={ item }
-                    index={ index }
-                  />))
-                }
-              </div>
-            </>
-          )
-      }
-    </div>
+    { isLoading ?
+      (
+      <div className="first-div">
+        {
+          user && user.role === 'administrator'
+            ? <HeaderAdmin title="Admin - Pedidos" />
+            : (
+              <>
+                <Header title="Meus Pedidos" />
+                <div>
+                  {
+                    orders && orders.map((item, index) => (<OrdersClientCard
+                      key={ index }
+                      order={ item }
+                      index={ index }
+                    />))
+                  }
+                </div>
+              </>
+            )
+        }
+      </div>
+    )
+    :
+    <Loading />
+    }
+
   );
 }
 
