@@ -45,8 +45,8 @@ function OrdersClientCard({ order, index }) {
 }
 
 OrdersClientCard.propTypes = {
-  order: order.PropTypes.shape({
-    sale: sale.PropTypes.shape({
+  order: PropTypes.shape({
+    sale: PropTypes.shape({
       sale: PropTypes.string,
       Date: PropTypes.string,
       total_price: PropTypes.string,
