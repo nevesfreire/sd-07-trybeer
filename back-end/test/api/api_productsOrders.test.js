@@ -66,6 +66,11 @@ describe('GET into orders route', () => {
         done();
     })
 
+    afterAll(async done => {
+        connection.end();
+        done();
+        }); 
+
     it('Checks whether to return all customer orders', async () => {
         await frisby
             .post(URL_LOGIN, {

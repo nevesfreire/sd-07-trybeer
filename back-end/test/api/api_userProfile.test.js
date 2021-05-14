@@ -24,6 +24,10 @@ describe('PUT into profile route', () => {
         await connection.execute('DELETE FROM users');
         done();
     })
+    afterAll(async done => {
+        connection.end();
+        done();
+        }); 
     it('Checks whether to update the profile name', async () => {
         await frisby
             .post(URL_LOGIN, {
