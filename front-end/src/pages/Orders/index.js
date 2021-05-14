@@ -27,7 +27,7 @@ export default function Orders() {
 
   useEffect(() => {
     handleRequestGetOrdersAPI();
-  }, [handleRequestGetOrdersAPI]);
+  }, []);
 
   if (!orders.length) return <h3>Loading...</h3>;
 

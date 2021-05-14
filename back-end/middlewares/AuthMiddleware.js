@@ -13,7 +13,7 @@ const validateCreateLoginToken = async (userEmail) => {
   delete userCopy.password;
 
   const jwtConfig = {
-    expiresIn: 60 * 5,
+    expiresIn: 60 * 50,
     algorithm: 'HS256',
   };
 

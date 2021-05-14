@@ -13,13 +13,13 @@ const getAllSalesProducts = async () => {
 };
 
 const getOrder = async (id) => {
-  const query = 'SELECT * FROM Trybeer.sales_products SP'
+  const query = 'SELECT * FROM Trybeer.sales S'
+  + ' INNER JOIN Trybeer.sales_products SP ON SP.sale_id = S.id'
   + ' INNER JOIN Trybeer.products P ON P.id = SP.product_id'
-  + ' WHERE sale_id = ?;';
+  + ' Where S.id = ?;';
   const [data] = await conn.execute(query, [id]);
   return data;
 };
-
 
 module.exports = {
   getAll,
