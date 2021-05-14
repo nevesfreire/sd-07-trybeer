@@ -56,7 +56,8 @@ function Products() {
     <>
       <TopMenu title="TryBeer" />
       { isFetching && <h1>Loading...</h1>}
-      { !isFetching && products.map((product, index) => (<ProductsCard
+      { !isFetching && products.map((product, index) => (
+      <ProductsCard
         key={ product.id }
         id={ product.id }
         name={ product.name }

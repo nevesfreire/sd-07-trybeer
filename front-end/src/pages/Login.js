@@ -17,6 +17,7 @@ function Login() {
 
   const handleClick = async () => {
     const response = await loginRequest(email, password);
+    console.log("response", response)
     const { status } = response;
     const ok = 200;
     if (status === ok) {
@@ -26,6 +27,7 @@ function Login() {
       setRole(payload.role);
       return setIsLogged(true);
     }
+    
     setErrorMessage(response.data.message);
   };
 
@@ -74,7 +76,7 @@ function Login() {
       >
         Entrar
       </button>
-      <h5>{errorMessage}</h5>
+      <h5 data-testid="error-message">{errorMessage}</h5>
       <button
         type="button"
         data-testid="no-account-btn"
