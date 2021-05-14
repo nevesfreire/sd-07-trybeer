@@ -1,5 +1,5 @@
 import getProducts from '../services/products';
-import { getOrders, getOrder, getAdminOrders } from '../services/order';
+import { getOrders, getOrder, getAdminOrders, getAdminOrder } from '../services/order';
 
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS';
@@ -15,6 +15,9 @@ export const REQUEST_ORDER_FAIL = 'REQUEST_ORDER_FAIL';
 export const REQUEST_ADMIN_ORDERS = 'REQUEST_ADMIN_ORDERS';
 export const REQUEST_ADMIN_ORDERS_SUCCESS = 'REQUEST_ADMIN_ORDERS_SUCCESS';
 export const REQUEST_ADMIN_ORDERS_FAIL = 'REQUEST_ADMIN_ORDERS_FAIL';
+export const REQUEST_ADMIN_ORDER = 'REQUEST_ADMIN_ORDER';
+export const REQUEST_ADMIN_ORDER_SUCCESS = 'REQUEST_ADMIN_ORDER_SUCCESS';
+export const REQUEST_ADMIN_ORDER_FAIL = 'REQUEST_ADMIN_ORDER_FAIL';
 
 export const update = (cart) => ({
   type: UPDATE_QUANTITY,
@@ -82,6 +85,20 @@ export const requestAdminOrdersFail = (error) => ({
   error,
 });
 
+export const requestAdminOrder = () => ({
+  type: REQUEST_ADMIN_ORDER,
+});
+
+export const requestAdminOrderSuccess = (orders) => ({
+  type: REQUEST_ADMIN_ORDER_SUCCESS,
+  orders,
+});
+
+export const requestAdminOrderFail = (error) => ({
+  type: REQUEST_ADMIN_ORDER_FAIL,
+  error,
+});
+
 export function fetchProducts(token) {
   return async (dispatch) => {
     try {
@@ -126,6 +143,18 @@ export function fetchAdminOrders() {
       dispatch(requestAdminOrdersSuccess(orders));
     } catch (error) {
       dispatch(requestAdminOrdersFail(error.message));
+    }
+  };
+}
+
+export function fetchAdminOrder(id) {
+  return async (dispatch) => {
+    try {
+      dispatch(requestAdminOrder());
+      const order = await getAdminOrder(id);
+      dispatch(requestAdminOrderSuccess(order));
+    } catch (error) {
+      dispatch(requestAdminOrderFail(error.message));
     }
   };
 }

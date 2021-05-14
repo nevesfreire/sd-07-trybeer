@@ -25,3 +25,20 @@ const updateUser = ({ name, email, token }) => fetch('http://localhost:3001/prof
   .catch((error) => console.log(error));
 
 export { userLogin, registerUser, updateUser };
+
+export const updateOrder = (id, status) => {
+  try {
+    const url = `http://localhost:3001/orders/${id}`;
+    return fetch(url, {
+      method: 'PATCH',
+      body: { id, status },
+      headers: {
+        ...contentType,
+      },
+    })
+      .then((response) => response.json()
+        .then((data) => data));
+  } catch (error) {
+    console.log(error.message);
+  }
+};

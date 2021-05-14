@@ -25,7 +25,7 @@ export default function OrderDetails() {
         && localStorage.removeItem('user') }
       <span data-testid="order-number">{ orderSelected.id }</span>
       <span data-testid="order-date">
-        { `${orderSelected.sale_date.getDay()}/${orderSelected.sale_date.getMonth()}` }
+        { `${orderSelected.saleDate.getDay()}/${orderSelected.saleDate.getMonth()}` }
       </span>
       <table>
         <thead>
