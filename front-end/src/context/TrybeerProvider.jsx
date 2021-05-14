@@ -4,6 +4,7 @@ import TrybeerContext from './TrybeerContext';
 
 const updateTotalValue = () => {
   const cartResult = localStorage.getItem('TotalValue');
+  if (cartResult === null) return 0;
   return Number(cartResult);
 };
 
@@ -18,14 +19,22 @@ function TrybeerProvider({ children }) {
   const [totalValue, setTotalValue] = useState(updateTotalValue());
 
   const addInCart = (id, price, quantity) => {
-    const updatedOrder = order.filter((object) => object.id !== id);
-    setOrder([...updatedOrder, { id, quantity: quantity + 1 }]);
-    setTotalValue(totalValue + Number(price));
+    const orderResult = JSON.parse(localStorage.getItem('products'));
+
+    if (orderResult === null) {
+      return setOrder([{ id, price: Number(price), quantity: quantity + 1 }]);
+    }
+
+    const updatedOrder = orderResult.filter((object) => object.id !== id);
+    setOrder([...updatedOrder, { id, price: Number(price), quantity: quantity + 1 }]);
+    // setTotalValue(totalValue + Number(price));
   };
 
   const removeFromCart = (id, price) => {
-    setTotalValue(totalValue - Number(price));
-    const findById = order.find((product) => id === product.id);
+    // setTotalValue(totalValue - Number(price));
+    const orderResult = JSON.parse(localStorage.getItem('products'));
+
+    const findById = orderResult.find((product) => id === product.id);
 
     if (findById.quantity <= 1) {
       const updatedOrder = order.filter((product) => product.id !== id);
@@ -35,7 +44,7 @@ function TrybeerProvider({ children }) {
 
     const updatedOrder = order.map((product) => {
       if (product.id === id) {
-        return { id, quantity: product.quantity - 1 };
+        return { id, price: Number(price), quantity: product.quantity - 1 };
       }
       return product;
     });
@@ -44,8 +53,28 @@ function TrybeerProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem('products', JSON.stringify(order));
-    localStorage.setItem('TotalValue', totalValue);
+
+    const totalValueOfProducts = order.reduce((acc, product) => {
+      const totalPricePerProduct = Number(product.quantity) * Number(product.price);
+      return acc + totalPricePerProduct;
+    }, 0);
+
+    setTotalValue(totalValueOfProducts);
+    localStorage.setItem('TotalValue', totalValueOfProducts);
   }, [order]);
+
+  useEffect(() => {
+    const orderResult = JSON.parse(localStorage.getItem('products'));
+
+    if (orderResult === null) setOrder([]);
+    const totalValueOfProducts = orderResult.reduce((acc, product) => {
+      const totalPricePerProduct = Number(product.quantity) * Number(product.price);
+      return acc + totalPricePerProduct;
+    }, 0);
+
+    setTotalValue(totalValueOfProducts);
+    localStorage.setItem('TotalValue', totalValueOfProducts);
+  }, []);
 
   const context = {
     addInCart,
