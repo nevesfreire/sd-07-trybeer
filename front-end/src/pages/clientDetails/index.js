@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import TopMenu from '../../components/TopMenu';
+import { saleById } from '../../service/trybeerApi'
 
 export default function ClientDetails() {
+  const [errors, setErrors] = useState('');
+  const [orderDetail, setOrderDetail] = useState([]);
   const orderNumber = useParams().np;
-  console.log(orderNumber)
-  const orderDetail = JSON.parse(localStorage.getItem('cart'));
-  console.log(orderDetail);
   const orderTotValue = orderDetail
-    .reduce((acc, { quantity, price }) => acc + (quantity * price), 0);
+    .reduce((acc, { qtd, unitPrice }) => acc + (qtd * unitPrice), 0);
+
+  const salesProducts = async () => {
+    const result = await saleById(orderNumber);
+
+    if (!result.length === 0) return setErrors(<h3>Pedido não encontrado</h3>);
+
+    setOrderDetail(result);
+  }
+
+  useEffect(() => {
+    salesProducts();
+  }, []);
 
   return (
     <div>
@@ -19,15 +31,13 @@ export default function ClientDetails() {
         <span data-testid="order-date">{ `${Date.now("mm/YY")}` }</span>
       </h2>
       <div>
-        {orderDetail && orderDetail.filter((product) =>
-          product.id === Number.parseInt(orderNumber))
-          .map((product, index) => (
+        {orderDetail && orderDetail.map((product, index) => (
           <div
             key={ index }
           >
             <div>
               <span data-testid={ `${index}-product-qtd` }>
-                {product.quantity}
+                {product.qtd}
               </span>
               {' '}
               -
@@ -40,7 +50,7 @@ export default function ClientDetails() {
               {' '}
               <span data-testid={ `${index}-product-total-value` }>
                 <strong>
-                  {`R$ ${product.price.replace('.', ',') }`}
+                  {`R$ ${product.unitPrice.replace('.', ',') }`}
                 </strong>
               </span>
             </div>
@@ -50,6 +60,7 @@ export default function ClientDetails() {
           {`R$ ${(orderTotValue).toFixed(2).replace('.', ',')}`}
         </p>
       </div>
+      { errors }
     </div>
   );
 }

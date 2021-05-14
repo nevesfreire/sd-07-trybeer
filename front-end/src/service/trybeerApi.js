@@ -26,7 +26,7 @@ const login = async (email, password) => {
 };
 
 const productList = async () => {
-  const result = await axios.get('http://localhost:3001/products', config)
+  const result = await axios.get(`${URL}/products`, config)
     .then((response) => response.data)
     .catch((error) => {
       if (error) return { error: 'Token inválido ou lista não encontrada!' };
@@ -49,11 +49,12 @@ const register = async (name, email, password, role) => {
 };
 
 const saleById = async (id) => {
-  const result = await axios.get(`${URL}/admin/orders/${ id }`)
+  const result = await axios.get(`${URL}/sales/${id}`, config)
     .then((response) => response.data)
     .catch((error) => {
       if (error) return { error: 'Pedido não encontrado' };
     });
+
   return result;
 };
 
@@ -89,4 +90,5 @@ export {
   register,
   updateClient,
   saveSale,
+  saleById,
 };

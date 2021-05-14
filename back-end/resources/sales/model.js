@@ -17,7 +17,7 @@ const getAllByUserId = async (userId) => {
 
 const getById = async (salesId) => {
   const [sales] = await conn.execute(
-    'SELECT * FROM sales WHERE id = ?;',
+    'SELECT sp.quantity AS "qtd", p.name AS "name", p.price AS "unitPrice" FROM products AS p INNER JOIN sales_products AS sp ON p.id = sp.product_id INNER JOIN sales AS s ON s.id = sp.sale_id WHERE s.id = ?;',
     [salesId],
   );
   return sales;

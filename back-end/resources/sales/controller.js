@@ -24,7 +24,7 @@ const getAllByUserId = async (req, res) => {
 const getById = async (req, res) => {
   try {
     const { id: salesId } = req.params;
-    const sales = await service.getAllByUserId(salesId);
+    const sales = await service.getById(salesId);
     res.status(StatusCodes.OK).json(sales);
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR);
