@@ -18,29 +18,29 @@ function OrdersCard({ item, index }) {
             {`Pedido ${sale}`}
           </p>
         </header>
-        <div className="card-content">
-          <div
-            className="content"
-            data-testid={ `${index}-order-address` }
-          >
-            {`${address} ${Number(number)}`}
-          </div>
-          <footer className="card-footer">
-            <span
-              className="card-header-item"
-              data-testid={ `${index}-order-total-value"` }
-            >
-              {`R$ ${totalPrice}`}
-            </span>
-            <span
-              className="card-footer-item"
-              data-testid={ `${index}-order-status` }
-            >
-              {status}
-            </span>
-          </footer>
-        </div>
       </Link>
+      <div className="card-content">
+        <div
+          className="content"
+          data-testid={ `${index}-order-address` }
+        >
+          {`${address}, ${Number(number)}`}
+        </div>
+        <footer className="card-footer">
+          <span
+            className="card-header-item"
+            data-testid={ `${index}-order-total-value"` }
+          >
+            {`R$ ${totalPrice}`}
+          </span>
+          <span
+            className="card-footer-item"
+            data-testid={ `${index}-order-status` }
+          >
+            {status}
+          </span>
+        </footer>
+      </div>
     </div>
   );
 }
