@@ -12,6 +12,7 @@ import {
   ProfileAdmin,
   detailsAdmin,
   Checkout,
+  ClientDetails,
 } from '../pages';
 
 const Routes = () => (
@@ -28,6 +29,7 @@ const Routes = () => (
     <PrivateRoute exact path="/admin/orders/:id" component={ detailsAdmin } />
     <PrivateRoute exact path="/admin/profile" component={ ProfileAdmin } />
     <PrivateRoute exact path="/checkout" component={ Checkout } />
+    <PrivateRoute exact path="/orders/:np" component={ ClientDetails } />
   </Switch>
 );
 

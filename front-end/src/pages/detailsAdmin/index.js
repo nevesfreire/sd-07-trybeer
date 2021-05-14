@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 // import TrybeerContext from '../../context/TrybeerContext';
 import AdminSideBar from '../../components/AdminSideBar';
-import { updateSaleStatus, saleById } from '../../service/trybeerApi';
+import { updateSaleStatus, orderById } from '../../service/trybeerApi';
 
 const ENTREGUE = 'Entregue';
 
@@ -24,7 +24,7 @@ export default function AdminDetails() {
 
   useEffect(() => {
     const fetchSale = async () => {
-      const orderData = await saleById(orderId);
+      const orderData = await orderById(orderId);
       setOrder(orderData);
       if (orderData.length > 0) {
         setTotalPrice(getOrderValue(orderData));

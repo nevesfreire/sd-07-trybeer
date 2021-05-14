@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const URL = 'http://localhost:3001';
+const invalidToken = 'Token inválido ou lista não encontrada!';
 
 const userStorage = JSON.parse(localStorage.getItem('user'));
 const { token } = userStorage === null ? '' : userStorage;
@@ -29,7 +30,7 @@ const productList = async () => {
   const result = await axios.get(`${URL}/products`, config)
     .then((response) => response.data)
     .catch((error) => {
-      if (error) return { error: 'Token inválido ou lista não encontrada!' };
+      if (error) return { error: invalidToken };
     });
   return result;
 };
@@ -48,6 +49,16 @@ const register = async (name, email, password, role) => {
   return result;
 };
 
+const saleById = async (id) => {
+  const result = await axios.get(`${URL}/sales/${id}`, config)
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error) return { error: 'Pedido não encontrado' };
+    });
+
+  return result;
+};
+
 const updateClient = async (name, email) => {
   const result = await axios.put(`${URL}/profile`, {
     name,
@@ -60,7 +71,7 @@ const updateClient = async (name, email) => {
   return result;
 };
 
-const saleById = async (id) => {
+const orderById = async (id) => {
   const result = await axios.get(`${URL}/admin/orders/${id}`)
     .then((response) => response.data)
     .catch((error) => {
@@ -103,7 +114,16 @@ const getSaleByUserId = async (userId) => {
   const result = await axios.get(`${URL}/sales/user/${userId}`, config)
     .then((response) => response.data)
     .catch((error) => {
-      if (error) return { error: 'Token inválido ou lista não encontrada!' };
+      if (error) return { error: invalidToken };
+    });
+  return result;
+};
+
+const getSaleByOrderId = async (orderId) => {
+  const result = await axios.get(`${URL}/sales/order/${orderId}`, config)
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error) return { error: invalidToken };
     });
   return result;
 };
@@ -114,8 +134,10 @@ export {
   register,
   updateClient,
   saleById,
+  orderById,
   updateSaleStatus,
   saveSale,
   getAllSales,
   getSaleByUserId,
+  getSaleByOrderId,
 };
