@@ -1,6 +1,6 @@
 const user = require('./user');
 const auth = require('./auth');
 const product = require('./product');
-const sale = require('./sales');
+const sales = require('./sales');
 
-module.exports = { user, auth, product, sale };
+module.exports = { user, auth, product, sales };

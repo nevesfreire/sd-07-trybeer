@@ -5,7 +5,6 @@ export default function useReducerCart() {
   const CART_KEY_LOCALSTORAGE = 'cart';
   const [cartState, setCartState] = useLocalStorage(CART_KEY_LOCALSTORAGE, []);
   const shoppingCartReducer = (state, { type, payload }) => {
-    console.log(type, payload);
     switch (type) {
     case 'addProduct': {
       const newState = [...state];
