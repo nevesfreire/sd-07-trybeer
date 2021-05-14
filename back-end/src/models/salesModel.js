@@ -53,9 +53,9 @@ const getAllSales = async (_request, response) => {
   }
 };
 
-const getSaleById = async (_request, response) => {
+const getSaleById = async (id) => {
   try {
-    const [result] = await connection.execute(saleById);
+    const [result] = await connection.execute(saleById, [id]);
   return result;
   } catch (error) {
     response.status(StatusCodes.BAD_REQUEST)
