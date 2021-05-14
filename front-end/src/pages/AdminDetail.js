@@ -63,7 +63,7 @@ function AdminDetail() {
           </Grid.Column>
         ))}
     </div>
-  ));
+  ), []);
 
   useEffect(() => {
     adminDetailHeader();

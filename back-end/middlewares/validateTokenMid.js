@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const modelUser = require('../models/userModel');
+
 const newSecret = 'secret123';
 
 const validateToken = async (request, response, next) => {

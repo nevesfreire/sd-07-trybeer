@@ -16,10 +16,10 @@ function Checkout() {
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
   const [finish, setFinish] = useState(false);
 
-  const remButton = (id) => {
+  const remButton = useCallback((id) => {
     const cartFilter = cart.filter((item) => item[0] !== id);
     setCart(cartFilter);
-  };
+  }, []);
 
   const checkoutButton = async () => {
     const { id } = JSON.parse(localStorage.getItem('token'));
