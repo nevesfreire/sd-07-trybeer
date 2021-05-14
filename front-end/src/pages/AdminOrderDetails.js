@@ -28,7 +28,7 @@ function AdminOrderDetails() {
   const requestOrder = useCallback(async () => {
     const user = await services.acessLocalStorage.getUserLocalStorage();
     if (!user) return history.push('/login');
-    const resultApi = await getOrdersById(user.token, 3);
+    const resultApi = await getOrdersById(user.token, 1);
     setSaleOrder(resultApi.data);
     setProducts(resultApi.data.products);
     if (resultApi) setLoading(false);

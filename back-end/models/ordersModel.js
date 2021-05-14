@@ -107,7 +107,7 @@ const createSale = async (data) => {
 const changeStatus = async (id) => {
   console.log(`entro models${id}`);
   const [sale] = await connection.execute(
-    'UPDATE sales SET status=? WHERE id=?', ['Entrege', id],
+    'UPDATE sales SET status=? WHERE id=?', ['Entregue', id],
         );
     return sale;
 };

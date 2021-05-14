@@ -74,7 +74,7 @@ async function createNewSale(sale, token) {
 }
 
 async function changeStatus(token) {
-  const id = { id: 3 };
+  const id = { id: 1 };
   try {
     const response = await axios
       .put(`${url}${orders}/admin`, id, { headers: { Authorization: token } });
