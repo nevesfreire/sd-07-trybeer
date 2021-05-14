@@ -50,7 +50,7 @@ export default function ClientOrderDetails() {
   }
 
   return (
-    <div style={ { display: 'flex', justifyContent: 'center' } }>
+    <div>
       <div>
         <h1 data-testid="order-number">{`Pedido ${id}`}</h1>
         <p data-testid="order-status">{status}</p>

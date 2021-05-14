@@ -1,15 +1,14 @@
 import React from 'react';
 import CreateUserForm from '../../components/CreateUserForm';
 // import CreateUserForm from '../../components/CreateUserForm';
-import { MainDiv, FormWrapper, H1 } from './styles';
 
 const Register = () => (
-  <MainDiv>
-    <H1>Registro</H1>
-    <FormWrapper>
+  <div>
+    <h1>Registro</h1>
+    <div>
       <CreateUserForm />
-    </FormWrapper>
-  </MainDiv>
+    </div>
+  </div>
 );
 
 export default Register;

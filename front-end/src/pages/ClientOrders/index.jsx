@@ -1,20 +1,16 @@
 import React from 'react';
 import ClientOrders from '../../components/ClientOrders';
-import MenuBurger from '../../components/Menu';
-import { MainDiv, FormWrapper, H1 } from './styles';
+import Header from '../../components/Header';
 import AuthVerification from '../../components/AuthVerification';
 
 const ClientOrdersPage = () => {
   AuthVerification();
 
   return (
-    <MainDiv>
-      <MenuBurger />
-      <H1 data-testid="top-title">Meus Pedidos</H1>
-      <FormWrapper>
-        <ClientOrders />
-      </FormWrapper>
-    </MainDiv>
+    <div>
+      <Header title="Meus Pedidos" />
+      <ClientOrders />
+    </div>
   );
 };
 

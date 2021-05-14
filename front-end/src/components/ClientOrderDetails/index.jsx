@@ -32,7 +32,7 @@ export default function ClientOrderDetails() {
   };
 
   return (
-    <div style={ { display: 'flex', justifyContent: 'center' } }>
+    <div>
       <h2>Informações de Detalhes</h2>
       <div>
         <p data-testid="order-number">{`Pedido ${id}`}</p>

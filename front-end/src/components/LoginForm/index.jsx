@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { userLogin } from '../../services/apiService';
 import validateLogin from './validationLogin';
-import {
-  Form,
-  Label,
-  Input,
-  Button,
-  Span,
-  RegisterButton,
-} from './styles';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -32,10 +24,10 @@ function LoginForm() {
   };
 
   return (
-    <Form>
-      <Label>
+    <form>
+      <label>
         Email
-        <Input
+        <input
           value={ email }
           onChange={ (e) => setEmail(e.target.value) }
           placeholder="Email address"
@@ -44,10 +36,10 @@ function LoginForm() {
           data-testid="email-input"
           required
         />
-      </Label>
-      <Label>
-        <Span>Senha</Span>
-        <Input
+      </label>
+      <label>
+        <span>Senha</span>
+        <input
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
           placeholder="Password"
@@ -56,22 +48,22 @@ function LoginForm() {
           data-testid="password-input"
           required
         />
-      </Label>
-      <Button
+      </label>
+      <button
         type="submit"
         data-testid="signin-btn"
         disabled={ validateLogin(email, password) }
         onClick={ (e) => onSubmitHandler(e, { email, password }) }
       >
         Entrar
-      </Button>
-      <RegisterButton
+      </button>
+      <Link
         to="/register"
         data-testid="no-account-btn"
       >
         Ainda não tenho conta
-      </RegisterButton>
-    </Form>
+      </Link>
+    </form>
   );
 }
 

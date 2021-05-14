@@ -1,19 +1,15 @@
 import React from 'react';
 import AdminOrdersDetails from '../../components/AdminOrdersDetails';
-import MenuBurger from '../../components/Menu';
-import { MainDiv, FormWrapper } from './styles';
+// import Header from '../../components/Header';
 import AuthVerification from '../../components/AuthVerification';
 
 const AdminOrdersDetailsPage = () => {
   AuthVerification();
 
   return (
-    <MainDiv>
-      <MenuBurger />
-      <FormWrapper>
-        <AdminOrdersDetails />
-      </FormWrapper>
-    </MainDiv>
+    <div>
+      <AdminOrdersDetails />
+    </div>
   );
 };
 

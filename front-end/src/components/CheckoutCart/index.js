@@ -45,7 +45,7 @@ export default function CheckoutCart() {
 
   if (!currentUser) return null;
   return (
-    <div style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
+    <div>
       <p>Produtos</p>
       { total === '0.00' || total === 0 ? <p>Não há produtos no carrinho</p>
         : productCheckout.filter((item) => item.productQtt !== 0)

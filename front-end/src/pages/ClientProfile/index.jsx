@@ -2,16 +2,15 @@ import React from 'react';
 import ClientProfile from '../../components/ClientProfile';
 import MenuBurger from '../../components/Menu';
 // import CreateUserForm from '../../components/CreateUserForm';
-import { MainDiv, FormWrapper, H1 } from './styles';
 
 const ClientProfilePage = () => (
-  <MainDiv>
+  <div>
     <MenuBurger />
-    <H1 data-testid="top-title">Meu perfil</H1>
-    <FormWrapper>
+    <h1 data-testid="top-title">Meu perfil</h1>
+    <div>
       <ClientProfile />
-    </FormWrapper>
-  </MainDiv>
+    </div>
+  </div>
 );
 
 export default ClientProfilePage;

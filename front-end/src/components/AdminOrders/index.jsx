@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getAdminSales } from '../../services/apiService';
-// import { DivOrder } from './styles';
 
 export default function AdminOrders() {
   const [adminSales, setAdminSales] = useState(null);
@@ -26,7 +25,7 @@ export default function AdminOrders() {
   }
 
   return (
-    <div style={ { display: 'flex', justifyContent: 'center' } }>
+    <div>
       { adminSales.err ? <p>{adminSales.err.message}</p>
         : adminSales.map((item, index) => (
           // <p>{console.log(item)}</p>

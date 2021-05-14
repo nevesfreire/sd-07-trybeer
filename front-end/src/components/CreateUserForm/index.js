@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Label, Input } from './styles';
 import validateRegister from './validation';
 import { registerUser } from '../../services/apiService';
 
@@ -50,10 +49,10 @@ function CreateUserForm() {
   };
 
   return (
-    <Form onSubmit={ onSubmitHandler }>
-      <Label>
+    <form onSubmit={ onSubmitHandler }>
+      <label>
         Nome
-        <Input
+        <input
           value={ name }
           onChange={ (e) => setName(e.target.value) }
           placeholder="name"
@@ -62,11 +61,11 @@ function CreateUserForm() {
           data-testid="signup-name"
           required
         />
-      </Label>
+      </label>
 
-      <Label>
+      <label>
         Email
-        <Input
+        <input
           value={ email }
           onChange={ (e) => setEmail(e.target.value) }
           placeholder="Email address"
@@ -75,12 +74,12 @@ function CreateUserForm() {
           data-testid="signup-email"
           required
         />
-      </Label>
+      </label>
       { userExists && <span>Já existe um usuário com esse e-mail.</span> }
 
-      <Label>
+      <label>
         Senha
-        <Input
+        <input
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
           placeholder="Password"
@@ -89,17 +88,17 @@ function CreateUserForm() {
           data-testid="signup-password"
           required
         />
-      </Label>
+      </label>
 
-      <Label>
+      <label>
         Quero vender
-        <Input
+        <input
           data-testid="signup-seller"
           checked={ iWantToSell }
           onChange={ handleRole }
           type="checkbox"
         />
-      </Label>
+      </label>
 
       <button
         type="submit"
@@ -108,7 +107,7 @@ function CreateUserForm() {
       >
         Cadastrar
       </button>
-    </Form>
+    </form>
   );
 }
 export default CreateUserForm;

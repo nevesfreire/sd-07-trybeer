@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getUserSalesInfo } from '../../services/apiService';
-// import { DivOrder } from './styles';
 
 export default function ClientOrders() {
   const [userSales, setUserSales] = useState(null);
@@ -26,7 +25,7 @@ export default function ClientOrders() {
   }
 
   return (
-    <div style={ { display: 'flex', justifyContent: 'center' } }>
+    <div>
       { userSales.err ? <p>{userSales.err.message}</p>
         : userSales.map((item, index) => (
           <div

@@ -1,14 +1,13 @@
 import React from 'react';
 import LoginForm from '../../components/LoginForm';
-import { MainDiv, FormWrapper, H1 } from './styles';
 
 const Login = () => (
-  <MainDiv>
-    <H1>Login</H1>
-    <FormWrapper>
+  <div>
+    <h1>Login</h1>
+    <div>
       <LoginForm />
-    </FormWrapper>
-  </MainDiv>
+    </div>
+  </div>
 );
 
 export default Login;

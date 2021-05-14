@@ -1,20 +1,16 @@
 import React from 'react';
 import AdminOrders from '../../components/AdminOrders';
-import MenuBurger from '../../components/Menu';
-import { MainDiv, FormWrapper, H1 } from './styles';
+import Header from '../../components/Header';
 import AuthVerification from '../../components/AuthVerification';
 
 const AdminOrdersPage = () => {
   AuthVerification();
 
   return (
-    <MainDiv>
-      <MenuBurger />
-      <H1 data-testid="top-title">Pedidos Pendentes</H1>
-      <FormWrapper>
-        <AdminOrders />
-      </FormWrapper>
-    </MainDiv>
+    <div>
+      <Header title="Pedidos Pendentes" />
+      <AdminOrders />
+    </div>
   );
 };
 
