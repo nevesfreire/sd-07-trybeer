@@ -19,7 +19,7 @@ const CustomPerfil = ({
   return (
     <Form size="large">
       <Segment stacked>
-        <Form.Input
+        <input
           data-testid="profile-email-input"
           fluid
           icon="mail"
@@ -27,8 +27,7 @@ const CustomPerfil = ({
           label="Email"
           placeholder={ emailL }
           name="email"
-          readonly="true"
-          readOnly
+          readOnly="readOnly"
           value={ email }
         />
         <input

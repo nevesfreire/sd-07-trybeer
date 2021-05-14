@@ -37,6 +37,7 @@ const CustomLogin = ({
         onChange={ (e) => onInputChange(e) }
       />
       <button
+        type="submit"
         data-testid="signin-btn"
         color="orange"
         fluid
