@@ -31,11 +31,9 @@ const validateSale = (saleData, hNbr, street, user) => {
 };
 
 const insertPurchase = async (purchase, pdtList) => {
-  console.log('LINE34: ', purchase)
   const [insertPurchRes] = await registerPurchase(purchase);
   if (insertPurchRes.err) return false;
   const { insertId } = insertPurchRes;
-  console.log('LINE34: ', pdtList, insertId)
   const insertPurchPdtsRes = await registerPurchaseProducts(pdtList, insertId);
   const allInserted = insertPurchPdtsRes
     .find((insertion) => insertion[0].affectedRows !== 1);

@@ -33,10 +33,10 @@ describe('login POST route', () => {
     done();
   });
 
-  // afterAll(async done => {
-  //   // await connection.destroy();
-  //   done();
-  // });
+  afterAll(async done => {
+    connection.end();
+    done();
+  });
 
   it('Check if client login route is a POST, is available and working', async () => {
     await frisby

@@ -22,10 +22,10 @@ describe('register POST route', () => {
     done();
   });
 
-  // afterAll(async done => {
-  //   // await connection.destroy();
-  //   done();
-  // });
+  afterAll(async done => {
+    connection.end();
+    done();
+  });
 
   it('Check user registration', async () => {
     await frisby

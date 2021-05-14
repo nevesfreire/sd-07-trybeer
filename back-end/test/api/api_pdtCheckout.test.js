@@ -44,7 +44,7 @@ describe('checkout POST route', () => {
   });
 
   afterAll(async done => {
-    // await connection.destroy();
+    connection.end();
     done();
   });
 
