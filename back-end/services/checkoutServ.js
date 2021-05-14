@@ -3,17 +3,31 @@ const { registerPurchase, registerPurchaseProducts } = require('../models/salesM
 const statusMsgMap = require('./dictionaries/statusMsgMap');
 
 const preCheckFields = (requiredFields, inputs) => {
-  const missingEntries = requiredFields.find((field) => !Object.keys(inputs).includes(field));
-  if (missingEntries) return false;
+  if (!requiredFields.every((f) => inputs.every((inp) => inp[f]))) return false;
+  if (Object.values(inputs).some((v) => v.length === 0 || v.length > 127)) return false;
+  if (!inputs.every((i) => Object.values(i))) return false;
   return true;
 };
 
-const validateSale = (saleData, user) => {
+const validateLengths = (number, streetAddress) => {
+  if (number.length < 1 || number.length > 124) return false;
+  if (streetAddress.length < 4 || streetAddress.length > 124) return false;
+  return true;
+};
+
+const validateStrFields = (nbr, street) => {
+  if (!nbr || !street) return false;
+  if (!validateLengths(nbr, street)) return false;
+  return true;
+};
+
+const validateSale = (saleData, hNbr, street, user) => {
   const mandatoryPdtFields = ['id', 'name', 'price', 'quantity'];
   const mandatoryUserField = ['id'];
-  return preCheckFields(mandatoryPdtFields, saleData)
+  if (!validateStrFields(hNbr, street)) return false;
+  return !preCheckFields(mandatoryPdtFields, saleData)
     ? false
-    : preCheckFields(mandatoryUserField, user);
+    : preCheckFields(mandatoryUserField, [user]);
 };
 
 const insertPurchase = async (purchase, pdtList) => {
@@ -23,10 +37,7 @@ const insertPurchase = async (purchase, pdtList) => {
   const insertPurchPdtsRes = await registerPurchaseProducts(pdtList, insertId);
   const allInserted = insertPurchPdtsRes
     .find((insertion) => insertion[0].affectedRows !== 1);
-  if (insertPurchPdtsRes.err || allInserted) {
-    // const deletionRes = await delPurchase(purchase);
-    return false;
-  }
+  if (insertPurchPdtsRes.err || allInserted) return false;
   return { insertId, statusCode: statusMsgMap.created.status };
 };
 
@@ -47,7 +58,7 @@ const formatInfo = (pdts, { userId, street, houseNumber, totalPrice }) => {
 const checkoutServ = async (body, user) => {
   try {
     const { cart, street, houseNumber } = body;
-    if (!validateSale(cart, user)) return statusMsgMap.allFieldsMustBeFilled;
+    if (!validateSale(cart, houseNumber, street, user)) return statusMsgMap.allFieldsMustBeFilled;
     const productsIds = cart.map((product) => product.id);
     const productsData = await getProductsData(productsIds);
     const totalPrice = productsData
