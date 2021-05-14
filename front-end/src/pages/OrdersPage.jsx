@@ -6,34 +6,33 @@ import useFetch from '../hooks/useFetch';
 
 function Orders() {
   const user = JSON.parse(localStorage.getItem('user'));
-  // const { getOrdersByEmail } = useFetch();
-  // const [orders, setOrders] = useState();
+  const { getOrdersByEmail } = useFetch();
+  const [orders, setOrders] = useState();
 
-  // const getOrders = async (client) => {
-  //   const allOrders = await getOrdersByEmail(client.email);
-  //   return setOrders(allOrders);
-  // };
+  const getOrders = async (client) => {
+    const allOrders = await getOrdersByEmail(client.email, client.token);
+    return setOrders(allOrders);
+  };
 
-  const orders = [
-    { id: 1, price: 20.50, orderDate: '20/04' },
-    { id: 2, price: 50.50, orderDate: '10/05' },
-  ];
+  const handleOrders = () => {
+    if (!user || !user.token) return (<Redirect to="/login" />);
+    if (orders === undefined) return ('Loading...');
+    return (orders.map((order) => (<OrderCard
+      key={ order.id }
+      id={ order.id }
+      price={ order.price }
+      date={ order.date }
+    />)));
+  };
 
-  // useEffect(() => {
-  //   getOrders(user);
-  // }, []);
+  useEffect(() => {
+    getOrders(user);
+  }, []);
 
   return (
     <div>
       <HeaderBurguer titulo="Meus Pedidos" />
-      { !user || !user.token
-        ? <Redirect to="/login" />
-        : orders.map((order) => (<OrderCard
-          key={ order.id }
-          id={ order.id }
-          price={ order.price }
-          date={ order.orderDate }
-        />))}
+      <div>{handleOrders()}</div>
     </div>
   );
 }

@@ -1,9 +1,9 @@
 const { StatusCodes } = require('http-status-codes');
-const userModel = require('../models/usersModel');
+const userModel = require('../models/ordersModel');
 
 const allOrders = async (request, response) => {
   try {
-    const { email } = request.body;
+    const { email } = request.headers;
     const orders = await userModel.getOrders(email);
 
     return response.status(StatusCodes.OK).json(orders);

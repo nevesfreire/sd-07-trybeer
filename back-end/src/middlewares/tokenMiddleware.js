@@ -28,6 +28,30 @@ const validateToken = async (req, res, next) => {
   }
 };
 
+const tokenValidation = async (req, res, next) => {
+  try {
+    const { authorization, email } = req.headers;
+    if (!authorization) {
+      return res.status(StatusCodes.UNAUTHORIZED)
+        .json({ message: 'Token não encontrado' });
+    }
+
+    const verifyToken = jwt.verify(authorization, secret);
+
+    if (verifyToken.email !== email) {
+      return res.status(StatusCodes.UNAUTHORIZED)
+        .json({ message: 'Token inválido' });
+    }
+
+    next();
+  } catch (error) {
+    console.log('entrei aqui', { message: error.message });
+    res.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+};
+
 module.exports = {
   validateToken,
+  tokenValidation,
 };

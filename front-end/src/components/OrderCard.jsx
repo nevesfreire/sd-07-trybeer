@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-function OrderCard({ id, price, orderDateOrStatus }) {
+function OrderCard({ id, price, date }) {
   const idConfig = () => {
     const oneDecimalNum = 9;
     const twoDecimalNum = 99;
@@ -11,18 +12,20 @@ function OrderCard({ id, price, orderDateOrStatus }) {
   };
 
   return (
-    <div>
-      <p>{ `Pedido ${idConfig()}`}</p>
-      <p>{ `R$ ${price}` }</p>
-      <p>{ orderDateOrStatus }</p>
-    </div>
+    <Link to={ `/orders/${id}` }>
+      <div>
+        <p>{ `Pedido ${idConfig()}`}</p>
+        <p>{ `R$ ${price}` }</p>
+        <p>{ date }</p>
+      </div>
+    </Link>
   );
 }
 
 OrderCard.propTypes = {
   id: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
-  orderDateOrStatus: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
 };
 
 export default OrderCard;

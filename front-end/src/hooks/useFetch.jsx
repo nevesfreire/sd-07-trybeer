@@ -57,9 +57,10 @@ function useFetch() {
         Accept: informationType,
         'Content-Type': informationType,
         Authorization: token,
+        Email: email,
       },
-      body: JSON.stringify({ email }),
     });
+    console.log('result', result);
     const responseAPI = await result.json();
     return responseAPI;
   }
