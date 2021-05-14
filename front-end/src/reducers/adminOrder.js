@@ -1,22 +1,22 @@
 import {
-  REQUEST_ORDERS,
-  REQUEST_ORDERS_SUCCESS,
-  REQUEST_ORDERS_FAIL,
+  REQUEST_ADMIN_ORDER,
+  REQUEST_ADMIN_ORDER_SUCCESS,
+  REQUEST_ADMIN_ORDER_FAIL,
 } from '../actions';
 
 const INITIAL_STATE = {
-  orders: [],
+  order: {},
   isLoading: false,
   error: '',
 };
 
-export default function orders(state = INITIAL_STATE, action) {
+export default function adminOrder(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case REQUEST_ORDERS:
+  case REQUEST_ADMIN_ORDER:
     return { ...state, isLoading: true };
-  case REQUEST_ORDERS_SUCCESS:
+  case REQUEST_ADMIN_ORDER_SUCCESS:
     return { ...state, isLoading: false, orders: action.orders };
-  case REQUEST_ORDERS_FAIL:
+  case REQUEST_ADMIN_ORDER_FAIL:
     return { ...state, isLoading: false, error: action.error.message };
   default:
     return state;

@@ -1,11 +1,11 @@
 const REQUEST_OK = 200;
 const UNAUTHORIZED = 401;
 const contentType = { 'Content-type': 'application/json' };
+const urlOrders = 'http://localhost:3001/orders';
 
 export const saveOrder = (dispatch, finish, order) => {
   try {
-    const url = 'http://localhost:3001/orders';
-    return fetch(url, {
+    return fetch(urlOrders, {
       method: 'POST',
       body: order,
       headers: {
@@ -29,8 +29,7 @@ export const saveOrder = (dispatch, finish, order) => {
 
 export const getOrders = (email, token) => {
   try {
-    const url = 'http://localhost:3001/orders';
-    return fetch(url, {
+    return fetch(urlOrders, {
       method: 'GET',
       body: email,
       headers: {
@@ -70,6 +69,43 @@ export const getOrder = (id, token, email) => {
             .then((data) => data);
         }
       });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getAdminOrders = () => {
+  try {
+    return fetch(urlOrders, {
+      method: 'GET',
+      headers: {
+        ...contentType,
+      },
+    })
+      .then((response) => {
+        if (response.status !== REQUEST_OK) {
+          throw new Error();
+        } else {
+          return response.json()
+            .then((json) => json);
+        }
+      });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getAdminOrder = (id) => {
+  try {
+    const url = `http://localhost:3001/orders/${id}`;
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        ...contentType,
+      },
+    })
+      .then((response) => response.json()
+        .then((json) => json));
   } catch (error) {
     console.log(error.message);
   }
