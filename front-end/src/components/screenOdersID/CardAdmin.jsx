@@ -16,8 +16,8 @@ export default function Card(prop) {
       <h4>{ message }</h4>
     );
   }
-  const { saleDetails } = prop.obj;
-  const { id, total, saleItems, orderStatus } = saleDetails;
+  const { orderDetails } = prop.obj;
+  const { id, total, orderItems, orderStatus } = orderDetails;
 
   const entregar = async () => {
     const ok = 202;
@@ -41,7 +41,7 @@ export default function Card(prop) {
       <h4 data-testid="order-number">{`Pedido ${id}`}</h4>
       <h4 data-testid="order-status">{orderStatus}</h4>
       <div>
-        {saleItems.map((item, index) => {
+        {orderItems.map((item, index) => {
           const { name, price, quantity } = item;
           const totalItem = (price * quantity).toFixed(2);
           return (
