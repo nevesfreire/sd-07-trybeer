@@ -1,6 +1,6 @@
 const checkoutModel = require('../models/checkoutModel');
 
-const createSale = async (userId, deliveryAddress, deliveryNumber, salesProducts) => { 
+const createSale = async (userId, dAddress, dNumber, salesProducts) => { 
   const saleDate = new Date();
   const status = 'PENDENTE';
   
@@ -12,8 +12,7 @@ const createSale = async (userId, deliveryAddress, deliveryNumber, salesProducts
     return await acc + productTotalPrice;
   }, 0);
 
-  const data = {
-    userId, totalPrice, deliveryAddress, deliveryNumber, saleDate, status };
+  const data = { userId, totalPrice, dAddress, dNumber, saleDate, status, salesProducts };
 
   await checkoutModel.createSale(data);
 };

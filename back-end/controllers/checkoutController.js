@@ -6,13 +6,13 @@ const sucessMessage = { message: 'pedido cadastrado com sucesso' };
 const errorMessage = { message: 'erro ao cadastrar pedido' };
   try {
     const { 
-      deliveryAddress, 
-      deliveryNumber,
+      deliveryAddress: dAddress, 
+      deliveryNumber: dNumber,
       salesProducts,
     } = req.body;
 
     const { id: userId } = req.user;
-      await checkoutService.createSale(userId, deliveryAddress, deliveryNumber, salesProducts);
+      await checkoutService.createSale(userId, dAddress, dNumber, salesProducts);
 
   res.status(httpStatus.CREATED).json(sucessMessage);
 } catch (error) {
