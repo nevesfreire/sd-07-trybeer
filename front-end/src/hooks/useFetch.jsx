@@ -64,8 +64,32 @@ function useFetch() {
     return responseAPI;
   }
 
-  async function getOrders(token) {
+  async function postSales(args) {
+    const { status, user, address, total, localStorageSalved } = args;
+    const { token } = user;
+    const { deliveryAddress, deliveryNumber } = address;
+    console.log('user', args.user);
     const result = await fetch('http://localhost:3001/sales', {
+      method: 'POST',
+      headers: {
+        Authorization: token,
+        Accept: informationType,
+        'Content-Type': informationType,
+      },
+      body: JSON.stringify({
+        totalPrice: total,
+        deliveryAddress,
+        deliveryNumber,
+        status,
+        listproducts: localStorageSalved,
+      }),
+    });
+    const data = await result.json();
+    return data;
+  }
+
+  async function getOrder(token, id){
+    const result = await fetch(`http://localhost:3001/sales/${id}`, {
       method: 'GET',
       headers: {
         Accept: informationType,
@@ -83,9 +107,11 @@ function useFetch() {
       updateProfileName,
       register,
       getProducts,
-      getOrders,
+      postSales,
+      getOrder,
     }
   );
+
 }
 
 export default useFetch;
