@@ -1,9 +1,7 @@
 const orderService = require('../services/orderService');
-
 const OK = 200;
 const ERROR = 400;
 const ERRORBYID = 404;
-
 const getAllOrders = async (_request, response) => {
   try {
     const order = await orderService.getAllOrders();
@@ -13,12 +11,12 @@ const getAllOrders = async (_request, response) => {
     response.status(ERROR).json({ message: error.message });
   }
 };
-
 const getOrderById = async (request, response) => {
   try {
     const { id } = request.params;
     const order = await orderService.getOrderById(id);
-    if (!order) {
+    console.log(order)
+    if (!order || Object.keys(order).length === 0) {
       const ERR_MESSAGE = 'order not found';
       throw new Error(ERR_MESSAGE);
     }
@@ -28,12 +26,11 @@ const getOrderById = async (request, response) => {
     return response.status(ERRORBYID).json({ message });
   }
 };
-
 const getOrderDetails = async (request, response) => {
   try {
     const { id } = request.params;
     const order = await orderService.getOrderDetails(id);
-    if (!order) {
+    if (!order || Object.keys(order).length === 0) {
       const ERR_MESSAGE = 'order not found';
       throw new Error(ERR_MESSAGE);
     }
@@ -43,5 +40,4 @@ const getOrderDetails = async (request, response) => {
     return response.status(ERROR).json({ message });
   }
 };
-
 module.exports = { getAllOrders, getOrderById, getOrderDetails };

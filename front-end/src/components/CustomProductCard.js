@@ -55,20 +55,20 @@ export default function CustomProductCard({ index, beer }) {
         <Card>
           <Card.Content>
             <Image
-              data-testid={ `${index}-product-img` }
+              data-testid={`${index}-product-img`}
               floated="right"
-              size={ beer.name === 'Skol Lata 250ml' ? 'mini' : 'tiny' }
-              src={ beer.url_image }
+              size={beer.name === 'Skol Lata 250ml' ? 'mini' : 'tiny'}
+              src={beer.url_image}
               alt="imagem de uma bebida"
             />
-            <Card.Header data-testid={ `${index}-product-price` }>
+            <Card.Header data-testid={`${index}-product-price`}>
               {' '}
               {`R$ ${beer.price.replace('.', ',')}`}
             </Card.Header>
-            <Card.Meta data-testid={ `${index}-product-name` }>
+            <Card.Meta data-testid={`${index}-product-name`}>
               {beer.name}
             </Card.Meta>
-            <Card.Meta data-testid={ `${index}-product-qtd` }>
+            <Card.Meta data-testid={`${index}-product-qtd`}>
               {qtdProduct}
             </Card.Meta>
           </Card.Content>
@@ -77,12 +77,12 @@ export default function CustomProductCard({ index, beer }) {
               <Button
                 basic
                 color="green"
-                data-testid={ `${index}-product-plus` }
-                onClick={ () => {
+                data-testid={`${index}-product-plus`}
+                onClick={() => {
                   setQtdProduct(qtdProduct + 1);
                   setTotalKart(totalKart + Number(beer.price));
                   saveToLocalMore(beer, qtdProduct);
-                } }
+                }}
                 size="mini"
               >
                 +
@@ -90,8 +90,8 @@ export default function CustomProductCard({ index, beer }) {
               <Button
                 basic
                 color="red"
-                data-testid={ `${index}-product-minus` }
-                onClick={ () => setBtnQtd() }
+                data-testid={`${index}-product-minus`}
+                onClick={() => setBtnQtd()}
                 size="mini"
               >
                 -
