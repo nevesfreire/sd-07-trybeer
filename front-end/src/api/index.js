@@ -91,7 +91,6 @@ export {
   registerUser,
   getProducts,
   updateUser,
-  getOrders,
   getOrdersById,
   getOrdersForUser,
   getOrdersForAdmin,

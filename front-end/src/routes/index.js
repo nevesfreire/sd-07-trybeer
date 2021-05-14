@@ -8,7 +8,7 @@ const Router = () => (
     <Route path="/register" component={ pages.Register } />
     <Route path="/products" component={ pages.Products } />
     <Route path="/admin/orders" component={ pages.Orders } />
-    <Route path="/orders" component={ pages.Orders } />
+    <Route exact path="/orders" component={ pages.Orders } />
     <Route path="/admin/profile" component={ pages.AdminProfile } />
     <Route path="/profile" component={ pages.ClientProfile } />
     <Route path="/checkout" component={ pages.Checkout } />
