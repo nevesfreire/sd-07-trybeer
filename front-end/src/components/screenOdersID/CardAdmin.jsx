@@ -7,6 +7,7 @@ function dinheiro(dindin) {
 }
 
 export default function Card(prop) {
+  const user = JSON.parse(window.localStorage.getItem('user'));
   const { push } = useHistory();
   if (prop.obj.message) {
     const { message } = prop.obj;
