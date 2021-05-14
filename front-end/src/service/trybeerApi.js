@@ -2,6 +2,16 @@ import axios from 'axios';
 
 const URL = 'http://localhost:3001';
 
+const userStorage = JSON.parse(localStorage.getItem('user'));
+const { token } = userStorage === null ? '' : userStorage;
+
+const config = {
+  headers: {
+    'Content-Type': 'application/json',
+    authorization: token,
+  },
+};
+
 const login = async (email, password) => {
   const result = await axios.post(`${URL}/login`, {
     email,
@@ -13,16 +23,6 @@ const login = async (email, password) => {
     });
 
   return result;
-};
-
-const userStorage = JSON.parse(localStorage.getItem('user'));
-const { token } = userStorage === null ? '' : userStorage;
-
-const config = {
-  headers: {
-    'Content-Type': 'application/json',
-    authorization: token,
-  },
 };
 
 const productList = async () => {
@@ -60,9 +60,24 @@ const updateClient = async (name, email) => {
   return result;
 };
 
+const saveSale = async (sale, products) => {
+  const result = await axios.post(`${URL}/sales`,
+    { sale, products },
+    { headers: {
+      'Content-Type': 'application/json',
+      authorization: token,
+    },
+    }).then(() => console.log('Pedido Finalizado'))
+    .catch((error) => {
+      if (error) return { error: error.message };
+    });
+  return result;
+};
+
 export {
   login,
   productList,
   register,
   updateClient,
+  saveSale,
 };

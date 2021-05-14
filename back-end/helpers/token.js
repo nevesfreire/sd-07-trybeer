@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken');
 const { SECRET } = require('../config/application');
 
-const generateToken = ({ name, email, role }) => {
+const generateToken = ({ name, email, role, id }) => {
   const payload = {
     name,
     email,
     role,
+    id,
   };
 
   return jwt.sign(payload, SECRET);
