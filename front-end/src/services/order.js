@@ -51,7 +51,7 @@ export const getOrders = (email, token) => {
   }
 };
 
-export const getOrder = (id, token) => {
+export const getOrder = (id, token, email) => {
   try {
     const url = `http://localhost:3001/orders/${id}`;
     return fetch(url, {
