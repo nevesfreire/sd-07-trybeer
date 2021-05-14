@@ -4,8 +4,7 @@ const Container = styled.div`
 
 .page-body {
   align-items: center;
-  background-color: white;
-  background-image: linear-gradient(#191919, #000);
+  background-color: #191919;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -15,29 +14,36 @@ const Container = styled.div`
 
 .cards-container {
   align-items: center;
-  background-color: #444;
+  background-color: #eee;
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
-  margin: auto;
-  padding: 90px 30px;
+  margin: 0 auto;
+  overflow: hidden;
   width: 90vw;
 }
 
 .grid {
   align-items: center;
   display: grid;
-  flex-direction: unset;
-  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(290px, auto));
+  justify-content: space-evenly;
   margin: auto;
-  padding: 60px 0;
+  overflow: auto;
+  padding-top: 60px;
   width: 100%;
 }
 
 .total-btn {
   bottom: 0;
   position: fixed;
+}
+
+@media (orientation: portrait), (max-width: 500px) {
+  .grid {
+    padding-top: 80px;
+  }
 }
 
 `;

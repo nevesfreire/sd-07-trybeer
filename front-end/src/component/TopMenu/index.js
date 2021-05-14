@@ -73,11 +73,9 @@ export default function TopMenu({ title }) {
           >
             <div
               className="nav-close"
-              onClick={ () => handleMenuToggle() }
-              onKeyDown={ (e) => getKeyCode(e) }
               aria-hidden="true"
             >
-              <h3>&#9587;</h3>
+              <h3 onClick={ () => handleMenuToggle() }>&#9587;</h3>
             </div>
             <div
               className="nav-item"
