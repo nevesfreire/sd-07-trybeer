@@ -11,13 +11,20 @@ export default function AdminDetails() {
   const { id } = useParams();
   const [orderId] = useState(id);
   const [orderStatus, setOrderStatus] = useState('Pendente');
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState([{
+    name: '',
+    qtd: '',
+    status: '',
+    unitPrice: '',
+  }]);
 
   useEffect(() => {
     const fetchSale = async () => {
       const orderData = await saleById(orderId);
       setOrder(orderData);
-      setOrderStatus(orderData[0].status || 'Pendente');
+      if (orderData.length > 0) {
+        setOrderStatus(orderData[0].status || 'Pendente');
+      }
     };
     fetchSale();
   }, [orderId]);
