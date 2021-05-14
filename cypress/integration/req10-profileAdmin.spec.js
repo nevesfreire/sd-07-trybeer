@@ -28,7 +28,7 @@ describe('10 - Criar tela de perfil de administrador', () => {
     verifyContainsUrl(`${Cypress.config().baseUrl}/admin/profile`);
   });
 
-  it('Será validado que a tela de perfil contém os atributos descritos no protótipo', () => {
+  it('Será validado que a tela de perfil c"ontém os atributos descritos no protótipo', () => {
     login(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));
     clickButton('[data-testid="side-menu-item-profile"]');
     verifyContainsText('Perfil');
