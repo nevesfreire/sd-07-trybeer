@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 function OrdersCard(props) {
   const { id, saleDate, totalPrice, index } = props;
-  // const history = useHistory();
 
   const formatDate = () => moment(saleDate).format('DD/MM');
 

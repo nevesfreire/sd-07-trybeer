@@ -9,7 +9,6 @@ function CartList(props) {
     totalCartPrice,
     setTotalCartPrice,
   } = props;
-  console.log(cart);
   return (
     <>
       { totalCartPrice < 1 && <h4>Não há produtos no carrinho</h4> }

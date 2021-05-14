@@ -1,7 +1,7 @@
 const connection = require('./connection');
 
 const querySale = 'INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, '
-  + 'sale_date, status) VALUES (?, ?, ?, ?, ?, ?)';
+  + 'sale_date, status) VALUES (?, ?, ?, ?, NOW(), ?)';
 
 const queryProductSale = 'INSERT INTO sales_products (sale_id, product_id, quantity) '
   + 'VALUES (?, ?, ?)';
@@ -11,20 +11,22 @@ sal.sale_date AS "orderDate",
 sal.total_price AS "totalPrice",
 salp.quantity AS "productQuantity",
 pro.name AS "productName",
-ROUND((pro.price * salp.quantity), 2) AS "totalProductPrice"
+ROUND((pro.price * salp.quantity), 2) AS "totalProductPrice",
+sal.status AS orderStatus
 FROM Trybeer.sales AS sal
 INNER JOIN Trybeer.sales_products AS salp
 ON sal.id = salp.sale_id
 INNER JOIN Trybeer.products AS pro
 ON salp.product_id = pro.id
-WHERE sal.id = ?`;
+WHERE sal.id = ?;`;
+
+const queryStatusChange = 'UPDATE Trybeer.sales SET status="Entregue" WHERE id=?';
 
 const saleRegister = async ({
   id,
   price,
   address,
   deliveryNumber,
-  saleDate,
   salesStatus,
 }) => {
   const registeredSale = await connection.execute(querySale, [
@@ -32,7 +34,6 @@ const saleRegister = async ({
     price,
     address,
     deliveryNumber,
-    saleDate,
     salesStatus,
   ]);
   console.log(registeredSale);
@@ -85,10 +86,16 @@ const getSalesDataById = async (id) => {
   return orderDetail;
 };
 
+const changeStatusById = async (id) => {
+  const [orderStatusChanged] = await connection.execute(queryStatusChange, [id]);
+  return orderStatusChanged;
+};
+
 module.exports = {
   saleRegister,
   saleProductRegister,
   getProductIdByName,
   getAllSalesData,
   getSalesDataById,
+  changeStatusById,
 };

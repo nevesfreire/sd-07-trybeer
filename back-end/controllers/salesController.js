@@ -37,8 +37,22 @@ const getSalesDataById = async (req, res) => {
   }
 };
 
+const changeStatusById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const orderStatusChanged = await salesServices.changeStatusById(id);
+    console.log('Controller', orderStatusChanged);
+    const { message, http } = orderStatusChanged;
+    return res.status(http).json(message);
+  } catch (error) {
+    console.log(error);
+    return res.status(INTERNAL_SERVER_ERROR).json(error);
+  }
+};
+
 module.exports = {
   saleRegister,
   getAllSalesData,
   getSalesDataById,
+  changeStatusById,
 };

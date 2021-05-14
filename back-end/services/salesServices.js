@@ -3,7 +3,7 @@ const {
 } = require('http-status-codes');
 const salesModel = require('../models/salesModel');
 const userModel = require('../models/userModel');
-const { userNotFound, saleRegisteredMessage } = require('../messages');
+const { userNotFound, saleRegisteredMessage, orderStatusChangedMessage } = require('../messages');
 
 const customAnswer = (message, http = UNAUTHORIZED) => ({
   http,
@@ -11,7 +11,7 @@ const customAnswer = (message, http = UNAUTHORIZED) => ({
 });
 
 const saleRegister = async (orderData) => {
-  const { email, price, address, deliveryNumber, saleDate, salesStatus, products } = orderData;
+  const { email, price, address, deliveryNumber, salesStatus, products } = orderData;
   const userId = await userModel.getUserIdByEmail(email);
   if (!userId) return customAnswer(userNotFound);
   const saleRegistered = await salesModel.saleRegister({
@@ -19,7 +19,6 @@ const saleRegister = async (orderData) => {
     price,
     address,
     deliveryNumber,
-    saleDate,
     salesStatus,
   });
   const saleId = saleRegistered.insertId;
@@ -40,8 +39,14 @@ const getSalesDataById = async (id) => {
   return customAnswer(orderDetail, OK);
 };
 
+const changeStatusById = async (id) => {
+  const orderStatusChanged = await salesModel.changeStatusById(id);
+  if (orderStatusChanged.affectedRows === 1) return customAnswer(orderStatusChangedMessage, OK);
+};
+
 module.exports = {
   saleRegister,
   getAllSalesData,
   getSalesDataById,
+  changeStatusById,
 };
