@@ -23,9 +23,11 @@ function ProductCard({ product, index }) {
 
   useEffect(() => {
     const orderResult = JSON.parse(localStorage.getItem('products'));
-    const quantityById = orderResult.find((object) => object.id === product.id);
-    if (!quantityById) return setQuantity(0);
-    setQuantity(quantityById.quantity);
+    if (orderResult !== null) {
+      const quantityById = orderResult.find((object) => object.id === product.id);
+      if (!quantityById) return setQuantity(0);
+      return setQuantity(quantityById.quantity);
+    }
   }, []);
 
   return (
