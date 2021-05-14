@@ -23,7 +23,7 @@ export default function TopMenu(props) {
       <h2
         data-testid="top-title"
       >
-        { topTitle ? topTitle : 'TryBeer' }
+        { !topTitle ? 'TryBeer' : topTitle }
       </h2>
       {showSideBar ? <SideBar /> : <div />}
     </div>

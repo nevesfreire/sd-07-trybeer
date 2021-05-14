@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import TopMenu from '../../components/TopMenu';
-import { saleById, getSaleByOrderId } from '../../service/trybeerApi'
+import { saleById, getSaleByOrderId } from '../../service/trybeerApi';
 
 export default function ClientDetails() {
   const [orderDate, setOrderDate] = useState('');
@@ -21,12 +21,11 @@ export default function ClientDetails() {
     const order = await getSaleByOrderId(orderNumber);
     const dateOrder = new Intl.DateTimeFormat('pt-BR', options)
       .format(Date.parse(order[0].sale_date));
- 
     if (!dateOrder) return setErrors(<h3>Pedido não encontrado</h3>);
 
     setOrderDate(dateOrder);
     setOrderDetail(result);
-  }
+  };
 
   useEffect(() => {
     salesProducts();
@@ -60,13 +59,15 @@ export default function ClientDetails() {
               {' '}
               <span data-testid={ `${index}-product-total-value` }>
                 <strong>
-                  {`R$ ${product.unitPrice.replace('.', ',') }`}
+                  {`R$ ${product.unitPrice.replace('.', ',')}`}
                 </strong>
               </span>
             </div>
           </div>
         ))}
-        <p data-testid="order-total-value" >
+        <p
+          data-testid="order-total-value"
+        >
           {`R$ ${(orderTotValue).toFixed(2).replace('.', ',')}`}
         </p>
       </div>

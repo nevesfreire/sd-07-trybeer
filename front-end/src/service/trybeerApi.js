@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const URL = 'http://localhost:3001';
+const invalidToken = 'Token inválido ou lista não encontrada!';
 
 const userStorage = JSON.parse(localStorage.getItem('user'));
 const { token } = userStorage === null ? '' : userStorage;
@@ -29,7 +30,7 @@ const productList = async () => {
   const result = await axios.get(`${URL}/products`, config)
     .then((response) => response.data)
     .catch((error) => {
-      if (error) return { error: 'Token inválido ou lista não encontrada!' };
+      if (error) return { error: invalidToken };
     });
   return result;
 };
@@ -88,7 +89,7 @@ const getSaleByUserId = async (userId) => {
   const result = await axios.get(`${URL}/sales/user/${userId}`, config)
     .then((response) => response.data)
     .catch((error) => {
-      if (error) return { error: 'Token inválido ou lista não encontrada!' };
+      if (error) return { error: invalidToken };
     });
   return result;
 };
@@ -97,7 +98,7 @@ const getSaleByOrderId = async (orderId) => {
   const result = await axios.get(`${URL}/sales/order/${orderId}`, config)
     .then((response) => response.data)
     .catch((error) => {
-      if (error) return { error: 'Token inválido ou lista não encontrada!' };
+      if (error) return { error: invalidToken };
     });
   return result;
 };
