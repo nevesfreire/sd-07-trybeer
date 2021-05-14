@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function OrderCard({ id, price, orderDateOrStatus }) {
-
   const idConfig = () => {
     const oneDecimalNum = 9;
     const twoDecimalNum = 99;

@@ -1,9 +1,13 @@
 import React from 'react';
+import HeaderBurguer from '../components/HeaderBurger';
 
 function PendingOrders() {
   return (
     <>
-      admin
+      <HeaderBurguer titulo="Detalhes de Pedido" isAdmin />
+      <div>
+        admin
+      </div>
     </>
   );
 }
