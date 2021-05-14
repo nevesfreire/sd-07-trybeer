@@ -5,7 +5,7 @@ import PendingOrdersComponent from '../components/PendingOrdersComponent';
 function PendingOrders() {
   return (
     <>
-      <HeaderBurguer titulo="Detalhes de Pedido" isAdmin />
+      <HeaderBurguer titulo="TryBeer" isAdmin />
       <PendingOrdersComponent />
     </>
   );

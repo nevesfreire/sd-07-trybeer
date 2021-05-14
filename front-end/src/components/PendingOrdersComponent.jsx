@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-import PendingOrderCard from '../components/PendingOrderCardComponent';
+import PendingOrderCard from './PendingOrderCardComponent';
 
 function PendingOrdersComponent() {
   const [loading, setLoading] = useState(true);
@@ -21,10 +21,10 @@ function PendingOrdersComponent() {
     setLoading(true);
     setJwtInvalid(false);
     setIsAdmin(true);
-    const userResult = localStorage.getItem('user');
+    const userResult = JSON.parse(localStorage.getItem('user'));
     if (!userResult) return setJwtInvalid(true);
-    if (userResult.role !== 'administrator') return isAdmin(false);
-    callAPI(userResult);    
+    if (userResult.role !== 'administrator') return setIsAdmin(false);
+    callAPI(userResult);
   }, []);
 
   if (jwtInvalid || !isAdmin) return (<Redirect to="/login" />);
@@ -33,13 +33,13 @@ function PendingOrdersComponent() {
   ) : (
     <>
       <h2>Pedidos Pendentes</h2>
-      {orders.map((order, index) => {
+      {orders.map((order, index) => (
         <PendingOrderCard
           key={ order.id }
           order={ order }
           index={ index }
         />
-      })}
+      ))}
     </>
   );
 }

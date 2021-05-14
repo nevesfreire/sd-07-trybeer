@@ -64,8 +64,8 @@ function useFetch() {
     return responseAPI;
   }
 
-  async function getOrders(token ) {
-    const result = await fetch('http://localhost:/sales', {
+  async function getOrders(token) {
+    const result = await fetch('http://localhost:3001/sales', {
       method: 'GET',
       headers: {
         Accept: informationType,
