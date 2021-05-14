@@ -5,6 +5,6 @@ const salesController = require('../controllers/salesController');
 const router = express.Router();
 
 router.post('/sales', validadeToken, salesController.sales);
-router.get('/sales', validadeToken, salesController.sales);
+router.get('/sales', validadeToken, salesController.getAllSales);
 
 module.exports = router;

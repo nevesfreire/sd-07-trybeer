@@ -7,7 +7,7 @@ const insertOne = `INSERT INTO sales (user_id, total_price,
 const insetSaleProduct = `INSERT INTO sales_products (sale_id, product_id, quantity)
 VALUES (?,?,?)`;
 
-const selectSales = 'SELECT * FROM sales';
+const selectSales = 'SELECT * FROM Trybeer.sales';
 
 const createSale = async (salesData) => {
   const {
@@ -38,10 +38,9 @@ const createSalesProducts = async (salesId, listproducts) => {
      );
 };
 
-const getAllSales = async (request, response) => {
+const getAllSales = async (_request, response) => {
   try {
     const [result] = await connection.execute(selectSales);
-    return response.status(StatusCodes.OK).json();
     return result;
   } catch (error) {
     response.status(StatusCodes.BAD_REQUEST)

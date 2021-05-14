@@ -25,10 +25,8 @@ const sales = async (request, response) => {
 
 const getAllSales = async (request, response) => {
   try {
-    const token = request.headers.authorization;
-    const user = await checkToken(token);
-    if (user) salesModel.getAllSales;
-    return response.status(StatusCodes.OK).json();
+    const result = await salesModel.getAllSales();
+    return response.status(StatusCodes.OK).json(result);
   } catch (error) {
     return response.status(StatusCodes.BAD_REQUEST)
       .json({ message: error.message });
