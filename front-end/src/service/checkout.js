@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-export default async function fetchUser(
+export default async function fetchUser(params) {
+  const {
     userId,
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    cart
-    ) {
+    cart,
+  } = params;
   const requestUserUrl = 'http://localhost:3001/checkout';
 
   const requestHeader = {
@@ -18,7 +19,7 @@ export default async function fetchUser(
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    cart
+    cart,
   };
 
   try {

@@ -1,59 +1,53 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Header } from 'semantic-ui-react';
-import CustomProductCard from '../components/CustomProductCard';
+import { Grid, Button, Segment, Header } from 'semantic-ui-react';
+import CustomRenderProducts from '../components/CustomRenderProducts';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
-import { Card, Grid, Button, Segment } from 'semantic-ui-react';
-import { getProduct } from '../helpers/localStorage';
+
 function Products() {
   const { totalKart, setTotalKart } = useContext(CentralContext);
 
   useEffect(() => {
     const total = JSON.parse(localStorage.getItem('cart'));
-    total &&
-      total.map((item) => {
-        setTotalKart(item[1] * item[2]);
-      });
-  }, []);
+    let memo = 0;
+    if (total) {
+      (total.map((item) => {
+        memo = item[1] * item[2];
+        return memo;
+      }));
+    }
+    setTotalKart(memo);
+  }, [setTotalKart]);
 
   useEffect(() => {}, [totalKart]);
 
   const history = useHistory();
 
-  const renderIngredients = () => {
-    const products = getProduct();
-    return (
-      <Card.Group stackable="true">
-        {products &&
-          products.map((beer, index) => (
-            <CustomProductCard key={beer.id} index={index} beer={beer} />
-          ))}
-      </Card.Group>
-    );
-  };
   return (
     <div>
       <Grid>
         <Grid.Column>
           <CustomHeader message="TryBeer" />
         </Grid.Column>
-        <Header as="h1" color="orange" textAlign="center"></Header>
+        <Header as="h1" color="orange" textAlign="center" />
       </Grid>
-      {renderIngredients()}
+      <CustomRenderProducts />
       <Segment textAlign="center">
         <Button
           circular="true"
           size="big"
           color="orange"
           data-testid="checkout-bottom-btn"
-          disabled={!totalKart}
-          onClick={() => history.push('/checkout')}
+          disabled={ !totalKart }
+          onClick={ () => history.push('/checkout') }
         >
           Ver Carrinho
-          <p data-testid="checkout-bottom-btn-value">{`R$ ${totalKart
-            .toFixed(2)
-            .replace('.', ',')}`}</p>
+          <p data-testid="checkout-bottom-btn-value">
+            {`R$ ${totalKart
+              .toFixed(2)
+              .replace('.', ',')}`}
+          </p>
         </Button>
       </Segment>
     </div>
