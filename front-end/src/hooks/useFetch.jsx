@@ -101,6 +101,19 @@ function useFetch() {
     return responseAPI;
   }
 
+  async function getClientOrderDetails(token, id) {
+    const result = await fetch(`http://localhost:/sales/${id}`, {
+      method: 'GET',
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+        Authorization: token,
+      },
+    });
+    const responseAPI = await result.json();
+    return responseAPI;
+  }
+
   return (
     {
       login,
@@ -109,6 +122,7 @@ function useFetch() {
       getProducts,
       postSales,
       getOrders,
+      getClientOrderDetails,
     }
   );
 }
