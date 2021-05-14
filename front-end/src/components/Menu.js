@@ -11,7 +11,7 @@ const Menu = ({ path }) => {
   const ADMIN_PAGE = '/admin/orders';
   const userPathname = pathname;
 
-  const { menuState } = useContext(Global);
+  const { menuState, setMenuState } = useContext(Global);
   return (
     <div
       className={
@@ -27,30 +27,34 @@ const Menu = ({ path }) => {
           </Link>
         </div>
       ) : null }
-      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
         { userPathname !== ADMIN_PAGE ? (
-          <Link to="/orders" data-testid="side-menu-item-my-orders">
-            Meus pedidos
-          </Link>
+        <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+            <Link to="/orders" data-testid="side-menu-item-my-orders">
+              Meus pedidos
+            </Link>
+        </div>
         ) : (
-          <Link to="/admin/orders" data-testid="side-menu-item-orders">
-            Meus pedidos
-          </Link>
+        <div className={ menuState ? 'hide-menu' : 'item-menu' }>
+            <Link to="/admin/orders" data-testid="side-menu-item-orders">
+              Meus pedidos_a
+            </Link>
+        </div>
         ) }
-      </div>
 
-      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
         { userPathname !== ADMIN_PAGE ? (
+       <div className={ menuState ? 'item-menu' : 'hide-menu' }>
           <Link to="/profile" data-testid="side-menu-item-my-profile">
             Meu perfil
           </Link>
+        </div>
         ) : (
+      <div className={ menuState ? 'hide-menu' : 'item-menu' }>
           <Link to="/admin/profile" data-testid="side-menu-item-profile">
             Meu perfil
           </Link>
-        ) }
       </div>
-      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        ) }
+      <div className={ menuState ? 'hide-menu' : 'item-menu' }>
         <Link to="/login" data-testid="side-menu-item-logout">
           Sair
         </Link>

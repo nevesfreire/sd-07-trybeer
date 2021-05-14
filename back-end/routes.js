@@ -11,7 +11,6 @@ const { productController } = require('./src/controllers');
 const { fieldValidator } = require('./src/middlewares');
 const { updateUser } = require('./src/controllers/userController');
 const { salesController } = require('./src/controllers/salesController');
-// const { isValidate } = require('./src/helpers/isValidate');
 
 app.post('/login', loginMiddleware, loginController);
 
@@ -20,9 +19,9 @@ app.get('/', getUser);
 app.put('/user', updateUser);
 
 app.post(
-  '/', body('name').isString().isLength({ min: 12 }),
+  '/',body('name').isString().isLength({ min: 12 }),
   body('email').isEmail(),
-  body('password').isLength({ min: 6 }),
+  body('password').isLength({ min: 6 }) ,
   fieldValidator,
   registerController,
 );
