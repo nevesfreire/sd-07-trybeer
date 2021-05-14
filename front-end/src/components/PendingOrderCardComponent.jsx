@@ -37,7 +37,7 @@ PendingOrderCard.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,
-    total_price: PropTypes.number.isRequired,
+    total_price: PropTypes.string.isRequired,
     delivery_address: PropTypes.string.isRequired,
     delivery_number: PropTypes.string.isRequired,
   }).isRequired,
