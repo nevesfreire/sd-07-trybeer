@@ -11,23 +11,26 @@ import App from '../App';
 import { login, register } from '../service/trybeerApi';
 
 const history = createMemoryHistory();
-history.push('register');
 
 const nameId = 'signup-name'
 const emailId = 'signup-email';
 const passwordId = 'signup-password';
-const sellerId = 'signup-seller'
+const sellerId = 'signup-seller';
 
 describe('1 - [PÁGINA DE REGISTRO] Crie uma página para registro de usuários com os seguintes campos e características:', () => {
 
   test('A rota para esta página deve ser \'/register\'', () => {
     render(<App />);
+    const createAccountButton = screen.getByText(/Ainda não tenho conta/i);
+    fireEvent.click(createAccountButton);
  
     expect(history.location.pathname).toBe('/register');
   });
 
   test('Crie um local para que o usuário insira seu nome, email e password', () => {
     render(<App />);
+    const createAccountButton = screen.getByText(/Ainda não tenho conta/i);
+    fireEvent.click(createAccountButton);
 
     const name = screen.getByTestId(nameId);
     const email = screen.getByTestId(emailId);
@@ -42,6 +45,8 @@ describe('1 - [PÁGINA DE REGISTRO] Crie uma página para registro de usuários 
 
   test('Crie um botão com o texto \'Cadastrar\'', () => {
     render(<App />);
+    const createAccountButton = screen.getByText(/Ainda não tenho conta/i);
+    fireEvent.click(createAccountButton);
 
     const button = screen.getByText(/Cadastrar/i);
     expect(button).toBeInTheDocument();
@@ -49,6 +54,8 @@ describe('1 - [PÁGINA DE REGISTRO] Crie uma página para registro de usuários 
 
   test('Realize as seguintes verificações nos campos de email, password e botão:', () => {
     render(<App />);
+    const createAccountButton = screen.getByText(/Ainda não tenho conta/i);
+    fireEvent.click(createAccountButton);
    
     const button = screen.getByText(/Cadastrar/i);
     expect(button).toBeDisabled();
@@ -105,6 +112,8 @@ describe('1 - [PÁGINA DE REGISTRO] Crie uma página para registro de usuários 
 
   test('Realiza cadastro com usuário client.', () => {
     render(<App />);
+    const createAccountButton = screen.getByText(/Ainda não tenho conta/i);
+    fireEvent.click(createAccountButton);
     
     const name = screen.getByTestId(nameId);
     const email = screen.getByTestId(emailId);
@@ -124,6 +133,8 @@ describe('1 - [PÁGINA DE REGISTRO] Crie uma página para registro de usuários 
 
   test('Realiza cadastro com usuário admin', () => {
     render(<App />);
+    const createAccountButton = screen.getByText(/Ainda não tenho conta/i);
+    fireEvent.click(createAccountButton);
 
     const name = screen.getByTestId(nameId);
     const email = screen.getByTestId(emailId);
@@ -146,6 +157,8 @@ describe('1 - [PÁGINA DE REGISTRO] Crie uma página para registro de usuários 
 
   test('Registro de usuário já existente exibe mensagem de erro.', async () => {
     render(<App />);
+    const createAccountButton = screen.getByText(/Ainda não tenho conta/i);
+    fireEvent.click(createAccountButton);
 
     const name = screen.getByTestId(nameId);
     const email = screen.getByTestId(emailId);
@@ -175,6 +188,8 @@ describe('2 - [PÁGINA DE REGISTRO INFORMAÇÕES USER LOCALSTORAGE] Salvar as in
   test('Testa se o token está ok.', async () => {
     render(<App />);
     beforeEach(() => localStorage.clear());
+    const createAccountButton = screen.getByText(/Ainda não tenho conta/i);
+    fireEvent.click(createAccountButton);
   
     const name = screen.getByTestId(nameId);
     const email = screen.getByTestId(emailId);
@@ -198,6 +213,8 @@ describe('2 - [PÁGINA DE REGISTRO INFORMAÇÕES USER LOCALSTORAGE] Salvar as in
   test('Testa se o email de usuário está ok.', async () => {
     render(<App />);
     beforeEach(() => localStorage.clear());
+    const createAccountButton = screen.getByText(/Ainda não tenho conta/i);
+    fireEvent.click(createAccountButton);
 
     await register('Roberto Carlos', 'usuario@test.com', 'test123', 'client');
     const result = await login('usuario@test.com', 'test123')

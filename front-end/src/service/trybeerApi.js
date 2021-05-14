@@ -71,14 +71,39 @@ const updateClient = async (name, email) => {
   return result;
 };
 
+const saleById = async (id) => {
+  const result = await axios.get(`${URL}/admin/orders/${id}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error) return { error: 'Pedido não encontrado' };
+    });
+  return result;
+};
+
+const updateSaleStatus = async (status, id) => {
+  const result = await axios.put(`${URL}/admin/orders/${id}`, {
+    status,
+  })
+    .then((response) => response.data)
+    .catch((error) => {
+      if (error) return { error: error.message };
+    });
+  return result;
+};
+
 const saveSale = async (sale, products) => {
   const result = await axios.post(`${URL}/sales`,
-    { sale, products },
-    { headers: {
-      'Content-Type': 'application/json',
-      authorization: token,
-    },
-    }).then(() => console.log('Pedido Finalizado'))
+    { sale, products }, config)
+    .then(() => console.log('Pedido Finalizado'))
+    .catch((error) => {
+      if (error) return { error: error.message };
+    });
+  return result;
+};
+
+const getAllSales = async () => {
+  const result = await axios.get(`${URL}/sales`, config)
+    .then((response) => response.data)
     .catch((error) => {
       if (error) return { error: error.message };
     });
@@ -108,8 +133,10 @@ export {
   productList,
   register,
   updateClient,
-  saveSale,
   saleById,
+  updateSaleStatus,
+  saveSale,
+  getAllSales,
   getSaleByUserId,
   getSaleByOrderId,
 };
