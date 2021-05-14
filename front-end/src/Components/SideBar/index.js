@@ -41,7 +41,11 @@ export default function SideBar({ role }) {
   }
   return (
     <Nav data-testid="side-menu-container" className="side-menu-container flex-column">
-      <Nav.Link data-testid="side-menu-item-products" href="/products">
+      <Nav.Link
+        style={ { marginTop: '50px' } }
+        data-testid="side-menu-item-products"
+        href="/products"
+      >
         Produtos
       </Nav.Link>
       <Nav.Link data-testid="side-menu-item-my-orders" href="/orders">
