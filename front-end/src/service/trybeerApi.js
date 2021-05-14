@@ -62,10 +62,7 @@ const updateClient = async (name, email) => {
 
 const saleById = async (id) => {
   const result = await axios.get(`${URL}/admin/orders/${id}`)
-    .then((response) => {
-      console.log(response);
-      return response.data;
-    })
+    .then((response) => response.data)
     .catch((error) => {
       if (error) return { error: 'Pedido não encontrado' };
     });
