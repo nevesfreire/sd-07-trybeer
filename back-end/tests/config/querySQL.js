@@ -54,6 +54,7 @@ insertProducts: `INSERT INTO products (id, name, price, url_image) VALUES
 ('9','Becks 600ml',8.89, 'http://localhost:3001/images/Becks 600ml.jpg'),
 ('10','Skol Beats Senses 269ml',3.57, 'http://localhost:3001/images/Skol Beats Senses 269ml.jpg'),
 ('11','Stella Artois 275ml',3.49, 'http://localhost:3001/images/Stella Artois 275ml.jpg');`,
+dropSaleTables: 'DROP TABLE Trybeer.sales, Trybeer.sales_products;',
 };
 
 module.exports = db;
