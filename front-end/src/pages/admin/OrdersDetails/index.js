@@ -10,7 +10,7 @@ import {
   changeStatusRequest,
 } from '../../../services/orderDetailsApi';
 
-function OrderDetailClient(props) {
+function OrderDetailAdmin(props) {
   const [role, setRole] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [orderDetail, setOrderDetail] = useState([]);
@@ -56,7 +56,7 @@ function OrderDetailClient(props) {
   }, [id, setOrderPrice, setOrderDetail, setOrderStatus]);
 
   return (
-    <div>
+    <>
       {isLoading && <h1>Loading...</h1>}
       {!isLoading && role !== 'administrator' && (
         <TopMenu title="Detalhes de Pedido" />
@@ -86,11 +86,11 @@ function OrderDetailClient(props) {
           Marcar como entregue
         </button>
       ) : null}
-    </div>
+    </>
   );
 }
 
-OrderDetailClient.propTypes = {
+OrderDetailAdmin.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -98,4 +98,4 @@ OrderDetailClient.propTypes = {
   }).isRequired,
 };
 
-export default OrderDetailClient;
+export default OrderDetailAdmin;
