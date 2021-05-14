@@ -5,7 +5,7 @@ const token = require('./configs/token');
 const CODE = require('../helper/statusCodes');
 jest.mock('../models/ProductModel')
 
-describe('1 - Product Service', () => {
+describe('1 - Product Service - Lista de Produtos', () => {
   test('É necessário realizar autenticação para acessar a lsita de produtos', async () => {
     try {
       await ProductService.findAll();

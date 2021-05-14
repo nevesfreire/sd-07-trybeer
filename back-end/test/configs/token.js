@@ -1,16 +1,15 @@
 const { generateToken } = require('../../helper/AuthValidation');
 
 const user = {
-  email: 'teste@teste.com',
-  password: 'teste123',
+  email: 'user@email.com',
+  password: 'user123',
 };
 
 const admin = {
-  email: 'teste@teste.com',
-  password: 'teste123',
+  email: 'admin@teste.com',
+  password: 'admin123',
   role: 'administrator',
 };
-
 
 const token = {
   invalid: '1A2b3Cde78',
