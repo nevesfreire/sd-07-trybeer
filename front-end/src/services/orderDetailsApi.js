@@ -6,7 +6,7 @@ const defaultPort = 3001;
 
 const PORT = process.env.REACT_APP_PORT_BACKEND || defaultPort;
 
-async function getOrdersDetailRequest(id) {
+export const getOrdersDetailRequest = async (id) => {
   const endpoint = `http://localhost:${PORT}/orders/${id}`;
   let response = {};
 
@@ -16,6 +16,16 @@ async function getOrdersDetailRequest(id) {
   } catch (error) {
     return error.response;
   }
-}
+};
 
-export default getOrdersDetailRequest;
+export const changeStatusRequest = async (id) => {
+  const endpoint = `http://localhost:${PORT}/orders/${id}`;
+  let response = {};
+
+  try {
+    response = await axios.put(endpoint);
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};

@@ -45,5 +45,6 @@ router.post(
 
 router.get('/orders', salesController.getAllSalesData);
 router.get('/orders/:id', salesController.getSalesDataById);
+router.put('/orders/:id', salesController.changeStatusById);
 
 module.exports = router;

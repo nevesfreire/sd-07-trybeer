@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import jwtDecode from 'jwt-decode';
 import TopMenu from '../../../commons/simple/TopMenu';
 import SideBar from '../../../commons/composed/SideBar';
-import { getOrdersDetailRequest } from '../../../services/orderDetailsApi';
+import {
+  getOrdersDetailRequest,
+  changeStatusRequest,
+} from '../../../services/orderDetailsApi';
 
 function OrderDetailClient(props) {
   const [role, setRole] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [orderDetail, setOrderDetail] = useState([]);
-  const [orderDate, setOrderDate] = useState([]);
-  const [orderPrice, setOrderPrice] = useState([]);
+  const [orderStatus, setOrderStatus] = useState('');
+  const [orderPrice, setOrderPrice] = useState('');
 
   const history = useHistory();
   const {
@@ -21,6 +23,15 @@ function OrderDetailClient(props) {
       params: { id },
     },
   } = props;
+
+  const StatusOk = 200;
+
+  const statusHandleClick = async () => {
+    const result = await changeStatusRequest(id);
+    if (result.status === StatusOk) {
+      setOrderStatus('Entregue');
+    }
+  };
 
   useEffect(() => {
     const getToken = () => {
@@ -38,13 +49,11 @@ function OrderDetailClient(props) {
       const result = await getOrdersDetailRequest(id);
       const { data } = result;
       setOrderDetail(result.data);
-      setOrderDate(data[0].orderDate);
       setOrderPrice(data[0].totalPrice);
+      setOrderStatus(data[0].orderStatus);
     };
     renderOrderDetail();
-  }, [id, setOrderPrice, setOrderDetail, setOrderDate]);
-
-  const formatDate = (date) => moment(date).format('DD/MM');
+  }, [id, setOrderPrice, setOrderDetail, setOrderStatus]);
 
   return (
     <div>
@@ -54,7 +63,7 @@ function OrderDetailClient(props) {
       )}
       {!isLoading && role === 'administrator' && <SideBar isAdmin />}
       <h2 data-testid="order-number">{`Pedido ${id}`}</h2>
-      <h2 data-testid="order-date">{formatDate(orderDate)}</h2>
+      <h2 data-testid="order-status">{orderStatus}</h2>
       {orderDetail.map((product, index) => (
         <div key={ product.productName }>
           <h3 data-testid={ `${index}-product-qtd` }>
@@ -70,10 +79,13 @@ function OrderDetailClient(props) {
         </div>
       ))}
       <h2 data-testid="order-total-value">
-        {`Total: R$ ${orderPrice
-          .toString()
-          .replace('.', ',')}`}
+        {`Total: R$ ${orderPrice.toString().replace('.', ',')}`}
       </h2>
+      {orderStatus === 'Pendente' ? (
+        <button type="button" onClick={ statusHandleClick }>
+          Marcar como entregue
+        </button>
+      ) : null}
     </div>
   );
 }

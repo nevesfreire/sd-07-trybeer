@@ -62,6 +62,10 @@ const productsCampSaleMessage = {
   message: 'Nome e/ou Quantidade incorreta',
 };
 
+const orderStatusChangedMessage = {
+  message: 'Status alterado com sucesso!',
+};
+
 module.exports = {
   userPasswordMessage,
   updateNameMessageSuccess,
@@ -79,4 +83,5 @@ module.exports = {
   statusSaleMessage,
   productsSaleMessage,
   productsCampSaleMessage,
+  orderStatusChangedMessage,
 };
