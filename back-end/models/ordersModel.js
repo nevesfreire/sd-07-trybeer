@@ -33,7 +33,7 @@ const createProductsSale = async (prods) => {
 
 const readOneSale = async (id) => {
   const [[sale]] = await connection.query(
-    `SELECT u.name AS user, u.id AS userId, s.delivery_address AS address,
+    `SELECT u.name AS user, u.id AS userId, s.delivery_address AS address, s.sale_date AS Date,
      s.id AS sale, s.total_price AS total_price, s.status AS status
       FROM users AS u
       INNER JOIN sales as s
@@ -55,7 +55,7 @@ const getSales = async () => {
   const [sales] = await connection.query(
     `SELECT u.name AS user, u.id AS userId, s.delivery_address AS address,
      s.delivery_number AS number, s.id AS sale, s.total_price AS total_price,
-     s.status AS status
+     s.status AS status, s.sale_date AS Date
       FROM users AS u
       INNER JOIN sales as s
       ON s.user_id = u.id
