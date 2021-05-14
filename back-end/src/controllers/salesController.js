@@ -1,4 +1,3 @@
-const { request, response } = require('express');
 const { StatusCodes } = require('http-status-codes');
 const salesModel = require('../models/salesModel');
 const { checkToken } = require('../services/productsSevice');
@@ -24,7 +23,7 @@ const sales = async (request, response) => {
   }
 };
 
-const getAllSales = async (request, response) => {
+const getAllSales = async (_request, response) => {
   try {
     const result = await salesModel.getAllSales();
     return response.status(StatusCodes.OK).json(result);
@@ -37,7 +36,7 @@ const getAllSales = async (request, response) => {
 const getSaleById = async (request, response) => {
   try {
     const { id } = request.params;
-    const result = await salesModel.gatSaleById(id);
+    const result = await salesModel.getSaleById(id);
   return response.status(StatusCodes.OK).json(result);
   } catch (error) {
     return response.status(StatusCodes.BAD_REQUEST)
@@ -45,4 +44,8 @@ const getSaleById = async (request, response) => {
   }
 };
 
-module.exports = { sales, getAllSales };
+module.exports = {
+  sales,
+  getAllSales,
+  getSaleById,
+};
