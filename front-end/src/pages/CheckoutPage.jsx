@@ -7,7 +7,7 @@ function Checkout() {
   const [listProducts, setListProducts] = useState([]);
   const [localStorageSalved, setLocalStorageSalved] = useState([]);
   const [user, setUser] = useState({});
-  const [disabled, setDisabled] = useState(true);
+  const [finalMsg, setFinalMsg] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
   const [address, setAddress] = useState({
     deliveryAddress: '',
@@ -17,17 +17,16 @@ function Checkout() {
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
     const userRecovered = JSON.parse(savedUser);
-    setUser(userRecovered.user);
+    setUser(userRecovered);
     const savedProdcuts = localStorage.getItem('products');
     const list = JSON.parse(savedProdcuts);
     setLocalStorageSalved(list);
 
-    const urls = list.map(product => `http://localhost:3001/products/${product.id}`);
+    const urls = list.map((product) => `http://localhost:3001/products/${product.id}`);
     Promise.all(
-      urls.map((url) =>
-        fetch(url)
-          .then(response => response.json())),
-    ).then(result => setListProducts(result));
+      urls.map((url) => fetch(url)
+        .then((response) => response.json())),
+    ).then((result) => setListProducts(result));
   }, []);
 
   const listProductsWithPrice = () => {
@@ -66,11 +65,20 @@ function Checkout() {
     return true;
   };
 
-  const handleCheckout = () => {
-    postSales('Pendente', user, address, totalPrice, localStorageSalved);
+  const handleCheckout = async () => {
+    const args = {
+      status: 'Pendente',
+      user,
+      address,
+      total: totalPrice,
+      localStorageSalved,
+    };
+    const messageAPI = await postSales(args);
+    setFinalMsg(messageAPI);
     const userLS = localStorage.getItem('user');
     localStorage.clear();
     localStorage.setItem('user', userLS);
+    setLocalStorageSalved([]);
   };
 
   const removeProduct = (id) => {
@@ -89,7 +97,7 @@ function Checkout() {
         titulo="Finalizar Pedido"
         data-testid="top-title"
       />
-      { listProducts.length > 0
+      { (listProducts.length > 0 && localStorageSalved.length > 0)
         ? (localStorageSalved.map((product, index) => (
           <div key={ product.id }>
             <span data-testid={ `${index}-product-qtd-input` }>{product.quantity}</span>
@@ -140,6 +148,7 @@ function Checkout() {
       >
         Finalizar Pedido
       </button>
+      <span>{ finalMsg.message }</span>
     </>
   );
 }
