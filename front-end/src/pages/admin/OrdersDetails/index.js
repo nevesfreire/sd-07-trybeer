@@ -10,7 +10,7 @@ import {
   changeStatusRequest,
 } from '../../../services/orderDetailsApi';
 
-function OrderDetailAdmin(props) {
+function OrderDetailsAdmin(props) {
   const [role, setRole] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [orderDetail, setOrderDetail] = useState([]);
@@ -48,6 +48,7 @@ function OrderDetailAdmin(props) {
     const renderOrderDetail = async () => {
       const result = await getOrdersDetailRequest(id);
       const { data } = result;
+      console.log(data);
       setOrderDetail(result.data);
       setOrderPrice(data[0].totalPrice);
       setOrderStatus(data[0].orderStatus);
@@ -90,7 +91,7 @@ function OrderDetailAdmin(props) {
   );
 }
 
-OrderDetailAdmin.propTypes = {
+OrderDetailsAdmin.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -98,4 +99,4 @@ OrderDetailAdmin.propTypes = {
   }).isRequired,
 };
 
-export default OrderDetailAdmin;
+export default OrderDetailsAdmin;

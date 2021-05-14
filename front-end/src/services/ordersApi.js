@@ -6,7 +6,9 @@ const defaultPort = 3001;
 
 const PORT = process.env.REACT_APP_PORT_BACKEND || defaultPort;
 
-async function ordersRequest(id, saleDate, totalPrice) {
+async function ordersRequest(
+  id, saleDate, totalPrice, deliveryAddress, deliveryNumber, status
+) {
   const endpoint = `http://localhost:${PORT}/orders`;
   let response = {};
 
@@ -15,6 +17,9 @@ async function ordersRequest(id, saleDate, totalPrice) {
       id,
       saleDate,
       totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      status,
     });
     return response;
   } catch (error) {

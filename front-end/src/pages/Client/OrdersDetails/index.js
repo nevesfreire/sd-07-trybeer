@@ -37,6 +37,7 @@ function OrderDetailClient(props) {
     const renderOrderDetail = async () => {
       const result = await getOrdersDetailRequest(id);
       const { data } = result;
+      console.log(data)
       setOrderDetail(result.data);
       setOrderDate(data[0].orderDate);
       setOrderPrice(data[0].totalPrice);

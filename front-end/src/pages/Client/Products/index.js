@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
 import { useHistory } from 'react-router-dom';
 import BeerContext from '../../../context/beerContext';
 import TopMenu from '../../../commons/simple/TopMenu';
+import SideBar from '../../../commons/composed/SideBar';
 import ProductsCard from '../../../components/productsCard';
 import getProductsRequest from '../../../services/productsApi';
 
@@ -13,6 +15,7 @@ function Products() {
   } = useContext(BeerContext);
 
   const [isDisabled, setIsDisabled] = useState(true);
+  const [role, setRole] = useState('');
   const history = useHistory();
 
   const updateCartPreview = () => {
@@ -31,6 +34,8 @@ function Products() {
     const getToken = () => {
       const token = localStorage.getItem('token');
       if (!token) return history.push('/login');
+      const userData = jwtDecode(token);
+      setRole(userData.role);
     };
     getToken();
   }, [history]);
@@ -54,7 +59,9 @@ function Products() {
 
   return (
     <>
-      <TopMenu title="TryBeer" />
+      { role !== 'administrator' ? <TopMenu title="TryBeer" />
+      : <SideBar isAdmin /> }
+      
       { isFetching && <h1>Loading...</h1>}
       { !isFetching && products.map((product, index) => (<ProductsCard
         key={ product.id }

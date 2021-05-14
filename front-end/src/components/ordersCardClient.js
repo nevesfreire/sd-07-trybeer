@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-function OrdersCard(props) {
+function OrdersCardClient(props) {
   const { id, saleDate, totalPrice, index } = props;
 
   const formatDate = () => moment(saleDate).format('DD/MM');
@@ -34,11 +34,11 @@ function OrdersCard(props) {
   );
 }
 
-OrdersCard.propTypes = {
+OrdersCardClient.propTypes = {
   id: PropTypes.number.isRequired,
   saleDate: PropTypes.string.isRequired,
-  totalPrice: PropTypes.number.isRequired,
+  totalPrice: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
 };
 
-export default OrdersCard;
+export default OrdersCardClient;
