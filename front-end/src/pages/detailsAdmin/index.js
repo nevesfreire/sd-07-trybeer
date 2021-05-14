@@ -7,7 +7,6 @@ import { updateSaleStatus, saleById } from '../../service/trybeerApi';
 const ENTREGUE = 'Entregue';
 
 export default function AdminDetails() {
-  // const {  } = useContext(TrybeerContext);
   const { id } = useParams();
   const [orderId] = useState(id);
   const [orderStatus, setOrderStatus] = useState('Pendente');
@@ -55,12 +54,11 @@ export default function AdminDetails() {
         <span data-testid="order-status">{` ${orderStatus}`}</span>
       </h1>
       <div>
-        {console.log('order: ', order)}
         {order && order.map((product, index) => (
           <div
             key={ index }
           >
-            <span data-testid={ `${index}-product-qtd-input` }>{product.qtd}</span>
+            <span data-testid={ `${index}-product-qtd` }>{product.qtd}</span>
             <span data-testid={ `${index}-product-name` }>{ ` ${product.name} ` }</span>
             <span data-testid={ `${index}-product-total-value` }>
               { ` R$ ${(product.qtd * parseFloat(product.unitPrice))
