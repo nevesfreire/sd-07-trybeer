@@ -44,8 +44,20 @@ const getSaleById = async (request, response) => {
   }
 };
 
+const statusChange = async (request, response) => {
+  try {
+    const { status } = request.body;
+    const result = await salesModel.statusChange(status);
+    return response.status(StatusCodes.OK).json(result);
+  } catch (error) {
+    return response.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+};
+
 module.exports = {
   sales,
   getAllSales,
   getSaleById,
+  statusChange,
 };

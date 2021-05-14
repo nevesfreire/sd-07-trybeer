@@ -14,6 +14,8 @@ FROM Trybeer.sales_products as sp
 INNER JOIN Trybeer.products as p on p.id  = sp.product_id
 INNER JOIN Trybeer.sales as s WHERE sp.sale_id = ?`;
 
+const changeStatus = 'UPDATE Trybeer.sales set status = ?';
+
 const createSale = async (salesData) => {
   const {
     userId,
@@ -54,13 +56,13 @@ const getAllSales = async (_request, response) => {
 };
 
 const getSaleById = async (id) => {
-  try {
-    const [result] = await connection.execute(saleById, [id]);
+  const [result] = await connection.execute(saleById, [id]);
+  return result;  
+};
+
+const statusChange = async (status) => {
+  const [result] = await connection.execute(changeStatus, [status]);
   return result;
-  } catch (error) {
-    response.status(StatusCodes.BAD_REQUEST)
-      .json({ message: error.message });
-  }
 };
 
 module.exports = {
@@ -68,4 +70,5 @@ module.exports = {
   createSalesProducts,
   getAllSales,
   getSaleById,
+  statusChange,
 };
