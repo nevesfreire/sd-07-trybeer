@@ -9,15 +9,16 @@ const registerUser = async (name, email, password, role = 'client') => {
   return register;
 };
 
-// const getUser = async (email) => {
-//   const [userEmail] = connect.execute(
-//     'SELECT * FROM users WHERE email = ?',
-//     [email],
-//   );
-//   return userEmail;
-// }
+const getUser = async (email) => {
+  const [userEmail] = await connect.execute(
+    'SELECT * FROM users WHERE email = ?',
+    [email],
+  );
+  
+  return userEmail;
+};
 
 module.exports = {
   registerUser,
-  // getUser,
+  getUser,
 };

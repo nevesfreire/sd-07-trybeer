@@ -16,7 +16,9 @@ const registerUser = async (req, res) => {
     console.log(register);
     res.status(httpStatus.CREATED).json({ name, email, role, token });
   } catch (error) {
-    res.status(httpStatus.BAD_REQUEST).json(error.message);
+    res.status(httpStatus.BAD_REQUEST).json({
+      message: error.message,
+    });
   }
 };
 
