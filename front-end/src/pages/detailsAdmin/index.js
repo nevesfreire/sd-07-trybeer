@@ -10,18 +10,24 @@ export default function AdminDetails() {
   const { id } = useParams();
   const [orderId] = useState(id);
   const [orderStatus, setOrderStatus] = useState('Pendente');
+  const [totalPrice, setTotalPrice] = useState([]);
   const [order, setOrder] = useState([{
     name: '',
     qtd: '',
     status: '',
     unitPrice: '',
+    totalValue: '',
   }]);
+
+  const getOrderValue = (array) => array.map((product) => product.qtd * product.unitPrice)
+    .reduce((acc, curr) => acc + curr);
 
   useEffect(() => {
     const fetchSale = async () => {
       const orderData = await saleById(orderId);
       setOrder(orderData);
       if (orderData.length > 0) {
+        setTotalPrice(getOrderValue(orderData));
         setOrderStatus(orderData[0].status || 'Pendente');
       }
     };
@@ -71,6 +77,11 @@ export default function AdminDetails() {
           </div>
         ))}
       </div>
+      <h4 data-testid="order-total-value">
+        {
+          `Total: ${totalPrice}`
+        }
+      </h4>
       { shouldButtonRender() }
     </div>
   );
