@@ -27,6 +27,7 @@ OrderCard.propTypes = {
   id: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   date: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default OrderCard;
