@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 function FormCheckout({ formCheckout, setFormCheckout }) {
   const handleValueState = ({ target }) => {
@@ -8,7 +9,7 @@ function FormCheckout({ formCheckout, setFormCheckout }) {
   };
 
   return (
-    <div>
+    <div className='form-checkout-container' >
       <h1>Endereço</h1>
       <form>
         <label htmlFor="street">

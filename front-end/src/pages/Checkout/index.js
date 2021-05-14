@@ -7,6 +7,8 @@ import TopMenu from '../../component/TopMenu';
 import BeerAppContext from '../../context/BeerAppContext';
 import { requestCreateSaleAPI } from '../../services';
 import { getToLocalStorage } from '../../utils/localStorage';
+// import './style.css';
+import Container from './style';
 
 const defaultForm = {
   street: '',
@@ -63,37 +65,50 @@ function Checkout() {
     if (!validateToken()) {
       return history.push('/login');
     }
-  }, [history]);
+  }, []);
 
   return (
-    <div>
+    <Container>
+
       <TopMenu title="TryBeer" />
-      {totalProducts === 'R$ 0,00' && <p>Não há produtos no carrinho</p>}
-      {shopCart.map((product) => (
-        <CheckoutCard key={ product.id } product={ product } />
-      ))}
-      <h2 data-testid="order-total-value">
-        Total:
-        {totalProducts}
-      </h2>
-      <FormCheckout
-        formCheckout={ formCheckout }
-        setFormCheckout={ setFormCheckout }
-      />
-      <button
-        type="button"
-        disabled={
-          !!(totalProducts === 'R$ 0,00'
+      {totalProducts === 'R$ 0,00' && <h2>Não há produtos no carrinho</h2>}
+
+      <div className={'checkout-card-container'}>
+        {shopCart.map((product) => (
+          <CheckoutCard key={ product.id } product={ product } />
+        ))}
+      </div>
+
+      <div className='checkout-form-container'>
+        <h2 data-testid="order-total-value" className='checkout-total-price'>
+          {`Total: ${totalProducts}`}
+        </h2>
+
+        <FormCheckout
+          formCheckout={ formCheckout }
+          setFormCheckout={ setFormCheckout }
+        />
+
+        <h3>{messageBool && messageValue}</h3>
+
+        <button
+          className={
+            totalProducts === 'R$ 0,00'
           || !formCheckout.street
-          || !formCheckout.houseNumber)
-        }
-        data-testid="checkout-finish-btn"
-        onClick={ () => handleMessageSucess() }
-      >
-        Finalizar Pedido
-      </button>
-      <p>{messageBool && messageValue}</p>
-    </div>
+          || !formCheckout.houseNumber ? 'checkout-disable-button' : 'checkout-final-button'}
+          type="button"
+          disabled={
+            !!(totalProducts === 'R$ 0,00'
+            || !formCheckout.street
+            || !formCheckout.houseNumber)
+          }
+          data-testid="checkout-finish-btn"
+          onClick={ () => handleMessageSucess() }
+        >
+          Finalizar Pedido
+        </button>
+      </div>
+    </Container>
   );
 }
 

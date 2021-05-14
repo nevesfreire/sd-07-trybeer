@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import BeerAppContext from '../../context/BeerAppContext';
+import './style.css';
 
 function CheckoutCard({ product }) {
   const { id, name, qtd, price, totalPrice } = product;
@@ -15,13 +16,13 @@ function CheckoutCard({ product }) {
 
   return (
     qtd > 0 && (
-      <div>
-        <p data-testid={ `${id - 1}-product-name` }>{name}</p>
-        <p data-testid={ `${id - 1}-product-qtd-input` }>{qtd}</p>
+      <div className='checkout-card-und-container'>
+        <h2 data-testid={ `${id - 1}-product-name` }>{name}</h2>
+        <p data-testid={ `${id - 1}-product-qtd-input` }>Quantidade: {qtd}</p>
         <p data-testid={ `${id - 1}-product-unit-price` }>
-          {`(${convertPrice(price)} un)`}
+          {`Preço: (${convertPrice(price)} un)`}
         </p>
-        <p data-testid={ `${id - 1}-product-total-value` }>{totalPrice}</p>
+        <p data-testid={ `${id - 1}-product-total-value` }>Total {totalPrice}</p>
         <button
           type="button"
           onClick={ () => deleteProduct(id) }

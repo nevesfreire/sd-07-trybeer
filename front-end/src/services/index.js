@@ -60,6 +60,16 @@ const requestGetOrdersAPI = () => {
     .catch((error) => error.response);
 };
 
+const requestGetOrderAPI = (id) => {
+  const endpoint = `${urlAPI}/orders/${id}`;
+  const { token } = getToLocalStorage('user');
+  const headersAxios = { headers: { Authorization: token } };
+  return axios
+    .get(endpoint, headersAxios)
+    .then((response) => response)
+    .catch((error) => error.response);
+};
+
 export {
   requestLoginAPI,
   requestCreateUserAPI,
@@ -67,4 +77,5 @@ export {
   requestGetProductsAPI,
   requestCreateSaleAPI,
   requestGetOrdersAPI,
+  requestGetOrderAPI,
 };
