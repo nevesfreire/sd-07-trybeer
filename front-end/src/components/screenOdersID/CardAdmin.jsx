@@ -51,7 +51,9 @@ export default function Card(prop) {
               <h4 data-testid={ `${index}-product-total-value` }>
                 {dinheiro(totalItem)}
               </h4>
-              <h4 data-testid={ `${index}-order-unit-price` }>{dinheiro(price)}</h4>
+              <h4 data-testid={ `${index}-order-unit-price` }>
+                {`(${dinheiro(price)})`}
+              </h4>
             </div>
           );
         })}
