@@ -6,7 +6,6 @@ import { getOrdersForAdmin, getOrdersForUser } from '../api';
 import ls from '../services';
 
 function Orders() {
-  const [ordersState, setOrdersState] = useState([]);
   const history = useHistory();
 
   const [user, setUser] = useState();
