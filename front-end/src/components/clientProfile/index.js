@@ -27,6 +27,7 @@ export default function ClientProfile() {
         <span>Name</span>
         <input
           value={ name }
+          id="name"
           onChange={ (e) => setName(e.target.value) }
           type="name"
           name="name"
@@ -39,6 +40,7 @@ export default function ClientProfile() {
         Email
         <input
           value={ currentUser.email }
+          id="email"
           type="email"
           name="email"
           data-testid="profile-email-input"

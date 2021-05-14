@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import registerUser from '../services/User';
+import registerUser from '../services/user';
 
 export default function Register() {
   const [disabled, setDisabled] = useState(true);
@@ -38,12 +38,6 @@ export default function Register() {
     setShouldRedirect(true);
   };
 
-  // const verifyEmail = async (email) => {
-  //   const userFound = await getUser(email);
-  //   if (userFound) return true;
-  //   return false;
-  // };
-
   useEffect(() => {
     const { name, email, password } = registerData;
     const rEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -53,7 +47,6 @@ export default function Register() {
     const passwordIsValid = password.length >= minLengthForPassword;
     const emailIsValid = rEmail.test(email);
     const nameIsValid = regexForName.test(name) && name.length >= minLengthForName;
-    // const checkUserEmail = emailIsValid ? verifyEmail(email) : false;
     if (passwordIsValid && emailIsValid && nameIsValid) {
       setDisabled(false);
     } else {

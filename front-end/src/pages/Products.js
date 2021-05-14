@@ -7,9 +7,10 @@ import { fetchProducts } from '../actions';
 
 function Products() {
   const INITIAL_VALUE = 0;
-  const [shouldRedirect, setShouldRedirect] = useState(false);
-  const productsList = useSelector(({ products }) => products.products);
+  const [shouldRedirect, setShouldRedirect] = useState('');
+  const productsList = useSelector(({ products }) => products);
   const cartList = useSelector(({ cart }) => cart.cart);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const totalValue = cartList
     .map((item) => item.totalPrice)
@@ -18,26 +19,22 @@ function Products() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    dispatch(fetchProducts(user.token));
+  }, [dispatch, user.token]);
 
   return (
     <>
       <Header title="TryBeer" />
-      { shouldRedirect && <Redirect to="/checkout" /> }
-      { productsList
-        .map(
-          (item, index) => (<Card
-            key={ index }
-            product={ item }
-            position={ index }
-          />),
-        )}
+      { shouldRedirect && <Redirect to={ shouldRedirect } /> }
+      { (productsList.error || !user) && setShouldRedirect('/login')
+        && localStorage.removeItem('user') }
+      { productsList.products
+        .map((item, i) => <Card key={ i } product={ item } position={ i } />) }
       <div>
         <button
           type="button"
           data-testid="checkout-bottom-btn"
-          onClick={ () => setShouldRedirect(!shouldRedirect) }
+          onClick={ () => setShouldRedirect('/checkout') }
         >
           Ver Carrinho
         </button>

@@ -53,9 +53,8 @@ export default function Card({ product, position }) {
   };
 
   const handleClick = (type, value, productSelected) => {
-    if (type === 'remove' && getValue(productSelected.id) !== 0) {
-      manageNewProductInfo(value, productSelected);
-    } else if (type === 'add') {
+    if ((getValue(productSelected.id) !== 0 && type === 'remove')
+      || type === 'add') {
       manageNewProductInfo(value, productSelected);
     }
   };

@@ -1,26 +1,22 @@
 import {
-  SAVE_ORDER,
-  REQUEST_ORDER,
-  REQUEST_ORDER_SUCCESS,
-  REQUEST_ORDER_FAIL,
+  REQUEST_ORDERS,
+  REQUEST_ORDERS_SUCCESS,
+  REQUEST_ORDERS_FAIL,
 } from '../actions';
 
 const INITIAL_STATE = {
-  status: '',
-  order: {},
+  orders: [],
   isLoading: false,
   error: '',
 };
 
 export default function order(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case SAVE_ORDER:
-    return { ...state, status: action.message };
-  case REQUEST_ORDER:
+  case REQUEST_ORDERS:
     return { ...state, isLoading: true };
-  case REQUEST_ORDER_SUCCESS:
-    return { ...state, isLoading: false, order: action.order };
-  case REQUEST_ORDER_FAIL:
+  case REQUEST_ORDERS_SUCCESS:
+    return { ...state, isLoading: false, orders: action.orders };
+  case REQUEST_ORDERS_FAIL:
     return { ...state, isLoading: false, error: action.error.message };
   default:
     return state;

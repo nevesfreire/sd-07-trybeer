@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import Address from '../components/Address';
 import Header from '../components/Header';
-import { update } from '../actions';
-import saveOrder from '../services/Order';
+import { update, finish } from '../actions';
+import { saveOrder } from '../services/order';
 
 export default function Checkout() {
   const INITIAL_VALUE = 0;
@@ -20,8 +21,8 @@ export default function Checkout() {
     street: '',
     number: '',
   });
-
   const [disabled, setDisabled] = useState(true);
+  const [shouldRedirect, setShouldRedirect] = useState('');
 
   const removeItem = (item) => {
     const filteredCart = cartList.filter((product) => product.id !== item.id);
@@ -30,7 +31,7 @@ export default function Checkout() {
 
   const renderBody = () => cartList.map((item, index) => (
     <div key={ index }>
-      <tr key={ index }>
+      <tr>
         <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
         <td data-testid={ `${index}-product-name` }>{ item.name }</td>
         <td data-testid={ `${index}-product-unit-price` }>
@@ -66,17 +67,27 @@ export default function Checkout() {
     }
   }, [address, totalValue]);
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) setShouldRedirect('/login');
+  }, []);
+
   const handleSubmit = async () => {
+    const newList = cartList.map((item) => { // Testar lógica
+      const { id, quantity } = item;
+      return { id, quantity };
+    });
     const userOrder = {
-      cartList,
-      totalValue,
-      address,
+      deliveryAddress: address.street,
+      deliveryNumber: address.number,
+      salesProducts: [...newList],
     };
-    await saveOrder(dispatch, userOrder);
+    await saveOrder(dispatch, finish, userOrder);
   };
 
   return (
     <>
+      { shouldRedirect && <Redirect to={ shouldRedirect } /> }
       <Header title="Finalizar Pedido" />
       <table>
         <thead>
