@@ -1,7 +1,7 @@
 const connection = require('../config/connection');
 
 const createSale = async (userId, totalPrice, deliveryAddress, deliveryNumber) => {
-  const pendente = 'pendente';
+  const pendente = 'Pendente';
   await
     connection.execute(
       ` INSERT INTO sales
@@ -12,6 +12,11 @@ const createSale = async (userId, totalPrice, deliveryAddress, deliveryNumber) =
     );
   const [[lastSale]] = await connection.execute('SELECT MAX(id) as lastId FROM sales');
   return lastSale;
+};
+
+const getAllSales = async () => {
+  const [result] = await connection.execute('SELECT * FROM sales');
+  return result;
 };
 
 const salesProducts = async (saleId, arrayProducts) => {
@@ -30,9 +35,15 @@ const getSalesById = async (userId) => {
   return result;
 };
 
+const getDetailsById = async (saleId) => {
+  const [[result]] = await connection.execute('SELECT * FROM sales WHERE id = ?', [saleId]);
+  return result;
+};
+
 const getProductsBySaleId = async (saleId) => {
   const [result] = await connection.execute(`SELECT sales_products.quantity as qtd, 
-  products.name as nome, 
+  products.price as price, 
+  products.name as nome,
   (sales_products.quantity * products.price) as total 
   FROM sales_products
   INNER JOIN products ON sales_products.product_id = products.id
@@ -47,8 +58,10 @@ const updateStatusBySaleId = async (saleId) => {
 
 module.exports = {
   createSale,
+  getAllSales,
   salesProducts,
   getSalesById,
   getProductsBySaleId,
   updateStatusBySaleId,
+  getDetailsById,
 };

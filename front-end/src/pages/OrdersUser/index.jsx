@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import dateFormat from 'dateformat';
 import { useHistory, Link } from 'react-router-dom';
-import HeaderAdmin from '../../components/HeaderAdmin';
+// import { Form, Button } from 'react-bootstrap';
+import Header from '../../components/Header';
 
-export default function OrderAdmin() {
+export default function OrdersUser() {
   const [productsOrders, setProductsOrders] = useState();
   const history = useHistory();
   useEffect(() => {
@@ -11,7 +12,7 @@ export default function OrderAdmin() {
     if (userid === null) {
       history.push('/login');
     } else {
-      fetch('http://localhost:3001/sales/')
+      fetch(`http://localhost:3001/sales/${userid.id}`)
         .then((response) => response.json())
         .then((responseJSON) => {
           setProductsOrders(responseJSON);
@@ -28,7 +29,7 @@ export default function OrderAdmin() {
 
   return (
     <div>
-      <HeaderAdmin namePage="Admin - Pedidos" />
+      <Header namePage="Meus Pedidos" />
       <main>
         <div data-testid="top-title">
           <h1>Meus Pedidos</h1>
@@ -38,7 +39,7 @@ export default function OrderAdmin() {
             <div
               key={ products.id }
             >
-              <Link to={ `/admin/orders/${products.id}` }>
+              <Link to={ `/orders/${products.id}` }>
                 <p data-testid={ `${index}-order-card-container` } />
                 <p data-testid={ `${index}-order-number` }>
                   Pedido
@@ -50,18 +51,10 @@ export default function OrderAdmin() {
                     fdate(products.sale_date)
                   }
                 </p>
-                <p data-testid={ `${index}-order-address` }>
-                  Endereço:
-                  {' '}
-                  {`${products.delivery_address}, ${products.delivery_number}`}
-                </p>
                 <p data-testid={ `${index}-order-total-value` }>
                   R$
                   {' '}
                   {products.total_price.toString().replace('.', ',')}
-                </p>
-                <p data-testid={ `${index}-order-status` }>
-                  {products.status}
                 </p>
               </Link>
             </div>

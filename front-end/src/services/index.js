@@ -92,6 +92,41 @@ const pathRedirectByRole = (role) => {
   if (role === 'administrator') return '/admin/orders';
 };
 
+const fetchFinishSale = async (userId, totalPrice, addressObject, arrayProducts) => {
+  const { address, houseNumber } = addressObject;
+  await fetch('http://localhost:3001/sales/createsale', {
+    method: METHOD_POST,
+    headers: {
+      'Content-type': CONTENT_TYPE,
+    },
+    body: JSON.stringify({
+      userId,
+      totalPrice,
+      deliveryAddress: address,
+      deliveryNumber: houseNumber,
+      arrayProducts,
+    }),
+  }).then((response) => response.json())
+    .then((responseJSON) => {
+      console.log(responseJSON);
+    });
+};
+
+const fetchUpdateStatus = async (saleId) => {
+  await fetch('http://localhost:3001/sales/status/', {
+    method: METHOD_PUT,
+    headers: {
+      'Content-type': CONTENT_TYPE,
+    },
+    body: JSON.stringify({
+      saleId,
+    }),
+  }).then((response) => response.json())
+    .then((responseJSON) => {
+      console.log(responseJSON);
+    });
+};
+
 export {
   loginFetch,
   pathRedirectByRole,
@@ -99,4 +134,6 @@ export {
   searchUserByEmail,
   updateNameFetch,
   fetchProducts,
+  fetchFinishSale,
+  fetchUpdateStatus,
 };

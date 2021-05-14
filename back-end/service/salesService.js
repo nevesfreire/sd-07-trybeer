@@ -3,6 +3,8 @@ const salesModel = require('../model/salesModel');
 const createSale = async (userId, totalPrice, deliveryAddress, deliveryNumber) =>
   salesModel.createSale(userId, totalPrice, deliveryAddress, deliveryNumber);
 
+const getAllSalesService = async () => salesModel.getAllSales();
+
 const salesProducts = async (saleId, arrayProducts) =>
   salesModel.salesProducts(saleId, arrayProducts);
 
@@ -12,10 +14,14 @@ const getProductsBySaleIdService = async (saleId) => salesModel.getProductsBySal
 
 const updateStatusBySaleIdService = async (saleId) => salesModel.updateStatusBySaleId(saleId);
 
+const getDetailsByIdService = async (saleId) => salesModel.getDetailsById(saleId);
+
 module.exports = {
   createSale,
+  getAllSalesService,
   salesProducts,
   getSalesByIdService,
   getProductsBySaleIdService,
   updateStatusBySaleIdService,
+  getDetailsByIdService,
 };
