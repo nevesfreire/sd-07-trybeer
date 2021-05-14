@@ -131,8 +131,7 @@ function CartItems() {
     <>
       <div>{handleProducts()}</div>
       <div data-testid="order-total-value">
-        Total:
-        {totalPrice.toFixed(2).toString().replace('.', ',')}
+        {`Total: R$ ${totalPrice.toFixed(2).toString().replace('.', ',')}`}
       </div>
       <input
         type="text"
