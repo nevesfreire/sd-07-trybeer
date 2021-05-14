@@ -9,7 +9,6 @@ ORDER BY id`;
 
 const getOrders = async (email) => {
   const [orders] = await connection.execute(selectAllOrders, [email]);
-  console.log('orders model', orders);
   return orders;
 };
 

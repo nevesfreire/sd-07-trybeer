@@ -86,7 +86,6 @@ function CartItems() {
 
   const removeProduct = (id) => {
     const list = localStorageSalved.filter((product) => product.id !== id);
-    console.log('list', list);
     const newList = list
       .map((product) => ({ id: product.id, quantity: product.quantity }));
     localStorage.setItem('products', JSON.stringify(newList));

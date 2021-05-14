@@ -60,7 +60,6 @@ function useFetch() {
         Email: email,
       },
     });
-    console.log('result', result);
     const responseAPI = await result.json();
     return responseAPI;
   }
@@ -82,7 +81,6 @@ function useFetch() {
     const { status, user, address, total, localStorageSalved } = args;
     const { token } = user;
     const { deliveryAddress, deliveryNumber } = address;
-    console.log('user', args.user);
     const result = await fetch('http://localhost:3001/sales', {
       method: 'POST',
       headers: {

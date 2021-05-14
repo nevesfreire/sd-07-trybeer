@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function OrderCard({ id, price, date }) {
+function OrderCard({ id, price, date, index }) {
   // const idConfig = () => {
   //   const oneDecimalNum = 9;
   //   const twoDecimalNum = 99;
@@ -16,9 +16,9 @@ function OrderCard({ id, price, date }) {
       to={ `/orders/${id}` }
       data-testid="0-order-card-container"
     >
-      <p data-testid={ `${id}-order-number` }>{ `Pedido ${id}`}</p>
-      <p data-testid={ `${id}-order-total-value` }>{ `R$ ${price}` }</p>
-      <p data-testid={ `${id}-order-date` }>{ date }</p>
+      <p data-testid={ `${index}-order-number` }>{ `Pedido ${id}`}</p>
+      <p data-testid={ `${index}-order-total-value` }>{ `R$ ${price}` }</p>
+      <p data-testid={ `${index}-order-date` }>{ date }</p>
     </Link>
   );
 }

@@ -17,11 +17,12 @@ function Orders() {
   const handleOrders = () => {
     if (!user || !user.token) return (<Redirect to="/login" />);
     if (orders === undefined) return ('Loading...');
-    return (orders.map((order) => (<OrderCard
+    return (orders.map((order, index) => (<OrderCard
       key={ order.id }
       id={ order.id }
       price={ order.price }
       date={ order.date }
+      index={ index }
     />)));
   };
 
