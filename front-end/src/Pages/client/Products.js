@@ -8,7 +8,6 @@ function Products() {
   const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(num);
-
   const [logado] = useState(true);
   const initialCart = () => {
     if (localStorage.getItem('cart') !== null) {
@@ -36,6 +35,7 @@ function Products() {
         setIsLoading(false);
       });
   }, [initialCart, products]);
+
   function getQtd(id) {
     if (cart.length === 0) {
       return 0;
@@ -61,6 +61,7 @@ function Products() {
       valorInicial);
     setTotal(sum);
   }
+
   function addQuantity(id) {
     const add = cart.find((product) => product.id === id);
     add.qtd += 1;
@@ -165,5 +166,4 @@ function Products() {
     </div>
   );
 }
-
 export default Products;

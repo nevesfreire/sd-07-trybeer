@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../../Components/Header';
+import SidebarAdm from '../../Components/SidebarAdm';
 
 function AdmOrders() {
   return (
     <div>
+      <SidebarAdm />
       <h1>ADM orders</h1>
-      <Header />
     </div>
   );
 }

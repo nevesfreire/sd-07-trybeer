@@ -1,11 +1,38 @@
 import React from 'react';
-import Header from '../../Components/Header';
+import { Redirect } from 'react-router-dom';
+import SidebarAdm from '../../Components/SidebarAdm';
 
 function AdmProfile() {
+  const { email, name } = JSON.parse(localStorage.getItem('user'));
+
+  if (!localStorage.getItem('user')) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <div>
-      <h1>ADM Profile</h1>
-      <Header />
+      <SidebarAdm />
+      <label htmlFor="profile-name">
+        Name
+        <input
+          readOnly
+          value={ name }
+          name="name"
+          data-testid="profile-name"
+          type="text"
+        />
+
+      </label>
+      <label htmlFor="profile-email">
+        Email
+        <input
+          readOnly
+          value={ email }
+          name="email"
+          data-testid="profile-email"
+          type="text"
+        />
+      </label>
     </div>
   );
 }
