@@ -27,35 +27,33 @@ const Menu = ({ path }) => {
           </Link>
         </div>
       ) : null }
-      { userPathname !== ADMIN_PAGE ? (
-        <div className={ menuState ? 'item-menu' : 'hide-menu' }>
-          <Link to="/orders" data-testid="side-menu-item-my-orders">
+
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        { userPathname !== ADMIN_PAGE ? (
+          <Link to="/orders" data-testid='side-menu-item-my-orders'>
             Meus pedidos
           </Link>
-        </div>
-      ) : (
-        <div className={ menuState ? 'hide-menu' : 'item-menu' }>
-          <Link to="/admin/orders" data-testid="side-menu-item-orders">
-            Meus pedidos_a
+        ) : (
+          <Link to='/admin/orders' data-testid='side-menu-item-orders'>
+            Meus pedidos
           </Link>
-        </div>
-      ) }
+        ) }
+      </div>
 
-      { userPathname !== ADMIN_PAGE ? (
-        <div className={ menuState ? 'item-menu' : 'hide-menu' }>
-          <Link to="/profile" data-testid="side-menu-item-my-profile">
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        { userPathname !== ADMIN_PAGE ? (
+          <Link to='/profile' data-testid='side-menu-item-my-profile'>
             Meu perfil
           </Link>
-        </div>
-      ) : (
-        <div className={ menuState ? 'hide-menu' : 'item-menu' }>
-          <Link to="/admin/profile" data-testid="side-menu-item-profile">
+        ) : (
+          <Link to='/admin/profile' data-testid='side-menu-item-profile'>
             Meu perfil
           </Link>
-        </div>
-      ) }
-      <div className={ menuState ? 'hide-menu' : 'item-menu' }>
-        <Link to="/login" data-testid="side-menu-item-logout">
+        ) }
+      </div>
+
+      <div className={ menuState ? 'item-menu' : 'hide-menu' }>
+        <Link to='/login' data-testid='side-menu-item-logout'>
           Sair
         </Link>
       </div>
