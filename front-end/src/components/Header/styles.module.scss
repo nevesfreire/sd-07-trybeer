@@ -2,12 +2,13 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin: 24px auto 72px auto;
 
   .navigation {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     font-family: 'Roboto condensed', sans-serif;
 
     h2 {

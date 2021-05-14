@@ -3,12 +3,14 @@ import { useHistory, useLocation, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { clearStorage, getStorage } from '../../services/localStorage';
+import tryBeer from '../../assets/Tipo_TryBreja.svg';
+
 // import HeaderButtons from '../HeaderButtons/HeaderButtons';
 import format from '../../util/format';
 
 import styles from './styles.module.scss';
 
-function Header({ children }) {
+function Header() {
   const history = useHistory();
   // const [sideMenu, setSideMenu] = useState(true);
   const [role, setRole] = useState('client');
@@ -49,7 +51,12 @@ function Header({ children }) {
   return (
     <header>
       <div className={ styles.navigation }>
-        <h2>Logo</h2>
+        <img
+          src={ tryBeer }
+          width={ 130 }
+          style={ { marginRight: '24px' } }
+          alt="Logo Trybreja"
+        />
         <ul>
           <li>
             <button

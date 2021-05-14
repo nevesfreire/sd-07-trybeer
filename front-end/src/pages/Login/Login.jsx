@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as API from '../../services/api';
 import { setStorage } from '../../services/localStorage';
+import tryBeer from '../../assets/TryBreja.svg';
 import styles from './styles.module.scss';
 
 function Login() {
@@ -32,7 +33,13 @@ function Login() {
 
   return (
     <div className={ styles.main }>
-      <div className={ styles.logo }>Logo</div>
+      <br />
+      <img
+        src={ tryBeer }
+        width={ 200 }
+        style={ { margin: '36px auto' } }
+        alt="Logo Trybreja"
+      />
       <form>
         { userNotFound && <div className={ styles.error }>Usúario não cadastrado</div>}
         <label htmlFor="email">
