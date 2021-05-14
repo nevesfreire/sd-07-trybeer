@@ -7,6 +7,7 @@ import Orders from './Orders';
 import OrdersDetails from './OrdersDetails';
 import AdminOrders from './AdminOrders';
 import AdminProfile from './AdminProfile';
+import AdminOrdersDetails from './AdminOrdersDetails';
 
 export {
   Login,
@@ -18,4 +19,5 @@ export {
   OrdersDetails,
   AdminOrders,
   AdminProfile,
+  AdminOrdersDetails,
 };
