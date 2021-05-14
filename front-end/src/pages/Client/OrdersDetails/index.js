@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import jwtDecode from 'jwt-decode';
@@ -43,6 +44,8 @@ function OrderDetailClient(props) {
     renderOrderDetail();
   }, [id, setOrderPrice, setOrderDetail, setOrderDate]);
 
+  const formatDate = (date) => moment(date).format('DD/MM');
+
   return (
     <div>
       {isLoading && <h1>Loading...</h1>}
@@ -51,7 +54,7 @@ function OrderDetailClient(props) {
       )}
       {!isLoading && role === 'administrator' && <SideBar isAdmin />}
       <h2 data-testid="order-number">{`Pedido ${id}`}</h2>
-      <h2 data-testid="order-date">{orderDate}</h2>
+      <h2 data-testid="order-date">{formatDate(orderDate)}</h2>
       {orderDetail.map((product, index) => (
         <div key={ product.productName }>
           <h3 data-testid={ `${index}-product-qtd` }>
