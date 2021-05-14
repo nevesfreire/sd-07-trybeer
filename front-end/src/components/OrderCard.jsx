@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function OrderCard({ id, price, date, index }) {
+  console.log(price.replace('.', ','));
   // const idConfig = () => {
   //   const oneDecimalNum = 9;
   //   const twoDecimalNum = 99;
@@ -17,7 +18,9 @@ function OrderCard({ id, price, date, index }) {
       data-testid="0-order-card-container"
     >
       <p data-testid={ `${index}-order-number` }>{ `Pedido ${id}`}</p>
-      <p data-testid={ `${index}-order-total-value` }>{ `R$ ${price}` }</p>
+      <p data-testid={ `${index}-order-total-value` }>
+        { `R$ ${price.replace('.', ',')}` }
+      </p>
       <p data-testid={ `${index}-order-date` }>{ date }</p>
     </Link>
   );
