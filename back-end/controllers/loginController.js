@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const loginService = require('../services/loginService');
+
 const newSecret = 'secret123';
 
 const generateToken = (result, jwtConfig) => {
