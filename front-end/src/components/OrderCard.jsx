@@ -12,13 +12,15 @@ function OrderCard({ id, price, date }) {
   };
 
   return (
-    <Link to={ `/orders/${id}` }>
-      <div>
-        <p>{ `Pedido ${idConfig()}`}</p>
-        <p>{ `R$ ${price}` }</p>
-        <p>{ date }</p>
-      </div>
-    </Link>
+    <div
+      data-testid="0-order-card-container"
+    >
+      <Link to={ `/orders/${id}` }>
+        <p data-testid="0-order-number">{ `Pedido ${idConfig()}`}</p>
+        <p data-testid="0-order-total-value">{ `R$ ${price}` }</p>
+        <p data-testid="0-order-date">{ date }</p>
+      </Link>
+    </div>
   );
 }
 
