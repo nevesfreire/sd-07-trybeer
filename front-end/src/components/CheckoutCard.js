@@ -16,7 +16,10 @@ const CheckoutCard = ({ cartItem, index, cart, setCart }) => {
     >
       <h3 data-testid={ `${index}-product-name` }>{cartItem.nome}</h3>
       <p data-testid={ `${index}-product-unit-price` }>
-        {/* { `R$ ${cart.preco.replace('.', ',')}` } */}
+        { `(R$ ${cartItem.preco.replace('.', ',')} un)` }
+      </p>
+      <p data-testid={ `${index}-product-total-value` }>
+        {`R$ ${cartItem.total.toFixed(2).replace('.', ',')}`}
       </p>
       <div>
         Quantidade

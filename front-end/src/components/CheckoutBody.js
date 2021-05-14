@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import numbers from '../helpers/Numbers';
 import CheckoutCard from './CheckoutCard';
+import api from '../services/api';
 
 const CheckoutBody = () => {
   const history = useHistory();
@@ -11,9 +12,12 @@ const CheckoutBody = () => {
   // ainda está mockado no Beer.js
   // const cart = JSON.parse(localStorage.getItem('cart'));
 
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem('cart')) || [],
+  );
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
+  const [saleFinished, setSaleFinished] = useState(true);
 
   // cart mockado
   // const cart = [
@@ -21,9 +25,9 @@ const CheckoutBody = () => {
   //   { nome: 'cerva2', preco: 5.0, quantidade: 6 },
   // ];
 
-  // saida: id do usuario, preço total, endereço, delivery number, sale date, status
+  // saida: userId, totalPrice, deliveryAddress, deliveryNumber, status
 
-  console.log(`CheckoutBody cart: ${typeof cart}`);
+  // console.log(`CheckoutBody cart: ${typeof cart}`);
 
   const priceTotalReduced = cart.reduce(
     (curr, next) => curr + next.total,
@@ -31,9 +35,26 @@ const CheckoutBody = () => {
   );
 
   const redirectToProduct = () => {
-    history.push('/products');
+    setSaleFinished(true);
+    const time = 5000;
+    const params = {
+      userId: 1,
+      totalPrice: priceTotalReduced,
+      deliveryAddress: street,
+      deliveryNumber: houseNumber,
+      status: 'Pendente',
+    };
+    const postSale = async () => {
+      const { data } = await api.post('/checkout', params);
+      console.log(`redirectToProduct ${data}`); // deixar
+    };
+    postSale();
     setCart([]);
+    setTimeout(() => history.push('/products'), time);
   };
+
+  // requisição do ?post
+  // const { userId, totalPrice, deliveryAddress, deliveryNumber, status } = req.body;
 
   return (
     <div className="checkout-list-container">
@@ -44,7 +65,7 @@ const CheckoutBody = () => {
       <button
         data-testid="checkout-finish-btn"
         type="button"
-        disabled={ !priceTotalReduced && street === '' && houseNumber === '' }
+        disabled={ !priceTotalReduced || street === '' || houseNumber === '' }
         onClick={ redirectToProduct }
       >
         Finalizar Pedido
@@ -93,6 +114,7 @@ const CheckoutBody = () => {
           />
         </label>
       </form>
+      {saleFinished ? <h3>Compra realizada com sucesso!</h3> : ''}
     </div>
   );
 };
