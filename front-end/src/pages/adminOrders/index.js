@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { history } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import AdminSideBar from '../../components/AdminSideBar';
 import { getAllSales } from '../../service/trybeerApi';
 import './style.css';
@@ -7,6 +7,7 @@ import './style.css';
 export default function AdminOrders() {
   const [sales, setSales] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
 
   const listSales = async () => {
     const saleData = await getAllSales();
@@ -28,11 +29,11 @@ export default function AdminOrders() {
     <button
       key={ sale.id }
       type="button"
-      onClick={ () => history.push() }
+      onClick={ () => history.push(`/admin/orders/${sale.id}`) }
     >
       <div className="div-cards">
         <h3 data-testid={ `${index}-product-price` }>
-          {`Produto ${index + 1}`}
+          {`Pedido ${sale.id}`}
         </h3>
 
         <h4 data-testid={ `${index}-order-address` }>

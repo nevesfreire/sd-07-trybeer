@@ -48,6 +48,7 @@ export default function AdminDetails() {
         <span data-testid="order-status">{` ${orderStatus}`}</span>
       </h1>
       <div>
+        {console.log('order: ', order)}
         {order && order.map((product, index) => (
           <div
             key={ index }
