@@ -22,7 +22,7 @@ app.post(
   '/',
   body('name').isString().isLength({ min: 12 }),
   body('email').isEmail(),
-  body('password').isLength({ min: 6 }) ,
+  body('password').isLength({ min: 6 }),
   fieldValidator,
   registerController,
 );
