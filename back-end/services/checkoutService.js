@@ -20,5 +20,4 @@ const confirmDelivery = async (idSaleDelivery) => {
   return delivery;
 };
 
-
 module.exports = { getAllSales, getSaleById, createSale, confirmDelivery };
