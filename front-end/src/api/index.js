@@ -35,7 +35,6 @@ async function getProducts(token) {
 }
 
 async function updateUser(userData) {
-  console.log(userData);
   try {
     const response = await axios.put(`${url}${register}`, userData);
     return response;
@@ -54,6 +53,16 @@ async function getOrders(token) {
   }
 }
 
+async function getOrdersById(token, id) {
+  try {
+    const response = await axios
+      .get(`${url}${orders}/${id}`, { headers: { Authorization: token } });
+    return response;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
 async function createNewSale(sale, token) {
   try {
     const response = await axios
@@ -64,4 +73,24 @@ async function createNewSale(sale, token) {
   }
 }
 
-export { requestToken, registerUser, getProducts, updateUser, getOrders, createNewSale };
+async function changeStatus(token) {
+  const id = { id: 3 };
+  try {
+    const response = await axios
+      .put(`${url}${orders}/admin`, id, { headers: { Authorization: token } });
+    return response;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
+export {
+  requestToken,
+  registerUser,
+  getProducts,
+  updateUser,
+  getOrders,
+  createNewSale,
+  getOrdersById,
+  changeStatus,
+};

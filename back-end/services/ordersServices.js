@@ -24,9 +24,16 @@ const setNewSale = async (newSale) => {
   return sale;
 };
 
+const changeStatus = async (id) => {
+  const sale = await ordersModel.changeStatus(id);
+  if (!sale) throw errors.invalidData;
+  return sale;
+};
+
 module.exports = {
   getSalesList,
   getSalesById,
   getSalesByUser,
   setNewSale,
+  changeStatus,
 };

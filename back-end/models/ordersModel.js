@@ -104,9 +104,18 @@ const createSale = async (data) => {
     return { ...sale, prodsSetOnSale };
 };
 
+const changeStatus = async (id) => {
+  console.log(`entro models${id}`);
+  const [sale] = await connection.execute(
+    'UPDATE sales SET status=? WHERE id=?', ['Entrege', id],
+        );
+    return sale;
+};
+
 module.exports = {
   getSales,
   getSalesById,
   getSalesByUser,
   createSale,
+  changeStatus,
 };

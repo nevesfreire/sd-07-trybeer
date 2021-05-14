@@ -44,9 +44,20 @@ const createNewSale = async (req, res, next) => {
   }
 };
 
+const changeStatus = async (req, res, next) => {
+  const { id } = req.body;
+  try {
+    const result = await ordersServices.changeStatus(id);
+    return res.status(StatusCodes.CREATED).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   readSales,
   readSalesById,
   readSalesByUser,
   createNewSale,
+  changeStatus,
 };

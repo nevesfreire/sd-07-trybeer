@@ -10,6 +10,9 @@ ordersRoute.get('/', authMiddleware, ordersListAdmin, ordersControllers.readSale
 // Pedidos por id de pedidos
 ordersRoute.get('/:id', authMiddleware, ordersControllers.readSalesById);
 
+// Change status order
+ordersRoute.put('/admin', authMiddleware, ordersControllers.changeStatus);
+
 // Pedidos por id de usuário
 ordersRoute.get('/user/:user', authMiddleware, ordersControllers.readSalesByUser);
 
