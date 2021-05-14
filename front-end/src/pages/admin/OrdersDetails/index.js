@@ -77,13 +77,23 @@ function OrderDetailsAdmin(props) {
               .toString()
               .replace('.', ',')}`}
           </h3>
+          <h4 data-testid={ `${index}-order-unit-price` }>
+            {`(R$ ${product.unityPrice
+              .toFixed(2)
+              .toString()
+              .replace('.', ',')})`}
+          </h4>
         </div>
       ))}
       <h2 data-testid="order-total-value">
         {`Total: R$ ${orderPrice.toString().replace('.', ',')}`}
       </h2>
       {orderStatus === 'Pendente' ? (
-        <button type="button" onClick={ statusHandleClick }>
+        <button
+          data-testid="mark-as-delivered-btn"
+          type="button"
+          onClick={ statusHandleClick }
+        >
           Marcar como entregue
         </button>
       ) : null}
@@ -94,7 +104,7 @@ function OrderDetailsAdmin(props) {
 OrderDetailsAdmin.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.node.isRequired,
     }),
   }).isRequired,
 };
