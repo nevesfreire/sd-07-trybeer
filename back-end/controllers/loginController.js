@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
 const loginService = require('../services/loginService');
+const newSecret = 'secret123';
 
 const generateToken = (result, jwtConfig) => {
   const { email, role, id } = result;
   const token = jwt.sign({ email, role, id }, process.env.REACT_APP_SECRET 
-    || process.env.SECRET, jwtConfig);
+    || process.env.SECRET || newSecret, jwtConfig);
   return token;
 };
 
