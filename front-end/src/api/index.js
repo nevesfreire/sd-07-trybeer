@@ -75,15 +75,15 @@ async function getOrdersById(token, id) {
   }
 }
 
-async function getOrdersById(token, id) {
-  try {
-    const response = await axios
-      .get(`${url}${orders}/${id}`, { headers: { Authorization: token } });
-    return response;
-  } catch (error) {
-    return error.response.status;
-  }
-}
+//  async function getOrdersById(token, id) {
+//    try {
+//      const response = await axios
+//        .get(`${url}${orders}/${id}`, { headers: { Authorization: token } });
+//      return response;
+//    } catch (error) {
+//      return error.response.status;
+//    }
+//  }
 
 async function createNewSale(sale, token) {
   try {
@@ -106,13 +106,12 @@ async function changeStatus(token) {
   }
 }
 
-
 export {
   requestToken,
   registerUser,
   getProducts,
   updateUser,
-  getOrders,
+  //  getOrders,
   createNewSale,
   getOrdersById,
   changeStatus,
