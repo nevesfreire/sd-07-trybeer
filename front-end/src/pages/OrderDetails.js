@@ -15,7 +15,7 @@ export default function OrderDetails() {
 
   useEffect(() => {
     dispatch(fetchOrder(params.id, user.token));
-  }, [dispatch, params.id]);
+  }, [dispatch, params.id, user.token]);
 
   return (
     <>

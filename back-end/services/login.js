@@ -7,7 +7,7 @@ const loginService = async (email, password) => {
   // if (verifyingUser) {
   //   throw new Error('email já utilizado');
   // }
-  
+
   const login = await loginModel(email, password);
   return login;
 };

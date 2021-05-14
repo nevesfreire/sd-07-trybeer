@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const login = require('./routes/login');
 const register = require('./routes/register');
+const checkout = require('./routes/checkout');
 const profile = require('./routes/profile');
 const products = require('./routes/products');
-
 
 const app = express();
 
@@ -21,6 +21,7 @@ app.get('/', (_request, response) => {
 
 app.use(login);
 app.use(register);
+app.use(checkout);
 app.use(profile);
 app.use(products);
 

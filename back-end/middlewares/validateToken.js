@@ -1,28 +1,24 @@
 const jwt = require('jsonwebtoken');
-const { loginModel } = require('../models/login');
+const login = require('../models/login');
+const httpStatus = require('../controllers/httpStatus');
+const secret = require('../controllers/login');
 
-const secret = 'meusegredoparajwt';
+const noTokenMessage = { message: 'Token não encontrado ou informado' };
+const userNotFound = { message: 'Erro ao procurar usuário do token.' };
 
-const validateTokenMiddleware = async (req, res, next) => {
+const validateToken = async (req, res, next) => { 
   const token = req.headers.authorization;
-
-  if (!token) {
-    throw new Error('Sem autorização');
-  }
-
+  console.log(token);
+  if (!token) return res.status(httpStatus.UNAUTHORIZED).json(noTokenMessage);
   try {
-    const decoded = jwt.verify(token, secret);
-
-    const user = await loginModel(decoded.email);
-    if (!user) {
-      throw new Error('Usuário não encontrado');
-    }
-  
-    req.user = user;
-    next();
+    const decoded = jwt.verify(token, secret.secret);
+    const user = await login.loginModel(decoded.email);
+  if (!user) return res.status(httpStatus.UNAUTHORIZED).json(userNotFound);
+      req.user = user;
+      next();    
   } catch (error) {
-    return res.status(401).json({ message: error.message });
+    res.status(httpStatus.UNAUTHORIZED).json({ message: error.message });
   }
 };
 
-module.exports = validateTokenMiddleware;
+module.exports = validateToken;

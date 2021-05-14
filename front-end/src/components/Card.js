@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { update } from '../actions';
 
 export default function Card({ product, position }) {

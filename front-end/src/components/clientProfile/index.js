@@ -13,6 +13,7 @@ export default function ClientProfile() {
     const user = {
       name,
       email: currentUser.email,
+      token: currentUser.token,
     };
     // req da api enviando:
     const response = await updateUser(user).then((apiResponse) => apiResponse);

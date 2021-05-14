@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Card from '../components/Card';
 import { fetchProducts } from '../actions';
 
-export default function Products() {
+function Products() {
   const INITIAL_VALUE = 0;
   const [shouldRedirect, setShouldRedirect] = useState('');
   const productsList = useSelector(({ products }) => products);
@@ -19,9 +19,8 @@ export default function Products() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
     dispatch(fetchProducts(user.token));
-  }, [dispatch]);
+  }, [dispatch, user.token]);
 
   return (
     <>
@@ -48,3 +47,5 @@ export default function Products() {
     </>
   );
 }
+
+export default Products;
