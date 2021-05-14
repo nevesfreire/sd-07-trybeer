@@ -1,3 +1,4 @@
+const { request, response } = require('express');
 const { StatusCodes } = require('http-status-codes');
 const { connection } = require('../config/conn');
 
@@ -8,6 +9,9 @@ const insetSaleProduct = `INSERT INTO sales_products (sale_id, product_id, quant
 VALUES (?,?,?)`;
 
 const selectSales = 'SELECT * FROM Trybeer.sales';
+
+const saleById = `SELECT sale_id, product_id, quantity FROM Trybeer.sales_products WHERE id === ?
+id = ? INNER JOIN Trybeer.sales on id = sale_id`;
 
 const createSale = async (salesData) => {
   const {
@@ -47,6 +51,16 @@ const getAllSales = async (_request, response) => {
       .json({ message: error.message });
   }
 };
+
+const getSaleById = async (request, response) => {
+  try {
+    const [result] = await connection.execute(saleById);
+  return result;
+  } catch (error) {
+    response.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+}
 
 module.exports = {
   createSale,
