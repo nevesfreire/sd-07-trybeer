@@ -11,7 +11,7 @@ function AdmProfile() {
 
   return (
     <div>
-      <SidebarAdm name="Perfil" />
+      <SidebarAdm />
       <label htmlFor="profile-name">
         Name
         <input

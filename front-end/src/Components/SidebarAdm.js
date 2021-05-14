@@ -1,31 +1,39 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 function SideBarAdm() {
+  const history = useHistory();
+
   return (
     <div className="admin-side-bar-container">
-      <a
+      <button
+        type="button"
         data-testid="side-menu-item-orders"
-        href="/admin/orders"
+        onClick={ () => {
+          history.push('/admin/orders');
+        } }
       >
-        {' '}
         Pedidos
-      </a>
+      </button>
       <br />
-      <a
+      <button
+        type="button"
         data-testid="side-menu-item-profile"
-        href="/admin/profile"
+        onClick={ () => {
+          history.push('/admin/profile');
+        } }
       >
-        {' '}
         Perfil
-      </a>
-      <br />
-      <a
+      </button>
+      <button
+        type="button"
         data-testid="side-menu-item-logout"
-        href="/"
+        onClick={ () => {
+          history.push('/');
+        } }
       >
         Sair
-      </a>
-      <br />
+      </button>
     </div>
   );
 }

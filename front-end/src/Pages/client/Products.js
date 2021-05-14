@@ -7,7 +7,6 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
-  // const [logado, setLogado] = useState(true);
 
   useEffect(() => {
     fetch('http://localhost:3001/products')
@@ -54,19 +53,6 @@ function Products() {
   }
 
   useEffect(() => {
-    // let sum = 0;
-
-    // products.map((product) => sum += parseFloat(product.price) * getQtd(product.id));
-
-    // const valorInicial = 0;
-    // const sum = products
-    //   .reduce((accumulator, product) => parseFloat(
-    //     accumulator + product.price * getQtd(product.id),
-    //   ),
-    //   valorInicial);
-
-    // setTotal(sum);
-
     sumTotal(products);
   }, [cart, getQtd, products, sumTotal]);
 
@@ -78,19 +64,6 @@ function Products() {
     setCart([...cart.filter((product) => product.id !== id), add]);
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // let sum = 0;
-
-    // products.map((product) => sum += parseFloat(product.price) * getQtd(product.id));
-
-    // const valorInicial = 0;
-    // const sum = products
-    //   .reduce((accumulator, product) => parseFloat(
-    //     accumulator + product.price * getQtd(product.id),
-    //   ),
-    //   valorInicial);
-
-    // setTotal(sum);
-
     sumTotal(products);
   }
 
@@ -99,19 +72,6 @@ function Products() {
     if (add.qtd > 0) add.qtd -= 1;
     setCart([...cart.filter((product) => product.id !== id), add]);
     localStorage.setItem('cart', JSON.stringify(cart));
-
-    // let sum = 0;
-
-    // products.map((product) => sum += parseFloat(product.price) * getQtd(product.id));
-
-    // const valorInicial = 0;
-    // const sum = products
-    //   .reduce((accumulator, product) => parseFloat(
-    //     accumulator + product.price * getQtd(product.id),
-    //   ),
-    //   valorInicial);
-
-    // setTotal(sum);
 
     sumTotal(products);
   }
