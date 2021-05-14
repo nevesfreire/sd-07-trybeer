@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HeaderAdmin, OrdersCard } from '.';
-import { getOrders } from '../api';
+import { getOrdersForAdmin } from '../api';
 
 import ls from '../services';
 
@@ -13,7 +13,7 @@ function Orders() {
     const dataUser = await ls.acessLocalStorage.getUserLocalStorage();
     if (!dataUser) return history.push('/login');
     const { token } = dataUser;
-    const getSales = await getOrders(token);
+    const getSales = await getOrdersForAdmin(token);
     setOrdersState(getSales.data);
   }, [history]);
 
