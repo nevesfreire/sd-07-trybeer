@@ -22,7 +22,8 @@ export default function ClientProfile() {
       email: currentUser.email,
     };
     // req da api enviando:
-    const response = await updateUser(user).then((apiResponse) => apiResponse);
+    const response = await updateUser(currentUser.token, user)
+      .then((apiResponse) => apiResponse);
 
     if (response) setNameUpdate(true);
   };

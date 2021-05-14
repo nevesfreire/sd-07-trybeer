@@ -51,7 +51,7 @@ function CreateUserForm() {
 
   return (
     <Form onSubmit={ onSubmitHandler }>
-      <Label data-testid="signup-name">
+      <Label>
         Nome
         <Input
           value={ name }
@@ -59,11 +59,12 @@ function CreateUserForm() {
           placeholder="name"
           type="text"
           name="name"
+          data-testid="signup-name"
           required
         />
       </Label>
 
-      <Label data-testid="signup-email">
+      <Label>
         Email
         <Input
           value={ email }
@@ -71,12 +72,13 @@ function CreateUserForm() {
           placeholder="Email address"
           type="email"
           name="email"
+          data-testid="signup-email"
           required
         />
       </Label>
       { userExists && <span>Já existe um usuário com esse e-mail.</span> }
 
-      <Label data-testid="signup-password">
+      <Label>
         Senha
         <Input
           value={ password }
@@ -84,6 +86,7 @@ function CreateUserForm() {
           placeholder="Password"
           type="password"
           name="password"
+          data-testid="signup-password"
           required
         />
       </Label>
