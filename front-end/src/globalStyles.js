@@ -25,22 +25,20 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-size: 1rem;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: #ffa700;
+
+    @media only screen and (max-width: 425px){
+    position: fixed;
+  }
   }
   
   h1,h2,h3,h4,h5,h6 {
     margin: 0;
-  }  
-
-  @media only screen and (max-width: 1200px){
-
   }
-  @media only screen and (max-width: 425px){
-    div {
-      max-width: 40%;
-    }
-  }
+
+  
+
 `;
 
 

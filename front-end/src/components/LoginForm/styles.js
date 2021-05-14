@@ -23,7 +23,7 @@ export const Input = styled.input`
   padding-top: 0.7em;
   padding-left: 0.4em;
   font-size: 1.2em;
-  min-width: 360px;
+  
   border: none;
   margin-bottom: 0.8em;
   border-bottom: solid 2px gray;
