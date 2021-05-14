@@ -13,8 +13,18 @@ const getAll = async (_req, res) => {
 
 const getAllByUserId = async (req, res) => {
   try {
-    const { userId } = req.body;
-    const sales = await service.getAllByUserId(userId);
+    const { id } = req.params;
+    const sales = await service.getAllByUserId(id);
+    res.status(StatusCodes.OK).json(sales);
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+};
+
+const getByOrderId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const sales = await service.getByOrderId(id);
     res.status(StatusCodes.OK).json(sales);
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR);
@@ -44,6 +54,7 @@ const create = async (req, res) => {
 module.exports = { 
   getAll,
   getAllByUserId,
+  getByOrderId,
   getById,
   create,
  };

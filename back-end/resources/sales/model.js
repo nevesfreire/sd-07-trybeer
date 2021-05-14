@@ -15,6 +15,14 @@ const getAllByUserId = async (userId) => {
   return sales;
 };
 
+const getByOrderId = async (orderId) => {
+  const [sales] = await conn.execute(
+    'SELECT * FROM sales WHERE id = ?;',
+    [orderId],
+  );
+  return sales;
+};
+
 const getById = async (salesId) => {
   const [sales] = await conn.execute(
     'SELECT sp.quantity AS "qtd", p.name AS "name", p.price AS "unitPrice" FROM products AS p INNER JOIN sales_products AS sp ON p.id = sp.product_id INNER JOIN sales AS s ON s.id = sp.sale_id WHERE s.id = ?;',
@@ -44,7 +52,8 @@ const create = async (sale, products) => {
 
 module.exports = { 
   getAll, 
-  getAllByUserId, 
+  getAllByUserId,
+  getByOrderId,
   getById, 
   create,
 };

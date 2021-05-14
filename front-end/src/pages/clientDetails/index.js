@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import TopMenu from '../../components/TopMenu';
-import { saleById } from '../../service/trybeerApi'
+import { saleById, getSaleByOrderId } from '../../service/trybeerApi'
 
 export default function ClientDetails() {
+  const [orderDate, setOrderDate] = useState('');
   const [errors, setErrors] = useState('');
   const [orderDetail, setOrderDetail] = useState([]);
   const orderNumber = useParams().np;
+
   const orderTotValue = orderDetail
     .reduce((acc, { qtd, unitPrice }) => acc + (qtd * unitPrice), 0);
 
+  const options = {
+    day: '2-digit', month: '2-digit',
+  };
+
   const salesProducts = async () => {
     const result = await saleById(orderNumber);
+    const order = await getSaleByOrderId(orderNumber);
+    const dateOrder = new Intl.DateTimeFormat('pt-BR', options)
+      .format(Date.parse(order[0].sale_date));
+ 
+    if (!dateOrder) return setErrors(<h3>Pedido não encontrado</h3>);
 
-    if (!result.length === 0) return setErrors(<h3>Pedido não encontrado</h3>);
-
+    setOrderDate(dateOrder);
     setOrderDetail(result);
   }
 
@@ -28,7 +38,7 @@ export default function ClientDetails() {
       <h2>
         <span data-testid="order-number">{ `Pedido ${orderNumber}` }</span>
         {' '}
-        <span data-testid="order-date">{ `${Date.now("mm/YY")}` }</span>
+        <span data-testid="order-date">{ `${orderDate}` }</span>
       </h2>
       <div>
         {orderDetail && orderDetail.map((product, index) => (
