@@ -41,7 +41,9 @@ function OrdersDetails() {
             >
               {`Total: R$ ${order.total_price.split('.').join(',')}`}
             </h2>
-            <span>
+            <span
+              data-testid="order-date"
+            >
               {`${
                 order.Date
                   .split('T')[0].split('-')[2]}/${order.Date
