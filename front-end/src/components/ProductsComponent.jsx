@@ -35,7 +35,7 @@ function ProductsComponent() {
   if (redirectToCheckout) return (<Redirect to="/checkout" />);
   if (jwtInvalid) return (<Redirect to="/login" />);
   return loading
-    ? (<span>tenha fé...</span>)
+    ? (<span>Tenha Fé...</span>)
     : (
       <div>
         {products.map((product, index) => (
