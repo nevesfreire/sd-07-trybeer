@@ -32,7 +32,9 @@ function CreateUserForm() {
     };
     validateRegister(user);
 
-    const response = await registerUser(user).then((apiResponse) => apiResponse);
+    const response = await registerUser(user).then(
+      (apiResponse) => apiResponse,
+    );
     if (response.err) return setUserExists(true);
     setUserExists(false);
 
@@ -52,9 +54,7 @@ function CreateUserForm() {
   return (
     <Form onSubmit={ onSubmitHandler }>
       <Form.Row>
-        <Form.Label htmlFor="signup-name">
-          Nome
-        </Form.Label>
+        <Form.Label htmlFor="signup-name">Nome</Form.Label>
         <Form.Control
           value={ name }
           onChange={ (e) => setName(e.target.value) }
@@ -66,9 +66,7 @@ function CreateUserForm() {
         />
       </Form.Row>
       <Form.Row>
-        <Form.Label htmlFor="signup-email">
-          Email
-        </Form.Label>
+        <Form.Label htmlFor="signup-email">Email</Form.Label>
         <Form.Control
           value={ email }
           onChange={ (e) => setEmail(e.target.value) }
@@ -78,13 +76,14 @@ function CreateUserForm() {
           data-testid="signup-email"
           required
         />
-        { userExists && <span style={{color: 'red'}}>Já existe um usuário com esse e-mail.</span> }
-
+        {userExists && (
+          <span style={ { color: 'red' } }>
+            Já existe um usuário com esse e-mail.
+          </span>
+        )}
       </Form.Row>
       <Form.Row>
-        <Form.Label htmlFor="signup-password">
-          Senha
-        </Form.Label>
+        <Form.Label htmlFor="signup-password">Senha</Form.Label>
         <Form.Control
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
@@ -94,7 +93,6 @@ function CreateUserForm() {
           data-testid="signup-password"
           required
         />
-
       </Form.Row>
       <Form.Row>
         <Form.Check
@@ -104,7 +102,6 @@ function CreateUserForm() {
           label="Quero vender"
           type="checkbox"
         />
-
       </Form.Row>
       <Button
         type="submit"
