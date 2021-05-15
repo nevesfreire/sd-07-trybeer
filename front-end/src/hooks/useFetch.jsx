@@ -119,7 +119,7 @@ function useFetch() {
     return data;
   }
 
-  async function getClientOrderDetails(token, id) {
+  async function getOrderById(token, id) {
     const result = await fetch(`http://localhost:3001/sales/${id}`, {
       method: 'GET',
       headers: {
@@ -132,6 +132,22 @@ function useFetch() {
     return responseAPI;
   }
 
+  async function putSales(token, status, id) {
+    const result = await fetch(`http://localhost:3001/sales/${id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: token,
+        Accept: informationType,
+        'Content-Type': informationType,
+      },
+      body: JSON.stringify({
+        status,
+      }),
+    });
+    const data = await result.json();
+    return data;
+  }
+
   return (
     {
       login,
@@ -140,7 +156,8 @@ function useFetch() {
       getOrdersByEmail,
       getProducts,
       postSales,
-      getClientOrderDetails,
+      getOrderById,
+      putSales,
       getOrders,
     }
   );

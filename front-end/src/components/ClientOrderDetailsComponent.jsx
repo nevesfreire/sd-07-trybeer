@@ -8,9 +8,9 @@ function ClientOrdersDetails({ param }) {
   const [orderDetails, setOrderDetails] = useState({});
   const [jwtInvalid, setJwtInvalid] = useState(false);
 
-  const { getClientOrderDetails } = useFetch();
+  const { getOrderById } = useFetch();
   const callAPI = async (token) => {
-    const resultAPI = await getClientOrderDetails(token, param);
+    const resultAPI = await getOrderById(token, param);
     if (resultAPI.message) return setJwtInvalid(true);
     setOrderDetails(resultAPI);
     setLoading(false);
