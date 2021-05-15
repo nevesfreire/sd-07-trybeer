@@ -22,8 +22,13 @@ describe('checkout POST route', () => {
 
   beforeEach(async (done) => {
     await connection.execute('DELETE FROM sales_products');
+    await connection.execute('DELETE FROM products');
     await connection.execute('DELETE FROM sales');
     await connection.execute('DELETE FROM users');
+    await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
+    await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
+    await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
+    await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
     await connection.execute('INSERT INTO users (name, email, password, role) ' 
       + 'VALUES (?, ?, ?, ?)',
       [USERS[0].name, USERS[0].email, USERS[0].password, USERS[0].role]);
