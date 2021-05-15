@@ -9,6 +9,19 @@ VALUES (?,?,?)`;
 
 const selectSales = 'SELECT * FROM Trybeer.sales';
 
+const saleById = `SELECT
+sp.sale_id,
+p.name, p.price,
+sp.quantity,
+s.status,
+DATE_FORMAT(s.sale_date, "%d/%m") AS sale_date
+FROM Trybeer.sales_products AS sp
+INNER JOIN Trybeer.products AS p on p.id = sp.product_id
+INNER JOIN Trybeer.sales AS s on s.id = sp.sale_id
+WHERE sp.sale_id = ?`;
+
+const changeStatus = 'UPDATE Trybeer.sales set status = ?';
+
 const createSale = async (salesData) => {
   const {
     userId,
@@ -48,8 +61,20 @@ const getAllSales = async (_request, response) => {
   }
 };
 
+const getSaleById = async (id) => {
+  const [result] = await connection.execute(saleById, [id]);
+  return result;  
+};
+
+const statusChange = async (status) => {
+  const [result] = await connection.execute(changeStatus, [status]);
+  return result;
+};
+
 module.exports = {
   createSale,
   createSalesProducts,
   getAllSales,
+  getSaleById,
+  statusChange,
 };
