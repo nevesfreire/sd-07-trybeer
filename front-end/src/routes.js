@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ProfileAdmin from './components/ProfileAdmin';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Admin from './pages/Admin';
@@ -20,9 +21,10 @@ const Routes = () => (
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/checkout" component={ Checkout } />
       <Route exact path="/orders" component={ Orders } />
+      <Route exact path="/admin/profile" component={ ProfileAdmin } />
+
     </Switch>
   </BrowserRouter>
 );
-// Teste
 
 export default Routes;
