@@ -5,6 +5,12 @@
 function useFetch() {
   const methods = {
     post: 'POST',
+    get: 'GET',
+    put: 'PUT',
+  };
+
+  const routes = {
+    sales: 'http://localhost:3001/sales',
   };
 
   const informationType = 'application/json';
@@ -47,7 +53,20 @@ function useFetch() {
       body: JSON.stringify({ email, name }),
     });
     const responseAPI = await result.json();
-    console.log('responseAPI', responseAPI);
+    return responseAPI;
+  }
+
+  async function getOrdersByEmail(email, token) {
+    const result = await fetch('http://localhost:3001/orders', {
+      method: 'GET',
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+        Authorization: token,
+        Email: email,
+      },
+    });
+    const responseAPI = await result.json();
     return responseAPI;
   }
 
@@ -64,12 +83,24 @@ function useFetch() {
     return responseAPI;
   }
 
+  async function getOrders(token) {
+    const result = await fetch(routes.sales, {
+      method: 'GET',
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+        Authorization: token,
+      },
+    });
+    const responseAPI = await result.json();
+    return responseAPI;
+  }
+
   async function postSales(args) {
     const { status, user, address, total, localStorageSalved } = args;
     const { token } = user;
     const { deliveryAddress, deliveryNumber } = address;
-    console.log('user', args.user);
-    const result = await fetch('http://localhost:3001/sales', {
+    const result = await fetch(routes.sales, {
       method: 'POST',
       headers: {
         Authorization: token,
@@ -88,8 +119,8 @@ function useFetch() {
     return data;
   }
 
-  async function getOrders(token) {
-    const result = await fetch('http://localhost:3001/sales', {
+  async function getClientOrderDetails(token, id) {
+    const result = await fetch(`http://localhost:3001/sales/${id}`, {
       method: 'GET',
       headers: {
         Accept: informationType,
@@ -106,8 +137,10 @@ function useFetch() {
       login,
       updateProfileName,
       register,
+      getOrdersByEmail,
       getProducts,
       postSales,
+      getClientOrderDetails,
       getOrders,
     }
   );

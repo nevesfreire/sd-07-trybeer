@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import useFetch from '../hooks/useFetch';
 
@@ -20,7 +21,7 @@ function ClientOrdersDetails({ param }) {
     setJwtInvalid(false);
     const userResult = JSON.parse(localStorage.getItem('user'));
     if (!userResult || !userResult.token) return setJwtInvalid(true);
-    callAPI(userResult.token)
+    callAPI(userResult.token);
   }, []);
 
   if (jwtInvalid) return (<Redirect to="/login" />);
@@ -58,8 +59,8 @@ function ClientOrdersDetails({ param }) {
               <span
                 data-testid={ `${index}-product-total-value` }
               >
-                { `R$ ${ String((order.price * order.quantity).toFixed(2))
-                  .replace('.', ',') }` }
+                { `R$ ${String((order.price * order.quantity).toFixed(2))
+                  .replace('.', ',')}` }
               </span>
             </div>
           ))
@@ -77,5 +78,9 @@ function ClientOrdersDetails({ param }) {
     </section>
   );
 }
+
+ClientOrdersDetails.propTypes = {
+  param: PropTypes.number.isRequired,
+};
 
 export default ClientOrdersDetails;
