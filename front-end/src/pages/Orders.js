@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { HeaderAdmin, Header, OrdersClientCard } from '../components';
+import { HeaderAdmin, Header, OrdersClientCard, OrdersAdmCard } from '../components';
 import { getOrdersForAdmin, getOrdersForUser } from '../api';
 
 import ls from '../services';
@@ -14,13 +14,10 @@ function Orders() {
   const getOrdersByRole = async (token, role, id) => {
     if (role === 'administrator') {
       const getSalesAdmin = await getOrdersForAdmin(token);
-      setOrders(getSalesAdmin.data);
-      console.log(getSalesAdmin.data);
-    } else {
-      const getSalesUser = await getOrdersForUser(token, id);
-      setOrders(getSalesUser.data);
-      console.log(getSalesUser.data);
+      return setOrders(getSalesAdmin.data);
     }
+    const getSalesUser = await getOrdersForUser(token, id);
+    return setOrders(getSalesUser.data);
   };
 
   const getUserLogged = useCallback(async () => {
@@ -39,7 +36,21 @@ function Orders() {
     <div className="first-div">
       {
         user && user.role === 'administrator'
-          ? <HeaderAdmin title="Admin - Pedidos" />
+          ? (
+            <>
+              <HeaderAdmin title="Admin - Pedidos" />
+              <div>
+                {
+                  orders && orders.map((item, index) => (
+                    <OrdersAdmCard
+                      key={ index }
+                      order={ item.sale }
+                      index={ index }
+                    />))
+                }
+              </div>
+            </>
+          )
           : (
             <>
               <Header title="Meus Pedidos" />

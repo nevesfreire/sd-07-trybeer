@@ -35,7 +35,6 @@ async function getProducts(token) {
 }
 
 async function updateUser(userData) {
-  console.log(userData);
   try {
     const response = await axios.put(`${url}${register}`, userData);
     return response;
@@ -58,7 +57,6 @@ async function getOrdersForAdmin(token) {
   try {
     const response = await axios
       .get(`${url}${orders}`, { headers: { Authorization: token } });
-    console.log(response);
     return response;
   } catch (error) {
     return error.response.status;
@@ -69,7 +67,6 @@ async function getOrdersById(token, id) {
   try {
     const response = await axios
       .get(`${url}${orders}/${id}`, { headers: { Authorization: token } });
-    console.log('resposta api', response);
     return response;
   } catch (error) {
     return error.response.status;

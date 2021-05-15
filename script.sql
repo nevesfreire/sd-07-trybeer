@@ -61,9 +61,11 @@ INSERT INTO products (id, name, price, url_image) VALUES
 	('11','Stella Artois 275ml',3.49, 'http://localhost:3001/images/Stella Artois 275ml.jpg');
     
 INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, sale_date, status) VALUES
-	('1', '32.00', 'Rua Teste', '961', '2021-05-12', 'Pendente'),
-	('2', '21.00', 'Rua Segundo Teste', '850', '2021-05-12', 'Entregue');
+	('1', '152.00', 'Rua Teste', '961', '2021-05-12', 'Pendente'),
+	('2', '71.00', 'Rua Segundo Teste', '850', '2021-05-12', 'Entregue');
 
 INSERT INTO sales_products (sale_id, product_id, quantity) VALUES
 	('1', '1', '2'),
-	('2', '2', '1');
+	('1', '11', '12'),
+	('1', '6', '12'),
+	('2', '2', '36');

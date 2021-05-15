@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 function OrdersClientCard({ order, index }) {
   const history = useHistory();
   const { sale: { sale, Date, total_price: price } } = order;
+  console.log(Date);
 
   const handleClick = () => {
     history.push(`/orders/${sale}`);
