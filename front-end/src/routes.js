@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ProfileAdmin from './components/ProfileAdmin';
+import ProfileAdmin from './pages/Admin';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Admin from './pages/Admin';

@@ -7,16 +7,19 @@ import '../css/profile.css';
 import Header from '../components/Header';
 import Menu from '../components/Menu';
 
-const Profile = () => (
+const Profile = (props) => {
+  const { history } = props;
+  return (
   <div className="container-out-login">
     <Header title="Meu perfil" />
-    <Menu />
+    <Menu path={ history } />
     <div className="container-form-int">
       <ComponentProfile />
       <AsideLogo />
     </div>
     <Footer />
   </div>
-);
+  );
+};
 
 export default Profile;
