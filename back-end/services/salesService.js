@@ -10,4 +10,22 @@ const getAll = async () => {
   }
 };
 
-module.exports = { getAll };
+const getById = async (id) => {
+  try {
+    const sale = await salesModel.getById(id);
+    return { sale, ...OK };
+  } catch (error) {
+    return errorInDb;
+  }
+};
+
+const updateStatus = async (id) => {
+  try {
+    await salesModel.updateStatus(id);
+    return OK;
+  } catch (error) {
+    return errorInDb;
+  }
+};
+
+module.exports = { getAll, getById, updateStatus };
