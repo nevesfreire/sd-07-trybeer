@@ -52,7 +52,7 @@ function CreateUserForm() {
   };
 
   return (
-    <Form onSubmit={ onSubmitHandler }>
+    <Form onSubmit={ onSubmitHandler } style={ { paddingTop: '100px' } }>
       <Form.Row>
         <Form.Label htmlFor="signup-name">Nome</Form.Label>
         <Form.Control
@@ -65,7 +65,7 @@ function CreateUserForm() {
           required
         />
       </Form.Row>
-      <Form.Row>
+      <Form.Row className="mt-2">
         <Form.Label htmlFor="signup-email">Email</Form.Label>
         <Form.Control
           value={ email }
@@ -82,7 +82,7 @@ function CreateUserForm() {
           </span>
         )}
       </Form.Row>
-      <Form.Row>
+      <Form.Row className="mt-2">
         <Form.Label htmlFor="signup-password">Senha</Form.Label>
         <Form.Control
           value={ password }
@@ -94,8 +94,9 @@ function CreateUserForm() {
           required
         />
       </Form.Row>
-      <Form.Row>
+      <Form.Row className="mt-2">
         <Form.Check
+          className="mt-2"
           data-testid="signup-seller"
           checked={ iWantToSell }
           onChange={ handleRole }
@@ -103,13 +104,16 @@ function CreateUserForm() {
           type="checkbox"
         />
       </Form.Row>
-      <Button
-        type="submit"
-        disabled={ validateRegister(name, email, password) }
-        data-testid="signup-btn"
-      >
-        Cadastrar
-      </Button>
+      <Form.Row className="justify-content-center">
+        <Button
+          className="mt-4"
+          type="submit"
+          disabled={ validateRegister(name, email, password) }
+          data-testid="signup-btn"
+        >
+          Cadastrar
+        </Button>
+      </Form.Row>
     </Form>
   );
 }
