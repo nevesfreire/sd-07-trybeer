@@ -47,7 +47,20 @@ function useFetch() {
       body: JSON.stringify({ email, name }),
     });
     const responseAPI = await result.json();
-    console.log('responseAPI', responseAPI);
+    return responseAPI;
+  }
+
+  async function getOrdersByEmail(email, token) {
+    const result = await fetch('http://localhost:3001/orders', {
+      method: 'GET',
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+        Authorization: token,
+        Email: email,
+      },
+    });
+    const responseAPI = await result.json();
     return responseAPI;
   }
 
@@ -68,7 +81,6 @@ function useFetch() {
     const { status, user, address, total, localStorageSalved } = args;
     const { token } = user;
     const { deliveryAddress, deliveryNumber } = address;
-    console.log('user', args.user);
     const result = await fetch('http://localhost:3001/sales', {
       method: 'POST',
       headers: {
@@ -99,7 +111,19 @@ function useFetch() {
     });
     const responseAPI = await result.json();
     return responseAPI;
+  }
 
+  async function getOrders(token) {
+    const result = await fetch('http://localhost:3001/sales', {
+      method: 'GET',
+      headers: {
+        Accept: informationType,
+        'Content-Type': informationType,
+        Authorization: token,
+      },
+    });
+    const responseAPI = await result.json();
+    return responseAPI;
   }
 
   async function putSales(token, status, id) {
@@ -123,10 +147,12 @@ function useFetch() {
       login,
       updateProfileName,
       register,
+      getOrdersByEmail,
       getProducts,
       postSales,
       getOrderById,
       putSales,
+      getOrders,
     }
   );
 }

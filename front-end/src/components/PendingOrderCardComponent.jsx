@@ -21,7 +21,7 @@ function PendingOrderCard({ order, index }) {
         <span
           data-testid={ `${index}-order-total-value` }
         >
-          { `R$ ${order.total_price}` }
+          { `R$ ${(order.total_price).replace('.', ',')}` }
         </span>
         <span
           data-testid={ `${index}-order-status` }
@@ -37,7 +37,7 @@ PendingOrderCard.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,
-    total_price: PropTypes.number.isRequired,
+    total_price: PropTypes.string.isRequired,
     delivery_address: PropTypes.string.isRequired,
     delivery_number: PropTypes.string.isRequired,
   }).isRequired,
