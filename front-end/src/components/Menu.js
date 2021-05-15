@@ -1,21 +1,25 @@
 import React, { useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Global from '../context/index';
 import '../css/menu.css';
 
-const Menu = ({path}) => {
+const Menu = ({ path }) => {
   let althernativeClassName;
-  const { location: { pathname } } = path;
+  const {
+    location: { pathname },
+  } = path;
+  const ADMIN_ROUTE = '/admin/orders';
 
   const { menuState, setMenuState } = useContext(Global);
 
   useEffect(() => {
-    if (pathname === '/admin/orders') {
+    if (pathname === ADMIN_ROUTE) {
       setMenuState(true);
     }
-  }, []);
+  }, [ADMIN_ROUTE, pathname, setMenuState]);
 
-  if (pathname === '/admin/orders') {
+  if (pathname === ADMIN_ROUTE) {
     althernativeClassName = 'admin-side-bar-container';
   } else {
     althernativeClassName = 'side-menu-container';
@@ -29,37 +33,34 @@ const Menu = ({path}) => {
           : `${althernativeClassName} aside-menu-hide`
       }
     >
-      { pathname !== '/admin/orders'?
+      {pathname !== ADMIN_ROUTE ? (
         <div className={ menuState ? 'item-menu' : 'hide-menu' }>
           <Link to="/products" data-testid="side-menu-item-products">
             Produtos
           </Link>
         </div>
-        : null
-      }
+      ) : null}
       <div className={ menuState ? 'item-menu' : 'hide-menu' }>
-        { 
-          pathname !== '/admin/orders'?
-            <Link to="/orders" data-testid="side-menu-item-my-orders">
-              Meus pedidos
-            </Link> 
-            :
-            <Link to="/admin/orders" data-testid="side-menu-item-orders">
-              Meus pedidos
-            </Link>
-        }
+        {pathname !== ADMIN_ROUTE ? (
+          <Link to="/orders" data-testid="side-menu-item-my-orders">
+            Meus pedidos
+          </Link>
+        ) : (
+          <Link to="/admin/orders" data-testid="side-menu-item-orders">
+            Meus pedidos
+          </Link>
+        )}
       </div>
       <div className={ menuState ? 'item-menu' : 'hide-menu' }>
-        {
-          pathname !== '/admin/orders'?
-            <Link to="/profile" data-testid="side-menu-item-my-profile">
-              Meu perfil
-            </Link>
-            :
-            <Link to="/admin/profile" data-testid="side-menu-item-profile">
-              Meu perfil
-            </Link>
-        }
+        {pathname !== ADMIN_ROUTE ? (
+          <Link to="/profile" data-testid="side-menu-item-my-profile">
+            Meu perfil
+          </Link>
+        ) : (
+          <Link to="/admin/profile" data-testid="side-menu-item-profile">
+            Meu perfil
+          </Link>
+        )}
       </div>
       <div className={ menuState ? 'item-menu' : 'hide-menu' }>
         <Link to="/login" data-testid="side-menu-item-logout">
@@ -68,6 +69,10 @@ const Menu = ({path}) => {
       </div>
     </div>
   );
+};
+
+Menu.propTypes = {
+  path: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default Menu;
