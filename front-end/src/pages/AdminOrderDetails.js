@@ -40,7 +40,7 @@ function AdminOrderDetails() {
   }, [requestOrder]);
 
   return (
-    <div className="content is-large">
+    <div className="content is-large first-div">
       <div>
         <Header title="TryBeer" />
       </div>
@@ -50,7 +50,9 @@ function AdminOrderDetails() {
           : (
             <>
               <div>
-                <span data-testid="order-number">{saleOrder.sale}</span>
+                <span data-testid="order-number">
+                  {`Pedido ${Number(saleOrder.sale)} - `}
+                </span>
                 <span data-testid="order-status">{saleOrder.status}</span>
               </div>
 
@@ -67,10 +69,9 @@ function AdminOrderDetails() {
                       <span />
                       <div>
                         <span data-testid={ `${index}-product-total-value` }>
-                          R$
-                          {handleData(product.unit_price, product.quantity)}
+                          {`R$ ${handleData(product.unit_price, product.quantity)}`}
                         </span>
-                        <span data-testid={ `${index}-product-unit-price` }>
+                        <span data-testid={ `${index}-order-unit-price` }>
                           (R$
                           {product.unit_price.split('.').join(',')}
                           )
@@ -80,10 +81,10 @@ function AdminOrderDetails() {
                   ))
               }
               <div data-testid="order-total-value">
-                Total: R$
-                {saleOrder.total_price.split('.').join(',')}
+                {`Total: R$ ${saleOrder.total_price.split('.').join(',')}`}
               </div>
               <Button
+                data-testid="mark-as-delivered-btn"
                 disabled={ saleOrder.status === 'Entregue' || buttonState === true }
                 onClick={ () => handleClick() }
               >
