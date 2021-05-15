@@ -6,7 +6,7 @@ import { Card } from 'semantic-ui-react';
 const CustomRenderProducts = () => {
   const products = getProduct();
   return (
-    <Card.Group stackable='true'>
+    <Card.Group stackable='true' style={{ justifyContent: 'space-around', padding: 20 }}>
       {products &&
         products.map((beer, index) => (
           <CustomProductCard key={beer.id} index={index} beer={beer} />

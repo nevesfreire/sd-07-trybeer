@@ -6,7 +6,6 @@ import { getOrderDetails } from '../helpers/localStorage';
 
 function Details() {
   const [detail, setDetail] = useState(getOrderDetails());
-  console.log(detail, setDetail);
   let sumTotal = 0;
   detail.map((total) => {
     (sumTotal = total.total + sumTotal);

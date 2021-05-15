@@ -81,7 +81,7 @@ function Checkout() {
     </div>
   ), [cart, remButton, totalKart]);
   return (
-    <div>
+    <Container>
       <Grid container>
         <Grid.Column>
           <CustomHeader message="Finalizar Pedido" />
@@ -130,7 +130,7 @@ function Checkout() {
           { finish ? <span>Compra realizada com sucesso!</span> : null}
         </Segment>
       </Form>
-    </div>
+    </Container>
   );
 }
 export default Checkout;

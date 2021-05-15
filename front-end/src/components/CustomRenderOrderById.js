@@ -6,7 +6,6 @@ import { getOrderById } from '../helpers/localStorage';
 
 const CustomRenderOrderById = () => {
   const [order, setOrder] = useState(getOrderById());
-  console.log(setOrder);
   useEffect(() => {
     fetchOrderById();
   }, []);

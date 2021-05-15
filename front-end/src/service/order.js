@@ -15,7 +15,6 @@ async function fetchAllOrders() {
 
   try {
     const res = await axios.get(requestProductsUrl, requestHeader);
-    console.log('res', res);
     const { data } = res;
     if (data) {
       saveAllOrders(data);
@@ -33,7 +32,6 @@ async function fetchOrderById() {
 
   try {
     const res = await axios.get(requestProductsUrl, requestHeader);
-    console.log('res', res);
     const { data } = res;
     if (data) {
       saveOrderById(data);
@@ -50,7 +48,6 @@ async function fetchOrderDetails(id) {
 
   try {
     const res = await axios.get(requestProductsUrl, requestHeader);
-    console.log('res', res);
     const { data } = res;
     if (data) {
       saveOrderDetails(data);
@@ -65,7 +62,6 @@ async function fetchOrderDetails(id) {
 async function fetchOrderDeliveryId(id) {
   const requestProductsUrl = 'http://localhost:3001/checkout';
 
-  console.log('fetttt', id);
   const requestBody = {
     id,
   };
@@ -75,7 +71,6 @@ async function fetchOrderDeliveryId(id) {
       requestBody,
       requestHeader,
     );
-    console.log('res', res);
     const { data } = res;
     if (data) {
       saveOrderDetails(data);

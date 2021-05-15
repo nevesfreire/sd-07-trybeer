@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Header } from 'semantic-ui-react';
+import { Header, Container } from 'semantic-ui-react';
 
 
 const CustomHeader = ({ message }) => (
-  <Header data-testid="top-title" as="h1" color="orange" textAlign="center">
-    {message}
-  </Header>
+  <Container style={{ margin: '40px 0' }}>
+    <Header as="h1" data-testid="top-title" color="orange" textAlign="center" >
+      {message}
+    </Header>
+  </Container>
 );
 
 CustomHeader.propTypes = {

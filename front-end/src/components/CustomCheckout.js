@@ -8,13 +8,13 @@ export default function CustomCheckout({ index, beer, removeButton }) {
       {!beer ? (
         null
       ) : (
-        <Card>
+        <Card style={{ margin: 20, boxShadow: '1px 2px 4px rgba(0, 0, 0, .5)' }}>
           <Card.Content>
             <Image
               data-testid={ `${index}-product-img` }
               floated="right"
-              size={ beer.name === 'Skol Lata 250ml' ? 'mini' : 'tiny' }
-              src={ beer.url_image }
+              size={ 'tiny' }
+              src={ beer[4] }
               alt="imagem de uma bebida"
             />
             <Card.Header data-testid={ `${index}-product-name` }>

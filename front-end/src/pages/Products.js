@@ -6,7 +6,7 @@ import {
   Segment,
   Header,
   Container,
-  Card,
+  Menu,
 } from 'semantic-ui-react';
 import CustomRenderProducts from '../components/CustomRenderProducts';
 import CentralContext from '../context/Context';
@@ -34,15 +34,12 @@ function Products() {
 
   return (
     <div>
-      <CustomHeader message="TryBeer" />
-      <Grid>
-        <Grid.Column>
-          <Grid.Column>
-            <CustomTopMenu />
-          </Grid.Column>
-        </Grid.Column>
-        <Header as="h1" color="orange" textAlign="center" />
-      </Grid>
+      <Container>
+        <Header style={{ display: 'flex', alignItems: 'center' }}>
+          <CustomTopMenu />
+          <CustomHeader message="TryBeer"/>
+        </Header>
+      </Container>
       <Container style={{ margin: 'auto' }, { padding: '20'}}>
         <CustomRenderProducts />
       </Container>

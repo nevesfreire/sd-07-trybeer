@@ -23,17 +23,6 @@ header .navigation.active {
   z-index: 10000;
 }
 
-/* calc(100% - 68px) */
-
-/* header .navigation li {
-  margin-left: 0;
-} */
-
-/* header .navigation li a {
-  color: #111;
-  font-size: 1.1em;
-} */
-
 header .menuToggle {
   position: relative;
   width: 40px;
@@ -69,14 +58,13 @@ header .menuToggle.active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: flex-end; */
   height: 100vh;
   width: 200px;
   background-color: black;
 }
 
 .title {
-  color: #fff;
+  color: orangered;
   margin-top: 15px;
 }
 
@@ -84,21 +72,27 @@ header .menuToggle.active {
   margin: auto;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  text-align: left;
 }
 
 .side-menu {
   display: flex;
   flex-direction: column;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 800;
 }
 
 .item-menu {
   color: #fff;
-  margin-bottom: 20px;
+  margin: 30px 0;
 }
 
 .side-exit {
   margin-top: 300px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.container-order-details {
+  background-color: rgb(253,251,251);
 }

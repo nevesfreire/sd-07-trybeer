@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react';
+
 
 function CustomSideBarAdmin() {
   return (
     <div>
       <div className="admin-side-bar-container">
-        <div className="title">
-          <h1>TryBeer</h1>
-        </div>
+        <Header as="h1" color="orange" className="title" content="TryBeer" style={{ marginTop: 20 }}>
+          {/* <h1>TryBeer</h1> */}
+        </Header>
         <div className="menu-container">
           <div className="side-menu">
             <Link
