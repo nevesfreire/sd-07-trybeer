@@ -61,28 +61,30 @@ export default function ProductsList() {
         <p>Loading...</p>
       ) : (
         <CardDeck
-          style={ { width: '200rem' } }
+          style={ { width: '200rem', paddingTop: '70px' } }
           className="d-flex justify-content-center"
         >
           {products.map((item, index) => (
             <Card
               key={ item.id }
-              style={ { width: '10rem', background: 'transparent', color: 'rgb(232,214,210)' } }
+              style={ {
+                width: '10rem',
+                background: 'transparent',
+                color: 'rgb(232,214,210)',
+              } }
               className="align-self-center text-center"
             >
-              <Card.Img
-                className="align-self-center"
-                style={ { width: '10rem', background: 'transparent' } }
-                variant="top"
-                src={ item.url_image }
-                alt={ item.name }
-                data-testid={ `${index}-product-img` }
-              />
               <Card.Body>
-                <Card.Title data-testid={ `${index}-product-name` }>
+                <Card.Title
+                  data-testid={ `${index}-product-name` }
+                  style={ { color: 'white' } }
+                >
                   {item.name}
                 </Card.Title>
-                <Card.Text data-testid={ `${index}-product-price` }>
+                <Card.Text
+                  data-testid={ `${index}-product-price` }
+                  style={ { color: 'white' } }
+                >
                   {`R$ ${item.price.replace('.', ',')}`}
                 </Card.Text>
                 <Row>
@@ -111,6 +113,14 @@ export default function ProductsList() {
                   </Col>
                 </Row>
               </Card.Body>
+              <Card.Img
+                className="align-self-center"
+                style={ { width: '10rem', background: 'transparent' } }
+                variant="bottom"
+                src={ item.url_image }
+                alt={ item.name }
+                data-testid={ `${index}-product-img` }
+              />
             </Card>
           ))}
         </CardDeck>
