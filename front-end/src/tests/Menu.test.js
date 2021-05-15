@@ -69,91 +69,93 @@ test('O botão Perfil acessa a rota que mostra o perfil do administrador', async
   done();
 });
 
-test('O botão Sair acessa a rota de login e limpa o localStorage', async (done) => {
-  const { getByTestId, getByText, getAllByText, history } = renderWithRouter(<App />);
-  const emailInput = getByTestId('email-input');
-  const passwordInput = getByTestId('password-input');
-  userEvent.type(emailInput, 'tryber@trybe.com.br');
-  userEvent.type(passwordInput, '123456');
-  fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
+// test('O botão Sair acessa a rota de login e limpa o localStorage', async (done) => {
+//   const { getByTestId, getByText, getAllByText, history } = renderWithRouter(<App />);
+//   const emailInput = getByTestId('email-input');
+//   const passwordInput = getByTestId('password-input');
+//   userEvent.type(emailInput, 'tryber@trybe.com.br');
+//   userEvent.type(passwordInput, '123456');
+//   fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
 
-  const pedidos = await waitForElement(() => getByText('Pedidos'));
-  fireEvent.click(screen.getByTestId('side-menu-item-logout'));
-  const login = await waitForElement(() => getAllByText('Login'));
-  const { pathname } = history.location;
-  expect(pathname).toBe('/login');
-  expect(localStorage.clear).toHaveBeenCalled();
-  done();
-});
+//   const pedidos = await waitForElement(() => getByText('Pedidos'));
+//   fireEvent.click(screen.getByTestId('side-menu-item-logout'));
+//   const login = await waitForElement(() => getAllByText('Login'));
+//   const { pathname } = history.location;
+//   expect(pathname).toBe('/login');
+//   expect(localStorage.clear).toHaveBeenCalled();
+//   done();
+// });
 
-test('O botão Produtos acessa a rota que mostra todos os produtos', async (done) => {
-  const { getByTestId, getByText, getAllByText, history } = renderWithRouter(<App />);
-  const emailInput = getByTestId('email-input');
-  const passwordInput = getByTestId('password-input');
-  userEvent.type(emailInput, 'user@test.com');
-  userEvent.type(passwordInput, 'test123');
-  fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
+// test('O botão Produtos acessa a rota que mostra todos os produtos', async (done) => {
+//   const { getByTestId, getByText, getAllByText, history } = renderWithRouter(<App />);
+//   const emailInput = getByTestId('email-input');
+//   const passwordInput = getByTestId('password-input');
+//   userEvent.type(emailInput, 'user@test.com');
+//   userEvent.type(passwordInput, 'test123');
+//   fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
 
-  const trybeer = await waitForElement(() => getByText('TryBeer'));
-  fireEvent.click(getByTestId('top-hamburguer'));
-  const produtos = await waitForElement(() => getByText('Produtos'));
-  fireEvent.click(getByTestId('side-menu-item-products'));
-  const pedidos = await waitForElement(() => getByText('Pedidos'));
-  const { pathname } = history.location;
-  expect(pathname).toBe('/products');
-  done();
-});
+//   const trybeer = await waitForElement(() => getByText('TryBeer'));
+//   expect(trybeer).toBeInTheDocument();
+//   fireEvent.click(getByTestId('top-hamburguer'));
+//   const produtos = await waitForElement(() => getByText('Produtos'));
+//   expect(produtos).toBeInTheDocument();
+//   fireEvent.click(getByTestId('side-menu-item-products'));
+//   const pedidos = await waitForElement(() => getByText('Pedidos'));
+//   const { pathname } = history.location;
+//   expect(pathname).toBe('/products');
+//   done();
+// });
 
-test('O botão Meus Pedidos acessa a rota que mostra todos os pedidos do usuário', async (done) => {
-  const { getByTestId, getByText, history } = renderWithRouter(<App />);
-  const emailInput = getByTestId('email-input');
-  const passwordInput = getByTestId('password-input');
-  userEvent.type(emailInput, 'user@test.com');
-  userEvent.type(passwordInput, 'test123');
-  fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
+// test('O botão Meus Pedidos acessa a rota que mostra todos os pedidos do usuário', async (done) => {
+//   const { getByTestId, getByText, history } = renderWithRouter(<App />);
+//   const emailInput = getByTestId('email-input');
+//   const passwordInput = getByTestId('password-input');
+//   userEvent.type(emailInput, 'user@test.com');
+//   userEvent.type(passwordInput, 'test123');
+//   fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
 
-  const trybeer = await waitForElement(() => getByText('TryBeer'));
-  fireEvent.click(getByTestId('top-hamburguer'));
-  const botaoPedidos = await waitForElement(() => getByText('Pedidos'));
-  fireEvent.click(getByTestId('side-menu-item-my-orders'));
+//   const trybeer = await waitForElement(() => getByText('TryBeer'));
+//   fireEvent.click(getByTestId('top-hamburguer'));
+//   const botaoPedidos = await waitForElement(() => getByText('Pedidos'));
+//   fireEvent.click(getByTestId('side-menu-item-my-orders'));
 
-  const { pathname } = history.location;
-  expect(pathname).toBe('/orders');
-  done();
-});
+//   const { pathname } = history.location;
+//   expect(pathname).toBe('/orders');
+//   done();
+// });
 
-test('O botão Meu Perfil acessa a rota que mostra o perfil do usuário', async (done) => {
-  const { getByTestId, getByText, history } = renderWithRouter(<App />);
-  const emailInput = getByTestId('email-input');
-  const passwordInput = getByTestId('password-input');
-  userEvent.type(emailInput, 'user@test.com');
-  userEvent.type(passwordInput, 'test123');
-  fireEvent.click(getByText(/Entrar/), { button: 0 });
+// test('O botão Meu Perfil acessa a rota que mostra o perfil do usuário', async (done) => {
+//   const { getByTestId, getByText, history } = renderWithRouter(<App />);
+//   const emailInput = getByTestId('email-input');
+//   const passwordInput = getByTestId('password-input');
+//   userEvent.type(emailInput, 'user@test.com');
+//   userEvent.type(passwordInput, 'test123');
+//   fireEvent.click(getByText(/Entrar/), { button: 0 });
 
-  const trybeer = await waitForElement(() => getByText('TryBeer'));
+//   const trybeer = await waitForElement(() => getByText('TryBeer'));
 
-  fireEvent.click(getByTestId('top-hamburguer'));
-  fireEvent.click(getByTestId('side-menu-item-my-profile'));
+//   fireEvent.click(getByTestId('top-hamburguer'));
+//   fireEvent.click(getByTestId('side-menu-item-my-profile'));
 
-  const { pathname } = history.location;
-  expect(pathname).toBe('/profile');
-  done();
-});
+//   const { pathname } = history.location;
+//   expect(pathname).toBe('/profile');
+//   done();
+// });
 
-test('O botão Sair acessa a rota de login e limpa o localStorage', async (done) => {
-  const { getByTestId, getByText, history } = renderWithRouter(<App />);
-  const emailInput = getByTestId('email-input');
-  const passwordInput = getByTestId('password-input');
-  userEvent.type(emailInput, 'user@test.com');
-  userEvent.type(passwordInput, 'test123');
-  fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
+// test('O botão Sair acessa a rota de login e limpa o localStorage', async (done) => {
+//   const { getByTestId, getByText, history } = renderWithRouter(<App />);
+//   const emailInput = getByTestId('email-input');
+//   const passwordInput = getByTestId('password-input');
+//   userEvent.type(emailInput, 'user@test.com');
+//   userEvent.type(passwordInput, 'test123');
+//   fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
 
-  const trybeer = await waitForElement(() => getByText('TryBeer'));
+//   const trybeer = await waitForElement(() => getByText('TryBeer'));
 
-  fireEvent.click(getByTestId('side-menu-item-logout'));
+//   fireEvent.click(getByTestId('side-menu-item-logout'));
 
-  const { pathname } = history.location;
-  expect(pathname).toBe('/login');
-  expect(localStorage.clear).toHaveBeenCalled();
-  done();
-});
+//   const { pathname } = history.location;
+//   expect(pathname).toBe('/login');
+//   expect(localStorage.clear).toHaveBeenCalled();
+//   done();
+// });

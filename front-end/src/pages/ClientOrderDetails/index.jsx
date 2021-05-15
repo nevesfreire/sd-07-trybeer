@@ -8,7 +8,7 @@ const ClientOrderDetailsPage = () => {
 
   return (
     <div>
-      <Header title='Detalhes do Pedido' />
+      <Header title="Detalhes do Pedido" />
       <ClientOrderDetails />
     </div>
   );

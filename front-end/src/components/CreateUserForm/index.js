@@ -50,7 +50,7 @@ function CreateUserForm() {
 
   return (
     <form onSubmit={ onSubmitHandler }>
-      <label>
+      <label htmlFor="signup-name">
         Nome
         <input
           value={ name }
@@ -63,7 +63,7 @@ function CreateUserForm() {
         />
       </label>
 
-      <label>
+      <label htmlFor="signup-email">
         Email
         <input
           value={ email }
@@ -77,7 +77,7 @@ function CreateUserForm() {
       </label>
       { userExists && <span>Já existe um usuário com esse e-mail.</span> }
 
-      <label>
+      <label htmlFor="signup-password">
         Senha
         <input
           value={ password }
@@ -90,7 +90,7 @@ function CreateUserForm() {
         />
       </label>
 
-      <label>
+      <label htmlFor="signup-seller">
         Quero vender
         <input
           data-testid="signup-seller"

@@ -25,7 +25,7 @@ function LoginForm() {
 
   return (
     <form>
-      <label>
+      <label htmlFor="email-input">
         Email
         <input
           value={ email }
@@ -37,7 +37,7 @@ function LoginForm() {
           required
         />
       </label>
-      <label>
+      <label htmlFor="password-input">
         <span>Senha</span>
         <input
           value={ password }
