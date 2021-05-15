@@ -22,3 +22,8 @@
   margin-top: 20px;
   padding: 10px;
 }
+
+.container-card a {
+  text-decoration: none;
+  color: black;
+}

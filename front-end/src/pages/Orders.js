@@ -6,21 +6,28 @@ import api from '../services/api';
 import '../css/orders.css';
 
 const Orders = () => {
-  const URL = 'localhost:3001/ordes';
+  const URL = '/orders';
+
   const [orders, setOrders] = useState([
-    { id: 1, delivery_number: '1', sale_date: '10-12-2011', total_price: 100 },
+    { id: 1, delivery_number: '1', sale_date: '10-12-2011', total_price: '100' },
   ]);
-  const params = { id: 1 }; // esse id tem que ser buscado ainda.
+
+  const loggedUser = JSON.parse(localStorage.getItem('data'));
+  const params = {
+    headers: { 'content-type': 'application/json' },
+    id: loggedUser.id,
+  };
+
   const getAllOrdersByid = async () => {
     api
-      .get(URL, params)
+      .post(URL, params)
       .then((result) => setOrders(result.data))
       .catch((err) => console.log(`error: ${err}`));
   };
 
   useEffect(() => {
     getAllOrdersByid();
-  });
+  }, []);
 
   return (
     <div className="container">
@@ -28,16 +35,15 @@ const Orders = () => {
       <div className="container-int">
         <Menu />
         <div className="myOrder-body">
-          {
-            orders.map((actual) => (
-              <OrderCard
-                key={ actual.id }
-                deliveryNumber={ actual.delivery_number }
-                saleDate={ actual.sale_date }
-                totalPrice={ actual.total_price }
-              />
-            ))
-          }
+          {orders.map((actual, index) => (
+            <OrderCard
+              position={ index }
+              key={ actual.delivery_number }
+              deliveryNumber={ actual.delivery_number }
+              saleDate={ actual.sale_date }
+              totalPrice={ actual.total_price }
+            />
+          ))}
         </div>
       </div>
     </div>
