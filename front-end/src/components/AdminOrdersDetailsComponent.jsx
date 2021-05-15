@@ -37,9 +37,8 @@ function AdminOrdersDetailsComponent({ match }) {
     <>
       <header>
         <div>
-          <span data-testid="order-number">{`Pedido ${id} -`}</span>
-          <span data-testid="order-status">{`${[order].status}`}</span>
-          {/* testar como pegar indice 0 */}
+          <span data-testid="order-number">{`Pedido ${id} - `}</span>
+          <span data-testid="order-status">{status}</span>
         </div>
       </header>
       {order.map((product, index) => (

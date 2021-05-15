@@ -40,7 +40,7 @@ function App() {
             <Route exact path="/profile" component={ ClientProfile } />
             <Route exact path="/checkout" component={ Checkout } />
             <Route exact path="/admin/profile" component={ AdminProfile } />
-            <Route exact path="/admin/orders/:numero-do-pedido" component={ AdminOrdersDetails } />
+            <Route exact path="/admin/orders/:id" component={ AdminOrdersDetails } />
           </Switch>
         </ThemeProvider>
       </TrybeerProvider>
