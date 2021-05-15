@@ -54,7 +54,7 @@ function AdminOrdersDetailsComponent({ match }) {
           <div
             data-testid={ `${index}-order-unit-price` }
           >
-            {`(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')} un) `}
+            {`(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')}) `}
           </div>
         </div>
       ))}
@@ -67,7 +67,7 @@ function AdminOrdersDetailsComponent({ match }) {
           data-testid="mark-as-delivered-btn"
           onClick={ handleDelivered }
         >
-          Marcar pedido como entregue
+          Marcar como entregue
         </button>)}
     </>)
     : <span>Loading...</span>;
