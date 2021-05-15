@@ -35,7 +35,7 @@ function App() {
             <Route exact path="/admin/orders" component={ PendingOrders } />
             <Route exact path="/products" component={ Products } />
             <Route exact path="/orders" component={ Orders } />
-            <Route exact path="/orders/:numero-do-pedido" component={ OrdersDetails } />
+            <Route exact path="/orders/:id" component={ OrdersDetails } />
             <Route exact path="/profile" component={ ClientProfile } />
             <Route exact path="/checkout" component={ Checkout } />
             <Route exact path="/admin/profile" component={ AdminProfile } />
