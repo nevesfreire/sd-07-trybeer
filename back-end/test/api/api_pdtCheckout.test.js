@@ -3,9 +3,6 @@ const jwt = require('jsonwebtoken');
 const frisby = require('frisby');
 const connection = require('./tstHelper/connection');
 
-
-// INSERT INTO sales_products (sale_id,product_id,quantity) VALUES(1,4,10);
-// INSERT INTO sales (user_id,total_price,delivery_address,delivery_number,sale_date,status) VALUES(2,20,'test@test.com',34, NOW(),'pendente');
 describe('checkout POST route', () => {
   const USERS = [
   { name: 'Risso',
@@ -14,11 +11,8 @@ describe('checkout POST route', () => {
     role: 'client' },
   ];
 
-  const secret = process.env.SECRET || '12345';
-
   const URL = 'http://localhost:3001/checkout';
   const LOGIN_URL = 'http://localhost:3001/login';
-  // const REGISTER_URL = 'http://localhost:3001/register';
 
   beforeEach(async (done) => {
     await connection.execute('DELETE FROM sales_products');
