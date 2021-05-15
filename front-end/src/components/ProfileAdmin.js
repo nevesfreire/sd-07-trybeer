@@ -11,19 +11,20 @@ function ProfileAdmin() {
   }
 
   return (
-    <div className="user-profile">
-      <p data-testid="profile-name">
-        {' '}
-        Nome:
-        {objUser.name}
-      </p>
-      {' '}
-      <br />
-      <p data-testid="profile-email">
-        {' '}
-        Email:
-        {objUser.email}
-      </p>
+    <div>
+       <h1>Perfil</h1>
+      <div className="user-profile">
+      
+        <p data-testid="profile-name">
+          Nome:
+          {objUser.name}
+        </p>
+        <br />
+        <p data-testid="profile-email">
+          Email:
+          {objUser.email}
+        </p>
+      </div>
     </div>
   );
 }
