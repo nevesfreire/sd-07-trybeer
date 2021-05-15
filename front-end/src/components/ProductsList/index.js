@@ -1,3 +1,4 @@
+import { Card, CardDeck, Row, Col, Button } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getProducts } from '../../services/apiService';
@@ -54,37 +55,52 @@ export default function ProductsList() {
   };
 
   return (
-    <div style={ { display: 'flex', justifyContent: 'center' } }>
+    <div>
       { !products ? <p>Loading...</p>
-        : products.map((item, index) => (
-          <div key={ item.id }>
-            <img
-              style={ { width: '100px' } }
-              src={ item.url_image }
-              alt={ item.name }
-              data-testid={ `${index}-product-img` }
-            />
-            <p data-testid={ `${index}-product-name` }>{item.name}</p>
-            <p data-testid={ `${index}-product-price` }>
-              {`R$ ${item.price.replace('.', ',')}`}
-            </p>
-            <button
-              type="button"
-              data-testid={ `${index}-product-plus` }
-              onClick={ (e) => addProdQtt(e, item.id) }
-            >
-              +
-            </button>
-            <p data-testid={ `${index}-product-qtd` }>{item.productQtt}</p>
-            <button
-              type="button"
-              data-testid={ `${index}-product-minus` }
-              onClick={ () => decProdQtt(item.id) }
-            >
-              -
-            </button>
-          </div>
-        ))}
+        : (
+          <CardDeck style={ { width: '200rem' } } className="d-flex justify-content-center">
+            {products.map((item, index) => (
+              <Card key={ item.id } style={ { width: '10rem' } } className="align-self-center text-center">
+                <Card.Img
+                  className="align-self-center"
+                  style={ { width: '10rem' } }
+                  variant="top"
+                  src={ item.url_image }
+                  alt={ item.name }
+                  data-testid={ `${index}-product-img` }
+                />
+                <Card.Body>
+                  <Card.Title data-testid={ `${index}-product-name` }>{item.name}</Card.Title>
+                  <Card.Text data-testid={ `${index}-product-price` }>
+                    {`R$ ${item.price.replace('.', ',')}`}
+                  </Card.Text>
+                  <Row>
+                    <Col>
+                      <Button
+                        type="button"
+                        data-testid={ `${index}-product-plus` }
+                        onClick={ (e) => addProdQtt(e, item.id) }
+                      >
+                        +
+                      </Button>
+                    </Col>
+                    <Col>
+                      <p data-testid={ `${index}-product-qtd` }>{item.productQtt}</p>
+                    </Col>
+                    <Col>
+                      <Button
+                        type="button"
+                        data-testid={ `${index}-product-minus` }
+                        onClick={ () => decProdQtt(item.id) }
+                      >
+                        -
+                      </Button>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+            ))}
+          </CardDeck>)}
       <footer
         style={ { background: 'gray', bottom: '0', position: 'fixed', padding: '10px' } }
       >

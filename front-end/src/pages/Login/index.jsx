@@ -1,13 +1,12 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import LoginForm from '../../components/LoginForm';
 
 const Login = () => (
-  <div>
+  <Container fluid="md">
     <h1>Login</h1>
-    <div>
-      <LoginForm />
-    </div>
-  </div>
+    <LoginForm />
+  </Container>
 );
 
 export default Login;
