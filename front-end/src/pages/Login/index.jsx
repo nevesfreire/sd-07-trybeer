@@ -12,6 +12,7 @@ const Login = () => (
         paddingTop: '150px',
         paddingLeft: '60px',
         width: '70vh',
+        color: 'rgb(227,183,88)',
       } }
     >
       <h1>Login</h1>

@@ -14,11 +14,11 @@ function LoginForm() {
 
     // req da api enviando:
     const response = await userLogin(user).then((apiResponse) => apiResponse);
-    if (await response.role === 'administrator') {
+    if ((await response.role) === 'administrator') {
       localStorage.setItem('user', JSON.stringify(response));
       history.push('/admin/orders');
     }
-    if (await response.role === 'client') {
+    if ((await response.role) === 'client') {
       localStorage.setItem('user', JSON.stringify(response));
       history.push('/products');
     }
@@ -32,6 +32,11 @@ function LoginForm() {
         </Form.Label>
         <Col sm={ 10 }>
           <Form.Control
+            style={ {
+              background: 'transparent',
+              borderColor: 'rgb(227,183,88)',
+              color: 'rgb(232,214,210)',
+            } }
             value={ email }
             onChange={ (e) => setEmail(e.target.value) }
             placeholder="Email address"
@@ -41,7 +46,6 @@ function LoginForm() {
             required
           />
         </Col>
-
       </Form.Group>
 
       <Form.Group as={ Row } controlId="formHorizontalPassword">
@@ -50,6 +54,11 @@ function LoginForm() {
         </Form.Label>
         <Col sm={ 10 }>
           <Form.Control
+            style={ {
+              background: 'transparent',
+              borderColor: 'rgb(227,183,88)',
+              color: 'rgb(232,214,210)',
+            } }
             value={ password }
             onChange={ (e) => setPassword(e.target.value) }
             placeholder="Password"
@@ -63,6 +72,7 @@ function LoginForm() {
       <Row>
         <Col>
           <Button
+            style={{backgroundColor: 'rgb(133,54,21)', borderColor: 'rgb(133,54,21)'}}
             type="submit"
             data-testid="signin-btn"
             disabled={ validateLogin(email, password) }
@@ -75,6 +85,7 @@ function LoginForm() {
           <Link
             to="/register"
             data-testid="no-account-btn"
+            style={ { color: 'rgb(232,214,210)', marginLeft: '-50px' } }
           >
             Ainda não tenho conta
           </Link>
