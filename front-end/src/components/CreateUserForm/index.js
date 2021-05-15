@@ -1,3 +1,4 @@
+import { Form, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import validateRegister from './validation';
@@ -49,23 +50,26 @@ function CreateUserForm() {
   };
 
   return (
-    <form onSubmit={ onSubmitHandler }>
-      <label htmlFor="signup-name">
-        Nome
-        <input
+    <Form onSubmit={ onSubmitHandler }>
+      <Form.Row>
+        <Form.Label htmlFor="signup-name">
+          Nome
+        </Form.Label>
+        <Form.Control
           value={ name }
           onChange={ (e) => setName(e.target.value) }
-          placeholder="name"
+          placeholder="Nome Completo"
           type="text"
           name="name"
           data-testid="signup-name"
           required
         />
-      </label>
-
-      <label htmlFor="signup-email">
-        Email
-        <input
+      </Form.Row>
+      <Form.Row>
+        <Form.Label htmlFor="signup-email">
+          Email
+        </Form.Label>
+        <Form.Control
           value={ email }
           onChange={ (e) => setEmail(e.target.value) }
           placeholder="Email address"
@@ -74,12 +78,14 @@ function CreateUserForm() {
           data-testid="signup-email"
           required
         />
-      </label>
-      { userExists && <span>Já existe um usuário com esse e-mail.</span> }
+        { userExists && <span style={{color: 'red'}}>Já existe um usuário com esse e-mail.</span> }
 
-      <label htmlFor="signup-password">
-        Senha
-        <input
+      </Form.Row>
+      <Form.Row>
+        <Form.Label htmlFor="signup-password">
+          Senha
+        </Form.Label>
+        <Form.Control
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
           placeholder="Password"
@@ -88,26 +94,26 @@ function CreateUserForm() {
           data-testid="signup-password"
           required
         />
-      </label>
 
-      <label htmlFor="signup-seller">
-        Quero vender
-        <input
+      </Form.Row>
+      <Form.Row>
+        <Form.Check
           data-testid="signup-seller"
           checked={ iWantToSell }
           onChange={ handleRole }
+          label="Quero vender"
           type="checkbox"
         />
-      </label>
 
-      <button
+      </Form.Row>
+      <Button
         type="submit"
         disabled={ validateRegister(name, email, password) }
         data-testid="signup-btn"
       >
         Cadastrar
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 }
 export default CreateUserForm;

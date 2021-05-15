@@ -72,7 +72,10 @@ function LoginForm() {
       <Row>
         <Col>
           <Button
-            style={{backgroundColor: 'rgb(133,54,21)', borderColor: 'rgb(133,54,21)'}}
+            style={ {
+              backgroundColor: 'rgb(133,54,21)',
+              borderColor: 'rgb(133,54,21)',
+            } }
             type="submit"
             data-testid="signin-btn"
             disabled={ validateLogin(email, password) }
@@ -85,7 +88,7 @@ function LoginForm() {
           <Link
             to="/register"
             data-testid="no-account-btn"
-            style={ { color: 'rgb(232,214,210)', marginLeft: '-50px', justifyContent: 'center' } }
+            style={ { color: 'rgb(232,214,210)', marginLeft: '-50px' } }
           >
             Ainda não tenho conta
           </Link>
