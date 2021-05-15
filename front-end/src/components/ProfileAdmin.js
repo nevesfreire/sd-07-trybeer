@@ -12,9 +12,9 @@ function ProfileAdmin() {
 
   return (
     <div>
-       <h1>Perfil</h1>
+      <h1>Perfil</h1>
       <div className="user-profile">
-      
+
         <p data-testid="profile-name">
           Nome:
           {objUser.name}
