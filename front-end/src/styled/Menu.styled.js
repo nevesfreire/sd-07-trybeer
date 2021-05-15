@@ -11,7 +11,6 @@ const StyledMenu = styled.nav`
   text-align: left;
   padding: 2rem;
   position: ${({ isAdmin }) => (isAdmin ? 'static' : 'absolute')};
-  ${(props) => console.log(props)}
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;

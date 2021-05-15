@@ -3,15 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function OrderCard({ id, price, date, index }) {
-  console.log(price.replace('.', ','));
-  // const idConfig = () => {
-  //   const oneDecimalNum = 9;
-  //   const twoDecimalNum = 99;
-  //   if (id > oneDecimalNum) return `0${id}`;
-  //   if (id > twoDecimalNum) return id;
-  //   return `00${id}`;
-  // };
-
   return (
     <Link
       to={ `/orders/${id}` }

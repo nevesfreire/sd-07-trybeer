@@ -14,7 +14,6 @@ function AdminOrdersDetailsComponent({ match }) {
     const savedUser = localStorage.getItem('user');
     const userRecovered = JSON.parse(savedUser);
     setUser(userRecovered);
-    console.log(userRecovered.token);
     getOrderById(userRecovered.token, id).then((data) => setOrder(data));
   }, []);
 
