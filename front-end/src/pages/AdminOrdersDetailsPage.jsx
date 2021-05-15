@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import HeaderBurguer from '../components/HeaderBurger';
 import AdminOrdersDetailsComponent from '../components/AdminOrdersDetailsComponent';
 
-function AdminOrdersDetails({ history }) {
+function AdminOrdersDetails(props) {
+  
   return (
     <>
-      <HeaderBurguer titulo="TryBeer" isAdmin />
-      <AdminOrdersDetailsComponent history={ history } />
+      <HeaderBurguer titulo="TryBeer" isAdmin={true} />
+      <AdminOrdersDetailsComponent { ...props } />
     </>
   );
 }
