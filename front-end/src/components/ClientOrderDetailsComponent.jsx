@@ -20,7 +20,7 @@ function ClientOrdersDetails({ param }) {
     setLoading(true);
     setJwtInvalid(false);
     const userResult = JSON.parse(localStorage.getItem('user'));
-
+    if (!userResult || !userResult.token) return setJwtInvalid(true);
     callAPI(userResult.token)
   }, []);
 
@@ -31,14 +31,11 @@ function ClientOrdersDetails({ param }) {
   ) : (
     <section>
       <div>
-        <div>
-          <h1>Pedido</h1>
-          <span
-            data-testid="order-number"
-          >
-            { param }
-          </span>
-        </div>
+        <span
+          data-testid="order-number"
+        >
+          { `Pedido ${param}` }
+        </span>
         <span
           data-testid="order-date"
         >
@@ -60,9 +57,10 @@ function ClientOrdersDetails({ param }) {
                 { order.name }
               </span>
               <span
-                data-testid={ `${index}-product-qtd` }
+                data-testid={ `${index}-product-total-value` }
               >
-                { String((order.price * order.quantity).toFixed(2)).replace('.', ',') }
+                { `R$ ${ String((order.price * order.quantity).toFixed(2))
+                  .replace('.', ',') }` }
               </span>
             </div>
           ))
