@@ -67,12 +67,12 @@ export default function ProductsList() {
           {products.map((item, index) => (
             <Card
               key={ item.id }
-              style={ { width: '10rem' } }
+              style={ { width: '10rem', background: 'transparent', color: 'rgb(232,214,210)' } }
               className="align-self-center text-center"
             >
               <Card.Img
                 className="align-self-center"
-                style={ { width: '10rem' } }
+                style={ { width: '10rem', background: 'transparent' } }
                 variant="top"
                 src={ item.url_image }
                 alt={ item.name }
