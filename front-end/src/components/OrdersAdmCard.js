@@ -8,7 +8,10 @@ function OrdersAdmCard({ order, index }) {
   let totalPrice = price;
   totalPrice = totalPrice.split('.').join(',');
 
-  const handleClick = () => history.push(`/admin/orders/${sale}`);
+  const handleClick = () => history.push({
+    pathname: `/admin/orders/${sale}`,
+    state: sale,
+  });
 
   return (
     <div className="card">

@@ -45,7 +45,8 @@ const createNewSale = async (req, res, next) => {
 };
 
 const changeStatus = async (req, res, next) => {
-  const { id } = req.body;
+  const { id } = req.params;
+  console.log(`controller${id}`);
   try {
     const result = await ordersServices.changeStatus(id);
     return res.status(StatusCodes.CREATED).json(result);

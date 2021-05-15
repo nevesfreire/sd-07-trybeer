@@ -11,6 +11,7 @@ function AdminOrderDetails() {
   const [products, setProducts] = useState([]);
   const [buttonState, setButtonState] = useState(false);
   const history = useHistory();
+  const { state } = history.location;
 
   const handleData = (num1, num2) => {
     const result = num1 * num2;
@@ -20,7 +21,7 @@ function AdminOrderDetails() {
 
   const handleClick = async () => {
     const user = await services.acessLocalStorage.getUserLocalStorage();
-    const response = await changeStatus(user.token);
+    const response = await changeStatus(user.token, state);
     setButtonState(true);
     console.log(response);
   };
@@ -28,11 +29,11 @@ function AdminOrderDetails() {
   const requestOrder = useCallback(async () => {
     const user = await services.acessLocalStorage.getUserLocalStorage();
     if (!user) return history.push('/login');
-    const resultApi = await getOrdersById(user.token, 1);
+    const resultApi = await getOrdersById(user.token, state);
     setSaleOrder(resultApi.data);
     setProducts(resultApi.data.products);
     if (resultApi) setLoading(false);
-  }, [history]);
+  }, [history, state]);
 
   useEffect(() => {
     requestOrder();
@@ -83,7 +84,7 @@ function AdminOrderDetails() {
                 {saleOrder.total_price.split('.').join(',')}
               </div>
               <Button
-                disabled={ saleOrder.status === 'Entrege' || buttonState === true }
+                disabled={ saleOrder.status === 'Entregue' || buttonState === true }
                 onClick={ () => handleClick() }
               >
                 Marcar pedido como entregue

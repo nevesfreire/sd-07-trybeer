@@ -83,11 +83,10 @@ async function createNewSale(sale, token) {
   }
 }
 
-async function changeStatus(token) {
-  const id = { id: 1 };
+async function changeStatus(token, id) {
   try {
     const response = await axios
-      .put(`${url}${orders}/admin`, id, { headers: { Authorization: token } });
+      .put(`${url}${orders}/admin/${id}`, { headers: { Authorization: token } });
     return response;
   } catch (error) {
     return error.response.status;
