@@ -43,7 +43,17 @@ async function updateUser(userData) {
   }
 }
 
-async function getOrders(token) {
+async function getOrdersForUser(token, id) {
+  try {
+    const response = await axios
+      .get(`${url}${orders}/user/${id}`, { headers: { Authorization: token } });
+    return response;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
+async function getOrdersForAdmin(token) {
   try {
     const response = await axios
       .get(`${url}${orders}`, { headers: { Authorization: token } });
@@ -89,8 +99,10 @@ export {
   registerUser,
   getProducts,
   updateUser,
-  getOrders,
   createNewSale,
-  getOrdersById,
   changeStatus,
+  getOrdersById,
+  getOrdersForUser,
+  getOrdersForAdmin,
+  
 };
