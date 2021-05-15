@@ -28,11 +28,11 @@ function OrdersClientCard({ order, index }) {
               {`Pedido ${sale}`}
             </Heading>
             <Heading subtitle size={ 6 } data-testid={ `${index}-order-date` }>
-              { console.log(`${
+              {`${
                 Date
                   .split('T')[0].split('-')[2]}/${Date
                 .split('T')[0].split('-')[1]
-              }`)}
+              }`}
             </Heading>
             <Heading subtitle size={ 6 } data-testid={ `${index}-order-total-value` }>
               {`Total: R$ ${price.split('.').join(',')}`}
