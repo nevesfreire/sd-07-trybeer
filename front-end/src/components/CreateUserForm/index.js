@@ -52,7 +52,7 @@ function CreateUserForm() {
   };
 
   return (
-    <Form onSubmit={ onSubmitHandler } style={ { paddingTop: '100px' } }>
+    <Form onSubmit={ onSubmitHandler } style={ { paddingTop: '180px' } }>
       <Form.Row>
         <Form.Label htmlFor="signup-name">Nome</Form.Label>
         <Form.Control
