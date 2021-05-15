@@ -12,16 +12,52 @@ const sales = async (request, response) => {
       totalPrice: request.body.totalPrice,
       deliveryAddress: request.body.deliveryAddress,
       deliveryNumber: request.body.deliveryNumber,
-      saleDate: request.body.saleDate,
       status: request.body.status,
     };
     const sale = await salesModel.createSale(salesData);
     await salesModel.createSalesProducts(sale.saleId, request.body.listproducts);
-    return response.status(StatusCodes.OK).json(sale);
+    return response.status(StatusCodes.OK).json({ message: 'Compra realizada com sucesso!' });
   } catch (error) {
     return response.status(StatusCodes.BAD_REQUEST)
       .json({ message: error.message });
   }
 };
 
-module.exports = { sales };
+const getAllSales = async (_request, response) => {
+  try {
+    const result = await salesModel.getAllSales();
+    return response.status(StatusCodes.OK).json(result);
+  } catch (error) {
+    return response.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+};
+
+const getSaleById = async (request, response) => {
+  try {
+    const { id } = request.params;
+    const result = await salesModel.getSaleById(id);
+  return response.status(StatusCodes.OK).json(result);
+  } catch (error) {
+    return response.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+};
+
+const statusChange = async (request, response) => {
+  try {
+    const { status } = request.body;
+    const result = await salesModel.statusChange(status);
+    return response.status(StatusCodes.OK).json(result);
+  } catch (error) {
+    return response.status(StatusCodes.BAD_REQUEST)
+      .json({ message: error.message });
+  }
+};
+
+module.exports = {
+  sales,
+  getAllSales,
+  getSaleById,
+  statusChange,
+};

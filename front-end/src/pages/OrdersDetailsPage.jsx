@@ -1,11 +1,12 @@
 import React from 'react';
 import HeaderBurguer from '../components/HeaderBurger';
+import ClientOrderDetails from '../components/ClientOrderDetailsComponent';
 
-function OrdersDetails() {
+function OrdersDetails({ match: { params: { id } } }) {
   return (
     <>
       <HeaderBurguer titulo="Detalhes de Pedido" />
-      client
+      <ClientOrderDetails param={ id } />
     </>
   );
 }

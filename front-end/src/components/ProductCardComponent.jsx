@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import MyContext from '../context/TrybeerContext';
 
@@ -20,6 +20,15 @@ function ProductCard({ product, index }) {
     setQuantity(quantity + 1);
     addInCart(id, name, price);
   };
+
+  useEffect(() => {
+    const orderResult = JSON.parse(localStorage.getItem('products'));
+    if (orderResult !== null) {
+      const quantityById = orderResult.find((object) => object.id === product.id);
+      if (!quantityById) return setQuantity(0);
+      return setQuantity(quantityById.quantity);
+    }
+  }, []);
 
   return (
     <div key={ product.id }>

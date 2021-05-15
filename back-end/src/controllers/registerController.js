@@ -12,7 +12,6 @@ const newRegister = async (req, res) => {
     const userWithToken = { ...user[0], token };
     res.status(StatusCodes.CREATED).json(userWithToken);
   } catch (error) {
-    console.log('caí no catch controller');
     console.error(error.message);
     return res.status(StatusCodes.BAD_REQUEST)
       .json({ message: error.message });

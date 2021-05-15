@@ -5,6 +5,7 @@ const sales = require('./src/routes/salesRoute');
 const login = require('./src/routes/loginRoute');
 const register = require('./src/routes/registerRoute');
 const profile = require('./src/routes/profileRoute');
+const orders = require('./src/routes/ordersRoute');
 const images = require('./src/routes/imageRoute');
 
 const PORT = 3001;
@@ -22,6 +23,7 @@ app.use(sales);
 app.use(login);
 app.use(register);
 app.use(profile);
+app.use(orders);
 app.use(images);
 
 app.listen(PORT, () => { console.log('API rodando na porta 3001'); });

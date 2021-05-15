@@ -12,6 +12,7 @@ import Orders from './pages/OrdersPage';
 import Checkout from './pages/CheckoutPage';
 import ClientProfile from './pages/ClientProfilePage';
 import OrdersDetails from './pages/OrdersDetailsPage';
+import AdminProfile from './pages/AdminProfilePage';
 import GlobalStyle from './global';
 
 const theme = {
@@ -34,9 +35,10 @@ function App() {
             <Route exact path="/admin/orders" component={ PendingOrders } />
             <Route exact path="/products" component={ Products } />
             <Route exact path="/orders" component={ Orders } />
-            <Route exact path="/orders/:numero-do-pedido" component={ OrdersDetails } />
+            <Route exact path="/orders/:id" component={ OrdersDetails } />
             <Route exact path="/profile" component={ ClientProfile } />
             <Route exact path="/checkout" component={ Checkout } />
+            <Route exact path="/admin/profile" component={ AdminProfile } />
           </Switch>
         </ThemeProvider>
       </TrybeerProvider>
