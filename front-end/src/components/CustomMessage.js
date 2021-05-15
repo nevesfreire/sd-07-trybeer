@@ -6,7 +6,7 @@ import { Message } from 'semantic-ui-react';
 const CustomMessage = ({ children }) => {
   render();
   return (
-    <Message>
+    <Message compact color="orange" style={ { backgroundColor: 'rgb(33, 33, 33)' } }>
       { children }
     </Message>
   );

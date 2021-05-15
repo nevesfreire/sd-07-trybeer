@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Segment, Divider } from 'semantic-ui-react';
+import { Button, Form, Segment, Divider, Label } from 'semantic-ui-react';
 import CentralContext from '../context/Context';
 
 import 'semantic-ui-css/semantic.min.css';
@@ -15,29 +15,46 @@ const SignUpForm = ({
   useEffect(() => {}, [isExistEmail]);
   return (
     <Form size="large">
-      <Segment stacked>
+      <Segment stacked style={ { backgroundColor: 'rgb(33, 33, 33)' } }>
+        {/* <Label circular color="orange" leftFloating>
+          Nome
+        </Label> */}
         <Form.Input
           data-testid="signup-name"
           fluid
-          label="Nome"
+          icon="user"
+          iconPosition="left"
+          // label="Nome"
           placeholder="Name"
           value={ name }
           name="name"
           onChange={ (e) => onInputChange(e) }
         />
+
+        {/* <Label circular color="orange" leftFloating>
+          Email
+        </Label> */}
         <Form.Input
           data-testid="signup-email"
           fluid
-          label="Email"
+          // label="Email"
+          icon="at"
+          iconPosition="left"
           placeholder="E-mail address"
           value={ email }
           name="email"
           onChange={ (e) => onInputChange(e) }
         />
+
+        {/* <Label circular color="orange" leftFloating>
+          Senha
+        </Label> */}
         <Form.Input
           data-testid="signup-password"
           fluid
-          label="Senha"
+          icon="lock"
+          iconPosition="left"
+          // label="Senha"
           placeholder="Password"
           value={ password }
           type="password"
@@ -46,7 +63,7 @@ const SignUpForm = ({
         />
         <Divider />
 
-        <label htmlFor="signup-seller">
+        <Label color="orange" htmlFor="signup-seller">
           Quero vender
           <input
             data-testid="signup-seller"
@@ -57,7 +74,7 @@ const SignUpForm = ({
             value={ iWantToSell }
             onChange={ (e) => onInputChange(e) }
           />
-        </label>
+        </Label>
         <Divider />
         <Button
           data-testid="signup-btn"

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Header } from 'semantic-ui-react';
 import CustomMessage from '../components/CustomMessage';
 import CustomHeader from '../components/CustomHeader';
 import CustomSignUpForm from '../components/CustomSignUpForm';
@@ -75,11 +75,12 @@ function SignUp() {
   return (
     <Grid
       textAlign="center"
-      style={ { height: '100vh' } }
+      style={ { height: '104vh', backgroundColor: 'rgb(33, 33, 33)' } }
       verticalAlign="middle"
     >
       <Grid.Column style={ { maxWidth: 450 } }>
         <CustomHeader message="TryBeer" />
+        <Header as="h3" content="Novo cadastro" color="orange" />
         <CustomSignUpForm
           formData={ formData }
           onInputChange={ handleInputChange }

@@ -47,7 +47,11 @@ function Login() {
   };
 
   return (
-    <Grid textAlign="center" style={ { height: '100vh' } } verticalAlign="middle">
+    <Grid
+      textAlign="center"
+      style={ { height: '104vh', backgroundColor: 'rgb(33, 33, 33)' } }
+      verticalAlign="middle"
+    >
       <Grid.Column style={ { maxWidth: 500 } }>
         <CustomLogin
           formData={ formData }
