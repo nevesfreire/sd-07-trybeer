@@ -17,7 +17,6 @@ function Login() {
 
   const handleClick = async () => {
     const response = await loginRequest(email, password);
-    console.log("response", response)
     const { status } = response;
     const ok = 200;
     if (status === ok) {
@@ -27,7 +26,6 @@ function Login() {
       setRole(payload.role);
       return setIsLogged(true);
     }
-    
     setErrorMessage(response.data.message);
   };
 

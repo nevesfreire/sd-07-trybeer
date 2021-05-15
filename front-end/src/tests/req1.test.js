@@ -1,6 +1,7 @@
 import React from 'react';
 import renderWithRouter from './renderWithRouter';
 import Login from '../pages/Login';
+import Register from '../pages/Register';
 
 import Provider from '../context/Provider';
 import { fireEvent } from '@testing-library/dom';
@@ -27,97 +28,97 @@ beforeEach(cleanup)
 afterEach(cleanup);
 afterEach(() => jest.clearAllMocks());
 
-test('checks if the elements are visible according prototype', () => {
-  const { getByTestId } = renderWithRouter(<Provider><Login /></Provider>);
-  const emailInput = getByTestId("email-input")
-  const passwordInput = getByTestId("password-input")
-  const entryButton = getByTestId("signin-btn")
-  const checkButton = getByTestId("no-account-btn")
 
-  expect(emailInput).toBeInTheDocument();
-  expect(passwordInput).toBeInTheDocument();
-  expect(entryButton).toBeInTheDocument();
-  expect(checkButton).toBeInTheDocument();
-});
+describe('Task 1', () => {
 
-test('filling forms input with a valid email and password enables entry button', () => {
-  const { getByTestId } = renderWithRouter(<Provider><Login /></Provider>);
-  const emailInput = getByTestId("email-input")
-  const passwordInput = getByTestId("password-input")
-  const entryButton = getByTestId("signin-btn")
-  
+  it('checks if the elements are visible according prototype', () => {
+    const { getByTestId } = renderWithRouter(<Provider><Login /></Provider>);
+    const emailInput = getByTestId("email-input")
+    const passwordInput = getByTestId("password-input")
+    const entryButton = getByTestId("signin-btn")
+    const checkButton = getByTestId("no-account-btn")
 
-  fireEvent.change(emailInput, { target: { value: user.email }})
-  expect(emailInput).toHaveValue(user.email)
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
+    expect(entryButton).toBeInTheDocument();
+    expect(checkButton).toBeInTheDocument();
+  });
 
-  fireEvent.change(passwordInput, { target: { value: user.password }})
-  expect(passwordInput).toHaveValue(user.password)
+  it('filling forms input with a valid email and password enables entry button', () => {
+    const { getByTestId } = renderWithRouter(<Provider><Login /></Provider>);
+    const emailInput = getByTestId("email-input")
+    const passwordInput = getByTestId("password-input")
+    const entryButton = getByTestId("signin-btn")
+    
 
-  expect(entryButton).not.toHaveAttribute('disabled')
+    fireEvent.change(emailInput, { target: { value: user.email }})
+    expect(emailInput).toHaveValue(user.email)
 
-});
+    fireEvent.change(passwordInput, { target: { value: user.password }})
+    expect(passwordInput).toHaveValue(user.password)
 
-test('unregistered user login', async () => {
-  const { getByTestId  } = renderWithRouter(<Provider><Login /></Provider>);
-  axiosMock.post.mockResolvedValueOnce({ data: { message: "Incorrect email or password" }, status: 400 })
-  const emailInput = getByTestId("email-input")
-  const passwordInput = getByTestId("password-input")
-  const entryButton = getByTestId("signin-btn")
-  
+    expect(entryButton).not.toHaveAttribute('disabled')
 
-  fireEvent.change(emailInput, { target: { value: user.email }})
-  expect(emailInput).toHaveValue(user.email)
+  });
 
-  fireEvent.change(passwordInput, { target: { value: user.password }})
-  expect(passwordInput).toHaveValue(user.password)
+  it('unregistered user login', async () => {
+    const { getByTestId  } = renderWithRouter(<Provider><Login /></Provider>);
+    axiosMock.post.mockResolvedValueOnce({ data: { message: "Incorrect email or password" }, status: 400 })
+    const emailInput = getByTestId("email-input")
+    const passwordInput = getByTestId("password-input")
+    const entryButton = getByTestId("signin-btn")
+    
 
-  act(() => {
-    fireEvent.click(entryButton)
-    expect(axiosMock.post).toHaveBeenCalledTimes(1)
-  })
+    fireEvent.change(emailInput, { target: { value: user.email }})
+    expect(emailInput).toHaveValue(user.email)
 
-  const errorMessage = await waitForElement(() => getByTestId("error-message"))
-  expect(errorMessage).toHaveTextContent("Incorrect email or password")
-});
+    fireEvent.change(passwordInput, { target: { value: user.password }})
+    expect(passwordInput).toHaveValue(user.password)
 
-test('registered user login', async () => {
-  const { getByTestId, history  } = renderWithRouter(<Provider><Login /></Provider>);
-  axiosMock.post.mockResolvedValueOnce({ data: { token }, status: 200 })
-  const emailInput = getByTestId("email-input")
-  const passwordInput = getByTestId("password-input")
-  const entryButton = getByTestId("signin-btn")
-  
+    act(() => {
+      fireEvent.click(entryButton)
+      expect(axiosMock.post).toHaveBeenCalledTimes(1)
+    })
 
-  fireEvent.change(emailInput, { target: { value: user.email }})
-  fireEvent.change(passwordInput, { target: { value: user.password }})
+    const errorMessage = await waitForElement(() => getByTestId("error-message"))
+    expect(errorMessage).toHaveTextContent("Incorrect email or password")
+  });
 
+  it('registered user login', async () => {
+    const { getByTestId, history  } = renderWithRouter(<Provider><Login /></Provider>);
+    axiosMock.post.mockResolvedValueOnce({ data: { token }, status: 200 })
+    const emailInput = getByTestId("email-input")
+    const passwordInput = getByTestId("password-input")
+    const entryButton = getByTestId("signin-btn")
+    
 
-  act(() => {
     fireEvent.change(emailInput, { target: { value: user.email }})
     fireEvent.change(passwordInput, { target: { value: user.password }})
-    fireEvent.click(entryButton)
-  })
 
-  const title = await waitForElement(() => getByTestId("error-message"))
-  expect(title).toHaveTextContent("")
 
-  const pathname = history.location.pathname;
-  expect(pathname).toBe('/products')
+    act(() => {
+      fireEvent.change(emailInput, { target: { value: user.email }})
+      fireEvent.change(passwordInput, { target: { value: user.password }})
+      fireEvent.click(entryButton)
+    })
 
+    const title = await waitForElement(() => getByTestId("error-message"))
+    expect(title).toHaveTextContent("")
+
+    const pathname = history.location.pathname;
+    expect(pathname).toBe('/products')
+
+  });
+
+  it('fire does not have account', async () => {
+    const { getByTestId, history  } = renderWithRouter(<Provider><Login /></Provider>);
+    const checkButton = getByTestId("no-account-btn")
+
+    fireEvent.click(checkButton)
+
+    const pathname = history.location.pathname;
+    expect(pathname).toBe('/register')
+
+  });
 });
-
-test('fire does not have account', async () => {
-  const { getByTestId, history  } = renderWithRouter(<Provider><Login /></Provider>);
-  const checkButton = getByTestId("no-account-btn")
-
-  fireEvent.click(checkButton)
-
-  const pathname = history.location.pathname;
-  expect(pathname).toBe('/register')
-  
-
-});
-
-
-
 

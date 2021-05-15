@@ -57,15 +57,15 @@ function Products() {
       <TopMenu title="TryBeer" />
       { isFetching && <h1>Loading...</h1>}
       { !isFetching && products.map((product, index) => (
-      <ProductsCard
-        key={ product.id }
-        id={ product.id }
-        name={ product.name }
-        price={ product.price }
-        image={ product.url_image }
-        index={ index }
-        updateCart={ updateCartPreview }
-      />
+        <ProductsCard
+          key={ product.id }
+          id={ product.id }
+          name={ product.name }
+          price={ product.price }
+          image={ product.url_image }
+          index={ index }
+          updateCart={ updateCartPreview }
+        />
       ))}
       <button
         type="button"

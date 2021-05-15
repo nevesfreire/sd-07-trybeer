@@ -39,10 +39,10 @@ function Profile() {
   };
 
   useEffect(() => {
-    const getToken = async () => {
+    const getToken = () => {
       let token = {};
       try {
-        token = await localStorage.getItem('token');
+        token = localStorage.getItem('token');
         const userData = jwtDecode(token);
         const { name, email, role } = userData;
         setUserName(name);
@@ -56,7 +56,7 @@ function Profile() {
       }
     };
     getToken();
-  }, [history]);
+  }, []);
 
   if (!isLoading && userRole !== 'administrator') {
     return (

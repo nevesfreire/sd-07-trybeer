@@ -17,7 +17,7 @@ const registeredUser = {
 }
 
 const unregisteredUser = {
-  username: "joao checoli castro",
+  user_name: "joao checoli castro",
   email: "johnny@gmail.com",
   password: "123456"
 }
@@ -29,9 +29,10 @@ const admin = {
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoia3JhbWVyIGRlIGtyYW1lciBrcmFtZXIiLCJlbWFpbCI6ImtyYW1lcnNjc0BnbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNjIxMDI5ODgyLCJleHAiOjE2MjEwMzEwODJ9.u3c8tMLX60v5vOyh7MJrSL7JDpEB47GAHDGcAPcu6hw"
 
-// beforeEach(cleanup)
-// afterEach(cleanup);
-// afterEach(() => jest.clearAllMocks());
+beforeEach(cleanup)
+afterEach(cleanup);
+afterEach(() => jest.clearAllMocks());
+
 
 test('checks if the elements are visible according prototype', () => {
   const { getByTestId } = renderWithRouter(<Provider><Register /></Provider>);
@@ -49,22 +50,31 @@ test('checks if the elements are visible according prototype', () => {
   expect(registerButton).toBeInTheDocument();
 });
 
-// test('filling forms input with a valid email and password enables entry button', () => {
-//   const { getByTestId } = renderWithRouter(<Provider><Login /></Provider>);
-//   const emailInput = getByTestId("email-input")
-//   const passwordInput = getByTestId("password-input")
-//   const entryButton = getByTestId("signin-btn")
+test('filling forms input with a valid email and password enables entry button', async () => {
+  const { getByTestId, getByText, history } = renderWithRouter(<Provider><Register /></Provider>);
+  axiosMock.post.mockResolvedValueOnce({ data: { token: "123456" }, status: 200 })
+  const nameInput = getByTestId("signup-name")
+  const emailInput = getByTestId("signup-email")
+  const passwordInput = getByTestId("signup-password")
+  const checkButton = getByTestId("signup-seller")
+  const registerButton = getByTestId("signup-btn")
   
+  fireEvent.change(nameInput, { target: { value: unregisteredUser.user_name }})
+  expect(nameInput).toHaveValue(unregisteredUser.user_name)
 
-//   fireEvent.change(emailInput, { target: { value: user.email }})
-//   expect(emailInput).toHaveValue(user.email)
+  fireEvent.change(emailInput, { target: { value: unregisteredUser.email }})
+  expect(emailInput).toHaveValue(unregisteredUser.email)
 
-//   fireEvent.change(passwordInput, { target: { value: user.password }})
-//   expect(passwordInput).toHaveValue(user.password)
+  fireEvent.change(passwordInput, { target: { value: unregisteredUser.password }})
+  expect(passwordInput).toHaveValue(unregisteredUser.password)
 
-//   expect(entryButton).not.toHaveAttribute('disabled')
-
-// });
+  fireEvent.click(registerButton)
+  act(() => {
+    fireEvent.click(registerButton)
+    expect(axiosMock.post).toHaveBeenCalledTimes(2)
+  })
+  
+});
 
 // test('unregistered user login', async () => {
 //   const { getByTestId  } = renderWithRouter(<Provider><Login /></Provider>);
