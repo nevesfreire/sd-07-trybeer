@@ -56,6 +56,10 @@ function CreateUserForm() {
       <Form.Row>
         <Form.Label htmlFor="signup-name">Nome</Form.Label>
         <Form.Control
+          style={ {
+            background: 'rgb(119, 34, 16, 0.2)',
+            borderColor: 'rgb(119, 34, 16, 0.5)',
+          } }
           value={ name }
           onChange={ (e) => setName(e.target.value) }
           placeholder="Nome Completo"
@@ -68,6 +72,10 @@ function CreateUserForm() {
       <Form.Row className="mt-2">
         <Form.Label htmlFor="signup-email">Email</Form.Label>
         <Form.Control
+          style={ {
+            background: 'rgb(119, 34, 16, 0.2)',
+            borderColor: 'rgb(119, 34, 16, 0.5)',
+          } }
           value={ email }
           onChange={ (e) => setEmail(e.target.value) }
           placeholder="Email address"
@@ -85,6 +93,10 @@ function CreateUserForm() {
       <Form.Row className="mt-2">
         <Form.Label htmlFor="signup-password">Senha</Form.Label>
         <Form.Control
+          style={ {
+            background: 'rgb(119, 34, 16, 0.2)',
+            borderColor: 'rgb(119, 34, 16, 0.5)',
+          } }
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
           placeholder="Password"
@@ -106,6 +118,10 @@ function CreateUserForm() {
       </Form.Row>
       <Form.Row className="justify-content-center">
         <Button
+          style={ {
+            background: 'rgb(119, 34, 16, 0.8)',
+            borderColor: 'rgb(119, 34, 16, 0.8)',
+          } }
           className="mt-4"
           type="submit"
           disabled={ validateRegister(name, email, password) }
