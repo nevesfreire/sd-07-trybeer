@@ -14,8 +14,9 @@ export default function ProductsList() {
       const currentUser = JSON.parse(localStorage.getItem('user'));
       const newProductsList = JSON.parse(localStorage.getItem('newProdList'));
       if (!currentUser) return null;
-      const response = await getProducts(currentUser.token)
-        .then((apiResponse) => apiResponse);
+      const response = await getProducts(currentUser.token).then(
+        (apiResponse) => apiResponse,
+      );
 
       if (newProductsList && newProductsList.length > 0) {
         return setProducts(newProductsList);
@@ -56,53 +57,71 @@ export default function ProductsList() {
 
   return (
     <div>
-      { !products ? <p>Loading...</p>
-        : (
-          <CardDeck style={ { width: '200rem' } } className="d-flex justify-content-center">
-            {products.map((item, index) => (
-              <Card key={ item.id } style={ { width: '10rem' } } className="align-self-center text-center">
-                <Card.Img
-                  className="align-self-center"
-                  style={ { width: '10rem' } }
-                  variant="top"
-                  src={ item.url_image }
-                  alt={ item.name }
-                  data-testid={ `${index}-product-img` }
-                />
-                <Card.Body>
-                  <Card.Title data-testid={ `${index}-product-name` }>{item.name}</Card.Title>
-                  <Card.Text data-testid={ `${index}-product-price` }>
-                    {`R$ ${item.price.replace('.', ',')}`}
-                  </Card.Text>
-                  <Row>
-                    <Col>
-                      <Button
-                        type="button"
-                        data-testid={ `${index}-product-plus` }
-                        onClick={ (e) => addProdQtt(e, item.id) }
-                      >
-                        +
-                      </Button>
-                    </Col>
-                    <Col>
-                      <p data-testid={ `${index}-product-qtd` }>{item.productQtt}</p>
-                    </Col>
-                    <Col>
-                      <Button
-                        type="button"
-                        data-testid={ `${index}-product-minus` }
-                        onClick={ () => decProdQtt(item.id) }
-                      >
-                        -
-                      </Button>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-            ))}
-          </CardDeck>)}
+      {!products ? (
+        <p>Loading...</p>
+      ) : (
+        <CardDeck
+          style={ { width: '200rem' } }
+          className="d-flex justify-content-center"
+        >
+          {products.map((item, index) => (
+            <Card
+              key={ item.id }
+              style={ { width: '10rem' } }
+              className="align-self-center text-center"
+            >
+              <Card.Img
+                className="align-self-center"
+                style={ { width: '10rem' } }
+                variant="top"
+                src={ item.url_image }
+                alt={ item.name }
+                data-testid={ `${index}-product-img` }
+              />
+              <Card.Body>
+                <Card.Title data-testid={ `${index}-product-name` }>
+                  {item.name}
+                </Card.Title>
+                <Card.Text data-testid={ `${index}-product-price` }>
+                  {`R$ ${item.price.replace('.', ',')}`}
+                </Card.Text>
+                <Row>
+                  <Col>
+                    <Button
+                      type="button"
+                      data-testid={ `${index}-product-plus` }
+                      onClick={ (e) => addProdQtt(e, item.id) }
+                    >
+                      +
+                    </Button>
+                  </Col>
+                  <Col>
+                    <p data-testid={ `${index}-product-qtd` }>
+                      {item.productQtt}
+                    </p>
+                  </Col>
+                  <Col>
+                    <Button
+                      type="button"
+                      data-testid={ `${index}-product-minus` }
+                      onClick={ () => decProdQtt(item.id) }
+                    >
+                      -
+                    </Button>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
+          ))}
+        </CardDeck>
+      )}
       <footer
-        style={ { background: 'gray', bottom: '0', position: 'fixed', padding: '10px' } }
+        style={ {
+          background: 'gray',
+          bottom: '0',
+          position: 'fixed',
+          padding: '10px',
+        } }
       >
         <p data-testid="checkout-bottom-btn-value">
           {`R$ ${totalValue.toFixed(2).replace('.', ',')}`}
