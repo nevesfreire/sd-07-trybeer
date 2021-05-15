@@ -85,7 +85,7 @@ function LoginForm() {
           <Link
             to="/register"
             data-testid="no-account-btn"
-            style={ { color: 'rgb(232,214,210)', marginLeft: '-50px' } }
+            style={ { color: 'rgb(232,214,210)', marginLeft: '-50px', justifyContent: 'center' } }
           >
             Ainda não tenho conta
           </Link>

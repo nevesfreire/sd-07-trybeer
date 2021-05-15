@@ -10,7 +10,7 @@ const Login = () => (
       style={ {
         height: '100vh',
         paddingTop: '150px',
-        paddingLeft: '60px',
+        paddingLeft: '100px',
         width: '70vh',
         color: 'rgb(227,183,88)',
       } }
