@@ -20,11 +20,6 @@ const Provider = ({ children }) => {
       .reduce((acc, { price, quantity }) => acc + (price * quantity), 0)
       .toFixed(2));
   }, [cart]);
-  // function calcTotalPrice() {
-  //   setTotalPrice(cart
-  //     .reduce((acc, { price, quantity }) => acc + (price * quantity), 0)
-  //     .toFixed(2));
-  // }
 
   function addToCart(product) {
     let newCart;
@@ -39,7 +34,6 @@ const Provider = ({ children }) => {
 
     saveItem('cart', newCart);
     setCart(newCart);
-    // calcTotalPrice();
   }
 
   function removeFromCart(product) {
@@ -47,13 +41,16 @@ const Provider = ({ children }) => {
 
     const newCart = cart.map((prod) => {
       if (prod.id === product.id) prod.quantity -= 1;
-      // calcTotalPrice();
       return prod;
     });
 
     const filteredCart = newCart.filter(({ quantity }) => quantity > 0);
     saveItem('cart', filteredCart);
     setCart(filteredCart);
+  }
+
+  function resetCart() {
+    setCart([]);
   }
 
   const contextValue = {
@@ -63,6 +60,7 @@ const Provider = ({ children }) => {
     addToCart,
     removeFromCart,
     totalPrice,
+    resetCart,
     setTotalPrice,
     orders,
     setOrders,

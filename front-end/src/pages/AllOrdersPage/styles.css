@@ -1,0 +1,10 @@
+.orders-wrapper {
+  margin: 64px 0;
+  padding: 15px 30px;
+}
+
+.orders-container {
+  display: grid;
+  gap: 15px 30px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}

@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router';
 import { Context } from '../../context';
 
+import { saveItem } from '../../services/localStorage';
 import api from '../../services/api';
 
 function CheckoutForm() {
@@ -11,12 +12,14 @@ function CheckoutForm() {
 
   const history = useHistory();
 
-  const { cart } = useContext(Context);
+  const { cart, resetCart } = useContext(Context);
 
   const purchaseFinished = () => {
     const ALERT_TIME = 4000;
     setPurchaseSucceeded('Compra realizada com sucesso!');
+    saveItem('cart', []);
     setTimeout(() => {
+      resetCart();
       history.push('/products');
     }, ALERT_TIME);
   };

@@ -1,0 +1,29 @@
+.order-card {
+  background: transparent;
+  border: 1px solid var(--box-shadow);
+  border-radius: 4px;
+  box-shadow: 0 0 4px var(--box-shadow);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+  padding: 10px 15px;
+  transition: box-shadow 200ms;
+  text-decoration: none;
+  width: 100%;
+}
+
+.order-card > div {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-card > h3 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.order-card:hover {
+  box-shadow: 0 4px 8px var(--box-shadow);
+}
