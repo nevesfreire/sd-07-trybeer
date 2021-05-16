@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
@@ -11,6 +11,7 @@ const ComponentRegister = () => {
   const { password, setPassword } = useContext(context);
   const { isOk, setIsOk, user, setUser } = useContext(context);
   const { isChecked, setIsChecked } = useContext(context);
+  const [logged, setLogged] = useState(false);
 
   const isValid = fieldValidate(name, email, password);
   const REACT_APP_URL = 'http://localhost:3001';
@@ -53,13 +54,13 @@ const ComponentRegister = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          // setUser(data);
+          setUser(data);
         });
       api
         .post('/login', params)
         .then((dataUser) => {
           localStorage.setItem('token', dataUser.data.token);
-          setUser(dataUser.data);
+          setLogged(true);
         })
         .catch((err) => console.log(`Error in login process: ${err}`));
     }
@@ -69,21 +70,10 @@ const ComponentRegister = () => {
     setIsChecked(event.target.checked);
   };
 
-  // if (user.status) {
-  //   switch (user.role) {
-  //   case 'administrator':
-  //     return <Redirect to="/admin/orders" />;
-  //   case 'client':
-  //     return <Redirect to="/products" />;
-  //   default:
-  //     return <Redirect to="/Not Found" />;
-  //   }
-  // }
-  console.log(user);
   return (
     <FormControl className="form-registration">
-      {user.role === 'administrator' && <Redirect to="/admin/orders" />}
-      {user.role === 'client' && <Redirect to="/products" />}
+      {user.role === 'administrator' && logged && <Redirect to="/admin/orders" />}
+      {user.role === 'client' && logged && <Redirect to="/products" />}
       <h1>Cadastro</h1>
       <TextField
         id="userName"
