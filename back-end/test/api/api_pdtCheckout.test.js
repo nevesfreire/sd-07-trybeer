@@ -15,6 +15,7 @@ describe('checkout POST route', () => {
   const LOGIN_URL = 'http://localhost:3001/login';
 
   beforeEach(async (done) => {
+    // console.log('pdtCHECKOUT beforeEach start')
     await connection.execute('DELETE FROM sales_products');
     await connection.execute('DELETE FROM products');
     await connection.execute('DELETE FROM sales');
@@ -31,16 +32,17 @@ describe('checkout POST route', () => {
     '2', 'Heineken 600ml', '7.50', 'http://localhost:3001/images/Heineken 600ml.jpg',
     '3', 'Antarctica Pilsen 300ml', '2.49', 'http://localhost:3001/images/Antarctica Pilsen 300ml.jpg',
     '4', 'Brahma 600ml', '7.50', 'http://localhost:3001/images/Brahma 600ml.jpg']);
+    // console.log('pdtCHECKOUT beforeEach end')
     done();
   });
 
-  afterEach(async (done) => {
-    await connection.execute('DELETE FROM sales_products');
-    await connection.execute('DELETE FROM sales');
-    await connection.execute('DELETE FROM users');
-    await connection.execute('DELETE FROM products');
-    done();
-  });
+  // afterEach(async (done) => {
+  //   await connection.execute('DELETE FROM sales_products');
+  //   await connection.execute('DELETE FROM sales');
+  //   await connection.execute('DELETE FROM users');
+  //   await connection.execute('DELETE FROM products');
+  //   done();
+  // });
 
   afterAll(async done => {
     connection.end();

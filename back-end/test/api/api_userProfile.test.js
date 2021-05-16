@@ -14,6 +14,7 @@ describe('PUT into profile route', () => {
     const URL = 'http://localhost:3001/profile'
     const URL_LOGIN = 'http://localhost:3001/login'
     beforeEach(async (done) => {
+        // console.log('userProfile beforeEach start')
         await connection.execute('DELETE FROM sales_products');
         await connection.execute('DELETE FROM sales');
         await connection.execute('DELETE FROM users');
@@ -22,13 +23,14 @@ describe('PUT into profile route', () => {
         await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
         await connection.execute('INSERT INTO users (name,email,password,role)'
             + 'VALUES (?,?,?,?)', [name, email, password, role])
+        // console.log('userProfile beforeEach end')
         done();
     })
 
-    afterEach(async (done) => {
-        await connection.execute('DELETE FROM users');
-        done();
-    })
+    // afterEach(async (done) => {
+    //     await connection.execute('DELETE FROM users');
+    //     done();
+    // })
     afterAll(async done => {
         connection.end();
         done();

@@ -45,6 +45,7 @@ describe('GET into orders route', () => {
     const URL = 'http://localhost:3001/orders'
     const URL_LOGIN = 'http://localhost:3001/login'
     beforeEach(async (done) => {
+        // console.log('prdtOrders beforeEach start')
         await connection.execute('DELETE FROM sales_products');
         await connection.execute('DELETE FROM sales');
         await connection.execute('DELETE FROM users');
@@ -55,7 +56,7 @@ describe('GET into orders route', () => {
         await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
         const [user] = await connection.execute('INSERT INTO users (name,email,password,role)'
             + 'VALUES (?,?,?,?)', [name, email, password, role])
-        const [order] = await connection.execute('INSERT INTO sales (user_id,total_price,delivery_address,delivery_number,sale_date,status)'
+        const [saleInsertionRes] = await connection.execute('INSERT INTO sales (user_id,total_price,delivery_address,delivery_number,sale_date,status)'
             + 'VALUES(?,?,?,?,?,?),(?,?,?,?,?,?)', [user.insertId, 22, email, 248, date, 'pendente', user.insertId, 75, email, 248, date, 'pendente'])
         await connection.execute('INSERT INTO products (id, name, price, url_image) VALUES (?, ?, ?, ?), (?, ?, ?, ?), (?, ?, ?, ?), (?, ?, ?, ?)',
             ['1', 'Skol Lata 250ml', '2.20', 'http://localhost:3001/images/Skol Lata 350ml.jpg',
@@ -63,21 +64,22 @@ describe('GET into orders route', () => {
             '3', 'Antarctica Pilsen 300ml', '2.49', 'http://localhost:3001/images/Antarctica Pilsen 300ml.jpg',
             '4', 'Brahma 600ml', '7.50', 'http://localhost:3001/images/Brahma 600ml.jpg']);
         await connection.execute('INSERT INTO sales_products (sale_id,product_id,quantity)'
-            + 'VALUES(?,?,?),(?,?,?)', [order.insertId, 2, 10, order.insertId, 1, 10])
+            + 'VALUES(?,?,?),(?,?,?)', [saleInsertionRes.insertId, 2, 10, saleInsertionRes.insertId, 1, 10]);
+        // console.log('prdtOrders beforeEach end')        
         done();
     })
 
-    afterEach(async (done) => {
-        await connection.execute('DELETE FROM sales_products');
-        await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
-        await connection.execute('DELETE FROM sales');
-        await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
-        await connection.execute('DELETE FROM products');
-        await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
-        await connection.execute('DELETE FROM users');
-        await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
-        done();
-    })
+    // afterEach(async (done) => {
+    //     await connection.execute('DELETE FROM sales_products');
+    //     await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
+    //     await connection.execute('DELETE FROM sales');
+    //     await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
+    //     await connection.execute('DELETE FROM products');
+    //     await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
+    //     await connection.execute('DELETE FROM users');
+    //     await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
+    //     done();
+    // })
 
     afterAll(async done => {
         connection.end();

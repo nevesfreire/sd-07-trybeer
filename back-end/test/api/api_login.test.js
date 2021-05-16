@@ -20,26 +20,18 @@ describe('login POST route', () => {
   const URL = 'http://localhost:3001/login';
 
   beforeEach(async (done) => {
+    console.log('login beforeEach start')
     await connection.execute('DELETE FROM sales_products');
     await connection.execute('DELETE FROM sales');
     await connection.execute('DELETE FROM users');
-    await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
-    await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
+    // await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
+    // await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
     await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
     await connection.execute('INSERT INTO users (name, email, password, role) ' 
       + 'VALUES (?, ?, ?, ?), (?, ?, ?, ?)',
       [USERS[0].name, USERS[0].email, USERS[0].password, USERS[0].role,
       USERS[1].name, USERS[1].email, USERS[1].password, USERS[1].role]);
-    done();
-  });
-
-  afterEach(async (done) => {
-    await connection.execute('DELETE FROM sales_products');
-    await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
-    await connection.execute('DELETE FROM sales');
-    await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
-    await connection.execute('DELETE FROM users');
-    await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
+    console.log('login beforeEach end')
     done();
   });
 
@@ -49,12 +41,15 @@ describe('login POST route', () => {
   });
 
   it('Check if client login route is a POST, is available and working', async () => {
+    console.log('login available and working START')
     await frisby
       .post(URL, {
         email: USERS[1].email,
         password: USERS[1].password,
       })
+      console.log('login available and working END')
       .expect('status', 200);
+    
   });
   it('Check if administrator login route is a POST, is available and working', async () => {
     await frisby
