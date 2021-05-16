@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const moment = require('moment');
 
-const OrderCard = ({
+const OrderCardAdmin = ({
   deliveryNumber,
   saleDate,
   totalPrice,
@@ -35,11 +35,11 @@ const OrderCard = ({
   );
 };
 
-OrderCard.propTypes = {
+OrderCardAdmin.propTypes = {
   deliveryNumber: PropTypes.string.isRequired,
   saleDate: PropTypes.string.isRequired,
   totalPrice: PropTypes.string.isRequired,
   position: PropTypes.number.isRequired,
 };
 
-export default OrderCard;
+export default OrderCardAdmin;

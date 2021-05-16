@@ -24,16 +24,15 @@ const Orders = () => {
     id: loggedUser.id,
   };
 
-  const getAllOrdersByid = async () => {
-    api
-      .post(URL, params)
-      .then((result) => setOrders(result.data))
-      .catch((err) => console.log(`error: ${err}`));
-  };
-
   useEffect(() => {
+    const getAllOrdersByid = async () => {
+      api
+        .post(URL, params)
+        .then((result) => setOrders(result.data))
+        .catch((err) => console.log(`error: ${err}`));
+    };
     getAllOrdersByid();
-  }, []);
+  }, [URL, params]);
 
   return (
     <div className="container">

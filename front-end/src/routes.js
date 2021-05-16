@@ -21,11 +21,7 @@ const Routes = () => (
       <Route exact path="/admin/orders" component={ Admin } />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/checkout" component={ Checkout } />
-<<<<<<< HEAD
-      <Route exact path="/admin/profile" component={ ProfileAdmin } />
       <Route exact path="/orders" component={ Orders } />
-=======
->>>>>>> 640824d159e71f2284c5368c8d26af1413140351
     </Switch>
   </BrowserRouter>
 );
