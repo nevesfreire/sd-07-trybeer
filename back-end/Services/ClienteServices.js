@@ -8,9 +8,11 @@ const resLogin = async (email, password) => {
 };
 
 const cadUser = async (newName, newEmail, newPassword, newRole) => {
+  console.log('passou 4')
   const userOK = await ClientModel.getEmailUser(newEmail, newPassword);
-  console.log(userOK);
+  console.log('passou 5')
   if (userOK) return error3.message;
+  console.log('passou 6')
   return ClientModel.newUser(newName, newEmail, newPassword, newRole);
 };
 
@@ -22,11 +24,13 @@ const nameEdi = async (name, email) => {
 
 const getProducts = async () => ClientModel.allProducts();
 
-const savSale = async (infoUser, totalPrice, products) => ClientModel.saveSales(
+const savSale = async (infoUser, totalPrice, products) => {
+  await ClientModel.saveSales(
     infoUser,
     totalPrice,
     products,
-);
+  );
+}
 
 const salesAll = async (id) => ClientModel.salesA(id);
 

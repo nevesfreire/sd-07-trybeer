@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 4,
+    "failures": -3,
+    "start": "2021-05-15T23:40:50.854Z",
+    "end": "2021-05-15T23:40:50.878Z",
+    "duration": 24,
+    "testsRegistered": 4,
+    "passPercent": null,
+    "pendingPercent": 100,
+    "other": 3,
+    "hasOther": true,
+    "skipped": 3,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "2dd02c3d-f9a3-40f9-8bdc-735d20da5d74",
+      "title": "",
+      "fullFile": "cypress/integration/req09-menuAdmin.spec.js",
+      "file": "cypress/integration/req09-menuAdmin.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "72e34464-fcab-416f-8e7f-3e850af417c2",
+          "title": "9 - Criar menu side bar para administrador",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que o sidebar devem ser mostrados conforme protótipos",
+              "fullTitle": "9 - Criar menu side bar para administrador Será validado que o sidebar devem ser mostrados conforme protótipos",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "b692e9a7-0c04-40e7-99a3-152a6346fcdf",
+              "parentUUID": "72e34464-fcab-416f-8e7f-3e850af417c2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no menu meus pedidos será redirecionado para tela de meus pedidos",
+              "fullTitle": "9 - Criar menu side bar para administrador Será validado que ao clicar no menu meus pedidos será redirecionado para tela de meus pedidos",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "539fa49e-79cd-42aa-9e3f-9280027c6b85",
+              "parentUUID": "72e34464-fcab-416f-8e7f-3e850af417c2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no menu Perfil será redirecionado para tela de Perfil",
+              "fullTitle": "9 - Criar menu side bar para administrador Será validado que ao clicar no menu Perfil será redirecionado para tela de Perfil",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "6f4e02c1-fc6b-464a-bb89-1814d3eee10f",
+              "parentUUID": "72e34464-fcab-416f-8e7f-3e850af417c2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no menu sair será redirecionado para tela home",
+              "fullTitle": "9 - Criar menu side bar para administrador Será validado que ao clicar no menu sair será redirecionado para tela home",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "3f271af9-20af-4406-aa7f-e53dbacfea82",
+              "parentUUID": "72e34464-fcab-416f-8e7f-3e850af417c2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [
+            "b692e9a7-0c04-40e7-99a3-152a6346fcdf",
+            "539fa49e-79cd-42aa-9e3f-9280027c6b85",
+            "6f4e02c1-fc6b-464a-bb89-1814d3eee10f",
+            "3f271af9-20af-4406-aa7f-e53dbacfea82"
+          ],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

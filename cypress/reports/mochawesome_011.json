@@ -1,0 +1,247 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 0,
+    "pending": 0,
+    "failures": 7,
+    "start": "2021-05-15T15:03:44.549Z",
+    "end": "2021-05-15T15:05:10.489Z",
+    "duration": 85940,
+    "testsRegistered": 7,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "064b6a00-0574-4205-8a22-e649cc3d8b93",
+      "title": "",
+      "fullFile": "cypress/integration/req03-menuClient.spec.js",
+      "file": "cypress/integration/req03-menuClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0329b5e1-6e68-4fe3-b8dc-22b03aa7b69e",
+          "title": "3 - Crie o menu top e menu side bar",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que os atributos do top menu devem ser mostrados confome protótipos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que os atributos do top menu devem ser mostrados confome protótipos",
+              "timedOut": null,
+              "duration": 18420,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyElementVisible)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"top-title\"]', 'TryBeer');\n(0, _actionBase.verifyElementNotVisible)('.side-menu-container');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.\n    at verifyElementVisible (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:175:19)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:349:42)",
+                "diff": null
+              },
+              "uuid": "f0429ace-6329-4b1d-8f98-b266fdda971e",
+              "parentUUID": "0329b5e1-6e68-4fe3-b8dc-22b03aa7b69e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no componente hamburguer o sidebar deve ficar visível",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no componente hamburguer o sidebar deve ficar visível",
+              "timedOut": null,
+              "duration": 10865,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.verifyElementVisible)('.side-menu-container');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:6)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:355:33)",
+                "diff": null
+              },
+              "uuid": "a1c578cb-4237-4194-bbfc-a035a397e393",
+              "parentUUID": "0329b5e1-6e68-4fe3-b8dc-22b03aa7b69e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que os atributos do side menu devem ser mostrados confome protótipos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que os atributos do side menu devem ser mostrados confome protótipos",
+              "timedOut": null,
+              "duration": 10850,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-products\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-my-orders\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-my-profile\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-logout\"]');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:6)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:359:33)",
+                "diff": null
+              },
+              "uuid": "61a14b24-44c2-48ae-b394-7299078aa7ce",
+              "parentUUID": "0329b5e1-6e68-4fe3-b8dc-22b03aa7b69e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"produtos\" será redirecionado para tela de produtos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"produtos\" será redirecionado para tela de produtos",
+              "timedOut": null,
+              "duration": 10879,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-products\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/products\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:6)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:366:33)",
+                "diff": null
+              },
+              "uuid": "9f2f4e86-87e1-4104-98b6-18820109d9f4",
+              "parentUUID": "0329b5e1-6e68-4fe3-b8dc-22b03aa7b69e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"meus pedidos\" será redirecionado para tela de meus pedidos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"meus pedidos\" será redirecionado para tela de meus pedidos",
+              "timedOut": null,
+              "duration": 10926,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-my-orders\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/orders\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:6)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:371:33)",
+                "diff": null
+              },
+              "uuid": "0499e84e-1d72-40d9-be33-186c42e4f7a3",
+              "parentUUID": "0329b5e1-6e68-4fe3-b8dc-22b03aa7b69e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"meu perfil\" será redirecionado para tela de perfil",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"meu perfil\" será redirecionado para tela de perfil",
+              "timedOut": null,
+              "duration": 10866,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-my-profile\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/profile\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:6)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:376:33)",
+                "diff": null
+              },
+              "uuid": "5e1cf6ea-2fab-438f-959c-1fdbaae8ce30",
+              "parentUUID": "0329b5e1-6e68-4fe3-b8dc-22b03aa7b69e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"sair\" será redirecionado para tela home",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"sair\" será redirecionado para tela home",
+              "timedOut": null,
+              "duration": 10874,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-logout\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:6)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:381:33)",
+                "diff": null
+              },
+              "uuid": "7590b61e-4906-463e-ab9f-ca19c03f7adc",
+              "parentUUID": "0329b5e1-6e68-4fe3-b8dc-22b03aa7b69e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "f0429ace-6329-4b1d-8f98-b266fdda971e",
+            "a1c578cb-4237-4194-bbfc-a035a397e393",
+            "61a14b24-44c2-48ae-b394-7299078aa7ce",
+            "9f2f4e86-87e1-4104-98b6-18820109d9f4",
+            "0499e84e-1d72-40d9-be33-186c42e4f7a3",
+            "5e1cf6ea-2fab-438f-959c-1fdbaae8ce30",
+            "7590b61e-4906-463e-ab9f-ca19c03f7adc"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 83680,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

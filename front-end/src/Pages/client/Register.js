@@ -52,7 +52,7 @@ function Register() {
 
   useEffect(() => {
     verifyData();
-  }, [newName, newEmail, newPassword, newRole, verifyData]);
+  }, [newName, newEmail, newPassword, newRole]);
 
   return (
     <div>

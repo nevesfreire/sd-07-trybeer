@@ -1,0 +1,255 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 8,
+    "passes": 4,
+    "pending": 0,
+    "failures": 4,
+    "start": "2021-05-15T14:43:27.687Z",
+    "end": "2021-05-15T14:43:39.142Z",
+    "duration": 11455,
+    "testsRegistered": 8,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4969ba13-947c-471f-8701-c6da01bbe932",
+      "title": "",
+      "fullFile": "cypress/integration/req01-login.spec.js",
+      "file": "cypress/integration/req01-login.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "de60091f-b1ea-41e2-8483-ff0ad9d2adfa",
+          "title": "1 - Crie uma página de login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a home",
+              "fullTitle": "1 - Crie uma página de login Será validado que é possível acessar a home",
+              "timedOut": null,
+              "duration": 5794,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {},
+              "uuid": "978f30b3-3cfe-4323-b41c-d65be25aa6a1",
+              "parentUUID": "de60091f-b1ea-41e2-8483-ff0ad9d2adfa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que a tela login contém os atributos descritos no protótipo",
+              "fullTitle": "1 - Crie uma página de login Será validado que a tela login contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 195,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyContainsText)('Email');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"email-input\"]');\n(0, _actionBase.verifyContainsText)('Senha');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"password-input\"]');\n(0, _actionBase.verifyContainsText)('Entrar');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"signin-btn\"]');\n(0, _actionBase.verifyContainsText)('Ainda não tenho conta');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"no-account-btn\"]');",
+              "err": {},
+              "uuid": "ffd68c16-a8bf-46de-a7b6-f73166d068a3",
+              "parentUUID": "de60091f-b1ea-41e2-8483-ff0ad9d2adfa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível fazer login com um email inválido",
+              "fullTitle": "1 - Crie uma página de login Será validado que não é possível fazer login com um email inválido",
+              "timedOut": null,
+              "duration": 573,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.insertText)('[data-testid=\"email-input\"]', 'email@');\n(0, _actionBase.insertText)('[data-testid=\"password-input\"]', '12345678');\n(0, _actionBase.verifyElementIsDisable)('[data-testid=\"signin-btn\"]');",
+              "err": {},
+              "uuid": "74878656-88ae-4cc3-ba24-630509651ab7",
+              "parentUUID": "de60091f-b1ea-41e2-8483-ff0ad9d2adfa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível fazer login com uma senha em branco",
+              "fullTitle": "1 - Crie uma página de login Será validado que não é possível fazer login com uma senha em branco",
+              "timedOut": null,
+              "duration": 485,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.insertText)('[data-testid=\"email-input\"]', 'bruno.batista@gmail.com');\n(0, _actionBase.insertText)('[data-testid=\"password-input\"]', ' ');\n(0, _actionBase.verifyElementIsDisable)('[data-testid=\"signin-btn\"]');",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'length' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'length' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at verifyData (http://localhost:3000/static/js/main.chunk.js:1075:39)\n    at http://localhost:3000/static/js/main.chunk.js:1106:5\n    at commitHookEffectListMount (http://localhost:3000/static/js/1.chunk.js:26169:30)\n    at commitPassiveHookEffects (http://localhost:3000/static/js/1.chunk.js:26206:15)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/1.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/1.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/1.chunk.js:6853:35)\n    at flushPassiveEffectsImpl (http://localhost:3000/static/js/1.chunk.js:29270:13)\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at flushPassiveEffects (http://localhost:3000/static/js/1.chunk.js:29238:16)\n    at performSyncWorkOnRoot (http://localhost:3000/static/js/1.chunk.js:28153:7)\n    at http://localhost:3000/static/js/1.chunk.js:17692:28\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at flushSyncCallbackQueueImpl (http://localhost:3000/static/js/1.chunk.js:17687:11)\n    at flushSyncCallbackQueue (http://localhost:3000/static/js/1.chunk.js:17675:7)\n    at flushPendingDiscreteUpdates (http://localhost:3000/static/js/1.chunk.js:28263:9)\n    at flushDiscreteUpdates (http://localhost:3000/static/js/1.chunk.js:28242:7)\n    at finishEventHandler (http://localhost:3000/static/js/1.chunk.js:7328:9)\n    at batchedEventUpdates (http://localhost:3000/static/js/1.chunk.js:7363:9)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/1.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/1.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/1.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/1.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/1.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/1.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "89e0ab13-499e-4157-b169-5f6bf1e21398",
+              "parentUUID": "de60091f-b1ea-41e2-8483-ff0ad9d2adfa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível fazer login com uma senha com menos de 6 caracteres",
+              "fullTitle": "1 - Crie uma página de login Será validado que não é possível fazer login com uma senha com menos de 6 caracteres",
+              "timedOut": null,
+              "duration": 635,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.insertText)('[data-testid=\"email-input\"]', 'bruno.batista@gmail.com');\n(0, _actionBase.insertText)('[data-testid=\"password-input\"]', '1234');\n(0, _actionBase.verifyElementIsDisable)('[data-testid=\"signin-btn\"]');",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'length' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'length' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at verifyData (http://localhost:3000/static/js/main.chunk.js:1075:39)\n    at http://localhost:3000/static/js/main.chunk.js:1106:5\n    at commitHookEffectListMount (http://localhost:3000/static/js/1.chunk.js:26169:30)\n    at commitPassiveHookEffects (http://localhost:3000/static/js/1.chunk.js:26206:15)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/1.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/1.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/1.chunk.js:6853:35)\n    at flushPassiveEffectsImpl (http://localhost:3000/static/js/1.chunk.js:29270:13)\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at flushPassiveEffects (http://localhost:3000/static/js/1.chunk.js:29238:16)\n    at performSyncWorkOnRoot (http://localhost:3000/static/js/1.chunk.js:28153:7)\n    at http://localhost:3000/static/js/1.chunk.js:17692:28\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at flushSyncCallbackQueueImpl (http://localhost:3000/static/js/1.chunk.js:17687:11)\n    at flushSyncCallbackQueue (http://localhost:3000/static/js/1.chunk.js:17675:7)\n    at flushPendingDiscreteUpdates (http://localhost:3000/static/js/1.chunk.js:28263:9)\n    at flushDiscreteUpdates (http://localhost:3000/static/js/1.chunk.js:28242:7)\n    at finishEventHandler (http://localhost:3000/static/js/1.chunk.js:7328:9)\n    at batchedEventUpdates (http://localhost:3000/static/js/1.chunk.js:7363:9)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/1.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/1.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/1.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/1.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/1.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/1.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "3cadb954-abf8-413e-96e6-58bdc6999ee1",
+              "parentUUID": "de60091f-b1ea-41e2-8483-ff0ad9d2adfa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível fazer login com um cliente e ser redirecionado para tela de cliente",
+              "fullTitle": "1 - Crie uma página de login Será validado que é possível fazer login com um cliente e ser redirecionado para tela de cliente",
+              "timedOut": null,
+              "duration": 594,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)('bruno.batista@gmail.com', '12345678');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/products\"));",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'length' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'length' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at verifyData (http://localhost:3000/static/js/main.chunk.js:1075:39)\n    at http://localhost:3000/static/js/main.chunk.js:1106:5\n    at commitHookEffectListMount (http://localhost:3000/static/js/1.chunk.js:26169:30)\n    at commitPassiveHookEffects (http://localhost:3000/static/js/1.chunk.js:26206:15)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/1.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/1.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/1.chunk.js:6853:35)\n    at flushPassiveEffectsImpl (http://localhost:3000/static/js/1.chunk.js:29270:13)\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at flushPassiveEffects (http://localhost:3000/static/js/1.chunk.js:29238:16)\n    at performSyncWorkOnRoot (http://localhost:3000/static/js/1.chunk.js:28153:7)\n    at http://localhost:3000/static/js/1.chunk.js:17692:28\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at flushSyncCallbackQueueImpl (http://localhost:3000/static/js/1.chunk.js:17687:11)\n    at flushSyncCallbackQueue (http://localhost:3000/static/js/1.chunk.js:17675:7)\n    at flushPendingDiscreteUpdates (http://localhost:3000/static/js/1.chunk.js:28263:9)\n    at flushDiscreteUpdates (http://localhost:3000/static/js/1.chunk.js:28242:7)\n    at finishEventHandler (http://localhost:3000/static/js/1.chunk.js:7328:9)\n    at batchedEventUpdates (http://localhost:3000/static/js/1.chunk.js:7363:9)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/1.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/1.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/1.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/1.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/1.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/1.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "0a7541c9-fcbc-4ffb-a44f-b1d742b53e13",
+              "parentUUID": "de60091f-b1ea-41e2-8483-ff0ad9d2adfa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível fazer login com um admin e ser redirecionado para tela de admin",
+              "fullTitle": "1 - Crie uma página de login Será validado que é possível fazer login com um admin e ser redirecionado para tela de admin",
+              "timedOut": null,
+              "duration": 500,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)('tryber@trybe.com.br', '123456');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/orders\"));",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'length' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'length' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at verifyData (http://localhost:3000/static/js/main.chunk.js:1075:39)\n    at http://localhost:3000/static/js/main.chunk.js:1106:5\n    at commitHookEffectListMount (http://localhost:3000/static/js/1.chunk.js:26169:30)\n    at commitPassiveHookEffects (http://localhost:3000/static/js/1.chunk.js:26206:15)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/1.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/1.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/1.chunk.js:6853:35)\n    at flushPassiveEffectsImpl (http://localhost:3000/static/js/1.chunk.js:29270:13)\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at flushPassiveEffects (http://localhost:3000/static/js/1.chunk.js:29238:16)\n    at performSyncWorkOnRoot (http://localhost:3000/static/js/1.chunk.js:28153:7)\n    at http://localhost:3000/static/js/1.chunk.js:17692:28\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at flushSyncCallbackQueueImpl (http://localhost:3000/static/js/1.chunk.js:17687:11)\n    at flushSyncCallbackQueue (http://localhost:3000/static/js/1.chunk.js:17675:7)\n    at flushPendingDiscreteUpdates (http://localhost:3000/static/js/1.chunk.js:28263:9)\n    at flushDiscreteUpdates (http://localhost:3000/static/js/1.chunk.js:28242:7)\n    at finishEventHandler (http://localhost:3000/static/js/1.chunk.js:7328:9)\n    at batchedEventUpdates (http://localhost:3000/static/js/1.chunk.js:7363:9)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/1.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/1.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/1.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/1.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/1.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/1.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "bf3e7398-43d8-4e30-b882-bb8fd9a282b1",
+              "parentUUID": "de60091f-b1ea-41e2-8483-ff0ad9d2adfa",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível clicar no botão \"Ainda não tenho conta\" e ser redirecionado para tela de registro",
+              "fullTitle": "1 - Crie uma página de login Será validado que é possível clicar no botão \"Ainda não tenho conta\" e ser redirecionado para tela de registro",
+              "timedOut": null,
+              "duration": 360,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"no-account-btn\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/register\"));",
+              "err": {},
+              "uuid": "26e80aaf-fd83-4b89-8f56-c1c8fd6c2acd",
+              "parentUUID": "de60091f-b1ea-41e2-8483-ff0ad9d2adfa",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "978f30b3-3cfe-4323-b41c-d65be25aa6a1",
+            "ffd68c16-a8bf-46de-a7b6-f73166d068a3",
+            "74878656-88ae-4cc3-ba24-630509651ab7",
+            "26e80aaf-fd83-4b89-8f56-c1c8fd6c2acd"
+          ],
+          "failures": [
+            "89e0ab13-499e-4157-b169-5f6bf1e21398",
+            "3cadb954-abf8-413e-96e6-58bdc6999ee1",
+            "0a7541c9-fcbc-4ffb-a44f-b1d742b53e13",
+            "bf3e7398-43d8-4e30-b882-bb8fd9a282b1"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 9136,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

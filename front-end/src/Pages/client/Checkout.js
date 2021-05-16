@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
-import Header from '../../Components/Header';
+import React, { useState, useEffect } from "react";
+import { Redirect, useHistory } from "react-router-dom";
+import Header from "../../Components/Header";
 // import trybeerContext from '../../Context/TrybeerContext';
 
 function Checkout() {
   // const { products, setProducts } = useContext(trybeerContext);
   const [products, setProducts] = useState([]);
   const num = 0;
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
   const [total, setTotal] = useState(num);
-  const [rua, setRua] = useState('');
-  const [numero, setNumero] = useState('');
+  // const [rua, setRua] = useState("r10");
+  // const [numero, setNumero] = useState("123");
+  const [rua, setRua] = useState("");
+  const [numero, setNumero] = useState("");
   const [sucesso, setSucesso] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [logado] = useState(true);
+  // const [logado] = useState(true);
   const time = 2000;
   const history = useHistory();
 
@@ -26,69 +28,59 @@ function Checkout() {
   }
 
   useEffect(() => {
-    // products.map((product) => {
-    //   sum += parseFloat(product.price) * getQtd(product.id);
-    // });
+    // postman
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", localStorage.getItem("user").token);
 
-    const valorInicial = 0;
-    const sum = products.reduce(
-      (accumulator, prod) => parseFloat(
-        accumulator + prod.price * getQtd(prod.id),
-      ),
-      valorInicial,
-    );
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
 
-    setTotal(sum);
-    if (localStorage.getItem('cart') === null) setCart([]);
-
-    fetch('http://localhost:3001/products')
+    fetch("http://localhost:3001/products", requestOptions)
       .then((response) => response.json())
-      .then((products1) => {
-        setProducts(products1);
-      });
+      .then((result) => {
+        setProducts(result);
+        setIsLoading(false);
+      })
+      .catch((error) => console.log("error", error));
 
-    setIsLoading(false);
-  }, [getQtd, products]);
+    // postman
+  }, []);
 
   useEffect(() => {
     const valorInicial = 0;
     const sum = products.reduce(
-      (accumulator, pdt) => parseFloat(
-        accumulator + pdt.price * getQtd(pdt.id),
-      ),
-      valorInicial,
+      (accumulator, prod) =>
+        parseFloat(accumulator + prod.price * getQtd(prod.id)),
+      valorInicial
     );
-    console.log(sum);
-  }, [cart, getQtd, logado, products]);
 
-  if (localStorage.getItem('user') === null) {
+    setTotal(sum);
+    if (localStorage.getItem("cart") === null) setCart([]);
+
+    setIsLoading(false);
+  }, [products]);
+
+  if (localStorage.getItem("user") === null) {
     return <Redirect to="/login" />;
   }
-
-  // function sumTotal(products1) {
-  //   const valorInicial = 0;
-  //   const sum = products1.reduce(
-  //     (accumulator, product) =>
-  //       parseFloat(accumulator + product.price * getQtd(product.id)),
-  //     valorInicial,
-  //   );
-  //   setTotal(sum);
-  // }
-
-  // function getName(id) {
-  //   return products[id].name;
-  // }
-
-  // function getPrice(id) {
-  //   return products[id].price;
-  // }
 
   function del(event) {
     const id = parseInt(event.target.name, 10);
     const add = cart.find((product) => product.id === id);
     add.qtd = 0;
     setCart([...cart.filter((product) => product.id !== id), add]);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
+    const valorInicial = 0;
+    const sum = products.reduce(
+      (accumulator, prod) =>
+        parseFloat(accumulator + prod.price * getQtd(prod.id)),
+      valorInicial
+    );
+
+    setTotal(sum);
   }
 
   function ruaHandle(event) {
@@ -112,16 +104,62 @@ function Checkout() {
       }
       return array;
     };
-    localStorage.setItem('cart', JSON.stringify(initialCart()));
+    const user = JSON.parse(localStorage.getItem("user"));
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    localStorage.setItem("cart", JSON.stringify(initialCart()));
+
+    const data = {
+      infoUser: {
+        userId: user.id,
+        deliveryAddress: rua,
+        deliveryNumber: numero,
+      },
+      totalPrice: total,
+      products: cart,
+    };
+
+    console.log(data);
+
+    // //postman
+
+    // const myHeaders = new Headers();
+    // myHeaders.append(
+    //   "Authorization", user.token
+    // );
+    // myHeaders.append("Content-Type", "application/json");
+
+    // const raw = data;
+
+    // const requestOptions = {
+    //   method: "POST",
+    //   headers: myHeaders,
+    //   body: raw,
+    //   redirect: "follow",
+    // };
+
+    // fetch("http://localhost:3001/savedSale", requestOptions)
+    //   .then((response) => response.text())
+    //   .then((result) => console.log(result))
+    //   .catch((error) => console.log("error", error));
+
+    // //postman
+
+    fetch("http://localhost:3001/savedSale", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        'Authorization': user.token,
+      },
+      body: JSON.stringify(data),
+    }).then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
 
     setSucesso(true);
-
     setTimeout(() => {
-      history.push('/products');
+      history.push("/products");
     }, time);
   }
-
-  console.log(products);
 
   return (
     <div>
@@ -135,58 +173,38 @@ function Checkout() {
           {cart
             .filter((product) => product.qtd !== 0)
             .map((product, index) => (
-              <div key={ index }>
-                ID:
-                {' '}
-                {product.id}
-                <div data-testid={ `${index}-product-qtd-input` }>
-                  Quantidade:
-                  {' '}
-                  {product.qtd}
+              <div key={index}>
+                ID: {product.id}
+                <div data-testid={`${index}-product-qtd-input`}>
+                  Quantidade: {product.qtd}
                 </div>
-                <div data-testid={ `${index}-product-name` }>
-                  {product.name}
-                  {' '}
-                  --
-                  {' '}
+                <div data-testid={`${index}-product-name`}>
+                  {product.name} --{" "}
                 </div>
-                Preço Unitário:
-                {' '}
-                <div data-testid={ `${index}-product-unit-price` }>
-                  (R$
-                  {' '}
-                  {product.price.replaceAll('.', ',')}
-                  {' '}
-                  un) --
-                  {' '}
+                Preço Unitário:{" "}
+                <div data-testid={`${index}-product-unit-price`}>
+                  (R$ {product.price.replaceAll(".", ",")} un) --{" "}
                 </div>
-                Preço Total:
-                {' '}
-                <div data-testid={ `${index}-product-total-value` }>
-                  R$
-                  {' '}
+                Preço Total:{" "}
+                <div data-testid={`${index}-product-total-value`}>
+                  R${" "}
                   {parseFloat(product.qtd * product.price)
                     .toFixed(2)
-                    .replaceAll('.', ',')}
+                    .replaceAll(".", ",")}
                 </div>
                 <button
                   type="button"
-                  data-testid={ `${index}-removal-button` }
-                  name={ product.id }
-                  onClick={ del }
+                  data-testid={`${index}-removal-button`}
+                  name={product.id}
+                  onClick={del}
                 >
-                  excluir ID:
-                  {' '}
-                  {product.id}
+                  excluir ID: {product.id}
                 </button>
               </div>
             ))}
-          Total:
-          {' '}
+          Total:{" "}
           <div data-testid="order-total-value">
-            R$
-            {' '}
-            {total.toFixed(2).replaceAll('.', ',')}
+            R$ {total.toFixed(2).replaceAll(".", ",")}
           </div>
           <label htmlFor="rua-input">
             rua
@@ -194,7 +212,8 @@ function Checkout() {
               data-testid="checkout-street-input"
               type="text"
               name="rua"
-              onChange={ ruaHandle }
+              // value={rua}
+              onChange={ruaHandle}
             />
           </label>
           <label htmlFor="numero-input">
@@ -203,13 +222,14 @@ function Checkout() {
               data-testid="checkout-house-number-input"
               type="number"
               name="numero"
-              onChange={ numeroHandle }
+              // value={numero}
+              onChange={numeroHandle}
             />
           </label>
           <button
             type="button"
-            disabled={ total === 0 || rua === '' || numero === '' }
-            onClick={ finalizar }
+            disabled={total === 0 || rua === "" || numero === ""}
+            onClick={finalizar}
             data-testid="checkout-finish-btn"
           >
             Finalizar Pedido

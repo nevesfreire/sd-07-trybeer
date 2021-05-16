@@ -1,0 +1,200 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 6,
+    "failures": -5,
+    "start": "2021-05-15T23:38:08.128Z",
+    "end": "2021-05-15T23:38:08.177Z",
+    "duration": 49,
+    "testsRegistered": 6,
+    "passPercent": null,
+    "pendingPercent": 100,
+    "other": 5,
+    "hasOther": true,
+    "skipped": 5,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "a436de61-d035-4a69-a615-38874f8aff9b",
+      "title": "",
+      "fullFile": "cypress/integration/req08-orderDetailsClient.spec.js",
+      "file": "cypress/integration/req08-orderDetailsClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "76facbdd-39ae-453c-b83e-2fa61dd687f7",
+          "title": "8 - Criar tela de detalhes pedidos",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do detalhe do pedido",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível acessar a tela do detalhe do pedido",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "5cbc0621-77a7-448a-b7ed-9081968da656",
+              "parentUUID": "76facbdd-39ae-453c-b83e-2fa61dd687f7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "24f3a26a-c1f1-4b50-9d4e-2e4374f6b9b9",
+              "parentUUID": "76facbdd-39ae-453c-b83e-2fa61dd687f7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver que tem número do pedido e a data da compra",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível ver que tem número do pedido e a data da compra",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "170454aa-bf78-40a0-a44d-58525b1e6754",
+              "parentUUID": "76facbdd-39ae-453c-b83e-2fa61dd687f7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver que o produto tem quantidade, nome e valor total do produto",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível ver que o produto tem quantidade, nome e valor total do produto",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "1887d1fc-19d7-495a-a22c-ab4357dc3e3d",
+              "parentUUID": "76facbdd-39ae-453c-b83e-2fa61dd687f7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver o valor total do pedido",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível ver o valor total do pedido",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "4f4e3596-d955-459f-ae62-28575c5fcaa3",
+              "parentUUID": "76facbdd-39ae-453c-b83e-2fa61dd687f7",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "19b3f23d-70ca-466e-8227-cd954927bbc4",
+              "parentUUID": "76facbdd-39ae-453c-b83e-2fa61dd687f7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [
+            "5cbc0621-77a7-448a-b7ed-9081968da656",
+            "24f3a26a-c1f1-4b50-9d4e-2e4374f6b9b9",
+            "170454aa-bf78-40a0-a44d-58525b1e6754",
+            "1887d1fc-19d7-495a-a22c-ab4357dc3e3d",
+            "4f4e3596-d955-459f-ae62-28575c5fcaa3",
+            "19b3f23d-70ca-466e-8227-cd954927bbc4"
+          ],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

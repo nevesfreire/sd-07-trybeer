@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 2,
+    "failures": -1,
+    "start": "2021-05-15T23:39:06.850Z",
+    "end": "2021-05-15T23:39:06.887Z",
+    "duration": 37,
+    "testsRegistered": 2,
+    "passPercent": null,
+    "pendingPercent": 100,
+    "other": 1,
+    "hasOther": true,
+    "skipped": 1,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "1f3d2043-01b5-4343-9a10-43e4e0d1060c",
+      "title": "",
+      "fullFile": "cypress/integration/req13-testCoverage.spec.js",
+      "file": "cypress/integration/req13-testCoverage.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "aaef71af-3c80-45b8-a8e1-ec00e45e8650",
+          "title": "13 - A cobertura de testes unitários deve ser de no mínimo 90%",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado a cobertura de testes unitários do front-end",
+              "fullTitle": "13 - A cobertura de testes unitários deve ser de no mínimo 90% Será validado a cobertura de testes unitários do front-end",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "238acca7-2b13-4df4-808f-80eb76a6276a",
+              "parentUUID": "aaef71af-3c80-45b8-a8e1-ec00e45e8650",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado a cobertura de testes unitários do back-end",
+              "fullTitle": "13 - A cobertura de testes unitários deve ser de no mínimo 90% Será validado a cobertura de testes unitários do back-end",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "fb1b1c9a-b447-4be6-b293-090295acab8e",
+              "parentUUID": "aaef71af-3c80-45b8-a8e1-ec00e45e8650",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [
+            "238acca7-2b13-4df4-808f-80eb76a6276a",
+            "fb1b1c9a-b447-4be6-b293-090295acab8e"
+          ],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

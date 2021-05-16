@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 0,
+    "pending": 0,
+    "failures": 5,
+    "start": "2021-05-15T15:09:20.796Z",
+    "end": "2021-05-15T15:10:14.472Z",
+    "duration": 53676,
+    "testsRegistered": 5,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "06f6d09b-ab00-444a-87ac-ac21530421ea",
+      "title": "",
+      "fullFile": "cypress/integration/req07-ordersClient.spec.js",
+      "file": "cypress/integration/req07-ordersClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "99cd043e-a8ec-4a32-a4e8-8f8794c218d8",
+          "title": "7 - Criar tela de meus pedidos",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela de meus pedidos",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que é possível acessar a tela de meus pedidos",
+              "timedOut": null,
+              "duration": 17151,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/orders\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:167:6)\n    at buyOneProduct (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:227:3)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:349:35)",
+                "diff": null
+              },
+              "uuid": "25f8299f-66eb-45b0-abd5-2abb809a0a50",
+              "parentUUID": "99cd043e-a8ec-4a32-a4e8-8f8794c218d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 10859,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-date\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-total-value\"]');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:167:6)\n    at buyOneProduct (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:227:3)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:355:35)",
+                "diff": null
+              },
+              "uuid": "0a162fdc-b342-420d-9241-754dffdd4bbd",
+              "parentUUID": "99cd043e-a8ec-4a32-a4e8-8f8794c218d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver que o produto tem quantidade, nome, valor total e a data da compra",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que é possível ver que o produto tem quantidade, nome, valor total e a data da compra",
+              "timedOut": null,
+              "duration": 10891,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "var date = (0, _actionBase.getDateAndMonth)();\n(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"top-title\"]', 'Meus Pedidos');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-date\"]', date);\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-total-value\"]', 'R$ 2,20');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:167:6)\n    at buyOneProduct (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:227:3)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:365:35)",
+                "diff": null
+              },
+              "uuid": "e1f9a51c-3c4a-4696-813e-55bc4c512c45",
+              "parentUUID": "99cd043e-a8ec-4a32-a4e8-8f8794c218d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível clicar no card e ser redirecionado para tela do detalhe do produto",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que é possível clicar no card e ser redirecionado para tela do detalhe do produto",
+              "timedOut": null,
+              "duration": 10839,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/orders/1\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:167:6)\n    at buyOneProduct (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:227:3)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:375:35)",
+                "diff": null
+              },
+              "uuid": "2f7f5945-faff-47f5-88e7-bbd2933c9172",
+              "parentUUID": "99cd043e-a8ec-4a32-a4e8-8f8794c218d8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "timedOut": null,
+              "duration": 178,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"\".concat(Cypress.config().baseUrl, \"/orders\"));\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'token' of null\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'token' of null\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at Orders (http://localhost:3000/static/js/main.chunk.js:1267:57)\n    at renderWithHooks (http://localhost:3000/static/js/0.chunk.js:21358:22)\n    at mountIndeterminateComponent (http://localhost:3000/static/js/0.chunk.js:23970:17)\n    at beginWork (http://localhost:3000/static/js/0.chunk.js:25048:20)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/0.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/0.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/0.chunk.js:6853:35)\n    at beginWork$1 (http://localhost:3000/static/js/0.chunk.js:29614:11)\n    at performUnitOfWork (http://localhost:3000/static/js/0.chunk.js:28581:16)\n    at workLoopSync (http://localhost:3000/static/js/0.chunk.js:28554:26)\n    at performSyncWorkOnRoot (http://localhost:3000/static/js/0.chunk.js:28172:13)\n    at scheduleUpdateOnFiber (http://localhost:3000/static/js/0.chunk.js:27604:11)\n    at updateContainer (http://localhost:3000/static/js/0.chunk.js:30753:7)\n    at http://localhost:3000/static/js/0.chunk.js:31136:11\n    at unbatchedUpdates (http://localhost:3000/static/js/0.chunk.js:28322:16)\n    at legacyRenderSubtreeIntoContainer (http://localhost:3000/static/js/0.chunk.js:31135:9)\n    at Object.render (http://localhost:3000/static/js/0.chunk.js:31218:14)\n    at Module../src/index.js (http://localhost:3000/static/js/main.chunk.js:1999:50)\n    at __webpack_require__ (http://localhost:3000/static/js/bundle.js:785:30)\n    at fn (http://localhost:3000/static/js/bundle.js:151:20)\n    at Object.1 (http://localhost:3000/static/js/main.chunk.js:2142:18)\n    at __webpack_require__ (http://localhost:3000/static/js/bundle.js:785:30)\n    at checkDeferredModules (http://localhost:3000/static/js/bundle.js:46:23)\n    at Array.webpackJsonpCallback [as push] (http://localhost:3000/static/js/bundle.js:33:19)\n    at http://localhost:3000/static/js/main.chunk.js:1:71",
+                "diff": null
+              },
+              "uuid": "15d3cc39-b849-4513-af8d-c6bd3405715b",
+              "parentUUID": "99cd043e-a8ec-4a32-a4e8-8f8794c218d8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "25f8299f-66eb-45b0-abd5-2abb809a0a50",
+            "0a162fdc-b342-420d-9241-754dffdd4bbd",
+            "e1f9a51c-3c4a-4696-813e-55bc4c512c45",
+            "2f7f5945-faff-47f5-88e7-bbd2933c9172",
+            "15d3cc39-b849-4513-af8d-c6bd3405715b"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 49918,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

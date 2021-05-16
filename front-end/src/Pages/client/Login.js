@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 function Login() {
+  // const [email, setEmail] = useState('user@test.com');
+  // const [password, setPassword] = useState('test123');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
@@ -19,6 +21,7 @@ function Login() {
   const saveInLocalStorage = (res) => {
     localStorage.setItem('user', JSON.stringify(
       {
+        id: res.user.id,
         name: res.user.name,
         email: res.user.email,
         token: res.token,
@@ -46,7 +49,11 @@ function Login() {
 
   useEffect(() => {
     verifyData();
-  }, [email, password, verifyData]);
+  }, [email, password]);
+
+  useEffect(() => {
+    localStorage.clear();
+  }, [])
 
   return (
     <div>
@@ -58,7 +65,7 @@ function Login() {
           name="email"
           autoComplete="off"
           className="inputLogin"
-          value={ email }
+          // value={ email }
           onChange={ ({ target }) => setEmail(target.value) }
         />
       </label>
@@ -68,7 +75,7 @@ function Login() {
           type="password"
           data-testid="password-input"
           name="password"
-          value={ password }
+          // value={ password }
           onChange={ ({ target }) => setPassword(target.value) }
         />
       </label>

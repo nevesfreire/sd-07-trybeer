@@ -27,12 +27,15 @@ const login = async (req, res) => {
 
 const addUser = async (req, res) => {
   const resOK = 201;
+  console.log('passou 1');
   try {
+    console.log('passou 2')
     const { newName, newEmail, newPassword, newRole } = req.body;
+    console.log('passou 3')
     const newUser = await cadUser(newName, newEmail, newPassword, newRole);
+    console.log('passou 4')
     return res.status(resOK).json(newUser);
   } catch (err) {
-    console.log(err);
     res.status(err.code).json({ message: err.message });
   }
 };
@@ -70,9 +73,7 @@ const saleSave = async (req, res) => {
     const cadSale = await savSale(infoUser, totalPrice, products);
     res.status(resOK).json(cadSale);
   } catch (err) {
-    res.status(err.code).json({
-      message: err.message,
-    });
+    res.status(400).send('Erro ao adicionar venda de Checkout na tabela Vendas');
   }
 };
 
