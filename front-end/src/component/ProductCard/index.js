@@ -29,26 +29,28 @@ function ProductCard({ product }) {
         width="100"
         data-testid={ `${product.id - 1}-product-img` }
       />
-      <h2 data-testid={ `${product.id - 1}-product-name` }>{product.name}</h2>
-      <p data-testid={ `${product.id - 1}-product-price` }>
+      <h2 className="product-name" data-testid={ `${product.id - 1}-product-name` }>{product.name}</h2>
+      <h2 className="product-price" data-testid={ `${product.id - 1}-product-price` }>
         {convertPrice(product.price)}
-      </p>
+      </h2>
       <div className="quantity-box">
-        <button
-          type="button"
+        <div
+          className="quantity-btn"
           onClick={ () => addProductQtd(product.id, product.price, product.name) }
+          onKeyDown={ (e) => null }
           data-testid={ `${product.id - 1}-product-plus` }
         >
           <h3>+</h3>
-        </button>
-        <p data-testid={ `${product.id - 1}-product-qtd` }>{getQtd()}</p>
-        <button
-          type="button"
+        </div>
+        <h4 className="quantity-text" data-testid={ `${product.id - 1}-product-qtd` }>{getQtd()}</h4>
+        <div
+          className="quantity-btn"
           onClick={ () => subtractProductQtd(product.id, product.price, product.name) }
+          onKeyDown={ (e) => null }
           data-testid={ `${product.id - 1}-product-minus` }
         >
           <h3>-</h3>
-        </button>
+        </div>
       </div>
     </Container>
   );

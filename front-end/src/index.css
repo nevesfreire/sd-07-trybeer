@@ -8,6 +8,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding: 0;
+  box-sizing: content-box;
 }
 
 code {
