@@ -73,29 +73,35 @@ function FormLogin() {
   return (
     <Container>
       <div className="page-body">
-        <h1 className="title">TryBeer</h1>
+        <h1 className="title"><span className='try-title'>Try</span>Bebos</h1>
         <div className="form-container">
-          <h2>EMAIL:</h2>
-          <input
-            id="email"
-            type="email"
-            data-testid="email-input"
-            value={ formLogin.email }
-            onChange={ (event) => handleInputChange(event, 'email') }
-          />
-          <h2>SENHA:</h2>
-          <input
-              id="password"
-              type="password"
-              data-testid="password-input"
-              value={ formLogin.password }
-              onChange={ (event) => handleInputChange(event, 'password') }
-            />
+          <div className='inputs-container'>
+            <div className='inputs-sub-container'>
+              <h2>EMAIL:</h2>
+              <input
+                id="email"
+                type="email"
+                data-testid="email-input"
+                value={ formLogin.email }
+                onChange={ (event) => handleInputChange(event, 'email') }
+              />
+            </div>
+            <div className='inputs-sub-container'>
+              <h2>SENHA:</h2>
+              <input
+                  id="password"
+                  type="password"
+                  data-testid="password-input"
+                  value={ formLogin.password }
+                  onChange={ (event) => handleInputChange(event, 'password') }
+                />
+            </div>
+          </div>
           <div className="btn-container">
             <button
               id="btn-submit"
               type="submit"
-              className="form-btn"
+              className={ buttonState ? 'form-btn' : 'form-btn-enable' }
               data-testid="signin-btn"
               disabled={ buttonState }
               onClick={ (event) => handleSubmit(event) }

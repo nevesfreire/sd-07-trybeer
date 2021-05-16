@@ -9,24 +9,30 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  /* align-items: center; */
+}
+
+.order-price-status-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
   align-items: center;
+  width: 100%;
+}
+
+.order-number-address-container {
+  width: 90%;
+  margin: 0 auto;
 }
 
 h2, h3 {
   margin: 0;
   padding: 0;
-  text-align: center;
+  /* text-align: justify; */
 }
 
 h2 {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  font-size: 1.5rem;
-}
-
-h2 {
-  text-align: center;
+  text-align: left;
   margin: 0;
   padding: 0;
   font-size: 1.5rem;
@@ -37,10 +43,11 @@ h3 {
   margin: 5px 0;
   padding: 0;
   font-size: 1.3rem;
+  font-weight: 200;
 }
 
 .order-card-pendente {
-  color: yellowgreen;
+  color: #FAC62A;
 }
 
 .order-card-entregue {
