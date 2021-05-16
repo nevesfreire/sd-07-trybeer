@@ -21,8 +21,17 @@ const getOrder = async (id) => {
   return data;
 };
 
+const updateStatus = async (id) => {
+  const status = 'Entregue';
+  const query = 'UPDATE Trybeer.sales S SET status = ?'
+  + ' Where S.id = ?;';
+  await conn.execute(query, [status, id]);
+  return { status };
+};
+
 module.exports = {
   getAll,
   getAllSalesProducts,
   getOrder,
+  updateStatus,
 };

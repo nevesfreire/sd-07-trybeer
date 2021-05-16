@@ -37,7 +37,7 @@ function ProductsCards() {
 
   useEffect(() => {
     HandleRequestGetProducts();
-  }, []);
+  }, [HandleRequestGetProducts]);
 
   if (!products.length) return <h1>LOADING...</h1>;
 

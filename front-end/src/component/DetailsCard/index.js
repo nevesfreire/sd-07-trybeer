@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import BeerAppContext from '../../context/BeerAppContext';
 import './style.css';
 
-function DetailsCard({ product }) {
+function DetailsCard({ product, role }) {
   const { convertPrice } = useContext(BeerAppContext);
   const totalValue = product.quantity * product.price;
   return (
@@ -15,6 +15,11 @@ function DetailsCard({ product }) {
       <span data-testid={ `${product.id - 1}-product-total-value` }>
         {convertPrice(totalValue)}
       </span>
+      {role && (
+        <span data-testid={ `${product.id - 1}-order-unit-price` }>
+          {`(${convertPrice(product.price)})`}
+        </span>
+      )}
     </p>
   );
 }
@@ -26,6 +31,11 @@ DetailsCard.propTypes = {
     quantity: PropTypes.number,
     price: PropTypes.number,
   }).isRequired,
+  role: PropTypes.string,
+};
+
+DetailsCard.defaultProps = {
+  role: 'Client',
 };
 
 export default DetailsCard;

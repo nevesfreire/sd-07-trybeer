@@ -40,7 +40,7 @@ function OrderDetails() {
 
   useEffect(() => {
     handleRequestOrder();
-  }, []);
+  }, [handleRequestOrder]);
 
   return (
     <div className='orders-details-container'>

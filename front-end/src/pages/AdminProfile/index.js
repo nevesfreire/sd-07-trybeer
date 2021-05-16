@@ -28,7 +28,7 @@ function AdminProfile() {
   useEffect(() => {
     if (!validateToken()) return history.push('/login');
     getLocalStorageUser();
-  }, []);
+  }, [getLocalStorageUser, history]);
 
   return (
     <div>

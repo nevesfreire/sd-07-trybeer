@@ -28,7 +28,7 @@ export default function Orders() {
 
   useEffect(() => {
     handleRequestGetOrdersAPI();
-  }, []);
+  }, [handleRequestGetOrdersAPI]);
 
   return (
     <div className='orders-container'>
