@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import OrderCardAdmin from './OrderCardAdmin';
 import api from '../services/api';
@@ -10,7 +10,10 @@ const Admin = () => {
       id: 1,
       delivery_number: '1',
       sale_date: '10-12-2011',
-      total_price: '100',
+      total_price: '2,20',
+      street: 'Rua da pinga',
+      houseNumber: '2',
+      status: 'Pendente',
     },
   ]);
 
@@ -24,17 +27,17 @@ const Admin = () => {
   useEffect(() => {
     const getAllOrdersByid = async () => {
       api
-        .post('/admin/orders', params)
+        .post('/orders', params)
         .then((result) => setOrders(result.data))
         .catch((err) => console.log(`error: ${err}`));
     };
     getAllOrdersByid();
-  }, [params]);
+  }, []);
 
-  console.log(loggedUser.id);
+  console.log(orders);
   return (
     <div className="container">
-      {!loggedUser.id && <Redirect to="/login" />}
+      {/* {!loggedUser.id && <Redirect to="/login" />} */}
       <div>
         <div className="container-int">
           <div className="myOrder-body">
@@ -45,12 +48,14 @@ const Admin = () => {
                 deliveryNumber={ actual.delivery_number }
                 saleDate={ actual.sale_date }
                 totalPrice={ actual.total_price }
+                street={ actual.street }
+                houseNumber={ actual.houseNumber }
+                status={ actual.status }
               />
             ))}
           </div>
         </div>
       </div>
-      ;
     </div>
   );
 };

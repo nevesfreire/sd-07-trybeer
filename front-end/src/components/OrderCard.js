@@ -9,31 +9,29 @@ const OrderCard = ({
   saleDate,
   totalPrice,
   position,
-}) => {
-  return (
-    <div className="container-card">
-      <Link to={ `orders/${deliveryNumber}` }>
-        <div className="header-card">
-          <div data-testid={ `${position}-order-number` }>
-            Pedido:
-            {deliveryNumber}
-          </div>
-          <div data-testid={ `${position}-order-date` }>
-            Data:
-            {moment.utc(saleDate).format('MM/DD/YYYY')}
-          </div>
+}) => (
+  <div className="container-card">
+    <Link to={ `orders/${deliveryNumber}` }>
+      <div className="header-card">
+        <div data-testid={ `${position}-order-number` }>
+          Pedido:
+          {deliveryNumber}
         </div>
-        <div
-          className="body-card"
-          data-testid={ `${position}-order-total-value` }
-        >
-          R$
-          {totalPrice}
+        <div data-testid={ `${position}-order-date` }>
+          Data:
+          {moment.utc(saleDate).format('MM/DD/YYYY')}
         </div>
-      </Link>
-    </div>
-  );
-};
+      </div>
+      <div
+        className="body-card"
+        data-testid={ `${position}-order-total-value` }
+      >
+        R$
+        {totalPrice}
+      </div>
+    </Link>
+  </div>
+);
 
 OrderCard.propTypes = {
   deliveryNumber: PropTypes.string.isRequired,
