@@ -1,40 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './styles.css';
+
 function AdminCardDetails({ data, index }) {
-  const {
-    quantity,
-    name,
-    price,
-  } = data;
+  const { quantity, name, price } = data;
 
   const priceFormat = `R$ ${price.replace(/\./g, ',')}`;
   const productTotalPrice = parseFloat(quantity) * parseFloat(price);
-  const productTotalPriceFormat = `R$ ${
-    productTotalPrice
-      .toFixed(2)
-      .replace(/\./g, ',')
-  }`;
+  const productTotalPriceFormat = `R$ ${productTotalPrice.toFixed(2)
+    .replace(/\./g, ',')}`;
 
   return (
-    <main>
-      <span data-testid={ `${index}-product-qtd` }>
-        {quantity}
-      </span>
-      {' '}
-      <span data-testid={ `${index}-product-name` }>
-        {name}
-      </span>
-      {' '}
-      <span data-testid={ `${index}-product-total-value` }>
-        {productTotalPriceFormat}
-      </span>
-      {' '}
-      <span data-testid={ `${index}-order-unit-price` }>
-        {`(${priceFormat})`}
-      </span>
-      {' '}
-    </main>
+    <article className="admin-product-card">
+      <div>
+        <p data-testid={ `${index}-product-qtd` }>{quantity}</p>
+        <p data-testid={ `${index}-product-name` }>{name}</p>
+      </div>
+      <div>
+        <p data-testid={ `${index}-product-total-value` }>{productTotalPriceFormat}</p>
+        <strong data-testid={ `${index}-order-unit-price` }>{`(${priceFormat})`}</strong>
+      </div>
+    </article>
   );
 }
 
