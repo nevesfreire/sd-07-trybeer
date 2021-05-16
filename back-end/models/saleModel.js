@@ -6,7 +6,7 @@ const getAllSales = async () => {
 };
 
 const getSaleById = async (id) => {
-  const [row] = await connection.execute('SELECT * FROM sale WHERE id = ?', [
+  const [row] = await connection.execute('SELECT * FROM sales WHERE id = ?', [
     id,
   ]);
   return row;

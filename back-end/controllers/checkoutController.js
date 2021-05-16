@@ -8,6 +8,9 @@ const CONFLICT = 409;
 const getAllSales = async (request, response) => {
   try {
     const sale = await checkoutService.getAllSales();
+    if (!sale || sale.length === 0) {
+      throw new Error('sales not found');
+    }
     return response.status(OK).json(sale);
   } catch (error) {
     console.error(error);

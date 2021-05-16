@@ -7,6 +7,9 @@ const ERRORBYID = 404;
 const getAllOrders = async (_request, response) => {
   try {
     const order = await orderService.getAllOrders();
+    if (!order || order.length === 0) {
+      throw new Error('orders not found');
+    }
     return response.status(OK).json(order);
   } catch (error) {
     console.error(error);
@@ -18,7 +21,7 @@ const getOrderById = async (request, response) => {
   try {
     const { id } = request.params;
     const order = await orderService.getOrderById(id);
-    if (!order) {
+    if (!order || order.length === 0) {
       const ERR_MESSAGE = 'order not found';
       throw new Error(ERR_MESSAGE);
     }
@@ -33,7 +36,7 @@ const getOrderDetails = async (request, response) => {
   try {
     const { id } = request.params;
     const order = await orderService.getOrderDetails(id);
-    if (!order) {
+    if (!order || order.length === 0) {
       const ERR_MESSAGE = 'order not found';
       throw new Error(ERR_MESSAGE);
     }
