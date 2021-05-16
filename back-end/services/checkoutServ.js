@@ -30,17 +30,30 @@ const insertPurchase = async (purchase, pdtList) => {
   return { insertId, statusCode: statusMsgMap.created.status };
 };
 
+const formatDate = () => {
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, '0');
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const year = today.getFullYear();
+
+  const hour = String(today.getHours()).padStart(2, '0');
+  const minutes = String(today.getMinutes()).padStart(2, '0');
+  const seconds = String(today.getSeconds()).padStart(2, '0');
+  
+  return `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
+};
+
 const formatInfo = (pdts, { userId, street, houseNumber, totalPrice }) => {
   const { status } = pdts;
-  const date = new Date();
-  const trustedDate = `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
+  // const date = new Date();
+  // const trustedDate = `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
   return {
     userId,
     deliveryAddress: street,
     deliveryNumber: houseNumber,
     status: status || 'Pendente',
     totalPrice,
-    trustedDate,
+    trustedDate: formatDate(),
   };
 };
 
