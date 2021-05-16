@@ -1,12 +1,11 @@
-const { getOrderByUserService } = require('../services/getOrderByUserServices');
-
-const SUCESS = 200;
+const orderService = require('../services/orderService');
+const httpStatus = require('../helpers/HttpStatus');
 
 const getOrderByUser = async (req, res) => {
   const { id } = req.body;
-  getOrderByUserService(id)
+  orderService.getOrderByUserService(id)
     .then((result) => {
-      res.status(SUCESS).json(result);
+      res.status(httpStatus.OK).json(result);
     })
     .catch((err) => console.log(`error in controller getOrderByUser: ${err} `));
 };
