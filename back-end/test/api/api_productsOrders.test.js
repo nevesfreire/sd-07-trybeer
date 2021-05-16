@@ -46,12 +46,12 @@ describe('GET into orders route', () => {
     const URL_LOGIN = 'http://localhost:3001/login'
     beforeEach(async (done) => {
         await connection.execute('DELETE FROM sales_products');
-        await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
         await connection.execute('DELETE FROM sales');
-        await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
         await connection.execute('DELETE FROM users');
-        await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
         await connection.execute('DELETE FROM products');
+        await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
+        await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
+        await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
         await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
         const [user] = await connection.execute('INSERT INTO users (name,email,password,role)'
             + 'VALUES (?,?,?,?)', [name, email, password, role])
