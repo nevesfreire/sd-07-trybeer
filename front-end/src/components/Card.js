@@ -7,7 +7,10 @@ const Card = ({ beer, cart, setCart, index }) => {
   const [quantity, setQuantity] = useState(0);
 
   const productOfCart = cart.find((prod) => prod.id === id) || {
-    id, preco, imagem, nome,
+    id,
+    preco,
+    imagem,
+    nome,
   };
 
   const setInQuantity = async (value) => {
@@ -20,7 +23,7 @@ const Card = ({ beer, cart, setCart, index }) => {
         ...newCart,
         {
           ...productOfCart,
-          total: (value * beer.preco),
+          total: value * beer.preco,
           quantidade: value,
         },
       ];
@@ -31,42 +34,48 @@ const Card = ({ beer, cart, setCart, index }) => {
   };
 
   return (
-    <div
-      key={ nome }
-      className="product-item-container"
-    >
-      <img
-        data-testid={ `${index}-product-img` }
-        src={ imagem }
-        alt={ nome }
-      />
-      <h3 data-testid={ `${index}-product-name` }>{ nome }</h3>
-      <p data-testid={ `${index}-product-price` }>
-        { `R$ ${preco.replace('.', ',')}` }
-      </p>
-      <div>
-        Quantidade
-        <p data-testid={ `${index}-product-qtd` }>
-          {productOfCart.total / preco || quantity}
+    <div key={ nome } className="product-item-container">
+      <div className="container-image">
+        <img data-testid={ `${index}-product-img` } src={ imagem } alt={ nome } />
+      </div>
+      <div className="container-information">
+        <h3 data-testid={ `${index}-product-name` }>{nome}</h3>
+        <p data-testid={ `${index}-product-price` }>
+          {`R$ ${preco.replace('.', ',')}`}
         </p>
       </div>
-      <button
-        type="button"
-        data-testid={ `${index}-product-plus` }
-        onClick={ () => setInQuantity(quantity + numbers.UM) }
-      >
-        +
-      </button>
-      <button
-        type="button"
-        data-testid={ `${index}-product-minus` }
-        onClick={ () => {
-          if (quantity) setInQuantity(quantity - numbers.UM);
-          else setInQuantity(numbers.ZERO);
-        } }
-      >
-        -
-      </button>
+      <div className="container-action-card">
+        Quantidade
+        <div className="product-count">
+          <button
+            className="btn-more"
+            type="button"
+            data-testid={ `${index}-product-plus` }
+            onClick={ () => setInQuantity(quantity + numbers.UM) }
+          >
+            +
+          </button>
+
+          <p data-testid={ `${index}-product-qtd` }>
+            <input
+              type="text"
+              value={ productOfCart.total / preco || quantity }
+              readOnly
+            />
+          </p>
+          <button
+            className="btn-minus"
+            type="button"
+            data-testid={ `${index}-product-minus` }
+            onClick={ () => {
+              if (quantity) setInQuantity(quantity - numbers.UM);
+              else setInQuantity(numbers.ZERO);
+            } }
+          >
+            -
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const CheckoutCard = ({ cartItem, index, cart, setCart }) => {
     <div
       key={ cartItem.nome }
       // data-testid={  }
-      className="product-item-container"
+      className="product-item-list"
     >
       <h3 data-testid={ `${index}-product-name` }>{cartItem.nome}</h3>
       <p data-testid={ `${index}-product-unit-price` }>
@@ -22,12 +22,14 @@ const CheckoutCard = ({ cartItem, index, cart, setCart }) => {
         {`R$ ${cartItem.total.toFixed(2).replace('.', ',')}`}
       </p>
       <div>
-        Quantidade
+
         <p data-testid={ `${index}-product-qtd-input` }>
+          Quantidade:
           {cartItem.quantidade}
         </p>
       </div>
       <button
+        className="btn-remove"
         type="button"
         data-testid={ `${index}-removal-button` }
         onClick={ removeCartItem }
