@@ -2,7 +2,7 @@ const connection = require('./connection');
 
 const getSalesProductByUserId = async (id) => {
   const [data] = await connection.execute(
-    `SELECT total_price, sale_date, s.id
+    `SELECT total_price, sale_date, s.id, s.delivery_address, s.delivery_number, s.status
     FROM Trybeer.sales_products AS sp
     INNER JOIN Trybeer.sales AS s ON s.user_id = ${id}
     INNER JOIN Trybeer.products AS p ON p.id = sp.product_id

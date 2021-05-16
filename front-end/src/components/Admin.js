@@ -11,8 +11,8 @@ const Admin = () => {
       delivery_number: '1',
       sale_date: '10-12-2011',
       total_price: '2,20',
-      street: 'Rua da pinga',
-      houseNumber: '2',
+      delivery_address: 'Rua da pinga',
+      delivery_number: '2',
       status: 'Pendente',
     },
   ]);
@@ -48,8 +48,8 @@ const Admin = () => {
                 deliveryNumber={ actual.delivery_number }
                 saleDate={ actual.sale_date }
                 totalPrice={ actual.total_price }
-                street={ actual.street }
-                houseNumber={ actual.houseNumber }
+                street={ actual.delivery_address }
+                houseNumber={ actual.delivery_number }
                 status={ actual.status }
               />
             ))}
