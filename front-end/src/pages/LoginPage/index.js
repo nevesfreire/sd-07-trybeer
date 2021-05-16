@@ -42,7 +42,7 @@ function LoginPage() {
     <section className="login-wrapper">
       <form onSubmit={ handleSubmit } className="form-wrapper">
         <div className="form-container">
-          <h1>Trybeer</h1>
+          <h1>TryBeer</h1>
           <label htmlFor="input-email-login">
             Email:
             <input

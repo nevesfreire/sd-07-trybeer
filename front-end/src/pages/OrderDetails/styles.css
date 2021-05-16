@@ -1,0 +1,19 @@
+.order-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 64px 0;
+  padding: 15px 30px;
+}
+
+.order-details-list {
+  box-shadow: 0 0 4px var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px 30px;
+  border: 1px solid var(--box-shadow);
+  border-radius: 4px;
+}
+
+.order-details-list > h1 { margin-bottom: 0; }

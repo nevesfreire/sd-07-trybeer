@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 function Order({ order, index }) {
-  const fullDate = order.sale_date.split('T');
-  const date = fullDate[0].split('-');
-  const dateFormated = `${date[2]}/${date[1]}`;
+  const formatDate = () => {
+    const date = new Date(order.sale_date);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    return `${day}/${month}`;
+  };
   const formatedTotal = order.total_price.replace(/\./g, ',');
 
   return (
@@ -18,7 +21,7 @@ function Order({ order, index }) {
     >
       <div>
         <strong data-testid={ `${index}-order-number` }>{`Pedido ${order.id}`}</strong>
-        <p data-testid={ `${index}-order-date` }>{`Data: ${dateFormated}`}</p>
+        <p data-testid={ `${index}-order-date` }>{`Data: ${formatDate()}`}</p>
       </div>
       <h3 data-testid={ `${index}-order-total-value` }>{`Valor: R$ ${formatedTotal}`}</h3>
     </Link>

@@ -56,7 +56,7 @@ function RegisterPage() {
     <section className="register-wrapper">
       <div className="form-wrapper">
         <form onSubmit={ handleSubmit } className="form-container">
-          <h1>Trybeer</h1>
+          <h1>TryBeer</h1>
           <label htmlFor="signup-name">
             Nome
             <input

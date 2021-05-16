@@ -41,7 +41,7 @@ function AllOrders() {
             isLoading
               ? <h1 className="loading">Carregando</h1>
               : orders.map((item, index) => (
-                <Order key={ item } order={ item } index={ index } />
+                <Order key={ index } order={ item } index={ index } />
               ))
           }
         </div>

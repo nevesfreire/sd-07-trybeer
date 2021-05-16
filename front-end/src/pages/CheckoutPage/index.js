@@ -19,7 +19,7 @@ function Checkout() {
 
   return isLoading ? <h1 className="loading">Carregando</h1> : (
     <>
-      <ClientMenu><p data-testid="top-title">TryBeer</p></ClientMenu>
+      <ClientMenu />
       <section className="checkout-container">
         <section className="checkout-cart-container">
           {cart.length === 0 ? <h2>Não há produtos no carrinho</h2>
