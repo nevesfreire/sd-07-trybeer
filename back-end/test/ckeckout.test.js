@@ -20,7 +20,6 @@ describe('Testar a rota de checkout', () => {
     //     connection.end();
     //     done();
     // });
-    //
 
     it('Deve retornar a venda checkout pelo id', async (done) => {
         const OK = 200;
