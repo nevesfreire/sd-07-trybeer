@@ -1,0 +1,29 @@
+.header-card {
+  display: flex;
+  justify-content: space-around;
+  font-size: 10pt;
+  padding: 5px;
+}
+.body-card {
+  color: green;
+  font-weight: 700;
+  padding: 5px;
+  text-align: center;
+}
+.container-int {
+  display: flex;
+}
+
+.container-card {
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  width: 220px;
+  margin-left: 20px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.container-card a {
+  text-decoration: none;
+  color: black;
+}

@@ -7,6 +7,7 @@ import Admin from './pages/Admin';
 import Client from './pages/Cliente';
 import Profile from './pages/Profile';
 import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
 
 const Routes = () => (
   <BrowserRouter>
@@ -20,6 +21,7 @@ const Routes = () => (
       <Route exact path="/admin/orders" component={ Admin } />
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/checkout" component={ Checkout } />
+      <Route exact path="/orders" component={ Orders } />
     </Switch>
   </BrowserRouter>
 );
