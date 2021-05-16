@@ -91,3 +91,22 @@ body {
     }
  }
  
+
+ .container-profile {
+  
+ }
+
+ .container-content {
+    display: flex;
+ }
+
+ .form-input {
+    max-height: 400px;
+ }
+ .container-int-profile{
+    /* align-items: center; */
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    width: 100%;
+ }

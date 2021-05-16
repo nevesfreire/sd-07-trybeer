@@ -1,0 +1,88 @@
+.container-checkout {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.checkout-int {
+  border: 1px solid gray;
+  flex-direction: column;
+  border-radius: 2px;
+  display: flex;
+  min-width: 1000px;
+}
+
+.checkout-component-container {
+  display: flex;
+  border-top: 1px solid grey;
+}
+
+.form-checkout input {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  width: 80%;
+}
+
+.aside-content-checkout {
+  border-left: 1px solid lightgray;
+  padding: 10px;
+}
+
+.order-value {
+  color: green;
+  font-weight: 700;
+  font-size: 15pt;
+}
+
+.btn-finish {
+  margin-left: 10%;
+  padding: 10px;
+  width: 80%;
+}
+
+.feedback {
+  color: green;
+  font-size: 10pt;
+  text-align: center;
+}
+
+.sub-title {
+  margin: 0;
+  color: gray;
+  font-size: 10pt;
+}
+
+.title-checkout {
+  margin: 0;
+}
+
+.cart-itens {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.product-item-list {
+  align-items: center;
+  display: flex;
+  font-size: 10pt;
+  justify-content: space-between;
+  min-width: 95%;
+}
+
+.product-item-list p {
+  font-size: 10pt;
+}
+
+.btn-remove {
+  color: white;
+  cursor: pointer;
+  background-color: red;
+  border: none;
+  border-radius: 2px;
+  height: 25px;
+}

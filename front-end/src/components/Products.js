@@ -4,8 +4,8 @@ import ComponentBeers from './Beers';
 const ComponentProducts = () => {
   const title = 'Products';
   return (
-    <div>
-      <h1>{title}</h1>
+    <div className="container-products">
+      <h1 className="title-products">{title}</h1>
       <ComponentBeers />
     </div>
   );

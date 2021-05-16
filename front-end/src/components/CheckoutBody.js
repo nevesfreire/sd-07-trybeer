@@ -17,7 +17,7 @@ const CheckoutBody = () => {
   );
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
-  const [saleFinished, setSaleFinished] = useState(true);
+  const [saleFinished, setSaleFinished] = useState(false);
 
   // cart mockado
   // const cart = [
@@ -43,6 +43,7 @@ const CheckoutBody = () => {
       deliveryAddress: street,
       deliveryNumber: houseNumber,
       status: 'Pendente',
+      cart,
     };
     const postSale = async () => {
       const { data } = await api.post('/checkout', params);
@@ -57,64 +58,72 @@ const CheckoutBody = () => {
   // const { userId, totalPrice, deliveryAddress, deliveryNumber, status } = req.body;
 
   return (
-    <div className="checkout-list-container">
-      {/* {console.log(token)} */}
+    <div className="checkout-component-container">
       {!token && <Redirect to="/login" />}
-      {/* {console.log(`Render beer: ${Beers}`)} */}
-      <h3 data-testid="top-title">Finalizar Pedido</h3>
-      <button
-        data-testid="checkout-finish-btn"
-        type="button"
-        disabled={ !priceTotalReduced || street === '' || houseNumber === '' }
-        onClick={ redirectToProduct }
-      >
-        Finalizar Pedido
-      </button>
-      <div>
-        Valor total do carrinho
-        <p data-testid="order-total-value">
-          {`R$ ${priceTotalReduced.toFixed(2).replace('.', ',')}`}
-        </p>
+      <div className="cart-itens">
+        {priceTotalReduced === 0 ? (
+          <h3>Não há produtos no carrinho</h3>
+        ) : (
+          cart.map((cartItem, index) => (
+            <CheckoutCard
+              key={ index }
+              cartItem={ cartItem }
+              index={ index }
+              setCart={ setCart }
+              cart={ cart }
+            />
+          ))
+        )}
       </div>
-      {priceTotalReduced === 0 ? (
-        <h3>Não há produtos no carrinho</h3>
-      ) : (
-        cart.map((cartItem, index) => (
-          <CheckoutCard
-            key={ index }
-            cartItem={ cartItem }
-            index={ index }
-            setCart={ setCart }
-            cart={ cart }
-          />
-        ))
-      )}
-      <form className="form-checkout">
-        <label htmlFor="street" className="form-checkout-street">
-          Rua
-          <input
-            data-testid="checkout-street-input"
-            id="street"
-            type="street"
-            name="street"
-            className="label-login"
-            onChange={ (event) => setStreet(event.target.value) }
-          />
-        </label>
+      <div className="aside-content-checkout">
+        <div>
+          Valor total do carrinho
+          <p data-testid="order-total-value" className="order-value">
+            {`R$ ${priceTotalReduced.toFixed(2).replace('.', ',')}`}
+          </p>
+        </div>
+        <form className="form-checkout">
+          <label htmlFor="street" className="form-checkout-street">
+            Rua
+            <br />
+            <input
+              data-testid="checkout-street-input"
+              id="street"
+              type="street"
+              name="street"
+              className="label-login"
+              onChange={ (event) => setStreet(event.target.value) }
+            />
+          </label>
 
-        <label htmlFor="houseNumber" className="form-checkout-address">
-          Número da casa
-          <input
-            data-testid="checkout-house-number-input"
-            id="houseNumber"
-            type="houseNumber"
-            name="houseNumber"
-            className="label-login"
-            onChange={ (event) => setHouseNumber(event.target.value) }
-          />
-        </label>
-      </form>
-      {saleFinished ? <h3>Compra realizada com sucesso!</h3> : ''}
+          <label htmlFor="houseNumber" className="form-checkout-address">
+            Número da casa
+            <br />
+            <input
+              data-testid="checkout-house-number-input"
+              id="houseNumber"
+              type="houseNumber"
+              name="houseNumber"
+              className="label-login"
+              onChange={ (event) => setHouseNumber(event.target.value) }
+            />
+          </label>
+          {saleFinished ? (
+            <h3 className="feedback">Compra realizada com sucesso!</h3>
+          ) : (
+            ''
+          )}
+        </form>
+        <button
+          className="btn-finish"
+          data-testid="checkout-finish-btn"
+          type="button"
+          disabled={ !priceTotalReduced || street === '' || houseNumber === '' }
+          onClick={ redirectToProduct }
+        >
+          Finalizar Pedido
+        </button>
+      </div>
     </div>
   );
 };

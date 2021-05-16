@@ -21,7 +21,7 @@ const ComponentProfile = () => {
       old: actualName,
     };
 
-    console.log(objSend);
+    // console.log(objSend);
     api.put(`${REACT_APP_URL}/user`, objSend)
       .then((res) => {
         if (res.status === OK) {
@@ -42,7 +42,7 @@ const ComponentProfile = () => {
   }, []);
 
   return (
-    <FormControl className="formRegistration">
+    <FormControl className="formRegistration form-input">
       {/* { user.role === 'administrator' && <Redirect to="/admin/orders" /> }
       { user.role === 'client' && <Redirect to="/products" /> } */}
       <h1 data-testid="top-title">Cliente - Meu Perfil</h1>
