@@ -53,12 +53,13 @@ const ComponentRegister = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setUser(data);
+          // setUser(data);
         });
       api
         .post('/login', params)
         .then((dataUser) => {
           localStorage.setItem('token', dataUser.data.token);
+          setUser(dataUser.data);
         })
         .catch((err) => console.log(`Error in login process: ${err}`));
     }
