@@ -48,14 +48,12 @@ function OrderDetailsAdmin(props) {
     const renderOrderDetail = async () => {
       const result = await getOrdersDetailRequest(id);
       const { data } = result;
-      console.log(data);
       setOrderDetail(result.data);
       setOrderPrice(data[0].totalPrice);
       setOrderStatus(data[0].orderStatus);
     };
     renderOrderDetail();
   }, [id, setOrderPrice, setOrderDetail, setOrderStatus]);
-
   return (
     <>
       {isLoading && <h1>Loading...</h1>}
@@ -65,26 +63,30 @@ function OrderDetailsAdmin(props) {
       {!isLoading && role === 'administrator' && <SideBar isAdmin />}
       <h2 data-testid="order-number">{`Pedido ${id}`}</h2>
       <h2 data-testid="order-status">{orderStatus}</h2>
-      {orderDetail.map((product, index) => (
-        <div key={ product.productName }>
-          <h3 data-testid={ `${index}-product-qtd` }>
-            {product.productQuantity}
-          </h3>
-          <h3 data-testid={ `${index}-product-name` }>{product.productName}</h3>
-          <h3 data-testid={ `${index}-product-total-value` }>
-            {`R$ ${product.totalProductPrice
-              .toFixed(2)
-              .toString()
-              .replace('.', ',')}`}
-          </h3>
-          <h4 data-testid={ `${index}-order-unit-price` }>
-            {`(R$ ${product.unityPrice
-              .toFixed(2)
-              .toString()
-              .replace('.', ',')})`}
-          </h4>
-        </div>
-      ))}
+      {orderDetail.map((product, index) => {
+        console.log(typeof product.unityPrice);
+
+        return (
+          <div key={ product.productName }>
+            <h3 data-testid={ `${index}-product-qtd` }>
+              {product.productQuantity}
+            </h3>
+            <h3 data-testid={ `${index}-product-name` }>{product.productName}</h3>
+            <h3 data-testid={ `${index}-product-total-value` }>
+              {`R$ ${product.totalProductPrice
+                .toFixed(2)
+                .toString()
+                .replace('.', ',')}`}
+            </h3>
+            <h4 data-testid={ `${index}-order-unit-price` }>
+              {`(R$ ${Number(product.unityPrice)
+                .toFixed(2)
+                .toString()
+                .replace('.', ',')})`}
+            </h4>
+          </div>
+        );
+      })}
       <h2 data-testid="order-total-value">
         {`Total: R$ ${orderPrice.toString().replace('.', ',')}`}
       </h2>
