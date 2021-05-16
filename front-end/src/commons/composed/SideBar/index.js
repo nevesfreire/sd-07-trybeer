@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 function SideBar({ history, isAdmin = false }) {
+  const logout = () => {
+    localStorage.removeItem('token');
+    return history.push('/login');
+  };
+
   if (!isAdmin) {
     return (
       <div className="side-menu-container">
@@ -31,7 +36,7 @@ function SideBar({ history, isAdmin = false }) {
         <button
           type="button"
           data-testid="side-menu-item-logout"
-          onClick={ () => history.push('/login') }
+          onClick={ () => logout() }
         >
           Sair
         </button>

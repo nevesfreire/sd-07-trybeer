@@ -81,7 +81,7 @@ function OrderDetailClient(props) {
 OrderDetailClient.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.node.isRequired,
     }),
   }).isRequired,
 };

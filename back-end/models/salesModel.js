@@ -10,6 +10,7 @@ const queryGetSaleId = `SELECT sal.id AS "orderNumber",
 sal.sale_date AS "orderDate",
 sal.total_price AS "totalPrice",
 salp.quantity AS "productQuantity",
+pro.price AS "unityPrice",
 pro.name AS "productName",
 ROUND((pro.price * salp.quantity), 2) AS "totalProductPrice",
 sal.status AS orderStatus
@@ -18,7 +19,7 @@ INNER JOIN Trybeer.sales_products AS salp
 ON sal.id = salp.sale_id
 INNER JOIN Trybeer.products AS pro
 ON salp.product_id = pro.id
-WHERE sal.id = ?;`;
+WHERE sal.id = ?`;
 
 const queryStatusChange = 'UPDATE Trybeer.sales SET status="Entregue" WHERE id=?';
 
@@ -73,16 +74,18 @@ const saleProductRegister = async (productsList, saleId) => {
 
 const getAllSalesData = async () => {
   const query = `SELECT id,
-  sale_date AS saleDate,
-  total_price AS totalPrice
-  FROM Trybeer.sales`; 
+sale_date AS saleDate,
+total_price AS totalPrice,
+delivery_address AS deliveryAddress,
+delivery_number AS deliveryNumber,
+status
+FROM Trybeer.sales;`; 
   const [sales] = await connection.execute(query);
   return sales;
 };
 
 const getSalesDataById = async (id) => {
   const [orderDetail] = await connection.execute(queryGetSaleId, [id]);
-  console.log(orderDetail);
   return orderDetail;
 };
 

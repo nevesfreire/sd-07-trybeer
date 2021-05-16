@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import TopMenu from '../../../commons/simple/TopMenu';
 import SideBar from '../../../commons/composed/SideBar';
-import OrdersCard from '../../../components/ordersCard';
+import OrdersCardClient from '../../../components/ordersCardClient';
+import OrdersCardAdmin from '../../../components/ordersCardAdmin';
 import ordersRequest from '../../../services/ordersApi';
 
 function Orders() {
@@ -15,8 +16,8 @@ function Orders() {
   const history = useHistory();
 
   useEffect(() => {
-    const getData = async (id, saleDate, totalPrice) => {
-      const response = await ordersRequest(id, saleDate, totalPrice);
+    const getData = async () => {
+      const response = await ordersRequest();
       if (response.status === OK) {
         setCard(response.data);
       }
@@ -38,16 +39,39 @@ function Orders() {
 
   return (
     <>
-      { isLoading && <h1>Loading...</h1> }
-      { !isLoading && role !== 'administrator' && <TopMenu title="Meus Pedidos" /> }
-      { card.map((item, index) => (<OrdersCard
-        key={ item.id }
-        id={ item.id }
-        saleDate={ item.saleDate }
-        totalPrice={ item.totalPrice }
-        index={ index }
-      />))}
-      { !isLoading && role === 'administrator' && <SideBar isAdmin /> }
+      {isLoading && <h1>Loading...</h1>}
+      {/* <TopMenu title="Meus Pedidos" /> */}
+      {!isLoading && role !== 'administrator' ? (
+        <div>
+          <TopMenu title="Meus Pedidos" />
+          {card.map((item, index) => (
+            <OrdersCardClient
+              key={ item.id }
+              id={ item.id }
+              saleDate={ item.saleDate }
+              totalPrice={ item.totalPrice }
+              index={ index }
+            />
+          ))}
+        </div>
+      ) : null}
+
+      {!isLoading && role === 'administrator' ? (
+        <div>
+          <SideBar isAdmin />
+          {card.map((item, index) => (
+            <OrdersCardAdmin
+              key={ item.id }
+              id={ item.id }
+              deliveryAddress={ item.deliveryAddress }
+              deliveryNumber={ item.deliveryNumber }
+              totalPrice={ item.totalPrice }
+              status={ item.status }
+              index={ index }
+            />
+          ))}
+        </div>
+      ) : null}
     </>
   );
 }

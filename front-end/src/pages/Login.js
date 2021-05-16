@@ -24,6 +24,8 @@ function Login() {
       localStorage.setItem('token', token);
       const payload = jwtDecode(token);
       setRole(payload.role);
+      setEmail('');
+      setPassword('');
       return setIsLogged(true);
     }
     setErrorMessage(response.data.message);
