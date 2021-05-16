@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Global from '../context/index';
 import '../css/menu.css';
 
-const Menu = ({ path }) => {
+const Menu = () => {
+  const history = useHistory();
   let althernativeClassName;
   const {
     location: { pathname },
-  } = path;
+  } = history;
   const ADMIN_ROUTE = '/admin/orders';
 
   const { menuState, setMenuState } = useContext(Global);
@@ -69,10 +69,6 @@ const Menu = ({ path }) => {
       </div>
     </div>
   );
-};
-
-Menu.propTypes = {
-  path: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default Menu;
