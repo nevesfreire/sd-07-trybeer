@@ -6,6 +6,7 @@ import { requestGetOrderAPI } from '../../services';
 import { getToLocalStorage } from '../../utils/localStorage';
 import DetailsCard from '../../component/DetailsCard';
 import BeerAppContext from '../../context/BeerAppContext';
+import './style.css';
 
 function OrderDetails() {
   const [products, setProducts] = useState([]);
@@ -42,18 +43,22 @@ function OrderDetails() {
   }, []);
 
   return (
-    <>
+    <div className='orders-details-container'>
       <TopMenu title="Detalhes de Pedido" />
-      <div>
-        <p data-testid="order-number">{products.length && `Pedido ${products[0].id}`}</p>
-        <p data-testid="order-date">{products.length && date()}</p>
-        {products.length
-          && products.map((item) => <DetailsCard key={ item.id } product={ item } />)}
-        <p data-testid="order-total-value">
+      <div className='orders-details-card-container'>
+        <div className='order-number'>
+          <h1 data-testid="order-number">{products.length && `Pedido ${products[0].id}`}</h1>
+          <h3 data-testid="order-date">{products.length && date()}</h3>
+        </div>
+        <div className='details-card'>
+          {products.length
+            && products.map((item) => <DetailsCard key={ item.id } product={ item } />)}
+        </div>
+        <h1 data-testid="order-total-value">
           {products.length && `Total: ${convertPrice(products[0].total_price)}`}
-        </p>
+        </h1>
       </div>
-    </>
+    </div>
   );
 }
 

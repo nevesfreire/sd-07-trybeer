@@ -5,6 +5,7 @@ import TopMenu from '../../component/TopMenu';
 import OrdersCard from '../../component/OrdersCard';
 import { getToLocalStorage } from '../../utils/localStorage';
 import { requestGetOrdersAPI } from '../../services';
+import './style.css';
 
 function AdminOrders() {
   const history = useHistory();
@@ -31,12 +32,14 @@ function AdminOrders() {
   }, []);
 
   return (
-    <div>
+    <div className='admin-orders-container'>
       <TopMenu title="Meus Pedidos" />
       {!orders.length ? (
         <h3>Você não tem pedidos ainda :(</h3>
       ) : (
-        orders.map((order) => <OrdersCard key={ order.id } order={ order } />)
+        <div className='admin-orders-card-container'>
+          {orders.map((order) => <OrdersCard key={ order.id } order={ order } />)}
+        </div>
       )}
     </div>
   );

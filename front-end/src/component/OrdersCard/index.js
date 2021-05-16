@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BeerAppContext from '../../context/BeerAppContext';
 import { getToLocalStorage } from '../../utils/localStorage';
+import './style.css';
 
 function OrdersCard({ order }) {
   const { convertPrice } = useContext(BeerAppContext);
@@ -24,40 +25,45 @@ function OrdersCard({ order }) {
   if (verifyRoleUser() === 'administrator') {
     return (
       <button
+        className='order-card-und-container'
         type="button"
         data-testid={ `${order.id - 1}-order-card-container` }
         onClick={ () => history.push(`/admin/orders/${order.id}`) }
       >
-        <p data-testid={ `${order.id - 1}-order-number` }>
+        <h2 data-testid={ `${order.id - 1}-order-number` }>
           {`Pedido ${order.id}`}
-        </p>
-        <p data-testid={ `${order.id - 1}-order-address` }>
+        </h2>
+        <h3 data-testid={ `${order.id - 1}-order-address` }>
           {`${order.delivery_address}, ${order.delivery_number}`}
-        </p>
-        <p data-testid={ `${order.id - 1}-order-total-value` }>
+        </h3>
+        <h3 data-testid={ `${order.id - 1}-order-total-value` }>
           {convertPrice(order.total_price)}
-        </p>
-        <p data-testid={ `${order.id - 1}-order-status` }>{order.status}</p>
+        </h3>
+        <h2
+          className={ order.status === 'Pendente' ? 'order-card-pendente' : 'order-card-entregue' }
+          data-testid={ `${order.id - 1}-order-status` }
+        >{order.status}</h2>
       </button>
     );
   }
 
   return (
-    <div data-testid={ `${order.id - 1}-order-card-container` }>
-      <button
-        data-testid={ `${order.id - 1}-order-number` }
-        type="button"
-        onClick={ () => history.push(`/orders/${order.id}`) }
-      >
+    <button
+      type="button"
+      className='order-card-und-container'
+      data-testid={ `${order.id - 1}-order-card-container` }
+      onClick={ () => history.push(`/orders/${order.id}`) }
+    >
+      <h2 data-testid={ `${order.id - 1}-order-number` }>
         {`Pedido ${order.id}`}
-      </button>
-      <p data-testid={ `${order.id - 1}-order-date` }>
+      </h2>
+      <h3 data-testid={ `${order.id - 1}-order-date` }>
         { date() }
-      </p>
-      <p data-testid={ `${order.id - 1}-order-total-value` }>
+      </h3>
+      <h3 data-testid={ `${order.id - 1}-order-total-value` }>
         { convertPrice(order.total_price) }
-      </p>
-    </div>
+      </h3>
+    </button>
   );
 }
 

@@ -5,6 +5,7 @@ import TopMenu from '../../component/TopMenu';
 import OrdersCard from '../../component/OrdersCard';
 import { getToLocalStorage } from '../../utils/localStorage';
 import { requestGetOrdersAPI } from '../../services';
+import './styles.css';
 
 export default function Orders() {
   const history = useHistory();
@@ -29,14 +30,16 @@ export default function Orders() {
     handleRequestGetOrdersAPI();
   }, []);
 
-  if (!orders.length) return <h3>Loading...</h3>;
-
   return (
-    <>
+    <div className='orders-container'>
       <TopMenu title="Meus Pedidos" />
-      {
-        orders.map((order) => <OrdersCard key={ order.id } order={ order } />)
-      }
-    </>
+      {!orders.length ? (
+        <h3>Você não tem pedidos ainda :(</h3>
+      ) : (
+        <div className='orders-card-container'>
+          {orders.map((order) => <OrdersCard key={ order.id } order={ order } />)}
+        </div>
+      )}
+    </div>
   );
 }

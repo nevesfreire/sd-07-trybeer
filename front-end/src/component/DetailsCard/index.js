@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import BeerAppContext from '../../context/BeerAppContext';
+import './style.css';
 
 function DetailsCard({ product }) {
   const { convertPrice } = useContext(BeerAppContext);
   const totalValue = product.quantity * product.price;
   return (
-    <p>
+    <p className='details-card-und-container'>
       <span data-testid={ `${product.id - 1}-product-qtd` }>
         {`${product.quantity}-`}
       </span>

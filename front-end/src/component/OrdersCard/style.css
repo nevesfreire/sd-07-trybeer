@@ -1,4 +1,4 @@
-.checkout-card-und-container {
+.order-card-und-container {
   background-color: white;
   margin: 10px auto;
   padding: 10px;
@@ -8,11 +8,11 @@
   height: 150px;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
-p {
+h2, h3 {
   margin: 0;
   padding: 0;
   text-align: center;
@@ -22,11 +22,29 @@ h2 {
   text-align: center;
   margin: 0;
   padding: 0;
+  font-size: 1.5rem;
 }
 
-button {
-  font-weight: 900;
-  padding: 10px 15px;
+h2 {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+h3 {
+  text-align: center;
+  margin: 5px 0;
+  padding: 0;
+  font-size: 1.3rem;
+}
+
+.order-card-pendente {
+  color: yellowgreen;
+}
+
+.order-card-entregue {
+  color: green;
 }
 
 button:hover {
