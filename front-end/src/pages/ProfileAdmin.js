@@ -1,12 +1,17 @@
 import React from 'react';
+import ProfileAdmin from '../components/ProfileAdmin';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
-import ComponentProfileAdmin from '../components/ProfileAdmin';
+import '../css/adminProfile.css';
 
-const ProfileAdmin = () => (
-  <div className="container-register">
-    <Header title="Perfil" />
-    <ComponentProfileAdmin />
+const AdminProfile = () => (
+  <div>
+    <Header title="Admin - Perfil" />
+    <div>
+      <ProfileAdmin />
+    </div>
+    <Footer />
   </div>
 );
 
-export default ProfileAdmin;
+export default AdminProfile;

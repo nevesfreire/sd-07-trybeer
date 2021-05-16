@@ -28,6 +28,7 @@ const ComponentLogin = () => {
         localStorage.setItem(
           'data',
           JSON.stringify({
+            id: dataUser.data.data.id,
             name: dataUser.data.data.name,
             email: dataUser.data.data.email,
           }),
