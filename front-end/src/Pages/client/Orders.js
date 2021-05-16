@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 
 function Orders() {
   const [sales, setSales] = useState(null);
+  
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   console.log(user);

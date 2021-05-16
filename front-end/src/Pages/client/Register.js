@@ -10,6 +10,7 @@ function Register() {
   const [forClient, setForClient] = useState(false);
   const [forAdm, setForAdm] = useState(false);
   const [userCad, setUserCad] = useState(false);
+  
   const history = useHistory();
 
   const verifyData = () => {

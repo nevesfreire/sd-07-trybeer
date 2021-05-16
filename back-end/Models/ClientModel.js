@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+
 const connect = require('../config/connection');
 
 const getEmailUser = async (email, password) => {

@@ -15,7 +15,6 @@ function Checkout() {
   const [numero, setNumero] = useState("");
   const [sucesso, setSucesso] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  // const [logado] = useState(true);
   const time = 2000;
   const history = useHistory();
 
