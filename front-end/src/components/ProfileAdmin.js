@@ -1,23 +1,30 @@
 import React from 'react';
-// import { Redirect } from 'react-router-dom';
-// import Header from './Header';
+import { Redirect } from 'react-router';
 
 function ProfileAdmin() {
-  // const TITLE_PROFILE_ADMIN = 'Perfil';
+  const user = localStorage.getItem('data');
+  const token = localStorage.getItem('token');
+  const objUser = JSON.parse(user);
 
-  // const data = JSON.parse(localStorage.getItem('data'));
-  // const token = localStorage.getItem('token');
+  if (!token) {
+    return (<Redirect to="/login" />);
+  }
 
-  // const { name, email } = data;
   return (
     <div>
-      {/* aqui temos um problema. Verificar com Nando */}
-      {/* {token && <Redirect to="/login" />} */}
-      {/* <Header title={ TITLE_PROFILE_ADMIN } /> */}
-      {/* <div>
-        <p data-testid="profile-email">{ email }</p>
-        <p data-testid="profile-name">{ name }</p>
-      </div> */}
+      <h1>Perfil</h1>
+      <div className="user-profile">
+
+        <p data-testid="profile-name">
+          Nome:
+          {objUser.name}
+        </p>
+        <br />
+        <p data-testid="profile-email">
+          Email:
+          {objUser.email}
+        </p>
+      </div>
     </div>
   );
 }

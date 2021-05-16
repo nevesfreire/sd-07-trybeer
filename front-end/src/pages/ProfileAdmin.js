@@ -1,30 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ProfileAdmin from '../components/ProfileAdmin';
 import Footer from '../components/Footer';
-import AsideLogo from '../components/AsideLogo';
-import '../css/login.css';
-import '../css/profile.css';
 import Header from '../components/Header';
-import Menu from '../components/Menu';
+import '../css/adminProfile.css';
 
-const AdminProfile = (props) => {
-  const { history } = props;
-  return (
-    <div className="container-out-login">
-      <Header title="Meu perfil" />
-      <Menu path={ history } />
-      <div className="container-form-int">
-        <ProfileAdmin />
-        <AsideLogo />
-      </div>
-      <Footer />
+const AdminProfile = () => (
+  <div>
+    <Header title="Admin - Perfil" />
+    <div>
+      <ProfileAdmin />
     </div>
-  );
-};
-
-AdminProfile.propTypes = {
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+    <Footer />
+  </div>
+);
 
 export default AdminProfile;

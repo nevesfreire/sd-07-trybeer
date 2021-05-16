@@ -1,7 +1,7 @@
 const { loginController } = require('./loginController');
 const { registerController } = require('./registerController');
 const { getUser } = require('./registerController');
-const { getOrderByUser } = require('./getOrderByUserController');
+const orderController = require('./orderController');
 const productController = require('./productController');
 
 module.exports = {
@@ -9,5 +9,5 @@ module.exports = {
   registerController,
   getUser,
   productController,
-  getOrderByUser,
+  orderController,
 };
