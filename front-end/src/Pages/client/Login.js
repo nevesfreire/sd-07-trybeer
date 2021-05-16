@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 function Login() {
-  // const [email, setEmail] = useState('user@test.com');
-  // const [password, setPassword] = useState('test123');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
@@ -30,7 +29,6 @@ function Login() {
     ));
 
     setResult(res);
-
     if (res.token) setLogado(true);
   };
 

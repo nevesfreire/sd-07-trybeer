@@ -8,7 +8,7 @@ const resLogin = async (email, password) => {
 };
 
 const cadUser = async (newName, newEmail, newPassword, newRole) => {
-  console.log('passou 4')
+
   const userOK = await ClientModel.getEmailUser(newEmail, newPassword);
   console.log('passou 5')
   if (userOK) return error3.message;

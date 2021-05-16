@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import SideBar from './Sidebar';
 
 function Header(props) {
@@ -28,8 +28,8 @@ function Header(props) {
   );
 }
 
-// Header.propTypes = {
-//   name: PropTypes.node.isRequired,
-// };
+Header.propTypes = {
+  name: PropTypes.node.isRequired,
+};
 
 export default Header;

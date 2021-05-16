@@ -15,7 +15,6 @@ const login = async (req, res) => {
   const resOK = 200;
   try {
     const { email, password } = req.body;
-
     if (!email || !password) throw error1;
 
     const loginOk = await resLogin(email, password);
@@ -29,7 +28,6 @@ const addUser = async (req, res) => {
   const resOK = 201;
   console.log('passou 1');
   try {
-    console.log('passou 2')
     const { newName, newEmail, newPassword, newRole } = req.body;
     console.log('passou 3')
     const newUser = await cadUser(newName, newEmail, newPassword, newRole);
