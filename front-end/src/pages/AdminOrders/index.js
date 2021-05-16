@@ -29,7 +29,7 @@ function AdminOrders() {
 
   useEffect(() => {
     handleRequestGetOrdersAPI();
-  }, [handleRequestGetOrdersAPI]);
+  }, []);
 
   return (
     <div className='admin-orders-container'>

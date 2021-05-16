@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  background-color: yellow;
+  background-color: #FAC62A;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -25,6 +25,7 @@ const Container = styled.div`
     color: white;
     font-weight: 900;
     font-size: 2rem;
+    text-align: center;
     padding: 10px 0;
     margin: 0;
   }
@@ -45,10 +46,11 @@ const Container = styled.div`
   .checkout-final-button {
     margin: 0;
     padding: 20px;
-    background-color: yellow;
+    background-color: #191919;
     font-size: 2rem;
     font-weight: 900;
     width: 100%;
+    color: white;
   }
 
   h3 {

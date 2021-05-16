@@ -40,14 +40,14 @@ function OrderDetails() {
 
   useEffect(() => {
     handleRequestOrder();
-  }, [handleRequestOrder]);
+  }, []);
 
   return (
     <div className='orders-details-container'>
       <TopMenu title="Detalhes de Pedido" />
       <div className='orders-details-card-container'>
         <div className='order-number'>
-          <h1 data-testid="order-number">{products.length && `Pedido ${products[0].id}`}</h1>
+          <h1 data-testid="order-number">{products.length && `Pedido ${id}`}</h1>
           <h3 data-testid="order-date">{products.length && date()}</h3>
         </div>
         <div className='details-card'>

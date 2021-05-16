@@ -65,12 +65,12 @@ function Checkout() {
     if (!validateToken()) {
       return history.push('/login');
     }
-  }, [history]);
+  }, []);
 
   return (
     <Container>
 
-      <TopMenu title="TryBeer" />
+      <TopMenu title="TryBebos" />
       {totalProducts === 'R$ 0,00' && <h2>Não há produtos no carrinho</h2>}
 
       <div className={'checkout-card-container'}>

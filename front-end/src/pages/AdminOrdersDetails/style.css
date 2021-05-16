@@ -1,0 +1,59 @@
+.admin-orders-details-container {
+  background-color: #FAC62A;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  /* padding-top: 90px; */
+  margin: 0;
+  overflow: auto;
+}
+
+.admin-orders-details-card-container{
+  width: 90%;
+  height: 100%;
+  /* background-color: blue; */
+  margin: 10px auto;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: center;
+  /* overflow: auto; */
+}
+
+.orders-details-number-status {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.card-container {
+  width: 90%;
+  /* height: 100%; */
+  /* background-color: blue; */
+  /* margin: 10px auto; */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  /* overflow: auto; */
+}
+
+.button-final {
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+  font-size: large;
+  background-color: #252525;
+  color: white;
+}
+
+#status-pendente {
+  color: red;
+}
+
+#status-entregue {
+  color: green;
+}

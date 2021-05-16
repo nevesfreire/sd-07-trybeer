@@ -11,6 +11,7 @@ const Container = styled.div`
   margin: 10px;
   position: relative;
   width: 270px;
+  box-shadow: 5px 5px 10px black;
 
   .image {
     height: 140px;
@@ -48,7 +49,7 @@ const Container = styled.div`
   }
 
   .product-price {
-    bottom: 60px;
+    bottom: 80px;
     font-family: 'Old Standard TT';
     font-size: 30px;
     position: absolute;

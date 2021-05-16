@@ -37,32 +37,28 @@ function ProductsCards() {
 
   useEffect(() => {
     HandleRequestGetProducts();
-  }, [HandleRequestGetProducts]);
+  }, []);
 
   if (!products.length) return <h1>LOADING...</h1>;
 
   return (
     <Container>
-      <TopMenu title="TryBeer" />
-      <div className="page-body">
-        <div className="cards-container">
-          <div className="grid">
-            {products.map((product) => (
-              <ProductCard key={ product.id } product={ product } />
-            ))}
-          </div>
-        </div>
-        <button
-          className="total-btn"
-          type="button"
-          data-testid="checkout-bottom-btn"
-          onClick={ () => history.push('/checkout') }
-          disabled={ totalProducts === 'R$ 0,00' }
-        >
-          Ver Carrinho
-          <span data-testid="checkout-bottom-btn-value">{` ${totalProducts}`}</span>
-        </button>
+      <TopMenu title="TryBebos" />
+      <div className="grid">
+        {products.map((product) => (
+          <ProductCard key={ product.id } product={ product } />
+        ))}
       </div>
+      <button
+        className="total-btn"
+        type="button"
+        data-testid="checkout-bottom-btn"
+        onClick={ () => history.push('/checkout') }
+        disabled={ totalProducts === 'R$ 0,00' }
+      >
+        Ver Carrinho
+        <span data-testid="checkout-bottom-btn-value">{` ${totalProducts}`}</span>
+      </button>
     </Container>
   );
 }

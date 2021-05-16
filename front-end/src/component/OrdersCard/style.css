@@ -25,6 +25,19 @@
   margin: 0 auto;
 }
 
+.order-number-date {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.order-price {
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
 h2, h3 {
   margin: 0;
   padding: 0;
@@ -47,7 +60,7 @@ h3 {
 }
 
 .order-card-pendente {
-  color: #FAC62A;
+  color: red;
 }
 
 .order-card-entregue {
@@ -55,5 +68,5 @@ h3 {
 }
 
 button:hover {
-  background-color: yellow;
+  background-color: #FAC62A;
 }

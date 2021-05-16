@@ -1,0 +1,31 @@
+.profile-container {
+  background-color: #FAC52C;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile-inputs {
+  padding: 20px 0;
+  height: 200px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+}
+
+label {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  padding: 10px;
+  font-weight: 900;
+}
+
+input {
+  padding: 10px;
+  width: 200px;
+  margin: 10px;
+}

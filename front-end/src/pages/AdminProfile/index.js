@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import TopMenu from '../../component/TopMenu';
 import { getToLocalStorage } from '../../utils/localStorage';
+import './styles.css';
 
 const userDefault = {
   name: '',
@@ -28,12 +29,12 @@ function AdminProfile() {
   useEffect(() => {
     if (!validateToken()) return history.push('/login');
     getLocalStorageUser();
-  }, [getLocalStorageUser, history]);
+  }, []);
 
   return (
-    <div>
-      <TopMenu title="TryBeer" />
-      <div>
+    <div className='admin-profile-container'>
+      <TopMenu title="TryBebos" />
+      <div className='admin-profile-info'>
         <h1>Perfil</h1>
         <h3 data-testid="profile-name">{`Nome: ${userInfo.name}`}</h3>
         <h3 data-testid="profile-email">{`Email: ${userInfo.email}`}</h3>

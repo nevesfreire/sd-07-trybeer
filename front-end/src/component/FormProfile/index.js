@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { getToLocalStorage } from '../../utils/localStorage';
 import { requestAlterUserAPI } from '../../services';
+import './style.css';
 
 const FormDefault = {
   name: '',
   email: '',
 };
+
 function FormProfile() {
   const [formProfile, setFormProfile] = useState(FormDefault);
   const [sucessState, setSucessState] = useState(false);
@@ -35,33 +37,35 @@ function FormProfile() {
     } catch (error) {
       history.push('/');
     }
-  }, [history]);
+  }, []);
 
   return (
-    <>
-      <label htmlFor="nome">
-        Nome
-        <input
-          type="text"
-          id="nome"
-          name="name"
-          data-testid="profile-name-input"
-          value={ formProfile.name }
-          onChange={ (event) => handleInputChange(event) }
-        />
-      </label>
-      <label htmlFor="e-mail">
-        Email
-        <input
-          type="email"
-          id="e-mail"
-          readOnly="readOnly"
-          name="email"
-          data-testid="profile-email-input"
-          value={ formProfile.email }
-          onChange={ (event) => handleInputChange(event) }
-        />
-      </label>
+    <div className='profile-container'>
+      <div className='profile-inputs'>
+        <label htmlFor="nome">
+          Nome
+          <input
+            type="text"
+            id="nome"
+            name="name"
+            data-testid="profile-name-input"
+            value={ formProfile.name }
+            onChange={ (event) => handleInputChange(event) }
+          />
+        </label>
+        <label htmlFor="e-mail">
+          Email
+          <input
+            type="email"
+            id="e-mail"
+            readOnly="readOnly"
+            name="email"
+            data-testid="profile-email-input"
+            value={ formProfile.email }
+            onChange={ (event) => handleInputChange(event) }
+          />
+        </label>
+      </div>
       { sucessState && <p>Atualização concluída com sucesso</p> }
       <button
         type="submit"
@@ -71,7 +75,7 @@ function FormProfile() {
       >
         Salvar
       </button>
-    </>
+    </div>
   );
 }
 

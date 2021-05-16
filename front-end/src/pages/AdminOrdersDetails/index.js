@@ -6,6 +6,7 @@ import { requestChangeStatusAPI, requestGetOrderAPI } from '../../services';
 import TopMenu from '../../component/TopMenu';
 import DetailsCard from '../../component/DetailsCard';
 import { getToLocalStorage } from '../../utils/localStorage';
+import './style.css';
 
 function AdminOrdersDetails() {
   const [products, setProducts] = useState([]);
@@ -44,34 +45,45 @@ function AdminOrdersDetails() {
 
   useEffect(() => {
     handleRequestOrder();
-  }, [handleRequestOrder]);
+  }, []);
 
   return (
-    <>
+    <div className='admin-orders-details-container'>
       <TopMenu title={ `Admin - Detalhes de Pedido - ${title}` } />
-      <div>
-        <p data-testid="order-number">
-          {products.length && `Pedido ${products[0].id}`}
-        </p>
-        <p data-testid="order-status">{products.length && `${title}`}</p>
-        {products.length
-          && products.map((item) => (
-            <DetailsCard key={ item.id } product={ item } role={ roleUser } />
-          ))}
-        <p data-testid="order-total-value">
+      <div className='admin-orders-details-card-container'>
+        
+        <div className='orders-details-number-status'>
+          <h2 data-testid="order-number">
+            {products.length && `Pedido ${id}`}
+          </h2>
+          <h2 data-testid="order-status" id={title === 'Pendente' ? 'status-pendente' : 'status-entregue'}>
+            {products.length && `${title}`}
+          </h2>
+        </div>
+
+        <div className='card-container'>
+          {products.length
+            && products.map((item) => (
+              <DetailsCard key={ item.id } product={ item } role={ roleUser } />
+            ))}
+        </div>
+
+        <h2 data-testid="order-total-value">
           {products.length && `Total: ${convertPrice(products[0].total_price)}`}
-        </p>
-        {title === 'Pendente' && (
-          <button
-            data-testid="mark-as-delivered-btn"
-            type="button"
-            onClick={ () => handleToDelivery() }
-          >
-            Marcar como entregue
-          </button>
-        )}
+        </h2>
       </div>
-    </>
+
+      {title === 'Pendente' && (
+        <button
+          className="button-final"
+          data-testid="mark-as-delivered-btn"
+          type="button"
+          onClick={ () => handleToDelivery() }
+        >
+          Marcar como entregue
+        </button>
+      )}
+    </div>
   );
 }
 

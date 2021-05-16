@@ -54,7 +54,7 @@ h1, h3 {
 
 @media (orientation:portrait), (max-width: 500px){
   .header {
-    position: fixed;
+    // position: fixed;
   }
 
   .header-title {

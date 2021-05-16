@@ -58,13 +58,18 @@ function OrdersCard({ order }) {
       data-testid={ `${order.id - 1}-order-card-container` }
       onClick={ () => history.push(`/orders/${order.id}`) }
     >
-      <h2 data-testid={ `${order.id - 1}-order-number` }>
-        {`Pedido ${order.id}`}
-      </h2>
-      <h3 data-testid={ `${order.id - 1}-order-date` }>
-        { date() }
-      </h3>
-      <h3 data-testid={ `${order.id - 1}-order-total-value` }>
+      <div className='order-number-date'>
+        <h2 data-testid={ `${order.id - 1}-order-number` }>
+          {`Pedido ${order.id}`}
+        </h2>
+        <h3 data-testid={ `${order.id - 1}-order-date` }>
+          { date() }
+        </h3>
+      </div>
+      <h3
+        className='order-price'
+        data-testid={ `${order.id - 1}-order-total-value` }
+      >
         { convertPrice(order.total_price) }
       </h3>
     </button>
