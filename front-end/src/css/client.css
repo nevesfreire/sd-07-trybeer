@@ -1,0 +1,96 @@
+.container-body {
+  display: flex;
+}
+
+.container-products {
+  padding-left: 10px;
+  width: 100%;
+}
+
+.product-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0px 50px 0px 50px;
+}
+
+.product-item-container {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+  margin: 10px;
+  max-height: 250px;
+  max-width: 150px;
+  padding: 10px;
+}
+
+.product-item-container:hover {
+  box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.5);
+  transition-duration: 0.5s;
+}
+
+.container-information {
+  text-align: center;
+}
+
+.product-count {
+  align-items: center;
+  display: flex;
+  height: 20px;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.product-count input {
+  max-width: 20px;
+  text-align: center;
+}
+
+.btn-more {
+  border: none;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  background-color: rgb(7, 165, 60);
+  padding: 5px;
+}
+
+.btn-minus {
+  border: none;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  background-color: rgb(255, 44, 7);
+  padding: 6px;
+}
+
+.container-int-cards {
+  align-items: center;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.btn-checkout {
+  padding: 10px;
+  border: none;
+  background-color: rgb(0, 157, 230);
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-checkout :hover {
+ box-shadow: 2px 5px 4px rgba(0, 0, 0, 0.5);
+}
+
+.title-products {
+  margin-left: 60px;
+}

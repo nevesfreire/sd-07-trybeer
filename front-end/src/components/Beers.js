@@ -36,33 +36,41 @@ const ComponentBeers = () => {
   return (
     <div className="product-list-container">
       {!token && <Redirect to="/login" />}
-      <button
-        data-testid="checkout-bottom-btn"
-        type="button"
-        disabled={ !priceTotalReduced }
-        onClick={ redirectToCheckout }
-      >
-        Ver Carrinho
-      </button>
-      <div>
-        Valor total do carrinho
-        <p data-testid="checkout-bottom-btn-value">
-          {`R$ ${priceTotalReduced.toFixed(2).replace('.', ',')}`}
-        </p>
-      </div>
       {isLoading ? (
         <span>Carregando ...</span>
       ) : (
-        Beers.map((beer, index) => (
-          <Card
-            key={ beer.id }
-            beer={ beer }
-            index={ index }
-            setCart={ setPriceTotal }
-            cart={ priceTotal }
-          />
-        ))
+        <div className="container-int-cards">
+          {
+            Beers.map((beer, index) => (
+              <Card
+                key={ beer.id }
+                beer={ beer }
+                index={ index }
+                setCart={ setPriceTotal }
+                cart={ priceTotal }
+              />
+            ))
+          }
+        </div>
       )}
+      <div className="status-cart">
+        <div>
+          Valor total do carrinho
+          <p data-testid="checkout-bottom-btn-value">
+            {`R$ ${priceTotalReduced.toFixed(2).replace('.', ',')}`}
+          </p>
+        </div>
+        <button
+          data-testid="checkout-bottom-btn"
+          type="button"
+          className="btn-checkout"
+          disabled={ !priceTotalReduced }
+          onClick={ redirectToCheckout }
+        >
+          Ver Carrinho
+        </button>
+
+      </div>
     </div>
   );
 };
