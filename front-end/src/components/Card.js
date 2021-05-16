@@ -57,11 +57,7 @@ const Card = ({ beer, cart, setCart, index }) => {
           </button>
 
           <p data-testid={ `${index}-product-qtd` }>
-            <input
-              type="text"
-              value={ productOfCart.total / preco || quantity }
-              readOnly
-            />
+            {productOfCart.total / preco || quantity}
           </p>
           <button
             className="btn-minus"
