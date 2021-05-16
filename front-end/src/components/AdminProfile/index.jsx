@@ -1,14 +1,15 @@
 import React from 'react';
+import { Form } from 'react-bootstrap';
 
 export default function AdminProfile() {
   const currentUser = JSON.parse(localStorage.getItem('user'));
 
   return (
-    <form
+    <Form
     style={ { width: '50vh' } }
     className="d-flex flex-column form-group"
     >
-      <label htmlFor="profile-name">
+      <Form.Label htmlFor="profile-name">
         <span>Nome</span>
         <span data-testid="profile-name"
         readOnly
@@ -16,9 +17,9 @@ export default function AdminProfile() {
         >
           { currentUser ? currentUser.name : '' }
         </span>
-      </label>
+      </Form.Label>
 
-      <label htmlFor="profile-email"
+      <Form.Label htmlFor="profile-email"
       style={ { marginTop: '2vh' } }
       >
         Email
@@ -28,7 +29,7 @@ export default function AdminProfile() {
         >
           { currentUser ? currentUser.email : '' }
         </span>
-      </label>
-    </form>
+      </Form.Label>
+    </Form>
   );
 }

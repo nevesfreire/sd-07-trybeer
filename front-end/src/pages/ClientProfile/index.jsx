@@ -4,14 +4,15 @@ import MenuBurger from '../../components/Menu';
 // import CreateUserForm from '../../components/CreateUserForm';
 
 const ClientProfilePage = () => (
-  <div>
+  <div className="d-flex flex-column align-items-center"
+  >
     <MenuBurger />
-    <h1 className="d-flex flex-column align-items-center"
+    <h1
     data-testid="top-title"
     style={ { marginTop: '5vh' } }
     >Meu perfil
     </h1>
-    <div className="d-flex flex-column align-items-center"
+    <div
     style={ { marginTop: '5vh' } }
     >
       <ClientProfile />

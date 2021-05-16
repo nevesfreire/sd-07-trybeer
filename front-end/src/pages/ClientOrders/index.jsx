@@ -9,7 +9,7 @@ const ClientOrdersPage = () => {
   return (
     <div
     className="d-flex flex-column align-items-center"
-    style={ { marginTop: '5vh' } }>
+    style={ { paddingTop: '5vh' }}>
       <Header title="Meus Pedidos" />
       <ClientOrders />
     </div>

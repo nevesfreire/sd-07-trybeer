@@ -25,7 +25,9 @@ export default function ClientOrders() {
   }
 
   return (
-    <div>
+    <div className="d-flex flex-column border rounded"
+    style={ { margin: '3vh', padding: '2vh' } }
+    >
       { userSales.err ? <p>{userSales.err.message}</p>
         : userSales.map((item, index) => (
           <div
@@ -36,7 +38,7 @@ export default function ClientOrders() {
             role="button"
             onKeyDown={ () => history.push(`/orders/${item.saleId}`) }
             tabIndex={ 0 }
-            className="d-flex align-content-between flex-wrap border rounded"
+            className="d-flex flex-wrap border rounded" 
             style={ { margin: '3vh' } }
           >
             <p data-testid={ `${index}-order-number` } style={ { margin: '3vh' } }>{`Pedido ${item.saleId}`}</p>

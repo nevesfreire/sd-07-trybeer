@@ -7,7 +7,7 @@ const ClientOrderDetailsPage = () => {
   AuthVerification();
 
   return (
-    <div>
+    <div className="d-flex flex-column align-items-center" style={ { marginTop: '5vh' } }>
       <Header title="Detalhes do Pedido" />
       <ClientOrderDetails />
     </div>

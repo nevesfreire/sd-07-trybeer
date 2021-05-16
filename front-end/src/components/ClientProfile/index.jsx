@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { updateUser } from '../../services/apiService';
+import { Form, Button } from 'react-bootstrap';
 import validationClientProfile from './validationClientProfile';
 
 export default function ClientProfile() {
@@ -22,47 +23,44 @@ export default function ClientProfile() {
   };
 
   return (
-    <form onSubmit={ onSubmitHandler }
+    <Form onSubmit={ onSubmitHandler }
     style={ { width: '50vh' } }
     className="d-flex flex-column form-group">
-      <label htmlFor="profile-name-input">
+      <Form.Label htmlFor="profile-name-input">
         <span>Nome</span>
-        <input
+        <Form.Control
           value={ name }
           onChange={ (e) => setName(e.target.value) }
           type="name"
           name="name"
           data-testid="profile-name-input"
           required
-          className="form-control"
         />
-      </label>
+      </Form.Label>
 
-      <label htmlFor="profile-email-input"
+      <Form.Label htmlFor="profile-email-input"
       style={ { marginTop: '1vh' } }
       >
         Email
-        <input
+        <Form.Control
           value={ currentUser.email }
           type="email"
           name="email"
           data-testid="profile-email-input"
           readOnly
-          className ="form-control"
         />
-      </label>
+      </Form.Label>
 
-      <button
+      <Button
         type="submit"
         data-testid="profile-save-btn"
         disabled={ validationClientProfile(name) }
-        className ="form-control"
         style={ { marginTop: '2vh' } }
       >
         Salvar
-      </button>
+      </Button>
 
       { nameUpdate && <span>Atualização concluída com sucesso</span> }
-    </form>
+    </Form>
   );
 }
