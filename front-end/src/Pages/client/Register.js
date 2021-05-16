@@ -45,7 +45,6 @@ function Register() {
         if (data === err) {
           return setUserCad(true);
         }
-
         saveInLocalStorage(data);
       });
   };

@@ -120,29 +120,7 @@ function Checkout() {
 
     console.log(data);
 
-    // //postman
 
-    // const myHeaders = new Headers();
-    // myHeaders.append(
-    //   "Authorization", user.token
-    // );
-    // myHeaders.append("Content-Type", "application/json");
-
-    // const raw = data;
-
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: myHeaders,
-    //   body: raw,
-    //   redirect: "follow",
-    // };
-
-    // fetch("http://localhost:3001/savedSale", requestOptions)
-    //   .then((response) => response.text())
-    //   .then((result) => console.log(result))
-    //   .catch((error) => console.log("error", error));
-
-    // //postman
 
     fetch("http://localhost:3001/savedSale", {
       method: "POST",

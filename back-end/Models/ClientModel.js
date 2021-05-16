@@ -43,7 +43,7 @@ const token = (user) => {
 };
 
 const newUser = async (newName, newEmail, newPassword, newRole) => {
-  console.log('passou 7')
+
   connect
   .execute(`INSERT INTO users ( name, email, password, role) VALUES
   (?, ?, ?, ?)`, [newName, newEmail, newPassword, newRole]);

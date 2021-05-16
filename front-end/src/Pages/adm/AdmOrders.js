@@ -28,7 +28,7 @@ function AdmOrders() {
       fetch("http://localhost:3001/salesAdm", requestOptions)
         .then((response) => response.json())
         .then((sales) => setSales(sales))
-        // .catch(error => console.log('error', error));
+
     }
   }, []);
 

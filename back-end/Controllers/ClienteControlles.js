@@ -29,7 +29,6 @@ const addUser = async (req, res) => {
   const resOK = 201;
   console.log('passou 1');
   try {
-    console.log('passou 2')
     const { newName, newEmail, newPassword, newRole } = req.body;
     console.log('passou 3')
     const newUser = await cadUser(newName, newEmail, newPassword, newRole);

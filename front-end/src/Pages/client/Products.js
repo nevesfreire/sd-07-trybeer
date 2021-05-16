@@ -34,7 +34,7 @@ function Products() {
         setCart(initialCart());
         setIsLoading(false);
       })
-      .catch(error => console.log('error', error));
+      // .catch(error => console.log('error', error));
   }, [products]);
 
   function getQtd(id) {

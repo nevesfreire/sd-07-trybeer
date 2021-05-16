@@ -30,7 +30,6 @@ function Login() {
     ));
 
     setResult(res);
-
     if (res.token) setLogado(true);
   };
 
