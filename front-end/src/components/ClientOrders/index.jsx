@@ -36,10 +36,14 @@ export default function ClientOrders() {
             role="button"
             onKeyDown={ () => history.push(`/orders/${item.saleId}`) }
             tabIndex={ 0 }
+            className="d-flex align-content-between flex-wrap border rounded"
+            style={ { margin: '3vh' } }
           >
-            <p data-testid={ `${index}-order-number` }>{`Pedido ${item.saleId}`}</p>
-            <p data-testid={ `${index}-order-date` }>{item.saleDate}</p>
-            <p data-testid={ `${index}-order-total-value` }>
+            <p data-testid={ `${index}-order-number` } style={ { margin: '3vh' } }>{`Pedido ${item.saleId}`}</p>
+            <p data-testid={ `${index}-order-date` } style={ { margin: '3vh' } }>{item.saleDate}</p>
+            <p data-testid={ `${index}-order-total-value` }
+            style={ { margin: '3vh' } }
+            >
               {`R$ ${item.totalPrice.replace('.', ',')}`}
             </p>
           </div>

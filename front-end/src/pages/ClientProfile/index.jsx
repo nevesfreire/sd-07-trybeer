@@ -6,8 +6,14 @@ import MenuBurger from '../../components/Menu';
 const ClientProfilePage = () => (
   <div>
     <MenuBurger />
-    <h1 data-testid="top-title">Meu perfil</h1>
-    <div>
+    <h1 className="d-flex flex-column align-items-center"
+    data-testid="top-title"
+    style={ { marginTop: '5vh' } }
+    >Meu perfil
+    </h1>
+    <div className="d-flex flex-column align-items-center"
+    style={ { marginTop: '5vh' } }
+    >
       <ClientProfile />
     </div>
   </div>

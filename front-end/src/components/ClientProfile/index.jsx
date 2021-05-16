@@ -22,9 +22,11 @@ export default function ClientProfile() {
   };
 
   return (
-    <form onSubmit={ onSubmitHandler }>
+    <form onSubmit={ onSubmitHandler }
+    style={ { width: '50vh' } }
+    className="d-flex flex-column form-group">
       <label htmlFor="profile-name-input">
-        <span>Name</span>
+        <span>Nome</span>
         <input
           value={ name }
           onChange={ (e) => setName(e.target.value) }
@@ -32,10 +34,13 @@ export default function ClientProfile() {
           name="name"
           data-testid="profile-name-input"
           required
+          className="form-control"
         />
       </label>
 
-      <label htmlFor="profile-email-input">
+      <label htmlFor="profile-email-input"
+      style={ { marginTop: '1vh' } }
+      >
         Email
         <input
           value={ currentUser.email }
@@ -43,6 +48,7 @@ export default function ClientProfile() {
           name="email"
           data-testid="profile-email-input"
           readOnly
+          className ="form-control"
         />
       </label>
 
@@ -50,6 +56,8 @@ export default function ClientProfile() {
         type="submit"
         data-testid="profile-save-btn"
         disabled={ validationClientProfile(name) }
+        className ="form-control"
+        style={ { marginTop: '2vh' } }
       >
         Salvar
       </button>

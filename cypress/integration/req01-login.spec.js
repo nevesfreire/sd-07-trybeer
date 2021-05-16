@@ -1,73 +1,203 @@
-import {
-  insertText,
-  clickButton,
-  verifyContainsUrl,
-  verifyContainsText,
-  verifyElementVisible,
-  login,
-  verifyElementIsDisable,
-  createAndInsertsDataBase,
-  dropAndTruncateDataBase,
-} from '../actions/actionBase';
+import React from 'react';
+import { screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import Products from '../pages/Products';
+import Login from '../pages/Login';
+import renderWithRouter from './config/renderWithRouter';
+
+test('O menu burguer é aberto ao ser clicado e fechado ao ser clicado novamente', () => {
+  const { getByTestId } = renderWithRouter(<Login />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, "user@test.com");
+  userEvent.type(passwordInput, "test123");
+  fireEvent.click(screen.getByTestId('signin-btn'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/products');
+  }, 3000);
+
+  expect(screen.getByText('Trybeer')).toBeInTheDocument();
+  fireEvent.click(screen.getByTestId('top-hamburguer'));
+  expect(screen.getByText('Meu perfil')).toBeInTheDocument();
+  fireEvent.click(screen.getByTestId('top-hamburguer'));
+  expect(screen.getByText('Meu perfil')).not.toBeInTheDocument();
+});
+
+test('A barra lateral do administrador é visivel ao acessar a página de Produtos', () => {
+
+  const { getByTestId } = renderWithRouter(<Login />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, "tryber@trybe.com.br");
+  userEvent.type(passwordInput, "123456");
+  fireEvent.click(screen.getByTestId('signin-btn'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/orders');
+  }, 3000);
+
+  expect(screen.getByText('Perfil')).toBeInTheDocument();
+});
+
+test('O botão Pedidos acessa a rota que mostra as vendas realizadas', () => {
+
+  renderWithRouter(<Login />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, "tryber@trybe.com.br");
+  userEvent.type(passwordInput, "123456");
+  fireEvent.click(screen.getByTestId('signin-btn'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/orders');
+  }, 3000);
+
+  fireEvent.click(screen.getByTestId('side-menu-item-orders'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/admin/orders');
+  }, 3000);
+});
+
+test('O botão Perfil acessa a rota que mostra o perfil do administrador', () => {
+
+  const { getByTestId } = renderWithRouter(<Login />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, "tryber@trybe.com.br");
+  userEvent.type(passwordInput, "123456");
+  fireEvent.click(screen.getByTestId('signin-btn'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/orders');
+  }, 3000);
+
+  fireEvent.click(screen.getByTestId('side-menu-item-profile'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/admin/profile');
+  }, 3000);
+});
+
+test('O botão Sair acessa a rota de login e limpa o localStorage', () => {
+
+  const { getByTestId } = renderWithRouter(<Login />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, "tryber@trybe.com.br");
+  userEvent.type(passwordInput, "123456");
+  fireEvent.click(screen.getByTestId('signin-btn'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/orders');
+  }, 3000);
+
+  fireEvent.click(screen.getByTestId('side-menu-item-logout'));
   
-describe('1 - Crie uma página de login', () => {
-  before(() => {
-    createAndInsertsDataBase();
-  });
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/login');
+    expect(localStorage.clear).toHaveBeenCalled();
+  }, 3000);
 
-  after(() => {
-    dropAndTruncateDataBase();
-  });
+});
 
-  beforeEach(() => {
-    cy.visit(`${Cypress.config().baseUrl}/login`);
-  });
+test('O botão Produtos acessa a rota que mostra todos os produtos', () => {
 
-  it('Será validado que é possível acessar a home', () => {
-    verifyContainsUrl(`${Cypress.config().baseUrl}/login`);
-  });
+  const { getByTestId } = renderWithRouter(<Login />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, "user@test.com");
+  userEvent.type(passwordInput, "test123");
+  fireEvent.click(screen.getByTestId('signin-btn'));
 
-  it('Será validado que a tela login contém os atributos descritos no protótipo', () => {
-    verifyContainsText('Email');
-    verifyElementVisible('[data-testid="email-input"]');
-    verifyContainsText('Senha');
-    verifyElementVisible('[data-testid="password-input"]');
-    verifyContainsText('Entrar');
-    verifyElementVisible('[data-testid="signin-btn"]');
-    verifyContainsText('Ainda não tenho conta');
-    verifyElementVisible('[data-testid="no-account-btn"]');
-  });
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/products');
+  }, 3000);
 
-  it('Será validado que não é possível fazer login com um email inválido', () => {
-    insertText('[data-testid="email-input"]', 'email@');
-    insertText('[data-testid="password-input"]', '12345678');
-    verifyElementIsDisable('[data-testid="signin-btn"]');
-  });
+  fireEvent.click(screen.getByTestId('top-hamburguer'));
+  fireEvent.click(screen.getByTestId('side-menu-item-products'));
 
-  it('Será validado que não é possível fazer login com uma senha em branco', () => {
-    insertText('[data-testid="email-input"]', 'bruno.batista@gmail.com');
-    insertText('[data-testid="password-input"]', ' ');
-    verifyElementIsDisable('[data-testid="signin-btn"]');
-  });
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/products');
+  }, 3000);
 
-  it('Será validado que não é possível fazer login com uma senha com menos de 6 caracteres', () => {
-    insertText('[data-testid="email-input"]', 'bruno.batista@gmail.com');
-    insertText('[data-testid="password-input"]', '1234');
-    verifyElementIsDisable('[data-testid="signin-btn"]');
-  });
+});
 
-  it('Será validado que é possível fazer login com um cliente e ser redirecionado para tela de cliente', () => {
-    login('bruno.batista@gmail.com', '12345678');
-    verifyContainsUrl(`${Cypress.config().baseUrl}/products`);
-  });
 
-  it('Será validado que é possível fazer login com um admin e ser redirecionado para tela de admin', () => {
-    login('tryber@trybe.com.br', '123456');
-    verifyContainsUrl(`${Cypress.config().baseUrl}/admin/orders`);
-  });
+const { getByTestId } = renderWithRouter(<Login />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, "user@test.com");
+  userEvent.type(passwordInput, "test123");
+  fireEvent.click(screen.getByTestId('signin-btn'));
 
-  it('Será validado que é possível clicar no botão "Ainda não tenho conta" e ser redirecionado para tela de registro', () => {
-    clickButton('[data-testid="no-account-btn"]');
-    verifyContainsUrl(`${Cypress.config().baseUrl}/register`);
-  });
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/products');
+  }, 3000);
+
+  fireEvent.click(screen.getByTestId('top-hamburguer'));
+  fireEvent.click(screen.getByTestId('side-menu-item-my-orders'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/orders');
+  }, 3000);
+});
+
+test('O botão Meu Perfil acessa a rota que mostra o perfil do usuário', () => {
+
+  const { getByTestId } = renderWithRouter(<Login />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, "user@test.com");
+  userEvent.type(passwordInput, "test123");
+  fireEvent.click(screen.getByTestId('signin-btn'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/products');
+  }, 3000);
+
+  fireEvent.click(screen.getByTestId('top-hamburguer'));
+  fireEvent.click(screen.getByTestId('side-menu-item-my-profile'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/profile');
+  }, 3000);
+});
+
+test('O botão Sair acessa a rota de login e limpa o localStorage', () => {
+
+  const { getByTestId } = renderWithRouter(<Login />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, "user@test.com");
+  userEvent.type(passwordInput, "test123");
+  fireEvent.click(screen.getByTestId('signin-btn'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/products');
+  }, 3000);
+
+  fireEvent.click(screen.getByTestId('side-menu-item-logout'));
+
+  setTimeout(() => {
+    const { pathname } = history.location;
+    expect(pathname).toBe('/login');
+    expect(localStorage.clear).toHaveBeenCalled();
+  }, 3000);
 });
