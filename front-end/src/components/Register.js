@@ -4,6 +4,7 @@ import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import fieldValidate from '../helpers/fieldValidate';
 import context from '../context';
+import api from '../services/api';
 
 const ComponentRegister = () => {
   const { name, setName, email, setEmail } = useContext(context);
@@ -37,6 +38,8 @@ const ComponentRegister = () => {
       checked: isChecked,
     };
 
+    const params = { email, password };
+
     if (!isValid) {
       console.log('Dados inválidos.'); // não remover, ainda não sei o que por aqui
     } else {
@@ -52,18 +55,12 @@ const ComponentRegister = () => {
         .then((data) => {
           setUser(data);
         });
-      fetch(`${REACT_APP_URL}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-        // no endpoint do trello está email e senha, tem que unificar
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          localStorage.setItem('token', data.token);
-        });
+      api
+        .post('/login', params)
+        .then((dataUser) => {
+          localStorage.setItem('token', dataUser.data.token);
+        })
+        .catch((err) => console.log(`Error in login process: ${err}`));
     }
   };
 

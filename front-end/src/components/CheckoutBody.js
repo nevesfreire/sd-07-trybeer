@@ -33,12 +33,12 @@ const CheckoutBody = () => {
     (curr, next) => curr + next.total,
     numbers.ZERO_REAL,
   );
-
+  const user = JSON.parse(localStorage.getItem('data'));
   const redirectToProduct = () => {
     setSaleFinished(true);
     const time = 5000;
     const params = {
-      userId: 1,
+      userId: user.id,
       totalPrice: priceTotalReduced,
       deliveryAddress: street,
       deliveryNumber: houseNumber,
