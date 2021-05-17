@@ -13,7 +13,7 @@ const Orders = () => {
     {
       id: 1,
       delivery_number: '1',
-      sale_date: '10-12-2011',
+      sale_date: '16/05',
       total_price: '100',
     },
   ]);
@@ -32,7 +32,9 @@ const Orders = () => {
   };
 
   useEffect(() => {
-    getAllOrdersByid();
+    console.log('chamou');
+    getAllOrdersByid()
+      .then((result) => console.log(`result do useEfect: ${result}`));
   }, []);
 
   return (
@@ -48,8 +50,8 @@ const Orders = () => {
               {orders.map((actual, index) => (
                 <OrderCard
                   position={ index }
-                  key={ actual.delivery_number }
-                  deliveryNumber={ actual.delivery_number }
+                  key={ actual.id }
+                  id={ actual.id }
                   saleDate={ actual.sale_date }
                   totalPrice={ actual.total_price }
                 />

@@ -1,15 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { FormControl, Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import fieldValidate from '../helpers/fieldValidate';
 import context from '../context';
+import api from '../services/api';
 
 const ComponentRegister = () => {
   const { name, setName, email, setEmail } = useContext(context);
   const { password, setPassword } = useContext(context);
   const { isOk, setIsOk, user, setUser } = useContext(context);
   const { isChecked, setIsChecked } = useContext(context);
+  const [logged, setLogged] = useState(false);
 
   const isValid = fieldValidate(name, email, password);
   const REACT_APP_URL = 'http://localhost:3001';
@@ -37,33 +39,28 @@ const ComponentRegister = () => {
       checked: isChecked,
     };
 
+    const params = { email, password };
+
     if (!isValid) {
       console.log('Dados inválidos.'); // não remover, ainda não sei o que por aqui
     } else {
       e.preventDefault();
-      fetch(`${REACT_APP_URL}/register`, {
+      const registraingResult = await fetch(`${REACT_APP_URL}/register`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
         },
         body: JSON.stringify({ ...payload }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setUser(data);
-        });
-      fetch(`${REACT_APP_URL}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-        // no endpoint do trello está email e senha, tem que unificar
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          localStorage.setItem('token', data.token);
-        });
+      });
+      const registraingData = await registraingResult.json();
+      setUser(registraingData);
+      return api
+        .post('/login', params)
+        .then((dataUser) => {
+          localStorage.setItem('token', dataUser.data.token);
+          setLogged(true);
+        })
+        .catch((err) => console.log(`Error in login process: ${err}`));
     }
   };
 
@@ -71,21 +68,10 @@ const ComponentRegister = () => {
     setIsChecked(event.target.checked);
   };
 
-  // if (user.status) {
-  //   switch (user.role) {
-  //   case 'administrator':
-  //     return <Redirect to="/admin/orders" />;
-  //   case 'client':
-  //     return <Redirect to="/products" />;
-  //   default:
-  //     return <Redirect to="/Not Found" />;
-  //   }
-  // }
-  console.log(user);
   return (
     <FormControl className="form-registration">
-      {user.role === 'administrator' && <Redirect to="/admin/orders" />}
-      {user.role === 'client' && <Redirect to="/products" />}
+      {logged && user.role === 'administrator' && <Redirect to="/admin/orders" />}
+      {logged && user.role === 'client' && <Redirect to="/products" />}
       <h1>Cadastro</h1>
       <TextField
         id="userName"
