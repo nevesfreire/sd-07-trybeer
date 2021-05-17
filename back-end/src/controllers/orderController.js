@@ -19,7 +19,16 @@ const getOrderById = async (req, res) => {
     .catch((err) => console.log(`error in controller getOrderByUser: ${err} `));
 };
 
+const getAllOrders = async (_req, res) => {
+  orderService.getAllOrders()
+    .then((result) => {
+      res.status(httpStatus.OK).json(result);
+    })
+    .catch((err) => console.log(`error in controller getAllOrders: ${err} `));
+};
+
 module.exports = {
   getOrderByUser,
   getOrderById,
+  getAllOrders,
 };

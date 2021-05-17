@@ -31,6 +31,7 @@ app.get('/products', productController.getAllProducts);
 app.post('/orders', orderController.getOrderByUser);
 app.get('/orders/:id', orderController.getOrderById);
 app.get('/sales/:id', salesController.getSaleById);
+app.get ('/orders', orderController.getAllOrders);
 
 app.post(
   '/', body('name').isString().isLength({ min: 12 }),
