@@ -29,17 +29,17 @@ function AdminOrders() {
 
   useEffect(() => {
     handleRequestGetOrdersAPI();
-  }, []);
+  }, [handleRequestGetOrdersAPI]);
 
   return (
-    <div className='admin-orders-container'>
+    <div className="admin-orders-container">
       <TopMenu title="Meus Pedidos" />
       {!orders.length ? (
-        <h3 className='admin-orders-card-container'>
+        <h3 className="admin-orders-card-container">
           <strong>Você não tem pedidos ainda :(</strong>
         </h3>
       ) : (
-        <div className='admin-orders-card-container'>
+        <div className="admin-orders-card-container">
           {orders.map((order) => <OrdersCard key={ order.id } order={ order } />)}
         </div>
       )}

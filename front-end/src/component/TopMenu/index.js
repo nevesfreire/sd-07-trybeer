@@ -27,8 +27,10 @@ export default function TopMenu({ title }) {
   }
 
   const handleClick = () => {
-    if (document.getElementsByClassName('nav-complement')[0]
-      .classList[1] === 'nav-complement-show') {
+    if (
+      document.getElementsByClassName('nav-complement')[0].classList[1]
+      === 'nav-complement-show'
+    ) {
       handleMenuToggle();
     }
   };
@@ -47,11 +49,9 @@ export default function TopMenu({ title }) {
 
   useEffect(() => {
     if (title.toLowerCase() === 'trybeer') {
-      document.getElementById('title')
-        .classList.add('header-title-trybeer');
+      document.getElementById('title').classList.add('header-title-trybeer');
     } else {
-      document.getElementById('title')
-        .classList.remove('header-title-trybeer');
+      document.getElementById('title').classList.remove('header-title-trybeer');
     }
   }, [title]);
 
@@ -60,7 +60,7 @@ export default function TopMenu({ title }) {
       <Container>
         <div className="header">
           <div id="title" className="header-title" data-testid="top-title">
-            { title }
+            {title}
           </div>
           <div
             className="nav-complement nav-complement-hide"
@@ -68,13 +68,8 @@ export default function TopMenu({ title }) {
             onKeyDown={ (e) => getKeyCode(e) }
             aria-hidden="true"
           />
-          <div
-            className="side-menu-container"
-          >
-            <div
-              className="nav-close"
-              aria-hidden="true"
-            >
+          <div className="side-menu-container">
+            <div className="nav-close" aria-hidden="true">
               <h3 onClick={ () => handleMenuToggle() }>&#9587;</h3>
             </div>
             <div
@@ -131,7 +126,7 @@ export default function TopMenu({ title }) {
     <Container>
       <div className="header">
         <div id="title" className="header-title" data-testid="top-title">
-          { title }
+          {title}
         </div>
         <div
           className="nav-complement nav-complement-hide"
@@ -139,9 +134,7 @@ export default function TopMenu({ title }) {
           onKeyDown={ (e) => getKeyCode(e) }
           aria-hidden="true"
         />
-        <div
-          className="side-menu-container admin-side-bar-container"
-        >
+        <div className="side-menu-container admin-side-bar-container">
           <div
             className="nav-close"
             onClick={ () => handleMenuToggle() }

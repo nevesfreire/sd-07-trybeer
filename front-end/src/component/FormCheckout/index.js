@@ -9,7 +9,7 @@ function FormCheckout({ formCheckout, setFormCheckout }) {
   };
 
   return (
-    <div className='form-checkout-container' >
+    <div className="form-checkout-container">
       <h1>Endereço</h1>
       <form>
         <label htmlFor="street">

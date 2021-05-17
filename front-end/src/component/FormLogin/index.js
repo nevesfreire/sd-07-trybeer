@@ -61,22 +61,22 @@ function FormLogin() {
   }, [formLogin, handleButtonState]);
 
   if (roleUser === 'client') {
-    return (
-      <Redirect to="/products" />
-    );
-  } if (roleUser === 'administrator') {
-    return (
-      <Redirect to="/admin/orders" />
-    );
+    return <Redirect to="/products" />;
+  }
+  if (roleUser === 'administrator') {
+    return <Redirect to="/admin/orders" />;
   }
 
   return (
     <Container>
       <div className="page-body">
-        <h1 className="title"><span className='try-title'>Try</span>Bebos</h1>
+        <h1 className="title">
+          <span className="try-title">Try</span>
+          Bebos
+        </h1>
         <div className="form-container">
-          <div className='inputs-container'>
-            <div className='inputs-sub-container'>
+          <div className="inputs-container">
+            <div className="inputs-sub-container">
               <h2>EMAIL:</h2>
               <input
                 id="email"
@@ -86,15 +86,15 @@ function FormLogin() {
                 onChange={ (event) => handleInputChange(event, 'email') }
               />
             </div>
-            <div className='inputs-sub-container'>
+            <div className="inputs-sub-container">
               <h2>SENHA:</h2>
               <input
-                  id="password"
-                  type="password"
-                  data-testid="password-input"
-                  value={ formLogin.password }
-                  onChange={ (event) => handleInputChange(event, 'password') }
-                />
+                id="password"
+                type="password"
+                data-testid="password-input"
+                value={ formLogin.password }
+                onChange={ (event) => handleInputChange(event, 'password') }
+              />
             </div>
           </div>
           <div className="btn-container">
@@ -112,7 +112,9 @@ function FormLogin() {
               id="btn-new-user"
               className="form-btn"
               type="button"
-              onClick={ () => { history.push('/register'); } }
+              onClick={ () => {
+                history.push('/register');
+              } }
               data-testid="no-account-btn"
             >
               AINDA NÃO TENHO CONTA

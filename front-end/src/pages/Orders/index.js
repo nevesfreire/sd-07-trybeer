@@ -28,15 +28,15 @@ export default function Orders() {
 
   useEffect(() => {
     handleRequestGetOrdersAPI();
-  }, []);
+  }, [handleRequestGetOrdersAPI]);
 
   return (
-    <div className='orders-container'>
+    <div className="orders-container">
       <TopMenu title="Meus Pedidos" />
       {!orders.length ? (
         <h3>Você não tem pedidos ainda :(</h3>
       ) : (
-        <div className='orders-card-container'>
+        <div className="orders-card-container">
           {orders.map((order) => <OrdersCard key={ order.id } order={ order } />)}
         </div>
       )}

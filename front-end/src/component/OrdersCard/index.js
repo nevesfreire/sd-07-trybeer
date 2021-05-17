@@ -25,12 +25,12 @@ function OrdersCard({ order }) {
   if (verifyRoleUser() === 'administrator') {
     return (
       <button
-        className='order-card-und-container'
+        className="order-card-und-container"
         type="button"
         data-testid={ `${order.id - 1}-order-card-container` }
         onClick={ () => history.push(`/admin/orders/${order.id}`) }
       >
-        <div className='order-number-address-container'>
+        <div className="order-number-address-container">
           <h2 data-testid={ `${order.id - 1}-order-number` }>
             {`Pedido ${order.id}`}
           </h2>
@@ -38,14 +38,20 @@ function OrdersCard({ order }) {
             {`${order.delivery_address}, ${order.delivery_number}`}
           </h3>
         </div>
-        <div className='order-price-status-container'>
+        <div className="order-price-status-container">
           <h3 data-testid={ `${order.id - 1}-order-total-value` }>
             {convertPrice(order.total_price)}
           </h3>
           <h2
-            className={ order.status === 'Pendente' ? 'order-card-pendente' : 'order-card-entregue' }
+            className={
+              order.status === 'Pendente'
+                ? 'order-card-pendente'
+                : 'order-card-entregue'
+            }
             data-testid={ `${order.id - 1}-order-status` }
-          >{order.status}</h2>
+          >
+            {order.status}
+          </h2>
         </div>
       </button>
     );
@@ -54,23 +60,21 @@ function OrdersCard({ order }) {
   return (
     <button
       type="button"
-      className='order-card-und-container'
+      className="order-card-und-container"
       data-testid={ `${order.id - 1}-order-card-container` }
       onClick={ () => history.push(`/orders/${order.id}`) }
     >
-      <div className='order-number-date'>
+      <div className="order-number-date">
         <h2 data-testid={ `${order.id - 1}-order-number` }>
           {`Pedido ${order.id}`}
         </h2>
-        <h3 data-testid={ `${order.id - 1}-order-date` }>
-          { date() }
-        </h3>
+        <h3 data-testid={ `${order.id - 1}-order-date` }>{date()}</h3>
       </div>
       <h3
-        className='order-price'
+        className="order-price"
         data-testid={ `${order.id - 1}-order-total-value` }
       >
-        { convertPrice(order.total_price) }
+        {convertPrice(order.total_price)}
       </h3>
     </button>
   );

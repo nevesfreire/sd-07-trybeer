@@ -115,13 +115,13 @@ function FormRegister() {
         <div className="form-container">
           <h2>NOME:</h2>
           <input
-              type="text"
-              id="name"
-              name="name"
-              data-testid="signup-name"
-              value={ formRegister.name }
-              onChange={ (e) => handleImputChange(e) }
-            />
+            type="text"
+            id="name"
+            name="name"
+            data-testid="signup-name"
+            value={ formRegister.name }
+            onChange={ (e) => handleImputChange(e) }
+          />
           <h2>EMAIL:</h2>
           <input
             type="email"
@@ -131,18 +131,20 @@ function FormRegister() {
             value={ formRegister.email }
             onChange={ (e) => handleImputChange(e) }
           />
-          { errorState && <p>Já existe um usuário com esse e-mail.</p> }
+          {errorState && <p>Já existe um usuário com esse e-mail.</p>}
           <h2>SENHA:</h2>
           <input
-              type="password"
-              id="password"
-              name="password"
-              data-testid="signup-password"
-              value={ formRegister.password }
-              onChange={ (e) => handleImputChange(e) }
-            />
+            type="password"
+            id="password"
+            name="password"
+            data-testid="signup-password"
+            value={ formRegister.password }
+            onChange={ (e) => handleImputChange(e) }
+          />
           <div className="box">
-            <label htmlFor="checkbox"><h2>QUERO VENDER</h2></label>
+            <label htmlFor="checkbox">
+              <h2>QUERO VENDER</h2>
+            </label>
             <input
               type="checkbox"
               id="checkbox"
@@ -150,7 +152,7 @@ function FormRegister() {
               data-testid="signup-seller"
               onChange={ (e) => handleImputChange(e) }
             />
-            <span className="check"></span>
+            <span className="check" />
           </div>
           <div className="btn-container">
             <button

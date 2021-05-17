@@ -16,13 +16,19 @@ function CheckoutCard({ product }) {
 
   return (
     qtd > 0 && (
-      <div className='checkout-card-und-container'>
+      <div className="checkout-card-und-container">
         <h2 data-testid={ `${id - 1}-product-name` }>{name}</h2>
-        <p data-testid={ `${id - 1}-product-qtd-input` }>Quantidade: {qtd}</p>
+        <p data-testid={ `${id - 1}-product-qtd-input` }>
+          Quantidade:
+          {qtd}
+        </p>
         <p data-testid={ `${id - 1}-product-unit-price` }>
           {`Preço: (${convertPrice(price)} un)`}
         </p>
-        <p data-testid={ `${id - 1}-product-total-value` }>Total {totalPrice}</p>
+        <p data-testid={ `${id - 1}-product-total-value` }>
+          Total
+          {totalPrice}
+        </p>
         <button
           type="button"
           onClick={ () => deleteProduct(id) }

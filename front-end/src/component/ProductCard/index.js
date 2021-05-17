@@ -29,8 +29,16 @@ function ProductCard({ product }) {
         width="100"
         data-testid={ `${product.id - 1}-product-img` }
       />
-      <h2 className="product-name" data-testid={ `${product.id - 1}-product-name` }>{product.name}</h2>
-      <h2 className="product-price" data-testid={ `${product.id - 1}-product-price` }>
+      <h2
+        className="product-name"
+        data-testid={ `${product.id - 1}-product-name` }
+      >
+        {product.name}
+      </h2>
+      <h2
+        className="product-price"
+        data-testid={ `${product.id - 1}-product-price` }
+      >
         {convertPrice(product.price)}
       </h2>
       <div className="quantity-box">
@@ -42,7 +50,12 @@ function ProductCard({ product }) {
         >
           <h3>+</h3>
         </div>
-        <h4 className="quantity-text" data-testid={ `${product.id - 1}-product-qtd` }>{getQtd()}</h4>
+        <h4
+          className="quantity-text"
+          data-testid={ `${product.id - 1}-product-qtd` }
+        >
+          {getQtd()}
+        </h4>
         <div
           className="quantity-btn"
           onClick={ () => subtractProductQtd(product.id, product.price, product.name) }

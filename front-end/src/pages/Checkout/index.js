@@ -61,26 +61,43 @@ function Checkout() {
     setTimeout(() => history.push('/products'), TIME);
   };
 
+  const handleButtonDisable = () => {
+    if (
+      totalProducts === 'R$ 0,00'
+      || !formCheckout.street
+      || !formCheckout.houseNumber
+    ) return true;
+    return false;
+  };
+
+  const handleClassButton = () => {
+    if (
+      totalProducts === 'R$ 0,00'
+      || !formCheckout.street
+      || !formCheckout.houseNumber
+    ) return 'checkout-disable-button';
+    return 'checkout-final-button';
+  };
+
   useEffect(() => {
     if (!validateToken()) {
       return history.push('/login');
     }
-  }, []);
+  }, [history]);
 
   return (
     <Container>
-
       <TopMenu title="TryBebos" />
       {totalProducts === 'R$ 0,00' && <h2>Não há produtos no carrinho</h2>}
 
-      <div className={'checkout-card-container'}>
+      <div className="checkout-card-container">
         {shopCart.map((product) => (
           <CheckoutCard key={ product.id } product={ product } />
         ))}
       </div>
 
-      <div className='checkout-form-container'>
-        <h2 data-testid="order-total-value" className='checkout-total-price'>
+      <div className="checkout-form-container">
+        <h2 data-testid="order-total-value" className="checkout-total-price">
           {`Total: ${totalProducts}`}
         </h2>
 
@@ -92,16 +109,9 @@ function Checkout() {
         <h3>{messageBool && messageValue}</h3>
 
         <button
-          className={
-            totalProducts === 'R$ 0,00'
-          || !formCheckout.street
-          || !formCheckout.houseNumber ? 'checkout-disable-button' : 'checkout-final-button'}
+          className={ handleClassButton() }
           type="button"
-          disabled={
-            !!(totalProducts === 'R$ 0,00'
-            || !formCheckout.street
-            || !formCheckout.houseNumber)
-          }
+          disabled={ handleButtonDisable() }
           data-testid="checkout-finish-btn"
           onClick={ () => handleMessageSucess() }
         >

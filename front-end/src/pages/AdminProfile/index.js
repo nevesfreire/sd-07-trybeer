@@ -29,12 +29,12 @@ function AdminProfile() {
   useEffect(() => {
     if (!validateToken()) return history.push('/login');
     getLocalStorageUser();
-  }, []);
+  }, [getLocalStorageUser, history]);
 
   return (
-    <div className='admin-profile-container'>
+    <div className="admin-profile-container">
       <TopMenu title="TryBebos" />
-      <div className='admin-profile-info'>
+      <div className="admin-profile-info">
         <h1>Perfil</h1>
         <h3 data-testid="profile-name">{`Nome: ${userInfo.name}`}</h3>
         <h3 data-testid="profile-email">{`Email: ${userInfo.email}`}</h3>

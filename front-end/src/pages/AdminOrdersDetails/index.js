@@ -45,23 +45,25 @@ function AdminOrdersDetails() {
 
   useEffect(() => {
     handleRequestOrder();
-  }, []);
+  }, [handleRequestOrder]);
 
   return (
-    <div className='admin-orders-details-container'>
+    <div className="admin-orders-details-container">
       <TopMenu title={ `Admin - Detalhes de Pedido - ${title}` } />
-      <div className='admin-orders-details-card-container'>
-        
-        <div className='orders-details-number-status'>
+      <div className="admin-orders-details-card-container">
+        <div className="orders-details-number-status">
           <h2 data-testid="order-number">
             {products.length && `Pedido ${id}`}
           </h2>
-          <h2 data-testid="order-status" id={title === 'Pendente' ? 'status-pendente' : 'status-entregue'}>
+          <h2
+            data-testid="order-status"
+            id={ title === 'Pendente' ? 'status-pendente' : 'status-entregue' }
+          >
             {products.length && `${title}`}
           </h2>
         </div>
 
-        <div className='card-container'>
+        <div className="card-container">
           {products.length
             && products.map((item) => (
               <DetailsCard key={ item.id } product={ item } role={ roleUser } />

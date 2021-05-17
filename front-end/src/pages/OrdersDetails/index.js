@@ -40,17 +40,19 @@ function OrderDetails() {
 
   useEffect(() => {
     handleRequestOrder();
-  }, []);
+  }, [handleRequestOrder]);
 
   return (
-    <div className='orders-details-container'>
+    <div className="orders-details-container">
       <TopMenu title="Detalhes de Pedido" />
-      <div className='orders-details-card-container'>
-        <div className='order-number'>
-          <h1 data-testid="order-number">{products.length && `Pedido ${id}`}</h1>
+      <div className="orders-details-card-container">
+        <div className="order-number">
+          <h1 data-testid="order-number">
+            {products.length && `Pedido ${id}`}
+          </h1>
           <h3 data-testid="order-date">{products.length && date()}</h3>
         </div>
-        <div className='details-card'>
+        <div className="details-card">
           {products.length
             && products.map((item) => <DetailsCard key={ item.id } product={ item } />)}
         </div>

@@ -7,7 +7,7 @@ function DetailsCard({ product, role }) {
   const { convertPrice } = useContext(BeerAppContext);
   const totalValue = product.quantity * product.price;
   return (
-    <p className='details-card-und-container'>
+    <p className="details-card-und-container">
       <span data-testid={ `${product.id - 1}-product-qtd` }>
         {`${product.quantity}-`}
       </span>

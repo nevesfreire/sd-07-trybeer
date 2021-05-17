@@ -37,11 +37,11 @@ function FormProfile() {
     } catch (error) {
       history.push('/');
     }
-  }, []);
+  }, [history]);
 
   return (
-    <div className='profile-container'>
-      <div className='profile-inputs'>
+    <div className="profile-container">
+      <div className="profile-inputs">
         <label htmlFor="nome">
           Nome
           <input
