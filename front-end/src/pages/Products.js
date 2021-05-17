@@ -1,12 +1,11 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  Grid,
   Button,
   Segment,
   Header,
   Container,
-  Menu,
+  Icon,
 } from 'semantic-ui-react';
 import CustomRenderProducts from '../components/CustomRenderProducts';
 import CentralContext from '../context/Context';
@@ -33,32 +32,37 @@ function Products() {
   const history = useHistory();
 
   return (
-    <div>
+    <Container style={ { width: '100%', backgroundColor: 'rgb(33, 33, 33)' } }>
       <Container>
-        <Header style={{ display: 'flex', alignItems: 'center' }}>
+        <Header style={ { display: 'flex', alignItems: 'center' } }>
           <CustomTopMenu />
-          <CustomHeader message="TryBeer"/>
+          <CustomHeader message="Produtos" />
         </Header>
       </Container>
-      <Container style={{ margin: 'auto' }, { padding: '20'}}>
+      <Container style={ { margin: 'auto', padding: '20' } }>
         <CustomRenderProducts />
       </Container>
-      <Segment textAlign="center">
+      <Segment
+        textAlign="center"
+        style={ { width: '100%', backgroundColor: 'rgb(33, 33, 33)' } }
+      >
         <Button
-          circular="true"
+          // circular="true"
+          raised
           size="big"
           color="orange"
           data-testid="checkout-bottom-btn"
-          disabled={!totalKart}
-          onClick={() => history.push('/checkout')}
+          disabled={ !totalKart }
+          onClick={ () => history.push('/checkout') }
         >
+          <Icon name="shop" />
           Ver Carrinho
           <p data-testid="checkout-bottom-btn-value">
             {`R$ ${totalKart.toFixed(2).replace('.', ',')}`}
           </p>
         </Button>
       </Segment>
-    </div>
+    </Container>
   );
 }
 export default Products;

@@ -7,6 +7,7 @@ import CustomHeader from '../components/CustomHeader';
 
 import checkout from '../service/checkout';
 import { fetchOrderById } from '../service/order';
+// import { findByLabelText } from '@testing-library/dom';
 
 function Checkout() {
   const { totalKart, setTotalKart } = useContext(CentralContext);
@@ -60,48 +61,60 @@ function Checkout() {
   useEffect(() => {}, [finish]);
 
   const renderProdutsCart = useCallback(() => (
-    <div>
-      <Grid columns="4">
-
-        {totalKart === 0 ? <span>Não há produtos no carrinho</span> : null }
-        { !cart ? (
-          null
-        ) : (
-          cart.map((beer, index) => (
-            <Grid.Column key={ beer.id }>
-              <CustomCheckout
-                index={ index }
-                beer={ beer }
-                removeButton={ remButton }
-              />
-            </Grid.Column>
-          ))
-        )}
-      </Grid>
-    </div>
+    <Grid stacked style={ { display: 'flex' } }>
+      {totalKart === 0 ? <span>Não há produtos no carrinho</span> : null }
+      { !cart ? (
+        null
+      ) : (
+        cart.map((beer, index) => (
+          <CustomCheckout
+            key={ index }
+            index={ index }
+            beer={ beer }
+            removeButton={ remButton }
+          />
+        ))
+      )}
+    </Grid>
   ), [cart, remButton, totalKart]);
+
   return (
-    <Container>
-      <Grid container>
-        <Grid.Column>
-          <CustomHeader message="Finalizar Pedido" />
-        </Grid.Column>
-      </Grid>
+    <Container
+      style={ {
+        width: '100%',
+        height: '100%',
+        padding: '10px 50px',
+        backgroundColor: 'rgb(33, 33, 33)' } }
+    >
+      <Container>
+        <CustomHeader message="Finalizar Pedido" />
+      </Container>
       <Container>
         {renderProdutsCart()}
       </Container>
       <Form size="large">
-        <Grid>
-          <Grid.Row data-testid="order-total-value">
-            <span>{`R$ ${totalKart.toFixed(2).replace('.', ',')}`}</span>
-          </Grid.Row>
-        </Grid>
+        <Segment
+          textAlign="center"
+          raised
+          // compact
+          inverted
+          color="orange"
+          data-testid="order-total-value"
+          style={ {
+            marginTop: 10,
+            fontWeight: 800,
+            boxShadow: '5px 5px 4px rgba(0, 0, 0, 2)' } }
+        >
+          <p>{`Total do pedido - R$ ${totalKart.toFixed(2).replace('.', ',')}`}</p>
+        </Segment>
 
-        <Segment stacked>
+        <Segment stacked style={ { backgroundColor: 'rgb(33, 33, 33)' } }>
           <Form.Input
             data-testid="checkout-street-input"
             fluid
-            label="Rua"
+            icon="home"
+            iconPosition="left"
+            // label="Rua"
             placeholder="Endereço"
             name="street"
             onChange={ (e) => setDeliveryAddress(e.target.value) }
@@ -110,7 +123,9 @@ function Checkout() {
           <Form.Input
             data-testid="checkout-house-number-input"
             fluid
-            label="Número da casa"
+            icon="sort numeric down"
+            iconPosition="left"
+            // label="Número da casa"
             placeholder="Número da casa"
             type="text"
             name="numHouse"

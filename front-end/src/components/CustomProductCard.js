@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, Container, Image } from 'semantic-ui-react';
+import { Button, Card, Image } from 'semantic-ui-react';
 import CentralContext from '../context/Context';
 import { loadItemsToLocalStorage } from '../helpers/localStorage';
 
@@ -46,57 +46,62 @@ export default function CustomProductCard({ index, beer }) {
       saveToLocalLess(beer, qtdProduct);
     }
   }
-  // { margin: 10 },
-  // { boxShadow: '1px 2px 4px rgba(0, 0, 0, .5)'}
+
   return (
     <div>
       {!beer ? (
         'loading'
       ) : (
-        <Card style={{
-          maxWidth: 200,
-          margin: '20px auto',
-          boxShadow: '1px 2px 4px rgba(0, 0, 0, .5)',
-        }}>
+        <Card
+          style={ {
+            maxWidth: 200,
+            margin: '20px 10px',
+            boxShadow: '10px 10px 4px rgba(0, 0, 0, 10)',
+          } }
+        >
           <Image
-            data-testid={`${index}-product-img`}
+            data-testid={ `${index}-product-img` }
             floated="right"
-            size={beer.name === 'Skol Lata 250ml' ? 'mini' : 'tiny'}
-            src={beer.url_image}
+            size={ beer.name === 'Skol Lata 250ml' ? 'mini' : 'tiny' }
+            src={ beer.url_image }
             alt="imagem de uma bebida"
-            ui={false}
+            ui={ false }
           />
-          <Card.Content>
-            <Card.Header data-testid={`${index}-product-price`}>
+          <Card.Content style={ { fontWeight: 500 } }>
+            <Card.Header data-testid={ `${index}-product-price` }>
               {' '}
               {`R$ ${beer.price.replace('.', ',')}`}
             </Card.Header>
-            <Card.Meta data-testid={`${index}-product-name`}>
+            <Card.Meta data-testid={ `${index}-product-name` }>
               {beer.name}
             </Card.Meta>
-            <Card.Meta data-testid={`${index}-product-qtd`}>
+            <Card.Description data-testid={ `${index}-product-qtd` }>
               {qtdProduct}
-            </Card.Meta>
+            </Card.Description>
           </Card.Content>
           <Card.Content extra>
             <div className="ui two buttons">
               <Button.Group fluid size="large">
                 <Button
                   positive
-                  data-testid={`${index}-product-plus`}
-                  onClick={() => {
+                  data-testid={ `${index}-product-plus` }
+                  onClick={ () => {
                     setQtdProduct(qtdProduct + 1);
                     setTotalKart(totalKart + Number(beer.price));
                     saveToLocalMore(beer, qtdProduct);
-                  }}
-                >+</Button>
-                <Button.Or text="ou"/>
+                  } }
+                >
+                  +
+                </Button>
+                <Button.Or text="ou" />
                 <Button
-                  data-testid={`${index}-product-minus`}
-                  onClick={() => setBtnQtd()}  
-                >-</Button>
+                  data-testid={ `${index}-product-minus` }
+                  onClick={ () => setBtnQtd() }
+                >
+                  -
+                </Button>
               </Button.Group>
-              
+
               {/* <Button
                 // basic
                 color="orange"

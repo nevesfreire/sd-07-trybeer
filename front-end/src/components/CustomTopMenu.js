@@ -36,25 +36,49 @@ function CustomTopMenu() {
           className="menuItem"
           data-testid="side-menu-item-products"
         >
-          <Link to="/products" onClick={ toggleMenu }>Produtos</Link>
+          <Link
+            to="/products"
+            onClick={ toggleMenu }
+            className="menuItem"
+          >
+            Produtos
+          </Link>
         </li>
         <li
           className="menuItem"
           data-testid="side-menu-item-my-orders"
         >
-          <Link to="/orders" onClick={ toggleMenu }>Meus pedidos</Link>
+          <Link
+            to="/orders"
+            onClick={ toggleMenu }
+            className="menuItem"
+          >
+            Meus pedidos
+          </Link>
         </li>
         <li
           className="menuItem"
           data-testid="side-menu-item-my-profile"
         >
-          <Link to="/profile" onClick={ toggleMenu }>Meu Perfil</Link>
+          <Link
+            to="/profile"
+            onClick={ toggleMenu }
+            className="menuItem"
+          >
+            Meu Perfil
+          </Link>
         </li>
         <li
           className="menuItem leave"
           data-testid="side-menu-item-logout"
         >
-          <Link to="/login" onClick={ toggleMenu }>Sair</Link>
+          <Link
+            to="/login"
+            onClick={ toggleMenu }
+            className="menuItem"
+          >
+            Sair
+          </Link>
         </li>
       </ul>
     </header>
