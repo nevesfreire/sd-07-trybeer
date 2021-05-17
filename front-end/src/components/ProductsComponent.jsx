@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import ProductCard from './ProductCardComponent';
 import MyContext from '../context/TrybeerContext';
+import CardContainer from '../styled/Products.styled';
+import MainButton from '../styled/Buttons.styled';
 
 function ProductsComponent() {
   const [products, setProducts] = useState([]);
@@ -38,14 +40,16 @@ function ProductsComponent() {
     ? (<span>Tenha Fé...</span>)
     : (
       <div>
-        {products.map((product, index) => (
-          <ProductCard
-            key={ product.id }
-            product={ product }
-            index={ index }
-          />
-        ))}
-        <button
+        <CardContainer>
+          {products.map((product, index) => (
+            <ProductCard
+              key={ product.id }
+              product={ product }
+              index={ index }
+            />
+          ))}
+        </CardContainer>
+        <MainButton
           type="button"
           data-testid="checkout-bottom-btn"
           onClick={ () => setRedirectToCheckout(true) }
@@ -55,7 +59,7 @@ function ProductsComponent() {
           <span data-testid="checkout-bottom-btn-value">
             { `R$ ${Number(totalValue).toFixed(2).replace('.', ',')}`}
           </span>
-        </button>
+        </MainButton>
       </div>
     );
 }

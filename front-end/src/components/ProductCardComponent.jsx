@@ -31,8 +31,12 @@ function ProductCard({ product, index }) {
   }, []);
 
   return (
-    <div key={ product.id }>
+    <div
+      className="card"
+      key={ product.id }
+    >
       <img
+        className="thumb"
         src={ product.url_image.replace(/\s/g, '') }
         alt={ product.name }
         data-testid={ `${index}-product-img` }
@@ -42,23 +46,25 @@ function ProductCard({ product, index }) {
         { Number(product.price)
           .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
       </span>
-      <button
-        type="button"
-        data-testid={ `${index}-product-minus` }
-        onClick={ () => removeProduct(product.id, product.price) }
-      >
-        -
-      </button>
-      <span data-testid={ `${index}-product-qtd` }>
-        { quantity }
-      </span>
-      <button
-        type="button"
-        data-testid={ `${index}-product-plus` }
-        onClick={ () => addProduct(product.id, product.price, quantity) }
-      >
-        +
-      </button>
+      <div className="quantity-buttons">
+        <button
+          type="button"
+          data-testid={ `${index}-product-minus` }
+          onClick={ () => removeProduct(product.id, product.price) }
+        >
+          -
+        </button>
+        <span data-testid={ `${index}-product-qtd` }>
+          { quantity }
+        </span>
+        <button
+          type="button"
+          data-testid={ `${index}-product-plus` }
+          onClick={ () => addProduct(product.id, product.price, quantity) }
+        >
+          +
+        </button>
+      </div>
     </div>
   );
 }
