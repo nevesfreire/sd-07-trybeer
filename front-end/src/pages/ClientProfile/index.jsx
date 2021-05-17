@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 
 const ClientProfilePage = () => (
   <div>
-    <Header title="Meu Perfil" />
+    <Header title="Meu perfil" />
     <Container
       fluid
       style={ {
