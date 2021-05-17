@@ -32,8 +32,9 @@ export default function ClientOrderDetails() {
   };
 
   return (
-    <div>
-      <h2>Informações de Detalhes</h2>
+    <div
+    className="d-flex flex-column border rounded"
+    style={ { marginTop: '5vh', padding: '3vh' } }>
       <div>
         <p data-testid="order-number">{`Pedido ${id}`}</p>
         <p data-testid="order-date">
@@ -44,7 +45,10 @@ export default function ClientOrderDetails() {
           const productTotalValue = (item.price * item.quantity).toFixed(2);
 
           return (
-            <div key={ item.name }>
+            <div key={ item.name }
+            className="d-flex border rounded justify-content-around"
+            style={ { margin: '2vh', padding: '1vh' } }
+            >
               <p data-testid={ `${index}-product-qtd` }>{item.quantity}</p>
               <p data-testid={ `${index}-product-name` }>{item.name}</p>
               <p data-testid={ `${index}-product-total-value` }>
@@ -54,8 +58,8 @@ export default function ClientOrderDetails() {
           );
         }) : null }
       </div>
-      <p data-testid="order-total-value">
-        {sale ? `R$ ${sale[0].total_price.replace('.', ',')}` : 'R$ 0,00'}
+      <p data-testid="order-total-value" className="align-self-end">
+        <span>Total:</span> {sale ? `R$ ${sale[0].total_price.replace('.', ',')}` : 'R$ 0,00'}
       </p>
     </div>
   );

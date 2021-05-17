@@ -5,7 +5,7 @@ display: flex;
 border-right: solid 0.01px black;
 flex-direction: column;
 justify-content: center;
-background: gray;
+background: black;
 transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
 height: 100vh;
 text-align: left;
@@ -61,7 +61,7 @@ z-index: 10;
 div {
   width: 2rem;
   height: 0.25rem;
-  background: ${({ open }) => (open ? '#0D0C1D' : 'white')};
+  background: ${({ open }) => (open ? 'white' : 'white')};
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;

@@ -27,7 +27,7 @@ export default function ClientProfile() {
       onSubmit={ onSubmitHandler }
     >
       <Form.Label htmlFor="profile-name-input">
-        Name
+        Nome
       </Form.Label>
       <Col>
         <Form.Control
