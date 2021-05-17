@@ -8,7 +8,6 @@ const Admin = () => {
   const [orders, setOrders] = useState([
     {
       id: 1,
-      delivery_number: '1',
       sale_date: '10-12-2011',
       total_price: '2,20',
       delivery_address: 'Rua da pinga',
