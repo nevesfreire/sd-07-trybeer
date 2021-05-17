@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bulma-components';
 import { getOrdersById, changeStatus } from '../api';
 import services from '../services';
-import { Header, Loading } from '../components';
+import { HeaderAdmin, Loading } from '../components';
 
 function AdminOrderDetails() {
   const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ function AdminOrderDetails() {
   return (
     <div className="content is-large first-div">
       <div>
-        <Header title="TryBeer" />
+        <HeaderAdmin title="TryBeer" />
       </div>
       {
         loading
