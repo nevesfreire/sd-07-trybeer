@@ -40,19 +40,28 @@ export default function AdminOrders() {
             className="d-flex justify-content-around border rounded"
             style={ { margin: '3vh', width: '90vh' } }
           >
-            <p data-testid={ `${index}-order-number` }
-            style={ { margin: '3vh' } }
-            >{`Pedido ${item.id}`}</p>
-            <p data-testid={ `${index}-order-address` }
-            style={ { margin: '3vh' } }
+            <p
+              data-testid={ `${index}-order-number` }
+              style={ { margin: '3vh' } }
+            >
+              {`Pedido ${item.id}`}
+            </p>
+            <p
+              data-testid={ `${index}-order-address` }
+              style={ { margin: '3vh' } }
             >
               {`${item.delivery_address.concat(', ', item.delivery_number)}`}
             </p>
-            <p data-testid={ `${index}-order-status` }
-            style={ { margin: '3vh' } }
-            >{item.status}</p>
-            <p data-testid={ `${index}-order-total-value` }
-            style={ { margin: '3vh' } }>
+            <p
+              data-testid={ `${index}-order-status` }
+              style={ { margin: '3vh' } }
+            >
+              {item.status}
+            </p>
+            <p
+              data-testid={ `${index}-order-total-value` }
+              style={ { margin: '3vh' } }
+            >
               {`R$ ${item.total_price.replace('.', ',')}`}
             </p>
           </div>

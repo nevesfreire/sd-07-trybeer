@@ -11,16 +11,16 @@ const AdminProfilePage = () => {
     <div>
       <Header title="Perfil" />
       <Container
-      fluid
-      style={ {
-        height: '100vh',
-        paddingTop: '50px',
-        width: '70vh',
-        color: 'rgb(227,183,88)',
-      } }
-    >
-      <AdminProfile />
-    </Container>
+        fluid
+        style={ {
+          height: '100vh',
+          paddingTop: '50px',
+          width: '70vh',
+          color: 'rgb(227,183,88)',
+        } }
+      >
+        <AdminProfile />
+      </Container>
     </div>
   );
 };
