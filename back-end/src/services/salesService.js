@@ -15,6 +15,9 @@ const saveSales = async (saleObj) => {
   return sales;
 };
 
+const getSaleById = async (id) => salesModel.getSaleById(id);
+
 module.exports = {
   saveSales,
+  getSaleById,
 };

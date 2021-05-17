@@ -9,7 +9,6 @@ const updateUser = async (name, oldName) => {
   await connection.execute(
     `UPDATE Trybeer.users SET users.name = '${name}' WHERE id = '${id[0].id}'`,
   );
-  // console.log(user) 
   return 'update Sucess';
 };
 
