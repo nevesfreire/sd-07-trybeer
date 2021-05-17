@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { StatusCodes } from 'http-status-codes';
 import { requestCreateUserAPI, requestLoginAPI } from '../../services';
 import { setToLocalStorage } from '../../utils/localStorage';
-import Container from './style.js';
+import Container from './style';
 
 const defaultForm = {
   name: '',
@@ -142,9 +142,7 @@ function FormRegister() {
             onChange={ (e) => handleImputChange(e) }
           />
           <div className="box">
-            <label htmlFor="checkbox">
-              <h2>QUERO VENDER</h2>
-            </label>
+            <h2>QUERO VENDER</h2>
             <input
               type="checkbox"
               id="checkbox"
