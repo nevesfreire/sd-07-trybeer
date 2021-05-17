@@ -5,7 +5,6 @@ const updateUserRoute = Router();
 
 updateUserRoute.put('/', async (req, res, next) => {
     try {
-        console.log(req.body);
         const { id } = req.user;
         const { name } = req.body;
         const result = await updateUser(id, name);

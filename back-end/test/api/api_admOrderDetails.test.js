@@ -2,13 +2,6 @@ const frisby = require('frisby');
 
 const connection = require('./tstHelper/connection');
 
-Date.prototype.addTime = function (time) {
-  var time = time.split(":")
-  var rd = new Date(this.setHours(this.getHours() + parseInt(time[0])))
-  rd = new Date(rd.setMinutes(rd.getMinutes() + parseInt(time[1])))
-  return new Date(rd.setSeconds(rd.getSeconds() + parseInt(time[2])))
-}
-
 describe('GET adm orders details', () => {
   const USERS = [{
     name: 'Pedro Risso',
@@ -29,7 +22,10 @@ describe('GET adm orders details', () => {
   // const date = new Date(Date());
   // const sale_date = JSON.stringify(date);
   const date = new Date();
-  const sale_date = `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()}`;
+  const month = date.getUTCMonth() + 1;
+  const sale_date = month < 10
+    ? `${date.getUTCFullYear()}-0${month}-${date.getUTCDate()}`
+    : `${date.getUTCFullYear()}-${month}-${date.getUTCDate()}`
   const ORDERS = [{
     id: 1,
     user_id: 1,
@@ -143,10 +139,10 @@ describe('GET adm orders details', () => {
           expect(item.delivery_number).toBe(ORDERS[1].delivery_number)
           expect(item.status).toBe(ORDERS[1].status)
           expect(item.product_id).toBe(salesProducts.secondSaleProducts[index].product_id)
+          expect(`${item.sale_date}`).toContain(sale_date)
           expect(item.quantity).toBe(salesProducts.secondSaleProducts[index].quantity)
         })
       })
     })
   })
   
-  // expect(`\"${item.sale_date}\"`).toBe(ORDERS[index].sale_date)
