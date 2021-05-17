@@ -2,7 +2,7 @@ const ordersService = require('../services/ordersService');
 const httpStatus = require('./httpStatus');
 
 const getOrdersByUser = async (req, res) => {
-const errorMessage = { message: 'usuário sem pedidos' };
+const errorMessage = { message: 'Usuário sem pedidos' };
   try {
     const { id: userId } = req.user;
     const orders = await ordersService.getOrdersByUser(userId);
@@ -14,7 +14,7 @@ const errorMessage = { message: 'usuário sem pedidos' };
 };
 
 const getOrderById = async (req, res) => {
-  const errorMessage = { message: 'pedido não cadastrado' };
+  const errorMessage = { message: 'Pedido não cadastrado' };
     try {
       const { id } = req.params;
       const order = await ordersService.getOrderById(id);

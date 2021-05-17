@@ -8,7 +8,6 @@ const getOrdersByUser = async (userId) => {
 };
 
 const getOrderById = async (id) => {
-  console.log(`model ID: ${id}`);
   const [order] = await connect.execute(
     'SELECT sale_date AS saleDate, quantity, name, '
     + 'FORMAT((quantity * price), 2) AS productPrice FROM sales AS s '
@@ -16,7 +15,6 @@ const getOrderById = async (id) => {
     + 'INNER JOIN products AS p ON sp.product_id = p.id WHERE s.id = ?',
     [id],
   );
-  console.log(order);
   return order;
 };
 
