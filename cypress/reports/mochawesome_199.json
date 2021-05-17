@@ -1,0 +1,262 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 9,
+    "passes": 8,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-05-17T18:22:15.247Z",
+    "end": "2021-05-17T18:22:38.133Z",
+    "duration": 22886,
+    "testsRegistered": 9,
+    "passPercent": 88.88888888888889,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c19cb1d2-b097-4311-a49a-937eed037b90",
+      "title": "",
+      "fullFile": "cypress/integration/req06-checkout.spec.js",
+      "file": "cypress/integration/req06-checkout.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+          "title": "6 - Criar tela de checkout",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela de checkout",
+              "fullTitle": "6 - Criar tela de checkout Será validado que é possível acessar a tela de checkout",
+              "timedOut": null,
+              "duration": 7848,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginAndAddProductInCart)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/checkout\"));",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at addQuantity (http://localhost:3000/static/js/main.chunk.js:1577:5)\n    at onClick (http://localhost:3000/static/js/main.chunk.js:1706:7)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/1.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/1.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/1.chunk.js:6853:35)\n    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/1.chunk.js:6868:29)\n    at executeDispatch (http://localhost:3000/static/js/1.chunk.js:6953:7)\n    at executeDispatchesInOrder (http://localhost:3000/static/js/1.chunk.js:6978:9)\n    at executeDispatchesAndRelease (http://localhost:3000/static/js/1.chunk.js:9862:9)\n    at executeDispatchesAndReleaseTopLevel (http://localhost:3000/static/js/1.chunk.js:9871:14)\n    at forEachAccumulated (http://localhost:3000/static/js/1.chunk.js:9843:12)\n    at runEventsInBatch (http://localhost:3000/static/js/1.chunk.js:9888:7)\n    at runExtractedPluginEventsInBatch (http://localhost:3000/static/js/1.chunk.js:10098:7)\n    at handleTopLevel (http://localhost:3000/static/js/1.chunk.js:10142:9)\n    at batchedEventUpdates$1 (http://localhost:3000/static/js/1.chunk.js:28288:16)\n    at batchedEventUpdates (http://localhost:3000/static/js/1.chunk.js:7360:16)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/1.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/1.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/1.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/1.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/1.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/1.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/1.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/1.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "fb06d3f8-8136-4f96-814d-490ddba4e3a4",
+              "parentUUID": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém atributos descritos no protótipo",
+              "fullTitle": "6 - Criar tela de checkout Será validado que contém atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 1429,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginAndAddProductInCart)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-qtd-input\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-name\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-total-value\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-unit-price\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-removal-button\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-total-value\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"checkout-street-input\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"checkout-house-number-input\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"checkout-finish-btn\"]');",
+              "err": {},
+              "uuid": "1a82c905-ba97-4c07-a2c2-2dd2b55468f3",
+              "parentUUID": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver que o produto tem quantidade, nome e valor total do produto",
+              "fullTitle": "6 - Criar tela de checkout Será validado que é possível ver que o produto tem quantidade, nome e valor total do produto",
+              "timedOut": null,
+              "duration": 1295,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.clickButton)('[data-testid=\"0-product-plus\"]');\n(0, _actionBase.clickButton)('[data-testid=\"0-product-plus\"]');\n(0, _actionBase.clickButton)('[data-testid=\"checkout-bottom-btn\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-qtd-input\"]', '2');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-name\"]', 'Skol Lata 250ml');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-total-value\"]', 'R$ 4,40');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-unit-price\"]', '(R$ 2,20 un)');",
+              "err": {},
+              "uuid": "9e9a96c8-0515-43f1-ab83-f9feb10bd8cc",
+              "parentUUID": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível a lista mostrar o valor total do carrinho",
+              "fullTitle": "6 - Criar tela de checkout Será validado que é possível a lista mostrar o valor total do carrinho",
+              "timedOut": null,
+              "duration": 1330,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.clickButton)('[data-testid=\"0-product-plus\"]');\n(0, _actionBase.clickButton)('[data-testid=\"0-product-plus\"]');\n(0, _actionBase.clickButton)('[data-testid=\"checkout-bottom-btn\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-qtd-input\"]', '2');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-total-value\"]', 'R$ 4,40');",
+              "err": {},
+              "uuid": "f0259145-0c67-44fd-8d00-e9a4dc847eb3",
+              "parentUUID": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível fazer refresh da tela e os dados continuarem na tela",
+              "fullTitle": "6 - Criar tela de checkout Será validado que é possível fazer refresh da tela e os dados continuarem na tela",
+              "timedOut": null,
+              "duration": 1458,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginAndAddProductInCart)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-qtd-input\"]', '1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-name\"]', 'Skol Lata 250ml');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-total-value\"]', 'R$ 2,20');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-unit-price\"]', '(R$ 2,20 un)');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-total-value\"]', 'R$ 2,20');\ncy.reload();\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-qtd-input\"]', '1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-name\"]', 'Skol Lata 250ml');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-total-value\"]', 'R$ 2,20');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-unit-price\"]', '(R$ 2,20 un)');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-total-value\"]', 'R$ 2,20');",
+              "err": {},
+              "uuid": "8695c4b2-8206-4efb-ae9a-4dc7756e4bb3",
+              "parentUUID": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível excluir um produto no checkout",
+              "fullTitle": "6 - Criar tela de checkout Será validado que é possível excluir um produto no checkout",
+              "timedOut": null,
+              "duration": 1222,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginAndAddProductInCart)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-removal-button\"]');\n(0, _actionBase.clickButton)('[data-testid=\"0-removal-button\"]');\n(0, _actionBase.verifyContainsText)('Não há produtos no carrinho');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-total-value\"]', 'R$ 0,00');",
+              "err": {},
+              "uuid": "c407780a-6556-452d-b1d2-543c2dc44b94",
+              "parentUUID": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível o botão finalizar pedido ficar habilitado apenas quando tiver produto maior que zero e rua e numero preenchidos",
+              "fullTitle": "6 - Criar tela de checkout Será validado que é possível o botão finalizar pedido ficar habilitado apenas quando tiver produto maior que zero e rua e numero preenchidos",
+              "timedOut": null,
+              "duration": 1550,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginAndAddProductInCart)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.verifyElementIsDisable)('[data-testid=\"checkout-finish-btn\"]');\n(0, _actionBase.insertText)('[data-testid=\"checkout-street-input\"]', 'Rua da pinga');\n(0, _actionBase.insertText)('[data-testid=\"checkout-house-number-input\"]', '2');\n(0, _actionBase.verifyElementNotContainsAttribute)('[data-testid=\"checkout-finish-btn\"]', 'disable');",
+              "err": {},
+              "uuid": "d5017131-a16d-4826-8893-b1ee9e349c17",
+              "parentUUID": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível fazer a compra de um produto e ao finalizar ver a mensagem de sucesso e  ser redirecionado para tela de produtos",
+              "fullTitle": "6 - Criar tela de checkout Será validado que é possível fazer a compra de um produto e ao finalizar ver a mensagem de sucesso e  ser redirecionado para tela de produtos",
+              "timedOut": null,
+              "duration": 3575,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginAndAddProductInCart)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.insertText)('[data-testid=\"checkout-street-input\"]', 'Rua da pinga');\n(0, _actionBase.insertText)('[data-testid=\"checkout-house-number-input\"]', '2');\n(0, _actionBase.clickButton)('[data-testid=\"checkout-finish-btn\"]');\n(0, _actionBase.verifyContainsText)('Compra realizada com sucesso!');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/products\"));",
+              "err": {},
+              "uuid": "90d296b9-2342-499a-87bf-48e229b7b726",
+              "parentUUID": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível acessar o checkout sem estar logado e será redirecionado para tela de login",
+              "fullTitle": "6 - Criar tela de checkout Será validado que não é possível acessar o checkout sem estar logado e será redirecionado para tela de login",
+              "timedOut": null,
+              "duration": 333,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"\".concat(Cypress.config().baseUrl, \"/checkout\"));\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {},
+              "uuid": "fe2d8eb3-98e9-4d5c-9e00-64f3bf70115d",
+              "parentUUID": "adcb14a8-a756-4979-857f-bd2fe7c9f153",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1a82c905-ba97-4c07-a2c2-2dd2b55468f3",
+            "9e9a96c8-0515-43f1-ab83-f9feb10bd8cc",
+            "f0259145-0c67-44fd-8d00-e9a4dc847eb3",
+            "8695c4b2-8206-4efb-ae9a-4dc7756e4bb3",
+            "c407780a-6556-452d-b1d2-543c2dc44b94",
+            "d5017131-a16d-4826-8893-b1ee9e349c17",
+            "90d296b9-2342-499a-87bf-48e229b7b726",
+            "fe2d8eb3-98e9-4d5c-9e00-64f3bf70115d"
+          ],
+          "failures": [
+            "fb06d3f8-8136-4f96-814d-490ddba4e3a4"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 20040,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-05-17T17:06:42.029Z",
+    "end": "2021-05-17T17:06:58.160Z",
+    "duration": 16131,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "82bb1b69-106f-499b-a173-8cd4741ef19e",
+      "title": "",
+      "fullFile": "cypress/integration/req04-profileClient.spec.js",
+      "file": "cypress/integration/req04-profileClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d559c9a1-09f7-4100-9211-6e4ad02dfb82",
+          "title": "4 - Criar tela de perfil do cliente",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela de perfil do cliente",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que é possível acessar a tela de perfil do cliente",
+              "timedOut": null,
+              "duration": 7209,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/profile\"));",
+              "err": {},
+              "uuid": "65bc1556-9ebd-4391-aa6e-9d08d7d4b84e",
+              "parentUUID": "d559c9a1-09f7-4100-9211-6e4ad02dfb82",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 1153,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyElementVisible)('[data-testid=\"profile-name-input\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"profile-email-input\"]');\n(0, _actionBase.verifyContainsText)('Salvar');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"profile-save-btn\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"top-title\"]', 'Meu perfil');",
+              "err": {},
+              "uuid": "269f1f7f-d45a-44bf-b874-f7391181e43a",
+              "parentUUID": "d559c9a1-09f7-4100-9211-6e4ad02dfb82",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que campo email está como readonly",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que campo email está como readonly",
+              "timedOut": null,
+              "duration": 1056,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyElementContainsAttribute)('[data-testid=\"profile-email-input\"]', 'readonly');",
+              "err": {},
+              "uuid": "5da3c867-2cfb-4cc5-ac79-7c2d49839db0",
+              "parentUUID": "d559c9a1-09f7-4100-9211-6e4ad02dfb82",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que o botão salvar fique desabilitado caso não altere o nome",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que o botão salvar fique desabilitado caso não altere o nome",
+              "timedOut": null,
+              "duration": 1106,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyElementIsDisable)('[data-testid=\"profile-save-btn\"]');",
+              "err": {},
+              "uuid": "ae180493-e718-49dc-8f80-3c4d179e60bc",
+              "parentUUID": "d559c9a1-09f7-4100-9211-6e4ad02dfb82",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que o botão salvar fique habilitado caso altere o nome",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que o botão salvar fique habilitado caso altere o nome",
+              "timedOut": null,
+              "duration": 1581,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[data-testid=\"profile-name-input\"]').clear().type('testebatitaosilva');\n(0, _actionBase.verifyElementNotContainsAttribute)('[data-testid=\"profile-save-btn\"]', 'disable');",
+              "err": {},
+              "uuid": "f9df8b10-3cf0-4622-8451-2aabedbdd1fe",
+              "parentUUID": "d559c9a1-09f7-4100-9211-6e4ad02dfb82",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível alterar o nome com sucesso",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que é possível alterar o nome com sucesso",
+              "timedOut": null,
+              "duration": 1638,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[data-testid=\"profile-name-input\"]').clear().type('testebatitaosilva');\n(0, _actionBase.clickButton)('[data-testid=\"profile-save-btn\"]');\n(0, _actionBase.verifyContainsText)('Atualização concluída com sucesso');",
+              "err": {},
+              "uuid": "f79df57b-b7f0-4c43-9b9f-2271b9c62537",
+              "parentUUID": "d559c9a1-09f7-4100-9211-6e4ad02dfb82",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "65bc1556-9ebd-4391-aa6e-9d08d7d4b84e",
+            "269f1f7f-d45a-44bf-b874-f7391181e43a",
+            "5da3c867-2cfb-4cc5-ac79-7c2d49839db0",
+            "ae180493-e718-49dc-8f80-3c4d179e60bc",
+            "f9df8b10-3cf0-4622-8451-2aabedbdd1fe",
+            "f79df57b-b7f0-4c43-9b9f-2271b9c62537"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13743,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

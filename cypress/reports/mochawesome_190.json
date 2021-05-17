@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-05-17T17:10:20.915Z",
+    "end": "2021-05-17T17:10:35.673Z",
+    "duration": 14758,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "6218bf6e-3f17-49c1-9cae-f2c8c81c7e18",
+      "title": "",
+      "fullFile": "cypress/integration/req09-menuAdmin.spec.js",
+      "file": "cypress/integration/req09-menuAdmin.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2952f265-30a3-4e9a-9445-8709702ef6cf",
+          "title": "9 - Criar menu side bar para administrador",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que o sidebar devem ser mostrados conforme protótipos",
+              "fullTitle": "9 - Criar menu side bar para administrador Será validado que o sidebar devem ser mostrados conforme protótipos",
+              "timedOut": null,
+              "duration": 9314,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-profile\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-logout\"]');",
+              "err": {},
+              "uuid": "c2d1825f-1c76-474d-a0c0-656e8d66a54d",
+              "parentUUID": "2952f265-30a3-4e9a-9445-8709702ef6cf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no menu meus pedidos será redirecionado para tela de meus pedidos",
+              "fullTitle": "9 - Criar menu side bar para administrador Será validado que ao clicar no menu meus pedidos será redirecionado para tela de meus pedidos",
+              "timedOut": null,
+              "duration": 879,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/orders\"));",
+              "err": {},
+              "uuid": "6758afde-3488-4099-b8a9-28f03ecb1b6d",
+              "parentUUID": "2952f265-30a3-4e9a-9445-8709702ef6cf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no menu Perfil será redirecionado para tela de Perfil",
+              "fullTitle": "9 - Criar menu side bar para administrador Será validado que ao clicar no menu Perfil será redirecionado para tela de Perfil",
+              "timedOut": null,
+              "duration": 862,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-profile\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/profile\"));",
+              "err": {},
+              "uuid": "18572b2f-8b76-466c-804d-83e7afe96291",
+              "parentUUID": "2952f265-30a3-4e9a-9445-8709702ef6cf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no menu sair será redirecionado para tela home",
+              "fullTitle": "9 - Criar menu side bar para administrador Será validado que ao clicar no menu sair será redirecionado para tela home",
+              "timedOut": null,
+              "duration": 935,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-logout\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {},
+              "uuid": "c6fde0c9-cc26-43f5-8985-9d07b07d031e",
+              "parentUUID": "2952f265-30a3-4e9a-9445-8709702ef6cf",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c2d1825f-1c76-474d-a0c0-656e8d66a54d",
+            "6758afde-3488-4099-b8a9-28f03ecb1b6d",
+            "18572b2f-8b76-466c-804d-83e7afe96291",
+            "c6fde0c9-cc26-43f5-8985-9d07b07d031e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11990,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

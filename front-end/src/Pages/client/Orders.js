@@ -43,18 +43,18 @@ function Orders() {
           { sales.map((order, index) => (
             <div key={ index }>
               <Link to={ `orders/${order.id}` }>
-                <span data-testid={ `${index}-order-number` }>
+                <div data-testid={ `${index}-order-number` }>
                   Pedido
-                  { ` - ${order.id}` }
-                </span>
-                <span data-testid={ ` - ${index}-order-date` }>
+                  { ` ${order.id}` }
+                </div>
+                <div data-testid={ `${index}-order-date` }>
                   {dataFormat(order.sale_date)}
-                </span>
-                <span data-testid={ ` - ${index}-order-total-value` }>
+                </div>
+                <div data-testid={ `${index}-order-total-value` }>
                   R$
                   {' '}
                   {order.total_price.replaceAll('.', ',')}
-                </span>
+                </div>
                 <hr />
               </Link>
             </div>

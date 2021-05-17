@@ -28,25 +28,22 @@ function Checkout() {
   }
 
   useEffect(() => {
-    // postman
-    const myHeaders = new Headers();
-    myHeaders.append('Authorization', localStorage.getItem('user').token);
-
-    const requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow',
-    };
-
-    fetch('http://localhost:3001/products', requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setProducts(result);
-        setIsLoading(false);
-      })
-      .catch((error) => console.log('error', error));
-
-    // postman
+    if (localStorage.getItem('user')) {
+      const myHeaders = new Headers();
+      myHeaders.append('Authorization', localStorage.getItem('user').token);
+      const requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow',
+      };
+      fetch('http://localhost:3001/products', requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          setProducts(result);
+          setIsLoading(false);
+        })
+        .catch((error) => console.log('error', error));
+    }
   }, []);
 
   useEffect(() => {

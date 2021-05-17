@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, Link} from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import SideBarAdm from '../../Components/SidebarAdm';
 
 function AdmOrders() {

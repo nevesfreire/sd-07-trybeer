@@ -1,0 +1,219 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-05-17T18:21:16.146Z",
+    "end": "2021-05-17T18:21:31.635Z",
+    "duration": 15489,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c28015cc-231b-440a-a7ad-757de3e06d4c",
+      "title": "",
+      "fullFile": "cypress/integration/req03-menuClient.spec.js",
+      "file": "cypress/integration/req03-menuClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c993892f-aaa2-441b-bc4a-deac755ac941",
+          "title": "3 - Crie o menu top e menu side bar",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que os atributos do top menu devem ser mostrados confome protótipos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que os atributos do top menu devem ser mostrados confome protótipos",
+              "timedOut": null,
+              "duration": 7842,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyElementVisible)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"top-title\"]', 'TryBeer');\n(0, _actionBase.verifyElementNotVisible)('.side-menu-container');",
+              "err": {},
+              "uuid": "81494597-b275-493b-9cab-54303b056331",
+              "parentUUID": "c993892f-aaa2-441b-bc4a-deac755ac941",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no componente hamburguer o sidebar deve ficar visível",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no componente hamburguer o sidebar deve ficar visível",
+              "timedOut": null,
+              "duration": 1060,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.verifyElementVisible)('.side-menu-container');",
+              "err": {},
+              "uuid": "89cc01c9-b8fe-4712-96a3-9b3aebee061d",
+              "parentUUID": "c993892f-aaa2-441b-bc4a-deac755ac941",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que os atributos do side menu devem ser mostrados confome protótipos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que os atributos do side menu devem ser mostrados confome protótipos",
+              "timedOut": null,
+              "duration": 1049,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-products\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-my-orders\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-my-profile\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-logout\"]');",
+              "err": {},
+              "uuid": "fbae4ebf-5d14-4c68-8741-76c6ec6412c2",
+              "parentUUID": "c993892f-aaa2-441b-bc4a-deac755ac941",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"produtos\" será redirecionado para tela de produtos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"produtos\" será redirecionado para tela de produtos",
+              "timedOut": null,
+              "duration": 1064,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-products\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/products\"));",
+              "err": {},
+              "uuid": "df2173d5-56b3-452d-8f41-cf5a12af34c4",
+              "parentUUID": "c993892f-aaa2-441b-bc4a-deac755ac941",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"meus pedidos\" será redirecionado para tela de meus pedidos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"meus pedidos\" será redirecionado para tela de meus pedidos",
+              "timedOut": null,
+              "duration": 1068,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-my-orders\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/orders\"));",
+              "err": {},
+              "uuid": "de10359c-0ddd-4829-a26a-c8b4d3c04e5e",
+              "parentUUID": "c993892f-aaa2-441b-bc4a-deac755ac941",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"meu perfil\" será redirecionado para tela de perfil",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"meu perfil\" será redirecionado para tela de perfil",
+              "timedOut": null,
+              "duration": 1042,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-my-profile\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/profile\"));",
+              "err": {},
+              "uuid": "7eecf272-4882-44e7-ae6d-d540be186f97",
+              "parentUUID": "c993892f-aaa2-441b-bc4a-deac755ac941",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"sair\" será redirecionado para tela home",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"sair\" será redirecionado para tela home",
+              "timedOut": null,
+              "duration": 1175,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-logout\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {},
+              "uuid": "abef6cdc-f726-40b0-bb15-da1c4217262d",
+              "parentUUID": "c993892f-aaa2-441b-bc4a-deac755ac941",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "81494597-b275-493b-9cab-54303b056331",
+            "89cc01c9-b8fe-4712-96a3-9b3aebee061d",
+            "fbae4ebf-5d14-4c68-8741-76c6ec6412c2",
+            "df2173d5-56b3-452d-8f41-cf5a12af34c4",
+            "de10359c-0ddd-4829-a26a-c8b4d3c04e5e",
+            "7eecf272-4882-44e7-ae6d-d540be186f97",
+            "abef6cdc-f726-40b0-bb15-da1c4217262d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 14300,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}
