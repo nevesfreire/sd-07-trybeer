@@ -5,6 +5,7 @@ const validateFieldsProductsSales = async (saleId, shopCart) => {
 
   const arrayPromises = shopCart.map((product) => {
     const productsSales = model.createProductsSales(saleId, product.id, product.qtd);
+    
     if (!productsSales) throw new Error('invalid productsSales');
     
     return productsSales;
