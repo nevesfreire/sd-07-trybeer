@@ -1,16 +1,8 @@
 const salesProductModel = require('../models/SalesProduct');
 
-const getOrderByUserService = async (id) => {
-  const result = salesProductModel.getSalesProductByUserId(id);
-  console.log(`Order service: ${result}`);
-  return result;
-};
+const getOrderByUserService = async (id) => salesProductModel.getSalesProductByUserId(id);
 
-const getOrderBySaleId = async (id) => {
-  const result = salesProductModel.getSalesProductBySaleId(id);
-  console.log(`Order service: ${result}`);
-  return result;
-};
+const getOrderBySaleId = async (id) => salesProductModel.getSalesProductBySaleId(id);
 
 module.exports = {
   getOrderByUserService,
