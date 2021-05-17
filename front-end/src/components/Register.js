@@ -53,8 +53,8 @@ const ComponentRegister = () => {
         body: JSON.stringify({ ...payload }),
       });
       const registraingData = await registraingResult.json();
-      setUser(registraingData);
-      return api
+      await setUser(registraingData);
+      api
         .post('/login', params)
         .then((dataUser) => {
           localStorage.setItem('token', dataUser.data.token);
