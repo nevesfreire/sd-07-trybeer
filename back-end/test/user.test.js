@@ -157,49 +157,56 @@ describe('Test for user registration route with Administrator profile', () => {
       .post('/user');
     expect(res.statusCode).toBe(ERROR);
     expect(res.body).toEqual(objError);
-    connection.end();
     done();
   });
 });
 
-// describe('Teste rota para atualizar o nome do usuario', () => {
-//   const OK = 200;
-//   const ERRORUPDATE = 204;
-//   const ERROR = 401;
-  
-//   it('Deve retornar erro, caso usuario não esteja logado', async (done) => {
-//     const objError = { message: 'missing auth token' };
-//     const res = await request(app)
-//       .put('/user/:id')
-//     expect(res.statusCode).toBe(ERROR);
-//     expect(res.body).toEqual(objError);
-//     connection.end();
-//     done();
-//   });
+describe('Auth required', () => {
+  let token;
+  const OK = 200;
+  it('logando', async (done) => {
+    const OK = 200;
+    const res = await request(app).post('/login').send({
+        email: 'user@test.com',
+        password: 'test123',
+      });
+    expect(res.statusCode).toBe(OK);
+    expect(res.body).toHaveProperty('token');
+    token = res.body.token;
+    done();
+  });
+  it('User name must be updated', async (done) => {
+    const res = await request(app).put(`/user/${2}`)
+      .set('Authorization', token)
+      .send({
+        name: 'Alterando o nome do user',
+        email: 'user@test.com'
+      })
+    expect(res.statusCode).toBe(OK);
+    done();
+  });
+  it('Nome do usuario deve possuir ao menos 12 caracteres', async (done) => {
+    const ERROR = 406;
+    const res = await request(app).put(`/user/${2}`)
+      .set('Authorization', token)
+      .send({
+        name: 'Alterando',
+        email: 'user@test.com'
+      })
+    console.log(res.body)
+    expect(res.statusCode).toBe(ERROR);
+    done();
+  });
+});
 
-//   // it('Deve atualizar o nome do usuario', async (done) => {
-
-//   //   // { name: 'testuser',
-//   //   //     email: 'user@test.com',
-//   //   //     token:
-//   //   //      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAdGVzdC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWQiOjIsImlhdCI6MTYyMTE2ODQzMCwiZXhwIjoxNjIxMTcyMDMwfQ.x3h36xYnR3oELHwvTs1FmlQ2SuJRWVCxDGAOiHirnBU',
-//   //   //     role: 'client',
-//   //   //     id: 2 }
-
-//   //   const res = await request(app).post('/login').send({
-//   //     email: 'user@test.com',
-//   //     password: 'test123',
-//   //   });
-
-//   //   const res1 = await request(app).put(`/user/${2}`)
-//   //     .send({
-//   //       name: 'Alterando o nome do user',
-//   //       email: 'user@test.com'
-//   //     })
-//   //     .set(res.token);
-  
-//   //   expect(res1.statusCode).toBe(OK);
-//   //   connection.end();
-//   //   done();
-//   // });
-// })
+describe('User not logged in', () => {
+  const ERRORTOKEN = 401;
+  it('Should return error, if user is not logged in', async (done) => {
+    const objError = { message: 'missing auth token' };
+    const res = await request(app)
+      .put(`/user/${2}`)
+    expect(res.statusCode).toBe(ERRORTOKEN);
+    connection.end();
+    done();
+  });
+});

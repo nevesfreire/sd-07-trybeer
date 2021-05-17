@@ -2,7 +2,7 @@ const userService = require('../services/userService');
 
 const OK = 200;
 const CREATE = 201;
-const ERRORUPDATE = 204;
+const ERRORUPDATE = 406;
 const ERRORVALIDATE = 400;
 const CONFLICT = 409;
 
@@ -17,7 +17,7 @@ const userCreate = async (request, response) => {
     );
     return response.status(CREATE).json({ user });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
 
     const { message } = error;
     if (message.includes('registered')) {
@@ -35,10 +35,8 @@ const userUpdate = async (request, response) => {
     return response.status(OK).json(user);
   } catch (error) {
     console.error(error);
-    if (message.includes('Invalid entries')) {
-      return response.status(ERRORVALIDATE).json({ message });
-    }
-    response.status(ERRORUPDATE).json({ message: error.message });
+    const { message } = error;
+    response.status(ERRORUPDATE).json({ message });
   }
 };
 
