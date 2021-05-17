@@ -72,8 +72,8 @@ const ComponentRegister = () => {
 
   return (
     <FormControl className="form-registration">
-      {user.role === 'administrator' && logged && <Redirect to="/admin/orders" />}
-      {user.role === 'client' && logged && <Redirect to="/products" />}
+      {logged && user.role === 'administrator' && <Redirect to="/admin/orders" />}
+      {logged && user.role === 'client' && <Redirect to="/products" />}
       <h1>Cadastro</h1>
       <TextField
         id="userName"
