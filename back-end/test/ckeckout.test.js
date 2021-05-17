@@ -23,13 +23,4 @@ describe('Testar a rota de checkout', () => {
       connection.end();
       done();
   });
-  it('Deve criar checkout sale', async () => {
-    const res = await request(app)
-      .post('/checkout')
-      .send({
-        
-      })
-  })
-
-
 });
