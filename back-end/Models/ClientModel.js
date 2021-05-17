@@ -43,11 +43,10 @@ const token = (user) => {
 };
 
 const newUser = async (newName, newEmail, newPassword, newRole) => {
-
   connect
   .execute(`INSERT INTO users ( name, email, password, role) VALUES
   (?, ?, ?, ?)`, [newName, newEmail, newPassword, newRole]);
-  console.log('passou 8')
+  // console.log('passou 8')
   return { code: 200, message: 'usuario cadastrado com sucesso', newRole };
 };
 

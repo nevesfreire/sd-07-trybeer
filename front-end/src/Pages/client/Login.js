@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 function Login() {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
@@ -51,7 +50,7 @@ function Login() {
 
   useEffect(() => {
     localStorage.clear();
-  }, [])
+  }, []);
 
   return (
     <div>

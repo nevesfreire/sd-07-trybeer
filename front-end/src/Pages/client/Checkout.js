@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import Header from "../../Components/Header";
+import React, { useState, useEffect } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import Header from '../../Components/Header';
 // import trybeerContext from '../../Context/TrybeerContext';
 
 function Checkout() {
   // const { products, setProducts } = useContext(trybeerContext);
   const [products, setProducts] = useState([]);
   const num = 0;
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')));
   const [total, setTotal] = useState(num);
   // const [rua, setRua] = useState("r10");
   // const [numero, setNumero] = useState("123");
-  const [rua, setRua] = useState("");
-  const [numero, setNumero] = useState("");
+  const [rua, setRua] = useState('');
+  const [numero, setNumero] = useState('');
   const [sucesso, setSucesso] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,21 +30,21 @@ function Checkout() {
   useEffect(() => {
     // postman
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", localStorage.getItem("user").token);
+    myHeaders.append('Authorization', localStorage.getItem('user').token);
 
     const requestOptions = {
-      method: "GET",
+      method: 'GET',
       headers: myHeaders,
-      redirect: "follow",
+      redirect: 'follow',
     };
 
-    fetch("http://localhost:3001/products", requestOptions)
+    fetch('http://localhost:3001/products', requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setProducts(result);
         setIsLoading(false);
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
 
     // postman
   }, []);
@@ -52,18 +52,17 @@ function Checkout() {
   useEffect(() => {
     const valorInicial = 0;
     const sum = products.reduce(
-      (accumulator, prod) =>
-        parseFloat(accumulator + prod.price * getQtd(prod.id)),
-      valorInicial
+      (accumulator, prod) => parseFloat(accumulator + prod.price * getQtd(prod.id)),
+      valorInicial,
     );
-
     setTotal(sum);
-    if (localStorage.getItem("cart") === null) setCart([]);
+
+    if (localStorage.getItem('cart') === null) setCart([]);
 
     setIsLoading(false);
   }, [products]);
 
-  if (localStorage.getItem("user") === null) {
+  if (localStorage.getItem('user') === null) {
     return <Redirect to="/login" />;
   }
 
@@ -72,14 +71,12 @@ function Checkout() {
     const add = cart.find((product) => product.id === id);
     add.qtd = 0;
     setCart([...cart.filter((product) => product.id !== id), add]);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
     const valorInicial = 0;
     const sum = products.reduce(
-      (accumulator, prod) =>
-        parseFloat(accumulator + prod.price * getQtd(prod.id)),
-      valorInicial
+      (accumulator, prod) => parseFloat(accumulator + prod.price * getQtd(prod.id)),
+      valorInicial,
     );
-
     setTotal(sum);
   }
 
@@ -104,9 +101,9 @@ function Checkout() {
       }
       return array;
     };
-    const user = JSON.parse(localStorage.getItem("user"));
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    localStorage.setItem("cart", JSON.stringify(initialCart()));
+    const user = JSON.parse(localStorage.getItem('user'));
+    const cartt = JSON.parse(localStorage.getItem('cart'));
+    localStorage.setItem('cart', JSON.stringify(initialCart()));
 
     const data = {
       infoUser: {
@@ -115,74 +112,84 @@ function Checkout() {
         deliveryNumber: numero,
       },
       totalPrice: total,
-      products: cart,
+      products: cartt,
     };
-
-    console.log(data);
-
-
-
-    fetch("http://localhost:3001/savedSale", {
-      method: "POST",
+    fetch('http://localhost:3001/savedSale', {
+      method: 'POST',
       headers: {
-        "Content-type": "application/json",
-        'Authorization': user.token,
+        'Content-type': 'application/json',
+        Authorization: user.token,
       },
       body: JSON.stringify(data),
     }).then((response) => response.text())
       .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
 
     setSucesso(true);
     setTimeout(() => {
-      history.push("/products");
+      history.push('/products');
     }, time);
   }
 
   return (
     <div>
-      {isLoading || products.length === 0 ? (
+      { isLoading || products.length === 0 ? (
         <div>carregando</div>
       ) : (
         <div>
           <h1>Aqui é Checkout</h1>
           <Header />
-          {total === 0 && <div>Não há produtos no carrinho</div>}
-          {cart
+          { total === 0 && <div>Não há produtos no carrinho</div> }
+          { cart
             .filter((product) => product.qtd !== 0)
             .map((product, index) => (
-              <div key={index}>
-                ID: {product.id}
-                <div data-testid={`${index}-product-qtd-input`}>
-                  Quantidade: {product.qtd}
+              <div key={ index }>
+                ID:
+                {' '}
+                { product.id }
+                <div data-testid={ `${index}-product-qtd-input` }>
+                  Quantidade:
+                  {' '}
+                  { product.qtd }
                 </div>
-                <div data-testid={`${index}-product-name`}>
-                  {product.name} --{" "}
+                <div data-testid={ `${index}-product-name` }>
+                  { product.name }
+                  {' -- '}
                 </div>
-                Preço Unitário:{" "}
-                <div data-testid={`${index}-product-unit-price`}>
-                  (R$ {product.price.replaceAll(".", ",")} un) --{" "}
+                Preço Unitário:
+                {' '}
+                <div data-testid={ `${index}-product-unit-price` }>
+                  (R$
+                  {' '}
+                  { product.price.replaceAll('.', ',') }
+                  {' un) -- '}
                 </div>
-                Preço Total:{" "}
-                <div data-testid={`${index}-product-total-value`}>
-                  R${" "}
-                  {parseFloat(product.qtd * product.price)
-                    .toFixed(2)
-                    .replaceAll(".", ",")}
+                Preço Total:
+                {' '}
+                <div data-testid={ `${index}-product-total-value` }>
+                  R$
+                  {' '}
+                  {
+                    parseFloat(product.qtd * product.price)
+                      .toFixed(2)
+                      .replaceAll('.', ',')
+                  }
                 </div>
                 <button
                   type="button"
-                  data-testid={`${index}-removal-button`}
-                  name={product.id}
-                  onClick={del}
+                  data-testid={ `${index}-removal-button` }
+                  name={ product.id }
+                  onClick={ del }
                 >
-                  excluir ID: {product.id}
+                  excluir ID:
+                  { ` ${product.id}` }
                 </button>
               </div>
             ))}
-          Total:{" "}
+          Total:
           <div data-testid="order-total-value">
-            R$ {total.toFixed(2).replaceAll(".", ",")}
+            R$
+            { ` ${total.toFixed(2).replaceAll('.', ',')}`}
           </div>
           <label htmlFor="rua-input">
             rua
@@ -191,7 +198,7 @@ function Checkout() {
               type="text"
               name="rua"
               // value={rua}
-              onChange={ruaHandle}
+              onChange={ ruaHandle }
             />
           </label>
           <label htmlFor="numero-input">
@@ -201,13 +208,13 @@ function Checkout() {
               type="number"
               name="numero"
               // value={numero}
-              onChange={numeroHandle}
+              onChange={ numeroHandle }
             />
           </label>
           <button
             type="button"
-            disabled={total === 0 || rua === "" || numero === ""}
-            onClick={finalizar}
+            disabled={ total === 0 || rua === '' || numero === '' }
+            onClick={ finalizar }
             data-testid="checkout-finish-btn"
           >
             Finalizar Pedido

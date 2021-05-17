@@ -33,8 +33,7 @@ function Products() {
         setProducts(products1);
         setCart(initialCart());
         setIsLoading(false);
-      })
-
+      });
   }, [products]);
 
   function getQtd(id) {
@@ -57,9 +56,8 @@ function Products() {
   function sumTotal(products1) {
     const valorInicial = 0;
     const sum = products1.reduce(
-      (accumulator, prod) =>
-        parseFloat(accumulator + prod.price * getQtd(prod.id)),
-      valorInicial
+      (accumulator, prod) => parseFloat(accumulator + prod.price * getQtd(prod.id)),
+      valorInicial,
     );
     setTotal(sum);
   }
@@ -85,56 +83,60 @@ function Products() {
     sumTotal(products);
   }
   if (!localStorage.getItem('user') && !localStorage.getItem('cadUser')) {
-    return <Redirect to='/login' />;
+    return <Redirect to="/login" />;
   }
   return (
     <div>
       {!logado ? (
-        <Redirect to='/login' />
+        <Redirect to="/login" />
       ) : (
         <div>
           <Header />
-          <h1 data-testid='top-title'>Products</h1>
+          <h1 data-testid="top-title">Products</h1>
           <hr />
-          {isLoading ? (
+          { isLoading ? (
             <p>carregando</p>
           ) : (
             products.map((e, index) => (
-              <div className='App' key={e.id}>
+              <div className="App" key={ e.id }>
                 <img
-                  data-testid={`${index}-product-img`}
-                  src='Becks.jpg'
-                  alt='Becks.jpg'
+                  data-testid={ `${index}-product-img` }
+                  src="Becks.jpg"
+                  alt="Becks.jpg"
                 />
-                <div>{e.url_image}</div>
-                <div data-testid={`${index}-product-name`}>{e.name}</div>
-                <div data-testid={`${index}-product-price`}>
-                  R$ {e.price.replaceAll('.', ',')}
+                <div>{ e.url_image }</div>
+                <div data-testid={ `${index}-product-name` }>{ e.name }</div>
+                <div data-testid={ `${index}-product-price` }>
+                  R$
+                  {' '}
+                  {
+                    e.price.replaceAll('.', ',')
+                  }
                 </div>
                 <button
-                  type='button'
-                  data-testid={`${index}-product-plus`}
-                  name={'plus '.concat(e.id)}
-                  onClick={() => {
+                  type="button"
+                  data-testid={ `${index}-product-plus` }
+                  name={ 'plus '.concat(e.id) }
+                  onClick={ () => {
                     addQuantity(e.id);
-                  }}
+                  } }
                 >
                   +
                 </button>
                 <span
-                  data-testid={`${index}-product-qtd`}
-                  type='number'
-                  name={'quantity'.concat(e.id)}
+                  data-testid={ `${index}-product-qtd` }
+                  type="number"
+                  name={ 'quantity'.concat(e.id) }
                 >
                   {getQtd(e.id)}
                 </span>
                 <button
-                  type='button'
-                  data-testid={`${index}-product-minus`}
-                  name={'plus '.concat(e.id)}
-                  onClick={() => {
+                  type="button"
+                  data-testid={ `${index}-product-minus` }
+                  name={ 'plus '.concat(e.id) }
+                  onClick={ () => {
                     subQuantity(e.id);
-                  }}
+                  } }
                 >
                   -
                 </button>
@@ -143,17 +145,18 @@ function Products() {
             ))
           )}
           <button
-            type='button'
-            disabled={total === 0}
-            data-testid='checkout-bottom-btn'
-            onClick={() => {
+            type="button"
+            disabled={ total === 0 }
+            data-testid="checkout-bottom-btn"
+            onClick={ () => {
               history.push('/checkout');
-            }}
+            } }
           >
             <div>
               Ver Carrinho
               <div data-testid="checkout-bottom-btn-value">
-                R${' '}
+                R$
+                {' '}
                 {
                   parseFloat(total).toFixed(2).replaceAll('.', ',')
                 }

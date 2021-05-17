@@ -29,9 +29,9 @@ const addUser = async (req, res) => {
   console.log('passou 1');
   try {
     const { newName, newEmail, newPassword, newRole } = req.body;
-    console.log('passou 3')
+    // console.log('passou 3')
     const newUser = await cadUser(newName, newEmail, newPassword, newRole);
-    console.log('passou 4')
+    // console.log('passou 4')
     return res.status(resOK).json(newUser);
   } catch (err) {
     res.status(err.code).json({ message: err.message });

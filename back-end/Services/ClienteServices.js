@@ -8,11 +8,10 @@ const resLogin = async (email, password) => {
 };
 
 const cadUser = async (newName, newEmail, newPassword, newRole) => {
-
   const userOK = await ClientModel.getEmailUser(newEmail, newPassword);
-  console.log('passou 5')
+  // console.log('passou 5')
   if (userOK) return error3.message;
-  console.log('passou 6')
+  // console.log('passou 6')
   return ClientModel.newUser(newName, newEmail, newPassword, newRole);
 };
 
@@ -30,7 +29,7 @@ const savSale = async (infoUser, totalPrice, products) => {
     totalPrice,
     products,
   );
-}
+};
 
 const salesAll = async (id) => ClientModel.salesA(id);
 
