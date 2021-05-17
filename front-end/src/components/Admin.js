@@ -1,9 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+// import { Redirect } from 'react-router-dom';
+import OrderCardAdmin from './OrderCardAdmin';
+import api from '../services/api';
+import '../css/orders.css';
 
-const Admin = () => (
-  <div className="footer-web">
-    <h1>Bem vindo a página de Admin ❤</h1>
-  </div>
-);
+const Admin = () => {
+  const [orders, setOrders] = useState([
+    {
+      id: 1,
+      sale_date: '10-12-2011',
+      total_price: '2,20',
+      delivery_address: 'Rua da pinga',
+      delivery_number: '2',
+      status: 'Pendente',
+    },
+  ]);
+
+  // const loggedUser = JSON.parse(localStorage.getItem('data')) || { id: null };
+
+  useEffect(() => {
+    const getAllOrdersByid = async () => {
+      api
+        .get('/orders')
+        .then((result) => setOrders(result.data))
+        .catch((err) => console.log(`error: ${err}`));
+    };
+    getAllOrdersByid();
+  }, []);
+
+  console.log(orders);
+  return (
+    <div className="container">
+      {/* {!loggedUser.id && <Redirect to="/login" />} */}
+      <div>
+        <div className="container-int">
+          <div className="myOrder-body">
+            {orders.map((actual, index) => (
+              <OrderCardAdmin
+                position={ index }
+                key={ actual.id }
+                orderId={ actual.id }
+                saleDate={ actual.sale_date }
+                totalPrice={ actual.total_price }
+                street={ actual.delivery_address }
+                houseNumber={ actual.delivery_number }
+                status={ actual.status }
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Admin;

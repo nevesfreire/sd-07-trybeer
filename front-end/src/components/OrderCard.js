@@ -21,7 +21,6 @@ const OrderCard = ({ id, saleDate, totalPrice, position }) => (
       </div>
     </Link>
   </div>
-
 );
 
 OrderCard.propTypes = {

@@ -24,18 +24,15 @@ const Orders = () => {
     id: loggedUser.id,
   };
 
-  const getAllOrdersByid = async () => {
-    api
-      .post(URL, params)
-      .then((result) => setOrders(result.data))
-      .catch((err) => console.log(`error: ${err}`));
-  };
-
   useEffect(() => {
-    console.log('chamou');
-    getAllOrdersByid()
-      .then((result) => console.log(`result do useEfect: ${result}`));
-  }, []);
+    const getAllOrdersByid = async () => {
+      api
+        .post(URL, params)
+        .then((result) => setOrders(result.data))
+        .catch((err) => console.log(`error: ${err}`));
+    };
+    getAllOrdersByid();
+  }, [URL, params]);
 
   return (
     <div className="container">
