@@ -1,0 +1,167 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 3,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-05-17T21:59:11.271Z",
+    "end": "2021-05-17T22:00:09.747Z",
+    "duration": 58476,
+    "testsRegistered": 4,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0ce9a036-c52f-4d76-a296-c111c9987816",
+      "title": "",
+      "fullFile": "cypress/integration/req11-ordersAdmin.spec.js",
+      "file": "cypress/integration/req11-ordersAdmin.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "cfc0a87a-0efd-495d-9458-81b70f4653e4",
+          "title": "11 - Criar tela de pedidos de admin",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do pedidos do administrador",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que é possível acessar a tela do pedidos do administrador",
+              "timedOut": null,
+              "duration": 10248,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/orders\"));",
+              "err": {},
+              "uuid": "c8179043-0a9c-4f0f-8ae2-105e34e09196",
+              "parentUUID": "cfc0a87a-0efd-495d-9458-81b70f4653e4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que a tela de pedidos contém os atributos descritos no protótipo",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que a tela de pedidos contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 7347,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-address\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-total-value\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-status\"]');",
+              "err": {},
+              "uuid": "8f2de442-e89e-4031-b256-d4f3fe22323f",
+              "parentUUID": "cfc0a87a-0efd-495d-9458-81b70f4653e4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que os dados do card estão corretos",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que os dados do card estão corretos",
+              "timedOut": null,
+              "duration": 10575,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-address\"]', 'Rua da pinga, 2');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-total-value\"]', 'R$ 2,20');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-status\"]', 'Pendente');",
+              "err": {},
+              "uuid": "da450dd2-096c-4d62-92ca-bfc29a8394e3",
+              "parentUUID": "cfc0a87a-0efd-495d-9458-81b70f4653e4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível clicar no card do produto e ser redirecionado para tela de detalhes do produto",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que é possível clicar no card do produto e ser redirecionado para tela de detalhes do produto",
+              "timedOut": null,
+              "duration": 19771,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/orders/1\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: expected 'http://localhost:3000/login' to include 'http://localhost:3000/admin/orders/1'",
+                "estack": "AssertionError: Timed out retrying: expected 'http://localhost:3000/login' to include 'http://localhost:3000/admin/orders/1'\n    at verifyContainsUrl (http://localhost:3000/__cypress/tests?p=cypress/integration/req11-ordersAdmin.spec.js:187:12)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req11-ordersAdmin.spec.js:377:39)",
+                "diff": null
+              },
+              "uuid": "da0b7027-a56a-473c-a495-4425caba2185",
+              "parentUUID": "cfc0a87a-0efd-495d-9458-81b70f4653e4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c8179043-0a9c-4f0f-8ae2-105e34e09196",
+            "8f2de442-e89e-4031-b256-d4f3fe22323f",
+            "da450dd2-096c-4d62-92ca-bfc29a8394e3"
+          ],
+          "failures": [
+            "da0b7027-a56a-473c-a495-4425caba2185"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 47941,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

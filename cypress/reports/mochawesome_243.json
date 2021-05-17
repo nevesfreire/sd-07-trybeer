@@ -1,0 +1,221 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 1,
+    "pending": 0,
+    "failures": 5,
+    "start": "2021-05-17T21:51:26.888Z",
+    "end": "2021-05-17T21:52:59.634Z",
+    "duration": 92746,
+    "testsRegistered": 6,
+    "passPercent": 16.666666666666664,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9390ab19-3b57-4b4c-995f-aa994dcd7ebf",
+      "title": "",
+      "fullFile": "cypress/integration/req08-orderDetailsClient.spec.js",
+      "file": "cypress/integration/req08-orderDetailsClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "be47634e-e884-46c4-a4c4-a2e52090d939",
+          "title": "8 - Criar tela de detalhes pedidos",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do detalhe do pedido",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível acessar a tela do detalhe do pedido",
+              "timedOut": null,
+              "duration": 20527,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/orders/1\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: expected 'http://localhost:3000/login' to include 'http://localhost:3000/orders/1'",
+                "estack": "AssertionError: Timed out retrying: expected 'http://localhost:3000/login' to include 'http://localhost:3000/orders/1'\n    at verifyContainsUrl (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:187:12)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:350:39)",
+                "diff": null
+              },
+              "uuid": "49e08650-59db-4918-81e0-23e85c2d9105",
+              "parentUUID": "be47634e-e884-46c4-a4c4-a2e52090d939",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 19799,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-date\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-qtd\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-name\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-total-value\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-total-value\"]');",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-title\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-title\"]`, but never found it.\n    at verifyElementVisible (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:175:19)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req08-orderDetailsClient.spec.js:357:42)",
+                "diff": null
+              },
+              "uuid": "b6042f0c-18c6-4732-8793-af28fdad8732",
+              "parentUUID": "be47634e-e884-46c4-a4c4-a2e52090d939",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver que tem número do pedido e a data da compra",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível ver que tem número do pedido e a data da compra",
+              "timedOut": null,
+              "duration": 8669,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "var date = (0, _actionBase.getDateAndMonth)();\n(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-date\"]', date);",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at addQuantity (http://localhost:3000/static/js/main.chunk.js:1576:5)\n    at onClick (http://localhost:3000/static/js/main.chunk.js:1705:7)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/0.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/0.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/0.chunk.js:6853:35)\n    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/0.chunk.js:6868:29)\n    at executeDispatch (http://localhost:3000/static/js/0.chunk.js:6953:7)\n    at executeDispatchesInOrder (http://localhost:3000/static/js/0.chunk.js:6978:9)\n    at executeDispatchesAndRelease (http://localhost:3000/static/js/0.chunk.js:9862:9)\n    at executeDispatchesAndReleaseTopLevel (http://localhost:3000/static/js/0.chunk.js:9871:14)\n    at forEachAccumulated (http://localhost:3000/static/js/0.chunk.js:9843:12)\n    at runEventsInBatch (http://localhost:3000/static/js/0.chunk.js:9888:7)\n    at runExtractedPluginEventsInBatch (http://localhost:3000/static/js/0.chunk.js:10098:7)\n    at handleTopLevel (http://localhost:3000/static/js/0.chunk.js:10142:9)\n    at batchedEventUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28288:16)\n    at batchedEventUpdates (http://localhost:3000/static/js/0.chunk.js:7360:16)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/0.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/0.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/0.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/0.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/0.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/0.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/0.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "75a4c6e8-20d8-4de2-bb96-424e15aafd0f",
+              "parentUUID": "be47634e-e884-46c4-a4c4-a2e52090d939",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver que o produto tem quantidade, nome e valor total do produto",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível ver que o produto tem quantidade, nome e valor total do produto",
+              "timedOut": null,
+              "duration": 9130,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-qtd\"]', '1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-name\"]', 'Skol Lata 250ml');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-total-value\"]', 'R$ 2,20');",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at addQuantity (http://localhost:3000/static/js/main.chunk.js:1576:5)\n    at onClick (http://localhost:3000/static/js/main.chunk.js:1705:7)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/0.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/0.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/0.chunk.js:6853:35)\n    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/0.chunk.js:6868:29)\n    at executeDispatch (http://localhost:3000/static/js/0.chunk.js:6953:7)\n    at executeDispatchesInOrder (http://localhost:3000/static/js/0.chunk.js:6978:9)\n    at executeDispatchesAndRelease (http://localhost:3000/static/js/0.chunk.js:9862:9)\n    at executeDispatchesAndReleaseTopLevel (http://localhost:3000/static/js/0.chunk.js:9871:14)\n    at forEachAccumulated (http://localhost:3000/static/js/0.chunk.js:9843:12)\n    at runEventsInBatch (http://localhost:3000/static/js/0.chunk.js:9888:7)\n    at runExtractedPluginEventsInBatch (http://localhost:3000/static/js/0.chunk.js:10098:7)\n    at handleTopLevel (http://localhost:3000/static/js/0.chunk.js:10142:9)\n    at batchedEventUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28288:16)\n    at batchedEventUpdates (http://localhost:3000/static/js/0.chunk.js:7360:16)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/0.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/0.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/0.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/0.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/0.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/0.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/0.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "53a2664b-ce79-4015-9fc5-ea1cd0ec68f8",
+              "parentUUID": "be47634e-e884-46c4-a4c4-a2e52090d939",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver o valor total do pedido",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que é possível ver o valor total do pedido",
+              "timedOut": null,
+              "duration": 9491,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyProducts)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-qtd\"]', '2');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-name\"]', 'Skol Lata 250ml');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-total-value\"]', 'R$ 4,40');",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at addQuantity (http://localhost:3000/static/js/main.chunk.js:1576:5)\n    at onClick (http://localhost:3000/static/js/main.chunk.js:1705:7)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/0.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/0.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/0.chunk.js:6853:35)\n    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/0.chunk.js:6868:29)\n    at executeDispatch (http://localhost:3000/static/js/0.chunk.js:6953:7)\n    at executeDispatchesInOrder (http://localhost:3000/static/js/0.chunk.js:6978:9)\n    at executeDispatchesAndRelease (http://localhost:3000/static/js/0.chunk.js:9862:9)\n    at executeDispatchesAndReleaseTopLevel (http://localhost:3000/static/js/0.chunk.js:9871:14)\n    at forEachAccumulated (http://localhost:3000/static/js/0.chunk.js:9843:12)\n    at runEventsInBatch (http://localhost:3000/static/js/0.chunk.js:9888:7)\n    at runExtractedPluginEventsInBatch (http://localhost:3000/static/js/0.chunk.js:10098:7)\n    at handleTopLevel (http://localhost:3000/static/js/0.chunk.js:10142:9)\n    at batchedEventUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28288:16)\n    at batchedEventUpdates (http://localhost:3000/static/js/0.chunk.js:7360:16)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/0.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/0.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/0.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/0.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/0.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/0.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/0.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "81d42f63-41cb-46ee-8351-2df22eba5cc9",
+              "parentUUID": "be47634e-e884-46c4-a4c4-a2e52090d939",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "fullTitle": "8 - Criar tela de detalhes pedidos Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "timedOut": null,
+              "duration": 7856,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"\".concat(Cypress.config().baseUrl, \"/orders/1\"));\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {},
+              "uuid": "7b691ab9-21ca-4492-9bfd-9b19ec2103fe",
+              "parentUUID": "be47634e-e884-46c4-a4c4-a2e52090d939",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7b691ab9-21ca-4492-9bfd-9b19ec2103fe"
+          ],
+          "failures": [
+            "49e08650-59db-4918-81e0-23e85c2d9105",
+            "b6042f0c-18c6-4732-8793-af28fdad8732",
+            "75a4c6e8-20d8-4de2-bb96-424e15aafd0f",
+            "53a2664b-ce79-4015-9fc5-ea1cd0ec68f8",
+            "81d42f63-41cb-46ee-8351-2df22eba5cc9"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 75472,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

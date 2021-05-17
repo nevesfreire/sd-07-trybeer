@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-
 function Register() {
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
@@ -11,7 +10,6 @@ function Register() {
   const [forAdm, setForAdm] = useState(false);
   const [userCad, setUserCad] = useState(false);
   const history = useHistory();
-
   const verifyData = () => {
     const six = 6;
     const doze = 12;
@@ -23,15 +21,12 @@ function Register() {
       && newPassword.length >= six) setIsDisable(false);
     else setIsDisable(true);
   };
-
   const saveInLocalStorage = (data) => {
     window.localStorage.setItem('cadUser', data.newRole);
     const role = localStorage.getItem('cadUser');
     if (role === 'client') setForClient(true);
-
     if (role === 'administrator') setForAdm(true);
   };
-
   const handleSubmit = async () => {
     const err = 'Já existe um usuário com esse e-mail.';
     fetch('http://localhost:3001/register', {
@@ -48,11 +43,9 @@ function Register() {
         saveInLocalStorage(data);
       });
   };
-
   useEffect(() => {
     verifyData();
-  }, [newName, newEmail, newPassword, newRole]);
-
+  }, [newName, newEmail, newPassword, newRole, verifyData]);
   return (
     <div>
       <label
@@ -74,7 +67,6 @@ function Register() {
         htmlFor="signup-email"
       >
         Email
-
         <input
           type="email"
           data-testid="signup-email"
@@ -123,5 +115,4 @@ function Register() {
     </div>
   );
 }
-
 export default Register;

@@ -1,0 +1,167 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 3,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-05-17T22:31:57.047Z",
+    "end": "2021-05-17T22:32:39.325Z",
+    "duration": 42278,
+    "testsRegistered": 4,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9dde855f-3f6d-454f-b830-83ab5aed04f3",
+      "title": "",
+      "fullFile": "cypress/integration/req11-ordersAdmin.spec.js",
+      "file": "cypress/integration/req11-ordersAdmin.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e93d85da-e303-4e4a-8fbc-2484d253ba21",
+          "title": "11 - Criar tela de pedidos de admin",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do pedidos do administrador",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que é possível acessar a tela do pedidos do administrador",
+              "timedOut": null,
+              "duration": 9126,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/orders\"));",
+              "err": {},
+              "uuid": "38efe3f5-55da-4ea4-b7c6-1b9158ff50a2",
+              "parentUUID": "e93d85da-e303-4e4a-8fbc-2484d253ba21",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que a tela de pedidos contém os atributos descritos no protótipo",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que a tela de pedidos contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 5162,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-address\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-total-value\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-status\"]');",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at addQuantity (http://localhost:3000/static/js/main.chunk.js:1572:5)\n    at onClick (http://localhost:3000/static/js/main.chunk.js:1701:7)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/0.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/0.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/0.chunk.js:6853:35)\n    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/0.chunk.js:6868:29)\n    at executeDispatch (http://localhost:3000/static/js/0.chunk.js:6953:7)\n    at executeDispatchesInOrder (http://localhost:3000/static/js/0.chunk.js:6978:9)\n    at executeDispatchesAndRelease (http://localhost:3000/static/js/0.chunk.js:9862:9)\n    at executeDispatchesAndReleaseTopLevel (http://localhost:3000/static/js/0.chunk.js:9871:14)\n    at forEachAccumulated (http://localhost:3000/static/js/0.chunk.js:9843:12)\n    at runEventsInBatch (http://localhost:3000/static/js/0.chunk.js:9888:7)\n    at runExtractedPluginEventsInBatch (http://localhost:3000/static/js/0.chunk.js:10098:7)\n    at handleTopLevel (http://localhost:3000/static/js/0.chunk.js:10142:9)\n    at batchedEventUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28288:16)\n    at batchedEventUpdates (http://localhost:3000/static/js/0.chunk.js:7360:16)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/0.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/0.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/0.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/0.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/0.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/0.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/0.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "2d263c83-67fa-454f-b167-089669fa05ab",
+              "parentUUID": "e93d85da-e303-4e4a-8fbc-2484d253ba21",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que os dados do card estão corretos",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que os dados do card estão corretos",
+              "timedOut": null,
+              "duration": 8606,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-address\"]', 'Rua da pinga, 2');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-total-value\"]', 'R$ 2,20');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-status\"]', 'Pendente');",
+              "err": {},
+              "uuid": "286ac297-3dcf-4fd4-a60f-f3cce4138882",
+              "parentUUID": "e93d85da-e303-4e4a-8fbc-2484d253ba21",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível clicar no card do produto e ser redirecionado para tela de detalhes do produto",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que é possível clicar no card do produto e ser redirecionado para tela de detalhes do produto",
+              "timedOut": null,
+              "duration": 9374,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/orders/1\"));",
+              "err": {},
+              "uuid": "1b948b99-6e03-4ae7-aace-6f6115195802",
+              "parentUUID": "e93d85da-e303-4e4a-8fbc-2484d253ba21",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "38efe3f5-55da-4ea4-b7c6-1b9158ff50a2",
+            "286ac297-3dcf-4fd4-a60f-f3cce4138882",
+            "1b948b99-6e03-4ae7-aace-6f6115195802"
+          ],
+          "failures": [
+            "2d263c83-67fa-454f-b167-089669fa05ab"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 32268,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

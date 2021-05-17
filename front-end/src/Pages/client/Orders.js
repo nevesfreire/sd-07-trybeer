@@ -29,7 +29,7 @@ function Orders() {
     }
   }, []);
 
-  if (localStorage.getItem('user') === null) {
+  if (!localStorage.getItem('user') && !localStorage.getItem('cadUser')) {
     return <Redirect to="/login" />;
   }
   return (
@@ -42,7 +42,7 @@ function Orders() {
         <div data-testid="0-order-card-container">
           { sales.map((order, index) => (
             <div key={ index }>
-              <Link to={ `orders/${order.id}` }>
+              <Link to={ `/orders/${order.id}` }>
                 <div data-testid={ `${index}-order-number` }>
                   Pedido
                   { ` ${order.id}` }

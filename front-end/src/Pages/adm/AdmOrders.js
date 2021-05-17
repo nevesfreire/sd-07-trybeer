@@ -4,6 +4,7 @@ import SideBarAdm from '../../Components/SidebarAdm';
 
 function AdmOrders() {
   const [sales, setSales] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [user] = useState(JSON.parse(localStorage.getItem('user')));
   useEffect(() => {
     if (user) {
@@ -14,24 +15,29 @@ function AdmOrders() {
         headers: myHeaders,
         redirect: 'follow',
       };
+      setIsLoading(true)
       fetch('http://localhost:3001/salesAdm', requestOptions)
         .then((response) => response.json())
-        .then((saless) => setSales(saless));
+        .then((saless) => {
+          setSales(saless);
+          setIsLoading(false);
+        });
+      
     }
   }, []);
 
-  if (localStorage.getItem('user') === null) return <Redirect to="/login" />;
+  if (!localStorage.getItem('user') && !localStorage.getItem('cadUser')) return <Redirect to="/login" />;
   return (
     <div>
       <h1>Aqui é pedido</h1>
       <SideBarAdm />
       <div data-testid="top-title">Meus Pedidos</div>
       <hr />
-      {sales !== null && (
+      {sales !== null && !isLoading && (
         <div data-testid="0-order-card-container">
           {sales.map((order, index) => (
             <div key={ index }>
-              <Link to={ `admin/orders/${order.id}` }>
+              <Link to={ `/admin/orders/${order.id}` }>
                 <span data-testid={ `${index}-order-number` }>
                   Pedido
                   {' '}

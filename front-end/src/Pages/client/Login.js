@@ -48,9 +48,9 @@ function Login() {
     verifyData();
   }, [email, password]);
 
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
+  // useEffect(() => {
+  //   localStorage.clear();
+  // }, []);
 
   return (
     <div>
