@@ -45,25 +45,41 @@ export default function CheckoutCart() {
 
   if (!currentUser) return null;
   return (
-    <div>
+    <div
+    className="d-flex flex-column border rounded"
+    style={ { marginTop: '5vh', padding: '3vh' } }
+    >
       <p>Produtos</p>
       { total === '0.00' || total === 0 ? <p>Não há produtos no carrinho</p>
         : productCheckout.filter((item) => item.productQtt !== 0)
           .map((product, index) => (
-            <div key={ product.name }>
-              <p data-testid={ `${index}-product-qtd-input` }>{product.productQtt}</p>
-              <p data-testid={ `${index}-product-name` }>{product.name}</p>
-              <p data-testid={ `${index}-product-total-value` }>
+            <div key={ product.name }
+            className="d-flex border rounded align-items-center"
+            style={ { margin: '2vh', padding: '2vh' } }
+            >
+              <p data-testid={ `${index}-product-qtd-input` }
+              style={ { margin: '1vh' } }
+              >{product.productQtt}</p>
+              <p data-testid={ `${index}-product-name` }
+              style={ { margin: '1vh' } }
+              >{product.name}</p>
+              <p data-testid={ `${index}-product-total-value` }
+              style={ { margin: '1vh' } }
+              >
                 {`R$ ${(product.price * product.productQtt)
                   .toFixed(2).replace('.', ',')}`}
               </p>
-              <p data-testid={ `${index}-product-unit-price` }>
+              <p data-testid={ `${index}-product-unit-price` }
+              style={ { margin: '1vh' } }
+              >
                 {`(R$ ${product.price.replace('.', ',')} un)`}
               </p>
               <button
                 type="button"
                 data-testid={ `${index}-removal-button` }
                 onClick={ () => removeProduct(product.id) }
+                style={ { margin: '1vh' } }
+                className="btn btn-outline-primary"
               >
                 X
               </button>
@@ -83,8 +99,10 @@ export default function CheckoutCart() {
             value={ addressName }
             onChange={ (e) => setAddressName(e.target.value) }
             data-testid="checkout-street-input"
+            className="form-control"
           />
         </label>
+        <br/>
         <label htmlFor="number">
           Número da casa:
           <input
@@ -93,6 +111,7 @@ export default function CheckoutCart() {
             onChange={ (e) => setAddressNumber(e.target.value) }
             type="text"
             data-testid="checkout-house-number-input"
+            className="form-control"
           />
         </label>
       </form>
@@ -102,6 +121,8 @@ export default function CheckoutCart() {
         data-testid="checkout-finish-btn"
         disabled={ !(total > 0 && addressName && addressNumber) }
         onClick={ () => submitSale() }
+        style={ { width: '20vh', marginTop: '2vh' } }
+        className="btn btn-outline-primary align-self-center"
       >
         Finalizar Pedido
       </button>
