@@ -15,6 +15,13 @@ const saveSales = async (saleObj) => {
   return sales;
 };
 
+const getSaleById = async (id) => {
+  const result = salesModel.getSaleById(id);
+  console.log(`Order service: ${result}`);
+  return result;
+};
+
 module.exports = {
   saveSales,
+  getSaleById,
 };

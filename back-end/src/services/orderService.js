@@ -6,6 +6,13 @@ const getOrderByUserService = async (id) => {
   return result;
 };
 
+const getOrderBySaleId = async (id) => {
+  const result = salesProductModel.getSalesProductBySaleId(id);
+  console.log(`Order service: ${result}`);
+  return result;
+};
+
 module.exports = {
   getOrderByUserService,
+  getOrderBySaleId,
 };
