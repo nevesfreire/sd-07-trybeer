@@ -45,18 +45,16 @@ const ComponentRegister = () => {
       console.log('Dados inválidos.'); // não remover, ainda não sei o que por aqui
     } else {
       e.preventDefault();
-      fetch(`${REACT_APP_URL}/register`, {
+      const registraingResult = await fetch(`${REACT_APP_URL}/register`, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
         },
         body: JSON.stringify({ ...payload }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setUser(data);
-        });
-      api
+      });
+      const registraingData = await registraingResult.json();
+      setUser(registraingData);
+      return api
         .post('/login', params)
         .then((dataUser) => {
           localStorage.setItem('token', dataUser.data.token);
