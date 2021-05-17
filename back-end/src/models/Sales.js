@@ -12,17 +12,14 @@ const savePurchases = async (objSales) => {
   return sales;
 };
 
-// const savePurchaseAddOn = async (objSales) => {
-//   const [sales] = await connection.execute(
-//     `INSERT INTO Trybeer.sales_products
-//     (sale_id, product_id, quantity) 
-//     VALUES ( "${objSales.insert_id}","${objSales.product_id}","${objSales.quantity}" )`,
-//   );
-
-//   return sales;
-// };
+const getSaleById = async (id) => {
+  const [data] = await connection.execute(
+    `SELECT * FROM Trybeer.sales AS s WHERE s.id = ${id}`,
+  );
+  return data[0];
+};
 
 module.exports = {
   savePurchases,
-  // savePurchaseAddOn,
+  getSaleById,
 };
