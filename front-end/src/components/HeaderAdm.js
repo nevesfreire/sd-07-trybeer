@@ -8,7 +8,7 @@ import logo from '../img/logo.svg';
 
 const burguerViewer = () => {
   const showMenu = document.querySelector('#navMenu');
-  showMenu.classList.toggle('is-hidden');
+  showMenu.classList.toggle('is-active');
   showMenu.classList.toggle('is-active');
 };
 
