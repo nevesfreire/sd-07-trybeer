@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import OrderCardAdmin from './OrderCardAdmin';
 import api from '../services/api';
 import '../css/orders.css';
@@ -16,17 +16,12 @@ const Admin = () => {
     },
   ]);
 
-  const loggedUser = JSON.parse(localStorage.getItem('data')) || { id: null };
-
-  const params = {
-    headers: { 'content-type': 'application/json' },
-    id: loggedUser.id,
-  };
+  // const loggedUser = JSON.parse(localStorage.getItem('data')) || { id: null };
 
   useEffect(() => {
     const getAllOrdersByid = async () => {
       api
-        .post('/orders', params)
+        .get('/orders')
         .then((result) => setOrders(result.data))
         .catch((err) => console.log(`error: ${err}`));
     };
@@ -43,8 +38,8 @@ const Admin = () => {
             {orders.map((actual, index) => (
               <OrderCardAdmin
                 position={ index }
-                key={ actual.delivery_number }
-                deliveryNumber={ actual.delivery_number }
+                key={ actual.id }
+                orderId={ actual.id }
                 saleDate={ actual.sale_date }
                 totalPrice={ actual.total_price }
                 street={ actual.delivery_address }

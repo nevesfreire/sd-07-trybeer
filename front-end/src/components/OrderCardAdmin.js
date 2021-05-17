@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const moment = require('moment');
 
 const OrderCardAdmin = ({
-  deliveryNumber,
+  orderId,
   saleDate,
   totalPrice,
   position,
@@ -14,12 +14,12 @@ const OrderCardAdmin = ({
   status,
 }) => (
   <div className="container-card">
-    <Link to={ `orders/${deliveryNumber}` }>
+    <Link to={ `orders/${orderId}` }>
       <div className="header-card">
         <div data-testid={ `${position}-order-number` }>
           Pedido
           {' '}
-          {deliveryNumber}
+          {orderId}
         </div>
         <div data-testid={ `${position}-order-date` }>
           Data:
@@ -29,16 +29,20 @@ const OrderCardAdmin = ({
       <div data-testid={ `${position}-order-address` }>
         {`${street}, ${houseNumber}`}
       </div>
-      <div data-testid={ `${position}-order-status` }>{status}</div>
+      {/* O status entregue está hard coded, refatorar com put no admin order details */}
+      <div data-testid={ `${position}-order-status` }>
+        {status}
+        Entregue
+      </div>
       <div className="body-card" data-testid={ `${position}-order-total-value` }>
-        {`R$ ${totalPrice.replace('.', ',')}`} 
+        {`R$ ${totalPrice.replace('.', ',')}`}
       </div>
     </Link>
   </div>
 );
 
 OrderCardAdmin.propTypes = {
-  deliveryNumber: PropTypes.string.isRequired,
+  orderId: PropTypes.string.isRequired,
   saleDate: PropTypes.string.isRequired,
   totalPrice: PropTypes.string.isRequired,
   position: PropTypes.number.isRequired,

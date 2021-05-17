@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import OrderDetailsClient from './components/OrderDetailsClient';
+import OrderDetailsAdminPage from './pages/OrderDetailsAdminPage';
 
 const Routes = () => (
   <BrowserRouter>
@@ -24,6 +25,7 @@ const Routes = () => (
       <Route exact path="/checkout" component={ Checkout } />
       <Route exact path="/orders" component={ Orders } />
       <Route exact path="/orders/:id" component={ OrderDetailsClient } />
+      <Route exact path="/admin/orders/:id" component={ OrderDetailsAdminPage } />
     </Switch>
   </BrowserRouter>
 );
