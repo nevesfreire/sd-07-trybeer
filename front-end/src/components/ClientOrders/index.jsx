@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Card, CardDeck, Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { getUserSalesInfo } from '../../services/apiService';
 
@@ -27,23 +28,36 @@ export default function ClientOrders() {
   return (
     <div>
       { userSales.err ? <p>{userSales.err.message}</p>
-        : userSales.map((item, index) => (
-          <div
-            type="button"
-            data-testid={ `${index}-order-card-container}` }
-            key={ item.saleId }
-            onClick={ () => history.push(`/orders/${item.saleId}`) }
-            role="button"
-            onKeyDown={ () => history.push(`/orders/${item.saleId}`) }
-            tabIndex={ 0 }
-          >
-            <p data-testid={ `${index}-order-number` }>{`Pedido ${item.saleId}`}</p>
-            <p data-testid={ `${index}-order-date` }>{item.saleDate}</p>
-            <p data-testid={ `${index}-order-total-value` }>
-              {`R$ ${item.totalPrice.replace('.', ',')}`}
-            </p>
-          </div>
-        ))}
+        : (
+          <CardDeck style={ { paddingTop: '15px' } }>
+            {userSales.map((item, index) => (
+              <Card key={ item.saleId } style={ { padding: '15px' } }>
+                <div
+                  type="button"
+                  data-testid={ `${index}-order-card-container}` }
+                  onClick={ () => history.push(`/orders/${item.saleId}`) }
+                  role="button"
+                  onKeyDown={ () => history.push(`/orders/${item.saleId}`) }
+                  tabIndex={ 0 }
+                >
+                  <Row>
+                    <Col>
+                      <p data-testid={ `${index}-order-number` }>
+                        {`Pedido ${item.saleId}`}
+                      </p>
+                    </Col>
+                    <Col>
+                      <p data-testid={ `${index}-order-date` }>{item.saleDate}</p>
+                    </Col>
+                  </Row>
+                  <p data-testid={ `${index}-order-total-value` }>
+                    {`R$ ${item.totalPrice.replace('.', ',')}`}
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </CardDeck>
+        )}
     </div>
   );
 }

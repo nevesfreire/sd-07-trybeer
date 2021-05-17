@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, Row, Col, Button } from 'react-bootstrap';
 import { updateUser } from '../../services/apiService';
 import validationClientProfile from './validationClientProfile';
 
@@ -22,10 +23,18 @@ export default function ClientProfile() {
   };
 
   return (
-    <form onSubmit={ onSubmitHandler }>
-      <label htmlFor="profile-name-input">
-        <span>Name</span>
-        <input
+    <Form
+      onSubmit={ onSubmitHandler }
+    >
+      <Form.Label htmlFor="profile-name-input">
+        Name
+      </Form.Label>
+      <Col>
+        <Form.Control
+          style={ {
+            background: 'transparent',
+            marginBottom: '10px',
+          } }
           value={ name }
           onChange={ (e) => setName(e.target.value) }
           type="name"
@@ -33,28 +42,40 @@ export default function ClientProfile() {
           data-testid="profile-name-input"
           required
         />
-      </label>
+      </Col>
 
-      <label htmlFor="profile-email-input">
+      <Form.Label htmlFor="profile-email-input">
         Email
-        <input
+      </Form.Label>
+      <Col>
+        <Form.Control
+          style={ {
+            background: 'transparent',
+            marginBottom: '20px',
+          } }
           value={ currentUser.email }
           type="email"
           name="email"
           data-testid="profile-email-input"
           readOnly
         />
-      </label>
-
-      <button
-        type="submit"
-        data-testid="profile-save-btn"
-        disabled={ validationClientProfile(name) }
-      >
-        Salvar
-      </button>
+      </Col>
+      <Row>
+        <Col>
+          <Button
+            style={ {
+              backgroundColor: 'rgb(133,54,21)',
+            } }
+            type="submit"
+            data-testid="profile-save-btn"
+            disabled={ validationClientProfile(name) }
+          >
+            Salvar
+          </Button>
+        </Col>
+      </Row>
 
       { nameUpdate && <span>Atualização concluída com sucesso</span> }
-    </form>
+    </Form>
   );
 }
