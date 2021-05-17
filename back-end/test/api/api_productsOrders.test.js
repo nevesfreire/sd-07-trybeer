@@ -45,7 +45,6 @@ describe('GET into orders route', () => {
     const URL = 'http://localhost:3001/orders'
     const URL_LOGIN = 'http://localhost:3001/login'
     beforeEach(async (done) => {
-        // console.log('prdtOrders beforeEach start')
         await connection.execute('DELETE FROM sales_products');
         await connection.execute('DELETE FROM sales');
         await connection.execute('DELETE FROM users');
@@ -64,22 +63,21 @@ describe('GET into orders route', () => {
             '3', 'Antarctica Pilsen 300ml', '2.49', 'http://localhost:3001/images/Antarctica Pilsen 300ml.jpg',
             '4', 'Brahma 600ml', '7.50', 'http://localhost:3001/images/Brahma 600ml.jpg']);
         await connection.execute('INSERT INTO sales_products (sale_id,product_id,quantity)'
-            + 'VALUES(?,?,?),(?,?,?)', [saleInsertionRes.insertId, 2, 10, saleInsertionRes.insertId, 1, 10]);
-        // console.log('prdtOrders beforeEach end')        
+            + 'VALUES(?,?,?),(?,?,?)', [saleInsertionRes.insertId, 2, 10, saleInsertionRes.insertId, 1, 10]);   
         done();
     })
 
-    // afterEach(async (done) => {
-    //     await connection.execute('DELETE FROM sales_products');
-    //     await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
-    //     await connection.execute('DELETE FROM sales');
-    //     await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
-    //     await connection.execute('DELETE FROM products');
-    //     await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
-    //     await connection.execute('DELETE FROM users');
-    //     await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
-    //     done();
-    // })
+    afterEach(async (done) => {
+        await connection.execute('DELETE FROM sales_products');
+        // await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
+        await connection.execute('DELETE FROM sales');
+        // await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
+        await connection.execute('DELETE FROM products');
+        // await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
+        await connection.execute('DELETE FROM users');
+        // await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
+        done();
+    })
 
     afterAll(async done => {
         connection.end();

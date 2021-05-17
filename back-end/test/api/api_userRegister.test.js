@@ -18,14 +18,12 @@ describe('register POST route', () => {
   const URL = 'http://localhost:3001/register';
 
   beforeEach(async (done) => {
-    // console.log('userREGISTER beforeEach start')
     await connection.execute('DELETE FROM sales_products');
     await connection.execute('DELETE FROM sales');
     await connection.execute('DELETE FROM users');
     // await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
     // await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
     await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
-    // console.log('userREGISTER beforeEach end')
     done();
   });
 

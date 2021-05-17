@@ -19,10 +19,6 @@ const checkUser = async (body) => {
 const loginServ = async (body) => {
   try {
     const checkUserRes = await checkUser(body);
-    console.log('\n')
-    console.log('loginServ LINE 23:  ', body)
-    console.log('loginServ:  ', checkUserRes)
-    console.log('\n')
     if (checkUserRes.error) return checkUserRes;
     const { email } = body;
     const { id, name, role } = checkUserRes;
