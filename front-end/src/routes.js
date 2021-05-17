@@ -8,7 +8,7 @@ import Client from './pages/Cliente';
 import Profile from './pages/Profile';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
-import OrderDetailsClient from "./components/OrderDetailsClient";
+import OrderDetailsClient from './components/OrderDetailsClient';
 
 const Routes = () => (
   <BrowserRouter>
