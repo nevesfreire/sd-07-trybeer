@@ -1,0 +1,236 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 3,
+    "pending": 0,
+    "failures": 4,
+    "start": "2021-05-15T12:30:24.391Z",
+    "end": "2021-05-15T12:31:13.362Z",
+    "duration": 48971,
+    "testsRegistered": 7,
+    "passPercent": 42.857142857142854,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "44399cc4-c789-4e66-b87c-fd8d181427fe",
+      "title": "",
+      "fullFile": "cypress/integration/req03-menuClient.spec.js",
+      "file": "cypress/integration/req03-menuClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e3414559-4047-4f63-a61e-fc8f2ee60ec1",
+          "title": "3 - Crie o menu top e menu side bar",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que os atributos do top menu devem ser mostrados confome protótipos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que os atributos do top menu devem ser mostrados confome protótipos",
+              "timedOut": null,
+              "duration": 1699,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyElementVisible)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"top-title\"]', 'TryBeer');\n(0, _actionBase.verifyElementNotVisible)('.side-menu-container');",
+              "err": {},
+              "uuid": "830b55dd-fa33-4a83-8648-affc1810627a",
+              "parentUUID": "e3414559-4047-4f63-a61e-fc8f2ee60ec1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no componente hamburguer o sidebar deve ficar visível",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no componente hamburguer o sidebar deve ficar visível",
+              "timedOut": null,
+              "duration": 1108,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.verifyElementVisible)('.side-menu-container');",
+              "err": {},
+              "uuid": "8e1b21fd-5e2d-4859-91f6-cd76db7dc354",
+              "parentUUID": "e3414559-4047-4f63-a61e-fc8f2ee60ec1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que os atributos do side menu devem ser mostrados confome protótipos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que os atributos do side menu devem ser mostrados confome protótipos",
+              "timedOut": null,
+              "duration": 1117,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-products\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-my-orders\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-my-profile\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"side-menu-item-logout\"]');",
+              "err": {},
+              "uuid": "f3035c83-b09c-482e-bf0f-a72baba6c24e",
+              "parentUUID": "e3414559-4047-4f63-a61e-fc8f2ee60ec1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"produtos\" será redirecionado para tela de produtos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"produtos\" será redirecionado para tela de produtos",
+              "timedOut": null,
+              "duration": 11175,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-products\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/products\"));",
+              "err": {
+                "message": "CypressError: Timed out retrying: `cy.click()` failed because this element:\n\n`<button name=\"btn-products\" data-testid=\"side-menu-item-products\" class=\"sc-dkPtyc danZlp\">Produtos</button>`\n\nis being covered by another element:\n\n`<img class=\"card-img-top align-self-center\" src=\"http://localhost:3001/images/Skol Lata 350ml.jpg\" alt=\"Skol Lata 250ml\" data-testid=\"0-product-img\" style=\"width: 10rem;\">`\n\nFix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with",
+                "estack": "CypressError: Timed out retrying: `cy.click()` failed because this element:\n\n`<button name=\"btn-products\" data-testid=\"side-menu-item-products\" class=\"sc-dkPtyc danZlp\">Produtos</button>`\n\nis being covered by another element:\n\n`<img class=\"card-img-top align-self-center\" src=\"http://localhost:3001/images/Skol Lata 350ml.jpg\" alt=\"Skol Lata 250ml\" data-testid=\"0-product-img\" style=\"width: 10rem;\">`\n\nFix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with\n    at $Cy.ensureDescendents (http://localhost:3000/__cypress/runner/cypress_runner.js:160969:26)\n    at ensureDescendents (http://localhost:3000/__cypress/runner/cypress_runner.js:149596:8)\n    at ensureDescendentsAndScroll (http://localhost:3000/__cypress/runner/cypress_runner.js:149603:14)\n    at ensureElIsNotCovered (http://localhost:3000/__cypress/runner/cypress_runner.js:149732:5)\n    at runAllChecks (http://localhost:3000/__cypress/runner/cypress_runner.js:149869:52)\n    at retryActionability (http://localhost:3000/__cypress/runner/cypress_runner.js:149884:16)\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:9852:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:3000/__cypress/runner/cypress_runner.js:7126:29)\n    at tryFn (http://localhost:3000/__cypress/runner/cypress_runner.js:164075:24)\n    at whenStable (http://localhost:3000/__cypress/runner/cypress_runner.js:164116:12)\n    at http://localhost:3000/__cypress/runner/cypress_runner.js:163634:16\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:9852:23)\n    at Promise._settlePromiseFromHandler (http://localhost:3000/__cypress/runner/cypress_runner.js:7787:31)\n    at Promise._settlePromise (http://localhost:3000/__cypress/runner/cypress_runner.js:7844:18)\n    at Promise._settlePromise0 (http://localhost:3000/__cypress/runner/cypress_runner.js:7889:10)\n    at Promise._settlePromises (http://localhost:3000/__cypress/runner/cypress_runner.js:7969:18)\nFrom Your Spec Code:\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:19)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:367:33)",
+                "diff": null
+              },
+              "uuid": "8801ca10-4cad-4ff3-94ad-687e8eb988b8",
+              "parentUUID": "e3414559-4047-4f63-a61e-fc8f2ee60ec1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"meus pedidos\" será redirecionado para tela de meus pedidos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"meus pedidos\" será redirecionado para tela de meus pedidos",
+              "timedOut": null,
+              "duration": 11142,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-my-orders\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/orders\"));",
+              "err": {
+                "message": "CypressError: Timed out retrying: `cy.click()` failed because this element:\n\n`<button name=\"btn-profile\" data-testid=\"side-menu-item-my-orders\" class=\"sc-dkPtyc danZlp\">Meus Pe...</button>`\n\nis being covered by another element:\n\n`<img class=\"card-img-top align-self-center\" src=\"http://localhost:3001/images/Skol Lata 350ml.jpg\" alt=\"Skol Lata 250ml\" data-testid=\"0-product-img\" style=\"width: 10rem;\">`\n\nFix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with",
+                "estack": "CypressError: Timed out retrying: `cy.click()` failed because this element:\n\n`<button name=\"btn-profile\" data-testid=\"side-menu-item-my-orders\" class=\"sc-dkPtyc danZlp\">Meus Pe...</button>`\n\nis being covered by another element:\n\n`<img class=\"card-img-top align-self-center\" src=\"http://localhost:3001/images/Skol Lata 350ml.jpg\" alt=\"Skol Lata 250ml\" data-testid=\"0-product-img\" style=\"width: 10rem;\">`\n\nFix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with\n    at $Cy.ensureDescendents (http://localhost:3000/__cypress/runner/cypress_runner.js:160969:26)\n    at ensureDescendents (http://localhost:3000/__cypress/runner/cypress_runner.js:149596:8)\n    at ensureDescendentsAndScroll (http://localhost:3000/__cypress/runner/cypress_runner.js:149603:14)\n    at ensureElIsNotCovered (http://localhost:3000/__cypress/runner/cypress_runner.js:149732:5)\n    at runAllChecks (http://localhost:3000/__cypress/runner/cypress_runner.js:149869:52)\n    at retryActionability (http://localhost:3000/__cypress/runner/cypress_runner.js:149884:16)\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:9852:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:3000/__cypress/runner/cypress_runner.js:7126:29)\n    at tryFn (http://localhost:3000/__cypress/runner/cypress_runner.js:164075:24)\n    at whenStable (http://localhost:3000/__cypress/runner/cypress_runner.js:164116:12)\n    at http://localhost:3000/__cypress/runner/cypress_runner.js:163634:16\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:9852:23)\n    at Promise._settlePromiseFromHandler (http://localhost:3000/__cypress/runner/cypress_runner.js:7787:31)\n    at Promise._settlePromise (http://localhost:3000/__cypress/runner/cypress_runner.js:7844:18)\n    at Promise._settlePromise0 (http://localhost:3000/__cypress/runner/cypress_runner.js:7889:10)\n    at Promise._settlePromises (http://localhost:3000/__cypress/runner/cypress_runner.js:7969:18)\nFrom Your Spec Code:\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:19)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:372:33)",
+                "diff": null
+              },
+              "uuid": "c125ace6-c2b8-421b-81fe-6015d025b11b",
+              "parentUUID": "e3414559-4047-4f63-a61e-fc8f2ee60ec1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"meu perfil\" será redirecionado para tela de perfil",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"meu perfil\" será redirecionado para tela de perfil",
+              "timedOut": null,
+              "duration": 11197,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-my-profile\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/profile\"));",
+              "err": {
+                "message": "CypressError: Timed out retrying: `cy.click()` failed because this element:\n\n`<button name=\"btn-myRequests\" data-testid=\"side-menu-item-my-profile\" class=\"sc-dkPtyc danZlp\">Meu Perfil</button>`\n\nis being covered by another element:\n\n`<p class=\"card-text\" data-testid=\"0-product-price\">R$ 2,20</p>`\n\nFix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with",
+                "estack": "CypressError: Timed out retrying: `cy.click()` failed because this element:\n\n`<button name=\"btn-myRequests\" data-testid=\"side-menu-item-my-profile\" class=\"sc-dkPtyc danZlp\">Meu Perfil</button>`\n\nis being covered by another element:\n\n`<p class=\"card-text\" data-testid=\"0-product-price\">R$ 2,20</p>`\n\nFix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with\n    at $Cy.ensureDescendents (http://localhost:3000/__cypress/runner/cypress_runner.js:160969:26)\n    at ensureDescendents (http://localhost:3000/__cypress/runner/cypress_runner.js:149596:8)\n    at ensureDescendentsAndScroll (http://localhost:3000/__cypress/runner/cypress_runner.js:149603:14)\n    at ensureElIsNotCovered (http://localhost:3000/__cypress/runner/cypress_runner.js:149732:5)\n    at runAllChecks (http://localhost:3000/__cypress/runner/cypress_runner.js:149869:52)\n    at retryActionability (http://localhost:3000/__cypress/runner/cypress_runner.js:149884:16)\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:9852:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:3000/__cypress/runner/cypress_runner.js:7126:29)\n    at tryFn (http://localhost:3000/__cypress/runner/cypress_runner.js:164075:24)\n    at whenStable (http://localhost:3000/__cypress/runner/cypress_runner.js:164116:12)\n    at http://localhost:3000/__cypress/runner/cypress_runner.js:163634:16\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:9852:23)\n    at Promise._settlePromiseFromHandler (http://localhost:3000/__cypress/runner/cypress_runner.js:7787:31)\n    at Promise._settlePromise (http://localhost:3000/__cypress/runner/cypress_runner.js:7844:18)\n    at Promise._settlePromise0 (http://localhost:3000/__cypress/runner/cypress_runner.js:7889:10)\n    at Promise._settlePromises (http://localhost:3000/__cypress/runner/cypress_runner.js:7969:18)\nFrom Your Spec Code:\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:19)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:377:33)",
+                "diff": null
+              },
+              "uuid": "009456e0-d2f7-4c7f-b2d9-cd785464a01b",
+              "parentUUID": "e3414559-4047-4f63-a61e-fc8f2ee60ec1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"sair\" será redirecionado para tela home",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"sair\" será redirecionado para tela home",
+              "timedOut": null,
+              "duration": 11155,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.clickButton)('[data-testid=\"top-hamburguer\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-logout\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {
+                "message": "CypressError: Timed out retrying: `cy.click()` failed because this element:\n\n`<button name=\"btn-exit\" data-testid=\"side-menu-item-logout\" class=\"sc-dkPtyc danZlp\">Sair</button>`\n\nis being covered by another element:\n\n`<div class=\"card-body\">...</div>`\n\nFix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with",
+                "estack": "CypressError: Timed out retrying: `cy.click()` failed because this element:\n\n`<button name=\"btn-exit\" data-testid=\"side-menu-item-logout\" class=\"sc-dkPtyc danZlp\">Sair</button>`\n\nis being covered by another element:\n\n`<div class=\"card-body\">...</div>`\n\nFix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with\n    at $Cy.ensureDescendents (http://localhost:3000/__cypress/runner/cypress_runner.js:160969:26)\n    at ensureDescendents (http://localhost:3000/__cypress/runner/cypress_runner.js:149596:8)\n    at ensureDescendentsAndScroll (http://localhost:3000/__cypress/runner/cypress_runner.js:149603:14)\n    at ensureElIsNotCovered (http://localhost:3000/__cypress/runner/cypress_runner.js:149732:5)\n    at runAllChecks (http://localhost:3000/__cypress/runner/cypress_runner.js:149869:52)\n    at retryActionability (http://localhost:3000/__cypress/runner/cypress_runner.js:149884:16)\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:9852:23)\n    at Function.Promise.attempt.Promise.try (http://localhost:3000/__cypress/runner/cypress_runner.js:7126:29)\n    at tryFn (http://localhost:3000/__cypress/runner/cypress_runner.js:164075:24)\n    at whenStable (http://localhost:3000/__cypress/runner/cypress_runner.js:164116:12)\n    at http://localhost:3000/__cypress/runner/cypress_runner.js:163634:16\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:9852:23)\n    at Promise._settlePromiseFromHandler (http://localhost:3000/__cypress/runner/cypress_runner.js:7787:31)\n    at Promise._settlePromise (http://localhost:3000/__cypress/runner/cypress_runner.js:7844:18)\n    at Promise._settlePromise0 (http://localhost:3000/__cypress/runner/cypress_runner.js:7889:10)\n    at Promise._settlePromises (http://localhost:3000/__cypress/runner/cypress_runner.js:7969:18)\nFrom Your Spec Code:\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:167:19)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req03-menuClient.spec.js:382:33)",
+                "diff": null
+              },
+              "uuid": "56aa4e4d-fcce-4b8b-b760-dc25eb203aab",
+              "parentUUID": "e3414559-4047-4f63-a61e-fc8f2ee60ec1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "830b55dd-fa33-4a83-8648-affc1810627a",
+            "8e1b21fd-5e2d-4859-91f6-cd76db7dc354",
+            "f3035c83-b09c-482e-bf0f-a72baba6c24e"
+          ],
+          "failures": [
+            "8801ca10-4cad-4ff3-94ad-687e8eb988b8",
+            "c125ace6-c2b8-421b-81fe-6015d025b11b",
+            "009456e0-d2f7-4c7f-b2d9-cd785464a01b",
+            "56aa4e4d-fcce-4b8b-b760-dc25eb203aab"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 48593,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}
