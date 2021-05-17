@@ -2,7 +2,6 @@ const httpStatus = require('./httpStatus');
 const { getAllProductsService, getProductByIdService } = require('../services/products');
 
 const getAllProducts = async (req, res) => {
-  console.log('entrei no controller')
   try {
     const products = await getAllProductsService();
     res.status(httpStatus.OK).json(products);
