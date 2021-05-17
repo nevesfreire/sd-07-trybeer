@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import registerUser from '../services/user';
+import getToken from '../services/login';
 
 export default function Register() {
   const [disabled, setDisabled] = useState(true);
   const [checkboxValue, setCheckboxValue] = useState(false);
-  const [setShouldRedirect] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [registerData, setRegisterData] = useState({
     name: '',
     email: '',
@@ -28,20 +29,29 @@ export default function Register() {
       password,
       role: '',
     };
+    const userToken = await getToken(JSON.stringify({ email, password }));
+    const userData = {
+      name: userToken.name,
+      email: userToken.email,
+      token: userToken.token,
+      role: userToken.role,
+    };
     if (checkboxValue) {
       newRegister = { ...newRegister, role: 'admin' };
       await registerUser(JSON.stringify(newRegister));
-      return <Redirect to="/admin/orders" />;
+      localStorage.setItem('user', JSON.stringify(userData));
+      setShouldRedirect('/admin/orders');
     }
     newRegister = { ...newRegister, role: 'client' };
     await registerUser(JSON.stringify(newRegister));
-    setShouldRedirect(true);
+    localStorage.setItem('user', JSON.stringify(userData));
+    setShouldRedirect('/products');
   };
 
   useEffect(() => {
     const { name, email, password } = registerData;
     const rEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    const regexForName = /^[A-Za-z]+/;
+    const regexForName = /^[a-z ]+$/i;
     const minLengthForPassword = 6;
     const minLengthForName = 12;
     const passwordIsValid = password.length >= minLengthForPassword;
@@ -55,7 +65,8 @@ export default function Register() {
   }, [registerData]);
 
   return (
-    <form onSubmit={ () => handleSubmit() }>
+    <form onSubmit={ (event) => handleSubmit(event) }>
+      { shouldRedirect && <Redirect to={ shouldRedirect } /> }
       <label htmlFor="name">
         Nome
         <input

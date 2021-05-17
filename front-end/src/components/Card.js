@@ -65,6 +65,7 @@ export default function Card({ product, position }) {
         data-testid={ `${position}-product-img` }
         src={ product.url_image }
         alt={ `Product ${product.name} ${position}` }
+        height="50px"
       />
       <h4 data-testid={ `${position}-product-name` }>{ product.name }</h4>
       <span data-testid={ `${position}-product-price` }>
@@ -96,10 +97,11 @@ export default function Card({ product, position }) {
 }
 
 Card.propTypes = {
-  product: PropTypes.objectOf.isRequired,
-  position: PropTypes.objectOf.isRequired,
-  url_image: PropTypes.objectOf.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    url_image: PropTypes.string.isRequired,
+  }).isRequired,
+  position: PropTypes.number.isRequired,
 };

@@ -8,7 +8,7 @@ const userNotFound = { message: 'Erro ao procurar usuário do token.' };
 
 const validateToken = async (req, res, next) => { 
   const token = req.headers.authorization;
-  console.log(token);
+  console.log('validando token', token);
   if (!token) return res.status(httpStatus.UNAUTHORIZED).json(noTokenMessage);
   try {
     const decoded = jwt.verify(token, secret.secret);
@@ -17,6 +17,7 @@ const validateToken = async (req, res, next) => {
       req.user = user;
       next();    
   } catch (error) {
+    console.log('vim parar no catch')
     res.status(httpStatus.UNAUTHORIZED).json({ message: error.message });
   }
 };

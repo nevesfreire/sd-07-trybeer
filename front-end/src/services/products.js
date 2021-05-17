@@ -7,7 +7,7 @@ const getProducts = (token) => {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
-        Authorization: `Basic ${btoa(token)}`,
+        Authorization: token,
       },
     })
       .then((response) => {

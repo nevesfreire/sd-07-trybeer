@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import { fetchOrders } from '../actions';
@@ -8,7 +8,7 @@ import OrderCard from '../components/OrderCard';
 export default function Orders() {
   const ordersList = useSelector(({ orders }) => orders);
   const [shouldRedirect, setShouldRedirect] = useState('');
-  const { isLoadind, orders, error } = ordersList;
+  const { isLoading, orders, error } = ordersList;
   const sortedOrders = orders.sort((a, b) => a.id - b.id);
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -24,7 +24,7 @@ export default function Orders() {
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
       { (error || !user) && setShouldRedirect('/login')
         && localStorage.removeItem('user') }
-      { isLoadind === true ? 'Carregando...' : sortedOrders
+      { isLoading === true ? 'Carregando...' : sortedOrders
         .map((item, i) => <OrderCard key={ i } order={ item } position={ i } />) }
     </>
   );

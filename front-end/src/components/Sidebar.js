@@ -49,5 +49,5 @@ export default function Sidebar({ openAndClose }) {
 }
 
 Sidebar.propTypes = {
-  openAndClose: PropTypes.objectOf.isRequired,
+  openAndClose: PropTypes.bool.isRequired,
 };
