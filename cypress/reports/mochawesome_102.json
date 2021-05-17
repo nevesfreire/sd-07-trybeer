@@ -1,0 +1,186 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 4,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-05-15T21:58:35.333Z",
+    "end": "2021-05-15T21:59:03.717Z",
+    "duration": 28384,
+    "testsRegistered": 5,
+    "passPercent": 80,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c8d10008-d055-45d7-9f7b-3b025e164ed2",
+      "title": "",
+      "fullFile": "cypress/integration/req07-ordersClient.spec.js",
+      "file": "cypress/integration/req07-ordersClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "beed0e6c-b4f1-46c9-94ed-38325ddfbdca",
+          "title": "7 - Criar tela de meus pedidos",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela de meus pedidos",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que é possível acessar a tela de meus pedidos",
+              "timedOut": null,
+              "duration": 10494,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/orders\"));",
+              "err": {},
+              "uuid": "1ae87b38-7a0a-487f-b9e2-05748f6c4db9",
+              "parentUUID": "beed0e6c-b4f1-46c9-94ed-38325ddfbdca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 1974,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-date\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-total-value\"]');",
+              "err": {},
+              "uuid": "4f0a2f17-b5b1-4f57-8166-4c75a74cf48e",
+              "parentUUID": "beed0e6c-b4f1-46c9-94ed-38325ddfbdca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível ver que o produto tem quantidade, nome, valor total e a data da compra",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que é possível ver que o produto tem quantidade, nome, valor total e a data da compra",
+              "timedOut": null,
+              "duration": 1873,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var date = (0, _actionBase.getDateAndMonth)();\n(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.verifyElementVisible)('[data-testid=\"top-title\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"top-title\"]', 'Meus Pedidos');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-date\"]', date);\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-total-value\"]', 'R$ 2,20');",
+              "err": {},
+              "uuid": "fa3e4a6b-d83c-4b05-abd6-dd663db773b9",
+              "parentUUID": "beed0e6c-b4f1-46c9-94ed-38325ddfbdca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível clicar no card e ser redirecionado para tela do detalhe do produto",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que é possível clicar no card e ser redirecionado para tela do detalhe do produto",
+              "timedOut": null,
+              "duration": 11927,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('login'), Cypress.env('password'));\n(0, _actionBase.buyOneProduct)();\n(0, _actionBase.accessOrdersClient)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/orders/1\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: expected 'http://localhost:3000/login' to include 'http://localhost:3000/orders/1'",
+                "estack": "AssertionError: Timed out retrying: expected 'http://localhost:3000/login' to include 'http://localhost:3000/orders/1'\n    at verifyContainsUrl (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:187:12)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req07-ordersClient.spec.js:378:39)",
+                "diff": null
+              },
+              "uuid": "8d326ba6-ac62-44c9-b12b-dc65b8fa6028",
+              "parentUUID": "beed0e6c-b4f1-46c9-94ed-38325ddfbdca",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "fullTitle": "7 - Criar tela de meus pedidos Será validado que não é possível acessar a tela de meus pedidos sem estar logado e será redirecionado para tela de login",
+              "timedOut": null,
+              "duration": 165,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"\".concat(Cypress.config().baseUrl, \"/orders\"));\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {},
+              "uuid": "dc056953-8040-4a96-982d-6ea0e8758170",
+              "parentUUID": "beed0e6c-b4f1-46c9-94ed-38325ddfbdca",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1ae87b38-7a0a-487f-b9e2-05748f6c4db9",
+            "4f0a2f17-b5b1-4f57-8166-4c75a74cf48e",
+            "fa3e4a6b-d83c-4b05-abd6-dd663db773b9",
+            "dc056953-8040-4a96-982d-6ea0e8758170"
+          ],
+          "failures": [
+            "8d326ba6-ac62-44c9-b12b-dc65b8fa6028"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 26433,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

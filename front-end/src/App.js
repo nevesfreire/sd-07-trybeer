@@ -21,15 +21,15 @@ function App() {
       <Provider>
         <Switch>
           <Route exact path="/login" component={ Login } />
-          <Route exact path="/register" component={ Register } />
-          <Route exact path="/profile" component={ Profile } />
-          <Route exact path="/products" component={ Products } />
-          <Route exact path="/checkout" component={ Checkout } />
-          <Route exact path="/orders" component={ Orders } />
-          <Route exact path="/orders/:numero-do-pedido" component={ OrderDetail } />
-          <Route exact path="/admin/profile" component={ AdmProfile } />
-          <Route exact path="/admin/orders" component={ AdmOrders } />
-          <Route exact path="/admin/orders/:id" component={ AdmOrderDetail } />
+          <Route path="/register" component={ Register } />
+          <Route path="/profile" component={ Profile } />
+          <Route path="/products" component={ Products } />
+          <Route path="/checkout" component={ Checkout } />
+          <Route path="/orders/:id" component={ OrderDetail } />
+          <Route path="/orders" component={ Orders } />
+          <Route path="/admin/profile" component={ AdmProfile } />
+          <Route path="/admin/orders/:id" component={ AdmOrderDetail } />
+          <Route path="/admin/orders" component={ AdmOrders } />
           <Redirect from="/" to="/login" />
         </Switch>
       </Provider>

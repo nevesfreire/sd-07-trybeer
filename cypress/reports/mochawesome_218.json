@@ -1,0 +1,132 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 0,
+    "pending": 0,
+    "failures": 2,
+    "start": "2021-05-17T19:26:21.195Z",
+    "end": "2021-05-17T19:27:02.220Z",
+    "duration": 41025,
+    "testsRegistered": 2,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "cdbd95ac-1ddc-4102-970e-2fe51199d684",
+      "title": "",
+      "fullFile": "cypress/integration/req13-testCoverage.spec.js",
+      "file": "cypress/integration/req13-testCoverage.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "31329b4a-6f78-4b83-9d96-61c72976070f",
+          "title": "13 - A cobertura de testes unitários deve ser de no mínimo 90%",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado a cobertura de testes unitários do front-end",
+              "fullTitle": "13 - A cobertura de testes unitários deve ser de no mínimo 90% Será validado a cobertura de testes unitários do front-end",
+              "timedOut": null,
+              "duration": 35132,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.exec('npm --prefix front-end/ run test-coverage -- --coverageReporters=\"json-summary\" --testFailureExitCode=0');\ncy.readFile('front-end/coverage/coverage-summary.json').its('total.lines.pct').should('be.gte', 90.00);",
+              "err": {
+                "message": "AssertionError: Timed out retrying: expected 2.39 to be at least 90",
+                "estack": "AssertionError: Timed out retrying: expected 2.39 to be at least 90\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req13-testCoverage.spec.js:102:84)",
+                "diff": "- 2.39\n+ 90\n"
+              },
+              "uuid": "545333e2-cb33-42eb-939f-553e654ef458",
+              "parentUUID": "31329b4a-6f78-4b83-9d96-61c72976070f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado a cobertura de testes unitários do back-end",
+              "fullTitle": "13 - A cobertura de testes unitários deve ser de no mínimo 90% Será validado a cobertura de testes unitários do back-end",
+              "timedOut": null,
+              "duration": 5759,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.exec('npm --prefix back-end/ run test-coverage -- --coverageReporters=\"json-summary\" --testFailureExitCode=0 ');\ncy.readFile('back-end/coverage/coverage-summary.json').its('total.lines.pct').should('be.gte', 90.00);",
+              "err": {
+                "message": "CypressError: `cy.exec('npm --prefix back-end/ run test-coverage -- --coverageReporters=\"json-summary\" --testFailureExitCode=0 ')` failed because the command exited with a non-zero code.\n\nPass `{failOnNonZeroExit: false}` to ignore exit code failures.\n\nInformation about the failure:\nCode: 1\n\nStdout:\n> trybeer-back-end@1.0.0 test-coverage\n> jest --coverage --watchAll=false \"--coverageReporters=json-summary\" \"--testFailureExitCode=0\"\n\nNo tests found, exiting with code 1\nRun with `--pass...\n\nhttps://on.cypress.io/exec",
+                "estack": "CypressError: `cy.exec('npm --prefix back-end/ run test-coverage -- --coverageReporters=\"json-summary\" --testFailureExitCode=0 ')` failed because the command exited with a non-zero code.\n\nPass `{failOnNonZeroExit: false}` to ignore exit code failures.\n\nInformation about the failure:\nCode: 1\n\nStdout:\n> trybeer-back-end@1.0.0 test-coverage\n> jest --coverage --watchAll=false \"--coverageReporters=json-summary\" \"--testFailureExitCode=0\"\n\nNo tests found, exiting with code 1\nRun with `--pass...\n\nhttps://on.cypress.io/exec\n    at http://localhost:3000/__cypress/runner/cypress_runner.js:155936:26\n    at tryCatcher (http://localhost:3000/__cypress/runner/cypress_runner.js:9852:23)\n    at Promise._settlePromiseFromHandler (http://localhost:3000/__cypress/runner/cypress_runner.js:7787:31)\n    at Promise._settlePromise (http://localhost:3000/__cypress/runner/cypress_runner.js:7844:18)\n    at Promise._settlePromise0 (http://localhost:3000/__cypress/runner/cypress_runner.js:7889:10)\n    at Promise._settlePromises (http://localhost:3000/__cypress/runner/cypress_runner.js:7969:18)\n    at _drainQueueStep (http://localhost:3000/__cypress/runner/cypress_runner.js:4559:12)\n    at _drainQueue (http://localhost:3000/__cypress/runner/cypress_runner.js:4552:9)\n    at Async.../../node_modules/bluebird/js/release/async.js.Async._drainQueues (http://localhost:3000/__cypress/runner/cypress_runner.js:4568:5)\n    at Async.drainQueues (http://localhost:3000/__cypress/runner/cypress_runner.js:4438:14)\nFrom Your Spec Code:\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req13-testCoverage.spec.js:105:8)",
+                "diff": null
+              },
+              "uuid": "f4e519d7-9571-4cfa-a0e7-db00998ab3e7",
+              "parentUUID": "31329b4a-6f78-4b83-9d96-61c72976070f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "545333e2-cb33-42eb-939f-553e654ef458",
+            "f4e519d7-9571-4cfa-a0e7-db00998ab3e7"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 40891,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

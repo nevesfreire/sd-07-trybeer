@@ -6,8 +6,6 @@ const getEmailUser = async (email, password) => {
     .execute(`SELECT id, name, email, password, role
     FROM Trybeer.users
     WHERE email = ? AND password = ?`, [email, password]);
-
-  console.log(data.length);
   if (!data.length) return null;
 
   return {
@@ -45,10 +43,10 @@ const token = (user) => {
 };
 
 const newUser = async (newName, newEmail, newPassword, newRole) => {
-  await connect
+  connect
   .execute(`INSERT INTO users ( name, email, password, role) VALUES
   (?, ?, ?, ?)`, [newName, newEmail, newPassword, newRole]);
-
+  // console.log('passou 8')
   return { code: 200, message: 'usuario cadastrado com sucesso', newRole };
 };
 
@@ -69,7 +67,6 @@ const allProducts = async () => {
   .execute('SELECT * FROM Trybeer.products');
 
   products.forEach((product) => aProducts.push(product));
-  console.log(aProducts);
 
   return aProducts;
 };
@@ -80,11 +77,12 @@ async function saveSales(infoUser, totalPrice, products) {
   INSERT INTO sales
   ( user_id, total_price,
     delivery_address, delivery_number, sale_date, status) VALUES
-    (?, ?, ?, ?, now(), 'pendente')`, [infoUser.userId,
+    (?, ?, ?, ?, now(), 'Pendente');`, [infoUser.userId,
       totalPrice, infoUser.deliveryAddress,
       infoUser.deliveryNumber]);
 
   const saleId = saleCad[0].insertId;
+
   await connect
   .query('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES ?',
     [products.map((product) => [saleId, product.id, product.quantity])]);
@@ -94,6 +92,7 @@ async function saveSales(infoUser, totalPrice, products) {
       products,
       userId: infoUser.userId,
     };
+
   return (obj);
 }
 

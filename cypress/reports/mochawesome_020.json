@@ -1,0 +1,224 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-05-15T15:14:40.811Z",
+    "end": "2021-05-15T15:14:58.209Z",
+    "duration": 17398,
+    "testsRegistered": 7,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 6,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "ac58e4a0-c676-4cee-9866-00ba053f4561",
+      "title": "",
+      "fullFile": "cypress/integration/req12-orderDetailsAdmin.spec.js",
+      "file": "cypress/integration/req12-orderDetailsAdmin.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2b14fb66-c70c-46ac-9b42-44139c44a1cd",
+          "title": "12 - Criar tela de detalhes pedidos do admininstrador",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do detalhe do pedido do administrador",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que é possível acessar a tela do detalhe do pedido do administrador",
+              "timedOut": null,
+              "duration": 16298,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.accessOrdersAdmin)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/orders/1\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `12 - Criar tela de detalhes...`",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"0-product-plus\"]`, but never found it.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `12 - Criar tela de detalhes...`\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req12-orderDetailsAdmin.spec.js:167:6)\n    at buyOneProduct (http://localhost:3000/__cypress/tests?p=cypress/integration/req12-orderDetailsAdmin.spec.js:227:3)\n    at loginClientAndBuyProduct (http://localhost:3000/__cypress/tests?p=cypress/integration/req12-orderDetailsAdmin.spec.js:237:3)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req12-orderDetailsAdmin.spec.js:341:46)",
+                "diff": null
+              },
+              "uuid": "957420fb-0eb4-4616-ad58-23c0b6250553",
+              "parentUUID": "2b14fb66-c70c-46ac-9b42-44139c44a1cd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.accessOrdersAdmin)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-status\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-name\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-qtd\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-product-total-value\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-unit-price\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"order-total-value\"]');",
+              "err": {},
+              "uuid": "19d719de-cf04-4328-b6a6-11d16d796a94",
+              "parentUUID": "2b14fb66-c70c-46ac-9b42-44139c44a1cd",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Será validado que o pedido contém nome e status do pedido",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido contém nome e status do pedido",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.accessOrdersAdmin)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-status\"]', 'Pendente');",
+              "err": {},
+              "uuid": "1850c463-42a7-4b8e-94c3-27815d681a0f",
+              "parentUUID": "2b14fb66-c70c-46ac-9b42-44139c44a1cd",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Será validado que o pedido contém todos os detalhes do pedido",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido contém todos os detalhes do pedido",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.accessOrdersAdmin)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-status\"]', 'Pendente');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-name\"]', 'Skol Lata 250ml');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-qtd\"]', '1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-product-total-value\"]', 'R$ 2,20');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-unit-price\"]', '(R$ 2,20)');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-total-value\"]', 'R$ 2,20');",
+              "err": {},
+              "uuid": "f6f799af-3f45-4dc5-8fe3-ba4af03e056e",
+              "parentUUID": "2b14fb66-c70c-46ac-9b42-44139c44a1cd",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Será validado que o pedido com status pendente irá apresentar na tela o botão \"Marcar como entregue\"",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido com status pendente irá apresentar na tela o botão \"Marcar como entregue\"",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.accessOrdersAdmin)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-status\"]', 'Pendente');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"mark-as-delivered-btn\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"mark-as-delivered-btn\"]', 'Marcar como entregue');",
+              "err": {},
+              "uuid": "aa05501b-a073-4241-b991-d76d926b1221",
+              "parentUUID": "2b14fb66-c70c-46ac-9b42-44139c44a1cd",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Será validado que o pedido ao marcar como entregue o status mude para entregue\" e o botão nao esteja mais visível",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido ao marcar como entregue o status mude para entregue\" e o botão nao esteja mais visível",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.accessOrdersAdmin)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-status\"]', 'Pendente');\n(0, _actionBase.clickButton)('[data-testid=\"mark-as-delivered-btn\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-status\"]', 'Entregue');\n(0, _actionBase.verifyElementNotVisible)('[data-testid=\"mark-as-delivered-btn\"]');",
+              "err": {},
+              "uuid": "a19968d3-c686-413a-865f-a1a7135e2332",
+              "parentUUID": "2b14fb66-c70c-46ac-9b42-44139c44a1cd",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Será validado que o pedido ao marcar como entregue o status mude para entregue\" na tela de pedidos admin",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido ao marcar como entregue o status mude para entregue\" na tela de pedidos admin",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.accessOrdersAdmin)();\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-status\"]', 'Pendente');\n(0, _actionBase.clickButton)('[data-testid=\"mark-as-delivered-btn\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"order-status\"]', 'Entregue');\n(0, _actionBase.verifyElementNotVisible)('[data-testid=\"mark-as-delivered-btn\"]');\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-status\"]', 'Entregue');",
+              "err": {},
+              "uuid": "30fa397f-e0fa-4c55-898c-df04a10f9f7c",
+              "parentUUID": "2b14fb66-c70c-46ac-9b42-44139c44a1cd",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "957420fb-0eb4-4616-ad58-23c0b6250553"
+          ],
+          "pending": [],
+          "skipped": [
+            "19d719de-cf04-4328-b6a6-11d16d796a94",
+            "1850c463-42a7-4b8e-94c3-27815d681a0f",
+            "f6f799af-3f45-4dc5-8fe3-ba4af03e056e",
+            "aa05501b-a073-4241-b991-d76d926b1221",
+            "a19968d3-c686-413a-865f-a1a7135e2332",
+            "30fa397f-e0fa-4c55-898c-df04a10f9f7c"
+          ],
+          "duration": 16298,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

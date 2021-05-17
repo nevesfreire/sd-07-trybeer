@@ -1,0 +1,205 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 0,
+    "pending": 0,
+    "failures": 2,
+    "start": "2021-05-15T15:05:12.032Z",
+    "end": "2021-05-15T15:05:31.799Z",
+    "duration": 19767,
+    "testsRegistered": 6,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": -1,
+    "hasOther": false,
+    "skipped": 4,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "36b8f748-2f6a-4f17-91b9-5ccaaec6f83a",
+      "title": "",
+      "fullFile": "cypress/integration/req04-profileClient.spec.js",
+      "file": "cypress/integration/req04-profileClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9410d290-9bc5-4513-bb93-80926f290be5",
+          "title": "4 - Criar tela de perfil do cliente",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela de perfil do cliente",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que é possível acessar a tela de perfil do cliente",
+              "timedOut": null,
+              "duration": 11282,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/profile\"));",
+              "err": {
+                "message": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `4 - Criar tela de perfil do...`",
+                "estack": "AssertionError: Timed out retrying: Expected to find element: `[data-testid=\"top-hamburguer\"]`, but never found it.\n\nBecause this error occurred during a `before each` hook we are skipping the remaining tests in the current suite: `4 - Criar tela de perfil do...`\n    at clickButton (http://localhost:3000/__cypress/tests?p=cypress/integration/req04-profileClient.spec.js:167:6)\n    at accessProfileClient (http://localhost:3000/__cypress/tests?p=cypress/integration/req04-profileClient.spec.js:214:3)\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/req04-profileClient.spec.js:347:41)",
+                "diff": null
+              },
+              "uuid": "4842f10e-062f-46a1-b41e-b4d902871625",
+              "parentUUID": "9410d290-9bc5-4513-bb93-80926f290be5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyElementVisible)('[data-testid=\"profile-name-input\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"profile-email-input\"]');\n(0, _actionBase.verifyContainsText)('Salvar');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"profile-save-btn\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"top-title\"]', 'Meu perfil');",
+              "err": {},
+              "uuid": "123382fc-b4af-491e-800a-ca5a07fdf1a4",
+              "parentUUID": "9410d290-9bc5-4513-bb93-80926f290be5",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Será validado que campo email está como readonly",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que campo email está como readonly",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyElementContainsAttribute)('[data-testid=\"profile-email-input\"]', 'readonly');",
+              "err": {},
+              "uuid": "6bea5814-55a6-4421-b9d1-86f2c34bd999",
+              "parentUUID": "9410d290-9bc5-4513-bb93-80926f290be5",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Será validado que o botão salvar fique desabilitado caso não altere o nome",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que o botão salvar fique desabilitado caso não altere o nome",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.verifyElementIsDisable)('[data-testid=\"profile-save-btn\"]');",
+              "err": {},
+              "uuid": "bd6f1b0b-8c18-4190-b3cf-4d52680a58da",
+              "parentUUID": "9410d290-9bc5-4513-bb93-80926f290be5",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Será validado que o botão salvar fique habilitado caso altere o nome",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que o botão salvar fique habilitado caso altere o nome",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[data-testid=\"profile-name-input\"]').clear().type('testebatitaosilva');\n(0, _actionBase.verifyElementNotContainsAttribute)('[data-testid=\"profile-save-btn\"]', 'disable');",
+              "err": {},
+              "uuid": "2f268b2b-6658-41d0-b01d-ef511342be74",
+              "parentUUID": "9410d290-9bc5-4513-bb93-80926f290be5",
+              "isHook": false,
+              "skipped": true
+            },
+            {
+              "title": "Será validado que é possível alterar o nome com sucesso",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que é possível alterar o nome com sucesso",
+              "timedOut": null,
+              "duration": 0,
+              "state": "skipped",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[data-testid=\"profile-name-input\"]').clear().type('testebatitaosilva');\n(0, _actionBase.clickButton)('[data-testid=\"profile-save-btn\"]');\n(0, _actionBase.verifyContainsText)('Atualização concluída com sucesso');",
+              "err": {},
+              "uuid": "f2945de7-c258-4657-9359-df36f15f6558",
+              "parentUUID": "9410d290-9bc5-4513-bb93-80926f290be5",
+              "isHook": false,
+              "skipped": true
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "4842f10e-062f-46a1-b41e-b4d902871625"
+          ],
+          "pending": [],
+          "skipped": [
+            "123382fc-b4af-491e-800a-ca5a07fdf1a4",
+            "6bea5814-55a6-4421-b9d1-86f2c34bd999",
+            "bd6f1b0b-8c18-4190-b3cf-4d52680a58da",
+            "2f268b2b-6658-41d0-b01d-ef511342be74",
+            "f2945de7-c258-4657-9359-df36f15f6558"
+          ],
+          "duration": 11282,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

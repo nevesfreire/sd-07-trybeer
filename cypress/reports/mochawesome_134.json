@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 4,
+    "failures": -3,
+    "start": "2021-05-15T23:40:52.121Z",
+    "end": "2021-05-15T23:40:52.142Z",
+    "duration": 21,
+    "testsRegistered": 4,
+    "passPercent": null,
+    "pendingPercent": 100,
+    "other": 3,
+    "hasOther": true,
+    "skipped": 3,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "b3e39535-4eb5-41ae-8747-021140d2b1e3",
+      "title": "",
+      "fullFile": "cypress/integration/req10-profileAdmin.spec.js",
+      "file": "cypress/integration/req10-profileAdmin.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e76040b1-9299-4d5d-b528-9ff273c9898e",
+          "title": "10 - Criar tela de perfil de administrador",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do perfil do administrador",
+              "fullTitle": "10 - Criar tela de perfil de administrador Será validado que é possível acessar a tela do perfil do administrador",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "b2332acd-0394-4593-9ed1-31b3222f2dff",
+              "parentUUID": "e76040b1-9299-4d5d-b528-9ff273c9898e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que a tela de perfil contém os atributos descritos no protótipo",
+              "fullTitle": "10 - Criar tela de perfil de administrador Será validado que a tela de perfil contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "1e44f325-7780-4bbc-ad3e-de9166a762ee",
+              "parentUUID": "e76040b1-9299-4d5d-b528-9ff273c9898e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que a tela de perfil contém o email e nome do administrador",
+              "fullTitle": "10 - Criar tela de perfil de administrador Será validado que a tela de perfil contém o email e nome do administrador",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "9d4780ea-7b14-4b57-bc7d-03c3ab6db8e1",
+              "parentUUID": "e76040b1-9299-4d5d-b528-9ff273c9898e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível acessar a tela sem estar autenticado e ser redirecionado para tela de login",
+              "fullTitle": "10 - Criar tela de perfil de administrador Será validado que não é possível acessar a tela sem estar autenticado e ser redirecionado para tela de login",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "c0ec4e52-73f7-448c-9d64-b25389792c3f",
+              "parentUUID": "e76040b1-9299-4d5d-b528-9ff273c9898e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [
+            "b2332acd-0394-4593-9ed1-31b3222f2dff",
+            "1e44f325-7780-4bbc-ad3e-de9166a762ee",
+            "9d4780ea-7b14-4b57-bc7d-03c3ab6db8e1",
+            "c0ec4e52-73f7-448c-9d64-b25389792c3f"
+          ],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

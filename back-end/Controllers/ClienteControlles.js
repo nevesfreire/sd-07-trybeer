@@ -15,7 +15,6 @@ const login = async (req, res) => {
   const resOK = 200;
   try {
     const { email, password } = req.body;
-
     if (!email || !password) throw error1;
 
     const loginOk = await resLogin(email, password);
@@ -27,12 +26,14 @@ const login = async (req, res) => {
 
 const addUser = async (req, res) => {
   const resOK = 201;
+  console.log('passou 1');
   try {
     const { newName, newEmail, newPassword, newRole } = req.body;
+    // console.log('passou 3')
     const newUser = await cadUser(newName, newEmail, newPassword, newRole);
+    // console.log('passou 4')
     return res.status(resOK).json(newUser);
   } catch (err) {
-    console.log(err);
     res.status(err.code).json({ message: err.message });
   }
 };
@@ -70,9 +71,7 @@ const saleSave = async (req, res) => {
     const cadSale = await savSale(infoUser, totalPrice, products);
     res.status(resOK).json(cadSale);
   } catch (err) {
-    res.status(err.code).json({
-      message: err.message,
-    });
+    res.status(400).send('Erro ao adicionar venda de Checkout na tabela Vendas');
   }
 };
 

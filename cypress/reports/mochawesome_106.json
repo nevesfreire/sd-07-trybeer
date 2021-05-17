@@ -1,0 +1,219 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 7,
+    "failures": -6,
+    "start": "2021-05-15T23:33:54.431Z",
+    "end": "2021-05-15T23:33:54.478Z",
+    "duration": 47,
+    "testsRegistered": 7,
+    "passPercent": null,
+    "pendingPercent": 100,
+    "other": 6,
+    "hasOther": true,
+    "skipped": 6,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "a3a3b43b-d5d1-4725-a3a1-7502869b9db9",
+      "title": "",
+      "fullFile": "cypress/integration/req03-menuClient.spec.js",
+      "file": "cypress/integration/req03-menuClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f7bfcfca-545d-4426-bf2c-677d198b82ed",
+          "title": "3 - Crie o menu top e menu side bar",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que os atributos do top menu devem ser mostrados confome protótipos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que os atributos do top menu devem ser mostrados confome protótipos",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "3f242434-19d1-45d7-87d3-027d453544be",
+              "parentUUID": "f7bfcfca-545d-4426-bf2c-677d198b82ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no componente hamburguer o sidebar deve ficar visível",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no componente hamburguer o sidebar deve ficar visível",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "a629f9e1-28ad-49c5-b60d-186ddc3b4371",
+              "parentUUID": "f7bfcfca-545d-4426-bf2c-677d198b82ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que os atributos do side menu devem ser mostrados confome protótipos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que os atributos do side menu devem ser mostrados confome protótipos",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "9d7df92f-9fc6-4ffd-830d-f502f1683e20",
+              "parentUUID": "f7bfcfca-545d-4426-bf2c-677d198b82ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"produtos\" será redirecionado para tela de produtos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"produtos\" será redirecionado para tela de produtos",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "3e9e8eaf-4b21-4ddb-b950-51d2ae8a0d1d",
+              "parentUUID": "f7bfcfca-545d-4426-bf2c-677d198b82ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"meus pedidos\" será redirecionado para tela de meus pedidos",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"meus pedidos\" será redirecionado para tela de meus pedidos",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "8670720b-8058-4cca-b45c-ca6ecd107365",
+              "parentUUID": "f7bfcfca-545d-4426-bf2c-677d198b82ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"meu perfil\" será redirecionado para tela de perfil",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"meu perfil\" será redirecionado para tela de perfil",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "15feb3f8-4c28-497b-8e5f-b19c05f8efc7",
+              "parentUUID": "f7bfcfca-545d-4426-bf2c-677d198b82ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que ao clicar no botão \"sair\" será redirecionado para tela home",
+              "fullTitle": "3 - Crie o menu top e menu side bar Será validado que ao clicar no botão \"sair\" será redirecionado para tela home",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "acb647d9-b20a-4808-ac3f-4e3052b90d7c",
+              "parentUUID": "f7bfcfca-545d-4426-bf2c-677d198b82ed",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [
+            "3f242434-19d1-45d7-87d3-027d453544be",
+            "a629f9e1-28ad-49c5-b60d-186ddc3b4371",
+            "9d7df92f-9fc6-4ffd-830d-f502f1683e20",
+            "3e9e8eaf-4b21-4ddb-b950-51d2ae8a0d1d",
+            "8670720b-8058-4cca-b45c-ca6ecd107365",
+            "15feb3f8-4c28-497b-8e5f-b19c05f8efc7",
+            "acb647d9-b20a-4808-ac3f-4e3052b90d7c"
+          ],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

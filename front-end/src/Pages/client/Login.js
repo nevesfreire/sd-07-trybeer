@@ -19,6 +19,7 @@ function Login() {
   const saveInLocalStorage = (res) => {
     localStorage.setItem('user', JSON.stringify(
       {
+        id: res.user.id,
         name: res.user.name,
         email: res.user.email,
         token: res.token,
@@ -27,7 +28,6 @@ function Login() {
     ));
 
     setResult(res);
-
     if (res.token) setLogado(true);
   };
 
@@ -46,7 +46,11 @@ function Login() {
 
   useEffect(() => {
     verifyData();
-  }, [email, password, verifyData]);
+  }, [email, password]);
+
+  // useEffect(() => {
+  //   localStorage.clear();
+  // }, []);
 
   return (
     <div>
@@ -58,7 +62,7 @@ function Login() {
           name="email"
           autoComplete="off"
           className="inputLogin"
-          value={ email }
+          // value={ email }
           onChange={ ({ target }) => setEmail(target.value) }
         />
       </label>
@@ -68,7 +72,7 @@ function Login() {
           type="password"
           data-testid="password-input"
           name="password"
-          value={ password }
+          // value={ password }
           onChange={ ({ target }) => setPassword(target.value) }
         />
       </label>

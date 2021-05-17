@@ -1,0 +1,178 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 0,
+    "pending": 0,
+    "failures": 4,
+    "start": "2021-05-17T22:22:10.347Z",
+    "end": "2021-05-17T22:22:57.723Z",
+    "duration": 47376,
+    "testsRegistered": 4,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7e69f0bd-5638-45b8-bd16-2f3d3b358bf0",
+      "title": "",
+      "fullFile": "cypress/integration/req11-ordersAdmin.spec.js",
+      "file": "cypress/integration/req11-ordersAdmin.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7d3268a1-8434-4a14-9cc5-70bacd86294b",
+          "title": "11 - Criar tela de pedidos de admin",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do pedidos do administrador",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que é possível acessar a tela do pedidos do administrador",
+              "timedOut": null,
+              "duration": 8405,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/orders\"));",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'map' of null\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'map' of null\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at AdmOrders (http://localhost:3000/static/js/main.chunk.js:704:12)\n    at renderWithHooks (http://localhost:3000/static/js/0.chunk.js:21358:22)\n    at mountIndeterminateComponent (http://localhost:3000/static/js/0.chunk.js:23970:17)\n    at beginWork (http://localhost:3000/static/js/0.chunk.js:25048:20)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/0.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/0.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/0.chunk.js:6853:35)\n    at beginWork$1 (http://localhost:3000/static/js/0.chunk.js:29614:11)\n    at performUnitOfWork (http://localhost:3000/static/js/0.chunk.js:28581:16)\n    at workLoopSync (http://localhost:3000/static/js/0.chunk.js:28554:26)\n    at performSyncWorkOnRoot (http://localhost:3000/static/js/0.chunk.js:28172:13)\n    at http://localhost:3000/static/js/0.chunk.js:17692:28\n    at unstable_runWithPriority (http://localhost:3000/static/js/0.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/0.chunk.js:17638:14)\n    at flushSyncCallbackQueueImpl (http://localhost:3000/static/js/0.chunk.js:17687:11)\n    at flushSyncCallbackQueue (http://localhost:3000/static/js/0.chunk.js:17675:7)\n    at scheduleUpdateOnFiber (http://localhost:3000/static/js/0.chunk.js:27615:13)\n    at dispatchAction (http://localhost:3000/static/js/0.chunk.js:22195:9)\n    at saveInLocalStorage (http://localhost:3000/static/js/main.chunk.js:1178:20)\n    at http://localhost:3000/static/js/main.chunk.js:1192:7",
+                "diff": null
+              },
+              "uuid": "41f10eb9-3f05-4a8c-9b39-16f23641a286",
+              "parentUUID": "7d3268a1-8434-4a14-9cc5-70bacd86294b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que a tela de pedidos contém os atributos descritos no protótipo",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que a tela de pedidos contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 7387,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-address\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-total-value\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"0-order-status\"]');",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at addQuantity (http://localhost:3000/static/js/main.chunk.js:1572:5)\n    at onClick (http://localhost:3000/static/js/main.chunk.js:1701:7)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/0.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/0.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/0.chunk.js:6853:35)\n    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/0.chunk.js:6868:29)\n    at executeDispatch (http://localhost:3000/static/js/0.chunk.js:6953:7)\n    at executeDispatchesInOrder (http://localhost:3000/static/js/0.chunk.js:6978:9)\n    at executeDispatchesAndRelease (http://localhost:3000/static/js/0.chunk.js:9862:9)\n    at executeDispatchesAndReleaseTopLevel (http://localhost:3000/static/js/0.chunk.js:9871:14)\n    at forEachAccumulated (http://localhost:3000/static/js/0.chunk.js:9843:12)\n    at runEventsInBatch (http://localhost:3000/static/js/0.chunk.js:9888:7)\n    at runExtractedPluginEventsInBatch (http://localhost:3000/static/js/0.chunk.js:10098:7)\n    at handleTopLevel (http://localhost:3000/static/js/0.chunk.js:10142:9)\n    at batchedEventUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28288:16)\n    at batchedEventUpdates (http://localhost:3000/static/js/0.chunk.js:7360:16)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/0.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/0.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/0.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/0.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/0.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/0.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/0.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "5bebbdd4-24cf-4ab5-9e7f-ba76ed427c49",
+              "parentUUID": "7d3268a1-8434-4a14-9cc5-70bacd86294b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que os dados do card estão corretos",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que os dados do card estão corretos",
+              "timedOut": null,
+              "duration": 9280,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-number\"]', 'Pedido 1');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-address\"]', 'Rua da pinga, 2');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-total-value\"]', 'R$ 2,20');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"0-order-status\"]', 'Pendente');",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at addQuantity (http://localhost:3000/static/js/main.chunk.js:1572:5)\n    at onClick (http://localhost:3000/static/js/main.chunk.js:1701:7)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/0.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/0.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/0.chunk.js:6853:35)\n    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/0.chunk.js:6868:29)\n    at executeDispatch (http://localhost:3000/static/js/0.chunk.js:6953:7)\n    at executeDispatchesInOrder (http://localhost:3000/static/js/0.chunk.js:6978:9)\n    at executeDispatchesAndRelease (http://localhost:3000/static/js/0.chunk.js:9862:9)\n    at executeDispatchesAndReleaseTopLevel (http://localhost:3000/static/js/0.chunk.js:9871:14)\n    at forEachAccumulated (http://localhost:3000/static/js/0.chunk.js:9843:12)\n    at runEventsInBatch (http://localhost:3000/static/js/0.chunk.js:9888:7)\n    at runExtractedPluginEventsInBatch (http://localhost:3000/static/js/0.chunk.js:10098:7)\n    at handleTopLevel (http://localhost:3000/static/js/0.chunk.js:10142:9)\n    at batchedEventUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28288:16)\n    at batchedEventUpdates (http://localhost:3000/static/js/0.chunk.js:7360:16)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/0.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/0.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/0.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/0.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/0.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/0.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/0.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "f4a0751d-1772-4a60-9845-8e6694a4aab9",
+              "parentUUID": "7d3268a1-8434-4a14-9cc5-70bacd86294b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível clicar no card do produto e ser redirecionado para tela de detalhes do produto",
+              "fullTitle": "11 - Criar tela de pedidos de admin Será validado que é possível clicar no card do produto e ser redirecionado para tela de detalhes do produto",
+              "timedOut": null,
+              "duration": 8506,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.loginClientAndBuyProduct)();\n(0, _actionBase.logout)();\n(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-orders\"]');\n(0, _actionBase.clickButton)('[data-testid=\"0-order-number\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/orders/1\"));",
+              "err": {
+                "message": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "TypeError: The following error originated from your application code, not from Cypress.\n\n  > The following error originated from your application code, not from Cypress.\n\n  > Cannot read property 'qtd' of undefined\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\n    at addQuantity (http://localhost:3000/static/js/main.chunk.js:1572:5)\n    at onClick (http://localhost:3000/static/js/main.chunk.js:1701:7)\n    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/0.chunk.js:6751:18)\n    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/0.chunk.js:6800:20)\n    at invokeGuardedCallback (http://localhost:3000/static/js/0.chunk.js:6853:35)\n    at invokeGuardedCallbackAndCatchFirstError (http://localhost:3000/static/js/0.chunk.js:6868:29)\n    at executeDispatch (http://localhost:3000/static/js/0.chunk.js:6953:7)\n    at executeDispatchesInOrder (http://localhost:3000/static/js/0.chunk.js:6978:9)\n    at executeDispatchesAndRelease (http://localhost:3000/static/js/0.chunk.js:9862:9)\n    at executeDispatchesAndReleaseTopLevel (http://localhost:3000/static/js/0.chunk.js:9871:14)\n    at forEachAccumulated (http://localhost:3000/static/js/0.chunk.js:9843:12)\n    at runEventsInBatch (http://localhost:3000/static/js/0.chunk.js:9888:7)\n    at runExtractedPluginEventsInBatch (http://localhost:3000/static/js/0.chunk.js:10098:7)\n    at handleTopLevel (http://localhost:3000/static/js/0.chunk.js:10142:9)\n    at batchedEventUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28288:16)\n    at batchedEventUpdates (http://localhost:3000/static/js/0.chunk.js:7360:16)\n    at dispatchEventForLegacyPluginEventSystem (http://localhost:3000/static/js/0.chunk.js:10152:9)\n    at attemptToDispatchEvent (http://localhost:3000/static/js/0.chunk.js:10872:9)\n    at dispatchEvent (http://localhost:3000/static/js/0.chunk.js:10793:23)\n    at unstable_runWithPriority (http://localhost:3000/static/js/0.chunk.js:37905:16)\n    at runWithPriority$1 (http://localhost:3000/static/js/0.chunk.js:17638:14)\n    at discreteUpdates$1 (http://localhost:3000/static/js/0.chunk.js:28305:16)\n    at discreteUpdates (http://localhost:3000/static/js/0.chunk.js:7373:16)\n    at dispatchDiscreteEvent (http://localhost:3000/static/js/0.chunk.js:10772:7)",
+                "diff": null
+              },
+              "uuid": "43c3a896-04a7-44cf-9646-b12f87f73732",
+              "parentUUID": "7d3268a1-8434-4a14-9cc5-70bacd86294b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "41f10eb9-3f05-4a8c-9b39-16f23641a286",
+            "5bebbdd4-24cf-4ab5-9e7f-ba76ed427c49",
+            "f4a0751d-1772-4a60-9845-8e6694a4aab9",
+            "43c3a896-04a7-44cf-9646-b12f87f73732"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 33578,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

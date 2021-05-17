@@ -1,0 +1,200 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 6,
+    "failures": -5,
+    "start": "2021-05-15T20:36:33.264Z",
+    "end": "2021-05-15T20:36:33.306Z",
+    "duration": 42,
+    "testsRegistered": 6,
+    "passPercent": null,
+    "pendingPercent": 100,
+    "other": 5,
+    "hasOther": true,
+    "skipped": 5,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "cd8cb87c-4472-4f1b-a60e-3b100a6847b9",
+      "title": "",
+      "fullFile": "cypress/integration/req04-profileClient.spec.js",
+      "file": "cypress/integration/req04-profileClient.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a97dd749-b53f-41cc-ad69-e0eae0e14452",
+          "title": "4 - Criar tela de perfil do cliente",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela de perfil do cliente",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que é possível acessar a tela de perfil do cliente",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "d5307ee1-65e4-4d80-bae3-4c2ae719cddf",
+              "parentUUID": "a97dd749-b53f-41cc-ad69-e0eae0e14452",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "70f5cb4f-aeec-4b28-9722-99bc90c14757",
+              "parentUUID": "a97dd749-b53f-41cc-ad69-e0eae0e14452",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que campo email está como readonly",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que campo email está como readonly",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "1e7e6a33-01ea-4da4-ad25-19fdaf05e465",
+              "parentUUID": "a97dd749-b53f-41cc-ad69-e0eae0e14452",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que o botão salvar fique desabilitado caso não altere o nome",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que o botão salvar fique desabilitado caso não altere o nome",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "682e51a8-d80c-4cd3-b662-714528ab4cb7",
+              "parentUUID": "a97dd749-b53f-41cc-ad69-e0eae0e14452",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que o botão salvar fique habilitado caso altere o nome",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que o botão salvar fique habilitado caso altere o nome",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "2d58b712-aceb-427b-aa02-82c008a17b05",
+              "parentUUID": "a97dd749-b53f-41cc-ad69-e0eae0e14452",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que é possível alterar o nome com sucesso",
+              "fullTitle": "4 - Criar tela de perfil do cliente Será validado que é possível alterar o nome com sucesso",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "3f188f1a-3859-4469-91e9-0a4ba14b8cc5",
+              "parentUUID": "a97dd749-b53f-41cc-ad69-e0eae0e14452",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [
+            "d5307ee1-65e4-4d80-bae3-4c2ae719cddf",
+            "70f5cb4f-aeec-4b28-9722-99bc90c14757",
+            "1e7e6a33-01ea-4da4-ad25-19fdaf05e465",
+            "682e51a8-d80c-4cd3-b662-714528ab4cb7",
+            "2d58b712-aceb-427b-aa02-82c008a17b05",
+            "3f188f1a-3859-4469-91e9-0a4ba14b8cc5"
+          ],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

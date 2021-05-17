@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-05-17T19:41:28.974Z",
+    "end": "2021-05-17T19:41:42.521Z",
+    "duration": 13547,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2269ec3a-40af-436f-a235-3b6a8bb1a6df",
+      "title": "",
+      "fullFile": "cypress/integration/req10-profileAdmin.spec.js",
+      "file": "cypress/integration/req10-profileAdmin.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ff2e0a46-51f8-4279-bee5-122c458cbcb8",
+          "title": "10 - Criar tela de perfil de administrador",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do perfil do administrador",
+              "fullTitle": "10 - Criar tela de perfil de administrador Será validado que é possível acessar a tela do perfil do administrador",
+              "timedOut": null,
+              "duration": 8506,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-profile\"]');\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/admin/profile\"));",
+              "err": {},
+              "uuid": "b6fb2c45-1374-47d3-904d-f53063f58af9",
+              "parentUUID": "ff2e0a46-51f8-4279-bee5-122c458cbcb8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que a tela de perfil contém os atributos descritos no protótipo",
+              "fullTitle": "10 - Criar tela de perfil de administrador Será validado que a tela de perfil contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 947,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-profile\"]');\n(0, _actionBase.verifyContainsText)('Perfil');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"profile-email\"]');\n(0, _actionBase.verifyElementVisible)('[data-testid=\"profile-name\"]');",
+              "err": {},
+              "uuid": "8510ced0-a612-4cf3-a11b-f0113133bf46",
+              "parentUUID": "ff2e0a46-51f8-4279-bee5-122c458cbcb8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que a tela de perfil contém o email e nome do administrador",
+              "fullTitle": "10 - Criar tela de perfil de administrador Será validado que a tela de perfil contém o email e nome do administrador",
+              "timedOut": null,
+              "duration": 940,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _actionBase.login)(Cypress.env('loginAdmin'), Cypress.env('passwordAdmin'));\n(0, _actionBase.clickButton)('[data-testid=\"side-menu-item-profile\"]');\n(0, _actionBase.verifyContainsText)('Perfil');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"profile-email\"]', 'tryber@trybe.com.br');\n(0, _actionBase.verifyElementContainsText)('[data-testid=\"profile-name\"]', 'Tryber Admin');",
+              "err": {},
+              "uuid": "397a0d42-dd50-41f7-9d91-48566aee12d4",
+              "parentUUID": "ff2e0a46-51f8-4279-bee5-122c458cbcb8",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que não é possível acessar a tela sem estar autenticado e ser redirecionado para tela de login",
+              "fullTitle": "10 - Criar tela de perfil de administrador Será validado que não é possível acessar a tela sem estar autenticado e ser redirecionado para tela de login",
+              "timedOut": null,
+              "duration": 329,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"\".concat(Cypress.config().baseUrl, \"/admin/profile\"));\n(0, _actionBase.verifyContainsUrl)(\"\".concat(Cypress.config().baseUrl, \"/login\"));",
+              "err": {},
+              "uuid": "388b763b-1a6f-49b0-bb44-e3eba2d8e22c",
+              "parentUUID": "ff2e0a46-51f8-4279-bee5-122c458cbcb8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b6fb2c45-1374-47d3-904d-f53063f58af9",
+            "8510ced0-a612-4cf3-a11b-f0113133bf46",
+            "397a0d42-dd50-41f7-9d91-48566aee12d4",
+            "388b763b-1a6f-49b0-bb44-e3eba2d8e22c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10722,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}

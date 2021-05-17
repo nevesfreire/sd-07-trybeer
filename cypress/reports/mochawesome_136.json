@@ -1,0 +1,219 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 7,
+    "failures": -6,
+    "start": "2021-05-15T23:41:55.022Z",
+    "end": "2021-05-15T23:41:55.069Z",
+    "duration": 47,
+    "testsRegistered": 7,
+    "passPercent": null,
+    "pendingPercent": 100,
+    "other": 6,
+    "hasOther": true,
+    "skipped": 6,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "7a5b95d5-d125-4932-9537-26f699fd3c29",
+      "title": "",
+      "fullFile": "cypress/integration/req12-orderDetailsAdmin.spec.js",
+      "file": "cypress/integration/req12-orderDetailsAdmin.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1020e163-cae7-49d6-b7e2-005872e317a4",
+          "title": "12 - Criar tela de detalhes pedidos do admininstrador",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Será validado que é possível acessar a tela do detalhe do pedido do administrador",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que é possível acessar a tela do detalhe do pedido do administrador",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "4299ea4c-cf6c-45f9-982e-f71d9e2c5dfb",
+              "parentUUID": "1020e163-cae7-49d6-b7e2-005872e317a4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que contém os atributos descritos no protótipo",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que contém os atributos descritos no protótipo",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "9f6a4254-e776-43cd-8133-3b67cfcb16cd",
+              "parentUUID": "1020e163-cae7-49d6-b7e2-005872e317a4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que o pedido contém nome e status do pedido",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido contém nome e status do pedido",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "900393b2-cf4e-4736-925b-acf547639625",
+              "parentUUID": "1020e163-cae7-49d6-b7e2-005872e317a4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que o pedido contém todos os detalhes do pedido",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido contém todos os detalhes do pedido",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "11a57848-c1cd-468c-a2dd-f49c80b9ddb9",
+              "parentUUID": "1020e163-cae7-49d6-b7e2-005872e317a4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que o pedido com status pendente irá apresentar na tela o botão \"Marcar como entregue\"",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido com status pendente irá apresentar na tela o botão \"Marcar como entregue\"",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "a36c89e8-d96b-4f04-bb4a-379df3b0fbfe",
+              "parentUUID": "1020e163-cae7-49d6-b7e2-005872e317a4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que o pedido ao marcar como entregue o status mude para entregue\" e o botão nao esteja mais visível",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido ao marcar como entregue o status mude para entregue\" e o botão nao esteja mais visível",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "e6182c58-c5cc-404f-b356-9d06b39b6cf2",
+              "parentUUID": "1020e163-cae7-49d6-b7e2-005872e317a4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Será validado que o pedido ao marcar como entregue o status mude para entregue\" na tela de pedidos admin",
+              "fullTitle": "12 - Criar tela de detalhes pedidos do admininstrador Será validado que o pedido ao marcar como entregue o status mude para entregue\" na tela de pedidos admin",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "d62ccff3-ae20-4c7a-a22c-d91c2748d9e8",
+              "parentUUID": "1020e163-cae7-49d6-b7e2-005872e317a4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [],
+          "pending": [
+            "4299ea4c-cf6c-45f9-982e-f71d9e2c5dfb",
+            "9f6a4254-e776-43cd-8133-3b67cfcb16cd",
+            "900393b2-cf4e-4736-925b-acf547639625",
+            "11a57848-c1cd-468c-a2dd-f49c80b9ddb9",
+            "a36c89e8-d96b-4f04-bb4a-379df3b0fbfe",
+            "e6182c58-c5cc-404f-b356-9d06b39b6cf2",
+            "d62ccff3-ae20-4c7a-a22c-d91c2748d9e8"
+          ],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "4.1.0"
+    }
+  }
+}
