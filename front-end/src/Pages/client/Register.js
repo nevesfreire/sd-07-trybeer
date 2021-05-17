@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+
 function Register() {
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');

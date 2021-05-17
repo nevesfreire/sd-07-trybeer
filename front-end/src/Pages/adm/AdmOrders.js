@@ -15,18 +15,18 @@ function AdmOrders() {
         headers: myHeaders,
         redirect: 'follow',
       };
-      setIsLoading(true)
+      setIsLoading(true);
       fetch('http://localhost:3001/salesAdm', requestOptions)
         .then((response) => response.json())
         .then((saless) => {
           setSales(saless);
           setIsLoading(false);
         });
-      
     }
   }, []);
-
-  if (!localStorage.getItem('user') && !localStorage.getItem('cadUser')) return <Redirect to="/login" />;
+  if (!localStorage.getItem('user') && !localStorage.getItem('cadUser')) {
+    return <Redirect to="/login" />;
+  }
   return (
     <div>
       <h1>Aqui é pedido</h1>
