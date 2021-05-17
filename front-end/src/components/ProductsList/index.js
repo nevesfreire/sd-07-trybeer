@@ -64,7 +64,7 @@ export default function ProductsList() {
           style={ { padding: '1vh' } }
           >
             <img
-              style={ { width: '100px' } }
+              style={ { width: '80px' } }
               src={ item.url_image }
               alt={ item.name }
               data-testid={ `${index}-product-img` }
