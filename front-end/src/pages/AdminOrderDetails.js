@@ -10,6 +10,7 @@ function AdminOrderDetails() {
   const [saleOrder, setSaleOrder] = useState();
   const [products, setProducts] = useState([]);
   const [buttonState, setButtonState] = useState(false);
+  const [stateOrder, setStateOrder] = useState();
   const history = useHistory();
   const { state } = history.location;
 
@@ -24,6 +25,7 @@ function AdminOrderDetails() {
     const response = await changeStatus(user.token, state);
     setButtonState(true);
     console.log(response);
+    setStateOrder('Entregue');
   };
 
   const requestOrder = useCallback(async () => {
@@ -32,6 +34,7 @@ function AdminOrderDetails() {
     const resultApi = await getOrdersById(user.token, state);
     setSaleOrder(resultApi.data);
     setProducts(resultApi.data.products);
+    setStateOrder(resultApi.data.status);
     if (resultApi) setLoading(false);
   }, [history, state]);
 
@@ -53,7 +56,7 @@ function AdminOrderDetails() {
                 <span data-testid="order-number">
                   {`Pedido ${Number(saleOrder.sale)} - `}
                 </span>
-                <span data-testid="order-status">{saleOrder.status}</span>
+                <span data-testid="order-status">{stateOrder}</span>
               </div>
 
               {
@@ -72,9 +75,7 @@ function AdminOrderDetails() {
                           {`R$ ${handleData(product.unit_price, product.quantity)}`}
                         </span>
                         <span data-testid={ `${index}-order-unit-price` }>
-                          (R$
-                          {product.unit_price.split('.').join(',')}
-                          )
+                          {`(R$ ${product.unit_price.split('.').join(',')})`}
                         </span>
                       </div>
                     </div>
@@ -88,7 +89,7 @@ function AdminOrderDetails() {
                 disabled={ saleOrder.status === 'Entregue' || buttonState === true }
                 onClick={ () => handleClick() }
               >
-                Marcar pedido como entregue
+                Marcar como entregue
               </Button>
             </>
           )
