@@ -1,10 +1,11 @@
 const express = require('express');
+const validateToken = require('../middlewares/validateToken');
 const { getAllProducts, getProductById } = require('../controllers/products');
 
 const router = express.Router();
 
 router.route('/products')
-  .get(getAllProducts);
+  .get(validateToken, getAllProducts);
 
 router.route('/products/:id')
   .get(getProductById);

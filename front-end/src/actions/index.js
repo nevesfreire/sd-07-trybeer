@@ -100,10 +100,12 @@ export const requestAdminOrderFail = (error) => ({
 });
 
 export function fetchProducts(token) {
+  console.log('busquei produtos');
   return async (dispatch) => {
     try {
       dispatch(requestProducts());
       const products = await getProducts(token);
+      console.log('peguei', products);
       dispatch(requestProductsSuccess(products));
     } catch (error) {
       dispatch(requestProductsFail(error.message));

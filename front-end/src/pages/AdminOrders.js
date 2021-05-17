@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchAdminOrders } from '../actions';
 import AdminSidebar from '../components/AdminSidebar';
 import AdminOrderCard from '../components/OrderCard';

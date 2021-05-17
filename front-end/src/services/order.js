@@ -55,7 +55,6 @@ export const getOrder = (id, token, email) => {
     const url = `http://localhost:3001/orders/${id}`;
     return fetch(url, {
       method: 'GET',
-      body: email,
       headers: {
         ...contentType,
         Authorization: token,

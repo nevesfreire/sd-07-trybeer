@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import useForceUpdate from 'use-force-update';
 import AdminSidebar from '../components/AdminSidebar';
 import { fetchAdminOrder } from '../actions';
 import { updateOrder } from '../services/apiServices';
@@ -10,6 +12,7 @@ export default function AdminOrderDetails() {
   const orderSelected = useSelector(({ adminOrder }) => adminOrder);
   const { order, isLoading } = orderSelected;
   const ROUNDING_OPTION = 2;
+  const forceUpdate = useForceUpdate();
 
   useEffect(() => {
     dispatch(fetchAdminOrder(params.id));

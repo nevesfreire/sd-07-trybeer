@@ -7,6 +7,7 @@ import { fetchProducts } from '../actions';
 
 function Products() {
   const INITIAL_VALUE = 0;
+  const ROUNDING_OPTION = 2;
   const [shouldRedirect, setShouldRedirect] = useState('');
   const productsList = useSelector(({ products }) => products);
   const cartList = useSelector(({ cart }) => cart.cart);
@@ -20,7 +21,7 @@ function Products() {
 
   useEffect(() => {
     dispatch(fetchProducts(user.token));
-  }, [dispatch, user.token]);
+  }, [dispatch, user]);
 
   return (
     <>
@@ -41,7 +42,7 @@ function Products() {
         <span
           data-testid="checkout-bottom-btn-value"
         >
-          { `R$ ${totalValue}` }
+          { `R$ ${totalValue.toFixed(ROUNDING_OPTION)}` }
         </span>
       </div>
     </>
