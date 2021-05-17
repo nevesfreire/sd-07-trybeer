@@ -8,10 +8,12 @@ const Checkout = () => {
   AuthVerification();
 
   return (
-    <Container style={ { height: '100vh' } }>
+    <div>
       <Header title="Finalizar Pedido" />
-      <CheckoutCart />
-    </Container>
+      <Container style={ { height: '100vh' } }>
+        <CheckoutCart />
+      </Container>
+    </div>
   );
 };
 

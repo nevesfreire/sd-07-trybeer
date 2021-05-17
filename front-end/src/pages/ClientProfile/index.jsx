@@ -1,15 +1,11 @@
 import React from 'react';
 import ClientProfile from '../../components/ClientProfile';
-import MenuBurger from '../../components/Menu';
-// import CreateUserForm from '../../components/CreateUserForm';
+import Header from '../../components/Header';
 
 const ClientProfilePage = () => (
   <div>
-    <MenuBurger />
-    <h1 data-testid="top-title">Meu perfil</h1>
-    <div>
-      <ClientProfile />
-    </div>
+    <Header title="Meu perfil" />
+    <ClientProfile />
   </div>
 );
 

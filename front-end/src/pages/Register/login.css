@@ -1,4 +1,5 @@
 .signup {
-  background: url(../../img/signupBackground.jpg) no-repeat center center fixed;
-background-size: cover;
+  background: url(../../img/signupBackground.jpg) no-repeat center fixed;
+  background-size: cover;
+  padding-top: 170px;
 }

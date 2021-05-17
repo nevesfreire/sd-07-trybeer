@@ -4,6 +4,9 @@ import { useHistory } from 'react-router-dom';
 import validateRegister from './validation';
 import { registerUser } from '../../services/apiService';
 
+const rgbBgColor = 'rgb(119, 34, 16, 0.2)';
+const rgbBorderColor = 'rgb(119, 34, 16, 0.5)';
+
 function CreateUserForm() {
   // Estados de campos
   const [name, setName] = useState('');
@@ -52,13 +55,13 @@ function CreateUserForm() {
   };
 
   return (
-    <Form onSubmit={ onSubmitHandler } style={ { paddingTop: '180px' } }>
+    <Form onSubmit={ onSubmitHandler } style={ { paddingTop: '20px' } }>
       <Form.Row>
         <Form.Label htmlFor="signup-name">Nome</Form.Label>
         <Form.Control
           style={ {
-            background: 'rgb(119, 34, 16, 0.2)',
-            borderColor: 'rgb(119, 34, 16, 0.5)',
+            background: rgbBgColor,
+            borderColor: rgbBorderColor,
           } }
           value={ name }
           onChange={ (e) => setName(e.target.value) }
@@ -73,8 +76,8 @@ function CreateUserForm() {
         <Form.Label htmlFor="signup-email">Email</Form.Label>
         <Form.Control
           style={ {
-            background: 'rgb(119, 34, 16, 0.2)',
-            borderColor: 'rgb(119, 34, 16, 0.5)',
+            background: rgbBgColor,
+            borderColor: rgbBorderColor,
           } }
           value={ email }
           onChange={ (e) => setEmail(e.target.value) }
@@ -94,8 +97,8 @@ function CreateUserForm() {
         <Form.Label htmlFor="signup-password">Senha</Form.Label>
         <Form.Control
           style={ {
-            background: 'rgb(119, 34, 16, 0.2)',
-            borderColor: 'rgb(119, 34, 16, 0.5)',
+            background: rgbBgColor,
+            borderColor: rgbBorderColor,
           } }
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
@@ -119,8 +122,8 @@ function CreateUserForm() {
       <Form.Row className="justify-content-center">
         <Button
           style={ {
-            background: 'rgb(119, 34, 16, 0.8)',
-            borderColor: 'rgb(119, 34, 16, 0.8)',
+            background: rgbBgColor,
+            borderColor: rgbBorderColor,
           } }
           className="mt-4"
           type="submit"

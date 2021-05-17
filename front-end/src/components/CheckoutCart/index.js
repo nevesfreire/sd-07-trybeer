@@ -55,7 +55,9 @@ export default function CheckoutCart() {
               .map((product, index) => (
                 <Card key={ product.name }>
                   <Card.Body>
-                    <Card.Title data-testid={ `${index}-product-name` }>{product.name}</Card.Title>
+                    <Card.Title data-testid={ `${index}-product-name` }>
+                      {product.name}
+                    </Card.Title>
                     <Card.Text data-testid={ `${index}-product-qtd-input` }>
                       Quantidade:
                       {product.productQtt}
@@ -79,7 +81,7 @@ export default function CheckoutCart() {
               ))}
           </CardDeck>)}
       <p data-testid="order-total-value">
-        {total > 0 ? `Total: R$ ${String(total.toFixed(2)).replace('.', ',')}`
+        {total > 0 ? `Total: R$ ${parseFloat(total).toFixed(2).replace('.', ',')}`
           : 'Total: R$ 0,00'}
       </p>
       <Form>

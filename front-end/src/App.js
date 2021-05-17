@@ -9,7 +9,9 @@ function App() {
     <>
       {/* <GlobalStyle /> */}
       <ApiProvider>
-        <AppRoutes />
+        <div className="main">
+          <AppRoutes />
+        </div>
       </ApiProvider>
     </>
   );

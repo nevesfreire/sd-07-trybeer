@@ -9,9 +9,9 @@ const Products = () => {
   AuthVerification();
 
   return (
-    <div className="products" style={ { heigth: '100vh' } }>
+    <div className="products">
+      <Header title="TryBeer" />
       <Container style={ { height: '100vh' } }>
-        <Header title="TryBeer" />
         <ProductsList />
       </Container>
     </div>

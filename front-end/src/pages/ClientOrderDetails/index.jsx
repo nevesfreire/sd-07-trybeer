@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import Header from '../../components/Header';
 import ClientOrderDetails from '../../components/ClientOrderDetails';
 import AuthVerification from '../../components/AuthVerification';
@@ -9,7 +10,9 @@ const ClientOrderDetailsPage = () => {
   return (
     <div>
       <Header title="Detalhes do Pedido" />
-      <ClientOrderDetails />
+      <Container style={ { height: '100vh' } }>
+        <ClientOrderDetails />
+      </Container>
     </div>
   );
 };

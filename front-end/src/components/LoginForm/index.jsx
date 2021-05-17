@@ -4,6 +4,9 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import { userLogin } from '../../services/apiService';
 import validateLogin from './validationLogin';
 
+const rgbBorderColor = 'rgb(227,183,88)';
+const rgbColor = 'rgb(232,214,210)';
+
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,8 +37,8 @@ function LoginForm() {
           <Form.Control
             style={ {
               background: 'transparent',
-              borderColor: 'rgb(227,183,88)',
-              color: 'rgb(232,214,210)',
+              borderColor: rgbBorderColor,
+              color: rgbColor,
             } }
             value={ email }
             onChange={ (e) => setEmail(e.target.value) }
@@ -56,8 +59,8 @@ function LoginForm() {
           <Form.Control
             style={ {
               background: 'transparent',
-              borderColor: 'rgb(227,183,88)',
-              color: 'rgb(232,214,210)',
+              borderColor: rgbBorderColor,
+              color: rgbColor,
             } }
             value={ password }
             onChange={ (e) => setPassword(e.target.value) }
@@ -74,7 +77,7 @@ function LoginForm() {
           <Button
             style={ {
               backgroundColor: 'rgb(133,54,21)',
-              borderColor: 'rgb(133,54,21)',
+              borderColor: rgbBorderColor,
             } }
             type="submit"
             data-testid="signin-btn"

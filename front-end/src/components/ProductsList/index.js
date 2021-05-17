@@ -1,7 +1,8 @@
-import { Card, CardDeck, Row, Col, Button } from 'react-bootstrap';
+import { CardDeck, Row } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getProducts } from '../../services/apiService';
+import ProductsCard from './ProductsCard';
 
 export default function ProductsList() {
   const totalVal = JSON.parse(localStorage.getItem('total'));
@@ -18,6 +19,8 @@ export default function ProductsList() {
         (apiResponse) => apiResponse,
       );
 
+      if (!totalVal) setTotalValue(0);
+
       if (newProductsList && newProductsList.length > 0) {
         return setProducts(newProductsList);
       }
@@ -25,7 +28,7 @@ export default function ProductsList() {
     };
 
     fetchProducts();
-  }, []);
+  }, [totalVal]);
 
   const addProdQtt = (e, id) => {
     e.preventDefault();
@@ -60,70 +63,23 @@ export default function ProductsList() {
       {!products ? (
         <p>Loading...</p>
       ) : (
-        <CardDeck
-          style={ { width: '200rem', paddingTop: '70px' } }
-          className="d-flex justify-content-center"
-        >
-          {products.map((item, index) => (
-            <Card
-              key={ item.id }
-              style={ {
-                width: '10rem',
-                background: 'transparent',
-                color: 'rgb(232,214,210)',
-              } }
-              className="align-self-center text-center"
-            >
-              <Card.Body>
-                <Card.Title
-                  data-testid={ `${index}-product-name` }
-                  style={ { color: 'white' } }
-                >
-                  {item.name}
-                </Card.Title>
-                <Card.Text
-                  data-testid={ `${index}-product-price` }
-                  style={ { color: 'white' } }
-                >
-                  {`R$ ${item.price.replace('.', ',')}`}
-                </Card.Text>
-                <Row>
-                  <Col>
-                    <Button
-                      type="button"
-                      data-testid={ `${index}-product-plus` }
-                      onClick={ (e) => addProdQtt(e, item.id) }
-                    >
-                      +
-                    </Button>
-                  </Col>
-                  <Col>
-                    <p data-testid={ `${index}-product-qtd` }>
-                      {item.productQtt}
-                    </p>
-                  </Col>
-                  <Col>
-                    <Button
-                      type="button"
-                      data-testid={ `${index}-product-minus` }
-                      onClick={ () => decProdQtt(item.id) }
-                    >
-                      -
-                    </Button>
-                  </Col>
-                </Row>
-              </Card.Body>
-              <Card.Img
-                className="align-self-center"
-                style={ { width: '10rem', background: 'transparent' } }
-                variant="bottom"
-                src={ item.url_image }
-                alt={ item.name }
-                data-testid={ `${index}-product-img` }
-              />
-            </Card>
-          ))}
-        </CardDeck>
+        <div>
+          <Row className="d-flex justify-content-around flex-row-reverse">
+            {products.map((item, index) => (
+              <CardDeck
+                key={ item.id }
+                style={ { width: '18rem', paddingTop: '10px' } }
+              >
+                <ProductsCard
+                  item={ item }
+                  index={ index }
+                  addProdQtt={ addProdQtt }
+                  decProdQtt={ decProdQtt }
+                />
+              </CardDeck>
+            ))}
+          </Row>
+        </div>
       )}
       <footer
         style={ {
@@ -131,6 +87,7 @@ export default function ProductsList() {
           bottom: '0',
           position: 'fixed',
           padding: '10px',
+          width: '68%',
         } }
       >
         <p data-testid="checkout-bottom-btn-value">

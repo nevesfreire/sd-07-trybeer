@@ -4,12 +4,12 @@ import MenuBurger from '../Menu/index';
 
 export default function Header({ title }) {
   return (
-    <div>
+    <header>
       <MenuBurger data-testid="top-hamburguer" />
       <h1 data-testid="top-title">
         { title }
       </h1>
-    </div>
+    </header>
   );
 }
 
