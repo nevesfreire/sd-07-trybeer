@@ -30,7 +30,7 @@ function LoginForm() {
   return (
     <Form>
       <Form.Group as={ Row } controlId="formHorizontalEmail">
-        <Form.Label htmlFor="email-input" column sm={ 3 }>
+        <Form.Label column sm={ 3 }>
           Email
         </Form.Label>
         <Col sm={ 10 }>
@@ -52,7 +52,7 @@ function LoginForm() {
       </Form.Group>
 
       <Form.Group as={ Row } controlId="formHorizontalPassword">
-        <Form.Label htmlFor="password-input" column sm={ 3 }>
+        <Form.Label column sm={ 3 }>
           Senha
         </Form.Label>
         <Col sm={ 10 }>
