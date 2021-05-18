@@ -12,7 +12,7 @@ function AdminOrders() {
       <sidebar>
         <CustomSideBarAdmin />
       </sidebar>
-      <Container style={{ padding: 20 }}>
+      <Container style={ { padding: 20 } }>
         <Header as="h1" color="orange" textAlign="center">Pedidos</Header>
         <CustomRenderAllOrders />
       </Container>

@@ -6,23 +6,33 @@ import { fetchOrderDetails } from '../service/order';
 
 const CustomAdminOrders = ({ index, beer }) => {
   fetchOrderDetails(beer.id);
+
   return (
     <Link to={ `/admin/orders/${beer.id}` }>
-      <Grid style={{ margin: '10px 50px 10px 0' }}>
+      <Grid style={ { margin: '10px 50px 10px 0' } }>
         {!beer ? (
           null
         ) : (
 
-          <Card data-testid={ `${index}-order-card-container` } style={{ boxShadow: '1px 2px 4px rgba(0, 0, 0, .5)'}}>
+          <Card
+            data-testid={ `${index}-order-card-container` }
+            style={ { boxShadow: '1px 2px 4px rgba(0, 0, 0, .5)' } }
+          >
             <Card.Content>
               <Card.Header data-testid={ `${index}-order-number` }>
                 {`Pedido ${beer.id}`}
               </Card.Header>
-              <label htmlFor="username" data-testid={ `${index}-order-status` }>
+              <label
+                htmlFor="username"
+                data-testid={ `${index}-order-status` }
+              >
                 {beer.status}
               </label>
 
-              <Card.Meta data-testid={ `${index}-order-address` } style={{ marginTop: 10 }}>
+              <Card.Meta
+                data-testid={ `${index}-order-address` }
+                style={ { marginTop: 10 } }
+              >
                 {`Rua ${beer.delivery_address}, ${beer.delivery_number}`}
               </Card.Meta>
 

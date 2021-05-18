@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { Container, Header } from 'semantic-ui-react';
+
 import { getToken } from '../helpers/localStorage';
 import CustomHeader from '../components/CustomHeader';
 import CustomProfile from '../components/CustomProfile';
 import fetchUpdate from '../service/profile';
-import { Container, Header } from 'semantic-ui-react';
 import CustomTopMenu from '../components/CustomTopMenu';
 
 function Profile() {
