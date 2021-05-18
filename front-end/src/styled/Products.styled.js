@@ -27,6 +27,12 @@ const CardContainer = styled.div`
     gap: 10px;
   }
 
+  button {
+    background-color: ${({ theme }) => theme.amarelo};
+    border: none;
+    border-radius: 25%;
+  }
+
   .thumb {
     width: 100px;
   }

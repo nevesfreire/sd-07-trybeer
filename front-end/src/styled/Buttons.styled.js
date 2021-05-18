@@ -8,7 +8,7 @@ const MainButton = styled.button`
   border-radius: 3px;
   margin-top: 10px;
   margin: ${({ isForm }) => isForm || 'auto'};
-  background-color: #C38E00;
+  background-color: ${({ theme }) => theme.amarelo};
   display: flex;
   padding: 10px;
   width: ${({ isForm }) => isForm && '100%'};

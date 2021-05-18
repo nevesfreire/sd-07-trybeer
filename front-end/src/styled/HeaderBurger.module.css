@@ -7,7 +7,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid white
+  color: #fff7e6;
+  background-color:  #3d1301;
 }
 
 .headerContainer .spanName {
@@ -15,4 +16,5 @@
     margin: auto;
     width: 100%;
     position: relative;
+    font-size: large;
 }

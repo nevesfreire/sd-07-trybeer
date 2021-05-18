@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import { MainComponentContainer } from '../styled/AdminContainers.styled';
+import { MainButton, LinkButton } from '../styled/Buttons.styled';
 
 function AdminOrdersDetailsComponent({ match }) {
   const [order, setOrder] = useState([]);
@@ -33,42 +34,54 @@ function AdminOrdersDetailsComponent({ match }) {
 
   return order ? (
     <MainComponentContainer>
-      <header>
-        <div>
+      <ul>
+        <li>
           <span data-testid="order-number">{`Pedido ${id} - `}</span>
           <span data-testid="order-status">{status}</span>
-        </div>
-      </header>
-      {order.map((product, index) => (
-        <div key={ product.name }>
-          <div data-testid={ `${index}-product-qtd` }>{product.quantity}</div>
-          <div data-testid={ `${index}-product-name` }>{`${product.name} `}</div>
-          <div
-            data-testid={ `${index}-product-total-value` }
-          >
-            {
-              `R$ ${(product.quantity * product.price)
-                .toFixed(2).toString().replace('.', ',')} `
-            }
-          </div>
-          <div
-            data-testid={ `${index}-order-unit-price` }
-          >
-            {`(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')}) `}
-          </div>
-        </div>
-      ))}
-      <div data-testid="order-total-value">
-        {`Total: R$ ${totalPrice.toFixed(2).toString().replace('.', ',')}`}
-      </div>
+        </li>
+        <li data-testid="order-total-value">
+          {`Total: R$ ${totalPrice.toFixed(2).toString().replace('.', ',')}`}
+        </li>
+      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th> Quantidade </th>
+            <th> Produto </th>
+            <th> Total por produto </th>
+            <th> Valor unitário </th>
+          </tr>
+        </thead>
+        <tbody>
+          {order.map((product, index) => (
+            <tr key={product.name}>
+              <th data-testid={`${index}-product-qtd`}>{product.quantity}</th>
+              <th data-testid={`${index}-product-name`}>{`${product.name} `}</th>
+              <th
+                data-testid={`${index}-product-total-value`}
+              >
+                {
+                  `R$ ${(product.quantity * product.price)
+                    .toFixed(2).toString().replace('.', ',')} `
+                }
+              </th>
+              <th
+                data-testid={`${index}-order-unit-price`}
+              >
+                {`(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')}) `}
+              </th>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       {status === 'Pendente' && (
-        <button
+        <MainButton
           type="button"
           data-testid="mark-as-delivered-btn"
-          onClick={ handleDelivered }
+          onClick={handleDelivered}
         >
           Marcar como entregue
-        </button>)}
+        </MainButton>)}
     </MainComponentContainer>)
     : <span>Loading...</span>;
 }

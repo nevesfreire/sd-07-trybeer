@@ -17,10 +17,11 @@ import GlobalStyle from './global';
 import AdminOrdersDetails from './pages/AdminOrdersDetailsPage';
 
 const theme = {
-  primaryDark: '#0D0C1D',
-  primaryLight: '#EFFFFA',
-  primaryHover: '#343078',
-  mobile: '576px',
+  primaryDark: '#3d1301',
+  amareloClaro: '#fff7e6',
+  primaryHover: '#700000',
+  laranja: '#cc5500',
+  amarelo: '#f5bb0f'
 };
 
 function App() {

@@ -4,32 +4,34 @@ import { Link } from 'react-router-dom';
 
 function PendingOrderCard({ order, index }) {
   return (
-    <Link to={ `/admin/orders/${order.id}` }>
-      <div>
-        <h3
-          data-testid={ `${index}-order-number` }
-        >
-          { `Pedido ${order.id}` }
-        </h3>
-        <span
-          data-testid={ `${index}-order-address` }
-        >
-          { `${order.delivery_address}, ${order.delivery_number}` }
-        </span>
-      </div>
-      <div>
-        <span
-          data-testid={ `${index}-order-total-value` }
-        >
-          { `R$ ${(order.total_price).replace('.', ',')}` }
-        </span>
-        <span
-          data-testid={ `${index}-order-status` }
-        >
-          { order.status }
-        </span>
-      </div>
-    </Link>
+    <div className='pendingOrder'>
+      <Link to={`/admin/orders/${order.id}`}>
+        <div>
+          <h3
+            data-testid={`${index}-order-number`}
+          >
+            {`Pedido ${order.id}`}
+          </h3>
+          <span
+            data-testid={`${index}-order-address`}
+          >
+            {`${order.delivery_address}, ${order.delivery_number}`}
+          </span>
+        </div>
+        <div>
+          <span
+            data-testid={`${index}-order-total-value`}
+          >
+            {`R$ ${(order.total_price).replace('.', ',')}`}
+          </span>
+          <span
+            data-testid={`${index}-order-status`}
+          >
+            {order.status}
+          </span>
+        </div>
+      </Link>
+    </div>
   );
 }
 
