@@ -5,6 +5,8 @@ import services from '../services';
 import 'bulma/css/bulma.min.css';
 import { requestToken } from '../api';
 
+import logo from '../img/logo.svg';
+
 const { Input, Field, Control, Label } = Form;
 
 function LoginForm() {
@@ -49,7 +51,12 @@ function LoginForm() {
   }, [email, password]);
 
   return (
-    <div className="login-form is-flex-mobile">
+    <div className="login-form m-2">
+      <div className="card-image">
+        <figure className="image is-3by1">
+          <img src={ logo } alt="Undefined" />
+        </figure>
+      </div>
       <Field>
         <Label>
           Email
@@ -89,25 +96,29 @@ function LoginForm() {
           />
         </p>
       </div>
-      <Field>
-        <Control>
-          <Button
-            onClick={ () => handleClick() }
-            data-testid="signin-btn"
-            className="button is-black"
-            disabled={ disable }
-          >
-            {' '}
-            Entrar
-          </Button>
-        </Control>
-      </Field>
-      <Link
-        to="/register"
-        data-testid="no-account-btn"
-      >
-        Ainda não tenho conta
-      </Link>
+      <div className="is-flex is-flex-direction-row is-justify-content-space-between">
+        <Field>
+          <Control>
+            <Button
+              onClick={ () => handleClick() }
+              data-testid="signin-btn"
+              className="button is-black"
+              disabled={ disable }
+              style={ { width: '16rem' } }
+            >
+              {' '}
+              Entrar
+            </Button>
+          </Control>
+        </Field>
+        <Link
+          to="/register"
+          data-testid="no-account-btn"
+          className="button is-link is-light"
+        >
+          Ainda não tenho conta
+        </Link>
+      </div>
     </div>
   );
 }

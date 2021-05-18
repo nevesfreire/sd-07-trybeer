@@ -3,7 +3,7 @@ import { LoginForm } from '../components';
 
 function Login() {
   return (
-    <div>
+    <div className="card mt-6">
       <LoginForm />
     </div>
   );
