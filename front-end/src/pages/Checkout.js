@@ -112,7 +112,10 @@ function Checkout() {
           <p>{`Total do pedido - R$ ${totalKart.toFixed(2).replace('.', ',')}`}</p>
         </Segment>
 
-        <Segment stacked style={ { backgroundColor: 'rgb(33, 33, 33)' } }>
+        <Segment
+          stacked
+          style={ { backgroundColor: 'rgb(33, 33, 33)', textAlign: 'center' } }
+        >
           <Form.Input
             data-testid="checkout-street-input"
             fluid

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button, Image } from 'semantic-ui-react';
+import { Card, Button, Image, Modal, Icon, Header } from 'semantic-ui-react';
 
 export default function CustomCheckout({ index, beer, removeButton }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <Card
       style={ {
@@ -34,18 +36,45 @@ export default function CustomCheckout({ index, beer, removeButton }) {
           {`(R$ ${beer[1].replace('.', ',')} un)`}
         </Card.Description>
       </Card.Content>
-      <Button
-        // floated="right"
-        // inverted
-        color="red"
-        size="mini"
-        data-testid={ `${index}-removal-button` }
-        onClick={ () => {
-          removeButton(beer[0]);
-        } }
+
+      <Modal
+        basic
+        onClose={ () => setOpen(false) }
+        onOpen={ () => setOpen(true) }
+        open={ open }
+        size="small"
+        trigger={
+          <Button
+            color="red"
+            size="mini"
+            data-testid={ `${index}-removal-button` }
+          >
+            X
+          </Button>
+        }
       >
-        X
-      </Button>
+        <Header icon>
+          Tem certeza que deseja excluir este item?
+        </Header>
+
+        <Modal.Actions>
+          <Button centered basic positive inverted onClick={ () => setOpen(false) }>
+            <Icon name="remove" />
+            Não
+          </Button>
+          <Button
+            color="red"
+            inverted
+            onClick={ () => {
+              removeButton(beer[0]);
+              setOpen(false);
+            } }
+          >
+            <Icon name="checkmark" />
+            Sim
+          </Button>
+        </Modal.Actions>
+      </Modal>
     </Card>
   );
 }
