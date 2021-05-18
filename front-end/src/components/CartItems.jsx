@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from '../hooks/useFetch';
+import { MainComponentContainer } from '../styled/AdminContainers.styled';
+import { MainButton } from '../styled/Buttons.styled';
 
 function CartItems() {
   const { postSales } = useFetch();
@@ -97,11 +99,11 @@ function CartItems() {
     if (listProducts.length === 0 && localStorageSalved.length > 0) return ('Loading...');
     if (listProducts.length > 0 && localStorageSalved.length > 0) {
       return (localStorageSalved.map((product, index) => (
-        <div key={ product.id }>
-          <div data-testid={ `${index}-product-qtd-input` }>{product.quantity}</div>
-          <div data-testid={ `${index}-product-name` }>{`${product.name} `}</div>
+        <div key={product.id}>
+          <div data-testid={`${index}-product-qtd-input`}>{product.quantity}</div>
+          <div data-testid={`${index}-product-name`}>{`${product.name} `}</div>
           <div
-            data-testid={ `${index}-product-total-value` }
+            data-testid={`${index}-product-total-value`}
           >
             {
               `R$ ${(product.quantity * product.price)
@@ -109,14 +111,14 @@ function CartItems() {
             }
           </div>
           <div
-            data-testid={ `${index}-product-unit-price` }
+            data-testid={`${index}-product-unit-price`}
           >
             {`(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')} un) `}
           </div>
           <button
             type="button"
-            data-testid={ `${index}-removal-button` }
-            onClick={ () => removeProduct(product.id) }
+            data-testid={`${index}-removal-button`}
+            onClick={() => removeProduct(product.id)}
           >
             X
           </button>
@@ -128,29 +130,33 @@ function CartItems() {
 
   return (
     <>
-      <div>{handleProducts()}</div>
-      <div data-testid="order-total-value">
-        {`Total: R$ ${totalPrice.toFixed(2).toString().replace('.', ',')}`}
-      </div>
-      <input
-        type="text"
-        data-testid="checkout-street-input"
-        onChange={ (event) => handleInputs('deliveryAddress', event) }
-      />
-      <input
-        type="text"
-        data-testid="checkout-house-number-input"
-        onChange={ (event) => handleInputs('deliveryNumber', event) }
-      />
-      <button
-        type="button"
-        disabled={ handleSubmit() }
-        data-testid="checkout-finish-btn"
-        onClick={ () => handleCheckout() }
-      >
-        Finalizar Pedido
-      </button>
-      <span>{ finalMsg.message }</span>
+      <MainComponentContainer >
+        <div className="cartItems">
+          <div>{handleProducts()}</div>
+          <div data-testid="order-total-value">
+            {`Total: R$ ${totalPrice.toFixed(2).toString().replace('.', ',')}`}
+          </div>
+        </div>
+        <input
+          type="text"
+          data-testid="checkout-street-input"
+          onChange={(event) => handleInputs('deliveryAddress', event)}
+        />
+        <input
+          type="text"
+          data-testid="checkout-house-number-input"
+          onChange={(event) => handleInputs('deliveryNumber', event)}
+        />
+        <span>{finalMsg.message}</span>
+      </MainComponentContainer>
+        <MainButton
+          type="button"
+          disabled={handleSubmit()}
+          data-testid="checkout-finish-btn"
+          onClick={() => handleCheckout()}
+        >
+          Finalizar Pedido
+      </MainButton>
     </>
   );
 }

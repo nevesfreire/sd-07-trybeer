@@ -10,6 +10,7 @@ const MainComponentContainer = styled.section`
   flex-direction: column;
   width: 73%;
   align-items: center;
+  gap: 1rem;
 
   table {
     width: 95%;
@@ -68,12 +69,8 @@ const MainComponentContainer = styled.section`
   &:hover {
     filter: brightness(0.90)
   }
-
-  a {
-    text-decoration: none;
-    color: black;
-
-    &:hover {
+  display: flex;
+  align-items: center;
       text-decoration: underline;
     }
   }
@@ -81,6 +78,22 @@ const MainComponentContainer = styled.section`
   span {
     margin: auto;
     padding: 1rem;
+  }
+}
+
+button {
+  background-color: ${({ theme }) => theme.amarelo};
+  border: none;
+  border-radius: 25%;
+  margin-left: 1rem;
+}
+
+.cartItems {
+  margin: 1rem;
+  div{
+    display:inline-block;
+    float:left;
+    margin-left: 1rem;
   }
 }
 `;

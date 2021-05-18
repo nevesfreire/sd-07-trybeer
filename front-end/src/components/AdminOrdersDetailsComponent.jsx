@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import { MainComponentContainer } from '../styled/AdminContainers.styled';
-import { MainButton, LinkButton } from '../styled/Buttons.styled';
+import { MainButton } from '../styled/Buttons.styled';
 
 function AdminOrdersDetailsComponent({ match }) {
   const [order, setOrder] = useState([]);
