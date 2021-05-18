@@ -25,7 +25,7 @@ export default function AdminOrders() {
   }
 
   return (
-    <div>
+    <div className="d-flex flex-column align-items-center">
       { adminSales.err ? <p>{adminSales.err.message}</p>
         : adminSales.map((item, index) => (
           // <p>{console.log(item)}</p>
@@ -37,13 +37,31 @@ export default function AdminOrders() {
             role="button"
             onKeyDown={ () => history.push(`/admin/orders/${item.id}`) }
             tabIndex={ 0 }
+            className="d-flex justify-content-around border rounded"
+            style={ { margin: '3vh', width: '90vh' } }
           >
-            <p data-testid={ `${index}-order-number` }>{`Pedido ${item.id}`}</p>
-            <p data-testid={ `${index}-order-address` }>
+            <p
+              data-testid={ `${index}-order-number` }
+              style={ { margin: '3vh' } }
+            >
+              {`Pedido ${item.id}`}
+            </p>
+            <p
+              data-testid={ `${index}-order-address` }
+              style={ { margin: '3vh' } }
+            >
               {`${item.delivery_address.concat(', ', item.delivery_number)}`}
             </p>
-            <p data-testid={ `${index}-order-status` }>{item.status}</p>
-            <p data-testid={ `${index}-order-total-value` }>
+            <p
+              data-testid={ `${index}-order-status` }
+              style={ { margin: '3vh' } }
+            >
+              {item.status}
+            </p>
+            <p
+              data-testid={ `${index}-order-total-value` }
+              style={ { margin: '3vh' } }
+            >
               {`R$ ${item.total_price.replace('.', ',')}`}
             </p>
           </div>

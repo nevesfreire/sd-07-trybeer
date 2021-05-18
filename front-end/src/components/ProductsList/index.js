@@ -75,33 +75,41 @@ export default function ProductsList() {
                   index={ index }
                   addProdQtt={ addProdQtt }
                   decProdQtt={ decProdQtt }
+                  style={ { background: 'rgb(0,0,0,0.1)' } }
                 />
               </CardDeck>
             ))}
           </Row>
         </div>
       )}
-      <footer
-        style={ {
-          background: 'gray',
-          bottom: '0',
-          position: 'fixed',
-          padding: '10px',
-          width: '68%',
-        } }
-      >
-        <p data-testid="checkout-bottom-btn-value">
-          {`R$ ${totalValue.toFixed(2).replace('.', ',')}`}
-        </p>
-        <button
-          type="button"
-          data-testid="checkout-bottom-btn"
-          onClick={ () => history.push('/checkout') }
-          disabled={ totalValue === 0 }
+      <div style={ { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
+        <footer
+          style={ {
+            padding: '2vh',
+            background: 'rgb(30,30,255)',
+            bottom: '0',
+            position: 'fixed',
+            borderRadius: '5px',
+          } }
         >
-          Ver Carrinho
-        </button>
-      </footer>
+          <p
+            data-testid="checkout-bottom-btn-value"
+            style={ { color: 'white' } }
+          >
+            {`R$ ${totalValue.toFixed(2).replace('.', ',')}`}
+          </p>
+          <button
+            type="button"
+            data-testid="checkout-bottom-btn"
+            onClick={ () => history.push('/checkout') }
+            disabled={ totalValue === 0 }
+            style={ { color: 'white', backgroundColor: 'rgb(255,255,255,0.1)' } }
+            className="btn btn-secondary"
+          >
+            Ver Carrinho
+          </button>
+        </footer>
+      </div>
     </div>
   );
 }
