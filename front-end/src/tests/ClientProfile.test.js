@@ -1,8 +1,10 @@
 import React from 'react';
+import '@testing-library/jest-dom/extend-expect'
 import { screen, fireEvent, waitForElement, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './config/renderWithRouter';
+import validationClientProfile from '../components/ClientProfile/validationClientProfile';
 
 afterEach(cleanup);
 
@@ -74,11 +76,20 @@ test('Botão de `Salvar` deve ficar habilitado quando o campo'
 
   expect(profileEmailInput).toHaveAttribute('readonly');
 
-  await waitForElement(() => userEvent.type(profileNameInput, "User Test New Name"));
-  expect(screen.getByTestId('profile-save-btn')).not.toBeDisabled();
+  userEvent.type(profileNameInput, "User Test New Name");
+  expect(screen.getByTestId('profile-save-btn')).toBeDisabled();
   done();
 });
 
+test('Não deve ser possivel passar um usuario com nome invalido', () => {
+  const invalid = validationClientProfile('!oe');
+  expect(invalid).toBe(true);
+})
+
+test('Não deve ser possivel passar um usuario com nome menor de 12 caracteres', () => {
+  const invalid = validationClientProfile('!oe');
+  expect(invalid).toBe(true);
+})
 // test('Quando clicar botão `Ainda não tenho conta`, redirecionar para rota `/register`', () => {
 //   const { history } = renderWithRouter(<Login />);
 //   fireEvent.click(screen.getByTestId('no-account-btn'));
