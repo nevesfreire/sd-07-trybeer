@@ -16,8 +16,8 @@ const getOrderById = async (req, res) => {
   const errorMessage = { message: 'Pedido não cadastrado' };
     try {
       const { id } = req.params;
-      const order = await adminOrdersService.getOrderById(id);
-    res.status(httpStatus.OK).json(order);
+      const response = await adminOrdersService.getOrderById(id);
+    res.status(httpStatus.OK).json(response);
   } catch (error) {
     res.status(httpStatus.BAD_REQUEST).json(errorMessage);
   }

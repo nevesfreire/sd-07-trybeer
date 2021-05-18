@@ -6,8 +6,8 @@ const getAllOrders = async () => {
 };
 
 const getOrderById = async (id) => {
-  const order = await adminOrdersModel.getOrderById(id);
-  return order;
+  const response = await adminOrdersModel.getOrderById(id);
+  return response;
 };
 
 const updateOrderByStatus = async (id, status) => {

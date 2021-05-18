@@ -20,7 +20,13 @@ const getOrderById = async (id) => {
     'SELECT total_price, status FROM sales WHERE id = ?', [id],
   );
 
-  return [order, [...products]];
+  const response = { 
+  totalPrice: order.total_price,
+  status: order.status,
+  ProductList: [...products],
+};
+
+  return response;
 };
 
 const updateOrderByStatus = async (id, status) => connect.execute(
