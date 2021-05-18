@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Grid, Segment } from 'semantic-ui-react';
+import { Container, Grid, Header, Segment } from 'semantic-ui-react';
 import CustomHeader from '../components/CustomHeader';
 import CustomDetails from '../components/CustomDetails';
 import { getOrderDetails } from '../helpers/localStorage';
+import CustomTopMenu from '../components/CustomTopMenu';
 
 function Details() {
-  const [detail, setDetail] = useState(getOrderDetails());
+  const [detail] = useState(getOrderDetails());
   let sumTotal = 0;
   detail.map((total) => {
     (sumTotal = total.total + sumTotal);
@@ -17,7 +18,7 @@ function Details() {
       <div>
         {!detail ? null : (
           <div>
-            <p data-testid="order-number">{`Pedido ${detail[0].sale_id}`}</p>
+            <h3 data-testid="order-number">{`Pedido ${detail[0].sale_id}`}</h3>
             <p data-testid="order-date">{detail[0].sale_date}</p>
             <p data-testid="order-total-value">
               {`R$ ${sumTotal
@@ -31,7 +32,10 @@ function Details() {
   ), [detail, sumTotal]);
 
   const renderOrderDetail = useCallback(() => (
-    <div>
+    <Container>
+      <h3 style={ { color: 'white' } }>
+        Itens do pedido:
+      </h3>
       {!detail
         ? null
         : detail.map((beer, index) => (
@@ -42,7 +46,7 @@ function Details() {
             />
           </Grid.Column>
         ))}
-    </div>
+    </Container>
   ), [detail]);
 
   useEffect(() => {
@@ -51,10 +55,15 @@ function Details() {
   }, [detailHeader, renderOrderDetail]);
 
   return (
-    <div>
-      <CustomHeader message="Detalhes de Pedido" />
-      {detailHeader()}
-      {renderOrderDetail()}
+    <div style={ { width: '100%', backgroundColor: 'rgb(33, 33, 33)' } }>
+      <Header style={ { display: 'flex', alignItems: 'center' } }>
+        <CustomTopMenu />
+        <CustomHeader message="Detalhes de Pedido" />
+      </Header>
+      <Container>
+        {detailHeader()}
+        {renderOrderDetail()}
+      </Container>
     </div>
   );
 }

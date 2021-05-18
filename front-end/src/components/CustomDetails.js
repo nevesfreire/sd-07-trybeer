@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Grid } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 
 export default function CustomDetails({ index, beer }) {
   return (
 
-    <Grid>
+    <div>
       {!beer ? (
         null
       ) : (
@@ -27,7 +27,7 @@ export default function CustomDetails({ index, beer }) {
           </Card.Content>
         </Card>
       )}
-    </Grid>
+    </div>
 
   );
 }
