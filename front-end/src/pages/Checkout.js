@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Grid, Button, Form, Segment } from 'semantic-ui-react';
+import { Container, Button, Form, Segment, Card } from 'semantic-ui-react';
 import CustomCheckout from '../components/CustomCheckout';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
@@ -61,25 +61,29 @@ function Checkout() {
   useEffect(() => {}, [finish]);
 
   const renderProdutsCart = useCallback(() => (
-    <Grid stacked style={ { display: 'flex' } }>
-      {totalKart === 0 ? <span>Não há produtos no carrinho</span> : null }
-      { !cart ? (
-        null
-      ) : (
-        cart.map((beer, index) => (
-          <CustomCheckout
-            key={ index }
-            index={ index }
-            beer={ beer }
-            removeButton={ remButton }
-          />
-        ))
-      )}
-    </Grid>
+    <div style={ { display: 'flex', margin: 'auto', width: '100%' } }>
+      <Container>
+        <Card.Group>
+          {totalKart === 0 ? <span>Não há produtos no carrinho</span> : null }
+          { !cart ? (
+            null
+          ) : (
+            cart.map((beer, index) => (
+              <CustomCheckout
+                key={ index }
+                index={ index }
+                beer={ beer }
+                removeButton={ remButton }
+              />
+            ))
+          )}
+        </Card.Group>
+      </Container>
+    </div>
   ), [cart, remButton, totalKart]);
 
   return (
-    <Container
+    <div
       style={ {
         width: '100%',
         height: '100%',
@@ -145,7 +149,7 @@ function Checkout() {
           { finish ? <span>Compra realizada com sucesso!</span> : null}
         </Segment>
       </Form>
-    </Container>
+    </div>
   );
 }
 export default Checkout;

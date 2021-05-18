@@ -4,6 +4,8 @@ import { Button, Card, Image } from 'semantic-ui-react';
 import CentralContext from '../context/Context';
 import { loadItemsToLocalStorage } from '../helpers/localStorage';
 
+import './componentStyle.css';
+
 export default function CustomProductCard({ index, beer }) {
   const { totalKart, setTotalKart } = useContext(CentralContext);
 
@@ -48,7 +50,7 @@ export default function CustomProductCard({ index, beer }) {
   }
 
   return (
-    <div>
+    <div className="card-container">
       {!beer ? (
         'loading'
       ) : (

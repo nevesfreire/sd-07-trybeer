@@ -5,3 +5,10 @@
 .container-order-details {
   display: flex;
 }
+
+@media only screen and (max-width: 767px) {
+  
+  .products-container {
+      width: auto!important;
+  }
+}

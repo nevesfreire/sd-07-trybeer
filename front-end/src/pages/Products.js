@@ -12,6 +12,8 @@ import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
 import CustomTopMenu from '../components/CustomTopMenu';
 
+import './pagesStyles.css';
+
 function Products() {
   const { totalKart, setTotalKart } = useContext(CentralContext);
 
@@ -32,7 +34,7 @@ function Products() {
   const history = useHistory();
 
   return (
-    <Container style={ { width: '100%', backgroundColor: 'rgb(33, 33, 33)' } }>
+    <div style={ { width: '100%', backgroundColor: 'rgb(33, 33, 33)' } }>
       <Container>
         <Header style={ { display: 'flex', alignItems: 'center' } }>
           <CustomTopMenu />
@@ -62,7 +64,7 @@ function Products() {
           </p>
         </Button>
       </Segment>
-    </Container>
+    </div>
   );
 }
 export default Products;
