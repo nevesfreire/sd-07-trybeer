@@ -21,7 +21,7 @@ const theme = {
   amareloClaro: '#fff7e6',
   primaryHover: '#700000',
   laranja: '#cc5500',
-  amarelo: '#f5bb0f'
+  amarelo: '#f5bb0f',
 };
 
 function App() {

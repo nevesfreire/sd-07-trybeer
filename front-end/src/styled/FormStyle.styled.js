@@ -11,7 +11,7 @@ const MainContainer = styled.main`
 
 const FormContainer = styled.section`
   display: flex;
-  background-color: #110905;
+  background-color: ${({ theme }) => theme.primaryDark};
   width: 40%;
   height: 50%;
   flex-direction: column;
@@ -35,6 +35,8 @@ const LiterallyAForm = styled.form`
     flex-direction: column;
     text-align: center;
     gap: 5px;
+    color: ${({ theme }) => theme.amareloClaro};
+    font-weight: 800;
   }
 
   input {

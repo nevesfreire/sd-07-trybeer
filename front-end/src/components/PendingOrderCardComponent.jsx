@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function PendingOrderCard({ order, index }) {
   return (
-    <div className='pendingOrder'>
+    <div className="pendingOrder">
       <Link to={`/admin/orders/${order.id}`}>
         <div>
           <h3

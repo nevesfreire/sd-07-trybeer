@@ -54,11 +54,11 @@ function AdminOrdersDetailsComponent({ match }) {
         </thead>
         <tbody>
           {order.map((product, index) => (
-            <tr key={product.name}>
-              <th data-testid={`${index}-product-qtd`}>{product.quantity}</th>
-              <th data-testid={`${index}-product-name`}>{`${product.name} `}</th>
+            <tr key={ product.name }>
+              <th data-testid={ `${index}-product-qtd` }>{ product.quantity }</th>
+              <th data-testid={ `${index}-product-name` }>{ `${product.name} ` }</th>
               <th
-                data-testid={`${index}-product-total-value`}
+                data-testid={ `${index}-product-total-value` }
               >
                 {
                   `R$ ${(product.quantity * product.price)
@@ -66,9 +66,9 @@ function AdminOrdersDetailsComponent({ match }) {
                 }
               </th>
               <th
-                data-testid={`${index}-order-unit-price`}
+                data-testid={ `${index}-order-unit-price` }
               >
-                {`(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')}) `}
+                { `(R$ ${(product.price * 1).toFixed(2).toString().replace('.', ',')}) ` }
               </th>
             </tr>
           ))}

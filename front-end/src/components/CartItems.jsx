@@ -130,7 +130,9 @@ function CartItems() {
 
   return (
     <>
-      <MainComponentContainer >
+      <MainComponentContainer
+        cartItemsComponent
+      >
         <div className="cartItems">
           <div>{handleProducts()}</div>
           <div data-testid="order-total-value">
@@ -141,11 +143,13 @@ function CartItems() {
           type="text"
           data-testid="checkout-street-input"
           onChange={(event) => handleInputs('deliveryAddress', event)}
+          placeholder="Logradouro Ex: Rua Tomaz Amirati"
         />
         <input
           type="text"
           data-testid="checkout-house-number-input"
           onChange={(event) => handleInputs('deliveryNumber', event)}
+          placeholder="Número Ex: Casa 1"
         />
         <span>{finalMsg.message}</span>
       </MainComponentContainer>

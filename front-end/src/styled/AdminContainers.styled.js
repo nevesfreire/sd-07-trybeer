@@ -8,7 +8,7 @@ const PageContainer = styled.main`
 const MainComponentContainer = styled.section`
   display: flex;
   flex-direction: column;
-  width: 73%;
+  width: ${({ cartItemsComponent }) => cartItemsComponent ? '100%' : '73%'};
   align-items: center;
   gap: 1rem;
 
@@ -16,6 +16,7 @@ const MainComponentContainer = styled.section`
     width: 95%;
     height: 80%;
     margin: auto;
+    padding-bottom: 20px;
 
     thead {
       text-transform: uppercase;
@@ -31,6 +32,7 @@ const MainComponentContainer = styled.section`
       text-align: left;
     }
   }
+
   ul {
     width: 100%;
     list-style: none;
@@ -51,55 +53,55 @@ const MainComponentContainer = styled.section`
 
   li:last-child {
     justify-content: flex-end;
-}
-
-.pendingOrder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin: 1rem;
-  width: 25rem;
-  height: 10rem;
-  flex-wrap: inherit;
-  background-color: white;
-  border-radius: 2.5%;
-  border: 3px solid #3d1301;
-  
-  &:hover {
-    filter: brightness(0.90)
   }
 
-  a {
-    text-decoration: none;
-    color: black;
+  .pendingOrder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem;
+    width: 25rem;
+    height: 10rem;
+    flex-wrap: inherit;
+    background-color: white;
+    border-radius: 2.5%;
+    border: 3px solid #3d1301;
     
     &:hover {
-      text-decoration: underline;
+      filter: brightness(0.90)
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    span {
+      margin: auto;
+      padding: 1rem;
     }
   }
 
-  span {
-    margin: auto;
-    padding: 1rem;
-  }
-}
-
-button {
-  background-color: ${({ theme }) => theme.amarelo};
-  border: none;
-  border-radius: 25%;
-  margin-left: 1rem;
-}
-
-.cartItems {
-  margin: 1rem;
-  div{
-    display:inline-block;
-    float:left;
+  /* button {
+    background-color: ${({ theme }) => theme.amarelo};
+    border: none;
+    border-radius: 25%;
     margin-left: 1rem;
+  } */
+
+  .cartItems {
+    margin: 1rem;
+
+    div {
+      display:inline-block;
+      margin-left: 1rem;
+    }
   }
-}
 `;
 
 const ProfileContainer = styled.section`
