@@ -69,8 +69,12 @@ const MainComponentContainer = styled.section`
   &:hover {
     filter: brightness(0.90)
   }
-  display: flex;
-  align-items: center;
+
+  a {
+    text-decoration: none;
+    color: black;
+    
+    &:hover {
       text-decoration: underline;
     }
   }
