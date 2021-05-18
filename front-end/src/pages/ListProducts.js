@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bulma-components';
 import { Header, ProductCard, Loading } from '../components';
 
 import TrybeerContext from '../store/context';
 import { getProducts } from '../api';
 import acessLocalStorage from '../services';
+
 
 // teste
 
@@ -34,10 +36,6 @@ function Products() {
     requestProducts();
   }, [requestProducts]);
 
-  // useEffect(() => {
-  //   if (cart === {}) setNoHaveProduct(false);
-  // }, [cart]);
-
   return (
     <div>
       <div>
@@ -47,7 +45,7 @@ function Products() {
         loading
           ? <Loading />
           : (
-            <>
+            <div className="is-inline-flex mt-6 is-flex-wrap-wrap is-justify-content-center">
               {
                 products
                   .map((product, index) => {
@@ -56,24 +54,25 @@ function Products() {
                     return <ProductCard key={ index } item={ product } index={ index } />;
                   })
               }
-              <button
-                type="button"
-                data-testid="checkout-bottom-btn"
-                onClick={ () => history.push('/checkout') }
-                disabled={ sumItens === 0 }
-              >
-
-                Ver Carrinho
-                <br />
-                <span
-                  data-testid="checkout-bottom-btn-value"
-                >
-                  {`R$ ${(sumItens).toFixed(2).split('.').join(',')}`}
-                </span>
-              </button>
-            </>
+            </div>
           )
       }
+
+      <Button
+        className="navbar is-medium is-fullwidth is-warning is-fixed-bottom"
+        data-testid="checkout-bottom-btn"
+        onClick={ () => history.push('/checkout') }
+        disabled={ sumItens === 0 }
+      >
+
+        Ver Carrinho
+        <br />
+        <span
+          data-testid="checkout-bottom-btn-value"
+        >
+          {`R$ ${(sumItens).toFixed(2).split('.').join(',')}`}
+        </span>
+      </Button>
     </div>
   );
 }

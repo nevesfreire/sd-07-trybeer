@@ -51,7 +51,7 @@ function LoginForm() {
   }, [email, password]);
 
   return (
-    <div className="login-form m-2">
+    <div className="login-form m-3">
       <div className="card-image">
         <figure className="image is-3by1">
           <img src={ logo } alt="Undefined" />
@@ -104,7 +104,7 @@ function LoginForm() {
               data-testid="signin-btn"
               className="button is-black"
               disabled={ disable }
-              style={ { width: '16rem' } }
+              style={ { width: '15rem', marginRight: '5px' } }
             >
               {' '}
               Entrar
@@ -115,6 +115,7 @@ function LoginForm() {
           to="/register"
           data-testid="no-account-btn"
           className="button is-link is-light"
+          style={ { width: '14rem' } }
         >
           Ainda não tenho conta
         </Link>

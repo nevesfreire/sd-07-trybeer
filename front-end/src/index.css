@@ -16,18 +16,9 @@ code {
     monospace;
 }
 
-/* .login {
-  display: flex-box;
-  margin-top: 160px;
+.list-products  {
+  min-width: 95%;
 }
-
-.login-form {
-  display: flex-box;
-  margin: 15px;
-  max-width: 860px;
-  min-width: 692px;
-  padding-top: 15px;
-} */
 
 .nav-list {
   margin-top: 2px;
