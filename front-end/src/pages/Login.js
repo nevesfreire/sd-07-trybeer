@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import getToken from '../services/login';
+import '../styles/login.css';
 
 export default function Login() {
   const [disabled, setDisabled] = useState(true);
@@ -74,6 +75,7 @@ export default function Login() {
           data-testid="signin-btn"
           type="submit"
           disabled={ disabled }
+          className="signin-btn"
         >
           Entrar
         </button>

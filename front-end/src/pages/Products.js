@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Card from '../components/Card';
+import '../styles/cart.css';
 import { fetchProducts } from '../actions';
 
 function Products() {
   const INITIAL_VALUE = 0;
-  const ROUNDING_OPTION = 2;
+  // const ROUNDING_OPTION = 2;
   const [shouldRedirect, setShouldRedirect] = useState('');
   const productsList = useSelector(({ products }) => products);
   const cartList = useSelector(({ cart }) => cart.cart);
@@ -21,7 +22,7 @@ function Products() {
 
   useEffect(() => {
     dispatch(fetchProducts(user.token));
-  }, [dispatch, user]);
+  }, [dispatch]);
 
   return (
     <>
@@ -36,14 +37,17 @@ function Products() {
           type="button"
           data-testid="checkout-bottom-btn"
           onClick={ () => setShouldRedirect('/checkout') }
+          disabled={ cartList.length === 0 ? true : false }
+          className="cart-btn"
         >
           Ver Carrinho
+          <span
+            data-testid="checkout-bottom-btn-value"
+          >
+            { `${new Intl.NumberFormat('pt-br',
+              { style: 'currency', currency: 'BRL' }).format(totalValue)}` }
+          </span>
         </button>
-        <span
-          data-testid="checkout-bottom-btn-value"
-        >
-          { `R$ ${totalValue.toFixed(ROUNDING_OPTION)}` }
-        </span>
       </div>
     </>
   );
