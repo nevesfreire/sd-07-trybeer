@@ -1,7 +1,7 @@
 require('dotenv').config();
-const jwt = require('jsonwebtoken');
+const mysql = require('mysql2/promise');
 const frisby = require('frisby');
-const connection = require('./tstHelper/connection');
+// const connection = require('./tstHelper/connection');
 
 describe('checkout POST route', () => {
   const USERS = [
@@ -15,6 +15,15 @@ describe('checkout POST route', () => {
   const LOGIN_URL = 'http://localhost:3001/login';
 
   beforeEach(async (done) => {
+    const connection = mysql.createPool({
+      host: process.env.HOSTNAME || '127.0.0.1',
+      user: process.env.MYSQL_USER || 'root', 
+      password: process.env.MYSQL_PASSWORD ?? '12345',
+      database: 'Trybeer',
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
+    });
     await connection.execute('DELETE FROM sales_products');
     await connection.execute('DELETE FROM products');
     await connection.execute('DELETE FROM sales');
@@ -31,21 +40,22 @@ describe('checkout POST route', () => {
     '2', 'Heineken 600ml', '7.50', 'http://localhost:3001/images/Heineken 600ml.jpg',
     '3', 'Antarctica Pilsen 300ml', '2.49', 'http://localhost:3001/images/Antarctica Pilsen 300ml.jpg',
     '4', 'Brahma 600ml', '7.50', 'http://localhost:3001/images/Brahma 600ml.jpg']);
-    done();
-  });
-
-  afterEach(async (done) => {
-    await connection.execute('DELETE FROM sales_products');
-    await connection.execute('DELETE FROM sales');
-    await connection.execute('DELETE FROM users');
-    await connection.execute('DELETE FROM products');
-    done();
-  });
-
-  afterAll(async done => {
     connection.end();
     done();
   });
+
+  // afterEach(async (done) => {
+  //   await connection.execute('DELETE FROM sales_products');
+  //   await connection.execute('DELETE FROM sales');
+  //   await connection.execute('DELETE FROM users');
+  //   await connection.execute('DELETE FROM products');
+  //   done();
+  // });
+
+  // afterAll(async done => {
+  //   connection.end();
+  //   done();
+  // });
 
   it('Check sale insertion via api', async () => {
     await frisby.post(LOGIN_URL, {

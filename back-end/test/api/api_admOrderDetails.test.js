@@ -1,8 +1,20 @@
 const frisby = require('frisby');
+require('dotenv').config();
+const mysql = require('mysql2/promise');
 
-const connection = require('./tstHelper/connection');
+// const connection = require('./tstHelper/connection');
 
 describe('GET adm orders details', () => {
+  const connection = mysql.createPool({
+    host: process.env.HOSTNAME || '127.0.0.1',
+    user: process.env.MYSQL_USER || 'root', 
+    password: process.env.MYSQL_PASSWORD ?? '12345',
+    database: 'Trybeer',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+  });
+
   const USERS = [{
     name: 'Pedro Risso',
     email: 'prisso@gmail.com',
@@ -100,25 +112,26 @@ describe('GET adm orders details', () => {
           salesProducts.secondSale_id, salesProducts.secondSaleProducts[2].product_id, salesProducts.secondSaleProducts[2].quantity, //49.8
           salesProducts.secondSale_id, salesProducts.secondSaleProducts[3].product_id, salesProducts.secondSaleProducts[3].quantity, // 7.5 -> 829.3
         ])
+    connection.end();
     done();
   })
 
-  afterEach(async (done) => {
-      await connection.execute('DELETE FROM sales_products');
-      // await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
-      await connection.execute('DELETE FROM sales');
-      // await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
-      await connection.execute('DELETE FROM products');
-      // await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
-      await connection.execute('DELETE FROM users');
-      // await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
-      done();
-  })
+  // afterEach(async (done) => {
+  //     await connection.execute('DELETE FROM sales_products');
+  //     // await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
+  //     await connection.execute('DELETE FROM sales');
+  //     // await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
+  //     await connection.execute('DELETE FROM products');
+  //     // await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
+  //     await connection.execute('DELETE FROM users');
+  //     // await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
+  //     done();
+  // })
 
-  afterAll(async done => {
-      connection.end();
-      done();
-      });
+  // afterAll(async done => {
+  //     connection.end();
+  //     done();
+  //     });
 
   it('check the returned values', async () =>{
     const loginRes = await frisby.post(LOGIN_URL, {email: USERS[0].email, password: USERS[0].password})

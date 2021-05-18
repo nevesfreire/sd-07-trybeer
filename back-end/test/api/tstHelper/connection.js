@@ -7,6 +7,9 @@ const db = mysql.createPool({
   user: process.env.MYSQL_USER || 'root', 
   password: process.env.MYSQL_PASSWORD ?? '12345',
   database: 'Trybeer',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
 // const retries: 5;      	// How many times will the query be retried when the ER_LOCK_DEADLOCK error occurs

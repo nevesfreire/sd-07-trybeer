@@ -1,5 +1,6 @@
 require('dotenv').config();
-const connection = require('./tstHelper/connection');
+const mysql = require('mysql2/promise');
+// const connection = require('./tstHelper/connection');
 const frisby = require('frisby');
 
 describe('register POST route', () => {
@@ -18,19 +19,29 @@ describe('register POST route', () => {
   const URL = 'http://localhost:3001/register';
 
   beforeEach(async (done) => {
+    const connection = mysql.createPool({
+      host: process.env.HOSTNAME || '127.0.0.1',
+      user: process.env.MYSQL_USER || 'root', 
+      password: process.env.MYSQL_PASSWORD ?? '12345',
+      database: 'Trybeer',
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
+    });
     await connection.execute('DELETE FROM sales_products');
     await connection.execute('DELETE FROM sales');
     await connection.execute('DELETE FROM users');
     // await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
     // await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
     await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
-    done();
-  });
-
-  afterAll(async done => {
     connection.end();
     done();
   });
+
+  // afterAll(async done => {
+  //   connection.end();
+  //   done();
+  // });
 
   it('Check user registration', async () => {
     await frisby

@@ -1,14 +1,8 @@
+require('dotenv').config();
 const frisby = require('frisby');
+const mysql = require('mysql2/promise');
 
-const connection = require('./tstHelper/connection');
-
-
-Date.prototype.addTime = function (time) {
-    var time = time.split(":")
-    var rd = new Date(this.setHours(this.getHours() + parseInt(time[0])))
-    rd = new Date(rd.setMinutes(rd.getMinutes() + parseInt(time[1])))
-    return new Date(rd.setSeconds(rd.getSeconds() + parseInt(time[2])))
-}
+// const connection = require('./tstHelper/connection');
 
 
 describe('GET into orders route', () => {
@@ -45,6 +39,15 @@ describe('GET into orders route', () => {
     const URL = 'http://localhost:3001/orders'
     const URL_LOGIN = 'http://localhost:3001/login'
     beforeEach(async (done) => {
+        const connection = mysql.createPool({
+            host: process.env.HOSTNAME || '127.0.0.1',
+            user: process.env.MYSQL_USER || 'root', 
+            password: process.env.MYSQL_PASSWORD ?? '12345',
+            database: 'Trybeer',
+            waitForConnections: true,
+            connectionLimit: 10,
+            queueLimit: 0
+          });
         await connection.execute('DELETE FROM sales_products');
         await connection.execute('DELETE FROM sales');
         await connection.execute('DELETE FROM users');
@@ -63,26 +66,27 @@ describe('GET into orders route', () => {
             '3', 'Antarctica Pilsen 300ml', '2.49', 'http://localhost:3001/images/Antarctica Pilsen 300ml.jpg',
             '4', 'Brahma 600ml', '7.50', 'http://localhost:3001/images/Brahma 600ml.jpg']);
         await connection.execute('INSERT INTO sales_products (sale_id,product_id,quantity)'
-            + 'VALUES(?,?,?),(?,?,?)', [saleInsertionRes.insertId, 2, 10, saleInsertionRes.insertId, 1, 10]);   
+            + 'VALUES(?,?,?),(?,?,?)', [saleInsertionRes.insertId, 2, 10, saleInsertionRes.insertId, 1, 10]);
+            connection.end();
         done();
     })
 
-    afterEach(async (done) => {
-        await connection.execute('DELETE FROM sales_products');
-        // await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
-        await connection.execute('DELETE FROM sales');
-        // await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
-        await connection.execute('DELETE FROM products');
-        // await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
-        await connection.execute('DELETE FROM users');
-        // await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
-        done();
-    })
+    // afterEach(async (done) => {
+    //     await connection.execute('DELETE FROM sales_products');
+    //     // await connection.execute('ALTER TABLE sales_products AUTO_INCREMENT = 1');
+    //     await connection.execute('DELETE FROM sales');
+    //     // await connection.execute('ALTER TABLE sales AUTO_INCREMENT = 1');
+    //     await connection.execute('DELETE FROM products');
+    //     // await connection.execute('ALTER TABLE products AUTO_INCREMENT = 1');
+    //     await connection.execute('DELETE FROM users');
+    //     // await connection.execute('ALTER TABLE users AUTO_INCREMENT = 1');
+    //     done();
+    // })
 
-    afterAll(async done => {
-        connection.end();
-        done();
-        }); 
+    // afterAll(async done => {
+    //     connection.end();
+    //     done();
+    //     }); 
 
     it('Checks whether to return all customer orders', async () => {
         await frisby

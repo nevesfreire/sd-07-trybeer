@@ -1,7 +1,8 @@
 require('dotenv').config();
+const mysql = require('mysql2/promise');
 const jwt = require('jsonwebtoken');
 const frisby = require('frisby');
-const connection = require('./tstHelper/connection')
+// const connection = require('./tstHelper/connection')
 
 describe('login POST route', () => {
   const USERS = [{
@@ -20,6 +21,15 @@ describe('login POST route', () => {
   const URL = 'http://localhost:3001/login';
 
   beforeEach(async (done) => {
+    const connection = mysql.createPool({
+      host: process.env.HOSTNAME || '127.0.0.1',
+      user: process.env.MYSQL_USER || 'root', 
+      password: process.env.MYSQL_PASSWORD ?? '12345',
+      database: 'Trybeer',
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
+    });
     await connection.execute('DELETE FROM sales_products');
     await connection.execute('DELETE FROM sales');
     await connection.execute('DELETE FROM users');
@@ -30,18 +40,19 @@ describe('login POST route', () => {
       + 'VALUES (?, ?, ?, ?), (?, ?, ?, ?)',
       [USERS[0].name, USERS[0].email, USERS[0].password, USERS[0].role,
       USERS[1].name, USERS[1].email, USERS[1].password, USERS[1].role]);
-    done();
-  });
-
-  afterEach(async (done) => {
-    await connection.execute('DELETE FROM users');
-    done();
-});
-
-  afterAll(async done => {
     connection.end();
     done();
   });
+
+//   afterEach(async (done) => {
+//     await connection.execute('DELETE FROM users');
+//     done();
+// });
+
+//   afterAll(async done => {
+//     connection.end();
+//     done();
+//   });
 
   it('Check if client login route is a POST, is available and working', async () => {
     await frisby
