@@ -35,11 +35,11 @@ export default function ClientOrderDetails() {
     <div
       className="d-flex flex-column border rounded"
       style={ { marginTop: '5vh',
-      padding: '3vh',
-      backgroundColor: 'rgb(0,0,0,0.2)',
-      color: 'white',
-      width: '50%',
-      marginLeft: '20vh'  } }
+        padding: '3vh',
+        backgroundColor: 'rgb(0,0,0,0.2)',
+        color: 'white',
+        width: '50%',
+        marginLeft: '20vh' } }
     >
       <div>
         <p data-testid="order-number">{`Pedido ${id}`}</p>

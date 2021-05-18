@@ -47,17 +47,17 @@ export default function CheckoutCart() {
   if (!currentUser) return null;
   return (
     <div
-    style={{ color: 'white' }}
+      style={ { color: 'white' } }
     >
       <p>Produtos</p>
       { total === '0.00' || total === 0 ? <p>Não há produtos no carrinho</p>
         : (
-          <CardDeck
-          >
+          <CardDeck>
             {productCheckout.filter((item) => item.productQtt !== 0)
               .map((product, index) => (
-                <Card key={ product.name }
-                style={{ backgroundColor: 'rgb(0,0,0,0.4)'}}
+                <Card
+                  key={ product.name }
+                  style={ { backgroundColor: 'rgb(0,0,0,0.41)' } }
                 >
                   <Card.Body>
                     <Card.Title data-testid={ `${index}-product-name` }>
@@ -85,8 +85,9 @@ export default function CheckoutCart() {
                 </Card>
               ))}
           </CardDeck>)}
-      <p data-testid="order-total-value"
-      style={{ marginTop: '5vh' }}
+      <p
+        data-testid="order-total-value"
+        style={ { marginTop: '5vh' } }
       >
         {total > 0 ? `Total: R$ ${parseFloat(total).toFixed(2).replace('.', ',')}`
           : 'Total: R$ 0,00'}
@@ -104,7 +105,7 @@ export default function CheckoutCart() {
               value={ addressName }
               onChange={ (e) => setAddressName(e.target.value) }
               data-testid="checkout-street-input"
-              style={{ color: 'white', backgroundColor: 'rgb(0,0,0,0.4)'}}
+              style={ { color: 'white', backgroundColor: 'rgb(0,0,0,0.4)' } }
             />
           </Form.Group>
           <Form.Group as={ Col }>
@@ -117,7 +118,7 @@ export default function CheckoutCart() {
               onChange={ (e) => setAddressNumber(e.target.value) }
               type="text"
               data-testid="checkout-house-number-input"
-              style={{ color: 'white', backgroundColor: 'rgb(0,0,0,0.4)'}}
+              style={ { color: 'white', backgroundColor: 'rgb(0,0,0,0.4)' } }
             />
           </Form.Group>
         </Form.Row>

@@ -31,8 +31,12 @@ export default function ClientOrders() {
         : (
           <CardDeck style={ { paddingTop: '15px' } }>
             {userSales.map((item, index) => (
-              <Card key={ item.saleId }
-              style={ { backgroundColor: 'rgb(0,0,0,0.5)', color: 'white', padding: '15px' } }
+              <Card
+                key={ item.saleId }
+                style={ {
+                  backgroundColor: 'rgb(0,0,0,0.5)',
+                  color: 'white',
+                  padding: '15px' } }
               >
                 <div
                   type="button"

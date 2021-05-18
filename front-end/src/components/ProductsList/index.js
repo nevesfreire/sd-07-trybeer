@@ -75,7 +75,7 @@ export default function ProductsList() {
                   index={ index }
                   addProdQtt={ addProdQtt }
                   decProdQtt={ decProdQtt }
-                  style={ {background: 'rgb(0,0,0,0.1)'}}
+                  style={ { background: 'rgb(0,0,0,0.1)' } }
                 />
               </CardDeck>
             ))}
@@ -83,31 +83,32 @@ export default function ProductsList() {
         </div>
       )}
       <div style={ { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
-      <footer
-        style={ {
-          padding: '2vh',
-          background: 'rgb(30,30,255)',
-          bottom: '0',
-          position: 'fixed',
-          borderRadius: '5px'
-        } }
-      >
-        <p data-testid="checkout-bottom-btn-value"
-        style={{ color: 'white'}}
+        <footer
+          style={ {
+            padding: '2vh',
+            background: 'rgb(30,30,255)',
+            bottom: '0',
+            position: 'fixed',
+            borderRadius: '5px',
+          } }
         >
-          {`R$ ${totalValue.toFixed(2).replace('.', ',')}`}
-        </p>
-        <button
-          type="button"
-          data-testid="checkout-bottom-btn"
-          onClick={ () => history.push('/checkout') }
-          disabled={ totalValue === 0 }
-          style={{ color: 'white', backgroundColor: 'rgb(255,255,255,0.1)'}}
-          className="btn btn-secondary"
-        >
-          Ver Carrinho
-        </button>
-      </footer>
+          <p
+            data-testid="checkout-bottom-btn-value"
+            style={ { color: 'white' } }
+          >
+            {`R$ ${totalValue.toFixed(2).replace('.', ',')}`}
+          </p>
+          <button
+            type="button"
+            data-testid="checkout-bottom-btn"
+            onClick={ () => history.push('/checkout') }
+            disabled={ totalValue === 0 }
+            style={ { color: 'white', backgroundColor: 'rgb(255,255,255,0.1)' } }
+            className="btn btn-secondary"
+          >
+            Ver Carrinho
+          </button>
+        </footer>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 /* import './profile.css'; */
 
 const ClientProfilePage = () => (
-  <div /* className="profile" */>
+  <div>
     <Header title="Meu perfil" />
     <Container
       fluid
