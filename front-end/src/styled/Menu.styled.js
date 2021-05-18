@@ -7,7 +7,7 @@ const StyledMenu = styled.nav`
   background: ${({ theme }) => theme.primaryLight};
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   height: 100vh;
-  width: ${({ isAdmin }) => (isAdmin ? '20rem' : 'default')};
+  width: ${({ isAdmin }) => (isAdmin ? '22%' : 'default')};
   text-align: left;
   padding: 2rem;
   position: ${({ isAdmin }) => (isAdmin ? 'static' : 'absolute')};

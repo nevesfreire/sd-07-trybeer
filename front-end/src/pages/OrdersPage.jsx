@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import HeaderBurguer from '../components/HeaderBurger';
 import OrderCard from '../components/OrderCard';
 import useFetch from '../hooks/useFetch';
+import MainContainer from '../styled/ClientContainers.styled';
 
 function Orders() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -33,7 +34,7 @@ function Orders() {
   return (
     <div>
       <HeaderBurguer titulo="Meus Pedidos" />
-      <div>{handleOrders()}</div>
+      <MainContainer>{handleOrders()}</MainContainer>
     </div>
   );
 }

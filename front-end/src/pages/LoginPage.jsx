@@ -1,11 +1,13 @@
 import React from 'react';
-// import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
+import MainContainer from '../styled/FormStyle.styled';
 
 function Login({ history }) {
   return (
-    <Form history={ history } />
+    <MainContainer>
+      <Form history={ history } />
+    </MainContainer>
   );
 }
 

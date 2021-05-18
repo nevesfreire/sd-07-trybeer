@@ -23,10 +23,10 @@ export default function HeaderBurguer({ titulo, isAdmin }) {
           isAdmin
           className="admin-side-bar-container"
         />
-        <span className={ styles.spanName } data-testid="top-title">
+        {/* <span className={ styles.spanName } data-testid="top-title">
           {' '}
           {titulo}
-        </span>
+        </span> */}
       </>
     ) : (
       <header className={ styles.headerContainer }>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 function OrderCard({ id, price, date, index }) {
   return (
     <Link
+      className="order-card"
       to={ `/orders/${id}` }
       data-testid="0-order-card-container"
     >

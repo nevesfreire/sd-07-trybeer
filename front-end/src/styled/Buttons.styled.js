@@ -7,15 +7,31 @@ const MainButton = styled.button`
   font-weight: 800;
   border-radius: 3px;
   margin-top: 10px;
-  margin: auto;
+  margin: ${({ isForm }) => isForm || 'auto'};
   background-color: #C38E00;
   display: flex;
   padding: 10px;
+  width: ${({ isForm }) => isForm && '100%'};
+  justify-content: center;
+  transition: 0.2s;
 
   &&:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+    width: ${({ isForm }) => isForm && '100px'};
   }
 `;
 
-export default MainButton;
+const LinkButton = styled.button`
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+  text-decoration: underline;
+  transition: 0.2s;
+
+  &&:hover {
+    color: blue;
+  }
+`;
+
+export { MainButton, LinkButton };

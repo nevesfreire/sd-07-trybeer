@@ -4,7 +4,7 @@ import useFetch from '../hooks/useFetch';
 import ProductCard from './ProductCardComponent';
 import MyContext from '../context/TrybeerContext';
 import CardContainer from '../styled/Products.styled';
-import MainButton from '../styled/Buttons.styled';
+import { MainButton } from '../styled/Buttons.styled';
 
 function ProductsComponent() {
   const [products, setProducts] = useState([]);

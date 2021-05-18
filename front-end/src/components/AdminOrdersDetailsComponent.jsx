@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
+import { MainComponentContainer } from '../styled/AdminContainers.styled';
 
 function AdminOrdersDetailsComponent({ match }) {
   const [order, setOrder] = useState([]);
@@ -31,7 +32,7 @@ function AdminOrdersDetailsComponent({ match }) {
   }, [order]);
 
   return order ? (
-    <>
+    <MainComponentContainer>
       <header>
         <div>
           <span data-testid="order-number">{`Pedido ${id} - `}</span>
@@ -68,7 +69,7 @@ function AdminOrdersDetailsComponent({ match }) {
         >
           Marcar como entregue
         </button>)}
-    </>)
+    </MainComponentContainer>)
     : <span>Loading...</span>;
 }
 

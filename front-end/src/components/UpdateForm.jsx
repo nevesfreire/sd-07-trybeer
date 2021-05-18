@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from '../hooks/useFetch';
+import MainContainer from '../styled/ClientContainers.styled';
+import { LiterallyAForm } from '../styled/FormStyle.styled';
+import { MainButton } from '../styled/Buttons.styled';
 
 function UpdateForm() {
   const { updateProfileName } = useFetch();
@@ -50,9 +53,10 @@ function UpdateForm() {
   };
 
   return (
-    <div>
+    <MainContainer>
+      {/* se for por essa tela na apresentação tira esse h1 */}
       <h1 data-testid="top-title">Meu perfil</h1>
-      <form>
+      <LiterallyAForm>
         <label htmlFor="name">
           Nome
           <input
@@ -73,17 +77,17 @@ function UpdateForm() {
             readOnly
           />
         </label>
-        <button
+        <MainButton
           type="button"
           data-testid="profile-save-btn"
           onClick={ () => handleClick() }
           disabled={ disabled }
         >
           Salvar
-        </button>
-      </form>
+        </MainButton>
+      </LiterallyAForm>
       <p>{ responseAPI }</p>
-    </div>
+    </MainContainer>
   );
 }
 

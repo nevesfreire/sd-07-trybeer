@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
+import { FormContainer, LiterallyAForm } from '../styled/FormStyle.styled';
+import { MainButton, LinkButton } from '../styled/Buttons.styled';
 
 const handleLocalStorage = (data, history) => {
   const user = {
@@ -94,8 +96,8 @@ function Form({ history }) {
   }, [email, password, name]);
 
   return (
-    <div>
-      <form>
+    <FormContainer>
+      <LiterallyAForm>
         { path === '/register' && (
           <label htmlFor="name">
             Nome
@@ -129,7 +131,10 @@ function Form({ history }) {
           />
         </label>
         { path === '/register' && (
-          <label htmlFor="checkbox">
+          <label
+            className="admin-input"
+            htmlFor="checkbox"
+          >
             <input
               data-testid="signup-seller"
               checked={ checkbox }
@@ -141,26 +146,27 @@ function Form({ history }) {
             Quero vender
           </label>
         )}
-      </form>
+      </LiterallyAForm>
       { emailAlreadyExist && <span>{ emailAlreadyExist }</span> }
-      <button
+      <MainButton
+        isForm
         type="button"
         data-testid={ path === '/register' ? 'signup-btn' : 'signin-btn' }
         disabled={ disabled }
         onClick={ () => handleSubmit() }
       >
         { path === '/register' ? 'Cadastrar' : 'Entrar' }
-      </button>
+      </MainButton>
       { (path === '/login' || path === '/') && (
-        <button
+        <LinkButton
           type="button"
           data-testid="no-account-btn"
           onClick={ () => history.push('/register') }
         >
           Ainda não tenho conta
-        </button>
+        </LinkButton>
       )}
-    </div>
+    </FormContainer>
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import PendingOrderCard from './PendingOrderCardComponent';
+import { MainComponentContainer } from '../styled/AdminContainers.styled';
 
 function PendingOrdersComponent() {
   const [loading, setLoading] = useState(true);
@@ -31,7 +32,7 @@ function PendingOrdersComponent() {
   return loading ? (
     <span>Tenha Fé...</span>
   ) : (
-    <>
+    <MainComponentContainer>
       <h2>Pedidos Pendentes</h2>
       {orders.map((order, index) => (
         <PendingOrderCard
@@ -40,7 +41,7 @@ function PendingOrdersComponent() {
           index={ index }
         />
       ))}
-    </>
+    </MainComponentContainer>
   );
 }
 
