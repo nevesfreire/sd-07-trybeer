@@ -18,24 +18,27 @@ const CustomPerfil = ({
 
   return (
     <Form size="large">
-      <Segment stacked>
-        <input
+      <Segment
+        stacked
+        style={ { backgroundColor: 'rgb(33, 33, 33)' } }
+      >
+        <Form.Input
           data-testid="profile-email-input"
           fluid
-          icon="mail"
+          icon="at"
           iconPosition="left"
-          label="Email"
+          // label="Email"
           placeholder={ emailL }
           name="email"
-          readOnly="readOnly"
+          // readOnly="readOnly"
           value={ email }
         />
-        <input
+        <Form.Input
           data-testid="profile-name-input"
           fluid
           icon="user"
           iconPosition="left"
-          label="Nome"
+          // label="Nome"
           placeholder={ nameL }
           type="text"
           name="name"

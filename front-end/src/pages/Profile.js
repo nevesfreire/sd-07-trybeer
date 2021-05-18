@@ -4,6 +4,8 @@ import { getToken } from '../helpers/localStorage';
 import CustomHeader from '../components/CustomHeader';
 import CustomProfile from '../components/CustomProfile';
 import fetchUpdate from '../service/profile';
+import { Container, Header } from 'semantic-ui-react';
+import CustomTopMenu from '../components/CustomTopMenu';
 
 function Profile() {
   const { email, name } = getToken();
@@ -30,18 +32,23 @@ function Profile() {
   };
 
   return (
-    <div>
-      <CustomHeader message="Meu perfil" />
-      <CustomProfile
-        name={ name }
-        email={ email }
-        btnEnable={ btnEnable }
-        txtEnable={ txtEnable }
-        formDataUpdate={ formDataUpdate }
-        stateBtn={ changeStateBtn }
-        uptName={ updateName }
-        onInputChange={ handleInputChange }
-      />
+    <div style={ { width: '100%', height: '103vh', backgroundColor: 'rgb(33, 33, 33)' } }>
+      <Header style={ { display: 'flex', alignItems: 'center' } }>
+        <CustomTopMenu />
+        <CustomHeader message="Meu perfil" />
+      </Header>
+      <Container>
+        <CustomProfile
+          name={ name }
+          email={ email }
+          btnEnable={ btnEnable }
+          txtEnable={ txtEnable }
+          formDataUpdate={ formDataUpdate }
+          stateBtn={ changeStateBtn }
+          uptName={ updateName }
+          onInputChange={ handleInputChange }
+        />
+      </Container>
     </div>
   );
 }
