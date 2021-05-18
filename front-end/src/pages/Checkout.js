@@ -63,7 +63,7 @@ function Checkout() {
   const renderProdutsCart = useCallback(() => (
     <div style={ { display: 'flex', margin: 'auto', width: '100%' } }>
       <Container>
-        <Card.Group>
+        <Card.Group centered>
           {totalKart === 0 ? <span>Não há produtos no carrinho</span> : null }
           { !cart ? (
             null
@@ -88,7 +88,7 @@ function Checkout() {
         width: '100%',
         height: '100%',
         padding: '10px 50px',
-        backgroundColor: 'rgb(33, 33, 33)' } }
+        backgroundColor: 'rgb(33, 33, 33)'} }
     >
       <Container>
         <CustomHeader message="Finalizar Pedido" />
