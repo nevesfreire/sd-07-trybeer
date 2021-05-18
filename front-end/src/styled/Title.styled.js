@@ -24,6 +24,10 @@ const Title = styled.h1`
   animation: 1s ${dropTitle} ease-out;
   font-size: 3rem;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+
+  @media(max-width: 650px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export default Title;
