@@ -72,12 +72,17 @@ function LoginForm() {
           />
         </Col>
       </Form.Group>
-      <Row>
+      <Row
+        style={ {
+          marginRight: '5vh',
+        } }
+      >
         <Col>
           <Button
             style={ {
               backgroundColor: 'rgb(133,54,21)',
               borderColor: rgbBorderColor,
+              marginRight: '10vh',
             } }
             type="submit"
             data-testid="signin-btn"
