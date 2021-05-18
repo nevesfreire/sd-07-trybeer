@@ -7,7 +7,7 @@ header .navigation {
 }
 
 header .navigation.active {
-  width: 100%;
+  width: 50%;
   height: 100%;
   margin: auto;
   top: 0;
@@ -19,6 +19,7 @@ header .navigation.active {
   justify-content: center;
   align-items: center;
   background: orangered;
+  opacity: 0.9;
   list-style: none;
   z-index: 10000;
 }
@@ -103,11 +104,11 @@ header .menuToggle.active {
   justify-content: center;
 }
 
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 767px) {
   
   .ui.container {
       width: auto!important;
       margin-left: 0;
       margin-right: 1em!important;
   }
-}
+} */
