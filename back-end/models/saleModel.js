@@ -29,13 +29,8 @@ const createCheckout = async (ObjParams) => {
     });
   return { message: 'Pedido Enviado', checkout };
 };
-
-// UPDATE TABELA_A SET CAMPO1 = (
-//  SELECT CAMPO_TABELA_B FROM TABELA_B WHERE id = [VALOR]
- // )
   
 const confirmDelivery = async (idSaleDelivery) => {
-  console.log(idSaleDelivery);
   await connection.execute(
     'UPDATE sales SET status = "Entregue" WHERE id = ?', [idSaleDelivery],
   );

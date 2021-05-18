@@ -1,4 +1,5 @@
 const orderService = require('../services/orderService');
+
 const OK = 200;
 const ERROR = 400;
 const ERRORBYID = 404;
@@ -15,7 +16,6 @@ const getOrderById = async (request, response) => {
   try {
     const { id } = request.params;
     const order = await orderService.getOrderById(id);
-    console.log(order)
     if (!order || Object.keys(order).length === 0) {
       const ERR_MESSAGE = 'order not found';
       throw new Error(ERR_MESSAGE);

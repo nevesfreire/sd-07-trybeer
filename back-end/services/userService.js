@@ -53,11 +53,9 @@ const createUser = async (name, email, password, iWantToSell) => {
 const userUpdate = async (name, email) => {
   try {
     validateName(name);
-    console.log(validateName(name));
     const [user] = await userModel.userUpdate(name, email);
     return user;
   } catch (error) {
-    console.log('passei no erro do service');
     console.error(error);
     return error.message;
   }
