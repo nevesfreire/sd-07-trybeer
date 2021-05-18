@@ -3,10 +3,6 @@ const app = require('../server');
 const connection = require('../models/connection');
 
 describe('Testar a rota de checkout', () => {
-  beforeEach(async () => {
-    await connection.execute('INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, sale_date, status) VALUES (2, "3.49", "aa", "1", now(), "Pendente")');
-    await connection.execute('INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (4, 11, 1)');
-  });
   it('Deve retornar todas as vendas em checkout', async (done) => {
       const OK = 200;
       const res = await request(app)
@@ -20,7 +16,24 @@ describe('Testar a rota de checkout', () => {
       const res = await request(app)
         .get(`/checkout/${1}`)
       expect(res.statusCode).toBe(OK);
-      connection.end();
       done();
   });
+  it('Deve realizar a inserção de sale checkout', async (done) => {
+    const CREATE = 201;
+    const res = await request(app)
+      .post('/checkout')
+      .send({
+        user_id: 2,
+        total_price: '3.49',
+        delivery_address: 'Rua de cima',
+        delivery_number: '322',
+        saleselect_date: Date.now(),
+        status: "Pendente",
+        cart: [ [ 11, '3.49', 1, 'Stella Artois 275ml' ] ]
+      })
+    console.log(res.body);
+    expect(res.statusCode).toBe(CREATE);
+    connection.end();
+    done();
+  })
 });

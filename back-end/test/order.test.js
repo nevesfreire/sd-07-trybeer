@@ -1,3 +1,4 @@
+const nock = require('nock');
 const request = require('supertest');
 const app = require('../server');
 const connection = require('../models/connection');
@@ -37,5 +38,24 @@ describe('Deve testar a rota de orders', () => {
         expect(res.statusCode).toBe(ERROR);
         connection.end();
         done();
-    });
+    });    
 });
+
+// describe('Caso de erro com mock', () => {
+//     beforeEach( async () => {
+//       nock.cleanAll();
+//     });
+//     it('Não deve retornar as orders', async (done) => {
+//        const objRes = { message: 'orders not found'};
+//         nock('http://localhost:3001/orders')
+//           .get('/orders')
+//           .reply(400, objRes);
+//         const res = await request(nock)
+//           .get('/orders')
+//         console.log(res.body)
+//         expect(res.statusCode).toDeepEqual(objRes);
+//         // expect(res.body.message).toEqual("orders not found");
+//         connection.end();
+//         done();
+//     });
+// });

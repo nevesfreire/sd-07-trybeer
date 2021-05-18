@@ -16,7 +16,7 @@ const createCheckout = async (ObjParams) => {
   const { userId, totalPrice, deliveryAddress, deliveryNumber, cart } = ObjParams;
   const [checkout] = await connection.execute(
     'INSERT INTO sales'
-    + '(user_id, total_price, delivery_address, delivery_number, sale_date, status)'
+    + '(user_id, total_price, delivery_address, delivery_number, saleselect_date, status)'
     + 'VALUES (?, ?, ?, ?, now(), "Pendente")',
     [userId, totalPrice, deliveryAddress, deliveryNumber],
   );
