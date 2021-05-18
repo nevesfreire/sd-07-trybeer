@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
-import MainContainer from '../styled/FormStyle.styled';
+import { MainContainer } from '../styled/FormStyle.styled';
 
 function Register({ history }) {
   return (
