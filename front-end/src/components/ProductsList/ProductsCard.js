@@ -9,8 +9,8 @@ function ProductsCard({ item, index, addProdQtt, decProdQtt }) {
         width: '18rem',
         color: 'rgb(232,214,210)',
         paddingBottom: '2rem',
+        backgroundColor: 'rgb(0,0,0,0.5)'
       } }
-      bg="success"
       className="align-self-center text-center"
     >
       <Card.Header
@@ -30,6 +30,7 @@ function ProductsCard({ item, index, addProdQtt, decProdQtt }) {
           <Col>
             <Button
               type="button"
+              style={{background: 'rgb(30,30,255)',}}
               data-testid={ `${index}-product-minus` }
               onClick={ () => decProdQtt(item.id) }
             >
@@ -44,6 +45,7 @@ function ProductsCard({ item, index, addProdQtt, decProdQtt }) {
           <Col>
             <Button
               type="button"
+              style={{background: 'rgb(30,30,255)'}}
               data-testid={ `${index}-product-plus` }
               onClick={ (e) => addProdQtt(e, item.id) }
             >

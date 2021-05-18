@@ -23,7 +23,7 @@ test('O menu burguer é aberto ao ser clicado e fechado ao ser clicado novamente
   done();
 });
 
-test('A barra lateral do administrador é visivel ao acessar a página de Produtos', async (done) => {
+test('A barra lateral do administrador é visivel ao acessar a página de vendas', async (done) => {
   const { getByTestId, getByText, getByClassname } = renderWithRouter(<App />);
   const emailInput = getByTestId('email-input');
   const passwordInput = getByTestId('password-input');
@@ -69,22 +69,22 @@ test('O botão Perfil acessa a rota que mostra o perfil do administrador', async
   done();
 });
 
- test('O botão Sair acessa a rota de login e limpa o localStorage', async (done) => {
-   const { getByTestId, getByText, getAllByText, history } = renderWithRouter(<App />);
-   const emailInput = getByTestId('email-input');
-   const passwordInput = getByTestId('password-input');
-   userEvent.type(emailInput, 'tryber@trybe.com.br');
-   userEvent.type(passwordInput, '123456');
-   fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
+test('O botão Sair acessa a rota de login e limpa o localStorage', async (done) => {
+  const { getByTestId, getByText, getAllByText, history } = renderWithRouter(<App />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, 'tryber@trybe.com.br');
+  userEvent.type(passwordInput, '123456');
+  fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
 
-   const pedidos = await waitForElement(() => getByText('Pedidos'));
-   fireEvent.click(screen.getByTestId('side-menu-item-logout'));
-   const login = await waitForElement(() => getAllByText('Login'));
-   const { pathname } = history.location;
-   expect(pathname).toBe('/login');
-   expect(localStorage.clear).toHaveBeenCalled();
-   done();
- });
+  const pedidos = await waitForElement(() => getByText('Pedidos'));
+  fireEvent.click(screen.getByTestId('side-menu-item-logout'));
+  const login = await waitForElement(() => getAllByText('Login'));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/login');
+  expect(localStorage.clear).toHaveBeenCalled();
+  done();
+});
 
 // test('O botão Produtos acessa a rota que mostra todos os produtos', async (done) => {
 //   const { getByTestId, getByText, getAllByText, history } = renderWithRouter(<App />);
@@ -105,6 +105,39 @@ test('O botão Perfil acessa a rota que mostra o perfil do administrador', async
 //   expect(pathname).toBe('/products');
 //   done();
 // });
+
+test('O botão Meus Pedidos acessa a rota que mostra as compras realizadas', async (done) => {
+  const { getByTestId, getByText, history } = renderWithRouter(<App />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, 'user@test.com');
+  userEvent.type(passwordInput, 'test123');
+  fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
+
+  const pedidos = await waitForElement(() => getByText('Meus Pedidos'));
+  fireEvent.click(screen.getByTestId('side-menu-item-orders'));
+  const pedidosPendentes = await waitForElement(() => getByText('Pedidos Pendentes'));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/users/orders');
+
+  done();
+});
+
+test('O botão Perfil acessa a rota que mostra o perfil do usuário', async (done) => {
+  const { getByTestId, getByText, getAllByText, history } = renderWithRouter(<App />);
+  const emailInput = getByTestId('email-input');
+  const passwordInput = getByTestId('password-input');
+  userEvent.type(emailInput, 'user@test.com');
+  userEvent.type(passwordInput, 'test123');
+  fireEvent.click(screen.getByText(/Entrar/), { button: 0 });
+
+  const pedidos = await waitForElement(() => getByText('Pedidos'));
+  fireEvent.click(screen.getByTestId('side-menu-item-profile'));
+  const perfil = await waitForElement(() => getAllByText('Perfil'));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/users/profile');
+  done();
+});
 
 // test('O botão Meus Pedidos acessa a rota que mostra todos os pedidos do usuário', async (done) => {
 //   const { getByTestId, getByText, history } = renderWithRouter(<App />);

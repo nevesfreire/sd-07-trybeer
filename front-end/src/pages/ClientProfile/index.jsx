@@ -2,9 +2,10 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import ClientProfile from '../../components/ClientProfile';
 import Header from '../../components/Header';
+/* import './profile.css'; */
 
 const ClientProfilePage = () => (
-  <div>
+  <div /* className="profile" */>
     <Header title="Meu perfil" />
     <Container
       fluid

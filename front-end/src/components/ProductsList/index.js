@@ -75,22 +75,26 @@ export default function ProductsList() {
                   index={ index }
                   addProdQtt={ addProdQtt }
                   decProdQtt={ decProdQtt }
+                  style={ {background: 'rgb(0,0,0,0.1)'}}
                 />
               </CardDeck>
             ))}
           </Row>
         </div>
       )}
+      <div style={ { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
       <footer
         style={ {
-          background: 'gray',
+          padding: '2vh',
+          background: 'rgb(30,30,255)',
           bottom: '0',
           position: 'fixed',
-          padding: '10px',
-          width: '68%',
+          borderRadius: '5px'
         } }
       >
-        <p data-testid="checkout-bottom-btn-value">
+        <p data-testid="checkout-bottom-btn-value"
+        style={{ color: 'white'}}
+        >
           {`R$ ${totalValue.toFixed(2).replace('.', ',')}`}
         </p>
         <button
@@ -98,10 +102,13 @@ export default function ProductsList() {
           data-testid="checkout-bottom-btn"
           onClick={ () => history.push('/checkout') }
           disabled={ totalValue === 0 }
+          style={{ color: 'white', backgroundColor: 'rgb(255,255,255,0.1)'}}
+          className="btn btn-secondary"
         >
           Ver Carrinho
         </button>
       </footer>
+      </div>
     </div>
   );
 }
