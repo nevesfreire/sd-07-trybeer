@@ -52,7 +52,7 @@ export default function ClientOrderDetails() {
   return (
     <div
       className="d-flex flex-column border rounded"
-      style={ { marginTop: '5vh', padding: '5vh' } }
+      style={ { marginTop: '5vh', padding: '5vh', color: 'white' } }
     >
       <div>
         <h1 data-testid="order-number">{`Pedido ${id}`}</h1>
@@ -63,8 +63,14 @@ export default function ClientOrderDetails() {
           return (
             <div
               key={ item.name }
-              className="d-flex border rounded justify-content-around"
-              style={ { padding: '2vh', margin: '2vh' } }
+              className="d-flex  border rounded justify-content-around"
+              style={ { marginTop: '5vh',
+                padding: '3vh',
+                backgroundColor: 'rgb(0,0,0,0.2)',
+                color: 'white',
+                width: '50%',
+                marginLeft: '20vh',
+              } }
             >
               <p data-testid={ `${index}-product-qtd` }>{item.quantity}</p>
               <p data-testid={ `${index}-product-name` }>{item.name}</p>
@@ -78,7 +84,11 @@ export default function ClientOrderDetails() {
           );
         }) }
       </div>
-      <p data-testid="order-total-value" className="align-self-end">
+      <p
+        data-testid="order-total-value"
+        style={ { marginTop: '5vh' } }
+        className="align-self-start"
+      >
         Total:
         {' '}
         {sale ? `R$ ${sale[0].total_price.replace('.', ',')}` : 'R$ 0,00'}
