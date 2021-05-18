@@ -7,7 +7,7 @@ function MenuAdmin({ open }) {
   const history = useHistory();
 
   return (
-    <StyledMenu className="admin-side-bar-container" open={ open }>
+    <StyledMenu className="admin-side-bar-container" open={ !open }>
       <Button
         name="btn-requests"
         onClick={ () => history.push('/admin/orders') }
