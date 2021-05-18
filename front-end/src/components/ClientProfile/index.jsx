@@ -37,7 +37,7 @@ export default function ClientProfile() {
           } }
           value={ name }
           onChange={ (e) => setName(e.target.value) }
-          type="name"
+          type="text"
           name="name"
           data-testid="profile-name-input"
           required

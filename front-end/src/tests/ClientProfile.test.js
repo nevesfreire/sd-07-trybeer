@@ -4,7 +4,7 @@ import { screen, fireEvent, waitForElement, cleanup } from '@testing-library/rea
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './config/renderWithRouter';
-import validationClientProfile from '../components/ClientProfile/validationClientProfile';
+// import validationClientProfile from '../components/ClientProfile/validationClientProfile';
 
 test('Renderiza tela de perfil do cliente na rota `/profile`', async (done) => {
   const { getByTestId, getByText } = renderWithRouter(<App />);
@@ -74,24 +74,28 @@ test('Botão de `Salvar` deve ficar habilitado quando o campo'
 
   expect(profileEmailInput).toHaveAttribute('readonly');
 
-  userEvent.type(profileNameInput, "User Test New Name");
+  userEvent.type(profileNameInput,"User Name!");
   expect(screen.getByTestId('profile-save-btn')).toBeDisabled();
+  
+  userEvent.type(profileNameInput,"User Test Name!");
+  expect(screen.getByTestId('profile-save-btn')).toBeDisabled();
+
+  userEvent.type(profileNameInput, "User Test Name");
+  expect(screen.getByTestId('profile-save-btn')).not.toBeDisabled();
   done();
 });
 
-test('Não deve ser possivel passar um usuario com nome invalido', () => {
-  const invalid = validationClientProfile('!oe');
-  expect(invalid).toBe(true);
-})
+// test('Não deve ser possivel passar um usuario com nome invalido', () => {
+//   const invalid = validationClientProfile('!oe');
+//   expect(invalid).toBe(true);
+// })
 
-test('Não deve ser possivel passar um usuario com nome menor de 12 caracteres', () => {
-  const invalid = validationClientProfile('!oe');
-  expect(invalid).toBe(true);
-})
-// test('Quando clicar botão `Ainda não tenho conta`, redirecionar para rota `/register`', () => {
-//   const { history } = renderWithRouter(<Login />);
-//   fireEvent.click(screen.getByTestId('no-account-btn'));
+// test('Não deve ser possivel passar um usuario com nome menor de 12 caracteres', () => {
+//   const invalid = validationClientProfile('!oe');
+//   expect(invalid).toBe(true);
+// })
 
-//   const { pathname } = history.location;
-//   expect(pathname).toBe('/register');
-// });
+// test('É possivel passar um usuario com nome maior que 12 caracteres', () => {
+//   const invalid = validationClientProfile('User Test New Name');
+//   expect(invalid).toBe(false);
+// })
