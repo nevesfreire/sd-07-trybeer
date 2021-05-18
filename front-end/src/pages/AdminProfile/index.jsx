@@ -3,12 +3,13 @@ import { Container } from 'react-bootstrap';
 import AdminProfile from '../../components/AdminProfile';
 import Header from '../../components/Header';
 import AuthVerification from '../../components/AuthVerification';
+import './profile.css';
 
 const AdminProfilePage = () => {
   AuthVerification();
 
   return (
-    <div>
+    <div className="profile">
       <Header title="Perfil" />
       <Container
         fluid

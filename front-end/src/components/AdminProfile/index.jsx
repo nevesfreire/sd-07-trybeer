@@ -7,6 +7,9 @@ export default function AdminProfile() {
   return (
     <Form
       className="d-flex flex-column"
+      style={ {
+        marginRight: '20vh',
+      } }
     >
       <Form.Label htmlFor="profile-name">
         <span>Nome</span>
@@ -14,6 +17,11 @@ export default function AdminProfile() {
           data-testid="profile-name"
           readOnly
           className="form-control"
+          style={ {
+            background: 'transparent',
+            marginBottom: '10px',
+            color: 'white',
+          } }
         >
           { currentUser ? currentUser.name : '' }
         </span>
@@ -28,6 +36,11 @@ export default function AdminProfile() {
           data-testid="profile-email"
           readOnly
           className="form-control"
+          style={ {
+            background: 'transparent',
+            marginBottom: '10px',
+            color: 'white',
+          } }
         >
           { currentUser ? currentUser.email : '' }
         </span>
