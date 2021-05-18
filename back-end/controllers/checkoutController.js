@@ -8,7 +8,7 @@ const CONFLICT = 409;
 const getAllSales = async (request, response) => {
   try {
     const sale = await checkoutService.getAllSales();
-    if (!sale || sale.length === 0) {
+    if (!sale /*|| sale.length === 0*/) {
       throw new Error('sales not found');
     }
     return response.status(OK).json(sale);
@@ -50,6 +50,7 @@ const createSale = async (request, response) => {
 
 const confirmDelivery = async (request, response) => {
   const { id } = request.body;
+  console.log(id)
   try {
     const delivery = await checkoutService.confirmDelivery(id);
     return response.status(CREATE).json(delivery);

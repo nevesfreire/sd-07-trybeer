@@ -6,7 +6,7 @@ describe('Testar a rota de checkout', () => {
   it('Deve retornar todas as vendas em checkout', async (done) => {
       const OK = 200;
       const res = await request(app)
-        .get('/checkout')
+      .get('/checkout')
       expect(res.statusCode).toBe(OK);
       done();
   });
@@ -33,15 +33,15 @@ describe('Testar a rota de checkout', () => {
       })
     console.log(res.body);
     expect(res.statusCode).toBe(CREATE);
-    connection.end();
     done();
   })
-  it('Deve confirmar que "meus pedidos" esta vazio', async (done) => {
-    const ERROR = 404;
+  it('Deve confirmar se o pedido foi entregue', async (done) => {
+    const CREATE = 201;
     const res = await request(app)
-    .patch('/orders')
-    // .send({status: "Pendente"})
-    expect(res.statusCode).toBe(ERROR)
+    .patch(`/checkout`)
+    .send({id:1})
+    expect(res.statusCode).toBe(CREATE)
+    console.log(res.body)
     connection.end();
     done();
   })
