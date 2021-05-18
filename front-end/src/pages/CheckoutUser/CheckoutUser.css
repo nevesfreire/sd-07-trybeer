@@ -1,5 +1,24 @@
+.main {
+  margin-top: 20px;
+}
+
 .checkout-list li {
   display: flex;
-  
+}
 
+table {
+  background-color: white;
+}
+
+.total-value {
+  background-color: white;
+  margin-top: -16px;
+  font-weight: 700;
+  padding: .75rem;
+  vertical-align: top;
+  border: 1px solid #dee2e6
+}
+
+.address {
+  background-color: white;
 }

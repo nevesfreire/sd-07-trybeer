@@ -82,76 +82,78 @@ export default function CheckoutUser() {
   return (
     <div>
       <Header namePage="Finalizar Pedido" />
-      Produtos
-      <Table>
-        <thead>
-          <tr>
-            <th>Quantidade</th>
-            <th>Nome</th>
-            <th>Preço unitário</th>
-            <th>Valor total</th>
-            <th>Remover</th>
-          </tr>
-        </thead>
-        <tbody>
-          {emptyCart ? <h2>Não há produtos no carrinho</h2>
-            : cartItems.map((product, index) => (
-              <tr key={ index }>
-                <td data-testid={ `${index}-product-qtd-input` }>{product.quantity}</td>
-                <td data-testid={ `${index}-product-name` }>{product.name}</td>
-                <td data-testid={ `${index}-product-unit-price` }>
-                  {`(R$ ${product.price.toString().replace('.', ',')} un)`}
-                </td>
-                <td data-testid={ `${index}-product-total-value` }>
-                  {`R$ ${product.totalPrice.toString().replace('.', ',')}`}
-                </td>
-                <td>
-                  <Button
-                    type="button"
-                    data-testid={ `${index}-removal-button` }
-                    onClick={ () => removeItemFromCart(product.id) }
-                  >
-                    X
-                  </Button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
-      <div data-testid="order-total-value">
-        {`R$ ${total.toString().replace('.', ',')}`}
-      </div>
-      <Form className="form__login">
-        <h2>Endereço: </h2>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Rua: </Form.Label>
-          <Form.Control
-            data-testid="checkout-street-input"
-            type="text"
-            onChange={ ({ target: { value } }) => setAddress(value) }
-          />
-        </Form.Group>
+      <div className="main">
+        <Table striped bordered hover responsive="sm">
+          <thead>
+            <tr>
+              <th>Quantidade</th>
+              <th>Nome</th>
+              <th>Preço unitário</th>
+              <th>Valor total</th>
+              <th>Remover</th>
+            </tr>
+          </thead>
+          <tbody>
+            {emptyCart ? <h2>Não há produtos no carrinho</h2>
+              : cartItems.map((product, index) => (
+                <tr key={ index }>
+                  <td data-testid={ `${index}-product-qtd-input` }>{product.quantity}</td>
+                  <td data-testid={ `${index}-product-name` }>{product.name}</td>
+                  <td data-testid={ `${index}-product-unit-price` }>
+                    {`(R$ ${product.price.toString().replace('.', ',')} un)`}
+                  </td>
+                  <td data-testid={ `${index}-product-total-value` }>
+                    {`R$ ${product.totalPrice.toString().replace('.', ',')}`}
+                  </td>
+                  <td>
+                    <Button
+                      type="button"
+                      data-testid={ `${index}-removal-button` }
+                      onClick={ () => removeItemFromCart(product.id) }
+                    >
+                      X
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </Table>
+        <div className="total-value"
+        data-testid="order-total-value">
+          {`R$ ${total.toString().replace('.', ',')}`}
+        </div>
+        <Form className="form__login address">
+          <h4>Endereço: </h4>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Rua: </Form.Label>
+            <Form.Control
+              data-testid="checkout-street-input"
+              type="text"
+              onChange={ ({ target: { value } }) => setAddress(value) }
+            />
+          </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Número da casa: </Form.Label>
-          <Form.Control
-            data-testid="checkout-house-number-input"
-            type="text"
-            onChange={ ({ target: { value } }) => setHouseNumber(value) }
-          />
-        </Form.Group>
-        <Button
-          data-testid="checkout-finish-btn"
-          variant="primary"
-          type="button"
-          className="form__login__btn"
-          onClick={ (event) => finishButton(event) }
-          disabled={ disableFinishButton() }
-        >
-          Finalizar Pedido
-        </Button>
-        { alertController && <p>Compra realizada com sucesso!</p> }
-      </Form>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Número da casa: </Form.Label>
+            <Form.Control
+              data-testid="checkout-house-number-input"
+              type="text"
+              onChange={ ({ target: { value } }) => setHouseNumber(value) }
+            />
+          </Form.Group>
+          <Button
+            data-testid="checkout-finish-btn"
+            variant="primary"
+            type="button"
+            className="form__login__btn"
+            onClick={ (event) => finishButton(event) }
+            disabled={ disableFinishButton() }
+          >
+            Finalizar Pedido
+          </Button>
+          { alertController && <p>Compra realizada com sucesso!</p> }
+        </Form>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,8 @@ export default function Header(props) {
   return (
     <header className="header" data-testid="top-title">
       <SideBar />
-      { namePage }
+      <h1>{ namePage }</h1>
+
     </header>
 
   );

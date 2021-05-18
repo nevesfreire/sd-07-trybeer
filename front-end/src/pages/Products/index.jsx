@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import ProductCard from '../../components/ProductCard';
 import { BeerContext } from '../../context';
+import './Products.css';
 
 export default function Products() {
   const [productsList, setProductsList] = useState([]);
@@ -55,7 +56,7 @@ export default function Products() {
     : (
       <div>
         <Header namePage="TryBeer" />
-        <main>
+        <main className="main">
           { productsList
             .map((product, index) => (<ProductCard
               key={ product.id }
@@ -66,7 +67,7 @@ export default function Products() {
             data-testid="checkout-bottom-btn"
             variant="primary"
             type="button"
-            className="form__login__btn"
+            className="form__login__btn checkout-btn"
             onClick={ (event) => handleCartButton(event) }
             disabled={ disableCartButton() }
           >

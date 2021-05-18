@@ -8,7 +8,7 @@ export default function HeaderAdmin(props) {
   return (
     <header className="header" data-testid="top-title">
       <SideBarAdmin />
-      { namePage }
+      <h1>{ namePage }</h1>
     </header>
 
   );

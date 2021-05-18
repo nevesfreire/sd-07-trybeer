@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { updateNameFetch } from '../../services/index';
 import Header from '../../components/Header';
+import './ProfileUser.css';
 
 export default function ProfileUser() {
   const [email, setEmail] = useState('');
@@ -50,40 +51,42 @@ export default function ProfileUser() {
   };
 
   return (
-    <main>
+    <div>
       <Header namePage="Meu perfil" />
-      <Form className="form__login">
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            data-testid="profile-name-input"
-            type="Name"
-            value={ name }
-            onChange={ ({ target: { value } }) => setName(value) }
-          />
-        </Form.Group>
+      <main>
+        <Form className="form__login profile">
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              data-testid="profile-name-input"
+              type="Name"
+              value={ name }
+              onChange={ ({ target: { value } }) => setName(value) }
+            />
+          </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            readOnly
-            data-testid="profile-email-input"
-            type="email"
-            value={ email }
-          />
-        </Form.Group>
-        <Button
-          data-testid="profile-save-btn"
-          variant="primary"
-          type="button"
-          className="form__login__btn"
-          onClick={ (event) => handleSubmit(event) }
-          disabled={ inputValidation() }
-        >
-          Salvar
-        </Button>
-        { alertController && <p>Atualização concluída com sucesso</p> }
-      </Form>
-    </main>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              readOnly
+              data-testid="profile-email-input"
+              type="email"
+              value={ email }
+            />
+          </Form.Group>
+          <Button
+            data-testid="profile-save-btn"
+            variant="primary"
+            type="button"
+            className="form__login__btn"
+            onClick={ (event) => handleSubmit(event) }
+            disabled={ inputValidation() }
+          >
+            Salvar
+          </Button>
+          { alertController && <p>Atualização concluída com sucesso</p> }
+        </Form>
+      </main>
+    </div>
   );
 }
