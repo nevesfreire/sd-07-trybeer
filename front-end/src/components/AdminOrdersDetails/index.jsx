@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import {
   getAdminSalesDetails,
@@ -93,14 +94,15 @@ export default function ClientOrderDetails() {
         {' '}
         {sale ? `R$ ${sale[0].total_price.replace('.', ',')}` : 'R$ 0,00'}
       </p>
-      <button
+      <Button
         type="submit"
         data-testid="mark-as-delivered-btn"
         onClick={ () => deliveredButton() }
         hidden={ hiddenButton }
+        style={ { width: '30vh' } }
       >
         Marcar como entregue
-      </button>
+      </Button>
     </div>
   );
 }
