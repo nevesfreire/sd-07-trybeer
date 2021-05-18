@@ -36,4 +36,22 @@ describe('Testar a rota de checkout', () => {
     connection.end();
     done();
   })
+  it('Deve confirmar que "meus pedidos" esta vazio', async (done) => {
+    const ERROR = 404;
+    const res = await request(app)
+    .patch('/orders')
+    // .send({status: "Pendente"})
+    expect(res.statusCode).toBe(ERROR)
+    connection.end();
+    done();
+  })
+  // it('Deve confirmar que o produto não foi entregue', async (done) => {
+  //   const ERROR = 400;
+  //   const res = await request(app)
+  //   .patch('/checkout')
+  //   .send({status: "Pendente"})
+  //   expect(res.statusCode).toBe(ERROR)
+  //   connection.end();
+  //   done();
+  // })
 });
