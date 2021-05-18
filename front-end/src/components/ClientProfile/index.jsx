@@ -24,6 +24,9 @@ export default function ClientProfile() {
   return (
     <Form
       onSubmit={ onSubmitHandler }
+      style={ {
+        marginRight: '20vh',
+      } }
     >
       <Form.Label htmlFor="nameInput">
         Nome
@@ -34,6 +37,7 @@ export default function ClientProfile() {
           style={ {
             background: 'transparent',
             marginBottom: '10px',
+            color: 'white',
           } }
           value={ name }
           onChange={ (e) => setName(e.target.value) }
@@ -52,6 +56,7 @@ export default function ClientProfile() {
           style={ {
             background: 'transparent',
             marginBottom: '20px',
+            color: 'white',
           } }
           value={ currentUser.email }
           type="email"
@@ -64,7 +69,8 @@ export default function ClientProfile() {
         <Col>
           <Button
             style={ {
-              backgroundColor: 'rgb(133,54,21)',
+              backgroundColor: 'rgb(227,183,88)',
+              borderColor: 'white',
             } }
             type="submit"
             data-testid="profile-save-btn"
