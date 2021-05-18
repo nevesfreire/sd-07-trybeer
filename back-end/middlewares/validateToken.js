@@ -16,7 +16,6 @@ const validateToken = async (req, res, next) => {
       req.user = user;
       next();    
   } catch (error) {
-    console.log('vim parar no catch')
     res.status(httpStatus.UNAUTHORIZED).json({ message: error.message });
   }
 };

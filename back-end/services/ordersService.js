@@ -6,10 +6,8 @@ const getOrdersByUser = async (userId) => {
 };
 
 const getOrderById = async (id) => {
-  console.log(`service ID: ${id}`);
-  const order = await ordersModel.getOrderById(id);
-  console.log(`service order: ${order}`);
-  return order;
+  const response = await ordersModel.getOrderById(id);
+  return response;
 };
 module.exports = {
   getOrdersByUser,

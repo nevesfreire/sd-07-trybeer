@@ -1,8 +1,8 @@
 const connect = require('../configuration/configuration');
 
-const getOrdersByUser = async (userId) => {
+const getAllOrders = async () => {
   const [orders] = await connect.execute(
-    'SELECT * FROM sales WHERE user_id = ? ORDER BY id ASC', [userId],
+    'SELECT * FROM sales ORDER BY id ASC',
   );
   return orders;
 };
@@ -17,19 +17,25 @@ const getOrderById = async (id) => {
   );
 
   const [[order]] = await connect.execute(
-    'SELECT total_price, sale_date FROM sales WHERE id = ?', [id],
+    'SELECT total_price, status FROM sales WHERE id = ?', [id],
   );
 
   const response = { 
   totalPrice: order.total_price,
-  saleDate: order.sale_date,
-  productList: [...products],
+  status: order.status,
+  ProductList: [...products],
 };
 
   return response;
 };
 
+const updateOrderByStatus = async (id, status) => connect.execute(
+    'UPDATE sales SET status = ? WHERE id = ?',
+    [status, id],
+);
+
 module.exports = {
-  getOrdersByUser,
+  getAllOrders,
   getOrderById,
+  updateOrderByStatus,
 };
