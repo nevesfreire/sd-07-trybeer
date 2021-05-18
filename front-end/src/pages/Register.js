@@ -97,11 +97,12 @@ export default function Register() {
           onChange={ (event) => handleChange(event) }
         />
       </label>
-      <label htmlFor="checkbox">
+      <label className="registerCheckBox" htmlFor="checkbox">
         Quero vender
         <input
           checked={ checkboxValue }
           id="checkbox"
+          className="checkboxInput"
           data-testid="signup-seller"
           onChange={ () => setCheckboxValue(!checkboxValue) }
           type="checkbox"

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { update } from '../actions';
 
-export default function Address({ handleEvent, status, saveOrder }) {
+export default function Address({ handleEvent, status, order }) {
   const DELAY = 3000;
   const orderStatus = useSelector(({ order }) => order);
   const [shouldRedirect, setShouldRedirect] = useState('');
@@ -19,7 +19,10 @@ export default function Address({ handleEvent, status, saveOrder }) {
   return (
     <>
       { shouldRedirect && <Redirect to={ shouldRedirect } />}
-      <form onSubmit={ () => saveOrder() }>
+      <form onSubmit={ (event) => {
+          event.preventDefault();
+          order();
+          } }>
         <label htmlFor="street">
           Rua
           <input

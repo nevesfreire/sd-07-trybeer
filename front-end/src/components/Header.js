@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Sidebar from './Sidebar';
+import '../styles/menu.css';
 
 export default function Header({ title }) {
   const [checked, setChecked] = useState(false);
@@ -19,7 +20,7 @@ export default function Header({ title }) {
           <span className={ !checked ? 'hamburger-span-three' : 'x-three' } />
         </button>
       </div>
-      <h1 data-testid="top-title">{ title }</h1>
+      <h1 className="menu-title" data-testid="top-title">{ title }</h1>
       <Sidebar openAndClose={ checked } />
     </>
   );

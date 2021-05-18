@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import '../styles/menu.css';
 
 export default function Sidebar({ openAndClose }) {
   const [shouldRedirect, setShouldRedirect] = useState('');
