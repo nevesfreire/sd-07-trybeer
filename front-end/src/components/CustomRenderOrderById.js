@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import CustomOrder from './CustomOrder';
 import { fetchOrderById } from '../service/order';
 import { getOrderById } from '../helpers/localStorage';
 
+import './componentStyle.css';
+
 const CustomRenderOrderById = () => {
-  const [order, setOrder] = useState(getOrderById());
+  const [order] = useState(getOrderById());
   useEffect(() => {
     fetchOrderById();
   }, []);
 
   return (
-    <div>
+    <Card.Group centered>
       { !order ? (
         null
       ) : (
         order.map((beer, index) => (
-          <Grid.Column key={ index }>
-            <CustomOrder index={ index } beer={ beer } />
-          </Grid.Column>
+          <div key={ index }>
+            <CustomOrder index={ index } beer={ beer } key={ index } />
+          </div>
         )))}
-    </div>
+    </Card.Group>
   );
 };
 

@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Card, Grid } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import { fetchOrderDetails } from '../service/order';
 
 function CustomOrder({ index, beer }) {
   fetchOrderDetails(beer.id);
   return (
     <Link to={ `/orders/${beer.id}` }>
-      <Grid>
+      <div>
         {!beer ? (
           null
         ) : (
 
-          <Card data-testid={ `${index}-order-card-container` }>
+          <Card data-testid={ `${index}-order-card-container` } style={ { margin: 10 } }>
             <Card.Content>
               <Card.Header data-testid={ `${index}-order-number` }>
                 {`Pedido ${beer.id}`}
@@ -31,7 +31,7 @@ function CustomOrder({ index, beer }) {
             </Card.Content>
           </Card>
         )}
-      </Grid>
+      </div>
     </Link>
   );
 }

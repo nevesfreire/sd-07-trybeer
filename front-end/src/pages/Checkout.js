@@ -1,12 +1,21 @@
 import React, { useEffect, useContext, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Button, Form, Segment, Card } from 'semantic-ui-react';
+import {
+  Container,
+  Button,
+  Form,
+  Segment,
+  Card,
+  Header,
+  Message,
+  Icon } from 'semantic-ui-react';
 import CustomCheckout from '../components/CustomCheckout';
 import CentralContext from '../context/Context';
 import CustomHeader from '../components/CustomHeader';
 
 import checkout from '../service/checkout';
 import { fetchOrderById } from '../service/order';
+import CustomTopMenu from '../components/CustomTopMenu';
 // import { findByLabelText } from '@testing-library/dom';
 
 function Checkout() {
@@ -20,7 +29,7 @@ function Checkout() {
   const remButton = useCallback((id) => {
     const cartFilter = cart.filter((item) => item[0] !== id);
     setCart(cartFilter);
-  }, []);
+  }, [cart]);
 
   const checkoutButton = async () => {
     const { id } = JSON.parse(localStorage.getItem('token'));
@@ -88,10 +97,13 @@ function Checkout() {
         width: '100%',
         height: '100%',
         padding: '10px 50px',
-        backgroundColor: 'rgb(33, 33, 33)'} }
+        backgroundColor: 'rgb(33, 33, 33)' } }
     >
       <Container>
-        <CustomHeader message="Finalizar Pedido" />
+        <Header style={ { display: 'flex', alignItems: 'center' } }>
+          <CustomTopMenu />
+          <CustomHeader message="Finalizar Pedido" />
+        </Header>
       </Container>
       <Container>
         {renderProdutsCart()}
@@ -139,6 +151,16 @@ function Checkout() {
             onChange={ (e) => setDeliveryNumber(e.target.value) }
 
           />
+          { finish ?
+            <Message icon positive>
+              <Icon name="circle notched" loading />
+              <Message.Content>
+                <Message.Header>Compra realizada com sucesso!</Message.Header>
+                Aguarde, esta tela será redirecionada.
+                Obrigado!
+              </Message.Content>
+            </Message>
+            : null}
 
           <Button
             data-testid="checkout-finish-btn"
@@ -149,7 +171,8 @@ function Checkout() {
           >
             Finalizar pedido
           </Button>
-          { finish ? <span>Compra realizada com sucesso!</span> : null}
+
+          {/* { finish ? <span>Compra realizada com sucesso!</span> : null} */}
         </Segment>
       </Form>
     </div>
