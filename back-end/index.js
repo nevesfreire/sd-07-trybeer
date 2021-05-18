@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
+const middleware = require('./middleware');
+
 const PORT = 3001;
 
 const userRouter = require('./router/usersRoutes');
@@ -9,6 +11,7 @@ const saleRouter = require('./router/salesRoutes');
 
 const app = express();
 
+app.use(middleware.logMiddleware);
 app.use('/images', express.static(`${__dirname}/images`));
 app.use(cors());
 app.use(express.json());
