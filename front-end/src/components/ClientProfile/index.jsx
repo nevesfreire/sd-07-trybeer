@@ -18,7 +18,6 @@ export default function ClientProfile() {
     // req da api enviando:
     const response = await updateUser(currentUser.token, user)
       .then((apiResponse) => apiResponse);
-
     if (response) setNameUpdate(true);
   };
 
@@ -26,11 +25,12 @@ export default function ClientProfile() {
     <Form
       onSubmit={ onSubmitHandler }
     >
-      <Form.Label htmlFor="profile-name-input">
+      <Form.Label htmlFor="nameInput">
         Nome
       </Form.Label>
       <Col>
         <Form.Control
+          id="nameInput"
           style={ {
             background: 'transparent',
             marginBottom: '10px',

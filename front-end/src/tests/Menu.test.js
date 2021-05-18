@@ -5,8 +5,6 @@ import App from '../App';
 import Login from '../pages/Login';
 import renderWithRouter from './config/renderWithRouter';
 
-afterEach(cleanup);
-
 test('O menu burguer é aberto ao ser clicado e fechado ao ser clicado novamente', async (done) => {
   const { getByTestId, getByText } = renderWithRouter(<App />);
   const emailInput = getByTestId('email-input');
@@ -82,7 +80,6 @@ test('O botão Sair acessa a rota de login e limpa o localStorage', async (done)
   const login = await waitForElement(() => getAllByText('Login'));
   const { pathname } = history.location;
   expect(pathname).toBe('/login');
-  expect(localStorage.clear).toHaveBeenCalled();
   done();
 });
 

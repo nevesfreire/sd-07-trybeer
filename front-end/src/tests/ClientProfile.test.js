@@ -6,8 +6,6 @@ import App from '../App';
 import renderWithRouter from './config/renderWithRouter';
 import validationClientProfile from '../components/ClientProfile/validationClientProfile';
 
-afterEach(cleanup);
-
 test('Renderiza tela de perfil do cliente na rota `/profile`', async (done) => {
   const { getByTestId, getByText } = renderWithRouter(<App />);
 

@@ -8,7 +8,7 @@ export default function ClientOrderDetails() {
   const [sale, setSale] = useState(null);
   // const [totalValue, setTotalValue] = useState(0 || sale[0].total_price)
 
-  console.log(sale);
+  // console.log(sale);
 
   useEffect(() => {
     const fetchSale = async () => {

@@ -12,7 +12,7 @@ export default function AdminOrders() {
       if (!currentUser) return null;
       const response = await getAdminSales(currentUser.token)
         .then((apiResponse) => apiResponse);
-      console.log(response);
+      // console.log(response);
       if (response && Object.values(response).length > 0) {
         setAdminSales(response);
       }

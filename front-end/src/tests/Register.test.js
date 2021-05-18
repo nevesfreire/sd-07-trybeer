@@ -4,8 +4,6 @@ import userEvent from '@testing-library/user-event';
 import Register from '../pages/Register';
 import renderWithRouter from './config/renderWithRouter';
 
-afterEach(cleanup);
-
 test('Renderiza tela de registro na rota `/register`', () => {
   renderWithRouter(<Register />);
 

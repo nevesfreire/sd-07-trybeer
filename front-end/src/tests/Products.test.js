@@ -4,8 +4,6 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './config/renderWithRouter';
 
-afterEach(cleanup);
-
 test('Renderiza tela de lista dos produtos na rota `/products`', async (done) => {
   const { getByTestId, getByText } = renderWithRouter(<App />);
 
