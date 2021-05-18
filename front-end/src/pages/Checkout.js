@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Card } from 'react-bulma-components';
+import { Card, Button } from 'react-bulma-components';
 import { Header } from '../components';
 import TrybeerContext from '../store/context';
 import acessLocalStorage from '../services';
@@ -52,94 +52,124 @@ function Checkout() {
   };
 
   return (
-    <div>
+    <div
+      className="mt-6 pt-3 is-justify-content-center"
+      style={ { maxWidth: '80rem', minWidth: '80rem' } }
+    >
       <div>
         <Header title="Finalizar Pedido" />
       </div>
-      <h2>Produtos</h2>
-      {
-        sumItens === 0 ? (<span>Não há produtos no carrinho</span>)
-          : (
+      <div
+        className="card is-inline-flex is-flex-wrap-wrap is-justify-content-center mt-3"
+        style={ { maxWidth: '80rem', minWidth: '80rem' } }
+      >
+        <span
+          className="button is-medium is-fullwidth is-fixed-bottom is-white is-size-3"
+        >
+          <strong>Produtos</strong>
+        </span>
+        {
+          sumItens === 0 ? (<span>Não há produtos no carrinho</span>)
+            : (
 
-            Object.keys(cart).map((key, index) => (
-              // const { quantity, item} = cart[key];
-              <Card key={ key }>
-                <Card.Content>
-                  <span
-                    data-testid={ `${index}-product-qtd-input` }
-                  >
-                    {`Quantidade: ${cart[key].quantity}`}
-                  </span>
-                  <br />
-                  <span
-                    data-testid={ `${index}-product-name` }
-                  >
-                    {`Produto: ${cart[key].item.name}`}
-                  </span>
-                  <br />
-                  <span
-                    data-testid={ `${index}-product-unit-price` }
-                  >
-                    {`(R$ ${cart[key].item.price.split('.').join(',')} un)`}
-                  </span>
-                  <br />
-                  <span
-                    data-testid={ `${index}-product-total-value` }
-                  >
-                    {`R$ ${(cart[key].item.price * cart[key].quantity)
-                      .toFixed(2).split('.').join(',')}`}
-                  </span>
-                  <br />
-                  <button
-                    data-testid={ `${index}-removal-button` }
-                    type="button"
-                    onClick={ () => deleteItem(cart[key].item) }
-                  >
-                    X
-                  </button>
-                </Card.Content>
-              </Card>
-            ))
-          )
-      }
-      <h2
+              Object.keys(cart).map((key, index) => (
+                // const { quantity, item} = cart[key];
+                <Card key={ key } className="m-2">
+                  <Card.Content className="is-size-5">
+                    <span
+                      data-testid={ `${index}-product-qtd-input` }
+                    >
+                      {`Quantidade: ${cart[key].quantity}`}
+                    </span>
+                    <br />
+                    <span
+                      data-testid={ `${index}-product-name` }
+                    >
+                      {`Produto: ${cart[key].item.name}`}
+                    </span>
+                    <br />
+                    <span
+                      data-testid={ `${index}-product-unit-price` }
+                    >
+                      {`(R$ ${cart[key].item.price.split('.').join(',')} un)`}
+                    </span>
+                    <br />
+                    <span
+                      data-testid={ `${index}-product-total-value` }
+                    >
+                      {`R$ ${(cart[key].item.price * cart[key].quantity)
+                        .toFixed(2).split('.').join(',')}`}
+                    </span>
+                    <br />
+                    <Button
+                      className="is-fullwidth is-danger is-outlined"
+                      data-testid={ `${index}-removal-button` }
+                      type="button"
+                      onClick={ () => deleteItem(cart[key].item) }
+                    >
+                      X
+                    </Button>
+                  </Card.Content>
+                </Card>
+              ))
+            )
+        }
+      </div>
+      <Card
+        className="mt-3"
         data-testid="order-total-value"
       >
-        {`Total: R$ ${(sumItens).toFixed(2).split('.').join(',')}`}
-      </h2>
-      <br />
-      <label
-        htmlFor="streetinput"
-      >
-        Rua
+        <div className="mt-3 p-4 is-align-items-center is-size-4">
+          <strong>{`Total: R$ ${(sumItens).toFixed(2).split('.').join(',')}`}</strong>
+        </div>
+      </Card>
+      <Card className="mt-3 p-3">
+        <label
+          htmlFor="teste"
+          className="is-size-5"
+        >
+          <strong>Endereço de entrega:</strong>
+        </label>
+        <br/>
+        <label
+          htmlFor="streetinput"
+          className="is-size-5"
+        >
+          Rua
+          <br />
+          <input
+            onChange={ (e) => setAddress(e.target.value) }
+            data-testid="checkout-street-input"
+            class="input"
+            id="streetinput"
+            name="streetinput"
+            type="text"
+          />
+        </label>
         <br />
-        <input
-          onChange={ (e) => setAddress(e.target.value) }
-          data-testid="checkout-street-input"
-          id="streetinput"
-          name="streetinput"
-          type="text"
-        />
-      </label>
-      <br />
-      <label
-        htmlFor="checkout-house-number-input"
-      >
-        Numero da Casa
         <br />
-        <input
-          onChange={ (e) => setNumber(e.target.value) }
-          data-testid="checkout-house-number-input"
-          id="checkout-house-number-input"
-          name="checkout-house-number-input"
-          type="text"
-        />
-      </label>
-      <br />
-      {
-        notification ? (<div>Compra realizada com sucesso!</div>) : ''
-      }
+        <label
+          htmlFor="checkout-house-number-input"
+          className="is-size-5"
+        >
+          Numero da Casa
+          <br />
+          <input
+            onChange={ (e) => setNumber(e.target.value) }
+            data-testid="checkout-house-number-input"
+            class="input column is-one-quarter"
+            id="checkout-house-number-input"
+            name="checkout-house-number-input"
+            type="text"
+          />
+        </label>
+        {
+          notification ? (<div>Compra realizada com sucesso!</div>) : ''
+        }
+      </Card>
+
       <button
+        className="button is-medium is-fullwidth is-warning is-fixed-bottom mt-3"
         onClick={ () => handleClick() }
         disabled={ !((address && number && sumItens !== 0)) }
         data-testid="checkout-finish-btn"
@@ -147,7 +177,6 @@ function Checkout() {
       >
         Finalizar Pedido
       </button>
-
     </div>
   );
 }

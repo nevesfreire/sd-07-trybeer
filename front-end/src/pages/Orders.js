@@ -33,7 +33,7 @@ function Orders() {
   }, [getUserLogged]);
 
   return (
-    <div className="first-div">
+    <div className="is-inline-flex mt-6 is-flex-wrap-wrap is-justify-content-center">
       {
         user && user.role === 'administrator'
           ? (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Card } from 'react-bulma-components';
 
 function OrdersAdmCard({ order, index }) {
   const history = useHistory();
@@ -11,41 +12,39 @@ function OrdersAdmCard({ order, index }) {
   const handleClick = () => history.push(`/admin/orders/${sale}`);
 
   return (
-    <div className="card">
-      <button type="button" onClick={ () => handleClick() }>
-        <header className="card-header">
-          <p
-            className="card-header-title"
-            data-testid={ `${index}-order-number` }
-          >
-            {`Pedido ${sale}`}
-          </p>
-        </header>
+    <Card className="m-2 column is-three-quarters" onClick={ () => handleClick() }>
+      <header className="card-header">
+        <p
+          className="card-header-title"
+          data-testid={ `${index}-order-number` }
+        >
+          {`Pedido ${sale}`}
+        </p>
+      </header>
 
-        <div className="card-content">
-          <div
-            className="content"
-            data-testid={ `${index}-order-address` }
-          >
-            {`${address}, ${Number(number)}`}
-          </div>
-          <footer className="card-footer">
-            <span
-              className="card-header-item"
-              data-testid={ `${index}-order-total-value` }
-            >
-              {`R$ ${totalPrice}`}
-            </span>
-            <span
-              className="card-footer-item"
-              data-testid={ `${index}-order-status` }
-            >
-              {status}
-            </span>
-          </footer>
+      <div className="card-content">
+        <div
+          className="content"
+          data-testid={ `${index}-order-address` }
+        >
+          {`${address}, ${Number(number)}`}
         </div>
-      </button>
-    </div>
+        <footer className="card-footer">
+          <span
+            className="card-header-item"
+            data-testid={ `${index}-order-total-value` }
+          >
+            {`R$ ${totalPrice}`}
+          </span>
+          <span
+            className="card-footer-item"
+            data-testid={ `${index}-order-status` }
+          >
+            {status}
+          </span>
+        </footer>
+      </div>
+    </Card>
   );
 }
 
