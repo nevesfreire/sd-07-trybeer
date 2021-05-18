@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Table } from 'react-bootstrap';
 import Header from '../../components/Header';
 import { fetchFinishSale } from '../../services';
 import { BeerContext } from '../../context';
+import './CheckoutUser.css';
 
 export default function CheckoutUser() {
   const [cartItems, setCartItems] = useState([]);
@@ -26,7 +27,7 @@ export default function CheckoutUser() {
       setCartItems(localStorageCart);
       setTotalCart(localStorageTotalCart.toFixed(2));
     }
-  }, []);
+  }, [history, setTotalCart]);
 
   useEffect(() => {
     if (cartItems.length === 0) {
@@ -47,13 +48,6 @@ export default function CheckoutUser() {
   }, [totalCart]);
 
   const timeoutMessage = 5000;
-
-  // const handleUpdateMessage = async () => {
-  //   setAlertController(true);
-  //   setTimeout(() => {
-  //     setAlertController(false);
-  //   }, timeoutMessage);
-  // };
 
   const removeItemFromCart = (id) => {
     const atualItem = cartItems.find((product) => product.id === id);
@@ -88,29 +82,42 @@ export default function CheckoutUser() {
   return (
     <div>
       <Header namePage="Finalizar Pedido" />
-      <ul>
-        Produtos
-        {emptyCart ? <h2>Não há produtos no carrinho</h2>
-          : cartItems.map((product, index) => (
-            <li key={ index }>
-              <div data-testid={ `${index}-product-qtd-input` }>{product.quantity}</div>
-              <div data-testid={ `${index}-product-name` }>{product.name}</div>
-              <div data-testid={ `${index}-product-total-value` }>
-                {`R$ ${product.totalPrice.toString().replace('.', ',')}`}
-              </div>
-              <div data-testid={ `${index}-product-unit-price` }>
-                {`(R$ ${product.price.toString().replace('.', ',')} un)`}
-              </div>
-              <button
-                type="button"
-                data-testid={ `${index}-removal-button` }
-                onClick={ () => removeItemFromCart(product.id) }
-              >
-                X
-              </button>
-            </li>
-          ))}
-      </ul>
+      Produtos
+      <Table>
+        <thead>
+          <tr>
+            <th>Quantidade</th>
+            <th>Nome</th>
+            <th>Preço unitário</th>
+            <th>Valor total</th>
+            <th>Remover</th>
+          </tr>
+        </thead>
+        <tbody>
+          {emptyCart ? <h2>Não há produtos no carrinho</h2>
+            : cartItems.map((product, index) => (
+              <tr key={ index }>
+                <td data-testid={ `${index}-product-qtd-input` }>{product.quantity}</td>
+                <td data-testid={ `${index}-product-name` }>{product.name}</td>
+                <td data-testid={ `${index}-product-unit-price` }>
+                  {`(R$ ${product.price.toString().replace('.', ',')} un)`}
+                </td>
+                <td data-testid={ `${index}-product-total-value` }>
+                  {`R$ ${product.totalPrice.toString().replace('.', ',')}`}
+                </td>
+                <td>
+                  <Button
+                    type="button"
+                    data-testid={ `${index}-removal-button` }
+                    onClick={ () => removeItemFromCart(product.id) }
+                  >
+                    X
+                  </Button>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </Table>
       <div data-testid="order-total-value">
         {`R$ ${total.toString().replace('.', ',')}`}
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SideBarAdmin from '../SideBarAdmin';
-import './Header.css';
+import './HeaderAdmin.css';
 
 export default function HeaderAdmin(props) {
   const { namePage } = props;

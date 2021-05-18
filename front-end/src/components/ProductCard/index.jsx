@@ -122,27 +122,30 @@ export default function ProductCard(props) {
         <Card.Text data-testid={ `${index}-product-price` }>
           {`R$ ${price.toString().replace('.', ',')}`}
         </Card.Text>
-        <Button
-          variant="primary"
-          data-testid={ `${index}-product-minus` }
-          onClick={ minus }
-          id="num"
-        >
-          -
-        </Button>
-        <div
-          data-testid={ `${index}-product-qtd` }
-        >
-          { getQuantityFromLocalStorage() }
+        <div className="card-buttons-quantity">
+          <Button
+            variant="primary"
+            data-testid={ `${index}-product-minus` }
+            onClick={ minus }
+            id="num"
+          >
+            -
+          </Button>
+          <div
+            data-testid={ `${index}-product-qtd` }
+            className="product-quantity"
+          >
+            { getQuantityFromLocalStorage() }
+          </div>
+          <Button
+            variant="primary"
+            data-testid={ `${index}-product-plus` }
+            onClick={ plus }
+            id="num"
+          >
+            +
+          </Button>
         </div>
-        <Button
-          variant="primary"
-          data-testid={ `${index}-product-plus` }
-          onClick={ plus }
-          id="num"
-        >
-          +
-        </Button>
       </Card.Body>
     </Card>
   );
