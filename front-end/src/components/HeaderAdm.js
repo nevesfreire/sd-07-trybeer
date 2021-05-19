@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import 'bulma/css/bulma.min.css';
+
+import { Button } from 'react-bulma-components';
 import logo from '../img/logo.svg';
 
 const burguerViewer = () => {
@@ -40,7 +43,7 @@ function HeaderAdmin({ title }) {
         id="navMenu"
       >
         <div className="navbar-dropdown">
-          <button type="button">
+          <Button>
             <Link
               to="/admin/orders"
               className="navbar-item is-expanded"
@@ -49,7 +52,7 @@ function HeaderAdmin({ title }) {
             >
               Pedidos
             </Link>
-          </button>
+          </Button>
 
           <Link
             to="/admin/profile"
