@@ -59,13 +59,3 @@ INSERT INTO products (id, name, price, url_image) VALUES
 	('9','Becks 600ml',8.89, 'http://localhost:3001/images/Becks 600ml.jpg'),
 	('10','Skol Beats Senses 269ml',3.57, 'http://localhost:3001/images/Skol Beats Senses 269ml.jpg'),
 	('11','Stella Artois 275ml',3.49, 'http://localhost:3001/images/Stella Artois 275ml.jpg');
-    
-INSERT INTO sales (user_id, total_price, delivery_address, delivery_number, sale_date, status) VALUES
-	('1', '152.00', 'Rua Teste', '961', '2021-05-12', 'Pendente'),
-	('2', '71.00', 'Rua Segundo Teste', '850', '2021-05-12', 'Entregue');
-
-INSERT INTO sales_products (sale_id, product_id, quantity) VALUES
-	('1', '1', '2'),
-	('1', '11', '12'),
-	('1', '6', '12'),
-	('2', '2', '36');
