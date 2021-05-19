@@ -41,10 +41,11 @@ function HeaderAdmin({ title }) {
         navbar-item has-dropdown is-hoverable is-active"
         id="navMenu"
       >
-        <div className="navbar-dropdown" data-testid="side-menu-item-orders">
+        <div className="navbar-dropdown">
           <Link
             to="/admin/orders"
             className="navbar-item is-expanded"
+            data-testid="side-menu-item-orders"
             onClick={ () => burguerViewer() }
           >
             Meus Pedidos
