@@ -45,7 +45,6 @@ function HeaderAdmin({ title }) {
           <Link
             to="/admin/orders"
             className="navbar-item is-expanded"
-            data-testid="side-menu-item-orders"
             onClick={ () => burguerViewer() }
           >
             Meus Pedidos

@@ -91,14 +91,15 @@ function AdminOrderDetails() {
               >
                 Marcar como entregue
               </Button>
-              <div>
+
+              <Button data-testid="side-menu-item-orders">
                 <Link
                   to="/admin/orders"
-                  data-testid="side-menu-item-orders"
                 >
                   Meus Pedidos
                 </Link>
-              </div>
+              </Button>
+
             </>
           )
       }
