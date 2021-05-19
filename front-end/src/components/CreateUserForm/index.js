@@ -1,8 +1,11 @@
+import { Form, Button } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Label, Input } from './styles';
 import validateRegister from './validation';
 import { registerUser } from '../../services/apiService';
+
+const rgbBgColor = 'rgb(119, 34, 16, 0.2)';
+const rgbBorderColor = 'rgb(119, 34, 16, 0.5)';
 
 function CreateUserForm() {
   // Estados de campos
@@ -32,7 +35,9 @@ function CreateUserForm() {
     };
     validateRegister(user);
 
-    const response = await registerUser(user).then((apiResponse) => apiResponse);
+    const response = await registerUser(user).then(
+      (apiResponse) => apiResponse,
+    );
     if (response.err) return setUserExists(true);
     setUserExists(false);
 
@@ -50,61 +55,84 @@ function CreateUserForm() {
   };
 
   return (
-    <Form onSubmit={ onSubmitHandler }>
-      <Label data-testid="signup-name">
-        Nome
-        <Input
+    <Form onSubmit={ onSubmitHandler } style={ { paddingTop: '20px' } }>
+      <Form.Row>
+        <Form.Label htmlFor="signup-name">Nome</Form.Label>
+        <Form.Control
+          style={ {
+            background: rgbBgColor,
+            borderColor: rgbBorderColor,
+          } }
           value={ name }
           onChange={ (e) => setName(e.target.value) }
-          placeholder="name"
+          placeholder="Nome Completo"
           type="text"
           name="name"
+          data-testid="signup-name"
           required
         />
-      </Label>
-
-      <Label data-testid="signup-email">
-        Email
-        <Input
+      </Form.Row>
+      <Form.Row className="mt-2">
+        <Form.Label htmlFor="signup-email">Email</Form.Label>
+        <Form.Control
+          style={ {
+            background: rgbBgColor,
+            borderColor: rgbBorderColor,
+          } }
           value={ email }
           onChange={ (e) => setEmail(e.target.value) }
           placeholder="Email address"
           type="email"
           name="email"
+          data-testid="signup-email"
           required
         />
-      </Label>
-      { userExists && <span>Já existe um usuário com esse e-mail.</span> }
-
-      <Label data-testid="signup-password">
-        Senha
-        <Input
+        {userExists && (
+          <span style={ { color: 'red' } }>
+            Já existe um usuário com esse e-mail.
+          </span>
+        )}
+      </Form.Row>
+      <Form.Row className="mt-2">
+        <Form.Label htmlFor="signup-password">Senha</Form.Label>
+        <Form.Control
+          style={ {
+            background: rgbBgColor,
+            borderColor: rgbBorderColor,
+          } }
           value={ password }
           onChange={ (e) => setPassword(e.target.value) }
           placeholder="Password"
           type="password"
           name="password"
+          data-testid="signup-password"
           required
         />
-      </Label>
-
-      <Label>
-        Quero vender
-        <Input
+      </Form.Row>
+      <Form.Row className="mt-2">
+        <Form.Check
+          className="mt-2"
           data-testid="signup-seller"
           checked={ iWantToSell }
           onChange={ handleRole }
+          label="Quero vender"
           type="checkbox"
         />
-      </Label>
-
-      <button
-        type="submit"
-        disabled={ validateRegister(name, email, password) }
-        data-testid="signup-btn"
-      >
-        Cadastrar
-      </button>
+      </Form.Row>
+      <Form.Row className="justify-content-center">
+        <Button
+          style={ {
+            background: rgbBgColor,
+            borderColor: rgbBorderColor,
+          } }
+          className="mt-4"
+          type="submit"
+          disabled={ validateRegister(name, email, password) }
+          data-testid="signup-btn"
+        >
+          Cadastrar
+        </Button>
+      </Form.Row>
     </Form>
   );
 }

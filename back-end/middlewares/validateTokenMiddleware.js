@@ -10,13 +10,12 @@ const validateTokenMiddleware = async (req, res, next) => {
 
     const { email, password } = jwt.verify(token, SECRET);
     const [user] = await loginModel.getUserInfo({ email, password });
-
-    if (await user[0].password !== password) throw ERROR;
+    if (await user.length === 0) throw ERROR;
     req.user = user;
 
     next();
   } catch (err) {
-    return res.status(401).json({ err });
+    return res.status(401).json({ err: { message: err.message } });
   }
 };
 

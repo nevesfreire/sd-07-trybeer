@@ -1,19 +1,19 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import AdminOrdersDetails from '../../components/AdminOrdersDetails';
-import MenuBurger from '../../components/Menu';
-import { MainDiv, FormWrapper } from './styles';
+// import Header from '../../components/Header';
 import AuthVerification from '../../components/AuthVerification';
+import './orderDetails.css';
 
 const AdminOrdersDetailsPage = () => {
   AuthVerification();
 
   return (
-    <MainDiv>
-      <MenuBurger />
-      <FormWrapper>
+    <div className="order-details">
+      <Container style={ { height: '100vh' } }>
         <AdminOrdersDetails />
-      </FormWrapper>
-    </MainDiv>
+      </Container>
+    </div>
   );
 };
 

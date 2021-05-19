@@ -1,28 +1,50 @@
 import React from 'react';
-import {
-  Form,
-  Label,
-  Span,
-} from './styles';
+import { Form } from 'react-bootstrap';
 
 export default function AdminProfile() {
   const currentUser = JSON.parse(localStorage.getItem('user'));
 
   return (
-    <Form>
-      <Label>
-        <Span>Nome:</Span>
-        <span data-testid="profile-name" readOnly>
+    <Form
+      className="d-flex flex-column"
+      style={ {
+        marginRight: '20vh',
+      } }
+    >
+      <Form.Label htmlFor="profile-name">
+        <span>Nome</span>
+        <span
+          data-testid="profile-name"
+          readOnly
+          className="form-control"
+          style={ {
+            background: 'transparent',
+            marginBottom: '10px',
+            color: 'white',
+          } }
+        >
           { currentUser ? currentUser.name : '' }
         </span>
-      </Label>
+      </Form.Label>
 
-      <Label>
-        Email:
-        <span data-testid="profile-email" readOnly>
+      <Form.Label
+        htmlFor="profile-email"
+        style={ { marginTop: '2vh' } }
+      >
+        Email
+        <span
+          data-testid="profile-email"
+          readOnly
+          className="form-control"
+          style={ {
+            background: 'transparent',
+            marginBottom: '10px',
+            color: 'white',
+          } }
+        >
           { currentUser ? currentUser.email : '' }
         </span>
-      </Label>
+      </Form.Label>
     </Form>
   );
 }

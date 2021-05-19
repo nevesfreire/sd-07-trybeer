@@ -1,20 +1,28 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import AdminProfile from '../../components/AdminProfile';
-import MenuBurger from '../../components/Menu';
+import Header from '../../components/Header';
 import AuthVerification from '../../components/AuthVerification';
-import { MainDiv, FormWrapper, H1 } from './styles';
+import './profile.css';
 
 const AdminProfilePage = () => {
   AuthVerification();
 
   return (
-    <MainDiv>
-      <MenuBurger />
-      <H1 data-testid="top-title">Perfil</H1>
-      <FormWrapper>
+    <div className="profile">
+      <Header title="Perfil" />
+      <Container
+        fluid
+        style={ {
+          height: '100vh',
+          paddingTop: '50px',
+          width: '70vh',
+          color: 'rgb(227,183,88)',
+        } }
+      >
         <AdminProfile />
-      </FormWrapper>
-    </MainDiv>
+      </Container>
+    </div>
   );
 };
 

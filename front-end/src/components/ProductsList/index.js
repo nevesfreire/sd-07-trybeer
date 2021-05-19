@@ -1,6 +1,8 @@
+import { CardDeck, Row } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getProducts } from '../../services/apiService';
+import ProductsCard from './ProductsCard';
 
 export default function ProductsList() {
   const totalVal = JSON.parse(localStorage.getItem('total'));
@@ -13,8 +15,11 @@ export default function ProductsList() {
       const currentUser = JSON.parse(localStorage.getItem('user'));
       const newProductsList = JSON.parse(localStorage.getItem('newProdList'));
       if (!currentUser) return null;
-      const response = await getProducts(currentUser.token)
-        .then((apiResponse) => apiResponse);
+      const response = await getProducts(currentUser.token).then(
+        (apiResponse) => apiResponse,
+      );
+
+      if (!totalVal) setTotalValue(0);
 
       if (newProductsList && newProductsList.length > 0) {
         return setProducts(newProductsList);
@@ -23,7 +28,7 @@ export default function ProductsList() {
     };
 
     fetchProducts();
-  }, []);
+  }, [totalVal]);
 
   const addProdQtt = (e, id) => {
     e.preventDefault();
@@ -54,52 +59,57 @@ export default function ProductsList() {
   };
 
   return (
-    <div style={ { display: 'flex', justifyContent: 'center' } }>
-      { !products ? <p>Loading...</p>
-        : products.map((item, index) => (
-          <div key={ item.id }>
-            <img
-              style={ { width: '100px' } }
-              src={ item.url_image }
-              alt={ item.name }
-              data-testid={ `${index}-product-img` }
-            />
-            <p data-testid={ `${index}-product-name` }>{item.name}</p>
-            <p data-testid={ `${index}-product-price` }>
-              {`R$ ${item.price.replace('.', ',')}`}
-            </p>
-            <button
-              type="button"
-              data-testid={ `${index}-product-plus` }
-              onClick={ (e) => addProdQtt(e, item.id) }
-            >
-              +
-            </button>
-            <p data-testid={ `${index}-product-qtd` }>{item.productQtt}</p>
-            <button
-              type="button"
-              data-testid={ `${index}-product-minus` }
-              onClick={ () => decProdQtt(item.id) }
-            >
-              -
-            </button>
-          </div>
-        ))}
-      <footer
-        style={ { background: 'gray', bottom: '0', position: 'fixed', padding: '10px' } }
-      >
-        <p data-testid="checkout-bottom-btn-value">
-          {`R$ ${totalValue.toFixed(2).replace('.', ',')}`}
-        </p>
-        <button
-          type="button"
-          data-testid="checkout-bottom-btn"
-          onClick={ () => history.push('/checkout') }
-          disabled={ totalValue === 0 }
+    <div>
+      {!products ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          <Row className="d-flex justify-content-around flex-row-reverse">
+            {products.map((item, index) => (
+              <CardDeck
+                key={ item.id }
+                style={ { width: '18rem', paddingTop: '10px' } }
+              >
+                <ProductsCard
+                  item={ item }
+                  index={ index }
+                  addProdQtt={ addProdQtt }
+                  decProdQtt={ decProdQtt }
+                  style={ { background: 'rgb(0,0,0,0.1)' } }
+                />
+              </CardDeck>
+            ))}
+          </Row>
+        </div>
+      )}
+      <div style={ { display: 'flex', justifyContent: 'center', alignItems: 'center' } }>
+        <footer
+          style={ {
+            padding: '2vh',
+            background: 'rgb(30,30,255)',
+            bottom: '0',
+            position: 'fixed',
+            borderRadius: '5px',
+          } }
         >
-          Ver Carrinho
-        </button>
-      </footer>
+          <p
+            data-testid="checkout-bottom-btn-value"
+            style={ { color: 'white' } }
+          >
+            {`R$ ${totalValue.toFixed(2).replace('.', ',')}`}
+          </p>
+          <button
+            type="button"
+            data-testid="checkout-bottom-btn"
+            onClick={ () => history.push('/checkout') }
+            disabled={ totalValue === 0 }
+            style={ { color: 'white', backgroundColor: 'rgb(255,255,255,0.1)' } }
+            className="btn btn-secondary"
+          >
+            Ver Carrinho
+          </button>
+        </footer>
+      </div>
     </div>
   );
 }

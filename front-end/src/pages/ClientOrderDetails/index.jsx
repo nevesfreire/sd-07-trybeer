@@ -1,20 +1,20 @@
 import React from 'react';
-import MenuBurger from '../../components/Menu';
+import { Container } from 'react-bootstrap';
+import Header from '../../components/Header';
 import ClientOrderDetails from '../../components/ClientOrderDetails';
-import { MainDiv, FormWrapper, H1 } from './styles';
 import AuthVerification from '../../components/AuthVerification';
+import './orderDetails.css';
 
 const ClientOrderDetailsPage = () => {
   AuthVerification();
 
   return (
-    <MainDiv>
-      <MenuBurger />
-      <H1 data-testid="top-title">Detalhes do Pedido</H1>
-      <FormWrapper>
+    <div className="order-details">
+      <Header title="Detalhes do Pedido" />
+      <Container style={ { height: '100vh' } }>
         <ClientOrderDetails />
-      </FormWrapper>
-    </MainDiv>
+      </Container>
+    </div>
   );
 };
 

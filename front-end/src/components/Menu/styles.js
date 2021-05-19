@@ -5,15 +5,15 @@ display: flex;
 border-right: solid 0.01px black;
 flex-direction: column;
 justify-content: center;
-background: gray;
+background: black;
 transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
 height: 100vh;
 text-align: left;
-padding: 2rem;
 position: absolute;
 top: 0;
 left: 0;
 transition: transform 0.3s ease-in-out;
+z-index: 1;
 
 @media (max-width: 540) {
     width: 100%;
@@ -41,7 +41,7 @@ a {
 `;
 export const StyledBurger = styled.button`
 position: absolute;
-top: 5%;
+top: 2%;
 left: 2rem;
 display: flex;
 flex-direction: column;
@@ -61,7 +61,7 @@ z-index: 10;
 div {
   width: 2rem;
   height: 0.25rem;
-  background: ${({ open }) => (open ? '#0D0C1D' : 'black')};
+  background: ${({ open }) => (open ? 'white' : 'white')};
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;

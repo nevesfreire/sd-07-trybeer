@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Card, Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { getAdminSales } from '../../services/apiService';
-// import { DivOrder } from './styles';
 
 export default function AdminOrders() {
   const [adminSales, setAdminSales] = useState(null);
@@ -13,7 +13,7 @@ export default function AdminOrders() {
       if (!currentUser) return null;
       const response = await getAdminSales(currentUser.token)
         .then((apiResponse) => apiResponse);
-      console.log(response);
+      // console.log(response);
       if (response && Object.values(response).length > 0) {
         setAdminSales(response);
       }
@@ -26,11 +26,14 @@ export default function AdminOrders() {
   }
 
   return (
-    <div style={ { display: 'flex', justifyContent: 'center' } }>
+    <div
+      className="d-flex flex-column align-items-center"
+      style={ { marginBottom: '23vh' } }
+    >
       { adminSales.err ? <p>{adminSales.err.message}</p>
         : adminSales.map((item, index) => (
           // <p>{console.log(item)}</p>
-          <div
+          <Card
             type="button"
             data-testid={ `${index}-order-card-container}` }
             key={ item.id }
@@ -38,16 +41,44 @@ export default function AdminOrders() {
             role="button"
             onKeyDown={ () => history.push(`/admin/orders/${item.id}`) }
             tabIndex={ 0 }
+            className="border rounded"
+            style={ { margin: '3vh',
+              width: '90vh',
+              backgroundColor: 'rgb(0,0,0,0.5)',
+              color: 'white',
+              padding: '3vh' } }
           >
-            <p data-testid={ `${index}-order-number` }>{`Pedido ${item.id}`}</p>
-            <p data-testid={ `${index}-order-address` }>
-              {`${item.delivery_address.concat(', ', item.delivery_number)}`}
-            </p>
-            <p data-testid={ `${index}-order-status` }>{item.status}</p>
-            <p data-testid={ `${index}-order-total-value` }>
-              {`R$ ${item.total_price.replace('.', ',')}`}
-            </p>
-          </div>
+            <Row>
+              <Col>
+                <p
+                  data-testid={ `${index}-order-number` }
+                >
+                  {`Pedido ${item.id}`}
+                </p>
+              </Col>
+              <Col>
+                <p
+                  data-testid={ `${index}-order-address` }
+                >
+                  {`${item.delivery_address.concat(', ', item.delivery_number)}`}
+                </p>
+              </Col>
+              <Col>
+                <p
+                  data-testid={ `${index}-order-status` }
+                >
+                  {item.status}
+                </p>
+              </Col>
+              <Col>
+                <p
+                  data-testid={ `${index}-order-total-value` }
+                >
+                  {`R$ ${item.total_price.replace('.', ',')}`}
+                </p>
+              </Col>
+            </Row>
+          </Card>
         ))}
     </div>
   );

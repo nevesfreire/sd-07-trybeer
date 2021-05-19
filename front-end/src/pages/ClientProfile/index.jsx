@@ -1,17 +1,24 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import ClientProfile from '../../components/ClientProfile';
-import MenuBurger from '../../components/Menu';
-// import CreateUserForm from '../../components/CreateUserForm';
-import { MainDiv, FormWrapper, H1 } from './styles';
+import Header from '../../components/Header';
+import './profile.css';
 
 const ClientProfilePage = () => (
-  <MainDiv>
-    <MenuBurger />
-    <H1 data-testid="top-title">Meu perfil</H1>
-    <FormWrapper>
+  <div className="profile">
+    <Header title="Meu perfil" />
+    <Container
+      fluid
+      style={ {
+        height: '100vh',
+        paddingTop: '50px',
+        width: '70vh',
+        color: 'rgb(227,183,88)',
+      } }
+    >
       <ClientProfile />
-    </FormWrapper>
-  </MainDiv>
+    </Container>
+  </div>
 );
 
 export default ClientProfilePage;

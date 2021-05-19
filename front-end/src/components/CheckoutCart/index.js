@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Card, CardDeck, Button, Form, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { createSale } from '../../services/apiService';
 
@@ -45,66 +46,92 @@ export default function CheckoutCart() {
 
   if (!currentUser) return null;
   return (
-    <div style={ { display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
+    <div
+      style={ { color: 'white' } }
+    >
       <p>Produtos</p>
       { total === '0.00' || total === 0 ? <p>Não há produtos no carrinho</p>
-        : productCheckout.filter((item) => item.productQtt !== 0)
-          .map((product, index) => (
-            <div key={ product.name }>
-              <p data-testid={ `${index}-product-qtd-input` }>{product.productQtt}</p>
-              <p data-testid={ `${index}-product-name` }>{product.name}</p>
-              <p data-testid={ `${index}-product-total-value` }>
-                {`R$ ${(product.price * product.productQtt)
-                  .toFixed(2).replace('.', ',')}`}
-              </p>
-              <p data-testid={ `${index}-product-unit-price` }>
-                {`(R$ ${product.price.replace('.', ',')} un)`}
-              </p>
-              <button
-                type="button"
-                data-testid={ `${index}-removal-button` }
-                onClick={ () => removeProduct(product.id) }
-              >
-                X
-              </button>
-            </div>
-          ))}
-      <p data-testid="order-total-value">
-        {total > 0 ? `Total: R$ ${String(total.toFixed(2)).replace('.', ',')}`
+        : (
+          <CardDeck>
+            {productCheckout.filter((item) => item.productQtt !== 0)
+              .map((product, index) => (
+                <Card
+                  key={ product.name }
+                  style={ { backgroundColor: 'rgb(0,0,0,0.41)' } }
+                >
+                  <Card.Body>
+                    <Card.Title data-testid={ `${index}-product-name` }>
+                      {product.name}
+                    </Card.Title>
+                    <Card.Text data-testid={ `${index}-product-qtd-input` }>
+                      Quantidade:
+                      {product.productQtt}
+                    </Card.Text>
+                    <Card.Text data-testid={ `${index}-product-total-value` }>
+                      {`R$ ${(product.price * product.productQtt)
+                        .toFixed(2).replace('.', ',')}`}
+                    </Card.Text>
+                    <Card.Text data-testid={ `${index}-product-unit-price` }>
+                      {`(R$ ${product.price.replace('.', ',')} un)`}
+                    </Card.Text>
+                  </Card.Body>
+                  <Button
+                    type="button"
+                    data-testid={ `${index}-removal-button` }
+                    onClick={ () => removeProduct(product.id) }
+                  >
+                    X
+                  </Button>
+                </Card>
+              ))}
+          </CardDeck>)}
+      <p
+        data-testid="order-total-value"
+        style={ { marginTop: '5vh' } }
+      >
+        {total > 0 ? `Total: R$ ${parseFloat(total).toFixed(2).replace('.', ',')}`
           : 'Total: R$ 0,00'}
       </p>
-      <p>Endereço</p>
-      <form>
-        <label htmlFor="street">
-          Rua:
-          <input
-            name="street"
-            type="text"
-            value={ addressName }
-            onChange={ (e) => setAddressName(e.target.value) }
-            data-testid="checkout-street-input"
-          />
-        </label>
-        <label htmlFor="number">
-          Número da casa:
-          <input
-            name="number"
-            value={ addressNumber }
-            onChange={ (e) => setAddressNumber(e.target.value) }
-            type="text"
-            data-testid="checkout-house-number-input"
-          />
-        </label>
-      </form>
+      <Form>
+        <p>Endereço</p>
+        <Form.Row>
+          <Form.Group as={ Col }>
+            <Form.Label htmlFor="street">
+              Rua:
+            </Form.Label>
+            <Form.Control
+              name="street"
+              type="text"
+              value={ addressName }
+              onChange={ (e) => setAddressName(e.target.value) }
+              data-testid="checkout-street-input"
+              style={ { color: 'white', backgroundColor: 'rgb(0,0,0,0.4)' } }
+            />
+          </Form.Group>
+          <Form.Group as={ Col }>
+            <Form.Label htmlFor="number">
+              Número da casa:
+            </Form.Label>
+            <Form.Control
+              name="number"
+              value={ addressNumber }
+              onChange={ (e) => setAddressNumber(e.target.value) }
+              type="text"
+              data-testid="checkout-house-number-input"
+              style={ { color: 'white', backgroundColor: 'rgb(0,0,0,0.4)' } }
+            />
+          </Form.Group>
+        </Form.Row>
+      </Form>
       {saleComplete && <p>{saleMessage}</p>}
-      <button
+      <Button
         type="submit"
         data-testid="checkout-finish-btn"
         disabled={ !(total > 0 && addressName && addressNumber) }
         onClick={ () => submitSale() }
       >
         Finalizar Pedido
-      </button>
+      </Button>
     </div>
   );
 }

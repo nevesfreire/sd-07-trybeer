@@ -1,16 +1,24 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import LoginForm from '../../components/LoginForm';
-// import MenuBurger from '../../components/Menu';
-// import CreateUserForm from '../../components/CreateUserForm';
-import { MainDiv, FormWrapper, H1 } from './styles';
+import './login.css';
 
 const Login = () => (
-  <MainDiv>
-    <H1>Login</H1>
-    <FormWrapper>
+  <div className="login">
+    <Container
+      fluid
+      style={ {
+        height: '100vh',
+        paddingTop: '150px',
+        paddingLeft: '100px',
+        width: '70vh',
+        color: 'rgb(227,183,88)',
+      } }
+    >
+      <h1>Login</h1>
       <LoginForm />
-    </FormWrapper>
-  </MainDiv>
+    </Container>
+  </div>
 );
 
 export default Login;

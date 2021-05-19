@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import {
   getAdminSalesDetails,
@@ -50,7 +51,10 @@ export default function ClientOrderDetails() {
   }
 
   return (
-    <div style={ { display: 'flex', justifyContent: 'center' } }>
+    <div
+      className="d-flex flex-column border rounded"
+      style={ { marginTop: '5vh', padding: '5vh', color: 'white' } }
+    >
       <div>
         <h1 data-testid="order-number">{`Pedido ${id}`}</h1>
         <p data-testid="order-status">{status}</p>
@@ -58,7 +62,17 @@ export default function ClientOrderDetails() {
           const productTotalValue = (item.price * item.quantity).toFixed(2);
 
           return (
-            <div key={ item.name }>
+            <div
+              key={ item.name }
+              className="d-flex  border rounded justify-content-around"
+              style={ { marginTop: '5vh',
+                padding: '3vh',
+                backgroundColor: 'rgb(0,0,0,0.2)',
+                color: 'white',
+                width: '50%',
+                marginLeft: '20vh',
+              } }
+            >
               <p data-testid={ `${index}-product-qtd` }>{item.quantity}</p>
               <p data-testid={ `${index}-product-name` }>{item.name}</p>
               <p data-testid="0-order-unit-price">
@@ -71,17 +85,24 @@ export default function ClientOrderDetails() {
           );
         }) }
       </div>
-      <p data-testid="order-total-value">
+      <p
+        data-testid="order-total-value"
+        style={ { marginTop: '5vh' } }
+        className="align-self-start"
+      >
+        Total:
+        {' '}
         {sale ? `R$ ${sale[0].total_price.replace('.', ',')}` : 'R$ 0,00'}
       </p>
-      <button
+      <Button
         type="submit"
         data-testid="mark-as-delivered-btn"
         onClick={ () => deliveredButton() }
         hidden={ hiddenButton }
+        style={ { width: '30vh' } }
       >
         Marcar como entregue
-      </button>
+      </Button>
     </div>
   );
 }
