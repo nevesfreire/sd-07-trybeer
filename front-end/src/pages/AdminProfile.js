@@ -23,9 +23,11 @@ function AdminProfile() {
   }, [getUserLogged]);
 
   return (
-    <>
+    <div className="is-inline-flex is-flex-wrap-wrap is-justify-content-centercolumn auto">
       <HeaderAdmin title="Admin - Perfil" />
-      <div className="card start-component">
+      <div 
+        className="card is-inline-flex is-flex-wrap-wrap is-justify-content-center column auto"
+      >
         <div className="card-content">
           <div className="media-content">
             <p className="title is-4">Perfil</p>
@@ -44,7 +46,7 @@ function AdminProfile() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

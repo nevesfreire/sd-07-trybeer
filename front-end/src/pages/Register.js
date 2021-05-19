@@ -3,7 +3,7 @@ import { RegisterForm } from '../components';
 
 function Register() {
   return (
-    <div>
+    <div className="card mt-6 column is-full">
       <RegisterForm />
     </div>
   );

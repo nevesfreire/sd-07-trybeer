@@ -25,8 +25,10 @@ function ProfileForm() {
 
   return (
 
-    <div>
-      <h1 data-testid="top-title">Meu perfil</h1>
+    <div
+      className="mt-6"
+      style={ { maxWidth: '46rem', minWidth: '46rem', minHeight: '14rem', maxHeight: '14rem' } }>
+      <h1 data-testid="top-title" style={ { color: 'White' } }>.</h1>
       <Field>
         <Label>
           Nome

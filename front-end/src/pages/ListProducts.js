@@ -6,8 +6,6 @@ import { Header, ProductCard, Loading } from '../components';
 import TrybeerContext from '../store/context';
 import { getProducts } from '../api';
 import acessLocalStorage from '../services';
-
-
 // teste
 
 function Products() {
@@ -45,7 +43,9 @@ function Products() {
         loading
           ? <Loading />
           : (
-            <div className="is-inline-flex mt-6 is-flex-wrap-wrap is-justify-content-center">
+            <div
+              className="is-inline-flex mt-6 is-flex-wrap-wrap is-justify-content-center"
+            >
               {
                 products
                   .map((product, index) => {

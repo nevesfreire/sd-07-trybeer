@@ -12,10 +12,14 @@ function OrdersAdmCard({ order, index }) {
   const handleClick = () => history.push(`/admin/orders/${sale}`);
 
   return (
-    <Card className="m-2 column is-three-quarters" onClick={ () => handleClick() }>
+    <Card
+      className="m-2 column is-two-quarters"
+      onClick={ () => handleClick() }
+      style={ { maxWidth: '46rem', minWidth: '46rem', minHeight: '14rem', maxHeight: '14rem' } }
+    >
       <header className="card-header">
         <p
-          className="card-header-title"
+          className="card-header-title is-size-4"
           data-testid={ `${index}-order-number` }
         >
           {`Pedido ${sale}`}
@@ -24,20 +28,20 @@ function OrdersAdmCard({ order, index }) {
 
       <div className="card-content">
         <div
-          className="content"
+          className="content is-size-4"
           data-testid={ `${index}-order-address` }
         >
           {`${address}, ${Number(number)}`}
         </div>
         <footer className="card-footer">
           <span
-            className="card-header-item"
+            className="card-header-item is-size-4"
             data-testid={ `${index}-order-total-value` }
           >
             {`R$ ${totalPrice}`}
           </span>
           <span
-            className="card-footer-item"
+            className="card-footer-item is-size-4"
             data-testid={ `${index}-order-status` }
           >
             {status}

@@ -57,7 +57,7 @@ function LoginForm() {
           <img src={ logo } alt="Undefined" />
         </figure>
       </div>
-      <Field>
+      <Field className="m-3">
         <Label>
           Email
         </Label>
@@ -71,7 +71,7 @@ function LoginForm() {
           />
         </Control>
       </Field>
-      <Field>
+      <Field className="m-3">
         <Label>
           Senha
         </Label>

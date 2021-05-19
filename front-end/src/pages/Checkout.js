@@ -79,13 +79,13 @@ function Checkout() {
                     <span
                       data-testid={ `${index}-product-qtd-input` }
                     >
-                      {`Quantidade: ${cart[key].quantity}`}
+                      {`Quantidade: `}<strong>{`${cart[key].quantity}`}</strong>
                     </span>
                     <br />
                     <span
                       data-testid={ `${index}-product-name` }
                     >
-                      {`Produto: ${cart[key].item.name}`}
+                      {`Produto: `}<strong>{`${cart[key].item.name}`}</strong>
                     </span>
                     <br />
                     <span
@@ -97,8 +97,8 @@ function Checkout() {
                     <span
                       data-testid={ `${index}-product-total-value` }
                     >
-                      {`R$ ${(cart[key].item.price * cart[key].quantity)
-                        .toFixed(2).split('.').join(',')}`}
+                      <strong>{`R$ ${(cart[key].item.price * cart[key].quantity)
+                        .toFixed(2).split('.').join(',')}`}</strong>
                     </span>
                     <br />
                     <Button

@@ -5,6 +5,8 @@ import 'bulma/css/bulma.min.css';
 import services from '../services';
 import { registerUser } from '../api';
 
+import logo from '../img/logo.svg';
+
 const { Input, Field, Control, Label, Checkbox } = Form;
 
 function RegisterForm() {
@@ -55,7 +57,12 @@ function RegisterForm() {
   };
 
   return (
-    <div>
+    <div className="login-form m-3">
+      <div className="card-image">
+        <figure className="image is-3by1">
+          <img src={ logo } alt="Undefined" />
+        </figure>
+      </div>
       <Field>
         <Label>
           Nome
