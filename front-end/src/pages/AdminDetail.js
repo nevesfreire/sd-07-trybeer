@@ -22,7 +22,7 @@ function AdminDetail({ match }) {
     return sumTotal;
   });
 
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   const submitId = async () => {
     await fetchOrderDeliveryId(adminDetail[0].sale_id);
@@ -32,34 +32,32 @@ function AdminDetail({ match }) {
     fetchAllOrders();
   };
 
-  const renderButton = () => {
-    return (
-      buttonDelivery && (
-        <Button
-          onClick={ () => submitId() }
-          positive
-          data-testid="mark-as-delivered-btn"
-          style={{ marginTop: 20}}
-        >
-          Marcar como entregue
-        </Button>
-      )
+  const renderButton = useCallback(() => (
+    buttonDelivery && (
+      <Button
+        onClick={ () => submitId() }
+        positive
+        data-testid="mark-as-delivered-btn"
+        style={ { marginTop: 20 } }
+      >
+        Marcar como entregue
+      </Button>
     )
-  }
+  ), [buttonDelivery, submitId]);
 
   const adminDetailHeader = useCallback(
     () => (
       <div>
         {!adminDetail ? null : (
-          <Segment >
+          <Segment>
             <Card.Content>
-              <span id="orderNumber" data-testid="order-number" style={{ fontSize: 24}}>
+              <span id="orderNumber" data-testid="order-number" style={ { fontSize: 24 } }>
                 {`Pedido ${id} - `}
               </span>
 
               {/* ${adminDetail[0].sale_id} */}
-              
-              <span positive htmlFor="orderNumber" data-testid="order-status" style={{ fontSize: 30}}>
+
+              <span positive htmlFor="orderNumber" data-testid="order-status" style={ { fontSize: 30 } }>
                 {`${adminDetail[0].status}`}
               </span>
             </Card.Content>
@@ -71,54 +69,54 @@ function AdminDetail({ match }) {
         )}
       </div>
     ),
-    [adminDetail, sumTotal],
+    [adminDetail, id, sumTotal],
   );
 
   const renderOrderAdminDetail = useCallback(() => (
     <div>
       <Table stackable>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Quantidade</Table.HeaderCell>
-              <Table.HeaderCell>Item</Table.HeaderCell>
-              <Table.HeaderCell>Preço Unitário</Table.HeaderCell>
-              <Table.HeaderCell textAlign="right">Total do pedido</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Quantidade</Table.HeaderCell>
+            <Table.HeaderCell>Item</Table.HeaderCell>
+            <Table.HeaderCell>Preço Unitário</Table.HeaderCell>
+            <Table.HeaderCell textAlign="right">Total do pedido</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
 
-          {!adminDetail
-            ? null
-            : adminDetail.map((beer, index) => (
-              <Table.Body>
-                <Table.Row key={beer.id} data-testid={ `${index}-order-card-container`}>
-                  <Table.Cell data-testid={ `${index}-product-qtd` }>
-                    {`${beer.quantity}`}
-                  </Table.Cell>
-                  <Table.Cell data-testid={ `${index}-product-name` }>
-                    {`${beer.name}`}
-                  </Table.Cell>
-                  <Table.Cell data-testid={ `${index}-order-unit-price` }>
+        {!adminDetail
+          ? null
+          : adminDetail.map((beer, index) => (
+            <Table.Body>
+              <Table.Row key={ beer.id } data-testid={ `${index}-order-card-container` }>
+                <Table.Cell data-testid={ `${index}-product-qtd` }>
+                  {`${beer.quantity}`}
+                </Table.Cell>
+                <Table.Cell data-testid={ `${index}-product-name` }>
+                  {`${beer.name}`}
+                </Table.Cell>
+                <Table.Cell data-testid={ `${index}-order-unit-price` }>
                   {`(R$ ${(beer.total / beer.quantity)
-                        .toFixed(2).toString().replace('.', ',')})`}
-                  </Table.Cell>
-                  <Table.Cell textAlign="right" data-testid={ `${index}-product-total-value` }>
-                    {`R$ ${beer.total.toFixed(2).toString().replace('.', ',')}`}
-                  </Table.Cell>
-                </Table.Row>
-                {/* <CustomAdminDetail index={ index } beer={ beer } /> */}
-              </Table.Body>
-            ))}
-        </Table>
+                    .toFixed(2).toString().replace('.', ',')})`}
+                </Table.Cell>
+                <Table.Cell textAlign="right" data-testid={ `${index}-product-total-value` }>
+                  {`R$ ${beer.total.toFixed(2).toString().replace('.', ',')}`}
+                </Table.Cell>
+              </Table.Row>
+              {/* <CustomAdminDetail index={ index } beer={ beer } /> */}
+            </Table.Body>
+          ))}
+      </Table>
       {/* {!adminDetail
         ? null
         : adminDetail.map((beer, index) => (
-          
+
           // <Grid.Column key={ beer.id }>
           //   <CustomAdminDetail index={ index } beer={ beer } />
           // </Grid.Column>
         ))} */}
     </div>
-  ), []);
+  ), [adminDetail]);
 
   useEffect(() => {
     adminDetailHeader();
@@ -130,7 +128,7 @@ function AdminDetail({ match }) {
       <sidebar>
         <CustomSideBarAdmin />
       </sidebar>
-      <Container style={{ padding: 20 }}>
+      <Container style={ { padding: 20 } }>
         <Header as="h1" color="orange" textAlign="center">Detalhes de Pedido</Header>
         {adminDetailHeader()}
         {renderOrderAdminDetail()}

@@ -49,7 +49,6 @@ function Products() {
         style={ { width: '100%', backgroundColor: 'rgb(33, 33, 33)' } }
       >
         <Button
-          // circular="true"
           raised
           size="big"
           color="orange"

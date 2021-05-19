@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, Image } from 'semantic-ui-react';
+
 import CentralContext from '../context/Context';
 import { loadItemsToLocalStorage } from '../helpers/localStorage';
 
@@ -8,7 +9,6 @@ import './componentStyle.css';
 
 export default function CustomProductCard({ index, beer }) {
   const { totalKart, setTotalKart } = useContext(CentralContext);
-
   const [qtdProduct, setQtdProduct] = useState(0);
 
   const saveToLocalMore = (product, qtdProd) => {
@@ -26,16 +26,20 @@ export default function CustomProductCard({ index, beer }) {
   useEffect(() => {
     let localQnt = 0;
     const kart = JSON.parse(localStorage.getItem('cart'));
+
     if (kart) {
       kart.map((item) => {
         const { id } = beer;
+
         if (item[0] === id) {
           const quantity = item[2];
           localQnt = quantity;
         }
+
         return localQnt;
       });
     }
+
     setQtdProduct(localQnt);
   }, [beer, beer.id]);
 
@@ -103,29 +107,6 @@ export default function CustomProductCard({ index, beer }) {
                   -
                 </Button>
               </Button.Group>
-
-              {/* <Button
-                // basic
-                color="orange"
-                data-testid={`${index}-product-plus`}
-                onClick={() => {
-                  setQtdProduct(qtdProduct + 1);
-                  setTotalKart(totalKart + Number(beer.price));
-                  saveToLocalMore(beer, qtdProduct);
-                }}
-                size="mini"
-              >
-                +
-              </Button>
-              <Button
-                basic
-                color="red"
-                data-testid={`${index}-product-minus`}
-                onClick={() => setBtnQtd()}
-                size="mini"
-              >
-                -
-              </Button> */}
             </div>
           </Card.Content>
         </Card>

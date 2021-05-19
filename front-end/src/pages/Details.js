@@ -55,7 +55,7 @@ function Details() {
   }, [detailHeader, renderOrderDetail]);
 
   return (
-    <div style={ { width: '100%', backgroundColor: 'rgb(33, 33, 33)' } }>
+    <div style={ { width: '100%', height: '100vh', backgroundColor: 'rgb(33, 33, 33)' } }>
       <Header style={ { display: 'flex', alignItems: 'center' } }>
         <CustomTopMenu />
         <CustomHeader message="Detalhes de Pedido" />

@@ -49,7 +49,7 @@ function Login() {
   return (
     <Grid
       textAlign="center"
-      style={ { height: '104vh', backgroundColor: 'rgb(33, 33, 33)' } }
+      style={ { height: '105vh', backgroundColor: 'rgb(33, 33, 33)' } }
       verticalAlign="middle"
     >
       <Grid.Column style={ { maxWidth: 500 } }>

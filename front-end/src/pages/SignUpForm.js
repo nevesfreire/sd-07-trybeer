@@ -48,15 +48,8 @@ function SignUp() {
     return false;
   };
 
-  // const isExistEmail = async (user) => {
-  //   console.log('user', user)
-  //   if(user === 'Request failed with status code 409') return false;
-  //   return true;
-  // }
-
   const handleSubmit = async () => {
     const name = formData.get('name');
-    // const userName = formData.get('userName');
     const email = formData.get('email');
     const password = formData.get('password');
     const iWantToSell = formData.get('iWantToSell');
@@ -75,7 +68,7 @@ function SignUp() {
   return (
     <Grid
       textAlign="center"
-      style={ { height: '104vh', backgroundColor: 'rgb(33, 33, 33)' } }
+      style={ { height: '105vh', backgroundColor: 'rgb(33, 33, 33)' } }
       verticalAlign="middle"
     >
       <Grid.Column style={ { maxWidth: 450 } }>

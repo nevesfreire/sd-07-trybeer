@@ -16,7 +16,6 @@ import CustomHeader from '../components/CustomHeader';
 import checkout from '../service/checkout';
 import { fetchOrderById } from '../service/order';
 import CustomTopMenu from '../components/CustomTopMenu';
-// import { findByLabelText } from '@testing-library/dom';
 
 function Checkout() {
   const { totalKart, setTotalKart } = useContext(CentralContext);
