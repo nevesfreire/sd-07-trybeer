@@ -8,21 +8,19 @@ import { fetchProducts } from '../actions';
 
 function Products() {
   const INITIAL_VALUE = 0;
-  // const ROUNDING_OPTION = 2;
   const [shouldRedirect, setShouldRedirect] = useState('');
   const productsList = useSelector(({ products }) => products);
-  const cartList = useSelector(({ cart }) => cart.cart);
+  const cartStore = useSelector(({ cart }) => cart.cart);
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const totalValue = cartList
-    .map((item) => item.totalPrice)
+  const totalValue = cartStore.map((item) => item.totalPrice)
     .reduce((acc, next) => acc + next, INITIAL_VALUE);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProducts(user.token));
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
@@ -37,10 +35,10 @@ function Products() {
           type="button"
           data-testid="checkout-bottom-btn"
           onClick={ () => setShouldRedirect('/checkout') }
-          disabled={ cartList.length === 0 ? true : false }
+          disabled={ cartStore.length === INITIAL_VALUE ? true : false }
           className="cart-btn"
         >
-          Ver Carrinho
+          { `Ver Carrinho ` }
           <span
             data-testid="checkout-bottom-btn-value"
           >

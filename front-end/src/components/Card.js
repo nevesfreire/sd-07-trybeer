@@ -1,71 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import '../styles/card.css';
-// import { update } from '../actions';
+import { update } from '../actions';
 
 export default function Card({ product, position }) {
   const INITIAL_VALUE = 0;
-  // const ROUNDING_OPTION = 2;
   const ADD_ITEM = 1;
   const REMOVE_ITEM = -1;
-  // const cartList = useSelector(({ cart }) => cart.cart);
-  // const dispatch = useDispatch();
-  const [cart, setCart] = useState([]);
+  const cartStore = useSelector(({ cart }) => cart.cart);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProducts = JSON.parse(localStorage.getItem('products'));
-    if (getProducts) {
-      setCart(getProducts);
-    }
+    if (getProducts.length !== INITIAL_VALUE) {
+      dispatch(update(JSON.parse(localStorage.getItem('products'))));
+    };
   }, []);
 
   useEffect(() => {
-    localStorage.removeItem('products');
-    localStorage.setItem('products', JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem('products', JSON.stringify(cartStore));
+  }, [cartStore]);
 
-  const manageQuantity = (productFound, cart) => {
+  const manageQuantity = (productFound) => {
     if (productFound.quantity !== 0) {
-      const filteredCart = cart.filter((item) => item.id !== productFound.id);
+      const filteredCart = cartStore.filter((item) => item.id !== productFound.id);
       const cartProducts = [...filteredCart, productFound];
-      // localStorage.setItem('products', JSON.stringify(cartProducts));
-      setCart(cartProducts);
-      // dispatch(update(cartProducts));
+      dispatch(update(cartProducts));
     } else {
-      const filteredCart = cart.filter((item) => item.id !== productFound.id);
-      setCart(filteredCart);
-      // localStorage.removeItem('products');
-      // localStorage.setItem('products', JSON.stringify(filteredCart));
-      // dispatch(update(filteredCart));
+      const filteredCart = cartStore.filter((item) => item.id !== productFound.id);
+      dispatch(update(filteredCart));
     }
   };
 
   const getNewQuantity = (newProduct) => {
-    // const cartCopy = [...cartList];
-    const cartCopy = [...cart]
-    const productFound = cartCopy.find((item) => item.id === newProduct.id);
+    const getProducts = JSON.parse(localStorage.getItem('products'));
+    const productFound = getProducts.find((item) => item.id === newProduct.id);
     if (productFound) {
-      manageQuantity(newProduct, cartCopy);
+      manageQuantity(newProduct);
     } else {
-      // const newCart = [...cartList, newProduct];
-      const newCart = [...cart, newProduct];
-      localStorage.setItem('products', JSON.stringify(newCart));
-      setCart(newCart);
-      // dispatch(update(newCart));
+      const newCart = [...getProducts, newProduct];
+      // setRecoveredCart(newCart)
+      // localStorage.setItem('products', JSON.stringify(newCart));
+      dispatch(update(newCart));
     }
   };
-
-  const getValue = (id) => {
-    // const isPresent = cartList.find((item) => item.id === id);
-    const getProducts = JSON.parse(localStorage.getItem('products'));
-      if (getProducts) {
-      setCart(getProducts);
-    const isPresent = cart.find((item) => item.id === id);
-    if (isPresent) return isPresent.quantity;
-    return INITIAL_VALUE;
-  };
-};
 
   const manageNewProductInfo = (value, productSelected) => {
     const { id, name, price } = productSelected;
@@ -76,16 +55,33 @@ export default function Card({ product, position }) {
       quantity: 0,
       totalPrice: 0,
     };
-    newProductInfo.quantity = getValue(productSelected.id) + value;
+    
+    newProductInfo.quantity = getOldQuantity(productSelected.id) + value;
     newProductInfo.totalPrice = newProductInfo.quantity * price;
     getNewQuantity(newProductInfo);
   };
 
   const handleClick = (type, value, productSelected) => {
-    if ((getValue(productSelected.id) !== 0 && type === 'remove')
+    if ((getOldQuantity(productSelected.id) !== 0 && type === 'remove')
       || type === 'add') {
       manageNewProductInfo(value, productSelected);
     }
+  };
+
+  const verifyId = (id) => {
+    const idIsPresent = cartStore.find((item) => item.id === id);
+    if (idIsPresent) {
+      const quantityFound = idIsPresent.quantity;
+      return quantityFound;
+    }
+    return INITIAL_VALUE;
+  }
+
+  const getOldQuantity = (id) => {
+    if (cartStore.length !== INITIAL_VALUE) {
+      return verifyId(id);
+    }
+    return INITIAL_VALUE;
   };
 
   return (
@@ -115,7 +111,7 @@ export default function Card({ product, position }) {
           data-testid={ `${position}-product-qtd` }
           className="product-price"
         >
-          { getValue(product.id) }
+          { getOldQuantity(product.id) }
         </p>
         <button
           type="button"

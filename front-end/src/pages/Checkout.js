@@ -8,7 +8,6 @@ import { saveOrder } from '../services/order';
 
 export default function Checkout() {
   const INITIAL_VALUE = 0;
-  // const ROUNDING_OPTION = 2;
   const dispatch = useDispatch();
 
   const cartList = useSelector(({ cart }) => cart.cart);
@@ -17,10 +16,18 @@ export default function Checkout() {
     .map((item) => item.totalPrice)
     .reduce((acc, next) => acc + next, INITIAL_VALUE);
 
+  useEffect(() => {
+    const getProducts = JSON.parse(localStorage.getItem('products'));
+    if (getProducts.length !== INITIAL_VALUE) {
+      dispatch(update(JSON.parse(localStorage.getItem('products'))));
+    };
+  }, []);
+
   const [address, setAddress] = useState({
     street: '',
     number: '',
   });
+
   const [disabled, setDisabled] = useState(true);
   const [shouldRedirect, setShouldRedirect] = useState('');
 
