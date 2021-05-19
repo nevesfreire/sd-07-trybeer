@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bulma-components';
 import { getOrdersById, changeStatus } from '../api';
 import services from '../services';
@@ -91,15 +91,6 @@ function AdminOrderDetails() {
               >
                 Marcar como entregue
               </Button>
-
-              <Button data-testid="side-menu-item-orders">
-                <Link
-                  to="/admin/orders"
-                >
-                  Meus Pedidos
-                </Link>
-              </Button>
-
             </>
           )
       }
