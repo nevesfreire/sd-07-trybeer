@@ -12,7 +12,7 @@ export default function ProfileAdmin() {
   return (
     <div>
       <AdminSideBar />
-      <h1>Perfil</h1>
+      <h1 data-testid="profile-title">Perfil</h1>
       <p data-testid="profile-name">{`Nome:${profileInfo.name}`}</p>
       <p data-testid="profile-email">{`Nome:${profileInfo.email}`}</p>
     </div>
