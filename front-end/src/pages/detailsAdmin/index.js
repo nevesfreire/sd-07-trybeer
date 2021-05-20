@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import TrybeerContext from '../../context/TrybeerContext';
 import AdminSideBar from '../../components/AdminSideBar';
 import { updateSaleStatus, orderById } from '../../service/trybeerApi';
 
@@ -16,7 +15,6 @@ export default function AdminDetails() {
     qtd: '',
     status: '',
     unitPrice: '',
-    totalValue: '',
   }]);
 
   const getOrderValue = (array) => array.map((product) => product.qtd * product.unitPrice)
