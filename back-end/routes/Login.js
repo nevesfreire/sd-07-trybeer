@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { loginController } = require('../controllers');
+const loginController = require('../controllers/LoginController.js');
 
 const router = express.Router();
 
