@@ -11,7 +11,7 @@ export default function Checkout() {
   const ROUNDING_OPTION = 2;
   const dispatch = useDispatch();
 
-  const cartList = useSelector(({ cart }) => cart);
+  const cartList = useSelector(({ cart }) => cart.cart);
 
   const totalValue = cartList
     .map((item) => item.totalPrice)

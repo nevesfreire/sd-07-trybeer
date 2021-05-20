@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Card from '../components/Card';
 import '../styles/cart.css';
 import { fetchProducts } from '../actions';
+import cart from '../reducers/cart';
 
 function Products() {
   const INITIAL_VALUE = 0;
@@ -21,15 +22,15 @@ function Products() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts(user.token));
-  }, [dispatch]);
-
+    if (!user || productsList.error) {
+      return setShouldRedirect('/login');
+    }
+    return dispatch(fetchProducts(user.token));
+  }, []);
   return (
     <>
       <Header title="TryBeer" />
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
-      { (productsList.error || !user) && setShouldRedirect('/login')
-        && localStorage.removeItem('user') }
       { productsList.products
         .map((item, i) => <Card key={ i } product={ item } position={ i } />) }
       <div>
