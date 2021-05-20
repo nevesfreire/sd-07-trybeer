@@ -14,4 +14,17 @@ describe('1 - deve criar endpoint para o login de usuários', () => {
         expect(result.message).toBe('O campo "email" é obrigatório.');
       });
   });
+
+  it('valida se o campo "email" está no formato correto', async () => {
+    await frisby.post(`${URL}/login`, {
+      email: 'test@1',
+      password: '123456',
+    })
+      .expect('status', 400)
+      .then((response) => {
+        const { body } = response;
+        const result = JSON.parse(body);
+        expect(result.message).toBe('O campo "email" deve ser válido.');
+      });
+  });
 });
