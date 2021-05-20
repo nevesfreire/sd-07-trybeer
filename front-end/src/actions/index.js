@@ -38,10 +38,13 @@ export const requestProductsFail = (error) => ({
   error,
 });
 
-export const finish = (message) => ({
-  type: SAVE_ORDER,
-  message,
-});
+export const finish = (message) => {
+  console.log('entrei na action', message);
+  return ({
+    type: SAVE_ORDER,
+    message,
+  });
+} 
 
 export const requestOrders = () => ({
   type: REQUEST_ORDERS,

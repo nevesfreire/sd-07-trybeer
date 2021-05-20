@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import Card from '../components/Card';
 import '../styles/cart.css';
 import { fetchProducts } from '../actions';
-import cart from '../reducers/cart';
 
 function Products() {
   const INITIAL_VALUE = 0;
