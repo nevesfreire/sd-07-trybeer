@@ -12,7 +12,7 @@ module.exports = {
         },
         {
           id: '2',
-          name: 'John Doe',
+          name: 'testuser',
           email: 'user@test.com',
           password: 'test123',
           role: 'client',
