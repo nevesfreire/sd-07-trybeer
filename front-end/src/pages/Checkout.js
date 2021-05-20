@@ -16,13 +16,6 @@ export default function Checkout() {
     .map((item) => item.totalPrice)
     .reduce((acc, next) => acc + next, INITIAL_VALUE);
 
-  useEffect(() => {
-    const getProducts = JSON.parse(localStorage.getItem('products'));
-    if (getProducts.length !== INITIAL_VALUE) {
-      dispatch(update(JSON.parse(localStorage.getItem('products'))));
-    };
-  }, []);
-
   const [address, setAddress] = useState({
     street: '',
     number: '',
@@ -42,8 +35,8 @@ export default function Checkout() {
         <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
         <td data-testid={ `${index}-product-name` }>{ item.name }</td>
         <td data-testid={ `${index}-product-unit-price` }>
-          { `${new Intl.NumberFormat('pt-br',
-          { style: 'currency', currency: 'BRL' }).format(item.price)}` }
+          { `(${new Intl.NumberFormat('pt-br',
+          { style: 'currency', currency: 'BRL' }).format(item.price)} un)` }
         </td>
         <td data-testid={ `${index}-product-total-value` }>
           { `R$ ${new Intl.NumberFormat('pt-br',
@@ -60,7 +53,6 @@ export default function Checkout() {
     </div>));
 
   const handleChange = (event) => {
-    event.preventDefault();
     const { name, value } = event.target;
     setAddress({
       ...address, [name]: value,
@@ -82,8 +74,9 @@ export default function Checkout() {
     if (!user) setShouldRedirect('/login');
   }, []);
 
-  const handleSubmit = async () => {
-    const newList = cartList.map((item) => { // Testar lógica
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const newList = cartList.map((item) => {
       const { id, quantity } = item;
       return { productId: id, quantity };
     });
@@ -92,7 +85,6 @@ export default function Checkout() {
       deliveryNumber: address.number,
       salesProducts: [...newList],
     };
-    console.log(userOrder);
     const user = JSON.parse(localStorage.getItem('user'));
     try {
       await saveOrder(dispatch, finish, userOrder, user.token);
@@ -115,7 +107,7 @@ export default function Checkout() {
           </tr>
         </thead>
         <tbody>
-          { renderBody() }
+          { cartList.length !== INITIAL_VALUE ? renderBody() : "Não há produtos no carrinho" }
         </tbody>
       </table>
       <div>
@@ -128,7 +120,7 @@ export default function Checkout() {
       <Address
         handleEvent={ (event) => handleChange(event) }
         status={ disabled }
-        order={ () => handleSubmit() }
+        saveOrder={ (event) => handleSubmit(event) }
       />
     </>
   );

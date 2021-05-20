@@ -11,12 +11,12 @@ export default function Card({ product, position }) {
   const cartStore = useSelector(({ cart }) => cart.cart);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+/*   useEffect(() => {
     const getProducts = JSON.parse(localStorage.getItem('products'));
     if (getProducts.length !== INITIAL_VALUE) {
       dispatch(update(JSON.parse(localStorage.getItem('products'))));
     };
-  }, []);
+  }, []); */
 
   useEffect(() => {
     localStorage.setItem('products', JSON.stringify(cartStore));
