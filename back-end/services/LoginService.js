@@ -7,7 +7,8 @@ require('dotenv').config();
 const getUser = async (data) => {
   const { email, password } = data;
   const { error } = validateLogin(data);
-  const [dataUser] = await Users.findOne({ where: { email, password }});
+  console.log('chegou aqui');
+  const dataUser = await Users.findOne({ where: { email, password }});
   if (error) throw error;
   await validUser(data);
   const { name, role, id } = dataUser[0];
