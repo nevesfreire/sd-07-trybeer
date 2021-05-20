@@ -21,9 +21,10 @@ function Products() {
 
   useEffect(() => {
     if (!user || productsList.error) {
-      return setShouldRedirect('/login');
+      setShouldRedirect('/login');
+    } else {
+      dispatch(fetchProducts(user.token));
     }
-    return dispatch(fetchProducts(user.token));
   }, []);
 
   return (
