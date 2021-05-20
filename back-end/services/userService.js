@@ -1,30 +1,21 @@
 const UserException = require('../exceptions/userException');
+const userModel = require('../models/User');
 const httpStatus = require('../helpers/httpStatus');
-
-const validateEmail = (email) => {
-  const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z]+(?:\.[a-zA-Z0-9-]+)+$/;
-  if (!email) {
-    throw new UserException('O campo "email" é obrigatório.', httpStatus.BAD_REQUEST);
-  }
-  if (!regex.test(String(email).toLowerCase())) {
-    throw new UserException('O campo "email" deve ser válido.', httpStatus.BAD_REQUEST);
-  }
-};
-
-const validatePassword = (password) => {
-  const minLength = 6;
-  if (!password) {
-    throw new UserException('O campo "password" é obrigatório.', httpStatus.BAD_REQUEST);
-  }
-  if (password.length < minLength) {
-    throw new UserException('O campo "password" deve ser válido.', httpStatus.BAD_REQUEST);
-  }
-};
+const userValidation = require('../helpers/validations/userValidation');
 
 module.exports = {
-  get(credentials) {
+  async get(credentials) {
     const { email, password } = credentials;
-    validateEmail(email);
-    validatePassword(password);
+
+    userValidation.validateEmail(email);
+    userValidation.validatePassword(password);
+
+    const user = await userModel.getByEmailAndPassword(email, password);
+
+    if (!user) {
+      throw new UserException('Email ou senha incorreto', httpStatus.BAD_REQUEST);
+    }
+
+    return user;
   },
 };
