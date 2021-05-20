@@ -8,7 +8,6 @@ import { saveOrder } from '../services/order';
 
 export default function Checkout() {
   const INITIAL_VALUE = 0;
-  const ROUNDING_OPTION = 2;
   const dispatch = useDispatch();
 
   const cartList = useSelector(({ cart }) => cart.cart);
@@ -17,10 +16,18 @@ export default function Checkout() {
     .map((item) => item.totalPrice)
     .reduce((acc, next) => acc + next, INITIAL_VALUE);
 
+  useEffect(() => {
+    const getProducts = JSON.parse(localStorage.getItem('products'));
+    if (getProducts.length !== INITIAL_VALUE) {
+      dispatch(update(JSON.parse(localStorage.getItem('products'))));
+    };
+  }, []);
+
   const [address, setAddress] = useState({
     street: '',
     number: '',
   });
+
   const [disabled, setDisabled] = useState(true);
   const [shouldRedirect, setShouldRedirect] = useState('');
 
@@ -35,10 +42,12 @@ export default function Checkout() {
         <td data-testid={ `${index}-product-qtd-input` }>{ item.quantity }</td>
         <td data-testid={ `${index}-product-name` }>{ item.name }</td>
         <td data-testid={ `${index}-product-unit-price` }>
-          { `R$ ${item.price.toFixed(ROUNDING_OPTION)}` }
+          { `${new Intl.NumberFormat('pt-br',
+          { style: 'currency', currency: 'BRL' }).format(item.price)}` }
         </td>
         <td data-testid={ `${index}-product-total-value` }>
-          { `R$ ${item.totalPrice.toFixed(ROUNDING_OPTION)}` }
+          { `R$ ${new Intl.NumberFormat('pt-br',
+          { style: 'currency', currency: 'BRL' }).format(item.totalPrice)}` }
         </td>
       </tr>
       <button
@@ -50,8 +59,9 @@ export default function Checkout() {
       </button>
     </div>));
 
-  const handleChange = ({ target }) => {
-    const { name, value } = target;
+  const handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
     setAddress({
       ...address, [name]: value,
     });
@@ -75,14 +85,20 @@ export default function Checkout() {
   const handleSubmit = async () => {
     const newList = cartList.map((item) => { // Testar lógica
       const { id, quantity } = item;
-      return { id, quantity };
+      return { productId: id, quantity };
     });
     const userOrder = {
       deliveryAddress: address.street,
       deliveryNumber: address.number,
       salesProducts: [...newList],
     };
-    await saveOrder(dispatch, finish, userOrder);
+    console.log(userOrder);
+    const user = JSON.parse(localStorage.getItem('user'));
+    try {
+      await saveOrder(dispatch, finish, userOrder, user.token);
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -105,7 +121,8 @@ export default function Checkout() {
       <div>
         <span>Valor total do pedido</span>
         <span data-testid="order-total-value">
-          { `R$ ${totalValue.toFixed(ROUNDING_OPTION)}` }
+          { `${new Intl.NumberFormat('pt-br',
+          { style: 'currency', currency: 'BRL' }).format(totalValue)}` }
         </span>
       </div>
       <Address

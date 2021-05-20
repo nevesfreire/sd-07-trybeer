@@ -6,6 +6,7 @@ const checkout = require('./routes/checkout');
 const profile = require('./routes/profile');
 const products = require('./routes/products');
 const orders = require('./routes/orders');
+const adminOrders = require('./routes/adminOrders');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(checkout);
 app.use(profile);
 app.use(products);
 app.use(orders);
+app.use(adminOrders);
 
 app.listen(PORT, () => {
   console.log(`API rodando na porta ${PORT}`);

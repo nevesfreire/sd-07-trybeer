@@ -1,19 +1,22 @@
+const REQUEST_CREATED = 201;
 const REQUEST_OK = 200;
 const UNAUTHORIZED = 401;
 const contentType = { 'Content-type': 'application/json' };
 const urlOrders = 'http://localhost:3001/orders';
+const checkoutUrl = 'http://localhost:3001/checkout'
 
-export const saveOrder = (dispatch, finish, order) => {
+export const saveOrder = (dispatch, finish, order, token) => {
   try {
-    return fetch(urlOrders, {
+    return fetch(checkoutUrl, {
       method: 'POST',
-      body: order,
+      body: JSON.stringify(order),
       headers: {
         ...contentType,
+        authorization: token,
       },
     })
       .then((response) => {
-        if (response.status !== REQUEST_OK) {
+        if (response.status !== REQUEST_CREATED) {
           throw new Error();
         } else {
           return response.json()
@@ -34,7 +37,7 @@ export const getOrders = (email, token) => {
       body: email,
       headers: {
         ...contentType,
-        Authorization: token,
+        authorization: token,
       },
     })
       .then((response) => {

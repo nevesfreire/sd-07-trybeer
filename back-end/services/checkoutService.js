@@ -2,7 +2,7 @@ const checkoutModel = require('../models/checkoutModel');
 
 const createSale = async (userId, dAddress, dNumber, salesProducts) => { 
   const saleDate = new Date();
-  const status = 'PENDENTE';
+  const status = 'Pendente';
   
   const totalPrice = await salesProducts.reduce(async (acc, item) => {
     const productId = parseInt(item.productId, 10);

@@ -118,6 +118,7 @@ export function fetchOrders(email, token) {
     try {
       dispatch(requestOrders());
       const orders = await getOrders(email, token);
+      console.log('peguei', orders);
       dispatch(requestOrdersSuccess(orders));
     } catch (error) {
       dispatch(requestOrdersFail(error.message));
