@@ -7,7 +7,9 @@ import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/jest-dom'
 import '@testing-library/dom';
 import { createMemoryHistory } from 'history';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
+import ProfileClient from '../pages/profileClient';
 
 const history = createMemoryHistory();
 history.push('/profile');
@@ -19,17 +21,17 @@ const emailId = 'profile-email-input';
 describe('1 - [PÁGINA DE PERFIL DO CLIENTE] Crie uma página de perfil para clientes com os seguintes campos e características:', () => {
 
   test('A rota para esta página deve ser \'/profile\'', () => {
-    render(<App />);
+    renderWithRouter(<ProfileClient />);
  
     expect(history.location.pathname).toBe('/profile');
   });
 
   test('A página contém um título e campos para nome e email', () => {
-    render(<App />);
+    const { getByTestId } = renderWithRouter(<ProfileClient />);
 
-    const title = screen.getByTestId(titleId);
-    const name = screen.getByTestId(nameId);
-    const email = screen.getByTestId(emailId);
+    const title = getByTestId(titleId);
+    const name = getByTestId(nameId);
+    const email = getByTestId(emailId);
 
     expect(title).toBeInTheDocument();
     expect(name).toBeInTheDocument();
@@ -37,47 +39,47 @@ describe('1 - [PÁGINA DE PERFIL DO CLIENTE] Crie uma página de perfil para cli
   });
 
   test('Contém um título com o texto \'Perfil\'', () => {
-    render(<App />);
+    const { getByText } = renderWithRouter(<ProfileClient />);
 
-    const title = screen.getByText(/Perfil/i);
+    const title = getByText(/Perfil/i);
     expect(title).toBeInTheDocument();
   });
 
   test('Crie um botão com o texto \'Salvar\'', () => {
-    render(<App />);
+    const { getByText } = renderWithRouter(<ProfileClient />);
 
-    const button = screen.getByText(/Salvar/i);
+    const button = getByText(/Salvar/i);
     expect(button).toBeInTheDocument();
   });
   
 
   test('O botão salvar fica desabilitado caso não altere o nome.', () => {
-    render(<App />);
+    const { getByText } = renderWithRouter(<ProfileClient />);
     
-    const button = screen.getByText(/Salvar/i);
+    const button = getByText(/Salvar/i);
     expect(button).toBeDisabled();
   });
 
   test('O botão salvar fica habilitado caso o nome seja alterado', () => {
-    render(<App />);
+    const { getByText, getByTestId } = renderWithRouter(<ProfileClient />);
     
-    const name = screen.getByTestId(nameId);
-    const button = screen.getByText(/Salvar/i);
+    const name = getByTestId(nameId);
+    const button = getByText(/Salvar/i);
 
-    userEvent.type(name, `${name} Antônio`);
+    userEvent.type(name, `Antonio Gonzales`);
     expect(button).toBeEnabled();
   });
 
   test('É possível alterar o nome do usuário', () => {
-    render(<App />);
+    const { getByText, getByTestId } = renderWithRouter(<ProfileClient />);
 
-    const name = screen.getByTestId(nameId);
-    const button = screen.getByText(/Salvar/i);
+    const name = getByTestId(nameId);
+    const button = getByText(/Salvar/i);
 
-    userEvent.type(name, 'Antônio Gonçalves');
+    userEvent.type(name, 'Antonio Gonzales');
     fireEvent.click(button);
 
-    const newName = screen.getByTestId(nameId);
-    expect(newName).toHaveTextContent('Antônio Gonçalves');
+    const newName = getByTestId(nameId);
+    expect(newName).toHaveValue('Antonio Gonzales');
   });
 });

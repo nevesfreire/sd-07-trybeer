@@ -7,7 +7,8 @@ import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/jest-dom'
 import '@testing-library/dom';
 import { createMemoryHistory } from 'history';
-import App from '../App';
+import renderWithRouter from './renderWithRouter';
+import Login from '../pages/login';
 import { login } from '../service/trybeerApi';
 
 const history = createMemoryHistory();
@@ -19,36 +20,35 @@ const passwordId = 'password-input';
 describe('1 - [PÁGINA DE LOGIN] Crie uma página inicial de login com os seguintes campos e características:', () => {
 
   test('A rota para esta página deve ser \'/login\'', () => {
-    render(<App />);
+    renderWithRouter(<Login />);
  
     expect(history.location.pathname).toBe('/login');
   });
 
   test('Crie um local para que o usuário insira seu email e password', () => {
-    render(<App />);
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
+    const { getByTestId } = renderWithRouter(<Login />);
+    const email = getByTestId(emailId);
+    const password = getByTestId(passwordId);
 
     expect(email).toBeInTheDocument();
     expect(password).toBeInTheDocument();
   });
 
   test('Crie um botão com o texto \'Entrar\'', () => {
-    render(<App />, '/login');
+    const { getByText } = renderWithRouter(<Login />);
 
-    const button = screen.getByText(/Entrar/i);
+    const button = getByText(/Entrar/i);
     expect(button).toBeInTheDocument();
   });
 
   test('Realize as seguintes verificações nos campos de email, password e botão:', () => {
-    render(<App />);
+    const { getByText, getByTestId } = renderWithRouter(<Login />);
    
-
-    const button = screen.getByText(/Entrar/i);
+    const button = getByText(/Entrar/i);
     expect(button).toBeDisabled();
 
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
+    const email = getByTestId(emailId);
+    const password = getByTestId(passwordId);
 
     userEvent.type(email, 'email');
     userEvent.type(password, '123456');
@@ -76,11 +76,11 @@ describe('1 - [PÁGINA DE LOGIN] Crie uma página inicial de login com os seguin
   });
 
   test('Realiza login com usuário client, assim que o usuário logar.', () => {
-    render(<App />);
+    const { getByText, getByTestId } = renderWithRouter(<Login />);
     
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
-    const button = screen.getByText(/Entrar/i);
+    const email = getByTestId(emailId);
+    const password = getByTestId(passwordId);
+    const button = getByText(/Entrar/i);
 
     userEvent.type(email, 'user@test.com');
     userEvent.type(password, 'test123');
@@ -93,11 +93,11 @@ describe('1 - [PÁGINA DE LOGIN] Crie uma página inicial de login com os seguin
   });
 
   test('Realiza login com usuário admin, assim que o usuário logar.', () => {
-    render(<App />);
+    const { getByText, getByTestId } = renderWithRouter(<Login />);
 
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
-    const button = screen.getByText(/Entrar/i);
+    const email = getByTestId(emailId);
+    const password = getByTestId(passwordId);
+    const button = getByText(/Entrar/i);
 
     userEvent.type(email, 'tryber@trybe.com.br');
     userEvent.type(password, '123456');
@@ -110,11 +110,11 @@ describe('1 - [PÁGINA DE LOGIN] Crie uma página inicial de login com os seguin
   });
 
   test('Login não autorizado e exibe a menssagem de erro.', async () => {
-    render(<App />);
+    const { getByText, getByTestId } = renderWithRouter(<Login />);
 
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
-    const button = screen.getByText(/Entrar/i);
+    const email = getByTestId(emailId);
+    const password = getByTestId(passwordId);
+    const button = getByText(/Entrar/i);
 
     userEvent.type(email, 'test@test.com');
     userEvent.type(password, '123456789');
@@ -135,12 +135,12 @@ describe('1 - [PÁGINA DE LOGIN] Crie uma página inicial de login com os seguin
 describe('2 - [PÁGINA DE LOGIN INFORMAÇÕES USER LOCALSTORAGE] Salvar as informações de usuário no localstorage e recuperar as informações :', () => {
 
   test('Testa se o token está ok.', async () => {
-    render(<App />);
+    const { getByText, getByTestId } = renderWithRouter(<Login />);
     beforeEach(() => localStorage.clear());
   
-    const email = screen.getByTestId(emailId);
-    const password = screen.getByTestId(passwordId);
-    const button = screen.getByText(/Entrar/i);
+    const email = getByTestId(emailId);
+    const password = getByTestId(passwordId);
+    const button = getByText(/Entrar/i);
 
     userEvent.type(email, 'user@test.com');
     userEvent.type(password, 'test123');
@@ -155,7 +155,7 @@ describe('2 - [PÁGINA DE LOGIN INFORMAÇÕES USER LOCALSTORAGE] Salvar as infor
   });
 
   test('Testa se o email de usuário está ok.', async () => {
-    render(<App />);
+    renderWithRouter(<Login />);
     beforeEach(() => localStorage.clear());
 
     const result = await login('tryber@trybe.com.br', '123456')
