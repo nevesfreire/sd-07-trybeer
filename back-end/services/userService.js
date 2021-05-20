@@ -11,9 +11,20 @@ const validateEmail = (email) => {
   }
 };
 
+const validatePassword = (password) => {
+  const minLength = 6;
+  if (!password) {
+    throw new UserException('O campo "password" é obrigatório.', httpStatus.BAD_REQUEST);
+  }
+  if (password.length < minLength) {
+    throw new UserException('O campo "password" deve ser válido.', httpStatus.BAD_REQUEST);
+  }
+};
+
 module.exports = {
-  get(user) {
-    const { email } = user;
+  get(credentials) {
+    const { email, password } = credentials;
     validateEmail(email);
+    validatePassword(password);
   },
 };
