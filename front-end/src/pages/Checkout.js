@@ -36,11 +36,11 @@ export default function Checkout() {
         <td data-testid={ `${index}-product-name` }>{ item.name }</td>
         <td data-testid={ `${index}-product-unit-price` }>
           { `(${new Intl.NumberFormat('pt-br',
-          { style: 'currency', currency: 'BRL' }).format(item.price)} un)` }
+            { style: 'currency', currency: 'BRL' }).format(item.price)} un)` }
         </td>
         <td data-testid={ `${index}-product-total-value` }>
           { `R$ ${new Intl.NumberFormat('pt-br',
-          { style: 'currency', currency: 'BRL' }).format(item.totalPrice)}` }
+            { style: 'currency', currency: 'BRL' }).format(item.totalPrice)}` }
         </td>
       </tr>
       <button
@@ -89,7 +89,7 @@ export default function Checkout() {
     try {
       await saveOrder(dispatch, finish, userOrder, user.token);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -107,14 +107,15 @@ export default function Checkout() {
           </tr>
         </thead>
         <tbody>
-          { cartList.length !== INITIAL_VALUE ? renderBody() : "Não há produtos no carrinho" }
+          { cartList.length !== INITIAL_VALUE ? renderBody()
+            : 'Não há produtos no carrinho' }
         </tbody>
       </table>
       <div>
         <span>Valor total do pedido</span>
         <span data-testid="order-total-value">
           { `${new Intl.NumberFormat('pt-br',
-          { style: 'currency', currency: 'BRL' }).format(totalValue)}` }
+            { style: 'currency', currency: 'BRL' }).format(totalValue)}` }
         </span>
       </div>
       <Address

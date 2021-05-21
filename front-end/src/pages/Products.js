@@ -37,10 +37,10 @@ function Products() {
           type="button"
           data-testid="checkout-bottom-btn"
           onClick={ () => setShouldRedirect('/checkout') }
-          disabled={ cartStore.length === INITIAL_VALUE ? true : false }
+          disabled={ cartStore.length === INITIAL_VALUE }
           className="cart-btn"
         >
-          { `Ver Carrinho ` }
+          { 'Ver Carrinho ' }
           <span
             data-testid="checkout-bottom-btn-value"
           >

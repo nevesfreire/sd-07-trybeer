@@ -6,28 +6,27 @@ import { fetchOrders } from '../actions';
 import OrderCard from '../components/OrderCard';
 
 export default function Orders() {
-  const ordersList = useSelector(( { order } ) => order);
+  const ordersList = useSelector(({ order }) => order);
   const [shouldRedirect, setShouldRedirect] = useState('');
   const { isLoading, order, error } = ordersList;
-  // const sortedOrders = order.sort((a, b) => a.id - b.id);
   const user = JSON.parse(localStorage.getItem('user'));
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchOrders(user.email, user.token));
+    if (!user || error) {
+      setShouldRedirect('/login');
+    } else {
+      dispatch(fetchOrders(user.token));
     }
-  ,[dispatch]);
+  }, []);
 
   return (
     <>
-    {console.log(ordersList)}
-      <Header title="Meus pedidos" />
+      <Header title="Meus Pedidos" />
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
-      { (error || !user) && setShouldRedirect('/login')
-        && localStorage.removeItem('user') }
-      {/* { isLoading === true ? 'Carregando...' : sortedOrders
-        .map((item, i) => <OrderCard key={ i } order={ item } position={ i } />) } */}
+      { isLoading === true ? 'Carregando...' : order
+        .map((item, i) => <OrderCard key={ i } order={ item } position={ i } />) }
     </>
   );
 }

@@ -44,16 +44,19 @@ export const finish = (message) => {
     type: SAVE_ORDER,
     message,
   });
-} 
+};
 
 export const requestOrders = () => ({
   type: REQUEST_ORDERS,
 });
 
-export const requestOrdersSuccess = (orders) => ({
-  type: REQUEST_ORDERS_SUCCESS,
-  orders,
-});
+export const requestOrdersSuccess = (orders) => {
+  console.log(orders);
+  return {
+    type: REQUEST_ORDERS_SUCCESS,
+    orders,
+  };
+};
 
 export const requestOrdersFail = (error) => ({
   type: REQUEST_ORDERS_FAIL,
@@ -116,11 +119,11 @@ export function fetchProducts(token) {
   };
 }
 
-export function fetchOrders(email, token) {
+export function fetchOrders(token) {
   return async (dispatch) => {
     try {
       dispatch(requestOrders());
-      const orders = await getOrders(email, token);
+      const orders = await getOrders(token);
       console.log('peguei', orders);
       dispatch(requestOrdersSuccess(orders));
     } catch (error) {
