@@ -38,24 +38,19 @@ export const requestProductsFail = (error) => ({
   error,
 });
 
-export const finish = (message) => {
-  return ({
-    type: SAVE_ORDER,
-    message,
-  });
-};
+export const finish = (message) => ({
+  type: SAVE_ORDER,
+  message,
+});
 
 export const requestOrders = () => ({
   type: REQUEST_ORDERS,
 });
 
-export const requestOrdersSuccess = (orders) => {
-  console.log('estou na action certa', orders)
-  return ({
-    type: REQUEST_ORDERS_SUCCESS,
-     orders,
-   });
-}
+export const requestOrdersSuccess = (orders) => ({
+  type: REQUEST_ORDERS_SUCCESS,
+  orders,
+});
 
 export const requestOrdersFail = (error) => ({
   type: REQUEST_ORDERS_FAIL,

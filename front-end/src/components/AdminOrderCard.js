@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default function OrderCard({ order, pos }) {
-  const { id, deliveryNumber, deliveryAddress, totalPrice, status } = order;
+  const { id, deliveryAddress, totalPrice, status } = order;
 
   return (
     <Link to={ `/admin/orders/${id}` }>

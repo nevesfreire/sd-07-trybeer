@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 export default function OrderCard({ order, position }) {
-  const check = moment(order.sale_date , 'YYYY/MM/DD').format('DD/MM');
+  const check = moment(order.sale_date, 'YYYY/MM/DD').format('DD/MM');
 
   console.log(order);
   return (
@@ -14,7 +14,10 @@ export default function OrderCard({ order, position }) {
         <span data-testid={ `${position}-order-date` }>
           { check }
         </span>
-        <span data-testid={ `${position}-order-total-value` }>{ order.total_price }</span>
+        <span data-testid={ `${position}-order-total-value` }>
+          { `R$ ${new Intl.NumberFormat('pt-br',
+            { style: 'currency', currency: 'BRL' }).format(order.total_price)}` }
+        </span>
       </Link>
     </div>
   );
