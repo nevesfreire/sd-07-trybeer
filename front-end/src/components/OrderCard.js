@@ -14,7 +14,10 @@ export default function OrderCard({ order, position }) {
         <span data-testid={ `${position}-order-date` }>
           { check }
         </span>
-        <span data-testid={ `${position}-order-total-value` }>{ order.total_price }</span>
+        <span data-testid={ `${position}-order-total-value` }>
+          { new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' })
+            .format(order.total_price) }
+        </span>
       </Link>
     </div>
   );

@@ -24,7 +24,7 @@ function Products() {
     } else {
       dispatch(fetchProducts(user.token));
     }
-  }, [dispatch, productsList.error, user]);
+  }, []);
 
   return (
     <>
