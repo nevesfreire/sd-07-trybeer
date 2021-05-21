@@ -5,13 +5,13 @@ export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS';
 export const REQUEST_PRODUCTS_SUCCESS = 'REQUEST_PRODUCTS_SUCCESS';
 export const REQUEST_PRODUCTS_FAIL = 'REQUEST_PRODUCTS_FAIL';
-export const REQUEST_ORDERS = 'REQUEST_ORDERS';
-export const REQUEST_ORDERS_SUCCESS = 'REQUEST_ORDERS_SUCCESS';
-export const REQUEST_ORDERS_FAIL = 'REQUEST_ORDERS_FAIL';
 export const SAVE_ORDER = 'SAVE_ORDER';
 export const REQUEST_ORDER = 'REQUEST_ORDER';
 export const REQUEST_ORDER_SUCCESS = 'REQUEST_ORDER_SUCCESS';
 export const REQUEST_ORDER_FAIL = 'REQUEST_ORDER_FAIL';
+export const REQUEST_ORDERS = 'REQUEST_ORDERS';
+export const REQUEST_ORDERS_SUCCESS = 'REQUEST_ORDERS_SUCCESS';
+export const REQUEST_ORDERS_FAIL = 'REQUEST_ORDERS_FAIL';
 export const REQUEST_ADMIN_ORDERS = 'REQUEST_ADMIN_ORDERS';
 export const REQUEST_ADMIN_ORDERS_SUCCESS = 'REQUEST_ADMIN_ORDERS_SUCCESS';
 export const REQUEST_ADMIN_ORDERS_FAIL = 'REQUEST_ADMIN_ORDERS_FAIL';
@@ -39,7 +39,6 @@ export const requestProductsFail = (error) => ({
 });
 
 export const finish = (message) => {
-  console.log('entrei na action', message);
   return ({
     type: SAVE_ORDER,
     message,
@@ -50,10 +49,13 @@ export const requestOrders = () => ({
   type: REQUEST_ORDERS,
 });
 
-export const requestOrdersSuccess = (orders) => ({
-   type: REQUEST_ORDERS_SUCCESS,
-    orders,
-  });
+export const requestOrdersSuccess = (orders) => {
+  console.log('estou na action certa', orders)
+  return ({
+    type: REQUEST_ORDERS_SUCCESS,
+     orders,
+   });
+}
 
 export const requestOrdersFail = (error) => ({
   type: REQUEST_ORDERS_FAIL,

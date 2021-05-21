@@ -53,13 +53,14 @@ export const getOrders = (token) => {
 };
 
 export const getOrder = (id, token) => {
+  console.log(id, token)
   try {
     const url = `http://localhost:3001/orders/${id}`;
     return fetch(url, {
       method: 'GET',
       headers: {
         ...contentType,
-        Authorization: token,
+        authorization: token,
       },
     })
       .then((response) => {
@@ -77,7 +78,7 @@ export const getOrder = (id, token) => {
 
 export const getAdminOrders = () => {
   try {
-    return fetch(urlOrders, {
+    return fetch('http://localhost:3001/admin/orders', {
       method: 'GET',
       headers: {
         ...contentType,
