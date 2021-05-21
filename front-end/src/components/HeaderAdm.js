@@ -8,6 +8,7 @@ import logo from '../img/logo.svg';
 
 const burguerViewer = () => {
   const showMenu = document.querySelector('#navMenu');
+  console.log('hola', showMenu);
   showMenu.classList.toggle('is-hidden');
   showMenu.classList.toggle('is-active');
 };
@@ -23,6 +24,13 @@ function HeaderAdmin({ title }) {
       role="navigation"
       aria-label="main navigation"
     >
+      <Link
+        to="/admin/orders"
+        className="navbar-item is-expanded"
+        data-testid="side-menu-item-orders"
+      >
+        Pedidos
+      </Link>
       <button type="button" className="button-burguer" onClick={ () => burguerViewer() }>
         <div
           data-testid="top-hamburguer"
@@ -36,20 +44,14 @@ function HeaderAdmin({ title }) {
           <span aria-hidden="true" />
         </div>
       </button>
+
       <div
         className="admin-side-bar-container
         navbar-item has-dropdown is-hoverable is-active"
         id="navMenu"
       >
+
         <div className="navbar-dropdown">
-          <Link
-            to="/admin/orders"
-            className="navbar-item is-expanded"
-            data-testid="side-menu-item-orders"
-            onClick={ () => burguerViewer() }
-          >
-            Pedidos
-          </Link>
           <Link
             to="/admin/profile"
             className="navbar-item"
@@ -66,11 +68,6 @@ function HeaderAdmin({ title }) {
           >
             Sair
           </Link>
-        </div>
-        <div className="navbar-item">
-          <div className="navbar-item">
-            {/* 1 */}
-          </div>
         </div>
       </div>
       <div className="navbar-end">
