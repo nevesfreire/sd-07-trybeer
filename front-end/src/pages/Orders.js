@@ -19,7 +19,7 @@ export default function Orders() {
     } else {
       dispatch(fetchOrders(user.token));
     }
-  }, []);
+  }, [dispatch, error, user]);
 
   return (
     <>

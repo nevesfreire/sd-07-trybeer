@@ -10,7 +10,7 @@ export default function AdminProfile() {
     if (!currentUser) {
       setShouldRedirect('/login');
     }
-  }, []);
+  }, [currentUser]);
 
   return (
     <>

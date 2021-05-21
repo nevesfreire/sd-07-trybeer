@@ -20,8 +20,8 @@ export default function Routes() {
       <Route path="/profile" component={ Profile } />
       <Route path="/products" component={ Products } />
       <Route path="/checkout" component={ Checkout } />
-      <Route exact path="/orders/:numero-do-pedido" component={ OrderDetails } />
-      <Route path="/orders" component={ Orders } />
+      <Route exact path="/orders/:id" component={ OrderDetails } />
+      <Route exact path="/orders" component={ Orders } />
       <Route path="/admin/profile" component={ AdminProfile } />
       <Route exact path="/admin/orders/:id" component={ AdminOrderDetails } />
       <Route path="/admin/orders" component={ AdminOrders } />
