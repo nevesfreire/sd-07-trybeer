@@ -131,6 +131,7 @@ export function fetchOrder(id, token) {
     try {
       dispatch(requestOrder());
       const order = await getOrder(id, token);
+      console.log('passei por aqui!');
       dispatch(requestOrderSuccess(order));
     } catch (error) {
       dispatch(requestOrderFail(error.message));

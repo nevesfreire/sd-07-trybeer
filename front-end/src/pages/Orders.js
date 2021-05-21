@@ -15,17 +15,16 @@ export default function Orders() {
 
   useEffect(() => {
     if (!user || error) {
-      setShouldRedirect('/login');
-    } else {
-      dispatch(fetchOrders(user.token));
+      return setShouldRedirect('/login');
     }
-  }, []);
+    dispatch(fetchOrders(user.token));
+  }, [dispatch]);
 
   return (
     <>
       <Header title="Meus Pedidos" />
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
-      { isLoading === true ? 'Carregando...' : orders
+      { isLoading === true ? <p>Carregando...</p> : orders
         .map((item, i) => <OrderCard key={ i } order={ item } position={ i } />) }
     </>
   );
