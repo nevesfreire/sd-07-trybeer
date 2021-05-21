@@ -6,19 +6,19 @@ import { fetchOrders } from '../actions';
 import OrderCard from '../components/OrderCard';
 
 export default function Orders() {
-  const ordersList = useSelector((orders) => console.log(orders));
+  const ordersList = useSelector(({ orders }) => orders);
   const [shouldRedirect, setShouldRedirect] = useState('');
-  // const { isLoading, orders, error } = ordersList;
+  const { isLoading, orders, error } = ordersList;
   const user = JSON.parse(localStorage.getItem('user'));
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (!user || error) {
-    //   setShouldRedirect('/login');
-    // } else {
+    if (!user || error) {
+      setShouldRedirect('/login');
+    } else {
       dispatch(fetchOrders(user.token));
-    // }
+    }
   }, []);
 
   return (
@@ -26,8 +26,8 @@ export default function Orders() {
     {console.log(ordersList)}
       <Header title="Meus Pedidos" />
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
-      {/* { isLoading === true ? 'Carregando...' : orders
-        .map((item, i) => <OrderCard key={ i } order={ item } position={ i } />) } */}
+      { isLoading === true ? 'Carregando...' : orders
+        .map((item, i) => <OrderCard key={ i } order={ item } position={ i } />) }
     </>
   );
 }

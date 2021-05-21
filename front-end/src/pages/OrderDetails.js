@@ -3,29 +3,33 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import { fetchOrder } from '../actions';
+import moment from 'moment';
 
 export default function OrderDetails() {
   const params = useParams();
   const dispatch = useDispatch();
   const orderSelected = useSelector(({ order }) => order);
   const user = JSON.parse(localStorage.getItem('user'));
+  const check = moment(orderSelected.saleDate , 'YYYY/MM/DD').format('DD/MM');
 
   const [shouldRedirect, setShouldRedirect] = useState('');
   const ROUNDING_OPTION = 2;
 
   useEffect(() => {
-    dispatch(fetchOrder(params.id, user.token));
-  }, [dispatch, params.id, user.token]);
+    if (!user || orderSelected.error) {
+      setShouldRedirect('/login');
+    } else {
+      dispatch(fetchOrder(params.id, user.token));
+    }
+  }, []);
 
   return (
     <>
       <Header title="Detalhes de Pedido" />
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
-      { (orderSelected.error || !user) && setShouldRedirect('/login')
-        && localStorage.removeItem('user') }
-      <span data-testid="order-number">{ orderSelected.id }</span>
+      <h1 data-testid="order-number">{ `Pedido ${orderSelected.id}` }</h1>
       <span data-testid="order-date">
-        { `${orderSelected.saleDate.getDay()}/${orderSelected.saleDate.getMonth()}` }
+      { check }
       </span>
       <table>
         <thead>

@@ -6,17 +6,15 @@ import moment from 'moment';
 export default function OrderCard({ order, position }) {
   const check = moment(order.sale_date , 'YYYY/MM/DD').format('DD/MM');
 
+  console.log(order);
   return (
-    <div>
-      <Link
-        to={ `/orders/${order.id}` }
-        data-testid={ `${position}-order-card-container` }
-      >
-        <p data-testid={ `${position}-order-number` }>{ `Pedido ${order.id}` }</p>
-        <p data-testid={ `${position}-order-date` }>
+    <div data-testid={ `${position}-order-card-container` }>
+      <Link to={ `/orders/${order.id}` }>
+        <span data-testid={ `${position}-order-number` }>{ `Pedido ${order.id}` }</span>
+        <span data-testid={ `${position}-order-date` }>
           { check }
-        </p>
-        <p data-testid={ `${position}-order-total-value` }>{ order.total_price }</p>
+        </span>
+        <span data-testid={ `${position}-order-total-value` }>{ order.total_price }</span>
       </Link>
     </div>
   );

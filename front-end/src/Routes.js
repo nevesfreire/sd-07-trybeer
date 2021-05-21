@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -20,10 +20,10 @@ export default function Routes() {
       <Route path="/profile" component={ Profile } />
       <Route path="/products" component={ Products } />
       <Route path="/checkout" component={ Checkout } />
-      <Route path="/orders/:numero-do-pedido" component={ OrderDetails } />
+      <Route exact path="/orders/:numero-do-pedido" component={ withRouter(OrderDetails) } />
       <Route path="/orders" component={ Orders } />
       <Route path="/admin/profile" component={ AdminProfile } />
-      <Route path="/admin/orders/:id" component={ AdminOrderDetails } />
+      <Route exact path="/admin/orders/:id" component={ withRouter(AdminOrderDetails) } />
       <Route path="/admin/orders" component={ AdminOrders } />
       <Redirect from="/" to="/login" />
     </Switch>

@@ -7,7 +7,7 @@ export default function OrderCard({ order, pos }) {
 
   return (
     <Link to={ `/admin/orders/${id}` }>
-      <span data-testid={ `${pos}-order-number` }>{ deliveryNumber }</span>
+      <span data-testid={ `${pos}-order-number` }>{ `Pedido ${id}` }</span>
       <span data-testid={ `${pos}-order-address` }>{ deliveryAddress }</span>
       <span data-testid={ `${pos}-order-total-value` }>{ totalPrice }</span>
       <span data-testid={ `${pos}-order-status` }>{ status }</span>
