@@ -8,8 +8,8 @@ import rootReducer from '../reducers';
 
 const persistConfig = {
   key: 'cart',
-  storage: storage,
-  whitelist: ['cart'] // which reducer want to store
+  storage,
+  whitelist: ['cart'], // which reducer want to store
 };
 
 const pReducer = persistReducer(persistConfig, rootReducer);

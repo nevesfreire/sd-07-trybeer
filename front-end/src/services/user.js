@@ -1,5 +1,5 @@
-const UNAUTHORIZED = 401;
-
+const BAD_REQUEST = 400;
+ 
 const registerUser = (user) => {
   try {
     const url = 'http://localhost:3001/register';
@@ -11,7 +11,7 @@ const registerUser = (user) => {
       },
     })
       .then((response) => {
-        if (response.status === UNAUTHORIZED) {
+        if (response.status === BAD_REQUEST) {
           throw new Error();
         } else {
           return response.json().then((json) => json);

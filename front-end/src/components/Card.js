@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import '../styles/card.css';
@@ -10,13 +10,6 @@ export default function Card({ product, position }) {
   const REMOVE_ITEM = -1;
   const cartStore = useSelector(({ cart }) => cart.cart);
   const dispatch = useDispatch();
-
-/*   useEffect(() => {
-    const getProducts = JSON.parse(localStorage.getItem('products'));
-    if (getProducts.length !== INITIAL_VALUE) {
-      dispatch(update(JSON.parse(localStorage.getItem('products'))));
-    };
-  }, []); */
 
   useEffect(() => {
     localStorage.setItem('products', JSON.stringify(cartStore));
@@ -31,6 +24,22 @@ export default function Card({ product, position }) {
       const filteredCart = cartStore.filter((item) => item.id !== productFound.id);
       dispatch(update(filteredCart));
     }
+  };
+
+  const verifyId = (id) => {
+    const idIsPresent = cartStore.find((item) => item.id === id);
+    if (idIsPresent) {
+      const quantityFound = idIsPresent.quantity;
+      return quantityFound;
+    }
+    return INITIAL_VALUE;
+  };
+
+  const getOldQuantity = (id) => {
+    if (cartStore.length !== INITIAL_VALUE) {
+      return verifyId(id);
+    }
+    return INITIAL_VALUE;
   };
 
   const getNewQuantity = (newProduct) => {
@@ -55,7 +64,7 @@ export default function Card({ product, position }) {
       quantity: 0,
       totalPrice: 0,
     };
-    
+
     newProductInfo.quantity = getOldQuantity(productSelected.id) + value;
     newProductInfo.totalPrice = newProductInfo.quantity * price;
     getNewQuantity(newProductInfo);
@@ -66,22 +75,6 @@ export default function Card({ product, position }) {
       || type === 'add') {
       manageNewProductInfo(value, productSelected);
     }
-  };
-
-  const verifyId = (id) => {
-    const idIsPresent = cartStore.find((item) => item.id === id);
-    if (idIsPresent) {
-      const quantityFound = idIsPresent.quantity;
-      return quantityFound;
-    }
-    return INITIAL_VALUE;
-  }
-
-  const getOldQuantity = (id) => {
-    if (cartStore.length !== INITIAL_VALUE) {
-      return verifyId(id);
-    }
-    return INITIAL_VALUE;
   };
 
   return (

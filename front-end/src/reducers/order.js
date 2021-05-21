@@ -7,7 +7,7 @@ import {
 
 const INITIAL_STATE = {
   status: '',
-  order: {},
+  order: [],
   isLoading: false,
   error: '',
 };
@@ -19,7 +19,7 @@ export default function order(state = INITIAL_STATE, action) {
   case REQUEST_ORDER:
     return { ...state, isLoading: true };
   case REQUEST_ORDER_SUCCESS:
-    return { ...state, isLoading: false, order: action.order };
+    return { ...state, isLoading: false, order: action.orders };
   case REQUEST_ORDER_FAIL:
     return { ...state, isLoading: false, error: action.error.message };
   default:

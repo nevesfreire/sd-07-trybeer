@@ -1,18 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 export default function OrderCard({ order, position }) {
-  const { id, deliveryNumber, saleDate, totalPrice } = order;
+  const check = moment(order.sale_date , 'YYYY/MM/DD').format('DD/MM');
 
   return (
-    <Link to={ `/orders/${id}` } data-testid={ `${position}-order-card-container` }>
-      <span data-testid={ `${position}-order-number` }>{ deliveryNumber }</span>
-      <span data-testid={ `${position}-order-date` }>
-        { `${saleDate.getDay()}/${saleDate.getMonth()}` }
-      </span>
-      <span data-testid={ `${position}-order-total-value` }>{ totalPrice }</span>
-    </Link>
+    <div>
+      <Link
+        to={ `/orders/${order.id}` }
+        data-testid={ `${position}-order-card-container` }
+      >
+        <p data-testid={ `${position}-order-number` }>{ `Pedido ${order.id}` }</p>
+        <p data-testid={ `${position}-order-date` }>
+          { check }
+        </p>
+        <p data-testid={ `${position}-order-total-value` }>{ order.total_price }</p>
+      </Link>
+    </div>
   );
 }
 

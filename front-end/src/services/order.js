@@ -3,7 +3,7 @@ const REQUEST_OK = 200;
 const UNAUTHORIZED = 401;
 const contentType = { 'Content-type': 'application/json' };
 const urlOrders = 'http://localhost:3001/orders';
-const checkoutUrl = 'http://localhost:3001/checkout'
+const checkoutUrl = 'http://localhost:3001/checkout';
 
 export const saveOrder = (dispatch, finish, order, token) => {
   try {
@@ -30,11 +30,10 @@ export const saveOrder = (dispatch, finish, order, token) => {
   }
 };
 
-export const getOrders = (email, token) => {
+export const getOrders = (token) => {
   try {
     return fetch(urlOrders, {
       method: 'GET',
-      body: email,
       headers: {
         ...contentType,
         authorization: token,
@@ -53,7 +52,7 @@ export const getOrders = (email, token) => {
   }
 };
 
-export const getOrder = (id, token, email) => {
+export const getOrder = (id, token) => {
   try {
     const url = `http://localhost:3001/orders/${id}`;
     return fetch(url, {

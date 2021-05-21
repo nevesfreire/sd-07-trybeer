@@ -5,6 +5,7 @@ import getToken from '../services/login';
 
 export default function Register() {
   const [disabled, setDisabled] = useState(true);
+  const [message, setMessage] = useState('');
   const [checkboxValue, setCheckboxValue] = useState(false);
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [registerData, setRegisterData] = useState({
@@ -36,16 +37,23 @@ export default function Register() {
       token: userToken.token,
       role: userToken.role,
     };
+    
     if (checkboxValue) {
       newRegister = { ...newRegister, role: 'admin' };
-      await registerUser(JSON.stringify(newRegister));
-      localStorage.setItem('user', JSON.stringify(userData));
-      setShouldRedirect('/admin/orders');
+      await registerUser(JSON.stringify(newRegister))
+      .then(() => {
+        localStorage.setItem('user', JSON.stringify(userData));
+        setShouldRedirect('/admin/orders');
+      })
+        .catch(() => setMessage('Já existe um usuário com esse e-mail.'));
     }
     newRegister = { ...newRegister, role: 'client' };
-    await registerUser(JSON.stringify(newRegister));
-    localStorage.setItem('user', JSON.stringify(userData));
-    setShouldRedirect('/products');
+    await registerUser(JSON.stringify(newRegister))
+      .then(() => {
+        localStorage.setItem('user', JSON.stringify(userData));
+        setShouldRedirect('/products');
+      })
+      .catch(() => setMessage('Já existe um usuário com esse e-mail.'));
   };
 
   useEffect(() => {
@@ -115,6 +123,7 @@ export default function Register() {
       >
         Cadastrar
       </button>
+      { <p>{ message }</p> }
     </form>
   );
 }
