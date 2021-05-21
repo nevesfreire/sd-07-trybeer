@@ -50,13 +50,10 @@ export const requestOrders = () => ({
   type: REQUEST_ORDERS,
 });
 
-export const requestOrdersSuccess = (orders) => {
-  console.log(orders);
-  return {
-    type: REQUEST_ORDERS_SUCCESS,
+export const requestOrdersSuccess = (orders) => ({
+   type: REQUEST_ORDERS_SUCCESS,
     orders,
-  };
-};
+  });
 
 export const requestOrdersFail = (error) => ({
   type: REQUEST_ORDERS_FAIL,

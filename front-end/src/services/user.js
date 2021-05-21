@@ -1,6 +1,5 @@
 const BAD_REQUEST = 400;
-// const CREATED = 201;
-
+ 
 const registerUser = (user) => {
   try {
     const url = 'http://localhost:3001/register';

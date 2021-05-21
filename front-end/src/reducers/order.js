@@ -1,7 +1,7 @@
 import {
   SAVE_ORDER,
   REQUEST_ORDER,
-  REQUEST_ORDERS_SUCCESS,
+  REQUEST_ORDER_SUCCESS,
   REQUEST_ORDER_FAIL,
 } from '../actions';
 
@@ -18,7 +18,7 @@ export default function order(state = INITIAL_STATE, action) {
     return { ...state, status: action.message };
   case REQUEST_ORDER:
     return { ...state, isLoading: true };
-  case REQUEST_ORDERS_SUCCESS:
+  case REQUEST_ORDER_SUCCESS:
     return { ...state, isLoading: false, order: action.orders };
   case REQUEST_ORDER_FAIL:
     return { ...state, isLoading: false, error: action.error.message };
