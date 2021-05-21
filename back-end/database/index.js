@@ -13,6 +13,8 @@ const conn = mysql.createPool({
   user,
   password,
   database,
+  timezone: '-03:00',
+  dateStrings: true,
 });
 
 module.exports = conn;

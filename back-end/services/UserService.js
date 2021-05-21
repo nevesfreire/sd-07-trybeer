@@ -15,7 +15,7 @@ const create = async (name, email, password, role) => {
 
   try {
     await User.create(name, email, password, userRole);
-    return { statusCode: CODE.CREATED, message: 'Usuário criado com sucesso!' };
+    return { statusCode: CODE.CREATED, message: 'Usuario criado com sucesso!' };
   } catch (err) {
     throw new CustomError(CODE.INTERNAL_SERVER_ERROR, 'Erro ao conectar com o banco de dados');
   }
