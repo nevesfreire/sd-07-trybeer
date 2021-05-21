@@ -23,7 +23,6 @@ export default function Orders() {
 
   return (
     <>
-    {console.log(ordersList)}
       <Header title="Meus Pedidos" />
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
       { isLoading === true ? 'Carregando...' : orders

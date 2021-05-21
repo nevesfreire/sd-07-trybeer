@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Redirect } from 'react-router-dom';
+import moment from 'moment';
 import Header from '../components/Header';
 import { fetchOrder } from '../actions';
-import moment from 'moment';
 
 export default function OrderDetails() {
   const params = useParams();
   const dispatch = useDispatch();
   const orderSelected = useSelector(({ order }) => order);
   const user = JSON.parse(localStorage.getItem('user'));
-  const check = moment(orderSelected.saleDate , 'YYYY/MM/DD').format('DD/MM');
+  const check = moment(orderSelected.saleDate, 'YYYY/MM/DD').format('DD/MM');
 
   const [shouldRedirect, setShouldRedirect] = useState('');
   const ROUNDING_OPTION = 2;
@@ -29,7 +29,7 @@ export default function OrderDetails() {
       { shouldRedirect && <Redirect to={ shouldRedirect } /> }
       <h1 data-testid="order-number">{ `Pedido ${orderSelected.id}` }</h1>
       <span data-testid="order-date">
-      { check }
+        { check }
       </span>
       <table>
         <thead>

@@ -37,14 +37,13 @@ export default function Register() {
       token: userToken.token,
       role: userToken.role,
     };
-    
     if (checkboxValue) {
       newRegister = { ...newRegister, role: 'admin' };
       await registerUser(JSON.stringify(newRegister))
-      .then(() => {
-        localStorage.setItem('user', JSON.stringify(userData));
-        setShouldRedirect('/admin/orders');
-      })
+        .then(() => {
+          localStorage.setItem('user', JSON.stringify(userData));
+          setShouldRedirect('/admin/orders');
+        })
         .catch(() => setMessage('Já existe um usuário com esse e-mail.'));
     }
     newRegister = { ...newRegister, role: 'client' };
@@ -123,7 +122,7 @@ export default function Register() {
       >
         Cadastrar
       </button>
-      { <p>{ message }</p> }
+      <p>{ message }</p>
     </form>
   );
 }

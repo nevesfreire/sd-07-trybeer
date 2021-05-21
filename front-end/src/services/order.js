@@ -53,7 +53,6 @@ export const getOrders = (token) => {
 };
 
 export const getOrder = (id, token) => {
-  console.log(id, token)
   try {
     const url = `http://localhost:3001/orders/${id}`;
     return fetch(url, {

@@ -13,8 +13,6 @@ const INITIAL_STATE = {
 };
 
 export default function order(state = INITIAL_STATE, action) {
-  console.log('meu Deus do ceu');
-  
   switch (action.type) {
   case SAVE_ORDER:
     return { ...state, status: action.message };

@@ -11,8 +11,6 @@ const INITIAL_STATE = {
 };
 
 export default function orders(state = INITIAL_STATE, action) {
-  console.log('s', state)
-  console.log('a', action)
   switch (action.type) {
   case REQUEST_ORDERS:
     return { ...state, isLoading: true };
