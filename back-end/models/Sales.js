@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     deliveryAddress: DataTypes.STRING(100),
     deliveryNumber: DataTypes.STRING(50),
     saleDate: DataTypes.DATE,
+    status: DataTypes.STRING(50),
   });
   Sales.associate = (models) => {
     Sales.hasMany(models.Users, { foreignKey: 'id', as: 'user_id' });
