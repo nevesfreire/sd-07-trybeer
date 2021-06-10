@@ -14,7 +14,7 @@ const createSale = async (req, res) => {
 
 const getSaleByUserId = async (req, res) => {
   try {
-    const { id } = req.user[0];
+    const { id } = req.user;
     const sales = await saleService.getSaleByUserId(id);
     res.status(OK).json(sales);
   } catch (error) {
@@ -24,7 +24,7 @@ const getSaleByUserId = async (req, res) => {
 
 const getSaleProducts = async (req, res) => {
   try {
-    const { id } = req.user[0];
+    const { id } = req.user;
     const { saleid } = req.params;
     const prouctSale = await saleService.getSaleProducts(id, saleid);
     res.status(OK).json(prouctSale);

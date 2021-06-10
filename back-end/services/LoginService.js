@@ -1,17 +1,16 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig, SECRET } = require('../config/jwt');
-const { Users } = require('../models');
+const { User } = require('../models');
 const { validateLogin, validUser } = require('./validations/LoginValidations');
 require('dotenv').config();
 
 const getUser = async (data) => {
   const { email, password } = data;
   const { error } = validateLogin(data);
-  console.log('chegou aqui');
-  const dataUser = await Users.findOne({ where: { email, password }});
+  const dataUser = await User.findOne({ where: { email, password }});
   if (error) throw error;
-  await validUser(data);
-  const { name, role, id } = dataUser[0];
+  await validUser(email, password);
+  const { name, role, id } = dataUser;
   const token = jwt.sign({ email, password }, SECRET, jwtConfig);
   return { token, name, email, role, id };
 };

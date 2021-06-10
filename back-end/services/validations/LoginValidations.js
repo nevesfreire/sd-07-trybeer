@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const { INVALIDUSER } = require('../errors/LoginMessages');
-const { loginModel } = require('../../models');
+const { User } = require('../../models');
 
 const validateLogin = (data) =>
   Joi.object({
@@ -8,9 +8,9 @@ const validateLogin = (data) =>
     password: Joi.string().min(6).required(),
   }).validate(data);
 
-const validUser = async (data) => {
-  const [userData] = await loginModel.getUserInfo(data);
-  if (!userData[0]) throw INVALIDUSER;
+const validUser = async (email, password) => {
+  const userData = await User.findOne({ where: { email, password }});
+  if (!userData) throw INVALIDUSER;
 };
 
 module.exports = {

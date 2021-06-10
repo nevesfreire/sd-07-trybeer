@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { loginModel } = require('../models');
+const { User } = require('../models');
 const { SECRET } = require('../config/jwt');
 require('dotenv').config();
 
@@ -9,8 +9,8 @@ const validateTokenMiddleware = async (req, res, next) => {
     const token = req.headers.authorization;
 
     const { email, password } = jwt.verify(token, SECRET);
-    const [user] = await loginModel.getUserInfo({ email, password });
-    if (await user.length === 0) throw ERROR;
+    const user = await User.findOne({ where: { email, password } });
+    if (await user === null) throw ERROR;
     req.user = user;
 
     next();

@@ -1,5 +1,5 @@
-const { saleModel, productModel, userModel } = require('../models');
-const { 
+const { Sale, Product, User, SalesProduct } = require('../models');
+const {
   SAMESTATUS,
   NOTFOUNDID,
   NOEXISTENTPURCHASE,
@@ -11,67 +11,75 @@ const { validateData, validateStatus } = require('./validations/SaleValidations'
 const createSale = async (data, token) => {
   const validateArray = data.map((saleData) => validateData(saleData));
   const dataIsntValid = validateArray.some((item) => item.error);
-  if (dataIsntValid === true) throw validateArray.find((error) => error.error).error.details[0];
-  
+  if (dataIsntValid === true)
+    throw validateArray.find((error) => error.error).error.details[0];
+
   const totalProductPrice = await Promise.all(
     data.map(async ({ productName, quantity }) => {
-      const product = await productModel.getProductByName(productName);
-      const price = (product[0].price * quantity);
+      const product = await Product.findOne({ where: { name: productName } });
+      const price = product.price * quantity;
       return Number(price);
-    }),
+    })
   );
-
-  const [userId] = await userModel.getUserEmail(token[0]);
+  const userId = await User.findOne({ where: { email: token.email } });
   const totalSalePrice = totalProductPrice.reduce((acc, curr) => acc + curr);
-  const [sale] = await saleModel.createSale(userId[0].id, totalSalePrice, data[0].deliveryAddress, 
-    data[0].deliveryNumber);
-
+  const { id } = userId;
+  const { deliveryAddress, deliveryNumber } = data[0];
+  const sale = await Sale.create({
+    userId: id,
+    totalPrice: totalSalePrice,
+    deliveryAddress,
+    deliveryNumber,
+  });
   data.map(async ({ productName, quantity }) => {
-  const [product] = await productModel.getProductByName(productName);
-  saleModel.createSaleProduct(sale.insertId, product.id, quantity);
+    const product = await Product.findOne({ where: { name: productName } });
+    SalesProduct.create({ saleId: sale.id, productId: product.id, quantity });
   });
 };
 
 const getSaleProducts = async (id, saleid) => {
-  const sales = await saleModel.getSaleById(id, saleid);
+  const sales = await Sale.findOne({where: {userId: id, saleid} });
   if (sales.length === 0) throw NOTFOUNDID;
   return sales;
 };
 
 const getSaleByUserId = async (id) => {
-  const result = await saleModel.getSaleByUserId(id);
-  if (result.length === 0) throw NOEXISTENTPURCHASE;
-  const retorno = await Promise.all(result.map((sale) => {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-    const saleDate = sale.sale_date.toLocaleString('en-GB', options);
-    return {
-      saleId: sale.id,
-      saleDate: saleDate.slice(0, 5),
-      totalPrice: sale.total_price,
-    };
-  }));
+  const result = await Sale.findAll({where: { userId: id }});
+  console.log(result);
+  if (result === null) throw NOEXISTENTPURCHASE;
+  const retorno = await Promise.all(
+    result.map((sale) => {
+      const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+      const saleDate = sale.saleDate.toLocaleString('en-GB', options);
+      return {
+        saleId: sale.id,
+        saleDate: saleDate.slice(0, 5),
+        totalPrice: sale.totalPrice,
+      };
+    })
+  );
   return retorno;
 };
 
 const getAllSales = async (token) => {
-  if (token[0].role !== 'administrator') throw NOTADMINISTRATOR;
-  const [sales] = await saleModel.getAllSales();
-  if (sales.length === 0) throw NOEXISTENTSALE;
+  if (token.role !== 'administrator') throw NOTADMINISTRATOR;
+  const sales = await Sale.findAll();
+  if (sales === null) throw NOEXISTENTSALE;
   return sales;
 };
 
 const updateSaleStatus = async (id, status, token) => {
   const { error } = validateStatus(status);
-  if (token[0].role !== 'administrator') throw NOTADMINISTRATOR;
+  if (token.role !== 'administrator') throw NOTADMINISTRATOR;
   if (error) throw error;
-  const [response] = await saleModel.updateSaleStatus(id, status);
-  if (response.changedRows === 0) throw SAMESTATUS;
+  const response = await Sale.update({ status }, { where: id });
+  if (response[0] === 0) throw SAMESTATUS;
   return { message: `Pedido registrado como ${status}` };
 };
 
 const adminGetSaleById = async (saleId, token) => {
-  if (token[0].role !== 'administrator') throw NOTADMINISTRATOR;
-  const result = await saleModel.adminGetSaleById(saleId);
+  if (token.role !== 'administrator') throw NOTADMINISTRATOR;
+  const result = await Sale.findByPk(saleId);
   return result;
 };
 
