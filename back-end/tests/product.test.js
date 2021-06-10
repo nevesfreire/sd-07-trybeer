@@ -1,7 +1,7 @@
 const request = require('supertest');
 const express = require('express');
 const { product } = require('../routes');
-const connect = require('../models/connection');
+const db = require('../models');
 const message = require('./config/errorMessages');
 const { contentType, applicationJson, tokens } = require('./config/parameters');
 
@@ -24,4 +24,6 @@ it('É possivel acessar a rota com um token válido', (done) =>
     .expect(contentType, /json/)
     .expect(200, done));
 
-    afterAll(async () => connect.end());
+    afterAll(async () => {
+      await db.sequelize.close()
+    });
