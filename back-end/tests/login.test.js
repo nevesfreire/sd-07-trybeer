@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const connect = require('../models/connection');
+const db = require('../models');
 const { loginModel } = require('../models');
 const { login } = require('../routes');
 const message = require('./config/errorMessages');
@@ -20,7 +20,7 @@ const invalidUser = { email: 'invaliduser@invalid.com', password: 'invalidPasswo
 const validUser = { email: 'tryber@trybe.com.br', password: '123456' };
 
 it('São retornados todos os usuários cadastrados', async (done) => {
-    const [result] = await loginModel.getUser();
+    const result = await db.User.findAll();
     const { name, email, password, role, id } = result[0];
     expect(result[0]).toMatchObject({ name, email, password, role, id });
     done();
@@ -88,4 +88,6 @@ it('Ao realizar login com sucesso deve ser retornado um objeto com token, name, 
       done();
     }));
 
-afterAll(async () => connect.end());
+    afterAll(async () => {
+        await db.sequelize.close()
+      });
