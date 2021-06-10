@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const connect = require('../models/connection');
+const db = require('../models');
 const { sale } = require('../routes');
 const message = require('./config/errorMessages');
 const { contentType, applicationJson, tokens } = require('./config/parameters');
@@ -18,4 +18,6 @@ it('Não é possivel logar utilizando um token invalido', (done) => request(app)
   .expect(contentType, /json/)
   .expect(401, message.errorToken, done));
 
-afterAll(async () => connect.end());
+  afterAll(async () => {
+    await db.sequelize.close()
+  });
