@@ -1,7 +1,6 @@
 const request = require('supertest');
 const express = require('express');
 const db = require('../models');
-const { loginModel } = require('../models');
 const { login } = require('../routes');
 const message = require('./config/errorMessages');
 const { contentType, applicationJson } = require('./config/parameters');
