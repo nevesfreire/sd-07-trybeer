@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
 import { Context } from '../../context';
-// import './styles.css';
+
+import './styles.css';
 
 function CheckoutPdtCard({ data, index }) {
   const [quantity, setQuantity] = useState(0);
@@ -24,7 +24,7 @@ function CheckoutPdtCard({ data, index }) {
   }, [cart, id]);
 
   return (
-    <article className="product-card">
+    <article className="checkout-card">
       <header>
         <img
           src={ urlImage }
@@ -33,9 +33,11 @@ function CheckoutPdtCard({ data, index }) {
         />
       </header>
       <main>
-        <strong data-testid={ `${index}-product-name` }>{name}</strong>
-        <p data-testid={ `${index}-product-unit-price` }>{priceFormat}</p>
         <div>
+          <strong data-testid={ `${index}-product-name` }>{name}</strong>
+          <p data-testid={ `${index}-product-unit-price` }>{priceFormat}</p>
+        </div>
+        <div className="checkout-card-actions">
           <button
             type="button"
             onClick={ () => removeFromCart(data) }
@@ -43,10 +45,6 @@ function CheckoutPdtCard({ data, index }) {
           >
             -
           </button>
-          <br />
-          <strong data-testid={ `${index}-product-total-value` }>
-            {formatedPrice}
-          </strong>
           <p data-testid={ `${index}-product-qtd-input` }>{quantity}</p>
           <button
             type="button"
@@ -56,6 +54,9 @@ function CheckoutPdtCard({ data, index }) {
             +
           </button>
         </div>
+        <strong data-testid={ `${index}-product-total-value` }>
+          {formatedPrice}
+        </strong>
       </main>
     </article>
   );

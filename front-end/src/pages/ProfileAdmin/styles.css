@@ -1,0 +1,13 @@
+.admin-home-container > .form-wrapper {
+  justify-content: flex-start;
+}
+
+.form-container > label > textarea {
+  border: 1px solid var(--box-border);
+  border-radius: 2px;
+  color: var(--text-secondary);
+  height: 36px;
+  margin-top: 5px;
+  padding: 5px;
+  resize: none;
+}

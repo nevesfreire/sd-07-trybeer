@@ -1,0 +1,35 @@
+.side-menu-container {
+  align-items: flex-start;
+  background: var(--text-primary);
+  border-top: 2px solid var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 15px 30px;
+  height: 100%;
+  left: -100%;
+  max-width: 300px;
+  padding: 10px 15px;
+  position: fixed;
+  top: 64px;
+  transition: left 400ms;
+  width: 90%;
+  z-index: 5;
+}
+
+.side-menu-container > button {
+  background: transparent;
+  border: 0;
+  color: white;
+  font-size: 1.2rem;
+  padding: 5px 0;
+  width: 100%;
+  text-align: left;
+}
+
+.side-menu-container > button:hover {
+  text-decoration: underline;
+}
+
+.side-menu-active {
+  left: 0;
+}

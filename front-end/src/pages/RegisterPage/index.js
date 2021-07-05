@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import { handleLogin } from '../../services/localStorage';
 
+import './style.css';
+
 function RegisterPage() {
   const [error, setError] = useState('');
   const [name, setName] = useState('');
@@ -51,60 +53,64 @@ function RegisterPage() {
   }
 
   return (
-    <section>
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="signup-name">
-          Nome
-          <input
-            required
-            autoComplete="off"
-            type="text"
-            id="signup-name"
-            data-testid="signup-name"
-            value={ name }
-            onChange={ ({ target }) => setName(target.value) }
-          />
-        </label>
-        <label htmlFor="signup-email">
-          Email
-          <input
-            required
-            autoComplete="off"
-            type="email"
-            id="signup-email"
-            data-testid="signup-email"
-            value={ email }
-            onChange={ ({ target }) => setEmail(target.value) }
-          />
-        </label>
-        <label htmlFor="signup-password">
-          Senha
-          <input
-            required
-            autoComplete="off"
-            type="password"
-            id="signup-password"
-            data-testid="signup-password"
-            value={ password }
-            onChange={ ({ target }) => setPassword(target.value) }
-          />
-        </label>
-        <label htmlFor="signup-seller">
-          <input
-            type="checkbox"
-            id="signup-seller"
-            data-testid="signup-seller"
-            name="isSeller"
-            value={ isSeller }
-            onChange={ () => setIsSeller((prev) => !prev) }
-          />
-          Quero vender
-        </label>
-        <button type="submit" data-testid="signup-btn" disabled={ !isValid }>
-          Cadastrar
-        </button>
-        { error }
-      </form>
+    <section className="register-wrapper">
+      <div className="form-wrapper">
+        <form onSubmit={ handleSubmit } className="form-container">
+          <h1>TryBeer</h1>
+          <label htmlFor="signup-name">
+            Nome
+            <input
+              required
+              autoComplete="off"
+              type="text"
+              id="signup-name"
+              data-testid="signup-name"
+              value={ name }
+              onChange={ ({ target }) => setName(target.value) }
+            />
+          </label>
+          <label htmlFor="signup-email">
+            Email
+            <input
+              required
+              autoComplete="off"
+              type="email"
+              id="signup-email"
+              data-testid="signup-email"
+              value={ email }
+              onChange={ ({ target }) => setEmail(target.value) }
+            />
+          </label>
+          <label htmlFor="signup-password">
+            Senha
+            <input
+              required
+              autoComplete="off"
+              type="password"
+              id="signup-password"
+              data-testid="signup-password"
+              value={ password }
+              onChange={ ({ target }) => setPassword(target.value) }
+            />
+          </label>
+          <label htmlFor="signup-seller" className="checkbox">
+            <input
+              type="checkbox"
+              id="signup-seller"
+              data-testid="signup-seller"
+              name="isSeller"
+              value={ isSeller }
+              onChange={ () => setIsSeller((prev) => !prev) }
+            />
+            Quero vender
+          </label>
+          <p className="error">{ error }</p>
+          <button type="submit" data-testid="signup-btn" disabled={ !isValid }>
+            Cadastrar
+          </button>
+        </form>
+      </div>
+      <div className="login-placeholder" />
     </section>
   );
 }

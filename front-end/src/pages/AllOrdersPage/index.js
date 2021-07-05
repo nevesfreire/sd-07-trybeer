@@ -1,8 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import { Order } from '../../components';
-import api from '../../services/api';
 import { Context } from '../../context';
+
+import { Order, ClientMenu } from '../../components';
+
+import api from '../../services/api';
+
+import './styles.css';
 
 function AllOrders() {
   const { orders, setOrders } = useContext(Context);
@@ -25,17 +29,24 @@ function AllOrders() {
     });
     setIsLoading(false);
   }, [history, setOrders, user.name, user.token]);
+
   return (
-    <div>
-      <h1 data-testid="top-title">Meus Pedidos</h1>
-      {
-        isLoading
-          ? 'Loading...'
-          : orders
-            .map((item, index) => <Order key={ item } order={ item } index={ index } />)
-      }
-      <h2>{ message }</h2>
-    </div>
+    <>
+      <ClientMenu />
+      <section className="orders-wrapper">
+        <h1 data-testid="top-title">Meus Pedidos</h1>
+        <strong>{ message }</strong>
+        <div className="orders-container">
+          {
+            isLoading
+              ? <h1 className="loading">Carregando</h1>
+              : orders.map((item, index) => (
+                <Order key={ index } order={ item } index={ index } />
+              ))
+          }
+        </div>
+      </section>
+    </>
   );
 }
 

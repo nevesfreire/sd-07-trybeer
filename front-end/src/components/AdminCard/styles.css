@@ -1,0 +1,41 @@
+.admin-card {
+  background: transparent;
+  border: 1px solid var(--box-shadow);
+  border-radius: 4px;
+  box-shadow: 0 0 4px var(--box-shadow);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  max-width: 350px;
+  padding: 10px 15px;
+  transition: box-shadow 200ms;
+  width: 100%;
+}
+
+.admin-card:hover {
+  box-shadow: 0 4px 8px var(--box-shadow);
+}
+
+.admin-card > main {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.admin-card > main > h3 {
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.admin-card > footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.admin-card > footer > .delivered {
+  color: var(--primary-color);
+}

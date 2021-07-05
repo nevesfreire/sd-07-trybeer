@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Context } from '../../context';
+
 import './styles.css';
 
 function ProductCard({ data }) {
   const [quantity, setQuantity] = useState(0);
   const { cart, addToCart, removeFromCart } = useContext(Context);
+
+  const cannotRemove = 'button-add-inactive';
 
   const {
     id,
@@ -32,12 +35,13 @@ function ProductCard({ data }) {
           data-testid={ `${id - 1}-product-img` }
         />
       </header>
-      <main>
-        <strong data-testid={ `${id - 1}-product-name` }>{name}</strong>
+      <main className="product-details">
+        <h1 data-testid={ `${id - 1}-product-name` }>{name}</h1>
         <p data-testid={ `${id - 1}-product-price` }>{priceFormat}</p>
-        <div>
+        <div className="product-actions">
           <button
             type="button"
+            className={ quantity === 0 ? cannotRemove : '' }
             onClick={ () => removeFromCart(data) }
             data-testid={ `${id - 1}-product-minus` }
           >

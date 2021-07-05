@@ -1,0 +1,10 @@
+.admin-product-card {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--box-shadow);
+} 
+
+.admin-product-card, .admin-product-card > div {
+  align-items: center;
+  display: flex;
+  gap: 0 15px;
+}

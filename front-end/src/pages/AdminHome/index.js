@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { AdminSidebar, AdminCard } from '../../components';
+
 import { getItem } from '../../services/localStorage';
 import api from '../../services/api';
+
+import './styles.css';
 
 function AdminHome() {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,12 +19,11 @@ function AdminHome() {
   }, []);
 
   return (
-    <div>
-      <h1>Admin home</h1>
+    <div className="admin-home-container">
       <AdminSidebar />
-      <section>
+      <section className="admin-container">
         { isLoading
-          ? <h1>Carregando</h1>
+          ? <h1 className="loading">Carregando</h1>
           : products.map((product) => <AdminCard key={ product.id } data={ product } />)}
       </section>
     </div>

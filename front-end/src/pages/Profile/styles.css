@@ -1,0 +1,7 @@
+.profile-wrapper {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin-top: 64px;
+  width: 100%;
+}
